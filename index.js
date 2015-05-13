@@ -12,6 +12,13 @@ var API_VERSION = '1.0.0',
         'Content-Type': 'application/json'
     };
 
+var Conekta = {
+    api_key: '',
+    apiBase: API_BASE,
+    apiVersion: API_VERSION,
+    locale: 'en'
+};
+
 var Requestor = function(params) {
     this.apiUrl = API_BASE;
     this.headers = {
@@ -24,7 +31,10 @@ var Requestor = function(params) {
     this.request = function(opts) {
 
         if (!Conekta.api_key || Conekta.api_key == '') {
-            throw locales[Conekta.locale].api_key_required;
+            opts.error({
+                message: locales[Conekta.locale || 'en'].api_key_required,
+                code: 'api_key_required'
+            });
             return;
         }
 
@@ -333,7 +343,20 @@ var Subscription = new Resource({
 });
 
 var PayoutMethod = new Resource({
-    classUrl: '/payees'
+    classUrl: '/payees',
+    update: function(payee, payoutMethod, data, success, error) {
+        this.custom('put', [this.classUrl, payee, 'payout_methods', payoutMethod].join('/'), {
+            data: data,
+            success: success,
+            error: error
+        });
+    },
+    delete: function(payee, payoutMethod, success, error) {
+        this.custom('del', [this.classUrl, payee, 'payout_methods', payoutMethod].join('/'), {
+            success: success,
+            error: error
+        });
+    }
 });
 
 var Payee = new Resource({
@@ -363,22 +386,46 @@ var Payee = new Resource({
             data: data,
             success: success,
             error: error
-        });
+        }, id);
     },
     delete: function(id, success, error) {
         this.del({
             success: success,
             error: error
         }, id);
+    },
+    createPayoutMethod: function(id, data, success, error) {
+        this.custom('post', [this.classUrl, id, 'payout_methods'].join('/'), {
+            data: data,
+            success: success,
+            error: error
+        });
     }
 });
 
-var Conekta = {
-    api_key: '',
-    apiBase: API_BASE,
-    apiVersion: API_VERSION,
-    locale: 'en'
-};
+var Payout = new Resource({
+    classUrl: '/payouts',
+    create: function(data, success, error) {
+        this.post({
+            data: data,
+            success: success,
+            error: error
+        });
+    },
+    find: function(id, success, error) {
+        this.get({
+            success: success,
+            error: error
+        }, id);
+    },
+    where: function(data, success, error) {
+        this.get({
+            data: data,
+            success: success,
+            error: error
+        });
+    }
+});
 
 Conekta.Charge = Charge;
 Conekta.Event = Event;
@@ -387,5 +434,7 @@ Conekta.Plan = Plan;
 Conekta.Card = Card;
 Conekta.Subscription = Subscription;
 Conekta.Payee = Payee;
+Conekta.Payout = Payout;
+Conekta.PayoutMethod = PayoutMethod;
 
 module.exports = Conekta;
