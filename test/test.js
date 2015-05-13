@@ -415,6 +415,8 @@ describe('Card', function() {
 
 describe('Subscription', function() {
 
+    var customerSubscribed = '';
+
     describe('update', function() {
         it('should return an object instance with id attribute', function() {
             this.timeout(60000);
@@ -427,12 +429,49 @@ describe('Subscription', function() {
                 cards: ['tok_test_visa_4242'],
                 plan: 'gold-plan'
             }, function(customerRes) {
-                conekta.Subscription.update(customerRes.id, {
+                customerSubscribed = customerRes.id;
+                conekta.Subscription.update(customerSubscribed, {
                     plan: 'opal-plan'
                 }, function(res) {
                     assert(res.hasOwnProperty('id'), true);
                     done();
                 });
+            });
+        });
+    });
+
+    describe('pause', function() {
+        it('should return and object instance with id attribute', function() {
+            this.timeout(60000);
+            conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
+            conekta.locale = 'es';
+            conekta.Subscription.pause(customerSubscribed, function(res) {
+                assert(res.status == 'paused', true);
+                done();
+            });
+        });
+    });
+
+    describe('resume', function() {
+        it('should return and object instance with id attribute', function() {
+            this.timeout(60000);
+            conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
+            conekta.locale = 'es';
+            conekta.Subscription.resume(customerSubscribed, function(res) {
+                assert(res.status == 'active', true);
+                done();
+            });
+        });
+    });
+
+    describe('cancel', function() {
+        it('should return and object instance with id attribute', function() {
+            this.timeout(60000);
+            conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
+            conekta.locale = 'es';
+            conekta.Subscription.cancel(customerSubscribed, function(res) {
+                assert(res.status == 'canceled', true);
+                done();
             });
         });
     });

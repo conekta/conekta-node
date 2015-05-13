@@ -304,6 +304,24 @@ var Subscription = new Resource({
             success: success,
             error: error
         });
+    },
+    pause: function(customer, success, error) {
+        this.custom('post', [this.classUrl, customer, 'subscription', 'pause'].join('/'), {
+            success: success,
+            error: error
+        });
+    },
+    resume: function(customer, success, error) {
+        this.custom('post', [this.classUrl, customer, 'subscription', 'resume'].join('/'), {
+            success: success,
+            error: error
+        });
+    },
+    cancel: function(customer, success, error) {
+        this.custom('post', [this.classUrl, customer, 'subscription', 'cancel'].join('/'), {
+            success: success,
+            error: error
+        });
     }
 });
 
@@ -316,5 +334,6 @@ module.exports = Conekta = {
     Event: Event,
     Customer: Customer,
     Plan: Plan,
-    Card: Card
+    Card: Card,
+    Subscription: Subscription
 };
