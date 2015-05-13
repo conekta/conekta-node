@@ -1,7 +1,8 @@
 //Basics
 var _ = require('underscore'),
     base64 = require('./lib/base64.js'),
-    pkg = require('./package');
+    pkg = require('./package'),
+    locales = require('./locales.json');
 
 //Global
 var API_VERSION = '1.0.0',
@@ -18,9 +19,15 @@ var Requestor = function(params) {
         lang: 'node',
         lang_version: process.version,
         publisher: 'conekta',
-        uname: ''
+        uname: require('uname').uname()
     };
     this.request = function(opts) {
+
+        if (!Conekta.api_key || Conekta.api_key == '') {
+            throw locales[Conekta.locale].api_key_required;
+            return;
+        }
+
         HEADERS['Conekta-Client-User-Agent'] = this.headers;
         HEADERS['User-Agent'] = 'Conekta/v1 NodeBindings/' + ['Conekta::', pkg.version].join('');
         HEADERS['Accept-Language'] = Conekta.locale;
@@ -299,7 +306,7 @@ var Card = new Resource({
 var Subscription = new Resource({
     classUrl: '/customers',
     update: function(customer, data, success, error) {
-        this.custom('put', [this.classUrl, customer, 'subscriptions'].join('/'), {
+        this.custom('put', [this.classUrl, customer, 'subscription'].join('/'), {
             data: data,
             success: success,
             error: error
@@ -323,6 +330,10 @@ var Subscription = new Resource({
             error: error
         });
     }
+});
+
+var PayoutMethod = new Resource({
+    classUrl: '/payees'
 });
 
 var Payee = new Resource({
@@ -360,18 +371,21 @@ var Payee = new Resource({
             error: error
         }, id);
     }
-})
+});
 
-module.exports = Conekta = {
+var Conekta = {
     api_key: '',
     apiBase: API_BASE,
     apiVersion: API_VERSION,
-    locale: 'en',
-    Charge: Charge,
-    Event: Event,
-    Customer: Customer,
-    Plan: Plan,
-    Card: Card,
-    Subscription: Subscription,
-    Payee: Payee
+    locale: 'en'
 };
+
+Conekta.Charge = Charge;
+Conekta.Event = Event;
+Conekta.Customer = Customer;
+Conekta.Plan = Plan;
+Conekta.Card = Card;
+Conekta.Subscription = Subscription;
+Conekta.Payee = Payee;
+
+module.exports = Conekta;
