@@ -8,8 +8,10 @@ var charge = '',
     chargeCapture = '',
     amount = 50000,
     plan = 'jul0-plan',
-    customer = '';
-
+    customer = '',
+    payee = '',
+    customerSubscribed = '';
+/*
 describe('Charge', function() {
 
     describe('create with card', function() {
@@ -412,19 +414,17 @@ describe('Card', function() {
     });
 
 });
-
+*/
 describe('Subscription', function() {
-
-    var customerSubscribed = '';
-
+    
     describe('update', function() {
-        it('should return an object instance with id attribute', function() {
+        it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
             conekta.locale = 'es';
             conekta.Customer.create({
                 name:'James Howlett',
-                email:'james.howlett@forces.gov',
+                email:'willy@wonka.shop',
                 phone:'55-5555-5555',
                 cards: ['tok_test_visa_4242'],
                 plan: 'gold-plan'
@@ -435,13 +435,15 @@ describe('Subscription', function() {
                 }, function(res) {
                     assert(res.hasOwnProperty('id'), true);
                     done();
+                }, function(res) {
+                    console.log(res,'!');
                 });
             });
         });
     });
-
+    
     describe('pause', function() {
-        it('should return and object instance with id attribute', function() {
+        it('should return and object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
             conekta.locale = 'es';
@@ -453,7 +455,7 @@ describe('Subscription', function() {
     });
 
     describe('resume', function() {
-        it('should return and object instance with id attribute', function() {
+        it('should return and object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
             conekta.locale = 'es';
@@ -465,7 +467,7 @@ describe('Subscription', function() {
     });
 
     describe('cancel', function() {
-        it('should return and object instance with id attribute', function() {
+        it('should return and object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
             conekta.locale = 'es';
@@ -475,5 +477,89 @@ describe('Subscription', function() {
             });
         });
     });
+    
+});
+/*
+describe('Payee', function() {
+
+    describe('create', function() {
+        it('should return object instance with id attribute', function() {
+            this.timeout(60000);
+            conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
+            conekta.locale = 'es';
+            conekta.Payee.create({
+                name: 'James Howlett',
+                email: 'james.howlett@forces.gov',
+                phone: '55-5555-5555',
+                payout_method: {
+                    type: 'bank_transfer_payout_method',
+                    account_number: '002910902431856527',
+                    account_holder: 'James Howlett'
+                }
+            }, function(res) {
+                console.log(res);
+                payee = res.id;
+                assert(res.hasOwnProperty('id'), true);
+                done();
+            });
+        });
+    });
+
+    describe('find', function() {
+        it('should return object instance with id attribute', function() {
+            this.timeout(60000);
+            conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
+            conekta.locale = 'es';
+            conekta.Payee.find(payee, function(res) {
+                assert(res.hasOwnProperty('id'), true);
+                done();
+            });
+        });
+    });
+
+    describe('where', function() {
+        it('should return object instance with id attribute', function() {
+            this.timeout(60000);
+            conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
+            conekta.locale = 'es';
+            conekta.Payee.where({}, function(res) {
+                assert(res.hasOwnProperty('id'), true);
+                done();
+            });
+        });
+    });
+
+    describe('update', function() {
+        it('should return object instance with id attribute', function() {
+            this.timeout(60000);
+            conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
+            conekta.locale = 'es';
+            conekta.Payee.update(payee, {
+                name: 'Willy Wonka',
+            }, function(res) {
+                assert(res.hasOwnProperty('id'), true);
+                done();
+            });
+        });
+    });
+
+    describe('delete', function() {
+        it('should return object instance with id attribute', function() {
+            this.timeout(60000);
+            conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
+            conekta.locale = 'es';
+            conekta.Payee.delete(payee, function(res) {
+                console.log(res);
+                assert(res.hasOwnProperty('id'), true);
+                done();
+            });
+        });
+    });
 
 });
+*/
+/*
+amount: lib.payoutAmount('card', args.donation.amount),
+currency: 'MXN',
+payee_id: event.payeeId
+*/

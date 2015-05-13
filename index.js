@@ -298,7 +298,7 @@ var Card = new Resource({
 
 var Subscription = new Resource({
     classUrl: '/customers',
-    update: function(customer, card, data, success, error) {
+    update: function(customer, data, success, error) {
         this.custom('put', [this.classUrl, customer, 'subscriptions'].join('/'), {
             data: data,
             success: success,
@@ -325,6 +325,43 @@ var Subscription = new Resource({
     }
 });
 
+var Payee = new Resource({
+    classUrl: '/payees',
+    create: function(data, success, error) {
+        this.post({
+            data: data,
+            success: success,
+            error: error
+        });
+    },
+    find: function(id, success, error) {
+        this.get({
+            success: success,
+            error: error
+        }, id);
+    },
+    where: function(data, success, error) {
+        this.get({
+            data: data,
+            success: success,
+            error: error
+        });
+    },
+    update: function(id, data, success, error) {
+        this.put({
+            data: data,
+            success: success,
+            error: error
+        });
+    },
+    delete: function(id, success, error) {
+        this.del({
+            success: success,
+            error: error
+        }, id);
+    }
+})
+
 module.exports = Conekta = {
     api_key: '',
     apiBase: API_BASE,
@@ -335,5 +372,6 @@ module.exports = Conekta = {
     Customer: Customer,
     Plan: Plan,
     Card: Card,
-    Subscription: Subscription
+    Subscription: Subscription,
+    Payee: Payee
 };
