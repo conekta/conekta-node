@@ -35,18 +35,28 @@ var Requestor = function(params) {
             headers: HEADERS
         };
 
-        if (opts.method == 'get') options['qs'] = opts.data;
-        if (opts.method == 'post') {
-            options['form'] = JSON.stringify(opts.data);
+        if (opts.method == 'get') {
+            options['qs'] = opts.data;
+        } else if (opts.method == 'post') {
+            options['json'] = true;
+            options['body'] = opts.data;
         } else {
             options['form'] = opts.data;
         }
 
         request[opts.method](options, function(err, req, res) {
             if (req.statusCode != 200 && req.statusCode != 201) {
-                opts.error(JSON.parse(res));
+                if (typeof res == 'object') {
+                    opts.error(res);
+                } else {
+                    opts.error(JSON.parse(res));
+                }
             } else {
-                opts.success(JSON.parse(res));
+                if (typeof res == 'object') {
+                    opts.success(res);
+                } else {
+                    opts.success(JSON.parse(res));
+                }
             }
         });
     }
@@ -65,6 +75,7 @@ var Resource = function(instance) {
             requestor.request({
                 method: 'get',
                 url: [Conekta.apiBase, uri].join(''),
+                data: opts.data || {},
                 success: opts.success,
                 error: opts.error
             });
@@ -79,8 +90,7 @@ var Resource = function(instance) {
             requestor.request({
                 method: 'post',
                 url: [Conekta.apiBase, uri].join(''),
-                data: JSON.stringify(opts.data),
-                //data: opts.data,
+                data: opts.data || {},
                 success: opts.success,
                 error: opts.error
             });
@@ -95,7 +105,7 @@ var Resource = function(instance) {
             requestor.request({
                 method: 'put',
                 url: [Conekta.apiBase, uri].join(''),
-                data: opts.data,
+                data: opts.data || {},
                 success: opts.success,
                 error: opts.error
             });
@@ -110,12 +120,21 @@ var Resource = function(instance) {
             requestor.request({
                 method: 'del',
                 url: [Conekta.apiBase, uri].join(''),
-                data: opts.data,
+                data: opts.data || {},
                 success: opts.success,
                 error: opts.error
             });
         },
-        custom: function() {}
+        custom: function(method, customURI, opts) {
+            var requestor = new Requestor();
+            requestor.request({
+                method: method,
+                url: [Conekta.apiBase, customURI].join(''),
+                data: opts.data || {},
+                success: opts.success,
+                error: opts.error
+            });
+        }
     }, instance);
 }
 
@@ -142,42 +161,18 @@ var Charge = new Resource({
         });
     },
     refund: function(id, data, success, error) {
-        this.custom = function(opts, id) {
-            var uri = [this.classUrl, id, 'refund'].join('/');
-
-            var requestor = new Requestor();
-            requestor.request({
-                method: 'post',
-                url: [Conekta.apiBase, uri].join(''),
-                data: opts.data,
-                success: opts.success,
-                error: opts.error
-            });
-        }
-        this.custom({
+        this.custom('post', [this.classUrl, id, 'refund'].join('/'), {
             data: data,
             success: success,
             error: error
-        }, id);
+        });
     },
     capture: function(id, success, error) {
-        this.custom = function(opts, id) {
-            var uri = [this.classUrl, id, 'capture'].join('/');
-
-            var requestor = new Requestor();
-            requestor.request({
-                method: 'post',
-                url: [Conekta.apiBase, uri].join(''),
-                data: opts.data,
-                success: opts.success,
-                error: opts.error
-            });
-        }
-        this.custom({
+        this.custom('post', [this.classUrl, id, 'capture'].join('/'), {
             data: {},
             success: success,
             error: error
-        }, id);
+        });
     }
 });
 
@@ -189,6 +184,13 @@ var Plan = new Resource({
             success: success,
             error: error
         });
+    },
+    find: function(id, success, error) {
+        this.get({
+            data: {},
+            success: success,
+            error: error
+        }, id);
     },
     create: function(data, success, error) {
         this.post({
@@ -226,6 +228,19 @@ var Event = new Resource({
 
 var Customer = new Resource({
     classUrl: '/customers',
+    where: function(data, success, error) {
+        this.get({
+            data: data,
+            success: success,
+            error: error
+        });
+    },
+    find: function(id, success, error) {
+        this.get({
+            success: success,
+            error: error
+        }, id);
+    },
     create: function(data, success, error) {
         this.post({
             data: data,
@@ -246,6 +261,49 @@ var Customer = new Resource({
             success: success,
             error: error
         }, id);
+    },
+    createCard: function(id, data, success, error) {
+        this.custom('post', [this.classUrl, id, 'cards'].join('/'), {
+            data: data,
+            success: success,
+            error: error
+        });
+    },
+    createSubscription: function(id, data, success, error) {
+        this.custom('post', [this.classUrl, id, 'subscription'].join('/'), {
+            data: data,
+            success: success,
+            error: error
+        });
+    }
+});
+
+var Card = new Resource({
+    classUrl: '/customers',
+    update: function(customer, card, data, success, error) {
+        this.custom('put', [this.classUrl, customer, 'cards', card].join('/'), {
+            data: data,
+            success: success,
+            error: error
+        });
+    },
+    delete: function(customer, card, success, error) {
+        this.custom('del', [this.classUrl, customer, 'cards', card].join('/'), {
+            data: {},
+            success: success,
+            error: error
+        });
+    }
+});
+
+var Subscription = new Resource({
+    classUrl: '/customers',
+    update: function(customer, card, data, success, error) {
+        this.custom('put', [this.classUrl, customer, 'subscriptions'].join('/'), {
+            data: data,
+            success: success,
+            error: error
+        });
     }
 });
 
@@ -257,5 +315,6 @@ module.exports = Conekta = {
     Charge: Charge,
     Event: Event,
     Customer: Customer,
-    Plan: Plan
+    Plan: Plan,
+    Card: Card
 };

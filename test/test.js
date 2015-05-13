@@ -7,8 +7,9 @@ const LOCALE = 'es',
 var charge = '',
     chargeCapture = '',
     amount = 50000,
-    plan = 'jul-plan';
-/*
+    plan = 'jul0-plan',
+    customer = '';
+
 describe('Charge', function() {
 
     describe('create with card', function() {
@@ -124,7 +125,9 @@ describe('Charge', function() {
             this.timeout(60000);
             conekta.api_key = API_KEY;
             conekta.locale = LOCALE;
-            conekta.Charge.where({}, function(res) {
+            conekta.Charge.where({
+                'status.ne': 'paid'
+            }, function(res) {
                 assert(res instanceof Array, true);
                 done();
             });
@@ -144,7 +147,7 @@ describe('Charge', function() {
             });
         });
     });
-
+    
     describe('capture', function() {
         it('should return object instance with id attribute', function(done) {
             this.timeout(60000);
@@ -158,7 +161,7 @@ describe('Charge', function() {
     });
     
 });
-*/
+
 describe('Plan', function() {
 
     describe('create', function() {
@@ -181,7 +184,7 @@ describe('Plan', function() {
             });
         });
     });
-
+    
     describe('update', function() {
         it('should return instance object with id', function(done) {
             this.timeout(60000);
@@ -214,6 +217,18 @@ describe('Plan', function() {
         });
     });
 
+    describe('find', function() {
+        it('should return object instance with id attribute', function(done) {
+            this.timeout(60000);
+            conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
+            conekta.locale = 'es';
+            conekta.Plan.find(plan, function(res) {
+                assert(res.hasOwnProperty('id'), true);
+                done();
+            });
+        });
+    });
+
     describe('delete', function() {
         it('should return instance object with id', function(done) {
             this.timeout(60000);
@@ -224,8 +239,8 @@ describe('Plan', function() {
                 done();
             });
         });
-    })
-
+    });
+    
 });
 
 describe('Event', function() {
@@ -256,41 +271,170 @@ describe('Customer', function() {
                 cards: ['tok_test_visa_4242'],
                 plan: 'gold-plan'
             }, function(res) {
+                customer = res.id;
                 assert(res.hasOwnProperty('id'), true);
                 done();
             });
         });
     });
-    /*
+    
     describe('update', function() {
         it('should return an object instance with id', function(done) {
             this.timeout(60000);
             conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
             conekta.locale = 'es';
-            conekta.Customer.update('cus_k2D9DxlqdVTagmEd400001', {
+            conekta.Customer.update(customer, {
                 name: 'Logan',
                 email: 'logan@x-men.org'
             }, function(res) {
-                console.log(res, '<<<<');
                 assert(res.hasOwnProperty('id'), true);
                 done();
+            });
+        });
+    });
+
+    describe('where', function() {
+        it('should return an array', function(done) {
+            this.timeout(60000);
+            conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
+            conekta.locale = 'es';
+            conekta.Customer.where({}, function(res) {
+                assert(res instanceof Array, true);
+                done();
+            });
+        });
+    });
+
+    describe('find', function() {
+        it('should return an object instance with id attribute', function(done) {
+            this.timeout(60000);
+            conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
+            conekta.locale = 'es';
+            conekta.Customer.find(customer, function(res) {
+                assert(res.hasOwnProperty('id'), true);
+                done();
+            });
+        });
+    });
+
+    describe('createcard', function() {
+        it('should return an object instance with id attribute', function(done) {
+            this.timeout(60000);
+            conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
+            conekta.locale = 'es';
+            conekta.Customer.createCard(customer, {
+                token: 'tok_test_visa_4242'
             }, function(res) {
-                console.log(res);
+                assert(res.hasOwnProperty('id'), true);
+                done();
+            });
+        });
+    });
+
+    describe('createsubscription', function() {
+        it('should return an object instance with id attribute', function(done) {
+            this.timeout(60000);
+            conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
+            conekta.locale = 'es';
+            conekta.Customer.createSubscription(customer, {
+               plan: 'gold-plan'
+            }, function(res) {
+                assert(res.hasOwnProperty('id'), true);
+                done();
             });
         });
     });
 
     describe('delete', function() {
-        it('should return an object instance with id', function(done) {
+        it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
             conekta.locale = 'es';
-            conekta.Customer.delete('cus_k2D9DxlqdVTagmEd400001', function(res) {
-                console.log(res, '<<<<');
+            conekta.Customer.delete(customer, function(res) {
                 assert(res.hasOwnProperty('id'), true);
                 done();
             });
         });
-    });*/
+    });
+
+});
+
+describe('Card', function() {
+
+    describe('update', function() {
+        it('should return an object instance with id attribute', function(done) {
+            this.timeout(60000);
+            conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
+            conekta.locale = 'es';
+            conekta.Customer.create({
+                name:'James Howlett',
+                email:'james.howlett@forces.gov',
+                phone:'55-5555-5555',
+                cards: ['tok_test_visa_4242'],
+                plan: 'gold-plan'
+            }, function(customerRes) {
+                conekta.Customer.createCard(customerRes.id, {
+                    token: 'tok_test_visa_4242'
+                }, function(cardRes) {
+                    conekta.Card.update(customerRes.id, cardRes.id, {
+                        token: 'tok_test_visa_4242'
+                    }, function(res) {
+                        assert(res.hasOwnProperty('id'), true);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+    describe('delete', function() {
+        it('should return an object instance with id attribute', function(done) {
+            this.timeout(60000);
+            conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
+            conekta.locale = 'es';
+            conekta.Customer.create({
+                name:'James Howlett',
+                email:'james.howlett@forces.gov',
+                phone:'55-5555-5555',
+                cards: ['tok_test_visa_4242'],
+                plan: 'gold-plan'
+            }, function(customerRes) {
+                conekta.Customer.createCard(customerRes.id, {
+                    token: 'tok_test_visa_4242'
+                }, function(cardRes) {
+                    conekta.Card.delete(customerRes.id, cardRes.id, function(res) {
+                        assert(res.hasOwnProperty('id'), true);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+});
+
+describe('Subscription', function() {
+
+    describe('update', function() {
+        it('should return an object instance with id attribute', function() {
+            this.timeout(60000);
+            conekta.api_key = 'key_eYvWV7gSDkNYXsmr';
+            conekta.locale = 'es';
+            conekta.Customer.create({
+                name:'James Howlett',
+                email:'james.howlett@forces.gov',
+                phone:'55-5555-5555',
+                cards: ['tok_test_visa_4242'],
+                plan: 'gold-plan'
+            }, function(customerRes) {
+                conekta.Subscription.update(customerRes.id, {
+                    plan: 'opal-plan'
+                }, function(res) {
+                    assert(res.hasOwnProperty('id'), true);
+                    done();
+                });
+            });
+        });
+    });
 
 });
