@@ -5,7 +5,7 @@
     "keywords": ["conekta", "wrapper", "spei", "oxxo", "credit card", "payment", "payout", "subscription"],
     "homepage": "https://www.conekta.io/docs/api",
     "bugs": {
-        "url": "",
+        "url": "https://github.com/conekta/conekta-node/issues",
         "email": "julian@conekta.io"
     },
     "license": "MIT",

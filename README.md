@@ -3,15 +3,15 @@
 Conekta Node v 1.1.1
 ======================
 
-Wrapper for api.conekta.io
+Wrapper to connect with https://api.conekta.io.
 
-Install
+## Install
 
 ```sh
 npm install conekta
 ```
 
-Example
+##Usage
 
 ```node
 var conekta = require('conekta');
@@ -27,8 +27,7 @@ conekta.Charge.create({
     card: 'tok_test_visa_4242',
     details: {
         email: 'logan@x-men.org'
-    },
-    capture: false
+    }
 }, function(res) {
     console.log(res);
 }, function(err) {
