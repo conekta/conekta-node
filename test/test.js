@@ -1,5 +1,5 @@
 var assert = require('assert'),
-    conekta = require('../index.js');
+    conekta = require('../lib/conekta.js');
 
 const LOCALE = 'en',
     TEST_KEY = 'key_eYvWV7gSDkNYXsmr',
