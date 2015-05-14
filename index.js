@@ -1,5 +1,6 @@
 //Basics
 var _ = require('underscore'),
+    os = require('os'),
     base64 = require('./lib/base64.js'),
     pkg = require('./package'),
     locales = require('./locales.json');
@@ -26,7 +27,7 @@ var Requestor = function(params) {
         lang: 'node',
         lang_version: process.version,
         publisher: 'conekta',
-        //uname: require('uname').uname()
+        uname: [os.arch(), os.platform(), os.release()].join(' ')
     };
     this.request = function(opts) {
 
@@ -66,7 +67,6 @@ var Requestor = function(params) {
         }
 
         request[opts.method](options, function(err, req, res) {
-            console.log(err);
             if (req.statusCode != 200 && req.statusCode != 201) {
                 if (typeof res == 'object') {
                     res.http_code = req.statusCode;
