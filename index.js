@@ -26,7 +26,7 @@ var Requestor = function(params) {
         lang: 'node',
         lang_version: process.version,
         publisher: 'conekta',
-        uname: require('uname').uname()
+        //uname: require('uname').uname()
     };
     this.request = function(opts) {
 
@@ -49,7 +49,11 @@ var Requestor = function(params) {
 
         var options = {
             url: opts.url,
-            headers: HEADERS
+            headers: HEADERS,
+            agentOptions: {
+                ca: fs.readFileSync('cert/ca_bundle.crt'),
+                rejectUnauthorized: false
+            }
         };
 
         if (opts.method == 'get') {
@@ -62,6 +66,7 @@ var Requestor = function(params) {
         }
 
         request[opts.method](options, function(err, req, res) {
+            console.log(err);
             if (req.statusCode != 200 && req.statusCode != 201) {
                 if (typeof res == 'object') {
                     res.http_code = req.statusCode;
