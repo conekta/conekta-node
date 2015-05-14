@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Conekta node Wrapper",
     "keywords": ["conekta", "wrapper", "spei", "oxxo", "credit card", "payment", "payout", "subscription"],
-    "homepage": "https://www.conekta.io/docs/api",
+    "homepage": "https://www.conekta.io",
     "bugs": {
         "url": "https://github.com/conekta/conekta-node/issues",
         "email": "julian@conekta.io"
