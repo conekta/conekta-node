@@ -1,35 +1,111 @@
 var assert = require('assert'),
     conekta = require('../index.js');
 
-const LOCALE = 'es',
-    API_KEY = 'key_eYvWV7gSDkNYXsmr';
-
-var charge = '',
-    chargeCapture = '',
-    amount = 50000,
-    plan = 'jul0-plan',
-    altPlan = (function(planId) {'plan-' + planId})(Math.random()),
-    customer = '',
-    payee = '',
-    customerSubscribed = '';
+const LOCALE = 'en',
+    API_KEY = 'key_eYvWV7gSDkNYXsmr',
+    PRODUCTION_KEY = '9YxqfRnx4sMQDnRsqdYn';
 
 describe('Conekta wrapper', function() {
-    describe('API key', function() {
-        it('should fail when api key is empty', function(done) {
-            this.timeout(60000);
-            conekta.Charge.find(charge, null, function(err) {
-                assert(err.hasOwnProperty('code'), true);
+
+    describe('with api key empty', function() {
+        it('should return error code api_key_required', function(done) {
+            conekta.Charge.create({
+                description: 'Stogies',
+                amount: 50000,
+                currency: 'MXN',
+                reference_id: '9839-wolf_pack',
+                card: 'tok_test_visa_4242',
+                details: {
+                    email: 'logan@x-men.org'
+                }
+            }, null, function(err) {
+                assert(err.code == 'api_key_required', true);
                 done();
             });
         });
     });
+
+    describe('charge with production key and test card', function() {
+        it('should return error code processing_error', function(done) {
+            this.timeout(60000);
+            conekta.api_key = PRODUCTION_KEY;
+            conekta.locale = LOCALE;
+            conekta.Charge.create({
+                description: 'Stogies',
+                amount: 50000,
+                currency: 'MXN',
+                reference_id: '9839-wolf_pack',
+                card: 'tok_test_visa_4242',
+                details: {
+                    email: 'logan@x-men.org'
+                }
+            }, null, function(err) {
+                assert(err.code == 'processing_error', true);
+                done();
+            });
+        });
+    });
+
+    describe('request with bad arguments', function() {
+        it('should return error code with empty argument', function(done) {
+            this.timeout(60000);
+            conekta.api_key = API_KEY;
+            conekta.locale = LOCALE;
+            conekta.Charge.create({
+                description: 'Stogies',
+                currency: 'MXN',
+                reference_id: '9839-wolf_pack',
+                card: 'tok_test_visa_4242',
+                details: {
+                    email: 'logan@x-men.org'
+                }
+            }, null, function(err) {
+                assert(err.code == 'invalid_amount', true);
+                done();
+            });
+        });
+    });
+
+    describe('request with errors', function() {
+        it('should return message_to_purchaser on error response', function(done) {
+            this.timeout(60000);
+            conekta.api_key = API_KEY;
+            conekta.locale = LOCALE;
+            conekta.Charge.create({
+                description: 'Stogies',
+                currency: 'MXN',
+                reference_id: '9839-wolf_pack',
+                card: 'tok_test_visa_4242',
+                details: {
+                    email: 'logan@x-men.org'
+                }
+            }, null, function(err) {
+                assert(err.hasOwnProperty('message_to_purchaser'), true);
+                done();
+            });
+        });
+    });
+
+    describe('request with not found object', function() {
+        it('should return error with http_code 404', function(done) {
+            this.timeout(60000);
+            conekta.api_key = API_KEY;
+            conekta.locale = LOCALE;
+            conekta.Charge.find('123', null, function(err) {
+                assert(err.http_code == 404, true);
+                done();
+            });
+        });
+    });
+
 });
 
-//Validate processing_error
-//Validate parameter validation error
 //Validate not found
 
 describe('Charge', function() {
+
+    var charge = '',
+        chargeCapture = '';
 
     describe('create with card', function() {
         it('should return object instance with id attribute', function(done) {
@@ -38,7 +114,7 @@ describe('Charge', function() {
             conekta.locale = LOCALE;
             conekta.Charge.create({
                 description: 'Stogies',
-                amount: amount,
+                amount: 50000,
                 currency: 'MXN',
                 reference_id: '9839-wolf_pack',
                 card: 'tok_test_visa_4242',
@@ -61,7 +137,7 @@ describe('Charge', function() {
             conekta.locale = LOCALE;
             conekta.Charge.create({
                 description: 'Stogies',
-                amount: amount,
+                amount: 50000,
                 currency: 'MXN',
                 reference_id: '9839-wolf_pack',
                 monthly_installments: 3,
@@ -84,7 +160,7 @@ describe('Charge', function() {
             conekta.locale = LOCALE;
             conekta.Charge.create({
                 currency: 'MXN',
-                amount: amount,
+                amount: 50000,
                 description: 'Stogies',
                 reference_id: '9839-wolf_pack',
                 cash: {
@@ -109,7 +185,7 @@ describe('Charge', function() {
             conekta.locale = LOCALE;
             conekta.Charge.create({
                 currency:'MXN',
-                amount: amount,
+                amount: 50000,
                 description: 'Stogies',
                 reference_id: '9839-wolf_pack',
                 bank: {
@@ -183,11 +259,13 @@ describe('Charge', function() {
 
 describe('Plan', function() {
 
+    var plan = 'jul0-plan';
+
     describe('create', function() {
         it('should return instance object with id', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Plan.create({
                 id: plan,
                 name: 'Gold Plan',
@@ -208,7 +286,7 @@ describe('Plan', function() {
         it('should return instance object with id', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Plan.update(plan, {
                 name: 'Gold Plan',
                 amount: 10000,
@@ -228,7 +306,7 @@ describe('Plan', function() {
         it('should return array', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Plan.where({}, function(res) {
                 assert(res instanceof Array, true);
                 done();
@@ -240,7 +318,7 @@ describe('Plan', function() {
         it('should return object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Plan.find(plan, function(res) {
                 assert(res.hasOwnProperty('id'), true);
                 done();
@@ -252,7 +330,7 @@ describe('Plan', function() {
         it('should return instance object with id', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Plan.delete(plan, function(res) {
                 assert(res.hasOwnProperty('id'), true);
                 done();
@@ -267,7 +345,7 @@ describe('Event', function() {
         it('should return array', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Event.where({}, function(res) {
                 assert(res instanceof Array, true);
                 done();
@@ -278,11 +356,13 @@ describe('Event', function() {
 
 describe('Customer', function() {
     
+    var customer = '';
+
     describe('create', function() {
         it('should return an object instance with id', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Customer.create({
                 name:'James Howlett',
                 email:'james.howlett@forces.gov',
@@ -301,7 +381,7 @@ describe('Customer', function() {
         it('should return an object instance with id', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Customer.update(customer, {
                 name: 'Logan',
                 email: 'logan@x-men.org'
@@ -316,7 +396,7 @@ describe('Customer', function() {
         it('should return an array', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Customer.where({}, function(res) {
                 assert(res instanceof Array, true);
                 done();
@@ -328,7 +408,7 @@ describe('Customer', function() {
         it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Customer.find(customer, function(res) {
                 assert(res.hasOwnProperty('id'), true);
                 done();
@@ -340,7 +420,7 @@ describe('Customer', function() {
         it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Customer.createCard(customer, {
                 token: 'tok_test_visa_4242'
             }, function(res) {
@@ -354,7 +434,7 @@ describe('Customer', function() {
         it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Customer.createSubscription(customer, {
                plan: 'gold-plan'
             }, function(res) {
@@ -368,7 +448,7 @@ describe('Customer', function() {
         it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Customer.delete(customer, function(res) {
                 assert(res.hasOwnProperty('id'), true);
                 done();
@@ -384,7 +464,7 @@ describe('Card', function() {
         it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Customer.create({
                 name:'James Howlett',
                 email:'james.howlett@forces.gov',
@@ -410,7 +490,7 @@ describe('Card', function() {
         it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Customer.create({
                 name:'James Howlett',
                 email:'james.howlett@forces.gov',
@@ -434,11 +514,13 @@ describe('Card', function() {
 
 describe('Subscription', function() {
     
+    var customerSubscribed = '';
+
     describe('update', function() {
         it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Customer.create({
                 name:'James Howlett',
                 email:'willy@wonka.shop',
@@ -461,7 +543,7 @@ describe('Subscription', function() {
         it('should return and object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Subscription.pause(customerSubscribed, function(res) {
                 assert((res.status == 'paused' || res.status == 'in_trial'), true);
                 done();
@@ -473,7 +555,7 @@ describe('Subscription', function() {
         it('should return and object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Subscription.resume(customerSubscribed, function(res) {
                 assert((res.status == 'active' || res.status == 'in_trial'), true);
                 done();
@@ -485,7 +567,7 @@ describe('Subscription', function() {
         it('should return and object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Subscription.cancel(customerSubscribed, function(res) {
                 assert(res.status == 'canceled', true);
                 done();
@@ -497,11 +579,13 @@ describe('Subscription', function() {
 
 describe('Payee', function() {
 
+    var payee = '';
+
     describe('create', function() {
         it('should return object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Payee.create({
                 name: 'James Howlett',
                 email: 'james.howlett@forces.gov',
@@ -518,7 +602,7 @@ describe('Payee', function() {
         it('should return object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Payee.find(payee, function(res) {
                 assert(res.hasOwnProperty('id'), true);
                 done();
@@ -530,7 +614,7 @@ describe('Payee', function() {
         it('should return object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Payee.where({}, function(res) {
                 assert(res instanceof Array, true);
                 done();
@@ -542,7 +626,7 @@ describe('Payee', function() {
         it('should return object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Payee.update(payee, {
                name: 'Willy Wonka'
             }, function(res) {
@@ -569,7 +653,7 @@ describe('Payee', function() {
         it('should return object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Payee.delete(payee, function(res) {
                 assert(res.hasOwnProperty('id'), true);
                 done();
@@ -588,7 +672,7 @@ describe('Payout', function() {
         it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Payee.create({
                 name: 'James Howlett',
                 email: 'james.howlett@forces.gov',
@@ -612,7 +696,7 @@ describe('Payout', function() {
         it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Payout.where({}, function(res) {
                 assert(res instanceof Array, true);
                 done();
@@ -624,7 +708,7 @@ describe('Payout', function() {
         it('should return an object instance with id attribute', function(done) {
            this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Payout.find(payoutId, function(res) {
                 assert(res.hasOwnProperty('id'), true);
                 done();
@@ -643,7 +727,7 @@ describe('PayoutMethod', function() {
         it('should return object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.Payee.create({
                 name: 'James Howlett',
                 email: 'james.howlett@forces.gov',
@@ -671,7 +755,7 @@ describe('PayoutMethod', function() {
         it('should return object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = API_KEY;
-            conekta.locale = 'es';
+            conekta.locale = LOCALE;
             conekta.PayoutMethod.delete(payeeId, payoutMethod, function(res) {
                 assert(res.hasOwnProperty('id'), true);
                 done();

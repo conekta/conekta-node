@@ -64,9 +64,12 @@ var Requestor = function(params) {
         request[opts.method](options, function(err, req, res) {
             if (req.statusCode != 200 && req.statusCode != 201) {
                 if (typeof res == 'object') {
+                    res.http_code = req.statusCode;
                     opts.error(res);
                 } else {
-                    opts.error(JSON.parse(res));
+                    res = JSON.parse(res);
+                    res.http_code = req.statusCode;
+                    opts.error(res);
                 }
             } else {
                 if (typeof res == 'object') {
