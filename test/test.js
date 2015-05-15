@@ -4,7 +4,7 @@ var assert = require('assert'),
 const LOCALE = 'en',
     TEST_KEY = 'key_eYvWV7gSDkNYXsmr',
     PRODUCTION_KEY = '9YxqfRnx4sMQDnRsqdYn';
-/*
+
 describe('Conekta wrapper', function() {
 
     describe('with api key empty', function() {
@@ -778,7 +778,7 @@ describe('PayoutMethod', function() {
     });
     
 });
-*/
+
 describe('Webhook', function() {
 
     var webhook = '';
