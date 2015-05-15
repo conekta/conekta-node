@@ -4,7 +4,7 @@ var assert = require('assert'),
 const LOCALE = 'en',
     TEST_KEY = 'key_eYvWV7gSDkNYXsmr',
     PRODUCTION_KEY = '9YxqfRnx4sMQDnRsqdYn';
-
+/*
 describe('Conekta wrapper', function() {
 
     describe('with api key empty', function() {
@@ -777,4 +777,62 @@ describe('PayoutMethod', function() {
         });
     });
     
+});
+*/
+describe('Webhook', function() {
+
+    var webhook = '';
+
+    describe('create', function() {
+        it('should return object instance with id attribute', function(done) {
+            this.timeout(60000);
+            conekta.api_key = TEST_KEY;
+            conekta.locale = LOCALE;
+            conekta.Webhook.create({
+                url: 'http://localhost:3000/my_listener',
+                events: ["charge.created", "charge.paid", "charge.under_fraud_review",
+                    "charge.fraudulent", "charge.refunded", "charge.created", "customer.created",
+                    "customer.updated", "customer.deleted", "webhook.created", "webhook.updated",
+                    "webhook.deleted", "charge.chargeback.created", "charge.chargeback.updated",
+                    "charge.chargeback.under_review", "charge.chargeback.lost", "charge.chargeback.won",
+                    "payout.created", "payout.retrying", "payout.paid_out", "payout.failed",
+                    "plan.created", "plan.updated", "plan.deleted", "subscription.created",
+                    "subscription.paused", "subscription.resumed", "subscription.canceled",
+                    "subscription.expired", "subscription.updated", "subscription.paid",
+                    "subscription.payment_failed", "payee.created", "payee.updated",
+                    "payee.deleted", "payee.payout_method.created",
+                    "payee.payout_method.updated", "payee.payout_method.deleted"]
+            }, function(res) {
+                webhook = res._id;
+                assert(res.toObject().hasOwnProperty('id'), true);
+                done();
+            });
+        });
+    });
+    describe('find', function() {
+        it('should return object instance with id attribute', function(done) {
+            this.timeout(60000);
+            conekta.api_key = TEST_KEY;
+            conekta.locale = LOCALE;
+            conekta.Webhook.find(webhook, function(res) {
+                assert(res.toObject().hasOwnProperty('id'), true);
+                done();
+            });
+        });
+    });
+    describe('update', function() {
+        it('should return object instance with id attribute', function(done) {
+            this.timeout(60000);
+            conekta.api_key = TEST_KEY;
+            conekta.locale = LOCALE;
+            conekta.Webhook.find(webhook, function(webhook) {
+                webhook.update({
+                    url: 'http://localhost:2000/my_listener'
+                }, function(res) {
+                    assert(res.toObject().hasOwnProperty('id'), true);
+                    done();
+                });
+            });
+        });
+    });
 });
