@@ -24,7 +24,7 @@ describe('Conekta wrapper', function() {
             });
         });
     });
-
+    
     describe('charge with production key and test card', function() {
         it('should return error code processing_error', function(done) {
             this.timeout(60000);
@@ -97,10 +97,8 @@ describe('Conekta wrapper', function() {
             });
         });
     });
-
+    
 });
-
-//Validate not found
 
 describe('Charge', function() {
 
@@ -123,8 +121,8 @@ describe('Charge', function() {
                 },
                 capture: false
             }, function(res) {
-                chargeCapture = res.id;
-                assert(res.hasOwnProperty('id'), true);
+                chargeCapture = res.toObject().id;
+                assert(res.toObject().hasOwnProperty('id'), true);
                 done();
             });
         });
@@ -146,8 +144,8 @@ describe('Charge', function() {
                     email: 'logan@x-men.org'
                 }
             }, function(res) {
-                charge = res.id;
-                assert(res.hasOwnProperty('id'), true);
+                charge = res.toObject().id;
+                assert(res.toObject().hasOwnProperty('id'), true);
                 done();
             });
         });
@@ -172,7 +170,7 @@ describe('Charge', function() {
                     phone: '403-342-0642'
                 }
             }, function(res) {
-                assert(res.hasOwnProperty('id'), true);
+                assert(res.toObject().hasOwnProperty('id'), true);
                 done();
             });
         });
@@ -197,7 +195,7 @@ describe('Charge', function() {
                     phone: '403-342-0642'
                 }
             }, function(res) {
-                assert(res.hasOwnProperty('id'), true);
+                assert(res.toObject().hasOwnProperty('id'), true);
                 done();
             });
         });
@@ -209,7 +207,7 @@ describe('Charge', function() {
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
             conekta.Charge.find(charge, function(res) {
-                assert(res.id == charge, true);
+                assert(res.toObject().id == charge, true);
                 done();
             });
         });
@@ -223,7 +221,7 @@ describe('Charge', function() {
             conekta.Charge.where({
                 'status.ne': 'paid'
             }, function(res) {
-                assert(res instanceof Array, true);
+                assert(res.toArray() instanceof Array, true);
                 done();
             });
         });
@@ -234,11 +232,11 @@ describe('Charge', function() {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
-            conekta.Charge.refund(charge, {
-                amount: 20000
-            }, function(res) {
-                assert(res.hasOwnProperty('id'), true);
-                done();
+            conekta.Charge.find(charge, function(res) {
+                res.refund({}, function(res) {
+                    assert(res.toObject().hasOwnProperty('id'), true);
+                    done();
+                });
             });
         });
     });
@@ -248,9 +246,11 @@ describe('Charge', function() {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
-            conekta.Charge.capture(chargeCapture, function(res) {
-                assert(res.hasOwnProperty('id'), true);
-                done();
+            conekta.Charge.find(chargeCapture, function(res) {
+                res.capture(function(res) {
+                    assert(res.toObject().hasOwnProperty('id'), true);
+                    done();
+                });
             });
         });
     });
@@ -259,7 +259,7 @@ describe('Charge', function() {
 
 describe('Plan', function() {
 
-    var plan = 'jul0-plan';
+    var plan = 'jul1-plan';
 
     describe('create', function() {
         it('should return instance object with id', function(done) {
@@ -276,7 +276,7 @@ describe('Plan', function() {
                 trial_period_days: 15,
                 expiry_count: 12
             }, function(res) {
-                assert(res.hasOwnProperty('id'), true);
+                assert(res.toObject().hasOwnProperty('id'), true);
                 done();
             });
         });
@@ -287,17 +287,19 @@ describe('Plan', function() {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
-            conekta.Plan.update(plan, {
-                name: 'Gold Plan',
-                amount: 10000,
-                currency: 'MXN',
-                interval: 'month',
-                frequency: 1,
-                trial_period_days: 15,
-                expiry_count: 12
-            }, function(res) {
-                assert(res.hasOwnProperty('id'), true);
-                done();
+            conekta.Plan.find(plan, function(res) {
+                res.update({
+                    name: 'Gold Plan',
+                    amount: 10000,
+                    currency: 'MXN',
+                    interval: 'month',
+                    frequency: 1,
+                    trial_period_days: 15,
+                    expiry_count: 12
+                }, function(res) {
+                    assert(res.toObject().hasOwnProperty('id'), true);
+                    done();
+                });
             });
         });
     });
@@ -308,32 +310,34 @@ describe('Plan', function() {
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
             conekta.Plan.where({}, function(res) {
-                assert(res instanceof Array, true);
+                assert(res.toArray() instanceof Array, true);
                 done();
             });
         });
     });
-
+    
     describe('find', function() {
         it('should return object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
             conekta.Plan.find(plan, function(res) {
-                assert(res.hasOwnProperty('id'), true);
+                assert(res.toObject().hasOwnProperty('id'), true);
                 done();
             });
         });
     });
-
+    
     describe('delete', function() {
         it('should return instance object with id', function(done) {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
-            conekta.Plan.delete(plan, function(res) {
-                assert(res.hasOwnProperty('id'), true);
-                done();
+            conekta.Plan.find(plan, function(res) {
+                res.delete(function(res) {
+                    assert(res.toObject().hasOwnProperty('id'), true);
+                    done();
+                });
             });
         });
     });
@@ -347,7 +351,7 @@ describe('Event', function() {
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
             conekta.Event.where({}, function(res) {
-                assert(res instanceof Array, true);
+                assert(res.toArray() instanceof Array, true);
                 done();
             });
         });
@@ -357,7 +361,7 @@ describe('Event', function() {
 describe('Customer', function() {
     
     var customer = '';
-
+    
     describe('create', function() {
         it('should return an object instance with id', function(done) {
             this.timeout(60000);
@@ -370,6 +374,7 @@ describe('Customer', function() {
                 cards: ['tok_test_visa_4242'],
                 plan: 'gold-plan'
             }, function(res) {
+                res = res.toObject();
                 customer = res.id;
                 assert(res.hasOwnProperty('id'), true);
                 done();
@@ -382,12 +387,14 @@ describe('Customer', function() {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
-            conekta.Customer.update(customer, {
-                name: 'Logan',
-                email: 'logan@x-men.org'
-            }, function(res) {
-                assert(res.hasOwnProperty('id'), true);
-                done();
+            conekta.Customer.find(customer, function(res) {
+                res.update({
+                    name: 'Logan',
+                    email: 'logan@x-men.org'
+                }, function(res) {
+                    assert(res.toObject().hasOwnProperty('id'), true);
+                    done();
+                });
             });
         });
     });
@@ -398,48 +405,52 @@ describe('Customer', function() {
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
             conekta.Customer.where({}, function(res) {
-                assert(res instanceof Array, true);
+                assert(res.toArray() instanceof Array, true);
                 done();
             });
         });
     });
-
+    
     describe('find', function() {
         it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
             conekta.Customer.find(customer, function(res) {
-                assert(res.hasOwnProperty('id'), true);
+                assert(res.toObject().hasOwnProperty('id'), true);
                 done();
             });
         });
     });
-
+    
     describe('createcard', function() {
         it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
-            conekta.Customer.createCard(customer, {
-                token: 'tok_test_visa_4242'
-            }, function(res) {
-                assert(res.hasOwnProperty('id'), true);
-                done();
+            conekta.Customer.find(customer, function(res) {
+                res.createCard({
+                    token: 'tok_test_visa_4242'
+                }, function(res) {
+                    assert(res.toObject().hasOwnProperty('id'), true);
+                    done();
+                });
             });
         });
     });
-
+    
     describe('createsubscription', function() {
         it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
-            conekta.Customer.createSubscription(customer, {
-               plan: 'gold-plan'
-            }, function(res) {
-                assert(res.hasOwnProperty('id'), true);
-                done();
+            conekta.Customer.find(customer, function(res) {
+                res.createSubscription({
+                    plan: 'gold-plan'
+                }, function(res) {
+                    assert(res.toObject().hasOwnProperty('id'), true);
+                    done();
+                });
             });
         });
     });
@@ -449,13 +460,15 @@ describe('Customer', function() {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
-            conekta.Customer.delete(customer, function(res) {
-                assert(res.hasOwnProperty('id'), true);
-                done();
+            conekta.Customer.find(customer, function(res) {
+                res.delete(function(res) {
+                    assert(res.toObject().hasOwnProperty('id'), true);
+                    done();
+                });
             });
         });
     });
-
+    
 });
 
 describe('Card', function() {
@@ -471,21 +484,19 @@ describe('Card', function() {
                 phone:'55-5555-5555',
                 cards: ['tok_test_visa_4242'],
                 plan: 'gold-plan'
-            }, function(customerRes) {
-                conekta.Customer.createCard(customerRes.id, {
-                    token: 'tok_test_visa_4242'
-                }, function(cardRes) {
-                    conekta.Card.update(customerRes.id, cardRes.id, {
+            }, function(customer) {
+                customer.find(customer._id, function(customerObj) {
+                    customerObj.cards[0].update({
                         token: 'tok_test_visa_4242'
                     }, function(res) {
-                        assert(res.hasOwnProperty('id'), true);
+                        assert(res.toObject().hasOwnProperty('id'), true);
                         done();
                     });
                 });
             });
         });
     });
-
+    
     describe('delete', function() {
         it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
@@ -497,19 +508,17 @@ describe('Card', function() {
                 phone:'55-5555-5555',
                 cards: ['tok_test_visa_4242'],
                 plan: 'gold-plan'
-            }, function(customerRes) {
-                conekta.Customer.createCard(customerRes.id, {
-                    token: 'tok_test_visa_4242'
-                }, function(cardRes) {
-                    conekta.Card.delete(customerRes.id, cardRes.id, function(res) {
-                        assert(res.hasOwnProperty('id'), true);
+            }, function(customer) {
+                customer.find(customer._id, function(customerObj) {
+                    customerObj.cards[0].delete(function(res) {
+                        assert(res.toObject().hasOwnProperty('id'), true);
                         done();
                     });
                 });
             });
         });
     });
-
+    
 });
 
 describe('Subscription', function() {
@@ -527,12 +536,12 @@ describe('Subscription', function() {
                 phone:'55-5555-5555',
                 cards: ['tok_test_visa_4242'],
                 plan: 'gold-plan'
-            }, function(customerRes) {
-                customerSubscribed = customerRes.id;
-                conekta.Subscription.update(customerSubscribed, {
+            }, function(customer) {
+                customerSubscribed = customer;
+                customerSubscribed.subscription.update({
                     plan: 'opal-plan'
                 }, function(res) {
-                    assert(res.hasOwnProperty('id'), true);
+                    assert(res.toObject().hasOwnProperty('id'), true);
                     done();
                 });
             });
@@ -544,8 +553,8 @@ describe('Subscription', function() {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
-            conekta.Subscription.pause(customerSubscribed, function(res) {
-                assert((res.status == 'paused' || res.status == 'in_trial'), true);
+            customerSubscribed.subscription.pause(function(res) {
+                assert((res.toObject().status == 'paused' ||res.toObject().status == 'in_trial'), true);
                 done();
             });
         });
@@ -556,8 +565,8 @@ describe('Subscription', function() {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
-            conekta.Subscription.resume(customerSubscribed, function(res) {
-                assert((res.status == 'active' || res.status == 'in_trial'), true);
+            customerSubscribed.subscription.resume(function(res) {
+                assert((res.toObject().status == 'active' ||res.toObject().status == 'in_trial'), true);
                 done();
             });
         });
@@ -568,8 +577,8 @@ describe('Subscription', function() {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
-            conekta.Subscription.cancel(customerSubscribed, function(res) {
-                assert(res.status == 'canceled', true);
+            customerSubscribed.subscription.cancel(function(res) {
+                assert(res.toObject().status == 'canceled', true);
                 done();
             });
         });
@@ -591,8 +600,8 @@ describe('Payee', function() {
                 email: 'james.howlett@forces.gov',
                 phone: '55-5555-5555'
             }, function(res) {
-                payee = res.id;
-                assert(res.hasOwnProperty('id'), true);
+                payee = res._id;
+                assert(res.toObject().hasOwnProperty('id'), true);
                 done();
             });
         });
@@ -604,7 +613,7 @@ describe('Payee', function() {
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
             conekta.Payee.find(payee, function(res) {
-                assert(res.hasOwnProperty('id'), true);
+                assert(res.toObject().hasOwnProperty('id'), true);
                 done();
             });
         });
@@ -616,7 +625,7 @@ describe('Payee', function() {
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
             conekta.Payee.where({}, function(res) {
-                assert(res instanceof Array, true);
+                assert(res.toArray() instanceof Array, true);
                 done();
             });
         });
@@ -627,36 +636,43 @@ describe('Payee', function() {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
-            conekta.Payee.update(payee, {
-               name: 'Willy Wonka'
-            }, function(res) {
-                assert(res.hasOwnProperty('id'), true);
-                done();
+            conekta.Payee.find(payee, function(res) {
+                res.update({
+                   name: 'Willy Wonka'
+                }, function(res) {
+                    assert(res.toObject().hasOwnProperty('id'), true);
+                    done();
+                });
             });
         });
     });
-
+    
     describe('createPayoutMethod', function() {
         it('should return object instance with id attribute', function(done) {
-            conekta.Payee.createPayoutMethod(payee, {
-                type: 'bank_transfer_payout_method',
-                account_number: '002910902431856527',
-                account_holder: 'James Howlett'
-            }, function(res) {
-                assert(res.hasOwnProperty('id'), true);
-                done();
+            this.timeout(60000);
+            conekta.Payee.find(payee, function(res) {
+                res.createPayoutMethod({
+                    type: 'bank_transfer_payout_method',
+                    account_number: '002910902431856527',
+                    account_holder: 'James Howlett'
+                }, function(res) {
+                    assert(res.toObject().hasOwnProperty('id'), true);
+                    done();
+                });
             });
         });
     });
-
+    
     describe('delete', function() {
         it('should return object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
-            conekta.Payee.delete(payee, function(res) {
-                assert(res.hasOwnProperty('id'), true);
-                done();
+            conekta.Payee.find(payee, function(res) {
+                res.delete(function(res) {
+                    assert(res.toObject().hasOwnProperty('id'), true);
+                    done();
+                });
             });
         });
     });
@@ -665,8 +681,7 @@ describe('Payee', function() {
 
 describe('Payout', function() {
 
-    var payeeId = '',
-        payoutId = '';
+    var payoutId = '';
 
     describe('create', function() {
         it('should return an object instance with id attribute', function(done) {
@@ -678,14 +693,13 @@ describe('Payout', function() {
                 email: 'james.howlett@forces.gov',
                 phone: '55-5555-5555'
             }, function(res) {
-                payeeId = res.id;
                 conekta.Payout.create({
-                    payee: payeeId,
+                    payee: res._id,
                     currency: 'MXN',
                     amount: 50000
-                }, function(res) {
-                    payoutId = res.id;
-                    assert(res.hasOwnProperty('id'), true);
+                }, function(payout) {
+                    payoutId = payout._id;
+                    assert(res.toObject().hasOwnProperty('id'), true);
                     done();
                 });
             });
@@ -698,7 +712,7 @@ describe('Payout', function() {
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
             conekta.Payout.where({}, function(res) {
-                assert(res instanceof Array, true);
+                assert(res.toArray() instanceof Array, true);
                 done();
             });
         });
@@ -710,7 +724,7 @@ describe('Payout', function() {
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
             conekta.Payout.find(payoutId, function(res) {
-                assert(res.hasOwnProperty('id'), true);
+                assert(res.toObject().hasOwnProperty('id'), true);
                 done();
             });
         });
@@ -720,8 +734,7 @@ describe('Payout', function() {
 
 describe('PayoutMethod', function() {
 
-    var payeeId = '',
-        payoutMethod = '';
+    var payeeId = '';
 
     describe('update', function() {
         it('should return object instance with id attribute', function(done) {
@@ -733,34 +746,35 @@ describe('PayoutMethod', function() {
                 email: 'james.howlett@forces.gov',
                 phone: '55-5555-5555'
             }, function(res) {
-                payeeId = res.id;
-                conekta.Payee.createPayoutMethod(payeeId, {
+                payeeId = res._id;
+                res.createPayoutMethod({
                     type: 'bank_transfer_payout_method',
                     account_number: '002910902431856527',
                     account_holder: 'James Howlett'
                 }, function(methodRes) {
-                    payoutMethod = methodRes.id;
-                    conekta.PayoutMethod.update(payeeId, payoutMethod, {
+                    methodRes.update({
                         account_holder: 'Juan Mendez'
                     }, function(res) {
-                        assert(res.hasOwnProperty('id'), true);
+                        assert(res.toObject().hasOwnProperty('id'), true);
                         done();
                     });
                 });
             });
         });
     });
-
+    
     describe('delete', function() {
         it('should return object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
-            conekta.PayoutMethod.delete(payeeId, payoutMethod, function(res) {
-                assert(res.hasOwnProperty('id'), true);
-                done();
+            conekta.Payee.find(payeeId, function(payee) {
+                payee.payout_methods[0].delete(function(res) {
+                    assert(res.toObject().hasOwnProperty('id'), true);
+                    done();
+                });
             });
         });
     });
-
+    
 });

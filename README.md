@@ -29,7 +29,7 @@ conekta.Charge.create({
         email: 'logan@x-men.org'
     }
 }, function(res) {
-    console.log(res);
+    console.log(res.toObject());
 }, function(err) {
     console.log(err.message_to_purchaser);
 });
@@ -42,42 +42,20 @@ conekta.Charge.create({
 conekta.Charge.create(hash, success, error);
 conekta.Charge.where(hash, success, error);
 conekta.Charge.find(charge_id, success, error);
-conekta.Charge.refund(charge_id, hash, success, error);
-conekta.Charge.capture(charge_id, success, error);
 
 conekta.Plan.create(hash, success, error);
-conekta.Plan.update(plan_id, hash, success, error);
 conekta.Plan.where(hash, success, error);
 conekta.Plan.find(plan_id, success, error);
-conekta.Plan.delete(plan_id, success, error);
 
 conekta.Event.where(hash, success, error);
 
 conekta.Customer.create(hash, success, error);
-conekta.Customer.update(customer_id, hash, success, error);
 conekta.Customer.where(hash, success, error);
 conekta.Customer.find(customer_id, hash, success, error);
-conekta.Customer.createCard(customer_id, hash, success, error);
-conekta.Customer.createSubscription(customer_id, hash, success, error);
-conekta.Customer.delete(customer_id, success, error);
-
-conekta.Card.update(customer_id, card_id, data, success, error);
-conekta.Card.delete(customer_id, card_id, success, error);
-
-conekta.Subscription.update(customer_id, hash, success, error);
-conekta.Subscription.pause(customer_id, success, error);
-conekta.Subscription.resume(customer_id, success, error);
-conekta.Subscription.cancel(customer_id, success, error);
 
 conekta.Payee.create(hash, success, error);
-conekta.Payee.update(payee_id, hash, success, error);
 conekta.Payee.where(hash, success, error);
 conekta.Payee.find(payee_id, success, error);
-conekta.Payee.createPayoutMethod(payee_id, hash, success, error);
-conekta.Payee.delete(payee_id, success, error);
-
-conekta.PayoutMethod.update(payee_id, payout_method, hash, success, error);
-conekta.PayoutMethod.delete(payee_id, payout_method, success, error);
 
 conekta.Payout.create(hash, success, error);
 conekta.Payout.where(hash, success, error);
