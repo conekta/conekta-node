@@ -11,7 +11,7 @@ Wrapper to connect with https://api.conekta.io.
 npm install conekta
 ```
 
-##Usage
+## Usage
 
 ```node
 var conekta = require('conekta');
