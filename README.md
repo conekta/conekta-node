@@ -62,6 +62,10 @@ conekta.Payout.where(hash, success, error);
 conekta.Payout.find(payout_id, success, error);
 ```
 
+## Documentation
+
+Please see https://www.conekta.io/docs/api for up-to-date documentation.
+
 ## Tests
 
 You can test the conekta library with mocha on the conekta library root:
