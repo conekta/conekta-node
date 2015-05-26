@@ -1,5 +1,6 @@
 var assert = require('assert'),
-    conekta = require('../lib/conekta.js');
+    conekta = require('../lib/conekta.js'),
+    base64 = require('../lib/base64.js');
 
 const LOCALE = 'en',
     TEST_KEY = 'key_eYvWV7gSDkNYXsmr',
@@ -24,7 +25,7 @@ describe('Conekta wrapper', function() {
             });
         });
     });
-    
+
     describe('charge with production key and test card', function() {
         it('should return error code processing_error', function(done) {
             this.timeout(60000);
@@ -97,7 +98,7 @@ describe('Conekta wrapper', function() {
             });
         });
     });
-    
+
 });
 
 describe('Charge', function() {
@@ -200,7 +201,7 @@ describe('Charge', function() {
             });
         });
     });
-    
+
     describe('find', function() {
         it('should return object with same id sent before', function(done) {
             this.timeout(60000);
@@ -240,7 +241,7 @@ describe('Charge', function() {
             });
         });
     });
-    
+
     describe('capture', function() {
         it('should return object instance with id attribute', function(done) {
             this.timeout(60000);
@@ -254,7 +255,7 @@ describe('Charge', function() {
             });
         });
     });
-    
+
 });
 
 describe('Plan', function() {
@@ -281,7 +282,7 @@ describe('Plan', function() {
             });
         });
     });
-    
+
     describe('update', function() {
         it('should return instance object with id', function(done) {
             this.timeout(60000);
@@ -315,7 +316,7 @@ describe('Plan', function() {
             });
         });
     });
-    
+
     describe('find', function() {
         it('should return object instance with id attribute', function(done) {
             this.timeout(60000);
@@ -327,7 +328,7 @@ describe('Plan', function() {
             });
         });
     });
-    
+
     describe('delete', function() {
         it('should return instance object with id', function(done) {
             this.timeout(60000);
@@ -341,7 +342,7 @@ describe('Plan', function() {
             });
         });
     });
-    
+
 });
 
 describe('Event', function() {
@@ -359,9 +360,9 @@ describe('Event', function() {
 });
 
 describe('Customer', function() {
-    
+
     var customer = '';
-    
+
     describe('create', function() {
         it('should return an object instance with id', function(done) {
             this.timeout(60000);
@@ -381,7 +382,7 @@ describe('Customer', function() {
             });
         });
     });
-    
+
     describe('update', function() {
         it('should return an object instance with id', function(done) {
             this.timeout(60000);
@@ -410,7 +411,7 @@ describe('Customer', function() {
             });
         });
     });
-    
+
     describe('find', function() {
         it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
@@ -422,7 +423,7 @@ describe('Customer', function() {
             });
         });
     });
-    
+
     describe('createcard', function() {
         it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
@@ -438,7 +439,7 @@ describe('Customer', function() {
             });
         });
     });
-    
+
     describe('createsubscription', function() {
         it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
@@ -468,7 +469,7 @@ describe('Customer', function() {
             });
         });
     });
-    
+
 });
 
 describe('Card', function() {
@@ -496,7 +497,7 @@ describe('Card', function() {
             });
         });
     });
-    
+
     describe('delete', function() {
         it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
@@ -518,11 +519,11 @@ describe('Card', function() {
             });
         });
     });
-    
+
 });
 
 describe('Subscription', function() {
-    
+
     var customerSubscribed = '';
 
     describe('update', function() {
@@ -547,7 +548,7 @@ describe('Subscription', function() {
             });
         });
     });
-    
+
     describe('pause', function() {
         it('should return and object instance with id attribute', function(done) {
             this.timeout(60000);
@@ -559,7 +560,7 @@ describe('Subscription', function() {
             });
         });
     });
-    
+
     describe('resume', function() {
         it('should return and object instance with id attribute', function(done) {
             this.timeout(60000);
@@ -571,7 +572,7 @@ describe('Subscription', function() {
             });
         });
     });
-    
+
     describe('cancel', function() {
         it('should return and object instance with id attribute', function(done) {
             this.timeout(60000);
@@ -583,7 +584,7 @@ describe('Subscription', function() {
             });
         });
     });
-    
+
 });
 
 describe('Payee', function() {
@@ -646,7 +647,7 @@ describe('Payee', function() {
             });
         });
     });
-    
+
     describe('createPayoutMethod', function() {
         it('should return object instance with id attribute', function(done) {
             this.timeout(60000);
@@ -662,7 +663,7 @@ describe('Payee', function() {
             });
         });
     });
-    
+
     describe('delete', function() {
         it('should return object instance with id attribute', function(done) {
             this.timeout(60000);
@@ -762,7 +763,7 @@ describe('PayoutMethod', function() {
             });
         });
     });
-    
+
     describe('delete', function() {
         it('should return object instance with id attribute', function(done) {
             this.timeout(60000);
@@ -776,7 +777,7 @@ describe('PayoutMethod', function() {
             });
         });
     });
-    
+
 });
 
 describe('Webhook', function() {
@@ -834,5 +835,63 @@ describe('Webhook', function() {
                 });
             });
         });
+    });
+});
+
+describe('Base64Encode', function() {
+
+    // Tests basic functionality.
+    it('should encode basic strings and Buffers', function() {
+        var tests = [
+            {input: "", output: ""},
+            {input: "f", output: "Zg=="},
+            {input: "fo", output: "Zm8="},
+            {input: "foo", output: "Zm9v"},
+            {input: "foob", output: "Zm9vYg=="},
+            {input: "fooba", output: "Zm9vYmE="},
+            {input: "foobar", output: "Zm9vYmFy"}
+        ];
+        for (var i = 0; i < tests.length; i++) {
+            var test = tests[i];
+            assert.equal(test.output, base64.encode(test.input))
+            assert.equal(test.output, base64.encode(new Buffer(test.input, 'ascii')));
+        }
+    });
+
+    // Tests advanced functionality with utf8 encoding.
+    it('should encode unicode strings', function() {
+        var input = '\xA9',
+            output1 = base64.encode(input),
+            binInput = new Buffer([0xC2, 0xA9]),
+            output2 = base64.encode(binInput);
+
+        // Binary utf8 and string data should match base64 encoding
+        assert.equal(output1, "wqk=", "unicode values as strings should be encoded correctly");
+        assert.equal(output2, "wqk=", "unicode buffers should be encoding correctly");
+    });
+
+    // Test that base64.encode actually throws when it is passed a bad data type.
+    it('should throw when passed bad inputs', function() {
+        var didThrow = function(wrapFn) {
+            try {
+                wrapFn();
+            } catch (e) {
+                return true;
+            }
+            return false;
+        };
+
+        assert(didThrow(function() {
+            base64.encode();
+        }));
+        assert(didThrow(function() {
+            base64.encode(1);
+        }));
+        assert(didThrow(function() {
+            base64.encode(false);
+        }));
+        assert(didThrow(function() {
+            base64.encode(null);
+        }));
     });
 });
