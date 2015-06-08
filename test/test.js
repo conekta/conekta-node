@@ -371,9 +371,7 @@ describe('Customer', function() {
             conekta.Customer.create({
                 name:'James Howlett',
                 email:'james.howlett@forces.gov',
-                phone:'55-5555-5555',
-                cards: ['tok_test_visa_4242'],
-                plan: 'gold-plan'
+                phone:'55-5555-5555'
             }, function(res) {
                 res = res.toObject();
                 customer = res.id;
