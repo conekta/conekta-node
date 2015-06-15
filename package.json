@@ -18,9 +18,15 @@
         "request": "2.55.0",
         "underscore": "1.8.3"
     },
+    "devDependencies": {
+        "mocha": "*"
+    },
     "main": "./lib/conekta.js",
     "engines": {
         "node": ">=0.10.3 <0.12.3",
         "npm": "~1.0.20"
+    },
+    "scripts": {
+        "test": "mocha"
     }
 }
