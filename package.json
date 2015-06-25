@@ -1,12 +1,12 @@
 {
     "name": "conekta",
-    "version": "1.0.7",
+    "version": "1.0.9",
     "description": "Conekta node Wrapper",
     "keywords": ["conekta", "wrapper", "spei", "oxxo", "credit card", "payment", "payout", "subscription"],
     "homepage": "https://www.conekta.io",
     "bugs": {
         "url": "https://github.com/conekta/conekta-node/issues",
-        "email": "julian@conekta.io"
+        "email": "soporte@conekta.io"
     },
     "license": "MIT",
     "author": "Conekta",
@@ -19,11 +19,11 @@
         "underscore": "1.8.3"
     },
     "devDependencies": {
-        "mocha": "*"
+        "mocha": "2.2.5"
     },
     "main": "./lib/conekta.js",
     "engines": {
-        "node": ">=0.10.3 <0.12.3",
+        "node": ">=0.10.3 <0.12.5",
         "npm": "~1.0.20"
     },
     "scripts": {

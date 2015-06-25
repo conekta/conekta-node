@@ -363,7 +363,26 @@ describe('Customer', function() {
 
     var customer = '';
 
-    describe('create', function() {
+    describe('create without plan', function() {
+        it('should return an object instance with id', function(done) {
+            this.timeout(60000);
+            conekta.api_key = TEST_KEY;
+            conekta.locale = LOCALE;
+            conekta.Customer.create({
+                name:'James Howlett',
+                email:'james.howlett@forces.gov',
+                phone:'55-5555-5555',
+                cards: ['tok_test_visa_4242']
+            }, function(res) {
+                res = res.toObject();
+                customer = res.id;
+                assert(res.hasOwnProperty('id'), true);
+                done();
+            });
+        });
+    });
+
+    describe('create without plan and cards', function() {
         it('should return an object instance with id', function(done) {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
@@ -514,6 +533,33 @@ describe('Card', function() {
                         done();
                     });
                 });
+            });
+        });
+    });
+
+    describe('create two cards, then delete one of them', function() {
+        it('should be different by one', function(done) {
+            this.timeout(60000);
+            conekta.api_key = TEST_KEY;
+            conekta.locale = LOCALE;
+            conekta.Customer.create({
+                name:'James Howlett',
+                email:'james.howlett@forces.gov',
+                phone:'55-5555-5555',
+                cards: ['tok_test_visa_4242'],
+                plan: 'gold-plan'
+            }, function(customer) {
+                customer.createCard({
+                    token: 'tok_test_visa_4242'
+                }, function() {
+                    cards_amount = customer.cards.length;
+                    customer.cards[0].delete(function(res) {
+                        conekta.Customer.find(customer._id, function(_customer) {
+                            assert(cards_amount - 1 == _customer.cards.length, true);
+                            done();
+                        })
+                    });
+                })
             });
         });
     });
@@ -893,3 +939,4 @@ describe('Base64Encode', function() {
         }));
     });
 });
+
