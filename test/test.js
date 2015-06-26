@@ -698,7 +698,7 @@ describe('Payee', function() {
             conekta.Payee.find(payee, function(res) {
                 res.createPayoutMethod({
                     type: 'bank_transfer_payout_method',
-                    account_number: '002910902431856527',
+                    account_number: '002320074024662727',
                     account_holder: 'James Howlett'
                 }, function(res) {
                     assert(res.toObject().hasOwnProperty('id'), true);
@@ -794,7 +794,7 @@ describe('PayoutMethod', function() {
                 payeeId = res._id;
                 res.createPayoutMethod({
                     type: 'bank_transfer_payout_method',
-                    account_number: '002910902431856527',
+                    account_number: '002320074024662727',
                     account_holder: 'James Howlett'
                 }, function(methodRes) {
                     methodRes.update({
