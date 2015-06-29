@@ -1,3 +1,9 @@
+=== 1.0.10 ===
+
+* Changelog added
+* Code comments added
+* API Version validator
+
 === 1.0.9 ===
 
 * Conekta objects were not populating their attributes right.

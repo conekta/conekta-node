@@ -1,8 +1,10 @@
 {
     "en": {
-        "api_key_required": "Invalid API key."
+        "api_key_required": "Invalid API key.",
+        "api_version_suggestion": "WARNING: Your api version is lower than 1.0.0, we suggest you change it."
     },
     "es": {
-        "api_key_required": "API key invalida."
+        "api_key_required": "API key invalida.",
+        "api_version_suggestion": "CUIDADO: Tu API es una versión menor a la 1.0.0, te sugerimos cambiarla."
     }
 }
