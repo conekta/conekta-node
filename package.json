@@ -1,6 +1,6 @@
 {
     "name": "conekta",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "Conekta node Wrapper",
     "keywords": ["conekta", "wrapper", "spei", "oxxo", "credit card", "payment", "payout", "subscription"],
     "homepage": "https://www.conekta.io",

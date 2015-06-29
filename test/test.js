@@ -10,6 +10,7 @@ describe('Conekta wrapper', function() {
 
     describe('with api key empty', function() {
         it('should return error code api_key_required', function(done) {
+            conekta.api_version = '0.0.3'
             conekta.Charge.create({
                 description: 'Stogies',
                 amount: 50000,
@@ -25,11 +26,12 @@ describe('Conekta wrapper', function() {
             });
         });
     });
-
+    
     describe('charge with production key and test card', function() {
         it('should return error code processing_error', function(done) {
             this.timeout(60000);
             conekta.api_key = PRODUCTION_KEY;
+            conekta.api_version = '1.0.0'
             conekta.locale = LOCALE;
             conekta.Charge.create({
                 description: 'Stogies',
@@ -939,4 +941,3 @@ describe('Base64Encode', function() {
         }));
     });
 });
-
