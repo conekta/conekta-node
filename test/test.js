@@ -209,7 +209,7 @@ describe('Charge', function() {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
-            conekta.Charge.find(charge, function(res) {
+            conekta.Charge.find(chargeCapture, function(res) {
                 assert(res.toObject().id == charge, true);
                 done();
             });
