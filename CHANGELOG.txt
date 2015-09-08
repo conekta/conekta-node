@@ -1,23 +1,28 @@
+== 1.0.11 ==
+
+* Add spec for subscription card update
+* Update changelog
+* Ignored .npmrc
+
 === 1.0.10 ===
 
-* Changelog added
-* Code comments added
-* API Version validator
+* Add changelog
+* Add code comments
+* Add API Version validator
 
 === 1.0.9 ===
 
-* Conekta objects were not populating their attributes right.
-* Tests updated to validate the bugs fixed.
+* Fix conekta objects were not populating their attributes right.
+* Add specs updated to validate the bugs fixed.
 
 === 1.0.7 ===
 
-* Base64 node core library instead custom base64 code.
+* Fix base64 node core library instead custom base64 code.
 
 === 1.0.6 ===
 
-* Documentation enhanced and little code enhancements.
+* Enhance Documentation.
 
 === 1.0.5 ===
 
-* Conekta node wrapper ready for production usage.
-* Conekta node wrapper include all conekta objects including payouts.
+* Finish first version of conekta node wrapper.

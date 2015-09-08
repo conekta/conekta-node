@@ -28,8 +28,7 @@
     "underscore": "1.8.3"
   },
   "devDependencies": {
-    "mocha": "2.2.5",
-    "npm-prepublish": "^1.2.1"
+    "mocha": "2.2.5"
   },
   "main": "./lib/conekta.js",
   "engines": {
@@ -37,6 +36,6 @@
     "npm": "~1.0.20"
   },
   "scripts": {
-    "test": "mocha && if [[ $CI_BRANCH =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+$ ]] ; then npm-prepublish && printf \"_auth = $NPM_AUTH_TOKEN\nemail = $NPM_EMAIL\n\" > .npmrc && npm publish; fi"
+    "test": "mocha && echo \"_auth = $NPM_AUTH_TOKEN\nemail = $NPM_EMAIL\n\" > .npmrc && npm publish"
   }
 }
