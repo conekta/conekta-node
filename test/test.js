@@ -7,7 +7,7 @@ const LOCALE = 'en',
     PRODUCTION_KEY = '9YxqfRnx4sMQDnRsqdYn';
 
 describe('Conekta wrapper', function() {
-
+    
     describe('with api key empty', function() {
         it('should return error code api_key_required', function(done) {
             conekta.api_version = '0.0.3'
@@ -210,7 +210,7 @@ describe('Charge', function() {
             conekta.api_key = TEST_KEY;
             conekta.locale = LOCALE;
             conekta.Charge.find(chargeCapture, function(res) {
-                assert(res.toObject().id == charge, true);
+                assert(res.toObject().id == chargeCapture, true);
                 done();
             });
         });
@@ -569,10 +569,10 @@ describe('Card', function() {
 });
 
 describe('Subscription', function() {
-
+    
     var customerSubscribed = '';
-
-    describe('update', function() {
+    
+    describe('update subscription plan', function() {
         it('should return an object instance with id attribute', function(done) {
             this.timeout(60000);
             conekta.api_key = TEST_KEY;
@@ -594,7 +594,30 @@ describe('Subscription', function() {
             });
         });
     });
-
+    
+    describe('update subscription card', function() {
+        it('should return an object instance with id attribute', function(done) {
+            this.timeout(60000);
+            conekta.api_key = TEST_KEY;
+            conekta.locale = LOCALE;
+            conekta.Customer.create({
+                name:'James Howlett',
+                email:'willy@wonka.shop',
+                phone:'55-5555-5555',
+                cards: ['tok_test_amex_0005', 'tok_test_mastercard_4444'],
+                plan: 'gold-plan'
+            }, function(customer) {
+                customer.subscription.update({
+                    plan: 'opal-plan',
+                    card_id: customer.toObject().cards[1].id
+                }, function(res) {
+                    assert(res.toObject().hasOwnProperty('id'), true);
+                    done();
+                });
+            });
+        });
+    });
+    
     describe('pause', function() {
         it('should return and object instance with id attribute', function(done) {
             this.timeout(60000);
@@ -630,7 +653,7 @@ describe('Subscription', function() {
             });
         });
     });
-
+    
 });
 
 describe('Payee', function() {
