@@ -28,10 +28,12 @@ conekta.Charge.create({
     details: {
         email: 'logan@x-men.org'
     }
-}, function(res) {
+}, function(err, res) {
+    if (err) {
+        console.log(err.message_to_purchaser);
+        return;
+    }
     console.log(res.toObject());
-}, function(err) {
-    console.log(err.message_to_purchaser);
 });
 ```
 
@@ -39,27 +41,27 @@ conekta.Charge.create({
 
 ```node
 //Charge
-conekta.Charge.create(hash, success, error);
-conekta.Charge.where(hash, success, error);
-conekta.Charge.find(charge_id, success, error);
+conekta.Charge.create(hash, next);
+conekta.Charge.where(hash, next);
+conekta.Charge.find(charge_id, next);
 
-conekta.Plan.create(hash, success, error);
-conekta.Plan.where(hash, success, error);
-conekta.Plan.find(plan_id, success, error);
+conekta.Plan.create(hash, next);
+conekta.Plan.where(hash, next);
+conekta.Plan.find(plan_id, next);
 
-conekta.Event.where(hash, success, error);
+conekta.Event.where(hash, next);
 
-conekta.Customer.create(hash, success, error);
-conekta.Customer.where(hash, success, error);
-conekta.Customer.find(customer_id, hash, success, error);
+conekta.Customer.create(hash, next);
+conekta.Customer.where(hash, next);
+conekta.Customer.find(customer_id, hash, next);
 
-conekta.Payee.create(hash, success, error);
-conekta.Payee.where(hash, success, error);
-conekta.Payee.find(payee_id, success, error);
+conekta.Payee.create(hash, next);
+conekta.Payee.where(hash, next);
+conekta.Payee.find(payee_id, next);
 
-conekta.Payout.create(hash, success, error);
-conekta.Payout.where(hash, success, error);
-conekta.Payout.find(payout_id, success, error);
+conekta.Payout.create(hash, next);
+conekta.Payout.where(hash, next);
+conekta.Payout.find(payout_id, next);
 ```
 
 ## Documentation
