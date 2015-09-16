@@ -36,6 +36,6 @@
     "npm": "~1.0.20"
   },
   "scripts": {
-    "test": "mocha && echo \"_auth = $NPM_AUTH_TOKEN\nemail = $NPM_EMAIL\n\" > .npmrc && npm publish"
+    "test": "mocha"
   }
 }
