@@ -1,3 +1,11 @@
+=== 1.1 ===
+
+* Node.js Callback style
+* Add strict mode
+* Add scope binding in order to reduce use of _this variable
+* Specs updated
+* Node JS support since 0.10.3 until 4.0.0
+
 === 1.0.10 ===
 
 * Changelog added
