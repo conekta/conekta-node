@@ -5,7 +5,7 @@ var assert = require('assert'),
 const LOCALE = 'en',
     TEST_KEY = 'key_eYvWV7gSDkNYXsmr',
     PRODUCTION_KEY = '9YxqfRnx4sMQDnRsqdYn';
-/*
+
 describe('Conekta wrapper', function() {
     
     describe('with api key empty', function() {
@@ -567,7 +567,7 @@ describe('Card', function() {
     });
 
 });
-*/
+
 describe('Subscription', function() {
     
     var customerSubscribed = '';
@@ -655,7 +655,7 @@ describe('Subscription', function() {
     });
     
 });
-/*
+
 describe('Payee', function() {
 
     var payee = '';
@@ -964,4 +964,3 @@ describe('Base64Encode', function() {
         }));
     });
 });
-*/
