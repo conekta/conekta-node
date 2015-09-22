@@ -362,7 +362,7 @@ describe('Event', function() {
 });
 
 describe('Customer', function() {
-
+    
     var customer = '';
 
     describe('create without plan', function() {
@@ -384,6 +384,23 @@ describe('Customer', function() {
         });
     });
 
+    describe('cards id', function() {
+        it('should be different', function(done) {
+            this.timeout(60000);
+            conekta.api_key = TEST_KEY;
+            conekta.locale = LOCALE;
+            conekta.Customer.create({
+                name:'James Howlett',
+                email:'james.howlett@forces.gov',
+                phone:'55-5555-5555',
+                cards: ['tok_test_amex_0005', 'tok_test_mastercard_4444']
+            }, function(err, customer) {
+                assert(customer.cards[0]._id != customer.cards[1]._id, true);
+                done();
+            });
+        });
+    })
+    
     describe('create without plan and cards', function() {
         it('should return an object instance with id', function(done) {
             this.timeout(60000);
@@ -488,7 +505,7 @@ describe('Customer', function() {
             });
         });
     });
-
+    
 });
 
 describe('Card', function() {
