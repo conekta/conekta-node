@@ -100,6 +100,8 @@ Help: exit() to quit
 
 ### Tests
 
+![Codeship Status](https://www.codeship.io/projects/51103310-1e4d-0131-0d84-5e49904adcd5/status)
+
 ```sh
 $ npm test
 ```
@@ -111,3 +113,9 @@ We love pull requests, send them from your fork to branch **dev** into **conekta
 License
 -------
 Developed by [Conekta](https://www.conekta.io). Available with [MIT License](LICENSE).
+
+We are hiring
+-------------
+
+If you are a comfortable working with a range of backend languages (Java, Python, Ruby, PHP, etc) and frameworks, you have solid foundation in data structures, algorithms and software design with strong analytical and debugging skills. 
+Send your CV, github to quieroser@conekta.io
