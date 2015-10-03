@@ -82,11 +82,10 @@ $ git clone https://github.com/conekta/conekta-node
 $ npm install
 ```
 
-### Interactive mode
+### Run interactive mode
 
 ```sh
 $ cd conekta-node
-$ chmod +x bin/console
 $ bin/console
 Welcome to Conekta node console!
 Help: exit() to quit
@@ -98,7 +97,7 @@ Help: exit() to quit
 > 
 ```
 
-### Tests
+### Run tests
 
 ![Codeship Status](https://www.codeship.io/projects/51103310-1e4d-0131-0d84-5e49904adcd5/status)
 
@@ -106,7 +105,7 @@ Help: exit() to quit
 $ npm test
 ```
 
-### Pull requests
+### Send pull requests
 
 We love pull requests, send them from your fork to branch **dev** into **conekta/conekta-node**
 
