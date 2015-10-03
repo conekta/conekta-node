@@ -66,7 +66,7 @@ conekta.Payout.find(payout_id, next);
 
 ## Documentation
 
-Please see https://www.conekta.io/docs/api for up-to-date documentation.
+Please see [https://www.conekta.io/docs/api](https://www.conekta.io/es/docs/api/?backend-language=backend_javascript&frontend-language=web&javascript-interpreter-language=javascript) for up-to-date documentation.
 
 ## Contribute
 
