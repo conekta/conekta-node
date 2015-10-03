@@ -37,7 +37,6 @@
     "node": ">=0.10.3 <=4.0.0"
   },
   "scripts": {
-    "test": "mocha",
-    "console": "bin/console"
+    "test": "mocha"
   }
 }
