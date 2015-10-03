@@ -74,6 +74,7 @@ Please see [https://www.conekta.io/docs/api](https://www.conekta.io/es/docs/api/
 
 ```sh
 $ git clone https://github.com/conekta/conekta-node
+$ cd conekta-node
 ```
 
 ### Install dependencies
@@ -85,7 +86,6 @@ $ npm install
 ### Run interactive mode
 
 ```sh
-$ cd conekta-node
 $ bin/console
 Welcome to Conekta node console!
 Help: exit() to quit
