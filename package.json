@@ -1,40 +1,43 @@
 {
-    "name": "conekta",
-    "version": "1.1.0",
-    "description": "Conekta node Wrapper",
-    "keywords": [
-      "conekta",
-      "wrapper",
-      "spei",
-      "oxxo",
-      "credit card",
-      "payment",
-      "payout",
-      "subscription"
-    ],
-    "homepage": "https://www.conekta.io",
-    "bugs": {
-        "url": "https://github.com/conekta/conekta-node/issues",
-        "email": "soporte@conekta.io"
-    },
-    "license": "MIT",
-    "author": "Conekta",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/conekta/conekta-node.git"
-    },
-    "dependencies": {
-        "request": "2.55.0",
-        "underscore": "1.8.3"
-    },
-    "devDependencies": {
-        "mocha": "2.2.5"
-    },
-    "main": "./lib/conekta.js",
-    "engines": {
-        "node": ">=0.10.3 <=4.0.0"
-    },
-    "scripts": {
-        "test": "mocha"
-    }
+  "name": "conekta",
+  "version": "1.5.0",
+  "description": "Conekta node Wrapper",
+  "keywords": [
+    "conekta",
+    "wrapper",
+    "spei",
+    "oxxo",
+    "credit card",
+    "payment",
+    "payout",
+    "subscription"
+  ],
+  "homepage": "https://www.conekta.io",
+  "bugs": {
+    "url": "https://github.com/conekta/conekta-node/issues",
+    "email": "soporte@conekta.io"
+  },
+  "license": "MIT",
+  "author": "Conekta",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/conekta/conekta-node.git"
+  },
+  "dependencies": {
+    "request": "2.55.0",
+    "underscore": "1.8.3"
+  },
+  "devDependencies": {
+    "mocha": "2.2.5",
+    "coffee-script": "^1.10.0",
+    "nesh": "^1.6.0"
+  },
+  "main": "./lib/conekta.js",
+  "engines": {
+    "node": ">=0.10.3 <=4.0.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "console": "bin/console"
+  }
 }

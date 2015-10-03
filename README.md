@@ -68,11 +68,45 @@ conekta.Payout.find(payout_id, next);
 
 Please see https://www.conekta.io/docs/api for up-to-date documentation.
 
-## Tests
+## Contribute
+
+### Clone repo
+
+```sh
+$ git clone https://github.com/conekta/conekta-node
+```
+
+### Install dependencies
+
+```sh
+$ npm install
+```
+
+### Interactive mode
+
+```sh
+$ cd conekta-node
+$ chmod +x bin/console
+$ bin/console
+Welcome to Conekta node console!
+Help: exit() to quit
+
+> conekta.api_key = '9YxqfRnx4sMQDnRsqdYn';
+'9YxqfRnx4sMQDnRsqdYn'
+> conekta.locale = 'es';
+'es'
+> 
+```
+
+### Tests
 
 ```sh
 $ npm test
 ```
+
+### Pull requests
+
+We love pull requests, send them from your fork to branch **dev** into **conekta/conekta-node**
 
 License
 -------

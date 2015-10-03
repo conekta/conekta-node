@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+var nesh = require('nesh'),
+    util = require('util');
+
+var opts = {
+  welcome: 'Welcome to Conekta node console!\n' +
+           'Help: exit() to quit\n',
+  prompt: '> ',
+  evalData: 'var conekta = require("./lib/conekta.js");'
+};
+
+var Exit = {
+  postStart: function(context) {
+    var repl = context.repl;
+    repl.context.exit = function() {
+      return process.exit(0);
+    };
+  }
+};
+
+nesh.plugins = [Exit];
+
+// Load user configuration
+nesh.config.load();
+
+nesh.start(opts, function (err) {
+  if (err) {
+    nesh.log.error(err);
+  }
+});
