@@ -6,7 +6,7 @@ const LOCALE = 'en',
   TEST_KEY = 'key_eYvWV7gSDkNYXsmr',
   PRODUCTION_KEY = '9YxqfRnx4sMQDnRsqdYn';
 
-describe('Conekta wrapper', function() {
+/*describe('Conekta wrapper', function() {
 
   describe('with api key empty', function() {
     it('should return error code api_key_required', function(done) {
@@ -747,7 +747,6 @@ describe('Payee', function() {
         email: 'james.howlett@forces.gov',
         phone: '55-5555-5555'
       }, function(err, res) {
-        console.log(res._id);
         payee = res._id;
         assert(res.toObject().hasOwnProperty('id'), true);
         done();
@@ -932,7 +931,7 @@ describe('PayoutMethod', function() {
   });
 
 });
-
+*/
 describe('Webhook', function() {
 
   var webhook = '';
@@ -943,7 +942,7 @@ describe('Webhook', function() {
       conekta.api_key = TEST_KEY;
       conekta.locale = LOCALE;
       conekta.Webhook.create({
-        url: 'http://localhost:3000/my_listener',
+        url: 'https://api.conekta.io/webhook0',
         events: ["charge.created", "charge.paid", "charge.under_fraud_review",
           "charge.fraudulent", "charge.refunded", "charge.created", "customer.created",
           "customer.updated", "customer.deleted", "webhook.created", "webhook.updated",
@@ -984,7 +983,7 @@ describe('Webhook', function() {
       conekta.locale = LOCALE;
       conekta.Webhook.find(webhook, function(err, webhook) {
         webhook.update({
-          url: 'http://localhost:2000/my_listener'
+          url: 'https://api.conekta.io/webhook1'
         }, function(err, res) {
           assert(res.toObject().hasOwnProperty('id'), true);
           done();
@@ -994,7 +993,7 @@ describe('Webhook', function() {
   });
 
 });
-
+/*
 describe('Log', function() {
 
   it('should return array instance', function(done) {
@@ -1002,7 +1001,6 @@ describe('Log', function() {
     conekta.api_key = TEST_KEY;
     conekta.locale = LOCALE;
     conekta.Log.where({}, function(err, res) {
-      console.log(err, res);
       assert(res.toArray() instanceof Array, true);
       done();
     });
@@ -1081,3 +1079,4 @@ describe('Base64Encode', function() {
   });
 
 });
+*/
