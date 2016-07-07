@@ -6,7 +6,7 @@ const LOCALE = 'en',
   TEST_KEY = 'key_eYvWV7gSDkNYXsmr',
   PRODUCTION_KEY = '9YxqfRnx4sMQDnRsqdYn';
 
-/*describe('Conekta wrapper', function() {
+describe('Conekta wrapper', function() {
 
   describe('with api key empty', function() {
     it('should return error code api_key_required', function(done) {
@@ -931,7 +931,7 @@ describe('PayoutMethod', function() {
   });
 
 });
-*/
+
 describe('Webhook', function() {
 
   var webhook = '';
@@ -993,7 +993,7 @@ describe('Webhook', function() {
   });
 
 });
-/*
+
 describe('Log', function() {
 
   it('should return array instance', function(done) {
@@ -1079,4 +1079,4 @@ describe('Base64Encode', function() {
   });
 
 });
-*/
+
