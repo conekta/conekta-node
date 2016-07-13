@@ -288,9 +288,50 @@ describe('Charge', function() {
         done();
       });
     });
+
+    it('should return array (just callback)', function(done) {
+      this.timeout(60000);
+      conekta.api_key = TEST_KEY;
+      conekta.locale = LOCALE;
+      conekta.Charge.where(function(err, res) {
+        assert(res.toArray() instanceof Array, true);
+        done();
+      });
+    });
   });
 
   describe('refund', function() {
+    it('should return object instance with id attribute (just callback param)', function(done) {
+      this.timeout(60000);
+      conekta.api_key = TEST_KEY;
+      conekta.locale = LOCALE;
+      conekta.Charge.create({
+        description: 'Stogies',
+        amount: 50000,
+        currency: 'MXN',
+        reference_id: '9839-wolf_pack',
+        card: 'tok_test_visa_4242',
+        details: {
+          name: 'Wolverine',
+          email: 'mauricio@conekta.io',
+          phone: '403-342-0642',
+          line_items: [{
+            name: 'Box of Cohiba S1s',
+            description: 'Imported From Mex.',
+            unit_price: 20000,
+            quantity: 1,
+          }]
+        }
+      }, function(err, res) {
+        conekta.Charge.find(res.toObject().id, function(err, res) {
+          res.refund(function(err, res) {
+            assert(res.toObject().hasOwnProperty('id'), true);
+            done();
+          });
+        });
+      });
+    });
+
     it('should return object instance with id attribute', function(done) {
       this.timeout(60000);
       conekta.api_key = TEST_KEY;
@@ -377,6 +418,16 @@ describe('Plan', function() {
         done();
       });
     });
+
+    it('should return array (just callback)', function(done) {
+      this.timeout(60000);
+      conekta.api_key = TEST_KEY;
+      conekta.locale = LOCALE;
+      conekta.Plan.where(function(err, res) {
+        assert(res.toArray() instanceof Array, true);
+        done();
+      });
+    });
   });
 
   describe('find', function() {
@@ -410,6 +461,16 @@ describe('Plan', function() {
 describe('Event', function() {
   describe('where', function() {
     it('should return array', function(done) {
+      this.timeout(60000);
+      conekta.api_key = TEST_KEY;
+      conekta.locale = LOCALE;
+      conekta.Event.where({}, function(err, res) {
+        assert(res.toArray() instanceof Array, true);
+        done();
+      });
+    });
+
+    it('should return array (just callback)', function(done) {
       this.timeout(60000);
       conekta.api_key = TEST_KEY;
       conekta.locale = LOCALE;
@@ -502,6 +563,16 @@ describe('Customer', function() {
       conekta.api_key = TEST_KEY;
       conekta.locale = LOCALE;
       conekta.Customer.where({}, function(err, res) {
+        assert(res.toArray() instanceof Array, true);
+        done();
+      });
+    });
+
+    it('should return an array (just callback)', function(done) {
+      this.timeout(60000);
+      conekta.api_key = TEST_KEY;
+      conekta.locale = LOCALE;
+      conekta.Customer.where(function(err, res) {
         assert(res.toArray() instanceof Array, true);
         done();
       });
@@ -776,6 +847,16 @@ describe('Payee', function() {
         done();
       });
     });
+
+    it('should return object instance with id attribute (just callback)', function(done) {
+      this.timeout(60000);
+      conekta.api_key = TEST_KEY;
+      conekta.locale = LOCALE;
+      conekta.Payee.where(function(err, res) {
+        assert(res.toArray() instanceof Array, true);
+        done();
+      });
+    });
   });
 
   describe('update', function() {
@@ -865,6 +946,16 @@ describe('Payout', function() {
       conekta.api_key = TEST_KEY;
       conekta.locale = LOCALE;
       conekta.Payout.where({}, function(err, res) {
+        assert(res.toArray() instanceof Array, true);
+        done();
+      });
+    });
+
+    it('should return an object instance with id attribute (just callback)', function(done) {
+      this.timeout(60000);
+      conekta.api_key = TEST_KEY;
+      conekta.locale = LOCALE;
+      conekta.Payout.where(function(err, res) {
         assert(res.toArray() instanceof Array, true);
         done();
       });
@@ -1002,6 +1093,16 @@ describe('Log', function() {
     conekta.api_key = TEST_KEY;
     conekta.locale = LOCALE;
     conekta.Log.where({}, function(err, res) {
+      assert(res.toArray() instanceof Array, true);
+      done();
+    });
+  });
+
+  it('should return array instance (just callback)', function(done) {
+    this.timeout(60000);
+    conekta.api_key = TEST_KEY;
+    conekta.locale = LOCALE;
+    conekta.Log.where(function(err, res) {
       assert(res.toArray() instanceof Array, true);
       done();
     });
