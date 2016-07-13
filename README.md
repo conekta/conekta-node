@@ -1,6 +1,6 @@
 ![alt tag](https://raw.github.com/conekta/conekta-node/master/readme_files/cover.png)
 
-Conekta Node v 1.7.0
+Conekta Node v 2.0.0
 ======================
 
 Wrapper to connect with https://api.conekta.io.
@@ -41,27 +41,27 @@ conekta.Charge.create({
 
 ```node
 //Charge
-conekta.Charge.create(hash, next);
-conekta.Charge.where(hash, next);
-conekta.Charge.find(charge_id, next);
+conekta.Charge.create(hash, callback);
+conekta.Charge.where(hash, callback);
+conekta.Charge.find(charge_id, callback);
 
-conekta.Plan.create(hash, next);
-conekta.Plan.where(hash, next);
-conekta.Plan.find(plan_id, next);
+conekta.Plan.create(hash, callback);
+conekta.Plan.where(hash, callback);
+conekta.Plan.find(plan_id, callback);
 
-conekta.Event.where(hash, next);
+conekta.Event.where(hash, callback);
 
-conekta.Customer.create(hash, next);
-conekta.Customer.where(hash, next);
-conekta.Customer.find(customer_id, hash, next);
+conekta.Customer.create(hash, callback);
+conekta.Customer.where(hash, callback);
+conekta.Customer.find(customer_id, hash, callback);
 
-conekta.Payee.create(hash, next);
-conekta.Payee.where(hash, next);
-conekta.Payee.find(payee_id, next);
+conekta.Payee.create(hash, callback);
+conekta.Payee.where(hash, callback);
+conekta.Payee.find(payee_id, callback);
 
-conekta.Payout.create(hash, next);
-conekta.Payout.where(hash, next);
-conekta.Payout.find(payout_id, next);
+conekta.Payout.create(hash, callback);
+conekta.Payout.where(hash, callback);
+conekta.Payout.find(payout_id, callback);
 ```
 
 ## Documentation
