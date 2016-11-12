@@ -1,0 +1,3 @@
+engines:
+  nodesecurity:
+    enabled: true
