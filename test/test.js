@@ -10,7 +10,7 @@ describe('Conekta wrapper', function() {
 
   describe('with api key empty', function() {
     it('should return error code api_key_required', function(done) {
-      conekta.api_version = '1.0.0'
+      conekta.api_version = '1.1.0'
       conekta.Charge.create({
         description: 'Stogies',
         amount: 50000,
@@ -39,7 +39,7 @@ describe('Conekta wrapper', function() {
     it('should return error code processing_error', function(done) {
       this.timeout(60000);
       conekta.api_key = PRODUCTION_KEY;
-      conekta.api_version = '1.0.0'
+      conekta.api_version = '1.1.0'
       conekta.locale = LOCALE;
       conekta.Charge.create({
         description: 'Stogies',
@@ -59,7 +59,7 @@ describe('Conekta wrapper', function() {
           }]
         }
       }, function(err) {
-        assert(err.code == 'processing_error', true);
+        assert(err.type == 'processing_error', true);
         done();
       });
     });
@@ -87,7 +87,7 @@ describe('Conekta wrapper', function() {
           }]
         }
       }, function(err) {
-        assert(err.code == 'invalid_amount', true);
+        assert(err.details[0].code == 'invalid_amount', true);
         done();
       });
     });
@@ -115,7 +115,7 @@ describe('Conekta wrapper', function() {
           }]
         }
       }, function(err) {
-        assert(err.hasOwnProperty('message_to_purchaser'), true);
+        assert(err.details[0].hasOwnProperty('message_to_purchaser'), true);
         done();
       });
     });
