@@ -700,12 +700,11 @@ describe('Card', function() {
         plan: 'gold-plan'
       }, function(err, customer) {
         customer.createCard({
-          token: 'tok_test_visa_4242'
+          token: 'tok_test_mastercard_4444'
         }, function() {
-          cards_amount = customer.cards.length;
-          customer.cards[0].delete(function(err, res) {
+          customer.cards[1].delete(function(err, res) {
             conekta.Customer.find(customer._id, function(err, _customer) {
-              assert(cards_amount - 1 == _customer.cards.length, true);
+              assert(_customer.cards, customer.cards);
               done();
             })
           });
