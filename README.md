@@ -11,6 +11,13 @@ Wrapper to connect with https://api.conekta.io.
 npm install conekta
 ```
 
+This last release works with API 1.1, if you are using 1.0 type:
+
+
+```sh
+npm install conekta@2.1.0
+```
+
 ## Usage
 
 ```node
@@ -19,18 +26,24 @@ var conekta = require('conekta');
 conekta.api_key = '9YxqfRnx4sMQDnRsqdYn';
 conekta.locale = 'es';
 
-conekta.Charge.create({
-    description: 'Stogies',
-    amount: 50000,
-    currency: 'MXN',
-    reference_id: '9839-wolf_pack',
-    card: 'tok_test_visa_4242',
-    details: {
-        email: 'logan@x-men.org'
-    }
-}, function(err, res) {
+conekta.Order.create({
+    "currency": "MXN",
+    "customer_info": {
+        "name": "Jul Ceballos",
+        "phone": "+5215555555555",
+        "email": "jul@conekta.io"
+    },
+    "line_items": [{
+        "name": "Box of Cohiba S1s",
+        "description": "Imported From Mex.",
+        "unit_price": 35000,
+        "quantity": 1,
+        "tags": ["food", "mexican food"],
+        "type": "physical"
+    }]
+  }, function(err, res) {
     if (err) {
-        console.log(err.message_to_purchaser);
+        console.log(err.type);
         return;
     }
     console.log(res.toObject());
@@ -40,33 +53,37 @@ conekta.Charge.create({
 ## Endpoints
 
 ```node
-//Charge
-conekta.Charge.create(hash, callback);
-conekta.Charge.where(hash, callback);
-conekta.Charge.find(charge_id, callback);
 
-conekta.Plan.create(hash, callback);
-conekta.Plan.where(hash, callback);
-conekta.Plan.find(plan_id, callback);
+Conekta.Order.create
+Conekta.Order.update
+Conekta.Order.find
+Conekta.Order.where
+Conekta.Order.createCharge
+Conekta.Order.createLineItem
+Conekta.Lineitem.update
+Conekta.Order.createTaxLine
+Conekta.TaxLine.update
+Conekta.Order.createShippingLine
+Conekta.ShippingLine.update
+Conekta.Order.createDiscountLine
+Conekta.DiscountLine.update
+Conekta.Customer.create
+Conekta.Customer.update
+Conekta.Customer.find
+Conekta.Customer.where
+Conekta.Customer.destroy
+Conekta.Customer.createSource
+Conekta.Source.update
+Conekta.Customer.createShippingContact
+Conekta.ShippingContact.update
+Conekta.Customer.createFiscalEntity
+Conekta.FiscalEntity.update
 
-conekta.Event.where(hash, callback);
-
-conekta.Customer.create(hash, callback);
-conekta.Customer.where(hash, callback);
-conekta.Customer.find(customer_id, hash, callback);
-
-conekta.Payee.create(hash, callback);
-conekta.Payee.where(hash, callback);
-conekta.Payee.find(payee_id, callback);
-
-conekta.Payout.create(hash, callback);
-conekta.Payout.where(hash, callback);
-conekta.Payout.find(payout_id, callback);
 ```
 
 ## Documentation
 
-Please see [https://www.conekta.io/docs/api](https://www.conekta.io/es/docs/api/?backend-language=backend_javascript&frontend-language=web&javascript-interpreter-language=javascript) for up-to-date documentation.
+Please see https://www.conekta.io/docs/api-v1_1 for up-to-date documentation.
 
 ## Contribute
 
