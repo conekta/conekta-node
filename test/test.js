@@ -101,6 +101,21 @@ describe('Conekta wrapper', function() {
     });
   });
 
+  describe('api version unsupported', function() {
+    it('should return error ', function(done) {
+      this.timeout(60000);
+      conekta.api_key = TEST_KEY;
+      conekta.api_version = '1.0.0';
+      conekta.locale = LOCALE;
+      conekta.Order.find('123', function(err) {
+        assert(err.code == 'api_version_unsupported', true);
+        done();
+      });
+    });
+  });
+
+
+
 });
 
 describe('Order', function() {
