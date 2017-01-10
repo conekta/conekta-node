@@ -125,6 +125,7 @@ describe('Order', function() {
       this.timeout(10000);
       conekta.api_key = TEST_KEY;
       conekta.locale = LOCALE;
+      conekta.api_version = '1.1.0';
       createOrder(function(err, res) {
         assert((res.toObject()) instanceof Object, true);
         done();
@@ -161,8 +162,25 @@ describe('Order', function() {
       this.timeout(6000);
       conekta.api_key = TEST_KEY;
       conekta.locale = 'en';
-      createOrder(function(err, res) {
-        res.capture(function(err, res) {
+
+      conekta.Order.create({
+        "currency": "MXN",
+        "customer_info": {
+          "name": "Jul Ceballos",
+          "phone": "+5215555555555",
+          "email": "jul@conekta.io"
+        },
+        "line_items": [{
+          "name": "Box of Cohiba S1s",
+          "description": "Imported From Mex.",
+          "unit_price": 35000,
+          "quantity": 1,
+          "tags": ["food", "mexican food"],
+          "type": "physical"
+        }],
+        "capture": false
+      }, function (err, order) {
+        order.capture(function(err, res) {
           assert((res.toObject()) instanceof Object, true);
           done();
         });
@@ -401,7 +419,8 @@ describe('Order', function() {
       createOrder(function(err, order) {
         order.createCharges({
           "source": {
-            "type": "oxxo_cash"
+            "type": "oxxo_cash",
+            "expires_at": 1513036800
           },
           "amount": 35000
         }, callback);
