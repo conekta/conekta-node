@@ -1,6 +1,7 @@
 var assert = require('assert'),
   conekta = require('../lib/conekta.js'),
-  base64 = require('../lib/base64.js');
+  base64 = require('../lib/base64.js'),
+  fs = require('fs');
 
 const LOCALE = 'en',
   TEST_KEY = 'key_eYvWV7gSDkNYXsmr',
@@ -120,6 +121,28 @@ describe('Conekta wrapper', function() {
 
 describe('Order', function() {
 
+  describe('order next page', function () {
+
+    it('should return something', function (done) {
+      this.timeout(10000);
+
+      var mFile = fs.readFileSync(__dirname + '/../lib/orders.json');
+
+      var ord = conekta.Order;
+      ord._json = JSON.parse(mFile);
+      conekta.api_key = TEST_KEY;
+      conekta.locale = LOCALE;
+      conekta.api_version = '1.1.0';
+      ord.nextPage(function (err, res) {
+        assert(res.hasOwnProperty('next_page_url'), true)
+        done();
+      });
+
+    });
+
+  });
+
+
   describe('create', function() {
     it('should return instance object', function(done) {
       this.timeout(10000);
@@ -181,7 +204,7 @@ describe('Order', function() {
         "capture": false
       }, function (err, order) {
         order.capture(function(err, res) {
-          assert((res.toObject()) instanceof Object, true);
+          assert(res instanceof Object, true);
           done();
         });
       });
@@ -215,8 +238,8 @@ describe('Order', function() {
         this.timeout(6000);
         conekta.api_key = TEST_KEY;
         conekta.local = LOCALE;
-        createLineItem(function(err, line_item) {
-          assert(line_item.toObject().hasOwnProperty('id'), true);
+        createLineItem(function(err, lineItem) {
+          assert(lineItem.hasOwnProperty('id'), true);
           done();
         })
       });
@@ -230,18 +253,18 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.local = LOCALE;
         createLineItem(function(err, res) {
-          res.line_items[0].update({
-            "description": "Imported From US.",
-            "unit_price": 36000,
-            "contextual_data": {
-              "random_key": "random_value"
-            }
-          }, function(err, res) {
-            assert(res.toObject().hasOwnProperty('id'), true);
-            done();
+          conekta.Order.find(res.parent_id, function (err, ord) {
+            ord.line_items.get(0).update({
+              "description": "Imported From US.",
+              "unit_price": 36000,
+              "contextual_data": {
+                "random_key": "random_value"
+              }
+            }, function(err, res) {
+              assert(res.hasOwnProperty('id'), true);
+              done();
+            });
           });
-
-
         });
       });
 
@@ -271,7 +294,7 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.local = LOCALE;
         createTaxLine(function(err, order) {
-          assert(order.toObject().hasOwnProperty('id'), true);
+          assert(order.hasOwnProperty('id'), true);
           done();
         });
 
@@ -286,15 +309,17 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.local = LOCALE;
         createTaxLine(function(err, order) {
-          order.tax_lines[0].update({
-            "description": "IVA",
-            "amount": 1000,
-            "contextual_data": {
-              "random_key": "random_value"
-            }
-          }, function(err, res) {
-            assert(res.toObject().hasOwnProperty('id'), true);
-            done();
+          conekta.Order.find(order.parent_id, function (err, ord) {
+            ord.tax_lines.get(0).update({
+              "description": "IVA",
+              "amount": 1000,
+              "contextual_data": {
+                "random_key": "random_value"
+              }
+            }, function(err, res) {
+              assert(res.hasOwnProperty('id'), true);
+              done();
+            });
           });
         });
 
@@ -328,7 +353,7 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.local = LOCALE;
         createShippingLine(function(err, order) {
-          assert(order.toObject().hasOwnProperty('id'), true);
+          assert(order.hasOwnProperty('id'), true);
           done();
         });
 
@@ -344,18 +369,20 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.local = LOCALE;
         createShippingLine(function(err, order) {
-          order.shipping_lines[0].update({
-            "description": "Free Shipping",
-            "amount": 0,
-            "tracking_number": "TRACK456",
-            "carrier": "USPS",
-            "method": "Train",
-            "contextual_data": {
-              "random_key": "random_value"
-            }
-          }, function(err, res) {
-            assert(res.toObject().hasOwnProperty('id'), true);
-            done();
+          conekta.Order.find(order.parent_id, function (err, ord) {
+            ord.shipping_lines.get(0).update({
+              "description": "Free Shipping",
+              "amount": 0,
+              "tracking_number": "TRACK456",
+              "carrier": "USPS",
+              "method": "Train",
+              "contextual_data": {
+                "random_key": "random_value"
+              }
+            }, function(err, res) {
+              assert(res.hasOwnProperty('id'), true);
+              done();
+            });
           });
         });
 
@@ -369,8 +396,8 @@ describe('Order', function() {
     var createDiscountLine = function(callback) {
       createOrder(function(err, order) {
         order.createDiscountLines({
-          "description": "Cupón de descuento",
-          "kind": "loyalty",
+          "code": "Cupón de descuento",
+          "type": "loyalty",
           "amount": 600
         }, callback);
       });
@@ -383,8 +410,9 @@ describe('Order', function() {
         this.timeout(6000);
         conekta.api_key = TEST_KEY;
         conekta.local = LOCALE;
+        conekta.api_version = "1.1.0"
         createDiscountLine(function(err, order) {
-          assert(order.toObject().hasOwnProperty('id'), true);
+          assert(order.hasOwnProperty('id'), true);
           done();
         });
 
@@ -400,11 +428,13 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.local = LOCALE;
         createDiscountLine(function(err, order) {
-          order.discount_lines[0].update({
-            "amount": 700
-          }, function(err, res) {
-            assert(res.toObject().hasOwnProperty('id'), true);
-            done();
+          conekta.Order.find(order.parent_id, function (err, ord) {
+            ord.discount_lines.get(0).update({
+              "amount": 700
+            }, function(err, res) {
+              assert(res.hasOwnProperty('id'), true);
+              done();
+            });
           });
         });
 
@@ -418,7 +448,7 @@ describe('Order', function() {
     var createCharge = function(callback) {
       createOrder(function(err, order) {
         order.createCharges({
-          "source": {
+          "payment_source": {
             "type": "oxxo_cash",
             "expires_at": 1513036800
           },
@@ -435,7 +465,7 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.local = LOCALE;
         createCharge(function(err, order) {
-          assert(order.toObject().hasOwnProperty('id'), true);
+          assert(order.hasOwnProperty('id'), true);
           done();
         });
 
@@ -464,7 +494,7 @@ describe('Order', function() {
           "type": "physical"
         }],
         "charges": [{
-          "source": {
+          "payment_source": {
             "type": "card",
             "token_id": "tok_test_visa_4242"
           }
@@ -486,7 +516,7 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.local = LOCALE;
         createReturn(function(err, order) {
-          assert(order.toObject().hasOwnProperty('id'), true);
+          assert(order.hasOwnProperty('id'), true);
           done();
         });
 
@@ -526,6 +556,8 @@ describe('Event', function() {
 describe('Customer', function() {
 
   var customer = '';
+  conekta.api_version = "1.1.0";
+
 
   describe('create without plan', function() {
     it('should return an object instance with id', function(done) {
@@ -554,7 +586,7 @@ describe('Customer', function() {
         email: 'james.howlett@forces.gov',
         plan_id: 'gold-plan',
         corporate: true,
-        sources: [{
+        payment_sources: [{
           token_id: 'tok_test_visa_4242',
           type: 'card'
         }, {
@@ -654,7 +686,7 @@ describe('Customer', function() {
             "zip": "64700"
           }
         }, function(err, res) {
-          assert(res.toObject().hasOwnProperty('id'), true);
+          assert(res.hasOwnProperty('id'), true);
           done();
         });
       });
@@ -670,7 +702,7 @@ describe('Customer', function() {
         res.createSubscription({
           plan: 'gold-plan'
         }, function(err, res) {
-          assert(res.toObject().hasOwnProperty('id'), true);
+          assert(res.hasOwnProperty('id'), true);
           done();
         });
       });
@@ -707,7 +739,7 @@ describe('Customer', function() {
           email: 'james.howlett@forces.gov',
           plan_id: 'gold-plan',
           corporate: true,
-          sources: [{
+          payment_sources: [{
             token_id: 'tok_test_visa_4242',
             type: 'card'
           }, {
@@ -731,15 +763,10 @@ describe('Customer', function() {
             "email": "thomas.logan@xmen.org",
             "phone": "+5215555555555",
             "receiver": "Marvin Fuller",
-            "between_streets": {
-              "street1": "Ackerman Crescent",
-              "street2": 'Fake st',
-              "street3": 'New st'
-            },
+            "between_streets": "Ackerman Crescent",
             "address": {
               "street1": "250 Alexis St",
               "street2": '',
-              "street3": '',
               "city": "Red Deer",
               "state": "Alberta",
               "country": "CA",
@@ -748,8 +775,7 @@ describe('Customer', function() {
             }
           }, function(err, shipping) {
             shippingContact = shipping;
-            shipping = shipping.toObject();
-            assert(shipping.shipping_contacts[0].hasOwnProperty('id'), true);
+            assert(shipping.hasOwnProperty('id'), true);
             done();
           });
 
@@ -765,32 +791,30 @@ describe('Customer', function() {
         this.timeout(6000);
         conekta.api_key = TEST_KEY;
         conekta.local = LOCALE;
-        shippingContact.shipping_contacts[0].update({
-          "email": "thomas.logan@xmen.org",
-          "phone": "+5215555555522",
-          "receiver": "Marvin Fuller",
-          "between_streets": {
-            "street1": "Ackerman Crescent",
-            "street2": 'something st',
-            "street3": 'null st'
-          },
-          "address": {
-            "street1": "250 Alexis St",
-            "street2": '',
-            "street3": '',
-            "city": "Red Deer",
-            "state": "Alberta",
-            "country": "CA",
-            "zip": "T4N 0B8",
-            "residential": true
-          }
-        }, function(err, res) {
-          assert(res.toObject().hasOwnProperty('id'), true);
-          done();
-        });
+
+        conekta.Customer.find(shippingContact.parent_id, function (err, cust) {
+          cust.shipping_contacts.get(0).update({
+            "email": "thomas.logan@xmen.org",
+            "phone": "+5215555555522",
+            "receiver": "Marvin Fuller",
+            "between_streets": "Ackerman Crescent",
+            "address": {
+              "street1": "250 Alexis St",
+              "street2": '',
+              "city": "Red Deer",
+              "state": "Alberta",
+              "country": "CA",
+              "zip": "T4N 0B8",
+              "residential": true
+            }
+          }, function (err, ship) {
+            assert(ship.hasOwnProperty('id'), true);
+            done();
+          });
 
       });
 
+    });
     });
 
     describe('delete', function() {
@@ -800,9 +824,11 @@ describe('Customer', function() {
         this.timeout(6000);
         conekta.api_key = TEST_KEY;
         conekta.local = LOCALE;
-        shippingContact.shipping_contacts[0].delete(function(err, res) {
-          assert(res.toObject().hasOwnProperty('id'), true);
-          done();
+        conekta.Customer.find(shippingContact.parent_id, function (err, cust) {
+          cust.shipping_contacts.get(0).delete(function(err, res) {
+            assert(res.hasOwnProperty('id'), true);
+            done();
+          });
         });
 
       });
@@ -826,7 +852,7 @@ describe('Customer', function() {
           email: 'james.howlett@forces.gov',
           plan_id: 'gold-plan',
           corporate: true,
-          sources: [{
+          payment_sources: [{
             token_id: 'tok_test_visa_4242',
             type: 'card'
           }, {
@@ -864,8 +890,7 @@ describe('Customer', function() {
             }
           }, function(err, fiscal) {
             fiscalEntity = fiscal;
-            fiscal = fiscal.toObject();
-            assert(fiscal.fiscal_entities[0].hasOwnProperty('id'), true);
+            assert(fiscal.hasOwnProperty('id'), true);
             done();
           });
 
@@ -881,25 +906,27 @@ describe('Customer', function() {
         this.timeout(6000);
         conekta.api_key = TEST_KEY;
         conekta.local = LOCALE;
-        fiscalEntity.fiscal_entities[0].update({
-          "tax_id": "AMGH851205MN1",
-          "company_name": "Nike SA de CV",
-          "email": "contacto@nike.mx",
-          "phone": "5215555555566",
-          "address": {
-            "street1": "250 Alexis St",
-            "street2": 'null st',
-            "street3": 'new st',
-            "internal_number": 19,
-            "external_number": 91,
-            "city": "Red Deer",
-            "state": "Alberta",
-            "country": "CA",
-            "zip": "T4N 0B8"
-          }
-        }, function(err, res) {
-          assert(res.toObject().hasOwnProperty('id'), true);
-          done();
+        conekta.Customer.find(fiscalEntity.parent_id, function (err, cust) {
+          cust.fiscal_entities.get(0).update({
+            "tax_id": "AMGH851205MN1",
+            "company_name": "Nike SA de CV",
+            "email": "contacto@nike.mx",
+            "phone": "5215555555566",
+            "address": {
+              "street1": "250 Alexis St",
+              "street2": 'null st',
+              "street3": 'new st',
+              "internal_number": 19,
+              "external_number": 91,
+              "city": "Red Deer",
+              "state": "Alberta",
+              "country": "CA",
+              "zip": "T4N 0B8"
+            }
+          }, function(err, res) {
+            assert(res.hasOwnProperty('id'), true);
+            done();
+          });
         });
 
       });
@@ -913,9 +940,11 @@ describe('Customer', function() {
         this.timeout(6000);
         conekta.api_key = TEST_KEY;
         conekta.local = LOCALE;
-        fiscalEntity.fiscal_entities[0].delete(function(err, res) {
-          assert(res.toObject().hasOwnProperty('id'), true);
-          done();
+        conekta.Customer.find(fiscalEntity.parent_id, function (err, cust) {
+          cust.fiscal_entities.get(0).delete(function(err, res) {
+            assert(res.hasOwnProperty('id'), true);
+            done();
+          });
         });
 
       });
@@ -936,7 +965,7 @@ describe('Customer', function() {
           email: 'james.howlett@forces.gov',
           plan_id: 'gold-plan',
           corporate: true,
-          sources: [{
+          payment_sources: [{
             token_id: 'tok_test_visa_4242',
             type: 'card'
           }, {
@@ -957,7 +986,7 @@ describe('Customer', function() {
           }]
         }, function(err, customer) {
           customer.find(customer._id, function(err, customerObj) {
-            customerObj.sources[0].update({
+            customerObj.payment_sources.get(0).update({
               "name": "Emiliano Cabrera",
               "exp_month": "12",
               "exp_year": "20",
@@ -970,7 +999,7 @@ describe('Customer', function() {
                 "zip": "64700"
               }
             }, function(err, res) {
-              assert(res.toObject().hasOwnProperty('id'), true);
+              assert(res.hasOwnProperty('id'), true);
               done();
             });
           });
@@ -988,7 +1017,7 @@ describe('Customer', function() {
           email: 'james.howlett@forces.gov',
           plan_id: 'gold-plan',
           corporate: true,
-          sources: [{
+          payment_sources: [{
             token_id: 'tok_test_visa_4242',
             type: 'card'
           }, {
@@ -1008,12 +1037,12 @@ describe('Customer', function() {
             }
           }]
         }, function(err, customer) {
-          customer.find(customer._id, function(err, customerObj) {
-            customerObj.sources[0].delete(function(err, res) {
-              assert(res.toObject().hasOwnProperty('id'), true);
-              done();
-            });
+          customer.payment_sources.get(0).delete(function (err, res) {
+            assert(res.hasOwnProperty('id'), true);
+            done();
+
           });
+
         });
       });
     });
@@ -1034,7 +1063,7 @@ describe('Customer', function() {
           email: 'james.howlett@forces.gov',
           plan_id: 'gold-plan',
           corporate: true,
-          sources: [{
+          payment_sources: [{
             token_id: 'tok_test_visa_4242',
             type: 'card'
           }, {
@@ -1058,48 +1087,7 @@ describe('Customer', function() {
           customerSubscribed.subscription.update({
             plan: 'opal-plan'
           }, function(err, res) {
-            assert(res.toObject().hasOwnProperty('id'), true);
-            done();
-          });
-        });
-      });
-    });
-
-    describe('update subscription card', function() {
-      it('should return an object instance with id attribute', function(done) {
-        this.timeout(60000);
-        conekta.api_key = TEST_KEY;
-        conekta.locale = LOCALE;
-        conekta.Customer.create({
-          name: 'James Howlett',
-          email: 'james.howlett@forces.gov',
-          plan_id: 'gold-plan',
-          corporate: true,
-          sources: [{
-            token_id: 'tok_test_visa_4242',
-            type: 'card'
-          }, {
-            type: 'card',
-            name: 'Emiliano Cabrera',
-            number: '4242424242424242',
-            exp_month: '12',
-            exp_year: '20',
-            cvc: '123',
-            address: {
-              street1: 'Tamesis',
-              street2: '114',
-              city: 'Monterrey',
-              state: 'Nuevo Leon',
-              country: 'MX',
-              zip: '64700'
-            }
-          }]
-        }, function(err, customer) {
-          customer.subscription.update({
-            plan_id: 'opal-plan',
-            card_id: customer.toObject().sources[0].id
-          }, function(err, res) {
-            assert(res.toObject().hasOwnProperty('id'), true);
+            assert(res.hasOwnProperty('id'), true);
             done();
           });
         });
@@ -1112,7 +1100,7 @@ describe('Customer', function() {
         conekta.api_key = TEST_KEY;
         conekta.locale = LOCALE;
         customerSubscribed.subscription.pause(function(err, res) {
-          assert((res.toObject().status == 'paused' || res.toObject().status == 'in_trial'), true);
+          assert((res.status == 'paused' || res.toObject().status == 'in_trial'), true);
           done();
         });
       });
@@ -1124,7 +1112,7 @@ describe('Customer', function() {
         conekta.api_key = TEST_KEY;
         conekta.locale = LOCALE;
         customerSubscribed.subscription.resume(function(err, res) {
-          assert((res.toObject().status == 'active' || res.toObject().status == 'in_trial'), true);
+          assert((res.status == 'active' || res.toObject().status == 'in_trial'), true);
           done();
         });
       });
@@ -1136,7 +1124,7 @@ describe('Customer', function() {
         conekta.api_key = TEST_KEY;
         conekta.locale = LOCALE;
         customerSubscribed.subscription.cancel(function(err, res) {
-          assert(res.toObject().status == 'canceled', true);
+          assert(res.status == 'canceled', true);
           done();
         });
       });
