@@ -117,7 +117,7 @@ describe('Conekta wrapper', function() {
 
 describe('Order', function() {
 
-  describe('order next page', function() {
+  describe('next page', function() {
 
     it('should return something', function(done) {
       this.timeout(10000);
@@ -378,7 +378,7 @@ describe('Order', function() {
 
         createTaxLine(function (err, res) {
           conekta.Order.find(res.parent_id, function (err, order) {
-            order.line_items.nextPage(function (err, res) {
+            order.tax_lines.nextPage(function (err, res) {
               assert(err.details[0].param, 'next_page_url');
               done();
             });
@@ -564,7 +564,7 @@ describe('Order', function() {
 
         createDiscountLine(function (err, res) {
           conekta.Order.find(res.parent_id, function (err, order) {
-            order.line_items.nextPage(function (err, res) {
+            order.discount_lines.nextPage(function (err, res) {
               assert(err.details[0].param, 'next_page_url');
               done();
             });
