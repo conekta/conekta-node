@@ -262,7 +262,7 @@ describe('Order', function() {
 
     var createLineItem = function(callback) {
       createOrder(function(err, res) {
-        res.createLineItems({
+        res.createLineItem({
           name: 'Box of Cohiba S2s',
           description: 'Imported From Mex.',
           unit_price: 36000,
@@ -359,7 +359,7 @@ describe('Order', function() {
 
     var createTaxLine = function(callback) {
       createOrder(function(err, order) {
-        order.createTaxLines({
+        order.createTaxLine({
           description: 'IVA',
           amount: 600,
           metadata: {
@@ -450,7 +450,7 @@ describe('Order', function() {
 
     var createShippingLine = function(callback) {
       createOrder(function(err, order) {
-        order.createShippingLines({
+        order.createShippingLine({
           amount: 0,
           tracking_number: 'TRACK123',
           carrier: 'USPS',
@@ -547,7 +547,7 @@ describe('Order', function() {
 
     var createDiscountLine = function(callback) {
       createOrder(function(err, order) {
-        order.createDiscountLines({
+        order.createDiscountLine({
           code: 'Cupón de descuento',
           type: 'loyalty',
           amount: 600
@@ -635,7 +635,7 @@ describe('Order', function() {
 
     var createCharge = function(callback) {
       createOrder(function(err, order) {
-        order.createCharges({
+        order.createCharge({
           'payment_source': {
             'type': 'oxxo_cash',
             'expires_at': 1513036800
@@ -707,7 +707,7 @@ describe('Order', function() {
           }
         }]
       }, function(err, order) {
-        order.createReturns({
+        order.createReturn({
           'amount': 35000
         }, callback);
       });
@@ -966,7 +966,7 @@ describe('Customer', function() {
             }
           }]
         }, function(err, customer) {
-          customer.createShippingContacts({
+          customer.createShippingContact({
             phone: '+5215555555555',
             receiver: 'Marvin Fuller',
             between_streets: 'Ackerman Crescent',
@@ -1081,7 +1081,7 @@ describe('Customer', function() {
             }
           }]
         }, function(err, customer) {
-          customer.createfiscalEntities({
+          customer.createFiscalEntity({
             tax_id: 'AMGH851205MN1',
             name: 'Nike SA de CV',
             email: 'contacto@nike.mx',
