@@ -161,6 +161,7 @@ describe('Order', function() {
       createOrder(function(err, res) {
         var order = res.toObject().id;
         res.update({
+          payment_status: "created",
           currency: 'USD'
         }, function(err, res) {
           assert(res.toObject().currency, 'USD')
@@ -190,11 +191,11 @@ describe('Order', function() {
           quantity: 1,
           tags: ['food', 'mexican food']
         }],
-        preauthorize: true,
+        pre_authorize: true,
         currency: 'MXN'
       }, function(err, order) {
         order.capture(function(err, res) {
-          assert.equal(res.preauthorize, false);
+          assert.equal(res.hasOwnProperty('id'), true);
           done();
         });
       });
@@ -226,35 +227,6 @@ describe('Order', function() {
         });
       });
 
-    });
-
-
-  });
-
-  describe('fiscal entities', function () {
-    describe('create', function() {
-      it('should return instance object', function(done) {
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
-        createOrder(function (err, order) {
-          order.createFiscalEntity({
-            tax_id: "AMGH851205MN1",
-            name: "Test SA de CV",
-            address: {
-              street1: "250 Alexis St",
-              city: "Red Deer",
-              state: "Alberta",
-              country: "CA",
-              postal_code: "T4N 0B8"
-            }
-          }, function (err, fiscalEntity) {
-            assert(fiscalEntity.object, 'fiscal_entity');
-            done();
-          });
-        });
-      });
     });
   });
 
@@ -636,11 +608,11 @@ describe('Order', function() {
     var createCharge = function(callback) {
       createOrder(function(err, order) {
         order.createCharge({
-          'payment_source': {
-            'type': 'oxxo_cash',
-            'expires_at': 1513036800
+          payment_method: {
+            type: 'oxxo_cash',
+            expires_at: 1513036800
           },
-          'amount': 35000
+          amount: 35000
         }, callback);
       });
     }
@@ -682,33 +654,33 @@ describe('Order', function() {
 
   });
 
-  describe('Returns', function() {
+  describe('Refunds', function() {
 
-    var createReturn = function(callback) {
+    var createRefund = function(callback) {
       conekta.Order.create({
-        'currency': 'MXN',
-        'customer_info': {
-          'name': 'Jul Ceballos',
-          'phone': '+5215555555555',
-          'email': 'jul@conekta.io'
+        currency: 'MXN',
+        customer_info: {
+          name: 'Jul Ceballos',
+          phone: '+5215555555555',
+          email: 'jul@conekta.io'
         },
-        'line_items': [{
-          'name': 'Box of Cohiba S1s',
-          'description': 'Imported From Mex.',
-          'unit_price': 35000,
-          'quantity': 1,
-          'tags': ['food', 'mexican food'],
-          'type': 'physical'
+        line_items: [{
+          name: 'Box of Cohiba S1s',
+          description: 'Imported From Mex.',
+          unit_price: 35000,
+          quantity: 1,
+          tags: ['food', 'mexican food'],
+          type: 'physical'
         }],
-        'charges': [{
-          'payment_source': {
-            'type': 'card',
-            'token_id': 'tok_test_visa_4242'
+        charges: [{
+          payment_method: {
+            type: 'card',
+            token_id: 'tok_test_visa_4242'
           }
         }]
       }, function(err, order) {
-        order.createReturn({
-          'amount': 35000
+        order.createRefund({
+          amount: 35000
         }, callback);
       });
 
@@ -723,7 +695,7 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
-        createReturn(function(err, order) {
+        createRefund(function(err, order) {
           assert(order.hasOwnProperty('id'), true);
           done();
         });
@@ -788,21 +760,6 @@ describe('Customer', function() {
         payment_sources: [{
           token_id: 'tok_test_visa_4242',
           type: 'card'
-        }, {
-          type: 'card',
-          name: 'Emiliano Cabrera',
-          number: '4242424242424242',
-          exp_month: '12',
-          exp_year: '20',
-          cvc: '123',
-          address: {
-            street1: 'Tamesis',
-            street2: '114',
-            city: 'Monterrey',
-            state: 'Nuevo Leon',
-            country: 'MX',
-            postal_code: '64700'
-          }
         }]
       }, function(err, customer) {
         res = customer.toObject();
@@ -875,20 +832,8 @@ describe('Customer', function() {
       conekta.locale = LOCALE;
       conekta.Customer.find(customer, function(err, res) {
         res.createCard({
-          type: 'card',
-          name: 'Emiliano Cabrera',
-          number: '4242424242424242',
-          exp_month: '12',
-          exp_year: '20',
-          cvc: '123',
-          address: {
-            street1: 'Tamesis',
-            street2: '114',
-            city: 'Monterrey',
-            state: 'Nuevo Leon',
-            country: 'MX',
-            postal_code: '64700'
-          }
+          token_id: 'tok_test_visa_4242',
+          type: 'card'
         }, function(err, res) {
           assert(res.hasOwnProperty('id'), true);
           done();
@@ -949,21 +894,6 @@ describe('Customer', function() {
           payment_sources: [{
             token_id: 'tok_test_visa_4242',
             type: 'card'
-          }, {
-            type: 'card',
-            name: 'Emiliano Cabrera',
-            number: '4242424242424242',
-            exp_month: '12',
-            exp_year: '20',
-            cvc: '123',
-            address: {
-              street1: 'Tamesis',
-              street2: '114',
-              city: 'Monterrey',
-              state: 'Nuevo Leon',
-              country: 'MX',
-              postal_code: '64700'
-            }
           }]
         }, function(err, customer) {
           customer.createShippingContact({
@@ -1045,124 +975,6 @@ describe('Customer', function() {
   });
 
 
-  describe('Fiscal Entities', function() {
-    var fiscalEntity = '';
-
-    describe('create', function() {
-
-      it('should return instance object with id', function(done) {
-
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
-        conekta.Customer.create({
-          name: 'James Howlett',
-          email: 'james.howlett@forces.gov',
-          plan_id: 'gold-plan',
-          corporate: true,
-          payment_sources: [{
-            token_id: 'tok_test_visa_4242',
-            type: 'card'
-          }, {
-            type: 'card',
-            name: 'Emiliano Cabrera',
-            number: '4242424242424242',
-            exp_month: '12',
-            exp_year: '20',
-            cvc: '123',
-            address: {
-              street1: 'Tamesis',
-              street2: '114',
-              city: 'Monterrey',
-              state: 'Nuevo Leon',
-              country: 'MX',
-              postal_code: '64700'
-            }
-          }]
-        }, function(err, customer) {
-          customer.createFiscalEntity({
-            tax_id: 'AMGH851205MN1',
-            name: 'Nike SA de CV',
-            email: 'contacto@nike.mx',
-            phone: '+5215555555522',
-            address: {
-              street1: '250 Alexis St',
-              street2: 'fake st',
-              street3: 'null st',
-              internal_number: '19',
-              external_number: '91',
-              city: 'Red Deer',
-              state: 'Alberta',
-              country: 'CA',
-              postal_code: 'T4N 0B8'
-            }
-          }, function(err, fiscal) {
-            fiscalEntity = fiscal;
-            assert(fiscal.hasOwnProperty('id'), true);
-            done();
-          });
-
-        });
-      });
-
-    });
-
-    describe('update', function() {
-
-      it('should return instance object with id', function(done) {
-
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
-        conekta.Customer.find(fiscalEntity.parent_id, function(err, cust) {
-          cust.fiscal_entities.get(0).update({
-            tax_id: 'AMGH851205MN1',
-            name: 'Umbrella Corp.',
-            email: 'contacto@nike.mx',
-            phone: '5215555555566',
-            address: {
-              street1: '250 Alexis St',
-              street2: 'null st',
-              internal_number: '19',
-              external_number: '91',
-              city: 'Red Deer',
-              state: 'Alberta',
-              country: 'CA',
-              postal_code: 'T4N 0B8'
-            }
-          }, function(err, res) {
-            assert(res.hasOwnProperty('id'), true);
-            done();
-          });
-        });
-
-      });
-
-    });
-
-    describe('delete', function() {
-
-      it('should return instance object with id', function(done) {
-
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
-        conekta.Customer.find(fiscalEntity.parent_id, function(err, cust) {
-          cust.fiscal_entities.get(0).delete(function(err, res) {
-            assert(res.hasOwnProperty('id'), true);
-            done();
-          });
-        });
-
-      });
-
-    });
-
-  });
-
   describe('Card', function() {
 
     describe('update', function() {
@@ -1179,21 +991,6 @@ describe('Customer', function() {
           payment_sources: [{
             token_id: 'tok_test_visa_4242',
             type: 'card'
-          }, {
-            type: 'card',
-            name: 'Emiliano Cabrera',
-            number: '4242424242424242',
-            exp_month: '12',
-            exp_year: '20',
-            cvc: '123',
-            address: {
-              street1: 'Tamesis',
-              street2: '114',
-              city: 'Monterrey',
-              state: 'Nuevo Leon',
-              country: 'MX',
-              postal_code: '64700'
-            }
           }]
         }, function(err, customer) {
           customer.find(customer._id, function(err, customerObj) {
@@ -1232,21 +1029,6 @@ describe('Customer', function() {
           payment_sources: [{
             token_id: 'tok_test_visa_4242',
             type: 'card'
-          }, {
-            type: 'card',
-            name: 'Emiliano Cabrera',
-            number: '4242424242424242',
-            exp_month: '12',
-            exp_year: '20',
-            cvc: '123',
-            address: {
-              street1: 'Tamesis',
-              street2: '114',
-              city: 'Monterrey',
-              state: 'Nuevo Leon',
-              country: 'MX',
-              postal_code: '64700'
-            }
           }]
         }, function(err, customer) {
           customer.payment_sources.get(0).delete(function(err, res) {
@@ -1279,21 +1061,6 @@ describe('Customer', function() {
           payment_sources: [{
             token_id: 'tok_test_visa_4242',
             type: 'card'
-          }, {
-            type: 'card',
-            name: 'Emiliano Cabrera',
-            number: '4242424242424242',
-            exp_month: '12',
-            exp_year: '20',
-            cvc: '123',
-            address: {
-              street1: 'Tamesis',
-              street2: '114',
-              city: 'Monterrey',
-              state: 'Nuevo Leon',
-              country: 'MX',
-              postal_code: '64700'
-            }
           }]
         }, function(err, customer) {
           customerSubscribed = customer;
