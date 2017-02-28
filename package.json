@@ -1,6 +1,6 @@
 {
   "name": "conekta",
-  "version": "3.0.0-pre",
+  "version": "3.0.0",
   "description": "Conekta node Wrapper",
   "keywords": [
     "conekta",

@@ -15,7 +15,7 @@ This last release works with API 1.1, if you are using 1.0 type:
 
 
 ```sh
-npm install conekta@2.1.0
+npm install conekta@2.2.0
 ```
 
 ## Usage
