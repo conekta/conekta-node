@@ -173,7 +173,7 @@ describe('Order', function() {
 
   describe('capture order', function() {
     it('should return instance object', function(done) {
-      this.timeout(6000);
+      this.timeout(10000);
       conekta.api_key = TEST_KEY;
       conekta.api_version = API_VERSION;
       conekta.locale = LOCALE;
@@ -190,6 +190,12 @@ describe('Order', function() {
           unit_price: 35000,
           quantity: 1,
           tags: ['food', 'mexican food']
+        }],
+        charges: [{
+          payment_method: {
+            type: 'card',
+            token_id: 'tok_test_visa_4242'
+          }
         }],
         pre_authorize: true,
         currency: 'MXN'
@@ -859,6 +865,24 @@ describe('Customer', function() {
     });
   });
 
+  describe('createPaymentSources', function () {
+    it('should return an object instance with id attribute', function(done) {
+      this.timeout(60000);
+      conekta.api_key = TEST_KEY;
+      conekta.api_version = API_VERSION;
+      conekta.locale = LOCALE;
+      conekta.Customer.find(customer, function(err, res) {
+        res.createPaymentSource({
+          type: "card",
+          token_id: "tok_test_visa_4242"
+        }, function(err, res) {
+          assert(res.hasOwnProperty('id'), true);
+          done();
+        });
+      });
+    });
+  });
+
   describe('delete', function() {
     it('should return an object instance with id attribute', function(done) {
       this.timeout(60000);
@@ -1055,9 +1079,10 @@ describe('Customer', function() {
         conekta.locale = LOCALE;
         conekta.Customer.create({
           name: 'James Howlett',
+          phone: "+5215544443333",
           email: 'james.howlett@forces.gov',
-          plan_id: 'gold-plan',
           corporate: true,
+          plan_id: 'gold-plan',
           payment_sources: [{
             token_id: 'tok_test_visa_4242',
             type: 'card'
@@ -1080,9 +1105,11 @@ describe('Customer', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.locale = LOCALE;
-        customerSubscribed.subscription.pause(function(err, res) {
-          assert((res.status == 'paused' || res.toObject().status == 'in_trial'), true);
-          done();
+        conekta.Customer.find(customerSubscribed._id, function (err, customer) {
+          customer.subscription.pause(function(err, res) {
+            assert((res.status == 'paused' || res.status == 'in_trial'), true);
+            done();
+          });
         });
       });
     });
@@ -1093,9 +1120,15 @@ describe('Customer', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.locale = LOCALE;
-        customerSubscribed.subscription.resume(function(err, res) {
-          assert((res.status == 'active' || res.toObject().status == 'in_trial'), true);
-          done();
+        conekta.Customer.find(customerSubscribed._id, function(err, customer) {
+          customerSubscribed.subscription.update({
+            plan_id: 'gold-plan'
+          }, function(err, res) {
+            customer.subscription.resume(function(err, res) {
+              assert((res.status == 'active' || res.status == 'in_trial'), true);
+              done();
+            });
+          });
         });
       });
     });
