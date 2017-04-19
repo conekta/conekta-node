@@ -730,6 +730,61 @@ describe('Event', function() {
   });
 });
 
+describe('Plan', function () {
+  var createdPlan = {};
+  it('should find plans', function (done) {
+    this.timeout(60000);
+    conekta.api_key = TEST_KEY;
+    conekta.api_version = API_VERSION;
+    conekta.locale = LOCALE;
+    conekta.Plan.where({currency: 'MXN'}, function (err, plans) {
+      done();
+    });
+  });
+
+  it('should create plan', function (done) {
+    conekta.api_key = TEST_KEY;
+    conekta.api_version = API_VERSION;
+    conekta.locale = LOCALE;
+    conekta.Plan.create({
+      id: "new-gold-plan",
+      name: "New Gold Plan",
+      amount: 20000,
+      currency: "MXN",
+      interval: "month",
+      frequency: 1,
+      trial_period_days: 15,
+      expiry_count: 12
+    }, function (err, plan) {
+      assert(plan.toObject().hasOwnProperty('id'),true);
+      createdPlan = plan;
+      done();
+    });
+  });
+
+  it('should find a plan by id', function (done) {
+    conekta.api_key = TEST_KEY;
+    conekta.api_version = API_VERSION;
+    conekta.locale = LOCALE;
+    conekta.Plan.find('new-gold-plan', function (err, plan) {
+      assert(plan.toObject().hasOwnProperty('id'), true);
+      done();
+    });
+  });
+
+  it('should delete plan', function (done) {
+    conekta.api_key = TEST_KEY;
+    conekta.api_version = API_VERSION;
+    conekta.locale = LOCALE;
+    conekta.Plan.find('new-gold-plan', function (err, plan) {
+      plan.delete(function (err, deleted) {
+        assert(deleted.hasOwnProperty('_id'), true);
+        done();
+      });
+    });
+  });
+});
+
 describe('Customer', function() {
 
   var customer = '';
@@ -941,7 +996,6 @@ describe('Customer', function() {
 
         });
       });
-
     });
 
     describe('update', function() {
@@ -995,9 +1049,7 @@ describe('Customer', function() {
       });
 
     });
-
   });
-
 
   describe('Card', function() {
 
@@ -1145,6 +1197,5 @@ describe('Customer', function() {
         });
       });
     });
-
   });
 });
