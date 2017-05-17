@@ -128,7 +128,7 @@ We love pull requests, send them from your fork to branch **dev** into **conekta
 
 ## License
 
-Developed in Mexico by [Conekta](https://www.conekta.com) in. Available with [MIT License](LICENSE).
+Developed in Mexico by [Conekta](https://www.conekta.com). Available with [MIT License](LICENSE).
 
 ***
 
