@@ -8,8 +8,8 @@ const LOCALE = 'en',
   API_VERSION = '2.0.0',
   PRODUCTION_KEY = '9YxqfRnx4sMQDnRsqdYn';
 
-var createOrder = function(callback) {
-  conekta.Order.create({
+var createOrder = function() {
+  return conekta.Order.create({
     currency: 'MXN',
     customer_info: {
       name: 'Jul Ceballos',
@@ -23,7 +23,7 @@ var createOrder = function(callback) {
       quantity: 1,
       tags: ['food', 'mexican food'],
     }]
-  }, callback);
+  });
 }
 
 describe('Conekta wrapper', function() {
@@ -31,12 +31,12 @@ describe('Conekta wrapper', function() {
   describe('with api key empty', function() {
     it('should return error code api_key_required', function(done) {
       conekta.api_version = API_VERSION;
-      createOrder(function(err, order) {
+      createOrder().then(res => {
+
+      }).catch(err => {
         assert(err.code == 'api_key_required', true);
         done();
       });
-
-
     });
   });
 
@@ -54,7 +54,9 @@ describe('Conekta wrapper', function() {
           quantity: 1,
           tags: ['food', 'mexican food']
         }]
-      }, function(err) {
+      }).then(res => {
+
+      }).catch(err => {
         assert(err.type == 'parameter_validation_error', true);
         done();
       });
@@ -80,7 +82,9 @@ describe('Conekta wrapper', function() {
             quantity: 1,
           }]
         }
-      }, function(err) {
+      }).then(res => {
+
+      }).catch(err => {
         assert(err.details[0].hasOwnProperty('message'), true);
         done();
       });
@@ -93,7 +97,8 @@ describe('Conekta wrapper', function() {
       conekta.api_key = TEST_KEY;
       conekta.locale = LOCALE;
       conekta.api_version = API_VERSION;
-      conekta.Order.find('123', function(err) {
+      conekta.Order.find('123').then(res => {
+      }).catch(err => {
         assert(err.http_code == 404, true);
         done();
       });
@@ -106,7 +111,9 @@ describe('Conekta wrapper', function() {
       conekta.api_key = TEST_KEY;
       conekta.api_version = '1.0.0';
       conekta.locale = LOCALE;
-      conekta.Order.find('123', function(err) {
+      conekta.Order.find('123').then(res => {
+
+      }).catch(err => {
         assert(err.code == 'api_version_unsupported', true);
         done();
       });
@@ -129,15 +136,16 @@ describe('Order', function() {
       conekta.api_key = TEST_KEY;
       conekta.locale = LOCALE;
       conekta.api_version = API_VERSION;
-      ord.nextPage(function(err, res) {
+      ord.nextPage().then(res => {
         assert(res.hasOwnProperty('next_page_url'), true)
         done();
+      }).catch(err => {
+
       });
 
     });
 
   });
-
 
   describe('create', function() {
     it('should return instance object with id', function(done) {
@@ -145,9 +153,11 @@ describe('Order', function() {
       conekta.api_key = TEST_KEY;
       conekta.locale = LOCALE;
       conekta.api_version = API_VERSION;
-      createOrder(function(err, res) {
+      createOrder().then(res => {
         assert((res.toObject().hasOwnProperty('id')), true);
         done();
+      }).catch(err => {
+
       });
     });
   });
@@ -158,22 +168,23 @@ describe('Order', function() {
       conekta.api_key = TEST_KEY;
       conekta.api_version = API_VERSION;
       conekta.locale = LOCALE;
-      createOrder(function(err, res) {
+      createOrder().then(res => {
         var order = res.toObject().id;
-        res.update({
+        return res.update({
           payment_status: "created",
-          currency: 'USD'
-        }, function(err, res) {
-          assert(res.toObject().currency, 'USD')
-          done();
-        });
+          currency: 'USD'})
+      }).then(res => {
+        assert(res.toObject().currency, 'USD')
+        done();
+      }).catch(err => {
+
       });
     });
   });
 
   describe('capture order', function() {
     it('should return instance object', function(done) {
-      this.timeout(10000);
+      this.timeout(20000)
       conekta.api_key = TEST_KEY;
       conekta.api_version = API_VERSION;
       conekta.locale = LOCALE;
@@ -199,12 +210,14 @@ describe('Order', function() {
         }],
         pre_authorize: true,
         currency: 'MXN'
-      }, function(err, order) {
-        order.capture(function(err, res) {
-          assert.equal(res.hasOwnProperty('id'), true);
-          done();
-        });
-      });
+      }).then(order => {
+        return order.capture();
+      }).then(res => {
+        assert.equal(res.hasOwnProperty('id'), true);
+        done();
+      }).catch(err => {
+
+      })
     });
   });
 
@@ -217,8 +230,8 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
-        createOrder(function (err, order) {
-          order.createShippingContact({
+        createOrder().then(order => {
+          return order.createShippingContact({
             address: {
               street1: "250 Alexis St",
               city: "Red Deer",
@@ -226,10 +239,12 @@ describe('Order', function() {
               country: "CA",
               postal_code: "T4N 0B8"
             }
-          }, function (err, shippingContact) {
-            assert(shippingContact.object, 'shipping_contact');
-            done();
           });
+        }).then(shippingContact => {
+          assert(shippingContact.object, 'shipping_contact');
+          done();
+        }).catch(err => {
+          console.log(err);
         });
       });
 
@@ -238,9 +253,9 @@ describe('Order', function() {
 
   describe('Line Items', function() {
 
-    var createLineItem = function(callback) {
-      createOrder(function(err, res) {
-        res.createLineItem({
+    var createLineItem = function() {
+      return createOrder().then(res => {
+        return res.createLineItem({
           name: 'Box of Cohiba S2s',
           description: 'Imported From Mex.',
           unit_price: 36000,
@@ -251,7 +266,7 @@ describe('Order', function() {
           metadata: {
             random_key: 'random value'
           }
-        }, callback);
+        });
       });
     }
 
@@ -262,13 +277,15 @@ describe('Order', function() {
         conekta.local = LOCALE;
         this.timeout(6000);
 
-        createLineItem(function (err, res) {
-          conekta.Order.find(res.parent_id, function (err, order) {
-            order.line_items.nextPage(function (err, res) {
-              assert(err.details[0].param, 'next_page_url');
-              done();
-            });
-          });
+        createLineItem().then(res => {
+          return conekta.Order.find(res.parent_id)
+        }).then(order => {
+          return order.line_items.nextPage();
+        }).then(res => {
+
+        }).catch(err => {
+          assert(err.details[0].param, 'next_page_url');
+          done();
         });
       });
     });
@@ -280,7 +297,7 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
-        createLineItem(function(err, lineItem) {
+        createLineItem().then(lineItem => {
           assert(lineItem.hasOwnProperty('id'), true);
           done();
         });
@@ -295,18 +312,18 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
-        createLineItem(function(err, res) {
-          conekta.Order.find(res.parent_id, function(err, ord) {
-            ord.line_items.get(1).update({
-              name: 'Tie Fighter',
-              description: "Imported From the Galactic Empire.",
-              unit_price: 36000,
-              tags: ['ship']
-            }, function(err, res) {
-              assert(res.name, 'Tie Fighter');
-              done();
-            });
+        createLineItem().then(res => {
+          return conekta.Order.find(res.parent_id);
+        }).then(ord => {
+          return ord.line_items.get(1).update({
+            name: 'Tie Fighter',
+            description: "Imported From the Galactic Empire.",
+            unit_price: 36000,
+            tags: ['ship']
           });
+        }).then(res => {
+          assert(res.name, 'Tie Fighter');
+          done();
         });
       });
     });
@@ -318,32 +335,29 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
-        createLineItem(function(err, res) {
-          conekta.Order.find(res.parent_id, function (err, order) {
-            order.line_items.get(0).delete(function (err, lineItems) {
-              assert(lineItems.deleted, true);
-              done();
-            });
-          });
+        createLineItem().then(res => {
+          return conekta.Order.find(res.parent_id);
+        }).then(order => {
+          return order.line_items.get(0).delete();
+        }).then(lineItems => {
+          assert(lineItems.deleted, true);
+          done();
         });
       });
-
     });
-
-
   });
 
   describe('Tax Line', function() {
 
-    var createTaxLine = function(callback) {
-      createOrder(function(err, order) {
-        order.createTaxLine({
+    var createTaxLine = function() {
+      return createOrder().then(order => {
+        return order.createTaxLine({
           description: 'IVA',
           amount: 600,
           metadata: {
             random_key: 'random_value'
           }
-        }, callback);
+        });
       });
     };
 
@@ -354,13 +368,15 @@ describe('Order', function() {
         conekta.local = LOCALE;
         this.timeout(6000);
 
-        createTaxLine(function (err, res) {
-          conekta.Order.find(res.parent_id, function (err, order) {
-            order.tax_lines.nextPage(function (err, res) {
-              assert(err.details[0].param, 'next_page_url');
-              done();
-            });
-          });
+        createTaxLine().then(res => {
+          return conekta.Order.find(res.parent_id);
+        }).then(order => {
+          return order.tax_lines.nextPage();
+        }).then(res => {
+
+        }).catch(err => {
+          assert(err.details[0].param, 'next_page_url');
+          done();
         });
       });
     });
@@ -373,7 +389,7 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
-        createTaxLine(function(err, order) {
+        createTaxLine().then(order => {
           assert(order.hasOwnProperty('id'), true);
           done();
         });
@@ -384,22 +400,18 @@ describe('Order', function() {
     describe('update', function() {
 
       it('should return instance object with id', function(done) {
-
         this.timeout(6000);
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
-        createTaxLine(function(err, order) {
-          conekta.Order.find(order.parent_id, function(err, ord) {
-            ord.tax_lines.get(0).update({
-              amount: 1000
-            }, function(err, res) {
-              assert(res.amount, 1000);
-              done();
-            });
-          });
+        createTaxLine().then(order => {
+          return conekta.Order.find(order.parent_id);
+        }).then(ord => {
+          return ord.tax_lines.get(0).update({amount: 1000});
+        }).then(res => {
+          assert(res.amount, 1000);
+          done();
         });
-
       });
     });
 
@@ -410,25 +422,23 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
-        createTaxLine(function(err, order) {
-          conekta.Order.find(order.parent_id, function(err, ord) {
-            ord.tax_lines.get(0).delete(function (err, taxLine) {
-              assert(taxLine.deleted, true);
-              done();
-            });
-          });
-        });
+        createTaxLine().then(order => {
+          return conekta.Order.find(order.parent_id);
+        }).then(ord => {
+          return ord.tax_lines.get(0).delete();
+        }).then(taxLine => {
+          assert(taxLine.deleted, true);
+          done();
+        })
       });
-
     });
-
   });
 
   describe('Shipping Line', function() {
 
-    var createShippingLine = function(callback) {
-      createOrder(function(err, order) {
-        order.createShippingLine({
+    var createShippingLine = function() {
+      return createOrder().then(order => {
+        return order.createShippingLine({
           amount: 0,
           tracking_number: 'TRACK123',
           carrier: 'USPS',
@@ -436,7 +446,7 @@ describe('Order', function() {
           metadata: {
             random_key: 'random_value'
           }
-        }, callback);
+        });
       });
     }
 
@@ -447,13 +457,15 @@ describe('Order', function() {
         conekta.local = LOCALE;
         this.timeout(6000);
 
-        createShippingLine(function (err, res) {
-          conekta.Order.find(res.parent_id, function (err, order) {
-            order.shipping_lines.nextPage(function (err, res) {
-              assert(err.details[0].param, 'next_page_url');
-              done();
-            });
-          });
+        createShippingLine().then(res => {
+          return conekta.Order.find(res.parent_id);
+        }).then(order => {
+          return order.shipping_lines.nextPage();
+        }).then(res => {
+
+        }).catch(err => {
+          assert(err.details[0].param, 'next_page_url');
+          done();
         });
       });
     });
@@ -466,7 +478,7 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
-        createShippingLine(function(err, order) {
+        createShippingLine().then(order => {
           assert(order.hasOwnProperty('id'), true);
           done();
         });
@@ -483,16 +495,16 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
-        createShippingLine(function(err, order) {
-          conekta.Order.find(order.parent_id, function(err, ord) {
-            ord.shipping_lines.get(0).update({
-              tracking_number: 'TRACK456',
-              carrier: 'Mandalorian Express'
-            }, function(err, res) {
-              assert(res.tracking_number, 'TRACK456');
-              done();
-            });
+        createShippingLine().then(order => {
+          return conekta.Order.find(order.parent_id);
+        }).then(ord => {
+          return ord.shipping_lines.get(0).update({
+            tracking_number: 'TRACK456',
+            carrier: 'Mandalorian Express'
           });
+        }).then(res => {
+          assert(res.tracking_number, 'TRACK456');
+          done();
         });
 
       });
@@ -506,13 +518,13 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
-        createShippingLine(function(err, order) {
-          conekta.Order.find(order.parent_id, function (err, ord) {
-            ord.shipping_lines.get(0).delete(function (err, res) {
-              assert.equal(res.deleted, true);
-              done();
-            });
-          });
+        createShippingLine().then(order => {
+          return conekta.Order.find(order.parent_id);
+        }).then(ord => {
+          return ord.shipping_lines.get(0).delete();
+        }).then(res => {
+          assert.equal(res.deleted, true);
+          done();
         });
 
       });
@@ -523,13 +535,13 @@ describe('Order', function() {
 
   describe('Discount Line', function() {
 
-    var createDiscountLine = function(callback) {
-      createOrder(function(err, order) {
-        order.createDiscountLine({
+    var createDiscountLine = function() {
+      return createOrder().then(order => {
+        return order.createDiscountLine({
           code: 'Cupón de descuento',
           type: 'loyalty',
           amount: 600
-        }, callback);
+        });
       });
     }
 
@@ -540,13 +552,15 @@ describe('Order', function() {
         conekta.local = LOCALE;
         this.timeout(6000);
 
-        createDiscountLine(function (err, res) {
-          conekta.Order.find(res.parent_id, function (err, order) {
-            order.discount_lines.nextPage(function (err, res) {
-              assert(err.details[0].param, 'next_page_url');
-              done();
-            });
-          });
+        createDiscountLine().then(res => {
+          return conekta.Order.find(res.parent_id);
+        }).then(order => {
+          return order.discount_lines.nextPage();
+        }).then(res => {
+
+        }).catch(err => {
+          assert(err.details[0].param, 'next_page_url');
+          done();
         });
       });
     });
@@ -559,13 +573,11 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.local = LOCALE;
         conekta.api_version = API_VERSION;
-        createDiscountLine(function(err, order) {
+        createDiscountLine().then(order => {
           assert(order.hasOwnProperty('id'), true);
           done();
         });
-
       });
-
     });
 
     describe('update', function() {
@@ -576,15 +588,13 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
-        createDiscountLine(function(err, order) {
-          conekta.Order.find(order.parent_id, function(err, ord) {
-            ord.discount_lines.get(0).update({
-              amount: 700
-            }, function(err, res) {
-              assert(res.amount, 700);
-              done();
-            });
-          });
+        createDiscountLine().then(order => {
+          return conekta.Order.find(order.parent_id);
+        }).then(ord => {
+          return ord.discount_lines.get(0).update({ amount: 700 });
+        }).then(res => {
+          assert(res.amount, 700);
+          done();
         });
 
       });
@@ -596,13 +606,13 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
-        createDiscountLine(function(err, order) {
-          conekta.Order.find(order.parent_id, function(err, ord) {
-            ord.discount_lines.get(0).delete(function(err, res) {
-              assert(res.deleted, true);
-              done();
-            });
-          });
+        createDiscountLine().then(order => {
+          return conekta.Order.find(order.parent_id);
+        }).then(ord => {
+          return ord.discount_lines.get(0).delete();
+        }).then(res => {
+          assert(res.deleted, true);
+          done();
         });
       });
     });
@@ -611,15 +621,15 @@ describe('Order', function() {
 
   describe('Charges', function() {
 
-    var createCharge = function(callback) {
-      createOrder(function(err, order) {
-        order.createCharge({
+    var createCharge = function() {
+      return createOrder().then(order => {
+        return order.createCharge({
           payment_method: {
             type: 'oxxo_cash',
             expires_at: 1513036800
           },
           amount: 35000
-        }, callback);
+        });
       });
     }
 
@@ -631,7 +641,7 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
-        createCharge(function(err, order) {
+        createCharge().then(order => {
           assert(order.hasOwnProperty('id'), true);
           done();
         });
@@ -645,15 +655,17 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
-        this.timeout(6000);
+        this.timeout(8000);
 
-        createCharge(function (err, res) {
-          conekta.Order.find(res.order_id, function (err, order) {
-            order.charges.nextPage(function (err, res) {
-              assert(err.details[0].param, 'next_page_url');
-              done();
-            });
-          });
+        createCharge().then(res => {
+          return conekta.Order.find(res.order_id);
+        }).then(order => {
+          return order.charges.nextPage();
+        }).then(res => {
+
+        }).catch(err => {
+          assert(err.details[0].param, 'next_page_url');
+          done();
         });
       });
     });
@@ -662,8 +674,8 @@ describe('Order', function() {
 
   describe('Refunds', function() {
 
-    var createRefund = function(callback) {
-      conekta.Order.create({
+    var createRefund = function() {
+      return conekta.Order.create({
         currency: 'MXN',
         customer_info: {
           name: 'Jul Ceballos',
@@ -684,10 +696,10 @@ describe('Order', function() {
             token_id: 'tok_test_visa_4242'
           }
         }]
-      }, function(err, order) {
-        order.createRefund({
+      }).then(order => {
+        return order.createRefund({
           amount: 35000
-        }, callback);
+        });
       });
 
     };
@@ -701,10 +713,10 @@ describe('Order', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
-        createRefund(function(err, order) {
+        createRefund().then(order => {
           assert(order.hasOwnProperty('id'), true);
           done();
-        });
+        })
 
       });
 
@@ -722,7 +734,7 @@ describe('Event', function() {
       conekta.api_key = TEST_KEY;
       conekta.api_version = API_VERSION;
       conekta.locale = LOCALE;
-      conekta.Event.where({}, function(err, res) {
+      conekta.Event.where({}).then(res => {
         assert(res.toArray() instanceof Array, true);
         done();
       });
@@ -737,12 +749,13 @@ describe('Plan', function () {
     conekta.api_key = TEST_KEY;
     conekta.api_version = API_VERSION;
     conekta.locale = LOCALE;
-    conekta.Plan.where({currency: 'MXN'}, function (err, plans) {
+    conekta.Plan.where({currency: 'MXN'}).then(res => {
       done();
     });
   });
 
   it('should create plan', function (done) {
+    this.timeout(6000);
     conekta.api_key = TEST_KEY;
     conekta.api_version = API_VERSION;
     conekta.locale = LOCALE;
@@ -755,7 +768,7 @@ describe('Plan', function () {
       frequency: 1,
       trial_period_days: 15,
       expiry_count: 12
-    }, function (err, plan) {
+    }).then(plan => {
       assert(plan.toObject().hasOwnProperty('id'),true);
       createdPlan = plan;
       done();
@@ -763,24 +776,26 @@ describe('Plan', function () {
   });
 
   it('should find a plan by id', function (done) {
+    this.timeout(6000);
     conekta.api_key = TEST_KEY;
     conekta.api_version = API_VERSION;
     conekta.locale = LOCALE;
-    conekta.Plan.find('new-gold-plan', function (err, plan) {
+    conekta.Plan.find('new-gold-plan').then(plan => {
       assert(plan.toObject().hasOwnProperty('id'), true);
       done();
     });
   });
 
   it('should delete plan', function (done) {
+    this.timeout(6000);
     conekta.api_key = TEST_KEY;
     conekta.api_version = API_VERSION;
     conekta.locale = LOCALE;
-    conekta.Plan.find('new-gold-plan', function (err, plan) {
-      plan.delete(function (err, deleted) {
-        assert(deleted.hasOwnProperty('_id'), true);
-        done();
-      });
+    conekta.Plan.find('new-gold-plan').then(plan => {
+      return plan.delete();
+    }).then(deleted => {
+      assert(deleted.hasOwnProperty('_id'), true);
+      done();
     });
   });
 });
@@ -798,7 +813,7 @@ describe('Customer', function() {
       conekta.Customer.create({
         name: 'James Howlett',
         email: 'james.howlett@forces.gov'
-      }, function(err, res) {
+      }).then(res => {
         res = res.toObject();
         customer = res.id;
         assert(res.hasOwnProperty('id'), true);
@@ -822,7 +837,7 @@ describe('Customer', function() {
           token_id: 'tok_test_visa_4242',
           type: 'card'
         }]
-      }, function(err, customer) {
+      }).then(customer => {
         res = customer.toObject();
         assert(res.hasOwnProperty('id'), true);
         done();
@@ -836,14 +851,14 @@ describe('Customer', function() {
       conekta.api_key = TEST_KEY;
       conekta.api_version = API_VERSION;
       conekta.locale = LOCALE;
-      conekta.Customer.find(customer, function(err, res) {
-        res.update({
+      conekta.Customer.find(customer).then(res => {
+        return res.update({
           name: 'Thane Kyrell',
           email: 'thane@jelucan.org'
-        }, function(err, res) {
-          assert(res.toObject().hasOwnProperty('id'), true);
-          done();
         });
+      }).then(res => {
+        assert(res.toObject().hasOwnProperty('id'), true);
+        done();
       });
     });
   });
@@ -854,7 +869,7 @@ describe('Customer', function() {
       conekta.api_key = TEST_KEY;
       conekta.api_version = API_VERSION;
       conekta.locale = LOCALE;
-      conekta.Customer.where({}, function(err, res) {
+      conekta.Customer.where({}).then(res => {
         assert(res.toArray() instanceof Array, true);
         done();
       });
@@ -865,7 +880,7 @@ describe('Customer', function() {
       conekta.api_key = TEST_KEY;
       conekta.api_version = API_VERSION;
       conekta.locale = LOCALE;
-      conekta.Customer.where(function(err, res) {
+      conekta.Customer.where().then(res => {
         assert(res.toArray() instanceof Array, true);
         done();
       });
@@ -878,7 +893,7 @@ describe('Customer', function() {
       conekta.api_key = TEST_KEY;
       conekta.api_version = API_VERSION;
       conekta.locale = LOCALE;
-      conekta.Customer.find(customer, function(err, res) {
+      conekta.Customer.find(customer).then(res => {
         assert(res.toObject().hasOwnProperty('id'), true);
         done();
       });
@@ -891,14 +906,14 @@ describe('Customer', function() {
       conekta.api_key = TEST_KEY;
       conekta.api_version = API_VERSION;
       conekta.locale = LOCALE;
-      conekta.Customer.find(customer, function(err, res) {
-        res.createCard({
+      conekta.Customer.find(customer).then(res => {
+        return res.createCard({
           token_id: 'tok_test_visa_4242',
           type: 'card'
-        }, function(err, res) {
-          assert(res.hasOwnProperty('id'), true);
-          done();
         });
+      }).then(res => {
+        assert(res.hasOwnProperty('id'), true);
+        done();
       });
     });
   });
@@ -909,13 +924,13 @@ describe('Customer', function() {
       conekta.api_key = TEST_KEY;
       conekta.api_version = API_VERSION;
       conekta.locale = LOCALE;
-      conekta.Customer.find(customer, function(err, res) {
-        res.createSubscription({
+      conekta.Customer.find(customer).then(res => {
+        return res.createSubscription({
           plan: 'gold-plan'
-        }, function(err, res) {
-          assert(res.hasOwnProperty('id'), true);
-          done();
         });
+      }).then(res => {
+        assert(res.hasOwnProperty('id'), true);
+        done();
       });
     });
   });
@@ -926,14 +941,14 @@ describe('Customer', function() {
       conekta.api_key = TEST_KEY;
       conekta.api_version = API_VERSION;
       conekta.locale = LOCALE;
-      conekta.Customer.find(customer, function(err, res) {
-        res.createPaymentSource({
+      conekta.Customer.find(customer).then(res => {
+        return res.createPaymentSource({
           type: "card",
           token_id: "tok_test_visa_4242"
-        }, function(err, res) {
-          assert(res.hasOwnProperty('id'), true);
-          done();
         });
+      }).then(res => {
+        assert(res.hasOwnProperty('id'), true);
+        done();
       });
     });
   });
@@ -944,11 +959,11 @@ describe('Customer', function() {
       conekta.api_key = TEST_KEY;
       conekta.api_version = API_VERSION;
       conekta.locale = LOCALE;
-      conekta.Customer.find(customer, function(err, res) {
-        res.delete(function(err, res) {
-          assert(res.toObject().hasOwnProperty('id'), true);
-          done();
-        });
+      conekta.Customer.find(customer).then(res => {
+        return res.delete();
+      }).then(res => {
+        assert(res.toObject().hasOwnProperty('id'), true);
+        done();
       });
     });
   });
@@ -974,8 +989,8 @@ describe('Customer', function() {
             token_id: 'tok_test_visa_4242',
             type: 'card'
           }]
-        }, function(err, customer) {
-          customer.createShippingContact({
+        }).then(customer => {
+          return customer.createShippingContact({
             phone: '+5215555555555',
             receiver: 'Marvin Fuller',
             between_streets: 'Ackerman Crescent',
@@ -988,12 +1003,11 @@ describe('Customer', function() {
               postal_code: 'T4N 0B8',
               residential: true
             }
-          }, function(err, shipping) {
-            shippingContact = shipping;
-            assert(shipping.hasOwnProperty('id'), true);
-            done();
           });
-
+        }).then(shipping => {
+          shippingContact = shipping;
+          assert(shipping.hasOwnProperty('id'), true);
+          done();
         });
       });
     });
@@ -1007,8 +1021,8 @@ describe('Customer', function() {
         conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
 
-        conekta.Customer.find(shippingContact.parent_id, function(err, cust) {
-          cust.shipping_contacts.get(0).update({
+        conekta.Customer.find(shippingContact.parent_id).then(cust => {
+          return cust.shipping_contacts.get(0).update({
             phone: '+5215555555999',
             receiver: 'Marvin Fuller',
             between_streets: 'Ackerman Null',
@@ -1021,13 +1035,11 @@ describe('Customer', function() {
               postal_code: 'T4N 0B8',
               residential: true
             }
-          }, function(err, ship) {
-            assert(ship.hasOwnProperty('id'), true);
-            done();
           });
-
+        }).then(ship => {
+          assert(ship.hasOwnProperty('id'), true);
+          done();
         });
-
       });
     });
 
@@ -1035,19 +1047,17 @@ describe('Customer', function() {
 
       it('should return instance object with id', function(done) {
 
-        this.timeout(6000);
+        this.timeout(10000);
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
-        conekta.Customer.find(shippingContact.parent_id, function(err, cust) {
-          cust.shipping_contacts.get(0).delete(function(err, res) {
-            assert(res.hasOwnProperty('id'), true);
-            done();
-          });
-        });
-
+        conekta.Customer.find(shippingContact.parent_id).then(cust => {
+          return cust.shipping_contacts.get(0).delete();
+        }).then(res => {
+          assert(res.hasOwnProperty('id'), true);
+          done();
+        })
       });
-
     });
   });
 
@@ -1068,25 +1078,25 @@ describe('Customer', function() {
             token_id: 'tok_test_visa_4242',
             type: 'card'
           }]
-        }, function(err, customer) {
-          customer.find(customer._id, function(err, customerObj) {
-            customerObj.payment_sources.get(0).update({
-              name: 'Emiliano Cabrera',
-              exp_month: '12',
-              exp_year: '20',
-              address: {
-                street1: 'Tamesis',
-                street2: '114',
-                city: 'Monterrey',
-                state: 'Nuevo Leon',
-                country: 'MX',
-                postal_code: '64700'
-              }
-            }, function(err, res) {
-              assert(res.hasOwnProperty('id'), true);
-              done();
-            });
+        }).then(customer => {
+          return customer.find(customer._id);
+        }).then(customerObj => {
+          return customerObj.payment_sources.get(0).update({
+            name: 'Emiliano Cabrera',
+            exp_month: '12',
+            exp_year: '20',
+            address: {
+              street1: 'Tamesis',
+              street2: '114',
+              city: 'Monterrey',
+              state: 'Nuevo Leon',
+              country: 'MX',
+              postal_code: '64700'
+            }
           });
+        }).then(res => {
+          assert(res.hasOwnProperty('id'), true);
+          done();
         });
       });
     });
@@ -1106,13 +1116,11 @@ describe('Customer', function() {
             token_id: 'tok_test_visa_4242',
             type: 'card'
           }]
-        }, function(err, customer) {
-          customer.payment_sources.get(0).delete(function(err, res) {
-            assert(res.hasOwnProperty('id'), true);
-            done();
-
-          });
-
+        }).then(customer => {
+          return customer.payment_sources.get(0).delete();
+        }).then(res => {
+          assert(res.hasOwnProperty('id'), true);
+          done();
         });
       });
     });
@@ -1139,14 +1147,14 @@ describe('Customer', function() {
             token_id: 'tok_test_visa_4242',
             type: 'card'
           }]
-        }, function(err, customer) {
+        }).then(customer => {
           customerSubscribed = customer;
-          customerSubscribed.subscription.update({
+          return customerSubscribed.subscription.update({
             plan: 'opal-plan'
-          }, function(err, res) {
-            assert(res.hasOwnProperty('id'), true);
-            done();
           });
+        }).then(res => {
+          assert(res.hasOwnProperty('id'), true);
+          done();
         });
       });
     });
@@ -1157,11 +1165,11 @@ describe('Customer', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.locale = LOCALE;
-        conekta.Customer.find(customerSubscribed._id, function (err, customer) {
-          customer.subscription.pause(function(err, res) {
-            assert((res.status == 'paused' || res.status == 'in_trial'), true);
-            done();
-          });
+        conekta.Customer.find(customerSubscribed._id).then(customer => {
+          return customer.subscription.pause();
+        }).then(res => {
+          assert((res.status == 'paused' || res.status == 'in_trial'), true);
+          done();
         });
       });
     });
@@ -1172,16 +1180,16 @@ describe('Customer', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.locale = LOCALE;
-        conekta.Customer.find(customerSubscribed._id, function(err, customer) {
-          customerSubscribed.subscription.update({
+        conekta.Customer.find(customerSubscribed._id).then(customer => {
+          return customerSubscribed.subscription.update({
             plan_id: 'gold-plan'
-          }, function(err, res) {
-            customer.subscription.resume(function(err, res) {
-              assert((res.status == 'active' || res.status == 'in_trial'), true);
-              done();
-            });
+          }).then(res => {
+            return customer.subscription.resume();
           });
-        });
+        }).then(res => {
+          assert((res.status == 'active' || res.status == 'in_trial'), true);
+          done();
+        })
       });
     });
 
@@ -1191,7 +1199,7 @@ describe('Customer', function() {
         conekta.api_key = TEST_KEY;
         conekta.api_version = API_VERSION;
         conekta.locale = LOCALE;
-        customerSubscribed.subscription.cancel(function(err, res) {
+        customerSubscribed.subscription.cancel().then(res => {
           assert(res.status == 'canceled', true);
           done();
         });
