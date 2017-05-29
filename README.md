@@ -41,13 +41,11 @@ conekta.Order.create({
         "tags": ["food", "mexican food"],
         "type": "physical"
     }]
-  }, function(err, res) {
-    if (err) {
-        console.log(err.type);
-        return;
-    }
+  }).then(function(res){   
     console.log(res.toObject());
-});
+  }).catch(function(err){
+    console.log(err.type);
+  });
 ```
 
 ## Endpoints
