@@ -1,5 +1,5 @@
 {
-  "name": "conekta-promisify",
+  "name": "conekta-promise",
   "version": "3.1.2",
   "description": "Conekta node Wrapper with Promises",
   "keywords": [
