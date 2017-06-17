@@ -8,15 +8,9 @@ Wrapper to connect with https://api.conekta.io.
 ## Install
 
 ```sh
-npm install conekta
+npm install conekta-promise
 ```
 
-This last release works with API 1.1, if you are using 1.0 type:
-
-
-```sh
-npm install conekta-promisify
-```
 
 ## Usage
 
