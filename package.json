@@ -1,5 +1,5 @@
 {
-  "name": "conekta",
+  "name": "conekta-promisify",
   "version": "3.1.2",
   "description": "Conekta node Wrapper",
   "keywords": [
@@ -14,14 +14,14 @@
   ],
   "homepage": "https://www.conekta.io",
   "bugs": {
-    "url": "https://github.com/conekta/conekta-node/issues",
+    "url": "https://github.com/Phaze1D/conekta-node/issues",
     "email": "soporte@conekta.io"
   },
   "license": "MIT",
   "author": "Conekta",
   "repository": {
     "type": "git",
-    "url": "https://github.com/conekta/conekta-node.git"
+    "url": "https://github.com/Phaze1D/conekta-node.git"
   },
   "dependencies": {
     "request": "2.55.0",
