@@ -2,7 +2,7 @@
 
 Conekta Node v 3.1.1
 ======================
-Exactly the same package as conekta-node 3.1.1 but this one uses promises instead of callbacks
+Exactly the same package as [conekta-node](https://www.npmjs.com/package/conekta) but this one uses promises instead of callbacks
 Wrapper to connect with https://api.conekta.io.
 
 ## Install
