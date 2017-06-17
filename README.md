@@ -1,8 +1,8 @@
 ![README Cover Image](readme_cover.png)
 
-Conekta Node v 3.0.0-pre
+Conekta Node v 3.1.1
 ======================
-
+Exactly the same package as conekta-node 3.1.1 but this one uses promises instead of callbacks
 Wrapper to connect with https://api.conekta.io.
 
 ## Install
@@ -15,7 +15,7 @@ This last release works with API 1.1, if you are using 1.0 type:
 
 
 ```sh
-npm install conekta@2.2.0
+npm install conekta-promisify
 ```
 
 ## Usage
@@ -41,11 +41,11 @@ conekta.Order.create({
         "tags": ["food", "mexican food"],
         "type": "physical"
     }]
-  }).then(function(res){   
-    console.log(res.toObject());
-  }).catch(function(err){
-    console.log(err.type);
-  });
+}).then(function(res){   
+  console.log(res.toObject());
+}).catch(function(err){
+  console.log(err.type);
+});
 ```
 
 ## Endpoints
@@ -109,7 +109,7 @@ Help: exit() to quit
 '9YxqfRnx4sMQDnRsqdYn'
 > conekta.locale = 'es';
 'es'
-> 
+>
 ```
 
 ### Run tests
