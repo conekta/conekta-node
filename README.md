@@ -1,6 +1,6 @@
 ![alt tag](https://raw.github.com/conekta/conekta-node/master/readme_files/cover.png)
 
-Conekta Node v 3.1.5-pre
+Conekta Node v 3.1.5
 ======================
 
 Wrapper to connect with https://api.conekta.io.
