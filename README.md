@@ -1,6 +1,6 @@
 ![README Cover Image](readme_cover.png)
 
-Conekta Node v 3.0.0-pre
+Conekta Node v 3.1.5
 ======================
 
 Wrapper to connect with https://api.conekta.io.
@@ -11,7 +11,7 @@ Wrapper to connect with https://api.conekta.io.
 npm install conekta
 ```
 
-This last release works with API 1.1, if you are using 1.0 type:
+This last release works with API 2, if you are using 1.0 type:
 
 
 ```sh
@@ -83,7 +83,7 @@ Conekta.FiscalEntity.update
 
 ## Documentation
 
-Please see https://www.conekta.io/docs/api-v1_1 for up-to-date documentation.
+Please see https://developers.conekta.com/api?language=node for up-to-date documentation.
 
 ## Contribute
 
