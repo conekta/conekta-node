@@ -1,6 +1,6 @@
 ![README Cover Image](readme_cover.png)
 
-Conekta Node v 3.1.5
+Conekta Node v 3.1.6
 ======================
 
 Wrapper to connect with https://api.conekta.io.
