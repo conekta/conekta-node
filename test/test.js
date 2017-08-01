@@ -6,7 +6,8 @@ var assert = require('assert'),
 const LOCALE = 'en',
   TEST_KEY = 'key_eYvWV7gSDkNYXsmr',
   API_VERSION = '2.0.0',
-  PRODUCTION_KEY = '9YxqfRnx4sMQDnRsqdYn';
+  PRODUCTION_KEY = '9YxqfRnx4sMQDnRsqdYn',
+  TIMEOUT = 25000;
 
 var createOrder = function(callback) {
   conekta.Order.create({
@@ -27,25 +28,26 @@ var createOrder = function(callback) {
 }
 
 describe('Conekta wrapper', function() {
+  this.timeout(TIMEOUT);
+
+  beforeEach(function() {
+    conekta.api_key = TEST_KEY;
+    conekta.locale = LOCALE;
+    conekta.api_version = API_VERSION;
+  });
 
   describe('with api key empty', function() {
     it('should return error code api_key_required', function(done) {
-      conekta.api_version = API_VERSION;
+      conekta.api_key = '';
       createOrder(function(err, order) {
         assert(err.code == 'api_key_required', true);
         done();
       });
-
-
     });
   });
 
   describe('request with bad arguments', function() {
     it('should return error code with empty argument', function(done) {
-      this.timeout(60000);
-      conekta.api_key = TEST_KEY;
-      conekta.locale = LOCALE;
-      conekta.api_version = API_VERSION;
       conekta.Order.create({
         currency: 'MXN',
         line_items: [{
@@ -63,10 +65,6 @@ describe('Conekta wrapper', function() {
 
   describe('request with errors', function() {
     it('should return message_to_purchaser on error response', function(done) {
-      this.timeout(60000);
-      conekta.api_key = TEST_KEY;
-      conekta.locale = LOCALE;
-      conekta.api_version = API_VERSION;
       conekta.Order.create({
         currency: 'MXN',
         details: {
@@ -89,10 +87,6 @@ describe('Conekta wrapper', function() {
 
   describe('request with not found object', function() {
     it('should return error with http_code 404', function(done) {
-      this.timeout(60000);
-      conekta.api_key = TEST_KEY;
-      conekta.locale = LOCALE;
-      conekta.api_version = API_VERSION;
       conekta.Order.find('123', function(err) {
         assert(err.http_code == 404, true);
         done();
@@ -102,10 +96,7 @@ describe('Conekta wrapper', function() {
 
   describe('api version unsupported', function() {
     it('should return error ', function(done) {
-      this.timeout(60000);
-      conekta.api_key = TEST_KEY;
       conekta.api_version = '1.0.0';
-      conekta.locale = LOCALE;
       conekta.Order.find('123', function(err) {
         assert(err.code == 'api_version_unsupported', true);
         done();
@@ -116,19 +107,23 @@ describe('Conekta wrapper', function() {
 });
 
 describe('Order', function() {
+  this.timeout(TIMEOUT);
+
+  beforeEach(function() {
+    conekta.api_key = TEST_KEY;
+    conekta.locale = LOCALE;
+    conekta.api_version = API_VERSION;
+  });
 
   describe('next page', function() {
 
     it('should return something', function(done) {
-      this.timeout(10000);
 
       var mFile = fs.readFileSync(__dirname + '/../lib/orders.json');
 
       var ord = conekta.Order;
       ord._json = JSON.parse(mFile);
-      conekta.api_key = TEST_KEY;
-      conekta.locale = LOCALE;
-      conekta.api_version = API_VERSION;
+
       ord.nextPage(function(err, res) {
         assert(res.hasOwnProperty('next_page_url'), true)
         done();
@@ -138,13 +133,20 @@ describe('Order', function() {
 
   });
 
+  describe('multiple orders', function () {
+    it('should return an array of orders', function (done) {
+      conekta.Order.where({
+        livemode: false,
+        currency: "USD"
+      }, function (err, orders) {
+        assert(orders.toObject().data instanceof Array, true);
+        done();
+      });
+    });
+  });
 
   describe('create', function() {
     it('should return instance object with id', function(done) {
-      this.timeout(10000);
-      conekta.api_key = TEST_KEY;
-      conekta.locale = LOCALE;
-      conekta.api_version = API_VERSION;
       createOrder(function(err, res) {
         assert((res.toObject().hasOwnProperty('id')), true);
         done();
@@ -154,10 +156,6 @@ describe('Order', function() {
 
   describe('update', function() {
     it('should return instance object', function(done) {
-      this.timeout(6000);
-      conekta.api_key = TEST_KEY;
-      conekta.api_version = API_VERSION;
-      conekta.locale = LOCALE;
       createOrder(function(err, res) {
         var order = res.toObject().id;
         res.update({
@@ -173,11 +171,6 @@ describe('Order', function() {
 
   describe('capture order', function() {
     it('should return instance object', function(done) {
-      this.timeout(10000);
-      conekta.api_key = TEST_KEY;
-      conekta.api_version = API_VERSION;
-      conekta.locale = LOCALE;
-
       conekta.Order.create({
         customer_info: {
           name: 'Jul Ceballos',
@@ -213,10 +206,6 @@ describe('Order', function() {
     describe('create', function () {
 
       it('should return instance object', function(done) {
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
         createOrder(function (err, order) {
           order.createShippingContact({
             address: {
@@ -257,11 +246,6 @@ describe('Order', function() {
 
     describe('next page', function () {
       it('should return instance object with id', function (done) {
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
-        this.timeout(6000);
-
         createLineItem(function (err, res) {
           conekta.Order.find(res.parent_id, function (err, order) {
             order.line_items.nextPage(function (err, res) {
@@ -274,11 +258,7 @@ describe('Order', function() {
     });
 
     describe('create', function() {
-
       it('should return instance object with id', function(done) {
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
         conekta.local = LOCALE;
         createLineItem(function(err, lineItem) {
           assert(lineItem.hasOwnProperty('id'), true);
@@ -289,12 +269,7 @@ describe('Order', function() {
     });
 
     describe('update', function() {
-
       it('should return instance object with id', function(done) {
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
         createLineItem(function(err, res) {
           conekta.Order.find(res.parent_id, function(err, ord) {
             ord.line_items.get(1).update({
@@ -312,12 +287,7 @@ describe('Order', function() {
     });
 
     describe('delete', function () {
-
       it('should return instance object with id', function(done) {
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
         createLineItem(function(err, res) {
           conekta.Order.find(res.parent_id, function (err, order) {
             order.line_items.get(0).delete(function (err, lineItems) {
@@ -327,9 +297,7 @@ describe('Order', function() {
           });
         });
       });
-
     });
-
 
   });
 
@@ -349,11 +317,6 @@ describe('Order', function() {
 
     describe('next page', function () {
       it('should return instance object with id', function (done) {
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
-        this.timeout(6000);
-
         createTaxLine(function (err, res) {
           conekta.Order.find(res.parent_id, function (err, order) {
             order.tax_lines.nextPage(function (err, res) {
@@ -368,11 +331,6 @@ describe('Order', function() {
     describe('create', function() {
 
       it('should return instance object with id', function(done) {
-
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
         createTaxLine(function(err, order) {
           assert(order.hasOwnProperty('id'), true);
           done();
@@ -384,11 +342,6 @@ describe('Order', function() {
     describe('update', function() {
 
       it('should return instance object with id', function(done) {
-
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
         createTaxLine(function(err, order) {
           conekta.Order.find(order.parent_id, function(err, ord) {
             ord.tax_lines.get(0).update({
@@ -406,10 +359,6 @@ describe('Order', function() {
     describe('delete', function () {
 
       it('should return instance object with id', function(done) {
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
         createTaxLine(function(err, order) {
           conekta.Order.find(order.parent_id, function(err, ord) {
             ord.tax_lines.get(0).delete(function (err, taxLine) {
@@ -442,11 +391,6 @@ describe('Order', function() {
 
     describe('next page', function () {
       it('should return instance object with id', function (done) {
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
-        this.timeout(6000);
-
         createShippingLine(function (err, res) {
           conekta.Order.find(res.parent_id, function (err, order) {
             order.shipping_lines.nextPage(function (err, res) {
@@ -461,11 +405,6 @@ describe('Order', function() {
     describe('create', function() {
 
       it('should return instance object with id', function(done) {
-
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
         createShippingLine(function(err, order) {
           assert(order.hasOwnProperty('id'), true);
           done();
@@ -478,11 +417,6 @@ describe('Order', function() {
     describe('update', function() {
 
       it('should return instance object with id', function(done) {
-
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
         createShippingLine(function(err, order) {
           conekta.Order.find(order.parent_id, function(err, ord) {
             ord.shipping_lines.get(0).update({
@@ -501,11 +435,6 @@ describe('Order', function() {
     describe('delete', function () {
 
       it('should return instance object with id', function(done) {
-
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
         createShippingLine(function(err, order) {
           conekta.Order.find(order.parent_id, function (err, ord) {
             ord.shipping_lines.get(0).delete(function (err, res) {
@@ -535,11 +464,6 @@ describe('Order', function() {
 
     describe('next page', function () {
       it('should return instance object with id', function (done) {
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
-        this.timeout(6000);
-
         createDiscountLine(function (err, res) {
           conekta.Order.find(res.parent_id, function (err, order) {
             order.discount_lines.nextPage(function (err, res) {
@@ -554,11 +478,6 @@ describe('Order', function() {
     describe('create', function() {
 
       it('should return instance object with id', function(done) {
-
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.local = LOCALE;
-        conekta.api_version = API_VERSION;
         createDiscountLine(function(err, order) {
           assert(order.hasOwnProperty('id'), true);
           done();
@@ -571,11 +490,6 @@ describe('Order', function() {
     describe('update', function() {
 
       it('should return instance object with id', function(done) {
-
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
         createDiscountLine(function(err, order) {
           conekta.Order.find(order.parent_id, function(err, ord) {
             ord.discount_lines.get(0).update({
@@ -592,10 +506,6 @@ describe('Order', function() {
 
     describe('delete', function () {
       it('should return instance object with id', function(done) {
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
         createDiscountLine(function(err, order) {
           conekta.Order.find(order.parent_id, function(err, ord) {
             ord.discount_lines.get(0).delete(function(err, res) {
@@ -626,11 +536,6 @@ describe('Order', function() {
     describe('create', function() {
 
       it('should return instance object with id', function(done) {
-
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
         createCharge(function(err, order) {
           assert(order.hasOwnProperty('id'), true);
           done();
@@ -642,11 +547,6 @@ describe('Order', function() {
 
     describe('next page', function () {
       it('should return instance object with id', function (done) {
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
-        this.timeout(6000);
-
         createCharge(function (err, res) {
           conekta.Order.find(res.order_id, function (err, order) {
             order.charges.nextPage(function (err, res) {
@@ -696,16 +596,10 @@ describe('Order', function() {
     describe('create', function() {
 
       it('should return instance object with id', function(done) {
-
-        this.timeout(15000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
         createRefund(function(err, order) {
           assert(order.hasOwnProperty('id'), true);
           done();
         });
-
       });
 
     });
@@ -716,12 +610,16 @@ describe('Order', function() {
 
 
 describe('Event', function() {
+  this.timeout(TIMEOUT);
+
+  beforeEach(function() {
+    conekta.api_key = TEST_KEY;
+    conekta.locale = LOCALE;
+    conekta.api_version = API_VERSION;
+  });
+
   describe('where', function() {
     it('should return array', function(done) {
-      this.timeout(60000);
-      conekta.api_key = TEST_KEY;
-      conekta.api_version = API_VERSION;
-      conekta.locale = LOCALE;
       conekta.Event.where({}, function(err, res) {
         assert(res.toArray() instanceof Array, true);
         done();
@@ -731,21 +629,22 @@ describe('Event', function() {
 });
 
 describe('Plan', function () {
+  this.timeout(TIMEOUT);
+
+  beforeEach(function() {
+    conekta.api_key = TEST_KEY;
+    conekta.locale = LOCALE;
+    conekta.api_version = API_VERSION;
+  });
+
   var createdPlan = {};
   it('should find plans', function (done) {
-    this.timeout(60000);
-    conekta.api_key = TEST_KEY;
-    conekta.api_version = API_VERSION;
-    conekta.locale = LOCALE;
     conekta.Plan.where({currency: 'MXN'}, function (err, plans) {
       done();
     });
   });
 
   it('should create plan', function (done) {
-    conekta.api_key = TEST_KEY;
-    conekta.api_version = API_VERSION;
-    conekta.locale = LOCALE;
     conekta.Plan.create({
       id: "new-gold-plan",
       name: "New Gold Plan",
@@ -763,9 +662,6 @@ describe('Plan', function () {
   });
 
   it('should find a plan by id', function (done) {
-    conekta.api_key = TEST_KEY;
-    conekta.api_version = API_VERSION;
-    conekta.locale = LOCALE;
     conekta.Plan.find('new-gold-plan', function (err, plan) {
       assert(plan.toObject().hasOwnProperty('id'), true);
       done();
@@ -773,9 +669,6 @@ describe('Plan', function () {
   });
 
   it('should delete plan', function (done) {
-    conekta.api_key = TEST_KEY;
-    conekta.api_version = API_VERSION;
-    conekta.locale = LOCALE;
     conekta.Plan.find('new-gold-plan', function (err, plan) {
       plan.delete(function (err, deleted) {
         assert(deleted.hasOwnProperty('_id'), true);
@@ -786,15 +679,18 @@ describe('Plan', function () {
 });
 
 describe('Customer', function() {
+  this.timeout(TIMEOUT);
+
+  beforeEach(function() {
+    conekta.api_key = TEST_KEY;
+    conekta.locale = LOCALE;
+    conekta.api_version = API_VERSION;
+  });
 
   var customer = '';
 
   describe('create without plan', function() {
     it('should return an object instance with id', function(done) {
-      this.timeout(60000);
-      conekta.api_key = TEST_KEY;
-      conekta.api_version = API_VERSION;
-      conekta.locale = LOCALE;
       conekta.Customer.create({
         name: 'James Howlett',
         email: 'james.howlett@forces.gov'
@@ -809,10 +705,6 @@ describe('Customer', function() {
 
   describe('create with plan', function() {
     it('should return an object instance with id', function(done) {
-      this.timeout(60000);
-      conekta.api_key = TEST_KEY;
-      conekta.api_version = API_VERSION;
-      conekta.locale = LOCALE;
       conekta.Customer.create({
         name: 'James Howlett',
         email: 'james.howlett@forces.gov',
@@ -832,10 +724,6 @@ describe('Customer', function() {
 
   describe('update', function() {
     it('should return an object instance with id', function(done) {
-      this.timeout(60000);
-      conekta.api_key = TEST_KEY;
-      conekta.api_version = API_VERSION;
-      conekta.locale = LOCALE;
       conekta.Customer.find(customer, function(err, res) {
         res.update({
           name: 'Thane Kyrell',
@@ -850,10 +738,6 @@ describe('Customer', function() {
 
   describe('where', function() {
     it('should return an array', function(done) {
-      this.timeout(60000);
-      conekta.api_key = TEST_KEY;
-      conekta.api_version = API_VERSION;
-      conekta.locale = LOCALE;
       conekta.Customer.where({}, function(err, res) {
         assert(res.toArray() instanceof Array, true);
         done();
@@ -861,10 +745,6 @@ describe('Customer', function() {
     });
 
     it('should return an array (just callback)', function(done) {
-      this.timeout(60000);
-      conekta.api_key = TEST_KEY;
-      conekta.api_version = API_VERSION;
-      conekta.locale = LOCALE;
       conekta.Customer.where(function(err, res) {
         assert(res.toArray() instanceof Array, true);
         done();
@@ -874,10 +754,6 @@ describe('Customer', function() {
 
   describe('find', function() {
     it('should return an object instance with id attribute', function(done) {
-      this.timeout(60000);
-      conekta.api_key = TEST_KEY;
-      conekta.api_version = API_VERSION;
-      conekta.locale = LOCALE;
       conekta.Customer.find(customer, function(err, res) {
         assert(res.toObject().hasOwnProperty('id'), true);
         done();
@@ -887,10 +763,6 @@ describe('Customer', function() {
 
   describe('createcard', function() {
     it('should return an object instance with id attribute', function(done) {
-      this.timeout(60000);
-      conekta.api_key = TEST_KEY;
-      conekta.api_version = API_VERSION;
-      conekta.locale = LOCALE;
       conekta.Customer.find(customer, function(err, res) {
         res.createCard({
           token_id: 'tok_test_visa_4242',
@@ -905,10 +777,6 @@ describe('Customer', function() {
 
   describe('createsubscription', function() {
     it('should return an object instance with id attribute', function(done) {
-      this.timeout(60000);
-      conekta.api_key = TEST_KEY;
-      conekta.api_version = API_VERSION;
-      conekta.locale = LOCALE;
       conekta.Customer.find(customer, function(err, res) {
         res.createSubscription({
           plan: 'gold-plan'
@@ -922,10 +790,6 @@ describe('Customer', function() {
 
   describe('createPaymentSources', function () {
     it('should return an object instance with id attribute', function(done) {
-      this.timeout(60000);
-      conekta.api_key = TEST_KEY;
-      conekta.api_version = API_VERSION;
-      conekta.locale = LOCALE;
       conekta.Customer.find(customer, function(err, res) {
         res.createPaymentSource({
           type: "card",
@@ -940,10 +804,6 @@ describe('Customer', function() {
 
   describe('delete', function() {
     it('should return an object instance with id attribute', function(done) {
-      this.timeout(60000);
-      conekta.api_key = TEST_KEY;
-      conekta.api_version = API_VERSION;
-      conekta.locale = LOCALE;
       conekta.Customer.find(customer, function(err, res) {
         res.delete(function(err, res) {
           assert(res.toObject().hasOwnProperty('id'), true);
@@ -961,10 +821,6 @@ describe('Customer', function() {
 
       it('should return instance object with id', function(done) {
 
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
         conekta.Customer.create({
           name: 'James Howlett',
           email: 'james.howlett@forces.gov',
@@ -1002,11 +858,6 @@ describe('Customer', function() {
 
       it('should return instance object with id', function(done) {
 
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
-
         conekta.Customer.find(shippingContact.parent_id, function(err, cust) {
           cust.shipping_contacts.get(0).update({
             phone: '+5215555555999',
@@ -1035,10 +886,6 @@ describe('Customer', function() {
 
       it('should return instance object with id', function(done) {
 
-        this.timeout(6000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.local = LOCALE;
         conekta.Customer.find(shippingContact.parent_id, function(err, cust) {
           cust.shipping_contacts.get(0).delete(function(err, res) {
             assert(res.hasOwnProperty('id'), true);
@@ -1055,10 +902,6 @@ describe('Customer', function() {
 
     describe('update', function() {
       it('should return an object instance with id attribute', function(done) {
-        this.timeout(60000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.locale = LOCALE;
         conekta.Customer.create({
           name: 'James Howlett',
           email: 'james.howlett@forces.gov',
@@ -1093,10 +936,6 @@ describe('Customer', function() {
 
     describe('delete', function() {
       it('should return an object instance with id attribute', function(done) {
-        this.timeout(60000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.locale = LOCALE;
         conekta.Customer.create({
           name: 'James Howlett',
           email: 'james.howlett@forces.gov',
@@ -1125,10 +964,6 @@ describe('Customer', function() {
 
     describe('update subscription plan', function() {
       it('should return an object instance with id attribute', function(done) {
-        this.timeout(60000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.locale = LOCALE;
         conekta.Customer.create({
           name: 'James Howlett',
           phone: "+5215544443333",
@@ -1153,10 +988,6 @@ describe('Customer', function() {
 
     describe('pause', function() {
       it('should return and object instance with id attribute', function(done) {
-        this.timeout(60000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.locale = LOCALE;
         conekta.Customer.find(customerSubscribed._id, function (err, customer) {
           customer.subscription.pause(function(err, res) {
             assert((res.status == 'paused' || res.status == 'in_trial'), true);
@@ -1168,10 +999,6 @@ describe('Customer', function() {
 
     describe('resume', function() {
       it('should return and object instance with id attribute', function(done) {
-        this.timeout(60000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.locale = LOCALE;
         conekta.Customer.find(customerSubscribed._id, function(err, customer) {
           customerSubscribed.subscription.update({
             plan_id: 'gold-plan'
@@ -1187,10 +1014,6 @@ describe('Customer', function() {
 
     describe('cancel', function() {
       it('should return and object instance with id attribute', function(done) {
-        this.timeout(60000);
-        conekta.api_key = TEST_KEY;
-        conekta.api_version = API_VERSION;
-        conekta.locale = LOCALE;
         customerSubscribed.subscription.cancel(function(err, res) {
           assert(res.status == 'canceled', true);
           done();
