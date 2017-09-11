@@ -1,6 +1,10 @@
+## [3.2.0](https://github.com/conekta/conekta-node/releases/tag/3.1.6) - 2017-09-11
+### Change
+- Change Cert file bundle with public one
+
 ## [3.1.6](https://github.com/conekta/conekta-node/releases/tag/3.1.6) - 2017-08-01
 ### Fix
--This version solves the error that only brings the last order of a list
+- This version solves the error that only brings the last order of a list
 
 ## [3.1.5](https://github.com/conekta/conekta-node/releases/tag/3.1.5) - 2017-06-29
 ### Fix
