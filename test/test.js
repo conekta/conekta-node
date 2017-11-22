@@ -1,15 +1,16 @@
-var assert = require('assert'),
-  conekta = require('../lib/conekta.js'),
-  base64 = require('../lib/base64.js'),
-  fs = require('fs');
+const assert = require('assert')
+const nock = require('nock')
+const fs = require('fs')
 
-const LOCALE = 'en',
-  TEST_KEY = 'key_eYvWV7gSDkNYXsmr',
-  API_VERSION = '2.0.0',
-  PRODUCTION_KEY = '9YxqfRnx4sMQDnRsqdYn',
-  TIMEOUT = 25000;
+const conekta = require('../lib/conekta.js')
+const base64 = require('../lib/base64.js')
+const LOCALE = 'en'
+const TEST_KEY = 'key_eYvWV7gSDkNYXsmr'
+const API_VERSION = '2.0.0'
+const PRODUCTION_KEY = '9YxqfRnx4sMQDnRsqdYn'
+const TIMEOUT = 25000
 
-var createOrder = function(callback) {
+const createOrder = (callback) => {
   conekta.Order.create({
     currency: 'MXN',
     customer_info: {
@@ -22,32 +23,53 @@ var createOrder = function(callback) {
       description: 'Imported From Mex.',
       unit_price: 35000,
       quantity: 1,
-      tags: ['food', 'mexican food'],
+      tags: ['food', 'mexican food']
     }]
-  }, callback);
+  }, callback)
 }
 
-describe('Conekta wrapper', function() {
-  this.timeout(TIMEOUT);
+describe('Conekta wrapper', function () {
+  this.timeout(TIMEOUT)
 
-  beforeEach(function() {
-    conekta.api_key = TEST_KEY;
-    conekta.locale = LOCALE;
-    conekta.api_version = API_VERSION;
-  });
+  beforeEach(() => {
+    conekta.api_key = TEST_KEY
+    conekta.locale = LOCALE
+    conekta.api_version = API_VERSION
+  })
 
-  describe('with api key empty', function() {
-    it('should return error code api_key_required', function(done) {
-      conekta.api_key = '';
-      createOrder(function(err, order) {
-        assert(err.code == 'api_key_required', true);
-        done();
-      });
-    });
-  });
+  describe('with api down or busy', () => {
+    nock('https://api.conekta.io')
+    .post('/orders')
+    .replyWithError({
+      code: 'ENOTFOUND',
+      errno: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'api.conekta.io',
+      host: 'api.conekta.io',
+      port: 443 })
 
-  describe('request with bad arguments', function() {
-    it('should return error code with empty argument', function(done) {
+    it('should return error when api is down', (done) => {
+      conekta.api_key = TEST_KEY
+      createOrder((err, order) => {
+        assert(err.http_code === 520, true)
+        nock.restore()
+        done()
+      })
+    })
+  })
+
+  describe('with api key empty', () => {
+    it('should return error code api_key_required', (done) => {
+      conekta.api_key = ''
+      createOrder((err, order) => {
+        assert(err.code === 'api_key_required', true)
+        done()
+      })
+    })
+  })
+
+  describe('request with bad arguments', () => {
+    it('should return error code with empty argument', (done) => {
       conekta.Order.create({
         currency: 'MXN',
         line_items: [{
@@ -56,15 +78,15 @@ describe('Conekta wrapper', function() {
           quantity: 1,
           tags: ['food', 'mexican food']
         }]
-      }, function(err) {
-        assert(err.type == 'parameter_validation_error', true);
-        done();
-      });
-    });
-  });
+      }, (err) => {
+        assert(err.type === 'parameter_validation_error', true)
+        done()
+      })
+    })
+  })
 
-  describe('request with errors', function() {
-    it('should return message_to_purchaser on error response', function(done) {
+  describe('request with errors', () => {
+    it('should return message_to_purchaser on error response', (done) => {
       conekta.Order.create({
         currency: 'MXN',
         details: {
@@ -75,102 +97,97 @@ describe('Conekta wrapper', function() {
             name: 'Box of Cohiba S1s',
             description: 'Imported From Mex.',
             unit_price: 20000,
-            quantity: 1,
+            quantity: 1
           }]
         }
-      }, function(err) {
-        assert(err.details[0].hasOwnProperty('message'), true);
-        done();
-      });
-    });
-  });
+      }, (err) => {
+        assert(err.details[0].hasOwnProperty('message'), true)
+        done()
+      })
+    })
+  })
 
-  describe('request with not found object', function() {
-    it('should return error with http_code 404', function(done) {
-      conekta.Order.find('123', function(err) {
-        assert(err.http_code == 404, true);
-        done();
-      });
-    });
-  });
+  describe('request with not found object', () => {
+    it('should return error with http_code 404', (done) => {
+      conekta.Order.find('123', (err) => {
+        assert(err.http_code === 404, true)
+        done()
+      })
+    })
+  })
 
-  describe('api version unsupported', function() {
-    it('should return error ', function(done) {
-      conekta.api_version = '1.0.0';
-      conekta.Order.find('123', function(err) {
-        assert(err.code == 'api_version_unsupported', true);
-        done();
-      });
-    });
-  });
+  describe('api version unsupported', () => {
+    it('should return error ', (done) => {
+      conekta.api_version = '1.0.0'
+      conekta.Order.find('123', (err) => {
+        assert(err.code === 'api_version_unsupported', true)
+        done()
+      })
+    })
+  })
+})
 
-});
+describe('Order', function () {
+  this.timeout(TIMEOUT)
 
-describe('Order', function() {
-  this.timeout(TIMEOUT);
+  beforeEach(() => {
+    conekta.api_key = TEST_KEY
+    conekta.locale = LOCALE
+    conekta.api_version = API_VERSION
+  })
 
-  beforeEach(function() {
-    conekta.api_key = TEST_KEY;
-    conekta.locale = LOCALE;
-    conekta.api_version = API_VERSION;
-  });
+  describe('next page', () => {
+    it('should return something', (done) => {
+      const mFile = fs.readFileSync(__dirname + '/../lib/orders.json')
 
-  describe('next page', function() {
+      const ord = conekta.Order
+      ord._json = JSON.parse(mFile)
 
-    it('should return something', function(done) {
-
-      var mFile = fs.readFileSync(__dirname + '/../lib/orders.json');
-
-      var ord = conekta.Order;
-      ord._json = JSON.parse(mFile);
-
-      ord.nextPage(function(err, res) {
+      ord.nextPage((err, res) => {
         assert(res.hasOwnProperty('next_page_url'), true)
-        done();
-      });
+        done()
+      })
+    })
+  })
 
-    });
-
-  });
-
-  describe('multiple orders', function () {
-    it('should return an array of orders', function (done) {
+  describe('multiple orders', () => {
+    it('should return an array of orders', (done) => {
       conekta.Order.where({
         livemode: false,
-        currency: "USD"
-      }, function (err, orders) {
-        assert(orders.toObject().data instanceof Array, true);
-        done();
-      });
-    });
-  });
+        currency: 'USD'
+      }, (err, orders) => {
+        assert(orders.toObject().data instanceof Array, true)
+        done()
+      })
+    })
+  })
 
-  describe('create', function() {
-    it('should return instance object with id', function(done) {
-      createOrder(function(err, res) {
-        assert((res.toObject().hasOwnProperty('id')), true);
-        done();
-      });
-    });
-  });
+  describe('create', () => {
+    it('should return instance object with id', (done) => {
+      createOrder((err, res) => {
+        assert((res.toObject().hasOwnProperty('id')), true)
+        done()
+      })
+    })
+  })
 
-  describe('update', function() {
-    it('should return instance object', function(done) {
-      createOrder(function(err, res) {
-        var order = res.toObject().id;
+  describe('update', () => {
+    it('should return instance object', (done) => {
+      createOrder((err, res) => {
+        const order = res.toObject().id
         res.update({
-          payment_status: "created",
+          payment_status: 'created',
           currency: 'USD'
-        }, function(err, res) {
+        }, (err, res) => {
           assert(res.toObject().currency, 'USD')
-          done();
-        });
-      });
-    });
-  });
+          done()
+        })
+      })
+    })
+  })
 
-  describe('capture order', function() {
-    it('should return instance object', function(done) {
+  describe('capture order', () => {
+    it('should return instance object', (done) => {
       conekta.Order.create({
         customer_info: {
           name: 'Jul Ceballos',
@@ -192,43 +209,39 @@ describe('Order', function() {
         }],
         pre_authorize: true,
         currency: 'MXN'
-      }, function(err, order) {
-        order.capture(function(err, res) {
-          assert.equal(res.hasOwnProperty('id'), true);
-          done();
-        });
-      });
-    });
-  });
+      }, (err, order) => {
+        order.capture((err, res) => {
+          assert.equal(res.hasOwnProperty('id'), true)
+          done()
+        })
+      })
+    })
+  })
 
-  describe('shipping contact', function () {
-
-    describe('create', function () {
-
-      it('should return instance object', function(done) {
-        createOrder(function (err, order) {
+  describe('shipping contact', () => {
+    describe('create', () => {
+      it('should return instance object', (done) => {
+        createOrder((err, order) => {
           order.createShippingContact({
             address: {
-              street1: "250 Alexis St",
-              city: "Red Deer",
-              state: "Alberta",
-              country: "CA",
-              postal_code: "T4N 0B8"
+              street1: '250 Alexis St',
+              city: 'Red Deer',
+              state: 'Alberta',
+              country: 'CA',
+              postal_code: 'T4N 0B8'
             }
-          }, function (err, shippingContact) {
-            assert(shippingContact.object, 'shipping_contact');
-            done();
-          });
-        });
-      });
+          }, (err, shippingContact) => {
+            assert(shippingContact.object, 'shipping_contact')
+            done()
+          })
+        })
+      })
+    })
+  })
 
-    });
-  });
-
-  describe('Line Items', function() {
-
-    var createLineItem = function(callback) {
-      createOrder(function(err, res) {
+  describe('Line Items', () => {
+    const createLineItem = (callback) => {
+      createOrder((err, res) => {
         res.createLineItem({
           name: 'Box of Cohiba S2s',
           description: 'Imported From Mex.',
@@ -240,143 +253,132 @@ describe('Order', function() {
           metadata: {
             random_key: 'random value'
           }
-        }, callback);
-      });
+        }, callback)
+      })
     }
 
-    describe('next page', function () {
-      it('should return instance object with id', function (done) {
-        createLineItem(function (err, res) {
-          conekta.Order.find(res.parent_id, function (err, order) {
-            order.line_items.nextPage(function (err, res) {
-              assert(err.details[0].param, 'next_page_url');
-              done();
-            });
-          });
-        });
-      });
-    });
+    describe('next page', () => {
+      it('should return instance object with id', (done) => {
+        createLineItem((err, res) => {
+          conekta.Order.find(res.parent_id, (err, order) => {
+            order.line_items.nextPage((err, res) => {
+              assert(err.details[0].param, 'next_page_url')
+              done()
+            })
+          })
+        })
+      })
+    })
 
-    describe('create', function() {
-      it('should return instance object with id', function(done) {
-        conekta.local = LOCALE;
-        createLineItem(function(err, lineItem) {
-          assert(lineItem.hasOwnProperty('id'), true);
-          done();
-        });
-      });
+    describe('create', () => {
+      it('should return instance object with id', (done) => {
+        conekta.local = LOCALE
+        createLineItem((err, lineItem) => {
+          assert(lineItem.hasOwnProperty('id'), true)
+          done()
+        })
+      })
+    })
 
-    });
-
-    describe('update', function() {
-      it('should return instance object with id', function(done) {
-        createLineItem(function(err, res) {
-          conekta.Order.find(res.parent_id, function(err, ord) {
+    describe('update', () => {
+      it('should return instance object with id', (done) => {
+        createLineItem((err, res) => {
+          conekta.Order.find(res.parent_id, (err, ord) => {
             ord.line_items.get(1).update({
               name: 'Tie Fighter',
-              description: "Imported From the Galactic Empire.",
+              description: 'Imported From the Galactic Empire.',
               unit_price: 36000,
               tags: ['ship']
-            }, function(err, res) {
-              assert(res.name, 'Tie Fighter');
-              done();
-            });
-          });
-        });
-      });
-    });
+            }, (err, res) => {
+              assert(res.name, 'Tie Fighter')
+              done()
+            })
+          })
+        })
+      })
+    })
 
-    describe('delete', function () {
-      it('should return instance object with id', function(done) {
-        createLineItem(function(err, res) {
-          conekta.Order.find(res.parent_id, function (err, order) {
-            order.line_items.get(0).delete(function (err, lineItems) {
-              assert(lineItems.deleted, true);
-              done();
-            });
-          });
-        });
-      });
-    });
+    describe('delete', () => {
+      it('should return instance object with id', (done) => {
+        createLineItem((err, res) => {
+          conekta.Order.find(res.parent_id, (err, order) => {
+            order.line_items.get(0).delete((err, lineItems) => {
+              assert(lineItems.deleted, true)
+              done()
+            })
+          })
+        })
+      })
+    })
+  })
 
-  });
-
-  describe('Tax Line', function() {
-
-    var createTaxLine = function(callback) {
-      createOrder(function(err, order) {
+  describe('Tax Line', () => {
+    const createTaxLine = (callback) => {
+      createOrder((err, order) => {
         order.createTaxLine({
           description: 'IVA',
           amount: 600,
           metadata: {
             random_key: 'random_value'
           }
-        }, callback);
-      });
-    };
+        }, callback)
+      })
+    }
 
-    describe('next page', function () {
-      it('should return instance object with id', function (done) {
-        createTaxLine(function (err, res) {
-          conekta.Order.find(res.parent_id, function (err, order) {
-            order.tax_lines.nextPage(function (err, res) {
-              assert(err.details[0].param, 'next_page_url');
-              done();
-            });
-          });
-        });
-      });
-    });
+    describe('next page', () => {
+      it('should return instance object with id', (done) => {
+        createTaxLine((err, res) => {
+          conekta.Order.find(res.parent_id, (err, order) => {
+            order.tax_lines.nextPage((err, res) => {
+              assert(err.details[0].param, 'next_page_url')
+              done()
+            })
+          })
+        })
+      })
+    })
 
-    describe('create', function() {
+    describe('create', () => {
+      it('should return instance object with id', (done) => {
+        createTaxLine((err, order) => {
+          assert(order.hasOwnProperty('id'), true)
+          done()
+        })
+      })
+    })
 
-      it('should return instance object with id', function(done) {
-        createTaxLine(function(err, order) {
-          assert(order.hasOwnProperty('id'), true);
-          done();
-        });
-
-      });
-    });
-
-    describe('update', function() {
-
-      it('should return instance object with id', function(done) {
-        createTaxLine(function(err, order) {
-          conekta.Order.find(order.parent_id, function(err, ord) {
+    describe('update', () => {
+      it('should return instance object with id', (done) => {
+        createTaxLine((err, order) => {
+          conekta.Order.find(order.parent_id, (err, ord) => {
             ord.tax_lines.get(0).update({
               amount: 1000
-            }, function(err, res) {
-              assert(res.amount, 1000);
-              done();
-            });
-          });
-        });
+            }, (err, res) => {
+              assert(res.amount, 1000)
+              done()
+            })
+          })
+        })
+      })
+    })
 
-      });
-    });
+    describe('delete', () => {
+      it('should return instance object with id', (done) => {
+        createTaxLine((err, order) => {
+          conekta.Order.find(order.parent_id, (err, ord) => {
+            ord.tax_lines.get(0).delete((err, taxLine) => {
+              assert(taxLine.deleted, true)
+              done()
+            })
+          })
+        })
+      })
+    })
+  })
 
-    describe('delete', function () {
-
-      it('should return instance object with id', function(done) {
-        createTaxLine(function(err, order) {
-          conekta.Order.find(order.parent_id, function(err, ord) {
-            ord.tax_lines.get(0).delete(function (err, taxLine) {
-              assert(taxLine.deleted, true);
-              done();
-            });
-          });
-        });
-      });
-
-    });
-
-  });
-
-  describe('Shipping Line', function() {
-
-    var createShippingLine = function(callback) {
-      createOrder(function(err, order) {
+  describe('Shipping Line', () => {
+    const createShippingLine = (callback) => {
+      createOrder((err, order) => {
         order.createShippingLine({
           amount: 0,
           tracking_number: 'TRACK123',
@@ -385,184 +387,162 @@ describe('Order', function() {
           metadata: {
             random_key: 'random_value'
           }
-        }, callback);
-      });
+        }, callback)
+      })
     }
 
-    describe('next page', function () {
-      it('should return instance object with id', function (done) {
-        createShippingLine(function (err, res) {
-          conekta.Order.find(res.parent_id, function (err, order) {
-            order.shipping_lines.nextPage(function (err, res) {
-              assert(err.details[0].param, 'next_page_url');
-              done();
-            });
-          });
-        });
-      });
-    });
+    describe('next page', () => {
+      it('should return instance object with id', (done) => {
+        createShippingLine((err, res) => {
+          conekta.Order.find(res.parent_id, (err, order) => {
+            order.shipping_lines.nextPage((err, res) => {
+              assert(err.details[0].param, 'next_page_url')
+              done()
+            })
+          })
+        })
+      })
+    })
 
-    describe('create', function() {
+    describe('create', () => {
+      it('should return instance object with id', (done) => {
+        createShippingLine((err, order) => {
+          assert(order.hasOwnProperty('id'), true)
+          done()
+        })
+      })
+    })
 
-      it('should return instance object with id', function(done) {
-        createShippingLine(function(err, order) {
-          assert(order.hasOwnProperty('id'), true);
-          done();
-        });
-
-      });
-
-    });
-
-    describe('update', function() {
-
-      it('should return instance object with id', function(done) {
-        createShippingLine(function(err, order) {
-          conekta.Order.find(order.parent_id, function(err, ord) {
+    describe('update', () => {
+      it('should return instance object with id', (done) => {
+        createShippingLine((err, order) => {
+          conekta.Order.find(order.parent_id, (err, ord) => {
             ord.shipping_lines.get(0).update({
               tracking_number: 'TRACK456',
               carrier: 'Mandalorian Express'
-            }, function(err, res) {
-              assert(res.tracking_number, 'TRACK456');
-              done();
-            });
-          });
-        });
+            }, (err, res) => {
+              assert(res.tracking_number, 'TRACK456')
+              done()
+            })
+          })
+        })
+      })
+    })
 
-      });
-    });
+    describe('delete', () => {
+      it('should return instance object with id', (done) => {
+        createShippingLine((err, order) => {
+          conekta.Order.find(order.parent_id, (err, ord) => {
+            ord.shipping_lines.get(0).delete((err, res) => {
+              assert.equal(res.deleted, true)
+              done()
+            })
+          })
+        })
+      })
+    })
+  })
 
-    describe('delete', function () {
-
-      it('should return instance object with id', function(done) {
-        createShippingLine(function(err, order) {
-          conekta.Order.find(order.parent_id, function (err, ord) {
-            ord.shipping_lines.get(0).delete(function (err, res) {
-              assert.equal(res.deleted, true);
-              done();
-            });
-          });
-        });
-
-      });
-
-    });
-
-  });
-
-  describe('Discount Line', function() {
-
-    var createDiscountLine = function(callback) {
-      createOrder(function(err, order) {
+  describe('Discount Line', () => {
+    const createDiscountLine = (callback) => {
+      createOrder((err, order) => {
         order.createDiscountLine({
           code: 'Cupón de descuento',
           type: 'loyalty',
           amount: 600
-        }, callback);
-      });
+        }, callback)
+      })
     }
 
-    describe('next page', function () {
-      it('should return instance object with id', function (done) {
+    describe('next page', () => {
+      it('should return instance object with id', (done) => {
         createDiscountLine(function (err, res) {
-          conekta.Order.find(res.parent_id, function (err, order) {
-            order.discount_lines.nextPage(function (err, res) {
-              assert(err.details[0].param, 'next_page_url');
-              done();
-            });
-          });
-        });
-      });
-    });
+          conekta.Order.find(res.parent_id, (err, order) => {
+            order.discount_lines.nextPage((err, res) => {
+              assert(err.details[0].param, 'next_page_url')
+              done()
+            })
+          })
+        })
+      })
+    })
 
-    describe('create', function() {
+    describe('create', () => {
+      it('should return instance object with id', (done) => {
+        createDiscountLine((err, order) => {
+          assert(order.hasOwnProperty('id'), true)
+          done()
+        })
+      })
+    })
 
-      it('should return instance object with id', function(done) {
-        createDiscountLine(function(err, order) {
-          assert(order.hasOwnProperty('id'), true);
-          done();
-        });
-
-      });
-
-    });
-
-    describe('update', function() {
-
-      it('should return instance object with id', function(done) {
-        createDiscountLine(function(err, order) {
-          conekta.Order.find(order.parent_id, function(err, ord) {
+    describe('update', () => {
+      it('should return instance object with id', (done) => {
+        createDiscountLine((err, order) => {
+          conekta.Order.find(order.parent_id, (err, ord) => {
             ord.discount_lines.get(0).update({
               amount: 700
-            }, function(err, res) {
-              assert(res.amount, 700);
-              done();
-            });
-          });
-        });
+            }, (err, res) => {
+              assert(res.amount, 700)
+              done()
+            })
+          })
+        })
+      })
+    })
 
-      });
-    });
+    describe('delete', () => {
+      it('should return instance object with id', (done) => {
+        createDiscountLine((err, order) => {
+          conekta.Order.find(order.parent_id, (err, ord) => {
+            ord.discount_lines.get(0).delete((err, res) => {
+              assert(res.deleted, true)
+              done()
+            })
+          })
+        })
+      })
+    })
+  })
 
-    describe('delete', function () {
-      it('should return instance object with id', function(done) {
-        createDiscountLine(function(err, order) {
-          conekta.Order.find(order.parent_id, function(err, ord) {
-            ord.discount_lines.get(0).delete(function(err, res) {
-              assert(res.deleted, true);
-              done();
-            });
-          });
-        });
-      });
-    });
-
-  });
-
-  describe('Charges', function() {
-
-    var createCharge = function(callback) {
-      createOrder(function(err, order) {
+  describe('Charges', () => {
+    const createCharge = (callback) => {
+      createOrder((err, order) => {
         order.createCharge({
           payment_method: {
             type: 'oxxo_cash',
             expires_at: 1513036800
           },
           amount: 35000
-        }, callback);
-      });
+        }, callback)
+      })
     }
 
-    describe('create', function() {
+    describe('create', () => {
+      it('should return instance object with id', (done) => {
+        createCharge((err, order) => {
+          assert(order.hasOwnProperty('id'), true)
+          done()
+        })
+      })
+    })
 
-      it('should return instance object with id', function(done) {
-        createCharge(function(err, order) {
-          assert(order.hasOwnProperty('id'), true);
-          done();
-        });
+    describe('next page', () => {
+      it('should return instance object with id', (done) => {
+        createCharge((err, res) => {
+          conekta.Order.find(res.order_id, (err, order) => {
+            order.charges.nextPage((err, res) => {
+              assert(err.details[0].param, 'next_page_url')
+              done()
+            })
+          })
+        })
+      })
+    })
+  })
 
-      });
-
-    });
-
-    describe('next page', function () {
-      it('should return instance object with id', function (done) {
-        createCharge(function (err, res) {
-          conekta.Order.find(res.order_id, function (err, order) {
-            order.charges.nextPage(function (err, res) {
-              assert(err.details[0].param, 'next_page_url');
-              done();
-            });
-          });
-        });
-      });
-    });
-
-  });
-
-  describe('Refunds', function() {
-
-    var createRefund = function(callback) {
+  describe('Refunds', () => {
+    const createRefund = (callback) => {
       conekta.Order.create({
         currency: 'MXN',
         customer_info: {
@@ -584,127 +564,120 @@ describe('Order', function() {
             token_id: 'tok_test_visa_4242'
           }
         }]
-      }, function(err, order) {
+      }, (err, order) => {
         order.createRefund({
           amount: 35000
-        }, callback);
-      });
+        }, callback)
+      })
+    }
 
-    };
+    describe('create', () => {
+      it('should return instance object with id', (done) => {
+        createRefund((err, order) => {
+          assert(order.hasOwnProperty('id'), true)
+          done()
+        })
+      })
+    })
+  })
+})
 
+describe('Event', function () {
+  this.timeout(TIMEOUT)
 
-    describe('create', function() {
+  beforeEach(() => {
+    conekta.api_key = TEST_KEY
+    conekta.locale = LOCALE
+    conekta.api_version = API_VERSION
+  })
 
-      it('should return instance object with id', function(done) {
-        createRefund(function(err, order) {
-          assert(order.hasOwnProperty('id'), true);
-          done();
-        });
-      });
-
-    });
-
-  });
-
-});
-
-
-describe('Event', function() {
-  this.timeout(TIMEOUT);
-
-  beforeEach(function() {
-    conekta.api_key = TEST_KEY;
-    conekta.locale = LOCALE;
-    conekta.api_version = API_VERSION;
-  });
-
-  describe('where', function() {
-    it('should return array', function(done) {
-      conekta.Event.where({}, function(err, res) {
-        assert(res.toArray() instanceof Array, true);
-        done();
-      });
-    });
-  });
-});
+  describe('where', () => {
+    it('should return array', (done) => {
+      conekta.Event.where({}, (err, res) => {
+        assert(res.toArray() instanceof Array, true)
+        done()
+      })
+    })
+  })
+})
 
 describe('Plan', function () {
-  this.timeout(TIMEOUT);
+  this.timeout(TIMEOUT)
 
-  beforeEach(function() {
-    conekta.api_key = TEST_KEY;
-    conekta.locale = LOCALE;
-    conekta.api_version = API_VERSION;
-  });
+  beforeEach(() => {
+    conekta.api_key = TEST_KEY
+    conekta.locale = LOCALE
+    conekta.api_version = API_VERSION
+  })
 
-  var createdPlan = {};
-  it('should find plans', function (done) {
-    conekta.Plan.where({currency: 'MXN'}, function (err, plans) {
-      done();
-    });
-  });
+  let createdPlan = {}
+  it('should find plans', (done) => {
+    conekta.Plan.where({currency: 'MXN'}, (err, plans) => {
+      done()
+    })
+  })
 
-  it('should create plan', function (done) {
+  it('should create plan', (done) => {
     conekta.Plan.create({
-      id: "new-gold-plan",
-      name: "New Gold Plan",
+      id: 'new-gold-plan',
+      name: 'New Gold Plan',
       amount: 20000,
-      currency: "MXN",
-      interval: "month",
+      currency: 'MXN',
+      interval: 'month',
       frequency: 1,
       trial_period_days: 15,
       expiry_count: 12
-    }, function (err, plan) {
-      assert(plan.toObject().hasOwnProperty('id'),true);
-      createdPlan = plan;
-      done();
-    });
-  });
+    }, (err, plan) => {
+      assert(plan.toObject().hasOwnProperty('id'), true)
+      createdPlan = plan
+      done()
+    })
+  })
 
-  it('should find a plan by id', function (done) {
-    conekta.Plan.find('new-gold-plan', function (err, plan) {
-      assert(plan.toObject().hasOwnProperty('id'), true);
-      done();
-    });
-  });
+  it('should find a plan by id', (done) => {
+    conekta.Plan.find('new-gold-plan', (err, plan) => {
+      assert(plan.toObject().hasOwnProperty('id'), true)
+      done()
+    })
+  })
 
-  it('should delete plan', function (done) {
-    conekta.Plan.find('new-gold-plan', function (err, plan) {
+  it('should delete plan', (done) => {
+    conekta.Plan.find('new-gold-plan', (err, plan) => {
       plan.delete(function (err, deleted) {
-        assert(deleted.hasOwnProperty('_id'), true);
-        done();
-      });
-    });
-  });
-});
+        assert(deleted.hasOwnProperty('_id'), true)
+        done()
+      })
+    })
+  })
+})
 
-describe('Customer', function() {
-  this.timeout(TIMEOUT);
+describe('Customer', function () {
+  this.timeout(TIMEOUT)
 
-  beforeEach(function() {
-    conekta.api_key = TEST_KEY;
-    conekta.locale = LOCALE;
-    conekta.api_version = API_VERSION;
-  });
+  beforeEach(() => {
+    conekta.api_key = TEST_KEY
+    conekta.locale = LOCALE
+    conekta.api_version = API_VERSION
+  })
 
-  var customer = '';
+  let customer = ''
 
-  describe('create without plan', function() {
-    it('should return an object instance with id', function(done) {
+  describe('create without plan', () => {
+    it('should return an object instance with id', (done) => {
       conekta.Customer.create({
         name: 'James Howlett',
         email: 'james.howlett@forces.gov'
-      }, function(err, res) {
-        res = res.toObject();
-        customer = res.id;
-        assert(res.hasOwnProperty('id'), true);
-        done();
-      });
-    });
-  });
+      }, (err, res) => {
+        res = res.toObject()
+        customer = res.id
+        assert(res.hasOwnProperty('id'), true)
+        done()
+      })
+    })
+  })
 
-  describe('create with plan', function() {
-    it('should return an object instance with id', function(done) {
+  describe('create with plan', () => {
+    it('should return an object instance with id', (done) => {
       conekta.Customer.create({
         name: 'James Howlett',
         email: 'james.howlett@forces.gov',
@@ -714,113 +687,110 @@ describe('Customer', function() {
           token_id: 'tok_test_visa_4242',
           type: 'card'
         }]
-      }, function(err, customer) {
-        res = customer.toObject();
-        assert(res.hasOwnProperty('id'), true);
-        done();
-      });
-    });
-  });
+      }, (err, customer) => {
+        res = customer.toObject()
+        assert(res.hasOwnProperty('id'), true)
+        done()
+      })
+    })
+  })
 
-  describe('update', function() {
-    it('should return an object instance with id', function(done) {
-      conekta.Customer.find(customer, function(err, res) {
+  describe('update', () => {
+    it('should return an object instance with id', (done) => {
+      conekta.Customer.find(customer, (err, res) => {
         res.update({
           name: 'Thane Kyrell',
           email: 'thane@jelucan.org'
-        }, function(err, res) {
-          assert(res.toObject().hasOwnProperty('id'), true);
-          done();
-        });
-      });
-    });
-  });
+        }, (err, res) => {
+          assert(res.toObject().hasOwnProperty('id'), true)
+          done()
+        })
+      })
+    })
+  })
 
-  describe('where', function() {
-    it('should return an array', function(done) {
-      conekta.Customer.where({}, function(err, res) {
-        assert(res.toArray() instanceof Array, true);
-        done();
-      });
-    });
+  describe('where', () => {
+    it('should return an array', (done) => {
+      conekta.Customer.where({}, (err, res) => {
+        assert(res.toArray() instanceof Array, true)
+        done()
+      })
+    })
 
-    it('should return an array (just callback)', function(done) {
-      conekta.Customer.where(function(err, res) {
-        assert(res.toArray() instanceof Array, true);
-        done();
-      });
-    });
-  });
+    it('should return an array (just callback)', (done) => {
+      conekta.Customer.where((err, res) => {
+        assert(res.toArray() instanceof Array, true)
+        done()
+      })
+    })
+  })
 
-  describe('find', function() {
-    it('should return an object instance with id attribute', function(done) {
-      conekta.Customer.find(customer, function(err, res) {
-        assert(res.toObject().hasOwnProperty('id'), true);
-        done();
-      });
-    });
-  });
+  describe('find', () => {
+    it('should return an object instance with id attribute', (done) => {
+      conekta.Customer.find(customer, (err, res) => {
+        assert(res.toObject().hasOwnProperty('id'), true)
+        done()
+      })
+    })
+  })
 
-  describe('createcard', function() {
-    it('should return an object instance with id attribute', function(done) {
-      conekta.Customer.find(customer, function(err, res) {
+  describe('createcard', () => {
+    it('should return an object instance with id attribute', (done) => {
+      conekta.Customer.find(customer, (err, res) => {
         res.createCard({
           token_id: 'tok_test_visa_4242',
           type: 'card'
-        }, function(err, res) {
-          assert(res.hasOwnProperty('id'), true);
-          done();
-        });
-      });
-    });
-  });
+        }, (err, res) => {
+          assert(res.hasOwnProperty('id'), true)
+          done()
+        })
+      })
+    })
+  })
 
-  describe('createsubscription', function() {
-    it('should return an object instance with id attribute', function(done) {
-      conekta.Customer.find(customer, function(err, res) {
+  describe('createsubscription', () => {
+    it('should return an object instance with id attribute', (done) => {
+      conekta.Customer.find(customer, (err, res) => {
         res.createSubscription({
           plan: 'gold-plan'
-        }, function(err, res) {
-          assert(res.hasOwnProperty('id'), true);
-          done();
-        });
-      });
-    });
-  });
+        }, (err, res) => {
+          assert(res.hasOwnProperty('id'), true)
+          done()
+        })
+      })
+    })
+  })
 
-  describe('createPaymentSources', function () {
-    it('should return an object instance with id attribute', function(done) {
-      conekta.Customer.find(customer, function(err, res) {
+  describe('createPaymentSources', () => {
+    it('should return an object instance with id attribute', (done) => {
+      conekta.Customer.find(customer, (err, res) => {
         res.createPaymentSource({
-          type: "card",
-          token_id: "tok_test_visa_4242"
-        }, function(err, res) {
-          assert(res.hasOwnProperty('id'), true);
-          done();
-        });
-      });
-    });
-  });
+          type: 'card',
+          token_id: 'tok_test_visa_4242'
+        }, (err, res) => {
+          assert(res.hasOwnProperty('id'), true)
+          done()
+        })
+      })
+    })
+  })
 
-  describe('delete', function() {
-    it('should return an object instance with id attribute', function(done) {
-      conekta.Customer.find(customer, function(err, res) {
-        res.delete(function(err, res) {
-          assert(res.toObject().hasOwnProperty('id'), true);
-          done();
-        });
-      });
-    });
-  });
+  describe('delete', () => {
+    it('should return an object instance with id attribute', (done) => {
+      conekta.Customer.find(customer, (err, res) => {
+        res.delete((err, res) => {
+          assert(res.toObject().hasOwnProperty('id'), true)
+          done()
+        })
+      })
+    })
+  })
 
-  describe('Shipping Contact', function() {
+  describe('Shipping Contact', function () {
+    var shippingContact = ''
 
-    var shippingContact = '';
-
-    describe('create', function() {
-
-      it('should return instance object with id', function(done) {
-
+    describe('create', () => {
+      it('should return instance object with id', (done) => {
         conekta.Customer.create({
           name: 'James Howlett',
           email: 'james.howlett@forces.gov',
@@ -830,7 +800,7 @@ describe('Customer', function() {
             token_id: 'tok_test_visa_4242',
             type: 'card'
           }]
-        }, function(err, customer) {
+        }, (err, customer) => {
           customer.createShippingContact({
             phone: '+5215555555555',
             receiver: 'Marvin Fuller',
@@ -844,21 +814,18 @@ describe('Customer', function() {
               postal_code: 'T4N 0B8',
               residential: true
             }
-          }, function(err, shipping) {
-            shippingContact = shipping;
-            assert(shipping.hasOwnProperty('id'), true);
-            done();
-          });
+          }, (err, shipping) => {
+            shippingContact = shipping
+            assert(shipping.hasOwnProperty('id'), true)
+            done()
+          })
+        })
+      })
+    })
 
-        });
-      });
-    });
-
-    describe('update', function() {
-
-      it('should return instance object with id', function(done) {
-
-        conekta.Customer.find(shippingContact.parent_id, function(err, cust) {
+    describe('update', () => {
+      it('should return instance object with id', (done) => {
+        conekta.Customer.find(shippingContact.parent_id, (err, cust) => {
           cust.shipping_contacts.get(0).update({
             phone: '+5215555555999',
             receiver: 'Marvin Fuller',
@@ -872,36 +839,29 @@ describe('Customer', function() {
               postal_code: 'T4N 0B8',
               residential: true
             }
-          }, function(err, ship) {
-            assert(ship.hasOwnProperty('id'), true);
-            done();
-          });
+          }, (err, ship) => {
+            assert(ship.hasOwnProperty('id'), true)
+            done()
+          })
+        })
+      })
+    })
 
-        });
+    describe('delete', () => {
+      it('should return instance object with id', (done) => {
+        conekta.Customer.find(shippingContact.parent_id, (err, cust) => {
+          cust.shipping_contacts.get(0).delete((err, res) => {
+            assert(res.hasOwnProperty('id'), true)
+            done()
+          })
+        })
+      })
+    })
+  })
 
-      });
-    });
-
-    describe('delete', function() {
-
-      it('should return instance object with id', function(done) {
-
-        conekta.Customer.find(shippingContact.parent_id, function(err, cust) {
-          cust.shipping_contacts.get(0).delete(function(err, res) {
-            assert(res.hasOwnProperty('id'), true);
-            done();
-          });
-        });
-
-      });
-
-    });
-  });
-
-  describe('Card', function() {
-
-    describe('update', function() {
-      it('should return an object instance with id attribute', function(done) {
+  describe('Card', () => {
+    describe('update', () => {
+      it('should return an object instance with id attribute', (done) => {
         conekta.Customer.create({
           name: 'James Howlett',
           email: 'james.howlett@forces.gov',
@@ -911,8 +871,8 @@ describe('Customer', function() {
             token_id: 'tok_test_visa_4242',
             type: 'card'
           }]
-        }, function(err, customer) {
-          customer.find(customer._id, function(err, customerObj) {
+        }, (err, customer) => {
+          customer.find(customer._id, (err, customerObj) => {
             customerObj.payment_sources.get(0).update({
               name: 'Emiliano Cabrera',
               exp_month: '12',
@@ -925,17 +885,17 @@ describe('Customer', function() {
                 country: 'MX',
                 postal_code: '64700'
               }
-            }, function(err, res) {
-              assert(res.hasOwnProperty('id'), true);
-              done();
-            });
-          });
-        });
-      });
-    });
+            }, (err, res) => {
+              assert(res.hasOwnProperty('id'), true)
+              done()
+            })
+          })
+        })
+      })
+    })
 
-    describe('delete', function() {
-      it('should return an object instance with id attribute', function(done) {
+    describe('delete', () => {
+      it('should return an object instance with id attribute', (done) => {
         conekta.Customer.create({
           name: 'James Howlett',
           email: 'james.howlett@forces.gov',
@@ -945,28 +905,24 @@ describe('Customer', function() {
             token_id: 'tok_test_visa_4242',
             type: 'card'
           }]
-        }, function(err, customer) {
-          customer.payment_sources.get(0).delete(function(err, res) {
-            assert(res.hasOwnProperty('id'), true);
-            done();
+        }, (err, customer) => {
+          customer.payment_sources.get(0).delete((err, res) => {
+            assert(res.hasOwnProperty('id'), true)
+            done()
+          })
+        })
+      })
+    })
+  })
 
-          });
+  describe('Customer Subscription', () => {
+    let customerSubscribed = ''
 
-        });
-      });
-    });
-
-  });
-
-  describe('Customer Subscription', function() {
-
-    var customerSubscribed = '';
-
-    describe('update subscription plan', function() {
-      it('should return an object instance with id attribute', function(done) {
+    describe('update subscription plan', () => {
+      it('should return an object instance with id attribute', (done) => {
         conekta.Customer.create({
           name: 'James Howlett',
-          phone: "+5215544443333",
+          phone: '+5215544443333',
           email: 'james.howlett@forces.gov',
           corporate: true,
           plan_id: 'gold-plan',
@@ -974,51 +930,51 @@ describe('Customer', function() {
             token_id: 'tok_test_visa_4242',
             type: 'card'
           }]
-        }, function(err, customer) {
-          customerSubscribed = customer;
+        }, (err, customer) => {
+          customerSubscribed = customer
           customerSubscribed.subscription.update({
             plan: 'opal-plan'
-          }, function(err, res) {
-            assert(res.hasOwnProperty('id'), true);
-            done();
-          });
-        });
-      });
-    });
+          }, (err, res) => {
+            assert(res.hasOwnProperty('id'), true)
+            done()
+          })
+        })
+      })
+    })
 
-    describe('pause', function() {
-      it('should return and object instance with id attribute', function(done) {
-        conekta.Customer.find(customerSubscribed._id, function (err, customer) {
-          customer.subscription.pause(function(err, res) {
-            assert((res.status == 'paused' || res.status == 'in_trial'), true);
-            done();
-          });
-        });
-      });
-    });
+    describe('pause', () => {
+      it('should return and object instance with id attribute', (done) => {
+        conekta.Customer.find(customerSubscribed._id, (err, customer) => {
+          customer.subscription.pause((err, res) => {
+            assert((res.status === 'paused' || res.status === 'in_trial'), true)
+            done()
+          })
+        })
+      })
+    })
 
-    describe('resume', function() {
-      it('should return and object instance with id attribute', function(done) {
-        conekta.Customer.find(customerSubscribed._id, function(err, customer) {
+    describe('resume', () => {
+      it('should return and object instance with id attribute', (done) => {
+        conekta.Customer.find(customerSubscribed._id, (err, customer) => {
           customerSubscribed.subscription.update({
             plan_id: 'gold-plan'
-          }, function(err, res) {
-            customer.subscription.resume(function(err, res) {
-              assert((res.status == 'active' || res.status == 'in_trial'), true);
-              done();
-            });
-          });
-        });
-      });
-    });
+          }, (err, res) => {
+            customer.subscription.resume((err, res) => {
+              assert((res.status === 'active' || res.status === 'in_trial'), true)
+              done()
+            })
+          })
+        })
+      })
+    })
 
-    describe('cancel', function() {
-      it('should return and object instance with id attribute', function(done) {
-        customerSubscribed.subscription.cancel(function(err, res) {
-          assert(res.status == 'canceled', true);
-          done();
-        });
-      });
-    });
-  });
-});
+    describe('cancel', () => {
+      it('should return and object instance with id attribute', (done) => {
+        customerSubscribed.subscription.cancel((err, res) => {
+          assert(res.status == 'canceled', true)
+          done()
+        })
+      })
+    })
+  })
+})
