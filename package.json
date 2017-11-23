@@ -23,14 +23,19 @@
     "type": "git",
     "url": "https://github.com/conekta/conekta-node.git"
   },
+  "engines": {
+    "node": ">=0.10.48",
+    "npm": ">=2.15.1"
+  },
   "dependencies": {
     "request": "2.55.0",
     "underscore": "1.8.3"
   },
   "devDependencies": {
-    "mocha": "2.2.5",
     "coffee-script": "^1.10.0",
-    "nesh": "^1.6.0"
+    "mocha": "2.2.5",
+    "nesh": "^1.6.0",
+    "nock": "^9.1.0"
   },
   "main": "./lib/conekta.js",
   "engines": {
