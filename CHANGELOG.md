@@ -1,3 +1,7 @@
+## [3.2.1](https://github.com/conekta/conekta-node/releases/tag/3.2.1) - 2017-09-11
+### Change
+- Bugfix when req is undefined and err exists
+
 ## [3.2.0](https://github.com/conekta/conekta-node/releases/tag/3.1.6) - 2017-09-11
 ### Change
 - Change Cert file bundle with public one

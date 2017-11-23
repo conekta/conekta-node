@@ -1,6 +1,6 @@
 ![README Cover Image](readme_cover.png)
 
-Conekta Node v 3.2.0
+Conekta Node v 3.2.1
 ======================
 
 Wrapper to connect with https://api.conekta.io.
@@ -15,7 +15,7 @@ This last release works with API 2, if you are using 1.0 type:
 
 
 ```sh
-npm install conekta@3.2.0
+npm install conekta@3.2.1
 ```
 
 ## Usage
