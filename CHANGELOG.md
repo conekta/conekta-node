@@ -1,3 +1,7 @@
+## [3.4.1](https://github.com/conekta/conekta-node/releases/tag/3.4.1) - 2018-04-13
+### Bugfix
+- Bugfix Error certificate location
+
 ## [3.3.1](https://github.com/conekta/conekta-node/releases/tag/3.3.1) - 2017-11-23
 ### Bugfix
 - Bugfix when req is undefined and err exists
