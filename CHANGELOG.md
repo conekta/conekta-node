@@ -1,3 +1,7 @@
+## [3.5.1](https://github.com/conekta/conekta-node/releases/tag/3.5.1) - 2018-04-13
+### fix
+- fix Error certificate location
+
 ## [3.4.1](https://github.com/conekta/conekta-node/releases/tag/3.4.1) - 2018-04-13
 ### Bugfix
 - Bugfix Error certificate location
