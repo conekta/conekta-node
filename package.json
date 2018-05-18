@@ -28,7 +28,7 @@
     "npm": ">=2.15.1"
   },
   "dependencies": {
-    "request": "2.55.0",
+    "request": "2.86.0",
     "underscore": "1.8.3"
   },
   "devDependencies": {
