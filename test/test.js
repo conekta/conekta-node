@@ -39,14 +39,14 @@ describe('Conekta wrapper', function () {
 
   describe('with api down or busy', () => {
     nock('https://api.conekta.io')
-    .post('/orders')
-    .replyWithError({
-      code: 'ENOTFOUND',
-      errno: 'ENOTFOUND',
-      syscall: 'getaddrinfo',
-      hostname: 'api.conekta.io',
-      host: 'api.conekta.io',
-      port: 443 })
+      .post('/orders')
+      .replyWithError({
+        code: 'ENOTFOUND',
+        errno: 'ENOTFOUND',
+        syscall: 'getaddrinfo',
+        hostname: 'api.conekta.io',
+        host: 'api.conekta.io',
+        port: 443 })
 
     it('should return error when api is down', (done) => {
       conekta.api_key = TEST_KEY
