@@ -511,7 +511,7 @@ describe('Order', function () {
         order.createCharge({
           payment_method: {
             type: 'oxxo_cash',
-            expires_at: 1513036800
+            expires_at: Math.floor(Date.now() / 1000) + 3600
           },
           amount: 35000
         }, callback)
