@@ -1609,7 +1609,7 @@ describe('Customer', function () {
     describe('cancel', () => {
       it('should return an object instance with id attribute', (done) => {
         customerSubscribed.subscription.cancel((err, res) => {
-          assert(res.status == 'canceled', true)
+          assert(res.status === 'canceled', true)
           done()
         })
       })
@@ -1617,7 +1617,7 @@ describe('Customer', function () {
       it('should return an object instance with id attribute using promises', (done) => {
         conekta.Customer.create(customerBody).then(function(customer) {
           customer.subscription.cancel().then(function(subscription) {
-            assert(subscription.status == 'canceled', true)
+            assert(subscription.status === 'canceled', true)
             done()
           }, function(error) {
           })
