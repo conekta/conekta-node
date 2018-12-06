@@ -2,7 +2,7 @@
 
 <div align="center">
 
-Conekta Node v 3.5.1
+Conekta Node v 3.6.1
 ======================
 
 [![Made with Node](https://img.shields.io/badge/made%20with-node-red.svg?style=for-the-badge&colorA=ED4040&colorB=C12C2D)](https://nodejs.org) [![By Conekta](https://img.shields.io/badge/by-conekta-red.svg?style=for-the-badge&colorA=ee6130&colorB=00a4ac)](https://conekta.com)
@@ -21,7 +21,7 @@ This last release works with API 2, if you are using 1.0 type:
 
 
 ```sh
-npm install conekta@3.5.1
+npm install conekta@1.6.5
 ```
 
 ## Usage
@@ -33,27 +33,28 @@ conekta.api_key = '9YxqfRnx4sMQDnRsqdYn';
 conekta.locale = 'es';
 
 conekta.Order.create({
-    "currency": "MXN",
-    "customer_info": {
-        "name": "Jul Ceballos",
-        "phone": "+5215555555555",
-        "email": "jul@conekta.io"
-    },
-    "line_items": [{
-        "name": "Box of Cohiba S1s",
-        "description": "Imported From Mex.",
-        "unit_price": 35000,
-        "quantity": 1,
-        "tags": ["food", "mexican food"],
-        "type": "physical"
-    }]
-  }, function(err, res) {
-    if (err) {
-        console.log(err.type);
-        return;
+  "currency": "MXN",
+  "customer_info": {
+    "name": "Jul Ceballos",
+    "phone": "+5215555555555",
+    "email": "jul@conekta.io"
+  },
+  "line_items": [{
+    "name": "Box of Cohiba S1s",
+    "unit_price": 35000,
+    "quantity": 1
+  }],
+  "charges": [{
+    "payment_method": {
+      "type": "card",
+      "token_id": "tok_test_visa_4242"
     }
-    console.log(res.toObject());
-});
+  }]
+}).then(function (result) {
+  console.log(result.toObject())
+}, function (error) {
+  console.log(error)
+})
 ```
 
 ## Endpoints
@@ -82,8 +83,6 @@ Conekta.Customer.createSource
 Conekta.Source.update
 Conekta.Customer.createShippingContact
 Conekta.ShippingContact.update
-Conekta.Customer.createFiscalEntity
-Conekta.FiscalEntity.update
 
 ```
 

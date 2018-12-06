@@ -1,3 +1,7 @@
+## [3.6.1](https://github.com/conekta/conekta-node/releases/tag/v3.5.2) - 2018-12-05
+### Feature
+- We've made the library compatible with promises
+
 ## [3.5.1](https://github.com/conekta/conekta-node/releases/tag/3.5.1) - 2018-04-13
 ### fix
 - fix Error certificate location
