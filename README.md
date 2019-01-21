@@ -3,28 +3,53 @@
 <div align="center">
 
 Conekta Node v 3.6.1
-======================
 
-[![Made with Node](https://img.shields.io/badge/made%20with-node-red.svg?style=for-the-badge&colorA=ED4040&colorB=C12C2D)](https://nodejs.org) [![By Conekta](https://img.shields.io/badge/by-conekta-red.svg?style=for-the-badge&colorA=ee6130&colorB=00a4ac)](https://conekta.com)
-
+[![Made with Node](https://img.shields.io/badge/made%20with-node-red.svg?style=for-the-badge&colorA=44883e&colorB=215732&logo=node.js&logoColor=white)](https://nodejs.org)
+[![By Conekta](https://img.shields.io/badge/by-conekta-red.svg?style=for-the-badge&colorA=ee6130&colorB=00a4ac)](https://conekta.com)
 </div>
 
-Wrapper to connect with https://api.conekta.io.
+This is a [Node.js](https://nodejs.org) library that allows interaction with [Conekta's API](https://api.conekta.io).
 
-## Install
+## Requeriments
 
-```sh
+Add them!
+
+## Installation
+
+This is the latest release which works with API v2:
+
+```bash
 npm install conekta
 ```
 
-This last release works with API 2, if you are using 1.0 type:
+If you are using API v1.0 install:
 
+```bash
+npm install conekta@3.5.1
+>>>>>>> fix: Update badge colours to match Node, upcase Node, add icon.
+```
 
-```sh
-npm install conekta@1.6.5
+Install dependencies
+
+```bash
+$ npm install
 ```
 
 ## Usage
+
+Run interactive mode
+
+```bash
+$ bin/console
+Welcome to Conekta node console!
+Help: exit() to quit
+
+> conekta.api_key = '9YxqfRnx4sMQDnRsqdYn';
+'9YxqfRnx4sMQDnRsqdYn'
+> conekta.locale = 'es';
+'es'
+> 
+```
 
 ```node
 var conekta = require('conekta');
@@ -60,7 +85,6 @@ conekta.Order.create({
 ## Endpoints
 
 ```node
-
 Conekta.Order.create
 Conekta.Order.update
 Conekta.Order.find
@@ -83,67 +107,27 @@ Conekta.Customer.createSource
 Conekta.Source.update
 Conekta.Customer.createShippingContact
 Conekta.ShippingContact.update
-
+Conekta.Customer.createFiscalEntity
+Conekta.FiscalEntity.update
 ```
 
 ## Documentation
 
-Please see https://developers.conekta.com/api?language=node for up-to-date documentation.
+Please visit the [official API reference](https://developers.conekta.com/api?language=node) for an up-to-date documentation.
 
-## Contribute
+## Run tests
 
-### Clone repo
-
-```sh
-$ git clone https://github.com/conekta/conekta-node
-$ cd conekta-node
-```
-
-### Install dependencies
-
-```sh
-$ npm install
-```
-
-### Run interactive mode
-
-```sh
-$ bin/console
-Welcome to Conekta node console!
-Help: exit() to quit
-
-> conekta.api_key = '9YxqfRnx4sMQDnRsqdYn';
-'9YxqfRnx4sMQDnRsqdYn'
-> conekta.locale = 'es';
-'es'
-> 
-```
-
-### Run tests
-
-![Codeship Status](https://www.codeship.io/projects/51103310-1e4d-0131-0d84-5e49904adcd5/status)
-
-```sh
+```bash
 $ npm test
 ```
 
-### Send pull requests
-
-We love pull requests, send them from your fork to branch **dev** into **conekta/conekta-node**
-
-## License
-
-Developed in Mexico by [Conekta](https://www.conekta.com). Available with [MIT License](LICENSE).
-
-***
-
-## How to contribute to the project
+## Contributing
 
 1. Fork the repository
  
 2. Clone the repository
 ```
-    git clone git@github.com:yourUserName/conekta-node.git
+    git clone git@github.com:yourUserName/conekta-php.git
 ```
 3. Create a branch
 ```
@@ -165,7 +149,7 @@ Developed in Mexico by [Conekta](https://www.conekta.com). Available with [MIT L
 
    To create a pull request, you need to have made your code changes on a separate branch. This branch should be named like this: **feature/my_feature** or **fix/my_fix**.
 
-   Make sure that, if you add new features to our library, be sure that corresponding **unit tests** are added.
+   Make sure that, if you add new features to our library, be sure to add the corresponding **unit tests**.
 
    If you go to your repository on GitHub, you’ll see a Compare & pull request button. Click on that button.
 
@@ -174,3 +158,7 @@ Developed in Mexico by [Conekta](https://www.conekta.com). Available with [MIT L
 ## We are always hiring!
 
 If you are a comfortable working with a range of backend languages (Java, Python, Ruby, PHP, etc) and frameworks, you have solid foundation in data structures, algorithms and software design with strong analytical and debugging skills, check our open positions: https://www.conekta.com/careers
+
+## License
+
+Developed in Mexico by [Conekta](https://www.conekta.com). Available with [MIT License](LICENSE).
