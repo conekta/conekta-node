@@ -1,11 +1,11 @@
-![README Cover Image](readme_cover.png)
-
 <div align="center">
 
-Conekta Node v 3.6.1
-======================
+![banner](readme_files/banner.png)
 
-[![Made with Node](https://img.shields.io/badge/made%20with-node-red.svg?style=for-the-badge&colorA=ED4040&colorB=C12C2D)](https://nodejs.org) [![By Conekta](https://img.shields.io/badge/by-conekta-red.svg?style=for-the-badge&colorA=ee6130&colorB=00a4ac)](https://conekta.com)
+# Conekta Node v 3.6.1
+
+![node badge](readme_files/node-badge.png)
+![conekta badge](readme_files/conekta-badge.png)
 
 </div>
 
@@ -116,7 +116,7 @@ Help: exit() to quit
 '9YxqfRnx4sMQDnRsqdYn'
 > conekta.locale = 'es';
 'es'
-> 
+>
 ```
 
 ### Run tests
@@ -140,7 +140,7 @@ Developed in Mexico by [Conekta](https://www.conekta.com). Available with [MIT L
 ## How to contribute to the project
 
 1. Fork the repository
- 
+
 2. Clone the repository
 ```
     git clone git@github.com:yourUserName/conekta-node.git
@@ -151,7 +151,7 @@ Developed in Mexico by [Conekta](https://www.conekta.com). Available with [MIT L
     git pull origin develop
     # You should choose the name of your branch
     git checkout -b <feature/my_branch>
-```    
+```
 4. Make necessary changes and commit those changes
 ```
     git add .
