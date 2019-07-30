@@ -27,14 +27,15 @@
     "node": ">=0.10.3"
   },
   "dependencies": {
+    "minimatch": "^3.0.4",
     "request": "2.86.0",
-    "underscore": "1.8.3",
-    "minimatch": "^3.0.4"
+    "underscore": "1.8.3"
   },
   "devDependencies": {
     "coffee-script": "^1.12.7",
     "coffeescript": "^2.4.1",
     "eslint-config-standard": "^12.0.0",
+    "lodash": "^4.17.15",
     "mocha": "^5.2.0",
     "nesh": "^1.6.0",
     "nock": "^9.1.0"
