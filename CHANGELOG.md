@@ -1,3 +1,7 @@
+## [3.7.0](https://github.com/conekta/conekta-node/releases/tag/3.7.0) - 2019-08-01
+### Feature
+- Updated deprecated modules and dependencies
+
 ## [3.6.1](https://github.com/conekta/conekta-node/releases/tag/v3.5.2) - 2018-12-05
 ### Feature
 - We've made the library compatible with promises

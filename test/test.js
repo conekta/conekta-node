@@ -8,7 +8,7 @@ const LOCALE = 'en'
 const TEST_KEY = 'key_eYvWV7gSDkNYXsmr'
 const API_VERSION = '2.0.0'
 const PRODUCTION_KEY = '9YxqfRnx4sMQDnRsqdYn'
-const TIMEOUT = 25000
+const TIMEOUT = 30000
 
 const orderBody = {
   currency: 'MXN',
