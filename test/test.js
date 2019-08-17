@@ -1213,14 +1213,13 @@ describe('Customer', function () {
       })
     })
 
-    it('should return no reference objects in multiple find calls', async (done) => {
+    it('should return no reference objects in multiple find calls', async () => {
       try{
         const customerAResponse = await conekta.Customer.find(customerIdA)
         const customerBResponse = await conekta.Customer.find(customerIdB)
         assert(customerAResponse._id !== customerBResponse._id, true)
-        done()
       } catch(err){
-        done(err)
+        console.log(err)
       }
     })
   })
