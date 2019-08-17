@@ -1083,6 +1083,8 @@ describe('Customer', function () {
   })
 
   let customer = ''
+  let customerIdA = ''
+  let customerIdB = ''
 
   describe('create without plan', () => {
     it('should return an object instance with id', (done) => {
@@ -1092,6 +1094,7 @@ describe('Customer', function () {
       }, (err, res) => {
         res = res.toObject()
         customer = res.id
+        customerIdA = customer
         assert(res.hasOwnProperty('id'), true)
         done()
       })
@@ -1122,6 +1125,7 @@ describe('Customer', function () {
         }]
       }, (err, customer) => {
         res = customer.toObject()
+        customerIdB = res.id
         assert(res.hasOwnProperty('id'), true)
         done()
       })
@@ -1201,12 +1205,19 @@ describe('Customer', function () {
       })
     })
 
-    it('should return an object instance with id attribute using promsies', (done) => {
+    it('should return an object instance with id attribute using promises', (done) => {
       conekta.Customer.find(customer).then(function (customer) {
         assert(customer.toObject().hasOwnProperty('id'), true)
         done()
       }, function (error) {
       })
+    })
+
+    it('should return no reference objects in multiple find calls', async (done) => {
+      const customerAResponse = await conekta.Customer.find(customerIdA)
+      const customerBResponse = await conekta.Customer.find(customerIdB)
+      assert(customerAResponse._id !== customerBResponse._id, true)
+      done()
     })
   })
 
