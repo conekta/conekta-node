@@ -1,6 +1,7 @@
 const assert = require('assert')
 const nock = require('nock')
 const fs = require('fs')
+const _ = require('underscore')
 
 const conekta = require('../lib/conekta.js')
 const base64 = require('../lib/base64.js')
@@ -165,10 +166,7 @@ describe('Order', function () {
 
   describe('multiple orders', () => {
     it('should return an array of orders', (done) => {
-      conekta.Order.where({
-        livemode: false,
-        currency: 'USD'
-      }, (err, orders) => {
+      conekta.Order.where({'id': 'example@example.com'}, (err, orders) => {
         assert(orders.toObject().data instanceof Array, true)
         done()
       })
@@ -412,9 +410,11 @@ describe('Order', function () {
       it('should return instance object with id', (done) => {
         createLineItem((err, res) => {
           conekta.Order.find(res.parent_id, (err, order) => {
-            order.line_items.get(0).delete((err, lineItems) => {
-              assert(lineItems.deleted, true)
-              done()
+            order.createLineItem(lineItemBody).then((err, response) => {
+              order.line_items.get(0).delete((err, lineItems) => {
+                assert(lineItems.deleted, true)
+                done()
+              })
             })
           })
         })
@@ -1431,7 +1431,7 @@ describe('Customer', function () {
     describe('update', () => {
       it('should return an object instance with id attribute', (done) => {
         conekta.Customer.create(customerBody, (err, customer) => {
-          customer.find(customer._id, (err, customerObj) => {
+          conekta.Customer.find(customer._id, (err, customerObj) => {
             customerObj.payment_sources.get(0).update({
               name: 'Emiliano Cabrera',
               exp_month: '12',
