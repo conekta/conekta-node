@@ -1240,6 +1240,104 @@ describe('Customer', function () {
       }, function (error) {
       })
     })
+
+    it('should no return a the same customer when find another', (done) => {
+      let customerA = ''
+      let customerB = ''
+      
+      let createPromises = []
+
+      const createCustomer = (customer) => new Promise((resolve, reject) => {
+        conekta.Customer.create(customer, (err, res) => {
+          if (err) {
+            console.log(err)
+            reject(err)
+            return
+          }
+
+          let result = res.toObject()
+          resolve(result)
+        })
+      })
+
+      const findCustomer = (customer) => new Promise((resolve, reject) => {
+        conekta.Customer.find(customer, (err, res) => {
+          if (err) {
+            console.log(err)
+            reject(err)
+            return
+          }
+
+          let result = res.toObject()
+
+          resolve(result)
+        })
+      })
+
+      let promiseCustomerA = createCustomer({
+        name: 'userA',
+        email: 'user_a@company.com'
+      })
+      
+      createPromises.push(promiseCustomerA)
+
+      promiseCustomerA.then((customer) => {
+        customerA = customer.id
+      })
+
+      let promiseCustomerB = createCustomer({
+        name: 'userB',
+        email: 'user_b@company.com'
+      })
+      
+      createPromises.push(promiseCustomerB)
+
+      promiseCustomerB.then((customer) => customerB = customer.id)
+
+      Promise.all(createPromises)
+        .then(() => {
+          let responseCustomerA = ''
+          let responseCustomerB = ''
+
+          let findPromises = []
+
+          console.log('A:', customerA)
+          console.log('B:', customerB)
+
+          let promiseFindCustomerA = findCustomer(customerA)
+
+          findPromises.push(promiseFindCustomerA)
+
+          promiseFindCustomerA.then((customer) => {
+            responseCustomerA = customer.id
+          })
+
+          let promiseFindCustomerB = findCustomer(customerB)
+
+          findPromises.push(promiseFindCustomerB)
+
+          promiseFindCustomerB.then((customer) => {
+            responseCustomerB = customer.id
+          })
+
+          Promise.all(findPromises)
+            .then(() => {
+              console.log('Promise A:', responseCustomerA)
+              console.log('Promise B:', responseCustomerB)
+              
+              assert(responseCustomerA === customerA, true)
+              assert(responseCustomerB === customerB, true)
+              
+              done()
+            }, (err) => {
+              console.log(err)
+              done()
+            })
+        }, (err) => {
+          console.log(err)
+          done()
+        })
+    })
   })
 
   describe('createcard', () => {
