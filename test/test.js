@@ -1262,32 +1262,62 @@ describe('Customer', function () {
 
   describe('createsubscription', () => {
     it('should return an object instance with id attribute', (done) => {
-      conekta.Customer.find(customer, (err, res) => {
-        res.createSubscription({
+      temp_customer = ''
+      conekta.Customer.create({
+        name: 'James Howlett',
+        email: 'james.howlett@forces.gov',
+        payment_sources: [{
+          token_id: "tok_test_visa_4242",
+          type: "card"
+        }]
+      }, (err, res) => {
+        temp_customer = res
+        assert(res.toObject().hasOwnProperty('id'), true)
+
+        temp_customer.createSubscription({
           plan: 'gold-plan'
         }, (err, res) => {
           assert(res.hasOwnProperty('id'), true)
-          done()
+
+          conekta.Customer.find(temp_customer.toObject().id, (err, res) => {
+            assert(res.hasOwnProperty('subscription'), true)
+            done()
+          })
         })
       })
     })
 
     it('should return an object instance with id attribute using promises', (done) => {
-      conekta.Customer.find(customer).then(function (customer) {
-        customer.createSubscription({
+      temp_customer = ''
+      conekta.Customer.create({
+        name: 'James Howlett',
+        email: 'james.howlett@forces.gov',
+        payment_sources: [{
+          token_id: "tok_test_visa_4242",
+          type: "card"
+        }]
+      }, (err, res) => {
+        temp_customer = res
+        assert(res.toObject().hasOwnProperty('id'), true)
+
+        temp_customer.createSubscription({
           plan: 'gold-plan'
         }).then(function (subscription) {
           assert(subscription.hasOwnProperty('id'), true)
-          done()
+
+          conekta.Customer.find(temp_customer.toObject().id, (err, res) => {
+            assert(res.hasOwnProperty('subscription'), true)
+            done()
+          })
         }, function (error) {
         })
-      }, function (error) {
       })
     })
   })
 
   describe('createPaymentSources', () => {
     it('should return an object instance with id attribute', (done) => {
+
       conekta.Customer.find(customer, (err, res) => {
         res.createPaymentSource({
           type: 'card',
