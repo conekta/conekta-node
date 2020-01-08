@@ -1,3 +1,19 @@
+## [4.0.0](https://github.com/conekta/conekta-node/releases/tag/4.0.0) - 2020-01-01
+This version is a massive rewrite of the core functionality, and though the
+public interfaces should remain unchanged, we suggest that you test your
+integation as we correct a lot of non-intuitive behavior in the previous version.
+### Fix
+- Massive overhaul of the Resource object and the addition of ResourceList object.
+- Fixes subscription spec interdepencies
+- nextPage return object
+### Cleanup
+- Dependency updates
+- Changes Nesh for Repl
+- Prefixes several private methods (buildChildren, listObjectsToArray, post, del, put, custom) with _
+### Feature
+- Alternative nested object querying `{ customer: { email: 'example@example.com' }}`
+- Adding previousPage method
+
 ## [3.7.0](https://github.com/conekta/conekta-node/releases/tag/3.7.0) - 2019-08-01
 ### Feature
 - Updated deprecated modules and dependencies

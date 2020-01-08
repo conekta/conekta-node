@@ -150,7 +150,7 @@ describe('Order', function () {
     conekta.api_version = API_VERSION
   })
 
-  describe('next page', () => {
+  describe('next and previous page', () => {
     it('should return something', (done) => {
       const mFile = fs.readFileSync(__dirname + '/../lib/orders.json')
 
@@ -158,8 +158,18 @@ describe('Order', function () {
       ord._json = JSON.parse(mFile)
 
       ord.nextPage((err, res) => {
-        assert(res.hasOwnProperty('next_page_url'), true)
-        done()
+        assert(res._json.hasOwnProperty('next_page_url'), true)
+        assert(res._json.hasOwnProperty('previous_page_url'), true)
+
+        res.nextPage((err, res) => {
+          assert(res._json.hasOwnProperty('next_page_url'), true)
+          assert(res._json.hasOwnProperty('previous_page_url'), true)
+
+          res.previousPage((err, res) => {
+            assert(res._json.hasOwnProperty('next_page_url'), true)
+            done()
+          })
+        })
       })
     })
   })
