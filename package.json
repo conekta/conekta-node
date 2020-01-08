@@ -1,6 +1,6 @@
 {
   "name": "conekta",
-  "version": "3.7.1",
+  "version": "3.8.2",
   "description": "Conekta node Wrapper",
   "keywords": [
     "conekta",
@@ -24,21 +24,16 @@
     "url": "https://github.com/conekta/conekta-node.git"
   },
   "engines": {
-    "node": ">=0.10.3"
+    "node": ">=8.16"
   },
   "dependencies": {
-    "minimatch": "^3.0.4",
-    "request": "2.86.0",
-    "underscore": "1.8.3"
+    "request": "^2.88.0",
+    "underscore": "^1.9.1"
   },
   "devDependencies": {
-    "coffee-script": "^1.12.7",
-    "coffeescript": "^2.4.1",
-    "eslint-config-standard": "^12.0.0",
     "lodash": "^4.17.15",
-    "mocha": "^5.2.0",
-    "nesh": "^1.6.0",
-    "nock": "^9.1.0"
+    "mocha": "^6.2.2",
+    "nock": "^11.7.0"
   },
   "main": "./lib/conekta.js",
   "scripts": {
