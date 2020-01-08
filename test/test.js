@@ -14,9 +14,9 @@ const TIMEOUT = 30000
 const orderBody = {
   currency: 'MXN',
   customer_info: {
-    name: 'Jul Ceballos',
+    name: 'Fulanito Perez',
     phone: '+5215555555555',
-    email: 'jul@conekta.io'
+    email: 'fulanito@example.com'
   },
   line_items: [{
     name: 'Box of Cohiba S1s',
@@ -173,6 +173,28 @@ describe('Order', function () {
     })
   })
 
+  describe('multiple orders', () => {
+    it('should return an array of orders when using dot notation', (done) => {
+      conekta.Order.where({
+        'customer_info.email': 'fulanito@example.com'
+      }, (err, orders) => {
+        assert(orders.toObject().data instanceof Array, true)
+        assert(orders.toObject().data.length > 0, true)
+        done()
+      })
+    })
+
+    it('should return an array of orders when searching for a customer id with embedded fields', (done) => {
+      conekta.Order.where({
+        'customer_info': { 'email': 'fulanito@example.com' }
+      }, (err, orders) => {
+        assert(orders.toObject().data instanceof Array, true)
+        assert(orders.toObject().data.length > 0, true)
+        done()
+      })
+    })
+  })
+
   describe('create', () => {
     // nock.restore()
     it('should return instance object with id', (done) => {
@@ -226,9 +248,9 @@ describe('Order', function () {
   describe('capture order', () => {
     const preAuthOrd = {
       customer_info: {
-        name: 'Jul Ceballos',
+        name: 'Fulanito Perez',
         phone: '+5215555555555',
-        email: 'jul@conekta.io'
+        email: 'fulanito@example.com'
       },
       line_items: [{
         name: 'Box of Cohiba S1s',
@@ -885,9 +907,9 @@ describe('Order', function () {
     const orderChargeBody = {
       currency: 'MXN',
       customer_info: {
-        name: 'Jul Ceballos',
+        name: 'Fulanito Perez',
         phone: '+5215555555555',
-        email: 'jul@conekta.io'
+        email: 'fulanito@example.com'
       },
       line_items: [{
         name: 'Box of Cohiba S1s',
