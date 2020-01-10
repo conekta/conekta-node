@@ -1,6 +1,6 @@
 {
   "name": "conekta",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Conekta node Wrapper",
   "keywords": [
     "conekta",
@@ -12,10 +12,10 @@
     "payout",
     "subscription"
   ],
-  "homepage": "https://www.conekta.io",
+  "homepage": "https://www.conekta.com",
   "bugs": {
     "url": "https://github.com/conekta/conekta-node/issues",
-    "email": "soporte@conekta.io"
+    "email": "soporte@conekta.com"
   },
   "license": "MIT",
   "author": "Conekta",
