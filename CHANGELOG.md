@@ -1,3 +1,8 @@
+## [4.2.0](https://github.com/conekta/conekta-node/releases/tag/4.2.0) - 2020-06-08
+This version removes the total attribute from ConektaList to guarantee a more
+stable performance going forward.  For pagination please use the `has_more`
+attribute going forward.
+
 ## [4.0.1](https://github.com/conekta/conekta-node/releases/tag/4.0.1) - 2020-01-09
 This version is a massive rewrite of the core functionality, and though the
 public interfaces should remain unchanged, we suggest that you test your

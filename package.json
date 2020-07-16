@@ -1,6 +1,6 @@
 {
   "name": "conekta",
-  "version": "4.0.1",
+  "version": "4.2.0",
   "description": "Conekta node Wrapper",
   "keywords": [
     "conekta",
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "lodash": "^4.17.15",
-    "mocha": "^6.2.2",
+    "mocha": "^7.2.0",
     "nock": "^11.7.0"
   },
   "main": "./lib/conekta.js",

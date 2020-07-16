@@ -2,7 +2,7 @@
 
 ![README Cover Image](readme_files/banner-library.png)
 
-# Conekta Node v3.7.1
+# Conekta Node
 
 [![Made with Node](readme_files/node_badge.svg)](https://nodejs.org) [![By Conekta](readme_files/conekta_badge.svg)](https://conekta.com)
 
