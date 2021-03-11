@@ -1,3 +1,5 @@
+## [4.1.0](https://github.com/conekta/conekta-node/releases/tag/4.1.0) - 2021-03-10
+- Adds checkout object and specs (also required for payment link)
 ## [4.0.1](https://github.com/conekta/conekta-node/releases/tag/4.0.1) - 2020-01-09
 This version is a massive rewrite of the core functionality, and though the
 public interfaces should remain unchanged, we suggest that you test your

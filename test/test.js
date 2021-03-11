@@ -15,7 +15,7 @@ const orderBody = {
   currency: 'MXN',
   customer_info: {
     name: 'Fulanito Perez',
-    phone: '+5215555555555',
+    phone: '5555555555',
     email: 'fulanito@example.com'
   },
   line_items: [{
@@ -206,10 +206,91 @@ describe('Order', function () {
   })
 
   describe('create', () => {
+    before((done)=>{
+      conekta.Customer.create({
+        name: 'James Howlett',
+        email: 'james.howlett@forces.gov'
+      }).then((customer)=>{
+        global.customer_id = customer.toObject().id
+        done()
+      }, (err)=>{
+        done()
+      })
+    })
+
     // nock.restore()
     it('should return instance object with id', (done) => {
       createOrder((err, res) => {
         assert((res.toObject().hasOwnProperty('id')), true)
+        done()
+      })
+    })
+
+    it('should return instance object with checkout', (done) => {
+      let orderWithCheckoutBody = Object.assign(orderBody, {
+        customer_info: {
+          customer_id: customer_id
+        },
+        checkout: {
+          expired_at: Math.floor(Date.now()/1000 + 259200 + Math.random() * 3600),
+          allowed_payment_methods: ["cash", "card", "bank_transfer"]
+        }
+      })
+
+      conekta.Order.create(orderWithCheckoutBody, (err, res) => {
+        assert.equal(err, null)
+        let order = res.toObject()
+        assert((order.hasOwnProperty('id')), true)
+        assert.equal(order.checkout.type, "Integration")
+        assert.equal(order.checkout.monthly_installments_enabled, false)
+        assert.equal(order.checkout.on_demand_enabled, false)
+        done()
+      })
+    })
+
+    it('should return instance object with checkout and monthly installments', (done) => {
+      let orderWithCheckoutBody = Object.assign(orderBody, {
+        customer_info: {
+          customer_id: customer_id
+        },
+        checkout: {
+          "expired_at": Math.floor(Date.now()/1000 + 259200 + Math.random() * 3600),
+          "allowed_payment_methods": ["cash", "card", "bank_transfer"],
+          "monthly_installments_enabled": true,
+          "monthly_installments_options": [3, 6, 12]
+	}
+      })
+
+      conekta.Order.create(orderWithCheckoutBody, (err, res) => {
+        assert.equal(err, null)
+        let order = res.toObject()
+        assert((order.hasOwnProperty('id')), true)
+        assert.equal(order.checkout.type, "Integration")
+        assert.equal(order.checkout.monthly_installments_enabled, true)
+        assert.equal(order.checkout.on_demand_enabled, false)
+        done()
+      })
+    })
+
+    it('should return instance object with checkout and saves card', (done) => {
+      let orderWithCheckoutBody = Object.assign(orderBody, {
+        customer_info: {
+          customer_id: customer_id
+        },
+        checkout: {
+          "expired_at": Math.floor(Date.now()/1000 + 259200 + Math.random() * 3600),
+          "allowed_payment_methods": ["cash", "card", "bank_transfer"],
+          "on_demand_enabled": true
+	}
+      })
+
+      conekta.Order.create(orderWithCheckoutBody, (err, res) => {
+        assert.equal(err, null)
+        let order = res.toObject()
+        assert((order.hasOwnProperty('id')), true)
+        assert.equal(order.checkout.type, "Integration")
+        assert.equal(order.checkout.monthly_installments_enabled, false)
+        assert.equal(order.checkout.on_demand_enabled, true)
         done()
       })
     })
@@ -1591,11 +1672,13 @@ describe('Customer', function () {
     describe('update', () => {
       it('should return an object instance with id attribute', (done) => {
         conekta.Customer.create(customerBody, (err, customer) => {
+          var year = (new Date().getFullYear() + 2)
+
           conekta.Customer.find(customer._id, (err, customerObj) => {
             customerObj.payment_sources.get(0).update({
               name: 'Emiliano Cabrera',
               exp_month: '12',
-              exp_year: '20',
+              exp_year: year.toString(),
               address: {
                 street1: 'Tamesis',
                 street2: '114',
@@ -1767,3 +1850,4 @@ describe('Customer', function () {
     })
   })
 })
+
