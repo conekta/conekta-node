@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "lodash": "^4.17.15",
-    "mocha": "^6.2.2",
+    "mocha": "^10.2.0",
     "nock": "^11.7.0"
   },
   "main": "./lib/conekta.js",
