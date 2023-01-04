@@ -24,16 +24,16 @@
     "url": "https://github.com/conekta/conekta-node.git"
   },
   "engines": {
-    "node": ">=8.16"
+    "node": ">=14.21"
   },
   "dependencies": {
-    "request": "^2.88.0",
-    "underscore": "^1.9.1"
+    "request": "^2.88.2",
+    "underscore": "^1.13.6"
   },
   "devDependencies": {
-    "lodash": "^4.17.15",
-    "mocha": "^6.2.2",
-    "nock": "^11.7.0"
+    "lodash": "^4.17.21",
+    "mocha": "^10.2.0",
+    "nock": "^13.2.9"
   },
   "main": "./lib/conekta.js",
   "scripts": {
