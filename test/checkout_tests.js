@@ -4,11 +4,10 @@ const fs = require('fs')
 const _ = require('underscore')
 
 const conekta = require('../lib/conekta.js')
-const base64 = require('../lib/base64.js')
+require('../lib/base64.js');
 const LOCALE = 'en'
 const TEST_KEY = 'key_eYvWV7gSDkNYXsmr'
 const API_VERSION = '2.0.0'
-const PRODUCTION_KEY = '9YxqfRnx4sMQDnRsqdYn'
 const TIMEOUT = 30000
 
 const checkoutBody = function(){
