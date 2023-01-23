@@ -4,11 +4,9 @@ const fs = require('fs')
 const _ = require('underscore')
 
 const conekta = require('../lib/conekta.js')
-const base64 = require('../lib/base64.js')
 const LOCALE = 'en'
 const TEST_KEY = 'key_eYvWV7gSDkNYXsmr'
 const API_VERSION = '2.0.0'
-const PRODUCTION_KEY = '9YxqfRnx4sMQDnRsqdYn'
 const TIMEOUT = 30000
 
 const orderBody = {
@@ -523,7 +521,7 @@ describe('Order', function () {
       it('should return instance object with id', (done) => {
         createLineItem((err, res) => {
           conekta.Order.find(res.parent_id, (err, order) => {
-            order.createLineItem(lineItemBody).then((err, response) => {
+            order.createLineItem(lineItemBody).then(() => {
               order.line_items.get(0).delete((err, lineItems) => {
                 assert(lineItems.deleted, true)
                 done()
@@ -535,7 +533,7 @@ describe('Order', function () {
 
       it('should return instance object with id using promises', (done) => {
         createOrderPromise().then(function (order) {
-          order.createLineItem(lineItemBody).then(function (LineItem) {
+          order.createLineItem(lineItemBody).then(function () {
             order.line_items.get(0).delete().then(function (deletedLineItem) {
               assert(deletedLineItem.deleted, true)
               done()
@@ -1331,7 +1329,6 @@ describe('Customer', function () {
       const createCustomer = (customer) => new Promise((resolve, reject) => {
         conekta.Customer.create(customer, (err, res) => {
           if (err) {
-            console.log(err)
             reject(err)
             return
           }
@@ -1344,7 +1341,6 @@ describe('Customer', function () {
       const findCustomer = (customer) => new Promise((resolve, reject) => {
         conekta.Customer.find(customer, (err, res) => {
           if (err) {
-            console.log(err)
             reject(err)
             return
           }
@@ -1381,10 +1377,6 @@ describe('Customer', function () {
           let responseCustomerB = ''
 
           let findPromises = []
-
-          console.log('A:', customerA)
-          console.log('B:', customerB)
-
           let promiseFindCustomerA = findCustomer(customerA)
 
           findPromises.push(promiseFindCustomerA)
@@ -1403,19 +1395,14 @@ describe('Customer', function () {
 
           Promise.all(findPromises)
             .then(() => {
-              console.log('Promise A:', responseCustomerA)
-              console.log('Promise B:', responseCustomerB)
-              
               assert(responseCustomerA === customerA, true)
               assert(responseCustomerB === customerB, true)
               
               done()
             }, (err) => {
-              console.log(err)
               done()
             })
         }, (err) => {
-          console.log(err)
           done()
         })
     })

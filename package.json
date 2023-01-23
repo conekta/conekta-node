@@ -27,7 +27,8 @@
     "node": ">=14.21"
   },
   "dependencies": {
-    "request": "^2.88.2",
+    "axios": "^1.2.3",
+    "qs": "^6.11.0",
     "underscore": "^1.13.6"
   },
   "devDependencies": {
