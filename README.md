@@ -1,155 +1,45 @@
-# Conekta Node.js
+## conekta@6.0.0
 
-Wrapper to connect with https://api.conekta.io.
+This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
-## Install
+Environment
+* Node.js
+* Webpack
+* Browserify
 
-```sh
-npm install conekta
+Language level
+* ES5 - you must have a Promises/A+ library installed
+* ES6
+
+Module system
+* CommonJS
+* ES6 module system
+
+It can be used in both TypeScript and JavaScript. In TypeScript, the definition should be automatically resolved via `package.json`. ([Reference](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html))
+
+### Building
+
+To build and compile the typescript sources to javascript use:
+```
+npm install
+npm run build
 ```
 
-This last release works with API 2, if you are using 1.0 type:
+### Publishing
 
+First build the package then run ```npm publish```
 
-```sh
-npm install conekta@1.6.5
-```
+### Consuming
 
-## Usage
+navigate to the folder of your consuming project and run one of the following commands.
 
-```node
-const conekta = require('conekta');
-
-conekta.api_key = '9YxqfRnx4sMQDnRsqdYn';
-conekta.locale = 'es';
-
-const order = await conekta.Order.create({
-  "currency": "MXN",
-  "customer_info": {
-    "name": "Jul Ceballos",
-    "phone": "+5215555555555",
-    "email": "jul@conekta.io"
-  },
-  "line_items": [{
-    "name": "Box of Cohiba S1s",
-    "unit_price": 35000,
-    "quantity": 1
-  }],
-  "charges": [{
-    "payment_method": {
-      "type": "card",
-      "token_id": "tok_test_visa_4242"
-    }
-  }]
-})
-
-console.log(order.toObject())
-```
-
-## Endpoints
-
-```node
-
-Conekta.Order.create
-Conekta.Order.update
-Conekta.Order.find
-Conekta.Order.where
-Conekta.Order.createCharge
-Conekta.Order.createLineItem
-Conekta.Lineitem.update
-Conekta.Order.createTaxLine
-Conekta.TaxLine.update
-Conekta.Order.createShippingLine
-Conekta.ShippingLine.update
-Conekta.Order.createDiscountLine
-Conekta.DiscountLine.update
-Conekta.Customer.create
-Conekta.Customer.update
-Conekta.Customer.find
-Conekta.Customer.where
-Conekta.Customer.destroy
-Conekta.Customer.createSource
-Conekta.Source.update
-Conekta.Customer.createShippingContact
-Conekta.ShippingContact.update
+_published:_
 
 ```
-
-## Documentation
-
-Please see https://developers.conekta.com/api?language=node for up-to-date documentation.
-
-## Contribute
-
-### Clone repo
-
-```sh
-$ git clone https://github.com/conekta/conekta-node
-$ cd conekta-node
+npm install conekta@6.0.0 --save
 ```
 
-### Install dependencies
+_unPublished (not recommended):_
 
-```sh
-$ npm install
 ```
-
-### Run interactive mode
-
-```sh
-$ bin/console
-Welcome to Conekta node console!
-Help: exit() to quit
-
-> conekta.api_key = '9YxqfRnx4sMQDnRsqdYn';
-'9YxqfRnx4sMQDnRsqdYn'
-> conekta.locale = 'es';
-'es'
-> 
-```
-
-### Run tests
-
-```sh
-$ npm test
-```
-
-### Send pull requests
-
-We love pull requests, send them from your fork to branch **dev** into **conekta/conekta-node**
-
-## How to contribute to the project
-
-1. Fork the repository
- 
-2. Clone the repository
-```
-    git clone git@github.com:yourUserName/conekta-node.git
-```
-3. Create a branch
-```
-    git checkout develop
-    git pull origin develop
-    # You should choose the name of your branch
-    git checkout -b <feature/my_branch>
-```    
-4. Make necessary changes and commit those changes
-```
-    git add .
-    git commit -m "my changes"
-```
-5. Push changes to GitHub
-```
-    git push origin <feature/my_branch>
-```
-6. Submit your changes for review, create a pull request
-
-   To create a pull request, you need to have made your code changes on a separate branch. This branch should be named like this: **feature/my_feature** or **fix/my_fix**.
-
-   Make sure that, if you add new features to our library, be sure that corresponding **unit tests** are added.
-
-   If you go to your repository on GitHub, you’ll see a Compare & pull request button. Click on that button.
-
-## License
-
-Developed in Mexico by [Conekta](https://www.conekta.com). Available with [MIT License](LICENSE).
+npm install PATH_TO_GENERATED_PACKAGE --save

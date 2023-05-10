@@ -1,8 +1,0 @@
-#!/usr/bin/env node
-const repl = require('repl');
-const conekta = require('../lib/conekta.js');
-const r = repl.start('> ')
-r.context.conekta = conekta;
-r.context.exit =  function() {
-  return process.exit(0);
-};
