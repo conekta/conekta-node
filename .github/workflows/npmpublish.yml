@@ -1,9 +1,7 @@
-name: Node.js Package
-
+name: publish on npm
 on:
-  workflow_dispatch:
   release:
-    types: [published]
+    types: [created]
 
 jobs:
   publish-npm:
@@ -14,6 +12,15 @@ jobs:
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
+      - name: Check if release creator is a code owner
+        run: |
+          if [[ $(jq '.sender.type' $GITHUB_EVENT_PATH) == '"User"' ]]; then
+            creator_login=${{ github.event.release.author.login }}
+            if ! grep -q $creator_login .github/CODEOWNERS; then
+              echo "Release creator is not a code owner, skipping the rest of the workflow."
+              exit 1
+            fi
+          fi
       - run: |
           npm install
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
