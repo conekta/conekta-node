@@ -1,3 +1,5 @@
+/* tslint:disable */
+/* eslint-disable */
 /**
  * Conekta API
  * Conekta sdk
@@ -10,94 +12,67 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from './models';
 
-export class Product {
-    'antifraudInfo'?: { [key: string]: any; };
+
+/**
+ * 
+ * @export
+ * @interface Product
+ */
+export interface Product {
     /**
-    * The brand of the item.
-    */
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof Product
+     */
+    'antifraud_info'?: { [key: string]: any; };
+    /**
+     * The brand of the item.
+     * @type {string}
+     * @memberof Product
+     */
     'brand'?: string;
     /**
-    * Short description of the item
-    */
+     * Short description of the item
+     * @type {string}
+     * @memberof Product
+     */
     'description'?: string;
     /**
-    * It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters.
-    */
+     * It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters.
+     * @type {{ [key: string]: string; }}
+     * @memberof Product
+     */
     'metadata'?: { [key: string]: string; };
     /**
-    * The name of the item. It will be displayed in the order.
-    */
+     * The name of the item. It will be displayed in the order.
+     * @type {string}
+     * @memberof Product
+     */
     'name': string;
     /**
-    * The quantity of the item in the order.
-    */
+     * The quantity of the item in the order.
+     * @type {number}
+     * @memberof Product
+     */
     'quantity': number;
     /**
-    * The stock keeping unit for the item. It is used to identify the item in the order.
-    */
+     * The stock keeping unit for the item. It is used to identify the item in the order.
+     * @type {string}
+     * @memberof Product
+     */
     'sku'?: string;
     /**
-    * List of tags for the item. It is used to identify the item in the order.
-    */
+     * List of tags for the item. It is used to identify the item in the order.
+     * @type {Array<string>}
+     * @memberof Product
+     */
     'tags'?: Array<string>;
     /**
-    * The price of the item in cents.
-    */
-    'unitPrice': number;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "antifraudInfo",
-            "baseName": "antifraud_info",
-            "type": "{ [key: string]: any; }"
-        },
-        {
-            "name": "brand",
-            "baseName": "brand",
-            "type": "string"
-        },
-        {
-            "name": "description",
-            "baseName": "description",
-            "type": "string"
-        },
-        {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "{ [key: string]: string; }"
-        },
-        {
-            "name": "name",
-            "baseName": "name",
-            "type": "string"
-        },
-        {
-            "name": "quantity",
-            "baseName": "quantity",
-            "type": "number"
-        },
-        {
-            "name": "sku",
-            "baseName": "sku",
-            "type": "string"
-        },
-        {
-            "name": "tags",
-            "baseName": "tags",
-            "type": "Array<string>"
-        },
-        {
-            "name": "unitPrice",
-            "baseName": "unit_price",
-            "type": "number"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return Product.attributeTypeMap;
-    }
+     * The price of the item in cents.
+     * @type {number}
+     * @memberof Product
+     */
+    'unit_price': number;
 }
 

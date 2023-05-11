@@ -1,3 +1,5 @@
+/* tslint:disable */
+/* eslint-disable */
 /**
  * Conekta API
  * Conekta sdk
@@ -10,138 +12,112 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from './models';
-import { CustomerAntifraudInfo } from './customerAntifraudInfo';
-import { CustomerFiscalEntitiesRequest } from './customerFiscalEntitiesRequest';
-import { CustomerPaymentMethodsRequest } from './customerPaymentMethodsRequest';
-import { CustomerShippingContacts } from './customerShippingContacts';
-import { SubscriptionRequest } from './subscriptionRequest';
+
+// May contain unused imports in some cases
+// @ts-ignore
+import { CustomerAntifraudInfo } from './customer-antifraud-info';
+// May contain unused imports in some cases
+// @ts-ignore
+import { CustomerFiscalEntitiesRequest } from './customer-fiscal-entities-request';
+// May contain unused imports in some cases
+// @ts-ignore
+import { CustomerPaymentMethodsRequest } from './customer-payment-methods-request';
+// May contain unused imports in some cases
+// @ts-ignore
+import { CustomerShippingContacts } from './customer-shipping-contacts';
+// May contain unused imports in some cases
+// @ts-ignore
+import { SubscriptionRequest } from './subscription-request';
 
 /**
-* a customer
-*/
-export class Customer {
-    'antifraudInfo'?: CustomerAntifraudInfo | null;
+ * a customer
+ * @export
+ * @interface Customer
+ */
+export interface Customer {
     /**
-    * It is a value that allows identifying if the email is corporate or not.
-    */
-    'corporate'?: boolean = false;
+     * 
+     * @type {CustomerAntifraudInfo}
+     * @memberof Customer
+     */
+    'antifraud_info'?: CustomerAntifraudInfo | null;
     /**
-    * It is an undefined value.
-    */
-    'customReference'?: string;
+     * It is a value that allows identifying if the email is corporate or not.
+     * @type {boolean}
+     * @memberof Customer
+     */
+    'corporate'?: boolean;
     /**
-    * An email address is a series of customizable characters followed by a universal Internet symbol, the at symbol (@), the name of a host server, and a web domain ending (.mx, .com, .org, . net, etc).
-    */
+     * It is an undefined value.
+     * @type {string}
+     * @memberof Customer
+     */
+    'custom_reference'?: string;
+    /**
+     * An email address is a series of customizable characters followed by a universal Internet symbol, the at symbol (@), the name of a host server, and a web domain ending (.mx, .com, .org, . net, etc).
+     * @type {string}
+     * @memberof Customer
+     */
     'email': string;
     /**
-    * It is a parameter that allows to identify in the response, the Conekta ID of a payment method (payment_id)
-    */
-    'defaultPaymentSourceId'?: string;
+     * It is a parameter that allows to identify in the response, the Conekta ID of a payment method (payment_id)
+     * @type {string}
+     * @memberof Customer
+     */
+    'default_payment_source_id'?: string;
     /**
-    * It is a parameter that allows to identify in the response, the Conekta ID of the shipping address (shipping_contact)
-    */
-    'defaultShippingContactId'?: string;
-    'fiscalEntities'?: Array<CustomerFiscalEntitiesRequest>;
+     * It is a parameter that allows to identify in the response, the Conekta ID of the shipping address (shipping_contact)
+     * @type {string}
+     * @memberof Customer
+     */
+    'default_shipping_contact_id'?: string;
+    /**
+     * 
+     * @type {Array<CustomerFiscalEntitiesRequest>}
+     * @memberof Customer
+     */
+    'fiscal_entities'?: Array<CustomerFiscalEntitiesRequest>;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof Customer
+     */
     'metadata'?: { [key: string]: any; };
     /**
-    * Client\'s name
-    */
+     * Client\'s name
+     * @type {string}
+     * @memberof Customer
+     */
     'name': string;
     /**
-    * Contains details of the payment methods that the customer has active or has used in Conekta
-    */
-    'paymentSources'?: Array<CustomerPaymentMethodsRequest>;
+     * Contains details of the payment methods that the customer has active or has used in Conekta
+     * @type {Array<CustomerPaymentMethodsRequest>}
+     * @memberof Customer
+     */
+    'payment_sources'?: Array<CustomerPaymentMethodsRequest>;
     /**
-    * Is the customer\'s phone number
-    */
+     * Is the customer\'s phone number
+     * @type {string}
+     * @memberof Customer
+     */
     'phone': string;
     /**
-    * Contains the ID of a plan, which could together with name, email and phone create a client directly to a subscription
-    */
-    'planId'?: string;
+     * Contains the ID of a plan, which could together with name, email and phone create a client directly to a subscription
+     * @type {string}
+     * @memberof Customer
+     */
+    'plan_id'?: string;
     /**
-    * Contains the detail of the shipping addresses that the client has active or has used in Conekta
-    */
-    'shippingContacts'?: Array<CustomerShippingContacts>;
+     * Contains the detail of the shipping addresses that the client has active or has used in Conekta
+     * @type {Array<CustomerShippingContacts>}
+     * @memberof Customer
+     */
+    'shipping_contacts'?: Array<CustomerShippingContacts>;
+    /**
+     * 
+     * @type {SubscriptionRequest}
+     * @memberof Customer
+     */
     'subscription'?: SubscriptionRequest;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "antifraudInfo",
-            "baseName": "antifraud_info",
-            "type": "CustomerAntifraudInfo"
-        },
-        {
-            "name": "corporate",
-            "baseName": "corporate",
-            "type": "boolean"
-        },
-        {
-            "name": "customReference",
-            "baseName": "custom_reference",
-            "type": "string"
-        },
-        {
-            "name": "email",
-            "baseName": "email",
-            "type": "string"
-        },
-        {
-            "name": "defaultPaymentSourceId",
-            "baseName": "default_payment_source_id",
-            "type": "string"
-        },
-        {
-            "name": "defaultShippingContactId",
-            "baseName": "default_shipping_contact_id",
-            "type": "string"
-        },
-        {
-            "name": "fiscalEntities",
-            "baseName": "fiscal_entities",
-            "type": "Array<CustomerFiscalEntitiesRequest>"
-        },
-        {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "{ [key: string]: any; }"
-        },
-        {
-            "name": "name",
-            "baseName": "name",
-            "type": "string"
-        },
-        {
-            "name": "paymentSources",
-            "baseName": "payment_sources",
-            "type": "Array<CustomerPaymentMethodsRequest>"
-        },
-        {
-            "name": "phone",
-            "baseName": "phone",
-            "type": "string"
-        },
-        {
-            "name": "planId",
-            "baseName": "plan_id",
-            "type": "string"
-        },
-        {
-            "name": "shippingContacts",
-            "baseName": "shipping_contacts",
-            "type": "Array<CustomerShippingContacts>"
-        },
-        {
-            "name": "subscription",
-            "baseName": "subscription",
-            "type": "SubscriptionRequest"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return Customer.attributeTypeMap;
-    }
 }
 

@@ -1,3 +1,5 @@
+/* tslint:disable */
+/* eslint-disable */
 /**
  * Conekta API
  * Conekta sdk
@@ -10,37 +12,25 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from './models';
+
 
 /**
-* pagination metadata
-*/
-export class Pagination {
+ * pagination metadata
+ * @export
+ * @interface Pagination
+ */
+export interface Pagination {
     /**
-    * Object type, in this case is list
-    */
+     * Object type, in this case is list
+     * @type {string}
+     * @memberof Pagination
+     */
     'object': string;
     /**
-    * Indicates if there are more pages to be requested
-    */
-    'hasMore': boolean;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "object",
-            "baseName": "object",
-            "type": "string"
-        },
-        {
-            "name": "hasMore",
-            "baseName": "has_more",
-            "type": "boolean"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return Pagination.attributeTypeMap;
-    }
+     * Indicates if there are more pages to be requested
+     * @type {boolean}
+     * @memberof Pagination
+     */
+    'has_more': boolean;
 }
 

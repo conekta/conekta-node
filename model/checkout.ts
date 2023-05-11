@@ -1,3 +1,5 @@
+/* tslint:disable */
+/* eslint-disable */
 /**
  * Conekta API
  * Conekta sdk
@@ -10,107 +12,82 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from './models';
-import { CheckoutOrderTemplate } from './checkoutOrderTemplate';
+
+// May contain unused imports in some cases
+// @ts-ignore
+import { CheckoutOrderTemplate } from './checkout-order-template';
 
 /**
-* It is a sub-resource of the Order model that can be stipulated in order to configure its corresponding checkout
-*/
-export class Checkout {
+ * It is a sub-resource of the Order model that can be stipulated in order to configure its corresponding checkout
+ * @export
+ * @interface Checkout
+ */
+export interface Checkout {
     /**
-    * Those are the payment methods that will be available for the link
-    */
-    'allowedPaymentMethods': Array<string>;
+     * Those are the payment methods that will be available for the link
+     * @type {Array<string>}
+     * @memberof Checkout
+     */
+    'allowed_payment_methods': Array<string>;
     /**
-    * It is the time when the link will expire. It is expressed in seconds since the Unix epoch. The valid range is from 2 to 365 days (the valid range will be taken from the next day of the creation date at 00:01 hrs) 
-    */
-    'expiresAt': number;
+     * It is the time when the link will expire. It is expressed in seconds since the Unix epoch. The valid range is from 2 to 365 days (the valid range will be taken from the next day of the creation date at 00:01 hrs) 
+     * @type {number}
+     * @memberof Checkout
+     */
+    'expires_at': number;
     /**
-    * This flag allows you to specify if months without interest will be active.
-    */
-    'monthlyInstallmentsEnabled'?: boolean;
+     * This flag allows you to specify if months without interest will be active.
+     * @type {boolean}
+     * @memberof Checkout
+     */
+    'monthly_installments_enabled'?: boolean;
     /**
-    * This field allows you to specify the number of months without interest.
-    */
-    'monthlyInstallmentsOptions'?: Array<number>;
+     * This field allows you to specify the number of months without interest.
+     * @type {Array<number>}
+     * @memberof Checkout
+     */
+    'monthly_installments_options'?: Array<number>;
     /**
-    * Reason for charge
-    */
+     * Reason for charge
+     * @type {string}
+     * @memberof Checkout
+     */
     'name': string;
     /**
-    * This flag allows you to fill in the shipping information at checkout.
-    */
-    'needsShippingContact'?: boolean;
-    'onDemandEnabled'?: boolean | null;
-    'orderTemplate': CheckoutOrderTemplate;
-    'paymentsLimitCount'?: number;
+     * This flag allows you to fill in the shipping information at checkout.
+     * @type {boolean}
+     * @memberof Checkout
+     */
+    'needs_shipping_contact'?: boolean;
     /**
-    * false: single use. true: multiple payments
-    */
+     * 
+     * @type {boolean}
+     * @memberof Checkout
+     */
+    'on_demand_enabled'?: boolean | null;
+    /**
+     * 
+     * @type {CheckoutOrderTemplate}
+     * @memberof Checkout
+     */
+    'order_template': CheckoutOrderTemplate;
+    /**
+     * 
+     * @type {number}
+     * @memberof Checkout
+     */
+    'payments_limit_count'?: number;
+    /**
+     * false: single use. true: multiple payments
+     * @type {boolean}
+     * @memberof Checkout
+     */
     'recurrent': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof Checkout
+     */
     'type': string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "allowedPaymentMethods",
-            "baseName": "allowed_payment_methods",
-            "type": "Array<string>"
-        },
-        {
-            "name": "expiresAt",
-            "baseName": "expires_at",
-            "type": "number"
-        },
-        {
-            "name": "monthlyInstallmentsEnabled",
-            "baseName": "monthly_installments_enabled",
-            "type": "boolean"
-        },
-        {
-            "name": "monthlyInstallmentsOptions",
-            "baseName": "monthly_installments_options",
-            "type": "Array<number>"
-        },
-        {
-            "name": "name",
-            "baseName": "name",
-            "type": "string"
-        },
-        {
-            "name": "needsShippingContact",
-            "baseName": "needs_shipping_contact",
-            "type": "boolean"
-        },
-        {
-            "name": "onDemandEnabled",
-            "baseName": "on_demand_enabled",
-            "type": "boolean"
-        },
-        {
-            "name": "orderTemplate",
-            "baseName": "order_template",
-            "type": "CheckoutOrderTemplate"
-        },
-        {
-            "name": "paymentsLimitCount",
-            "baseName": "payments_limit_count",
-            "type": "number"
-        },
-        {
-            "name": "recurrent",
-            "baseName": "recurrent",
-            "type": "boolean"
-        },
-        {
-            "name": "type",
-            "baseName": "type",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return Checkout.attributeTypeMap;
-    }
 }
 

@@ -1,3 +1,5 @@
+/* tslint:disable */
+/* eslint-disable */
 /**
  * Conekta API
  * Conekta sdk
@@ -10,37 +12,25 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from './models';
+
 
 /**
-* page metadata
-*/
-export class Page {
+ * page metadata
+ * @export
+ * @interface Page
+ */
+export interface Page {
     /**
-    * URL of the next page.
-    */
-    'nextPageUrl'?: string | null;
+     * URL of the next page.
+     * @type {string}
+     * @memberof Page
+     */
+    'next_page_url'?: string | null;
     /**
-    * Url of the previous page.
-    */
-    'previousPageUrl'?: string | null;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "nextPageUrl",
-            "baseName": "next_page_url",
-            "type": "string"
-        },
-        {
-            "name": "previousPageUrl",
-            "baseName": "previous_page_url",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return Page.attributeTypeMap;
-    }
+     * Url of the previous page.
+     * @type {string}
+     * @memberof Page
+     */
+    'previous_page_url'?: string | null;
 }
 

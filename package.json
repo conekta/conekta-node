@@ -1,37 +1,47 @@
 {
-    "name": "conekta",
-    "version": "6.0.0",
-    "description": "NodeJS client for conekta",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/conekta/conekta-node.git"
-    },
-    "main": "dist/api.js",
-    "types": "dist/api.d.ts",
-    "scripts": {
-        "clean": "rm -Rf node_modules/ *.js",
-        "build": "tsc",
-        "test": "jest"
-    },
-    "author": "OpenAPI-Generator Contributors",
-    "license": "Unlicense",
-    "dependencies": {
-        "bluebird": "^3.5.0",
-        "request": "^2.81.0",
-        "rewire": "^3.0.2"
-    },
-    "devDependencies": {
-        "@types/jest": "27.5.2",
-        "@types/bluebird": "^3.5.33",
-        "@types/node": "14.18.42",
-        "@types/request": "^2.48.8",
-        "typescript": "^4.0",
-        "jest": "^27.0.6",
-        "ts-jest": "^27.0.4",
-        "ttypescript": "^1.5.10"
-       
-    },
-    "publishConfig": {
-        "registry": "https://www.npmjs.com/package/conekta"
-    }
+  "name": "conekta",
+  "version": "6.0.0",
+  "description": "OpenAPI client for conekta",
+  "author": "engineering conekta",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/conekta/conekta-node.git"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "keywords": [
+    "conekta",
+    "api",
+    "nodejs"
+  ],
+  "bugs": {
+    "url": "https://github.com/conekta/conekta-node/issues"
+  },
+  "homepage": "https://github.com/conekta/conekta-node#readme",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "module": "./dist/esm/index.js",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc && tsc -p tsconfig.esm.json",
+    "prepare": "npm run build",
+    "test": "jest"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
+  },
+  "devDependencies": {
+    "@types/node": "^12.11.5",
+    "typescript": "^4.0",
+    "@types/jest" : "^27.5.2",
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.4",
+    "ttypescript": "^1.5.10"
+  },
+  "publishConfig": {
+    "registry": "https://www.npmjs.com/package/conekta",
+    "access": "public"
+  }
 }

@@ -1,3 +1,5 @@
+/* tslint:disable */
+/* eslint-disable */
 /**
  * Conekta API
  * Conekta sdk
@@ -10,33 +12,32 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from './models';
-import { TokenCard } from './tokenCard';
-import { TokenCheckout } from './tokenCheckout';
+
+// May contain unused imports in some cases
+// @ts-ignore
+import { TokenCard } from './token-card';
+// May contain unused imports in some cases
+// @ts-ignore
+import { TokenCheckout } from './token-checkout';
 
 /**
-* a token
-*/
-export class Token {
+ * a token
+ * @export
+ * @interface Token
+ */
+export interface Token {
+    /**
+     * 
+     * @type {TokenCard}
+     * @memberof Token
+     */
     'card'?: TokenCard | null;
+    /**
+     * 
+     * @type {TokenCheckout}
+     * @memberof Token
+     * @deprecated
+     */
     'checkout'?: TokenCheckout | null;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "card",
-            "baseName": "card",
-            "type": "TokenCard"
-        },
-        {
-            "name": "checkout",
-            "baseName": "checkout",
-            "type": "TokenCheckout"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return Token.attributeTypeMap;
-    }
 }
 

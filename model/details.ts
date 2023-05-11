@@ -1,3 +1,5 @@
+/* tslint:disable */
+/* eslint-disable */
 /**
  * Conekta API
  * Conekta sdk
@@ -10,23 +12,22 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from './models';
-import { DetailsError } from './detailsError';
 
-export class Details {
+// May contain unused imports in some cases
+// @ts-ignore
+import { DetailsError } from './details-error';
+
+/**
+ * 
+ * @export
+ * @interface Details
+ */
+export interface Details {
+    /**
+     * 
+     * @type {Array<DetailsError>}
+     * @memberof Details
+     */
     'details'?: Array<DetailsError>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "details",
-            "baseName": "details",
-            "type": "Array<DetailsError>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return Details.attributeTypeMap;
-    }
 }
 
