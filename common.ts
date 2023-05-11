@@ -17,12 +17,24 @@ import type { Configuration } from "./configuration";
 import type { RequestArgs } from "./base";
 import type { AxiosInstance, AxiosResponse } from 'axios';
 import { RequiredError } from "./base";
-
+import {arch, platform, release}  from 'os';
 /**
  *
  * @export
  */
 export const DUMMY_BASE_URL = 'https://example.com'
+
+/**
+ *
+ * @export
+ */
+export const conektaHeaders = {
+    bindings_version: ['Conekta::', "6.0.0"].join(''),
+    lang: 'node',
+    lang_version: process.version,
+    publisher: 'conekta',
+    uname: [arch, platform, release].join(' ')
+  }
 
 /**
  *
@@ -69,6 +81,7 @@ export const setBearerAuthToObject = async function (object: any, configuration?
             : await configuration.accessToken;
         object["Authorization"] = "Bearer " + accessToken;
     }
+    setCommonHeaders(object);
 }
 
 /**
@@ -147,4 +160,12 @@ export const createRequestFunction = function (axiosArgs: RequestArgs, globalAxi
         const axiosRequestArgs = {...axiosArgs.options, url: (configuration?.basePath || basePath) + axiosArgs.url};
         return axios.request<T, R>(axiosRequestArgs);
     };
+}
+/**
+ *
+ * @export
+ */
+export const setCommonHeaders = async function (object: any) {
+    object["User-Agent"] = "Conekta/v2 NodeBindings/" + "6.0.0";
+    object["X-Conekta-Client-User-Agent"] = JSON.stringify(conektaHeaders);
 }
