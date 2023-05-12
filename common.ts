@@ -168,4 +168,5 @@ export const createRequestFunction = function (axiosArgs: RequestArgs, globalAxi
 export const setCommonHeaders = async function (object: any) {
     object["User-Agent"] = "Conekta/v2 NodeBindings/" + "6.0.0";
     object["X-Conekta-Client-User-Agent"] = JSON.stringify(conektaHeaders);
+    object["Accept"] = "application/vnd.conekta-v2.1.0+json";
 }

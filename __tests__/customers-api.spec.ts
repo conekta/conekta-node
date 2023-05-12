@@ -8,7 +8,7 @@ describe('CustomersApi', () => {
 
   beforeAll(() => {
     const config = new Configuration({ accessToken: "key_xxxxxxxx" });
-    api = new CustomersApi(config, baseTest.BasePath)
+    api = new CustomersApi(config, baseTest.BasePath);
   });
   describe("general", () => {
     it('should be defined', () => {
