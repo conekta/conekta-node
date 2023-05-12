@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { CheckoutOrderTemplateCustomerInfo } from './checkout-order-template-customer-info';
+// May contain unused imports in some cases
+// @ts-ignore
 import { Product } from './product';
 
 /**
@@ -30,13 +33,19 @@ export interface CheckoutOrderTemplate {
      */
     'currency': string;
     /**
+     * 
+     * @type {CheckoutOrderTemplateCustomerInfo}
+     * @memberof CheckoutOrderTemplate
+     */
+    'customer_info'?: CheckoutOrderTemplateCustomerInfo;
+    /**
      * They are the products to buy. Each contains the \"unit price\" and \"quantity\" parameters that are used to calculate the total amount of the order.
      * @type {Array<Product>}
      * @memberof CheckoutOrderTemplate
      */
     'line_items': Array<Product>;
     /**
-     * 
+     * It is a set of key-value pairs that you can attach to the order. It can be used to store additional information about the order in a structured format.
      * @type {{ [key: string]: any; }}
      * @memberof CheckoutOrderTemplate
      */

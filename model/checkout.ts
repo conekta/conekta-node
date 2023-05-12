@@ -60,7 +60,7 @@ export interface Checkout {
      */
     'needs_shipping_contact'?: boolean;
     /**
-     * 
+     * This flag allows you to specify if the link will be on demand.
      * @type {boolean}
      * @memberof Checkout
      */
@@ -72,7 +72,7 @@ export interface Checkout {
      */
     'order_template': CheckoutOrderTemplate;
     /**
-     * 
+     * It is the number of payments that can be made through the link.
      * @type {number}
      * @memberof Checkout
      */
@@ -84,7 +84,7 @@ export interface Checkout {
      */
     'recurrent': boolean;
     /**
-     * 
+     * It is the type of link that will be created. It must be a valid type.
      * @type {string}
      * @memberof Checkout
      */

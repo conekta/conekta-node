@@ -27,7 +27,7 @@
   "scripts": {
     "build": "tsc && tsc -p tsconfig.esm.json",
     "prepare": "npm run build",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "dependencies": {
     "axios": "^0.27.2"

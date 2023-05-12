@@ -2,8 +2,8 @@
 .npmignore
 AUTHORS.md
 CODE_OF_CONDUCT.md
+CONTRIBUTING.md
 LICENSE
-README.md
 api.ts
 api/antifraud-api.ts
 api/charges-api.ts
@@ -30,7 +30,6 @@ base.ts
 common.ts
 conekta.png
 configuration.ts
-git_push.sh
 index.ts
 model/blacklist-rule-response.ts
 model/charge-data-payment-method-bank-transfer-response.ts
@@ -46,6 +45,7 @@ model/charge-response-refunds-data.ts
 model/charge-response-refunds.ts
 model/charge-response.ts
 model/charges-data-response.ts
+model/checkout-order-template-customer-info.ts
 model/checkout-order-template.ts
 model/checkout-request.ts
 model/checkout-response.ts

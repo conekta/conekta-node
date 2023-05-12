@@ -14,6 +14,7 @@ export * from './charge-response-refunds-data';
 export * from './charges-data-response';
 export * from './checkout';
 export * from './checkout-order-template';
+export * from './checkout-order-template-customer-info';
 export * from './checkout-request';
 export * from './checkout-response';
 export * from './checkouts-response';

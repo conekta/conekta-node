@@ -1,13 +1,13 @@
-import { type } from "os";
 import { CustomersApi } from "../api";
 import { Configuration } from "../configuration";
 import { Customer, CustomerFiscalEntitiesRequest, CustomerPaymentMethodsRequest, PaymentMethodSpeiRecurrent, CustomerShippingContacts, PaymentMethodCardResponse, PaymentMethodCashResponse, SubscriptionRequest, UpdateCustomer, CustomerUpdateFiscalEntitiesRequest } from "../model";
 import { baseTest } from './base-test';
+
 describe('CustomersApi', () => {
   let api: CustomersApi;
 
   beforeAll(() => {
-    const config = new Configuration({ accessToken: "key_zRznLxwnWXiTRttqCCAt3Uw" });
+    const config = new Configuration({ accessToken: "key_xxxxxxxx" });
     api = new CustomersApi(config, baseTest.BasePath)
   });
   describe("general", () => {

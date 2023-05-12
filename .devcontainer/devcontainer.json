@@ -25,5 +25,12 @@
 	// "remoteUser": "devcontainer"
 	,"containerEnv": {
 		"BASE_PATH" : "http://host.docker.internal:3000"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"firsttris.vscode-jest-runner"
+			]
+		}
 	}
 }
