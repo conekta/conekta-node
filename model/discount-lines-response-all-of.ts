@@ -21,22 +21,22 @@
  */
 export interface DiscountLinesResponseAllOf {
     /**
-     * 
+     * The discount line id
      * @type {string}
      * @memberof DiscountLinesResponseAllOf
      */
-    'id'?: string;
+    'id': string;
     /**
-     * 
+     * The object name
      * @type {string}
      * @memberof DiscountLinesResponseAllOf
      */
-    'object'?: string;
+    'object': string;
     /**
-     * 
+     * The order id
      * @type {string}
      * @memberof DiscountLinesResponseAllOf
      */
-    'parent_id'?: string;
+    'parent_id': string;
 }
 

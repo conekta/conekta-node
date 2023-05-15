@@ -74,6 +74,8 @@ export * from './get-companies-response-all-of';
 export * from './get-customer-payment-method-data-response';
 export * from './get-events-response';
 export * from './get-events-response-all-of';
+export * from './get-order-discount-lines-response';
+export * from './get-order-discount-lines-response-all-of';
 export * from './get-orders-response';
 export * from './get-payment-method-response';
 export * from './get-payment-method-response-all-of';

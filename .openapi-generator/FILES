@@ -107,6 +107,8 @@ model/get-companies-response.ts
 model/get-customer-payment-method-data-response.ts
 model/get-events-response-all-of.ts
 model/get-events-response.ts
+model/get-order-discount-lines-response-all-of.ts
+model/get-order-discount-lines-response.ts
 model/get-orders-response.ts
 model/get-payment-method-response-all-of.ts
 model/get-payment-method-response.ts

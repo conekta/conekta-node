@@ -2,7 +2,7 @@ services:
   mockserver:
     restart: always
     image: mockoon/cli:2.4.0
-    command: "-d https://raw.githubusercontent.com/conekta/openapi/main/mocks/conekta_api.json  -p 3000 --log-transaction"
+    command: "-d https://raw.githubusercontent.com/conekta/openapi/DRE-73-config-openapi-node/mocks/conekta_api.json  -p 3000 --log-transaction"
     healthcheck:
       test: "wget -qO - http://mockserver:3000/ping"
       interval: 5s

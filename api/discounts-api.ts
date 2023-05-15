@@ -24,6 +24,8 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { DiscountLinesResponse } from '../model';
 // @ts-ignore
+import { GetOrderDiscountLinesResponse } from '../model';
+// @ts-ignore
 import { ModelError } from '../model';
 // @ts-ignore
 import { OrderDiscountLinesRequest } from '../model';
@@ -93,7 +95,7 @@ export const DiscountsApiAxiosParamCreator = function (configuration?: Configura
          * Delete an existing discount lines for an existing orden
          * @summary Delete Discount
          * @param {string} id Identifier of the resource
-         * @param {string} discountLinesId identifier
+         * @param {string} discountLinesId discount line id identifier
          * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
@@ -142,10 +144,130 @@ export const DiscountsApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
+         * Get an existing discount lines for an existing orden
+         * @summary Get Discount
+         * @param {string} id Identifier of the resource
+         * @param {string} discountLinesId discount line id identifier
+         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersGetDiscountLine: async (id: string, discountLinesId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('ordersGetDiscountLine', 'id', id)
+            // verify required parameter 'discountLinesId' is not null or undefined
+            assertParamExists('ordersGetDiscountLine', 'discountLinesId', discountLinesId)
+            const localVarPath = `/orders/{id}/discount_lines/{discount_lines_id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"discount_lines_id"}}`, encodeURIComponent(String(discountLinesId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get discount lines for an existing orden
+         * @summary Get a List of Discount
+         * @param {string} id Identifier of the resource
+         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {number} [limit] The numbers of items to return, the maximum value is 250
+         * @param {string} [search] General order search, e.g. by mail, reference etc.
+         * @param {string} [next] next page
+         * @param {string} [previous] previous page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersGetDiscountLines: async (id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('ordersGetDiscountLines', 'id', id)
+            const localVarPath = `/orders/{id}/discount_lines`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (search !== undefined) {
+                localVarQueryParameter['search'] = search;
+            }
+
+            if (next !== undefined) {
+                localVarQueryParameter['next'] = next;
+            }
+
+            if (previous !== undefined) {
+                localVarQueryParameter['previous'] = previous;
+            }
+
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Update an existing discount lines for an existing orden
          * @summary Update Discount
          * @param {string} id Identifier of the resource
-         * @param {string} discountLinesId identifier
+         * @param {string} discountLinesId discount line id identifier
          * @param {UpdateOrderDiscountLinesRequest} updateOrderDiscountLinesRequest requested field for a discount lines
          * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
@@ -227,7 +349,7 @@ export const DiscountsApiFp = function(configuration?: Configuration) {
          * Delete an existing discount lines for an existing orden
          * @summary Delete Discount
          * @param {string} id Identifier of the resource
-         * @param {string} discountLinesId identifier
+         * @param {string} discountLinesId discount line id identifier
          * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
@@ -238,10 +360,41 @@ export const DiscountsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Get an existing discount lines for an existing orden
+         * @summary Get Discount
+         * @param {string} id Identifier of the resource
+         * @param {string} discountLinesId discount line id identifier
+         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async ordersGetDiscountLine(id: string, discountLinesId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DiscountLinesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.ordersGetDiscountLine(id, discountLinesId, acceptLanguage, xChildCompanyId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Get discount lines for an existing orden
+         * @summary Get a List of Discount
+         * @param {string} id Identifier of the resource
+         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {number} [limit] The numbers of items to return, the maximum value is 250
+         * @param {string} [search] General order search, e.g. by mail, reference etc.
+         * @param {string} [next] next page
+         * @param {string} [previous] previous page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async ordersGetDiscountLines(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOrderDiscountLinesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.ordersGetDiscountLines(id, acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Update an existing discount lines for an existing orden
          * @summary Update Discount
          * @param {string} id Identifier of the resource
-         * @param {string} discountLinesId identifier
+         * @param {string} discountLinesId discount line id identifier
          * @param {UpdateOrderDiscountLinesRequest} updateOrderDiscountLinesRequest requested field for a discount lines
          * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
@@ -279,7 +432,7 @@ export const DiscountsApiFactory = function (configuration?: Configuration, base
          * Delete an existing discount lines for an existing orden
          * @summary Delete Discount
          * @param {string} id Identifier of the resource
-         * @param {string} discountLinesId identifier
+         * @param {string} discountLinesId discount line id identifier
          * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
@@ -289,10 +442,39 @@ export const DiscountsApiFactory = function (configuration?: Configuration, base
             return localVarFp.ordersDeleteDiscountLines(id, discountLinesId, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
+         * Get an existing discount lines for an existing orden
+         * @summary Get Discount
+         * @param {string} id Identifier of the resource
+         * @param {string} discountLinesId discount line id identifier
+         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersGetDiscountLine(id: string, discountLinesId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<DiscountLinesResponse> {
+            return localVarFp.ordersGetDiscountLine(id, discountLinesId, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get discount lines for an existing orden
+         * @summary Get a List of Discount
+         * @param {string} id Identifier of the resource
+         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {number} [limit] The numbers of items to return, the maximum value is 250
+         * @param {string} [search] General order search, e.g. by mail, reference etc.
+         * @param {string} [next] next page
+         * @param {string} [previous] previous page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersGetDiscountLines(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetOrderDiscountLinesResponse> {
+            return localVarFp.ordersGetDiscountLines(id, acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Update an existing discount lines for an existing orden
          * @summary Update Discount
          * @param {string} id Identifier of the resource
-         * @param {string} discountLinesId identifier
+         * @param {string} discountLinesId discount line id identifier
          * @param {UpdateOrderDiscountLinesRequest} updateOrderDiscountLinesRequest requested field for a discount lines
          * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
@@ -328,7 +510,7 @@ export interface DiscountsApiInterface {
      * Delete an existing discount lines for an existing orden
      * @summary Delete Discount
      * @param {string} id Identifier of the resource
-     * @param {string} discountLinesId identifier
+     * @param {string} discountLinesId discount line id identifier
      * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
@@ -338,10 +520,39 @@ export interface DiscountsApiInterface {
     ordersDeleteDiscountLines(id: string, discountLinesId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<DiscountLinesResponse>;
 
     /**
+     * Get an existing discount lines for an existing orden
+     * @summary Get Discount
+     * @param {string} id Identifier of the resource
+     * @param {string} discountLinesId discount line id identifier
+     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DiscountsApiInterface
+     */
+    ordersGetDiscountLine(id: string, discountLinesId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<DiscountLinesResponse>;
+
+    /**
+     * Get discount lines for an existing orden
+     * @summary Get a List of Discount
+     * @param {string} id Identifier of the resource
+     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {number} [limit] The numbers of items to return, the maximum value is 250
+     * @param {string} [search] General order search, e.g. by mail, reference etc.
+     * @param {string} [next] next page
+     * @param {string} [previous] previous page
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DiscountsApiInterface
+     */
+    ordersGetDiscountLines(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): AxiosPromise<GetOrderDiscountLinesResponse>;
+
+    /**
      * Update an existing discount lines for an existing orden
      * @summary Update Discount
      * @param {string} id Identifier of the resource
-     * @param {string} discountLinesId identifier
+     * @param {string} discountLinesId discount line id identifier
      * @param {UpdateOrderDiscountLinesRequest} updateOrderDiscountLinesRequest requested field for a discount lines
      * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
@@ -379,7 +590,7 @@ export class DiscountsApi extends BaseAPI implements DiscountsApiInterface {
      * Delete an existing discount lines for an existing orden
      * @summary Delete Discount
      * @param {string} id Identifier of the resource
-     * @param {string} discountLinesId identifier
+     * @param {string} discountLinesId discount line id identifier
      * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
@@ -391,10 +602,43 @@ export class DiscountsApi extends BaseAPI implements DiscountsApiInterface {
     }
 
     /**
+     * Get an existing discount lines for an existing orden
+     * @summary Get Discount
+     * @param {string} id Identifier of the resource
+     * @param {string} discountLinesId discount line id identifier
+     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DiscountsApi
+     */
+    public ordersGetDiscountLine(id: string, discountLinesId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+        return DiscountsApiFp(this.configuration).ordersGetDiscountLine(id, discountLinesId, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get discount lines for an existing orden
+     * @summary Get a List of Discount
+     * @param {string} id Identifier of the resource
+     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {number} [limit] The numbers of items to return, the maximum value is 250
+     * @param {string} [search] General order search, e.g. by mail, reference etc.
+     * @param {string} [next] next page
+     * @param {string} [previous] previous page
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DiscountsApi
+     */
+    public ordersGetDiscountLines(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig) {
+        return DiscountsApiFp(this.configuration).ordersGetDiscountLines(id, acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Update an existing discount lines for an existing orden
      * @summary Update Discount
      * @param {string} id Identifier of the resource
-     * @param {string} discountLinesId identifier
+     * @param {string} discountLinesId discount line id identifier
      * @param {UpdateOrderDiscountLinesRequest} updateOrderDiscountLinesRequest requested field for a discount lines
      * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
