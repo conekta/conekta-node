@@ -81,7 +81,7 @@ export interface OrderRequest {
      */
     'line_items': Array<Product>;
     /**
-     * 
+     * Metadata associated with the order
      * @type {{ [key: string]: any; }}
      * @memberof OrderRequest
      */

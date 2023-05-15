@@ -146,6 +146,7 @@ model/order-response-shipping-contact-all-of.ts
 model/order-response-shipping-contact.ts
 model/order-response.ts
 model/order-tax-request.ts
+model/order-update-request-customer-info.ts
 model/order-update-request.ts
 model/orders-response.ts
 model/page.ts

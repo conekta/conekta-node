@@ -27,10 +27,10 @@ import { CustomerShippingContacts } from './customer-shipping-contacts';
 import { OrderDiscountLinesRequest } from './order-discount-lines-request';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderRequestCustomerInfo } from './order-request-customer-info';
+import { OrderTaxRequest } from './order-tax-request';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderTaxRequest } from './order-tax-request';
+import { OrderUpdateRequestCustomerInfo } from './order-update-request-customer-info';
 // May contain unused imports in some cases
 // @ts-ignore
 import { Product } from './product';
@@ -64,10 +64,10 @@ export interface OrderUpdateRequest {
     'currency'?: string;
     /**
      * 
-     * @type {OrderRequestCustomerInfo}
+     * @type {OrderUpdateRequestCustomerInfo}
      * @memberof OrderUpdateRequest
      */
-    'customer_info'?: OrderRequestCustomerInfo;
+    'customer_info'?: OrderUpdateRequestCustomerInfo;
     /**
      * List of [discounts](https://developers.conekta.com/v2.1.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount.
      * @type {Array<OrderDiscountLinesRequest>}

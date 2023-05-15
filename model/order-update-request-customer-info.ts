@@ -21,10 +21,9 @@ import { CustomerInfo } from './customer-info';
 import { CustomerInfoJustCustomerId } from './customer-info-just-customer-id';
 
 /**
- * @type OrderRequestCustomerInfo
- * Customer information
+ * @type OrderUpdateRequestCustomerInfo
  * @export
  */
-export type OrderRequestCustomerInfo = CustomerInfo | CustomerInfoJustCustomerId;
+export type OrderUpdateRequestCustomerInfo = CustomerInfo | CustomerInfoJustCustomerId;
 
 

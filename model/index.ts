@@ -113,6 +113,7 @@ export * from './order-response-shipping-contact';
 export * from './order-response-shipping-contact-all-of';
 export * from './order-tax-request';
 export * from './order-update-request';
+export * from './order-update-request-customer-info';
 export * from './orders-response';
 export * from './page';
 export * from './pagination';
