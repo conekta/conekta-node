@@ -29,7 +29,8 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"firsttris.vscode-jest-runner"
+				"firsttris.vscode-jest-runner",
+				"GitHub.copilot"
 			]
 		}
 	}
