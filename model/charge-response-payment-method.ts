@@ -15,21 +15,18 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargeResponse } from './charge-response';
+import { PaymentMethodBankTransfer } from './payment-method-bank-transfer';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargeResponseChannel } from './charge-response-channel';
+import { PaymentMethodCard } from './payment-method-card';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargeResponsePaymentMethod } from './charge-response-payment-method';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ChargeResponseRefunds } from './charge-response-refunds';
+import { PaymentMethodCash } from './payment-method-cash';
 
 /**
- * @type ChargesDataResponse
+ * @type ChargeResponsePaymentMethod
  * @export
  */
-export type ChargesDataResponse = ChargeResponse;
+export type ChargeResponsePaymentMethod = { object: 'bank_transfer_payment' } & PaymentMethodBankTransfer | { object: 'card_payment' } & PaymentMethodCard | { object: 'cash_payment' } & PaymentMethodCash;
 
 

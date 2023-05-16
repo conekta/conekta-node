@@ -79,4 +79,20 @@ describe('Charges API', () => {
       expect((response.payment_method as PaymentMethodBankTransfer).bank).toEqual("STP");
     });
   });
+
+  describe('Get charges', () => {
+    it('should return a list of charges', async () => {
+      const response = (await client.getCharges("es", undefined, 20)).data;
+
+      expect(response).toBeDefined();
+      expect(response.object).toEqual("list");
+      expect(response.data).toBeDefined();
+      expect(response.data.length).toEqual(20);
+      expect(response.has_more).toBeTruthy();
+      expect(response.data[0].channel.id).toEqual("channel_2tqJMS7on7HBVqWKo");
+      expect((response.data[0].payment_method as PaymentMethodCash).reference).toEqual("93003547316416");
+      expect(response.data[0].refunds).toBeNull();
+      expect(response.data[0].reference_id).toBeNull();
+    });
+  });
 });

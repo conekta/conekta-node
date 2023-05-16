@@ -15,6 +15,7 @@
 
 
 export * from './api/antifraud-api';
+export * from './api/balances-api';
 export * from './api/charges-api';
 export * from './api/companies-api';
 export * from './api/customers-api';

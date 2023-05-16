@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargeOrderResponseChannel } from './charge-order-response-channel';
+import { ChargeResponseChannel } from './charge-response-channel';
 // May contain unused imports in some cases
 // @ts-ignore
 import { OrderResponseCharges } from './order-response-charges';
@@ -58,10 +58,10 @@ export interface OrderResponse {
     'amount_refunded'?: number;
     /**
      * 
-     * @type {ChargeOrderResponseChannel}
+     * @type {ChargeResponseChannel}
      * @memberof OrderResponse
      */
-    'channel'?: ChargeOrderResponseChannel;
+    'channel'?: ChargeResponseChannel;
     /**
      * 
      * @type {OrderResponseCharges}

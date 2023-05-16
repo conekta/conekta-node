@@ -1,7 +1,7 @@
 import { OrdersApi } from "../api";
 import { baseTest } from "./base-test";
 import { Configuration } from "../configuration";
-import { OrderRequest, OrderRequestCustomerInfo, CustomerInfoJustCustomerId, Product, ChargeRequest, PaymentMethodCash, CheckoutRequest } from "../model";
+import { OrderRequest, OrderRequestCustomerInfo, CustomerInfoJustCustomerId, Product, ChargeRequest, PaymentMethodCash, CheckoutRequest, PaymentMethodBankTransfer } from "../model";
 
 
 describe("Orders api", () => {
@@ -31,6 +31,7 @@ describe("Orders api", () => {
       }
 
     });
+
     it("cash", async () => {
 
       const order_requet = get_order_cash_request();
@@ -62,8 +63,134 @@ describe("Orders api", () => {
       expect(response.checkout.monthly_installments_enabled).toEqual(true);
       expect(response.checkout.monthly_installments_options).toEqual([3, 6, 12]);
     });
+
+    it("card", async () => {
+      const order_request: OrderRequest = get_order_card_request();
+
+      const response = (await client.createOrder(order_request)).data;
+
+      expect(response).toBeDefined();
+      expect(response.checkout).toBeDefined();
+      expect(response.checkout.id).toBeDefined();
+      expect(response.id).toEqual("ord_saved_card_2tUgccjdQJ7SdBrXb");
+      expect(response.checkout.type).toEqual("Integration");
+      expect(response.checkout.monthly_installments_enabled).toEqual(false);
+      expect(response.checkout.monthly_installments_options).toEqual([]);
+      expect(response.checkout.on_demand_enabled).toBeTruthy();
+    });
+
+    it('checkout', async () => {
+
+      const order_request: OrderRequest = get_order_checkout_request();
+
+      const response = (await client.createOrder(order_request)).data;
+
+      expect(response).toBeDefined();
+      expect(response.customer_info.customer_id).toEqual("cus_2o8jK3TDtejmz1sYc");
+      expect(response.channel.checkout_request_type).toEqual("Integration");
+      expect(response.checkout.type).toEqual("Integration");
+      expect(response.checkout.expires_at).toEqual(order_request.checkout.expires_at);
+      expect(response.amount).toEqual(order_request.line_items[0].unit_price);
+      expect(Object.keys(response.metadata).length).toBeGreaterThan(0);
+      expect(response.checkout).toBeDefined();
+      expect(response.checkout.id).toBeDefined();
+      expect(response.checkout.monthly_installments_enabled).toBeFalsy();
+    });
+
+  });
+
+  describe("Get Order", () => {
+    it("should return a bank payment method transfer", async () => {
+
+      const id = "ord_2tUyGSk9TNWUcyvjn";
+
+      var response = (await client.getOrderById(id, "es")).data;
+
+      expect(response).toBeDefined();
+      expect(response.charges.data.length).toBeGreaterThan(0);
+      expect(response.charges.data[0].payment_method).toBeDefined();
+      expect(response.id).toEqual(id);
+      expect(response.charges.data[0].payment_method.object).toEqual("bank_transfer_payment");
+      expect((response.charges.data[0].payment_method as PaymentMethodBankTransfer).clabe).toEqual("646180111805035430");
+      expect((response.charges.data[0].payment_method as PaymentMethodBankTransfer).type).toEqual("spei");
+    });
+    it("not should return an order", async () => {
+
+      const id = "ord_2tUhuyzqLi6UJE9D12";
+
+      try {
+        (await client.getOrderById(id, "en"));
+        fail("should fail");
+      } catch (e) {
+        expect(e.response.status).toBe(404);
+        expect(e.response.data.type).toEqual("resource_not_found_error");
+      }
+    });
+  });
+
+  describe("Get Orders", () => {
+    it("should return a list of orders", async () => {
+      const limit = 20;
+
+      const response = (await client.getOrders("en", null, limit)).data;
+
+      expect(response).toBeDefined();
+      expect(response.has_more).toBeTruthy();
+      expect(response.data.length).toBeGreaterThan(0);
+      expect(response.next_page_url).toStrictEqual("https://api-core.stg.conekta.io/orders?next=ord_2tNDyQbJacvUZiyfp");
+    });
   });
 });
+
+function get_order_checkout_request () {
+  const products: Array<Product> = [
+    {
+      name: "Box of Cohiba S1s",
+      quantity: 1,
+      unit_price: 35000
+    }
+  ];
+  const checkout: CheckoutRequest = {
+    expires_at: Math.round((new Date().getTime() + 259200000) / 1000) - 2208988800,
+    allowed_payment_methods: ["cash", "card", "bank_transfer"],
+  };
+  const order_request: OrderRequest = {
+    currency: "MXN",
+    line_items: products,
+    checkout: checkout,
+    metadata: { test: "true" },
+    customer_info: {
+      customer_id: "cus_2o8jK3TDtejmz1sYc"
+    }
+  };
+  return order_request;
+}
+
+function get_order_card_request () {
+  const products: Array<Product> = [
+    {
+      name: "toshiba",
+      quantity: 1,
+      unit_price: 1555
+    }
+  ];
+  const checkout: CheckoutRequest = {
+    expires_at: Math.round((new Date().getTime() + 259200000) / 1000) - 2208988800,
+    allowed_payment_methods: ["cash", "card", "bank_transfer"],
+    on_demand_enabled: true
+  };
+  const customer_info: CustomerInfoJustCustomerId = {
+    customer_id: "cus_save_card_2o8jK3TDtejmz1sYd"
+  };
+  const order_request: OrderRequest = {
+    currency: "MXN",
+    customer_info: customer_info,
+    line_items: products,
+    checkout: checkout,
+    metadata: { test: "true" }
+  };
+  return order_request;
+}
 
 function get_order_msi_request () {
   const customer_info: CustomerInfoJustCustomerId = {

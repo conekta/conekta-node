@@ -18,18 +18,18 @@
 import { ChargeResponse } from './charge-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargeResponseChannel } from './charge-response-channel';
+import { GetChargesResponseAllOf } from './get-charges-response-all-of';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargeResponsePaymentMethod } from './charge-response-payment-method';
+import { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargeResponseRefunds } from './charge-response-refunds';
+import { Pagination } from './pagination';
 
 /**
- * @type ChargesDataResponse
+ * @type GetChargesResponse
  * @export
  */
-export type ChargesDataResponse = ChargeResponse;
+export type GetChargesResponse = GetChargesResponseAllOf & Page & Pagination;
 
 

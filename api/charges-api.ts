@@ -26,6 +26,8 @@ import { ChargeOrderResponse } from '../model';
 // @ts-ignore
 import { ChargeRequest } from '../model';
 // @ts-ignore
+import { GetChargesResponse } from '../model';
+// @ts-ignore
 import { ModelError } from '../model';
 /**
  * ChargesApi - axios parameter creator
@@ -33,6 +35,70 @@ import { ModelError } from '../model';
  */
 export const ChargesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @summary Get A List of Charges
+         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {number} [limit] The numbers of items to return, the maximum value is 250
+         * @param {string} [search] General order search, e.g. by mail, reference etc.
+         * @param {string} [next] next page
+         * @param {string} [previous] previous page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCharges: async (acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/charges`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (search !== undefined) {
+                localVarQueryParameter['search'] = search;
+            }
+
+            if (next !== undefined) {
+                localVarQueryParameter['next'] = next;
+            }
+
+            if (previous !== undefined) {
+                localVarQueryParameter['previous'] = previous;
+            }
+
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * Create charge for an existing orden
          * @summary Create charge
@@ -98,6 +164,22 @@ export const ChargesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ChargesApiAxiosParamCreator(configuration)
     return {
         /**
+         * 
+         * @summary Get A List of Charges
+         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {number} [limit] The numbers of items to return, the maximum value is 250
+         * @param {string} [search] General order search, e.g. by mail, reference etc.
+         * @param {string} [next] next page
+         * @param {string} [previous] previous page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getCharges(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetChargesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCharges(acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Create charge for an existing orden
          * @summary Create charge
          * @param {string} id Identifier of the resource
@@ -122,6 +204,21 @@ export const ChargesApiFactory = function (configuration?: Configuration, basePa
     const localVarFp = ChargesApiFp(configuration)
     return {
         /**
+         * 
+         * @summary Get A List of Charges
+         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {number} [limit] The numbers of items to return, the maximum value is 250
+         * @param {string} [search] General order search, e.g. by mail, reference etc.
+         * @param {string} [next] next page
+         * @param {string} [previous] previous page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCharges(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetChargesResponse> {
+            return localVarFp.getCharges(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Create charge for an existing orden
          * @summary Create charge
          * @param {string} id Identifier of the resource
@@ -144,6 +241,21 @@ export const ChargesApiFactory = function (configuration?: Configuration, basePa
  */
 export interface ChargesApiInterface {
     /**
+     * 
+     * @summary Get A List of Charges
+     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {number} [limit] The numbers of items to return, the maximum value is 250
+     * @param {string} [search] General order search, e.g. by mail, reference etc.
+     * @param {string} [next] next page
+     * @param {string} [previous] previous page
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChargesApiInterface
+     */
+    getCharges(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): AxiosPromise<GetChargesResponse>;
+
+    /**
      * Create charge for an existing orden
      * @summary Create charge
      * @param {string} id Identifier of the resource
@@ -165,6 +277,23 @@ export interface ChargesApiInterface {
  * @extends {BaseAPI}
  */
 export class ChargesApi extends BaseAPI implements ChargesApiInterface {
+    /**
+     * 
+     * @summary Get A List of Charges
+     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {number} [limit] The numbers of items to return, the maximum value is 250
+     * @param {string} [search] General order search, e.g. by mail, reference etc.
+     * @param {string} [next] next page
+     * @param {string} [previous] previous page
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChargesApi
+     */
+    public getCharges(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig) {
+        return ChargesApiFp(this.configuration).getCharges(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Create charge for an existing orden
      * @summary Create charge

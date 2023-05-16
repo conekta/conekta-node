@@ -17,31 +17,31 @@
 /**
  * 
  * @export
- * @interface ChargeOrderResponseChannel
+ * @interface ChargeResponseChannel
  */
-export interface ChargeOrderResponseChannel {
+export interface ChargeResponseChannel {
     /**
      * 
      * @type {string}
-     * @memberof ChargeOrderResponseChannel
+     * @memberof ChargeResponseChannel
      */
     'segment'?: string;
     /**
      * 
      * @type {string}
-     * @memberof ChargeOrderResponseChannel
+     * @memberof ChargeResponseChannel
      */
     'checkout_request_id'?: string;
     /**
      * 
      * @type {string}
-     * @memberof ChargeOrderResponseChannel
+     * @memberof ChargeResponseChannel
      */
     'checkout_request_type'?: string;
     /**
      * 
      * @type {string}
-     * @memberof ChargeOrderResponseChannel
+     * @memberof ChargeResponseChannel
      */
     'id'?: string;
 }

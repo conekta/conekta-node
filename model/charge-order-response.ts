@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargeOrderResponseChannel } from './charge-order-response-channel';
+import { ChargeOrderResponsePaymentMethod } from './charge-order-response-payment-method';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargeOrderResponsePaymentMethod } from './charge-order-response-payment-method';
+import { ChargeResponseChannel } from './charge-response-channel';
 
 /**
  * 
@@ -34,10 +34,10 @@ export interface ChargeOrderResponse {
     'amount'?: number;
     /**
      * 
-     * @type {ChargeOrderResponseChannel}
+     * @type {ChargeResponseChannel}
      * @memberof ChargeOrderResponse
      */
-    'channel'?: ChargeOrderResponseChannel;
+    'channel'?: ChargeResponseChannel;
     /**
      * 
      * @type {number}
@@ -129,7 +129,7 @@ export interface ChargeOrderResponse {
      */
     'payment_method'?: ChargeOrderResponsePaymentMethod;
     /**
-     * 
+     * Reference ID of the charge
      * @type {string}
      * @memberof ChargeOrderResponse
      */
