@@ -13,24 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { ApiKeyResponse } from './api-key-response';
 
 /**
- * pagination metadata
+ * 
  * @export
- * @interface Pagination
+ * @interface GetApiKeysResponseAllOf
  */
-export interface Pagination {
+export interface GetApiKeysResponseAllOf {
     /**
-     * Indicates if there are more pages to be requested
-     * @type {boolean}
-     * @memberof Pagination
+     * 
+     * @type {Array<ApiKeyResponse>}
+     * @memberof GetApiKeysResponseAllOf
      */
-    'has_more': boolean;
-    /**
-     * Object type, in this case is list
-     * @type {string}
-     * @memberof Pagination
-     */
-    'object': string;
+    'data'?: Array<ApiKeyResponse>;
 }
 

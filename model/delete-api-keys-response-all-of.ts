@@ -15,22 +15,16 @@
 
 
 /**
- * pagination metadata
+ * 
  * @export
- * @interface Pagination
+ * @interface DeleteApiKeysResponseAllOf
  */
-export interface Pagination {
+export interface DeleteApiKeysResponseAllOf {
     /**
-     * Indicates if there are more pages to be requested
+     * 
      * @type {boolean}
-     * @memberof Pagination
+     * @memberof DeleteApiKeysResponseAllOf
      */
-    'has_more': boolean;
-    /**
-     * Object type, in this case is list
-     * @type {string}
-     * @memberof Pagination
-     */
-    'object': string;
+    'deleted'?: boolean;
 }
 

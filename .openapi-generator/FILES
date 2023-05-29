@@ -7,6 +7,7 @@ LICENSE
 VERSION
 api.ts
 api/antifraud-api.ts
+api/api-keys-api.ts
 api/balances-api.ts
 api/charges-api.ts
 api/companies-api.ts
@@ -33,6 +34,11 @@ common.ts
 conekta.png
 configuration.ts
 index.ts
+model/api-key-create-response-all-of.ts
+model/api-key-create-response.ts
+model/api-key-request.ts
+model/api-key-response.ts
+model/api-key-update-request.ts
 model/balance-common-field.ts
 model/balance-response.ts
 model/blacklist-rule-response.ts
@@ -97,6 +103,8 @@ model/customer-update-shipping-contacts.ts
 model/customer.ts
 model/customers-response-all-of.ts
 model/customers-response.ts
+model/delete-api-keys-response-all-of.ts
+model/delete-api-keys-response.ts
 model/deleted-blacklist-rule-response.ts
 model/deleted-whitelist-rule-response.ts
 model/details-error.ts
@@ -107,6 +115,9 @@ model/discount-lines-response.ts
 model/email-checkout-request.ts
 model/error-all-of.ts
 model/event-response.ts
+model/events-resend-response.ts
+model/get-api-keys-response-all-of.ts
+model/get-api-keys-response.ts
 model/get-charges-response-all-of.ts
 model/get-charges-response.ts
 model/get-companies-response-all-of.ts

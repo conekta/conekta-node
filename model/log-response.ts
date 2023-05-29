@@ -70,10 +70,10 @@ export interface LogResponse {
     'oauth_token_id'?: string | null;
     /**
      * 
-     * @type {{ [key: string]: string; }}
+     * @type {{ [key: string]: any; }}
      * @memberof LogResponse
      */
-    'query_string'?: { [key: string]: string; };
+    'query_string'?: { [key: string]: any; };
     /**
      * 
      * @type {string}

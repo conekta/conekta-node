@@ -238,6 +238,49 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
+         * Send a webhook.ping event
+         * @summary Test Webhook
+         * @param {string} id Identifier of the resource
+         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        testWebhook: async (id: string, acceptLanguage?: 'es' | 'en', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('testWebhook', 'id', id)
+            const localVarPath = `/webhooks/{id}/test`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * updates an existing webhook
          * @summary Update Webhook
          * @param {string} id Identifier of the resource
@@ -355,6 +398,18 @@ export const WebhooksApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Send a webhook.ping event
+         * @summary Test Webhook
+         * @param {string} id Identifier of the resource
+         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async testWebhook(id: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.testWebhook(id, acceptLanguage, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * updates an existing webhook
          * @summary Update Webhook
          * @param {string} id Identifier of the resource
@@ -428,6 +483,17 @@ export const WebhooksApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.getWebhooks(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
         },
         /**
+         * Send a webhook.ping event
+         * @summary Test Webhook
+         * @param {string} id Identifier of the resource
+         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        testWebhook(id: string, acceptLanguage?: 'es' | 'en', options?: any): AxiosPromise<WebhookResponse> {
+            return localVarFp.testWebhook(id, acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
          * updates an existing webhook
          * @summary Update Webhook
          * @param {string} id Identifier of the resource
@@ -497,6 +563,17 @@ export interface WebhooksApiInterface {
      * @memberof WebhooksApiInterface
      */
     getWebhooks(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): AxiosPromise<GetWebhooksResponse>;
+
+    /**
+     * Send a webhook.ping event
+     * @summary Test Webhook
+     * @param {string} id Identifier of the resource
+     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhooksApiInterface
+     */
+    testWebhook(id: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): AxiosPromise<WebhookResponse>;
 
     /**
      * updates an existing webhook
@@ -575,6 +652,19 @@ export class WebhooksApi extends BaseAPI implements WebhooksApiInterface {
      */
     public getWebhooks(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig) {
         return WebhooksApiFp(this.configuration).getWebhooks(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Send a webhook.ping event
+     * @summary Test Webhook
+     * @param {string} id Identifier of the resource
+     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhooksApi
+     */
+    public testWebhook(id: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig) {
+        return WebhooksApiFp(this.configuration).testWebhook(id, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -15,22 +15,16 @@
 
 
 /**
- * pagination metadata
+ * 
  * @export
- * @interface Pagination
+ * @interface ApiKeyCreateResponseAllOf
  */
-export interface Pagination {
+export interface ApiKeyCreateResponseAllOf {
     /**
-     * Indicates if there are more pages to be requested
-     * @type {boolean}
-     * @memberof Pagination
-     */
-    'has_more': boolean;
-    /**
-     * Object type, in this case is list
+     * It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key
      * @type {string}
-     * @memberof Pagination
+     * @memberof ApiKeyCreateResponseAllOf
      */
-    'object': string;
+    'authentication_token'?: string;
 }
 

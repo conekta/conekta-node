@@ -15,22 +15,22 @@
 
 
 /**
- * pagination metadata
+ * 
  * @export
- * @interface Pagination
+ * @interface ApiKeyUpdateRequest
  */
-export interface Pagination {
+export interface ApiKeyUpdateRequest {
     /**
-     * Indicates if there are more pages to be requested
+     * Indicates if the webhook key is active
      * @type {boolean}
-     * @memberof Pagination
+     * @memberof ApiKeyUpdateRequest
      */
-    'has_more': boolean;
+    'active'?: boolean;
     /**
-     * Object type, in this case is list
+     * Detail of the use that will be given to the api key
      * @type {string}
-     * @memberof Pagination
+     * @memberof ApiKeyUpdateRequest
      */
-    'object': string;
+    'description'?: string;
 }
 

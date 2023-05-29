@@ -24,6 +24,8 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { EventResponse } from '../model';
 // @ts-ignore
+import { EventsResendResponse } from '../model';
+// @ts-ignore
 import { GetEventsResponse } from '../model';
 // @ts-ignore
 import { ModelError } from '../model';
@@ -145,6 +147,53 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Try to send an event
+         * @summary Resend Event
+         * @param {string} eventId event identifier
+         * @param {string} webhookLogId webhook log identifier
+         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resendEvent: async (eventId: string, webhookLogId: string, acceptLanguage?: 'es' | 'en', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'eventId' is not null or undefined
+            assertParamExists('resendEvent', 'eventId', eventId)
+            // verify required parameter 'webhookLogId' is not null or undefined
+            assertParamExists('resendEvent', 'webhookLogId', webhookLogId)
+            const localVarPath = `/events/{event_id}/webhook_logs/{webhook_log_id}/resend`
+                .replace(`{${"event_id"}}`, encodeURIComponent(String(eventId)))
+                .replace(`{${"webhook_log_id"}}`, encodeURIComponent(String(webhookLogId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -184,6 +233,19 @@ export const EventsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getEvents(acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * Try to send an event
+         * @summary Resend Event
+         * @param {string} eventId event identifier
+         * @param {string} webhookLogId webhook log identifier
+         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async resendEvent(eventId: string, webhookLogId: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EventsResendResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.resendEvent(eventId, webhookLogId, acceptLanguage, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -221,6 +283,18 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
         getEvents(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetEventsResponse> {
             return localVarFp.getEvents(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
         },
+        /**
+         * Try to send an event
+         * @summary Resend Event
+         * @param {string} eventId event identifier
+         * @param {string} webhookLogId webhook log identifier
+         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resendEvent(eventId: string, webhookLogId: string, acceptLanguage?: 'es' | 'en', options?: any): AxiosPromise<EventsResendResponse> {
+            return localVarFp.resendEvent(eventId, webhookLogId, acceptLanguage, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -256,6 +330,18 @@ export interface EventsApiInterface {
      * @memberof EventsApiInterface
      */
     getEvents(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): AxiosPromise<GetEventsResponse>;
+
+    /**
+     * Try to send an event
+     * @summary Resend Event
+     * @param {string} eventId event identifier
+     * @param {string} webhookLogId webhook log identifier
+     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApiInterface
+     */
+    resendEvent(eventId: string, webhookLogId: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): AxiosPromise<EventsResendResponse>;
 
 }
 
@@ -295,5 +381,19 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
      */
     public getEvents(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig) {
         return EventsApiFp(this.configuration).getEvents(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Try to send an event
+     * @summary Resend Event
+     * @param {string} eventId event identifier
+     * @param {string} webhookLogId webhook log identifier
+     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public resendEvent(eventId: string, webhookLogId: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).resendEvent(eventId, webhookLogId, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }

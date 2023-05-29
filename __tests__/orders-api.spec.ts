@@ -1,7 +1,7 @@
 import { OrdersApi } from "../api";
 import { baseTest } from "./base-test";
 import { Configuration } from "../configuration";
-import { OrderRequest, OrderRequestCustomerInfo, CustomerInfoJustCustomerId, Product, ChargeRequest, PaymentMethodCash, CheckoutRequest, PaymentMethodBankTransfer } from "../model";
+import { OrderRequest, CustomerInfoJustCustomerId, Product, ChargeRequest, PaymentMethodCash, CheckoutRequest, PaymentMethodBankTransfer, PaymentMethodCard, OrderRefundRequest, OrderCaptureRequest, OrderUpdateRequest } from "../model";
 
 
 describe("Orders api", () => {
@@ -138,9 +138,144 @@ describe("Orders api", () => {
       expect(response.has_more).toBeTruthy();
       expect(response.data.length).toBeGreaterThan(0);
       expect(response.next_page_url).toStrictEqual("https://api-core.stg.conekta.io/orders?next=ord_2tNDyQbJacvUZiyfp");
+      expect(response.previous_page_url).toBeFalsy();
+      expect(response.data.length).toEqual(limit);
+      expect(response.object).toEqual("list");
+      expect((response.data[0].charges.data[0].payment_method as PaymentMethodCard).object).toEqual("card_payment");
+      expect((response.data[9].charges.data[0].payment_method as PaymentMethodCash).object).toEqual("cash_payment");
+    });
+    it("should return a list of orders with next", async () => {
+
+      const limit = 19;
+
+      const response = (await client.getOrders("en", null, limit, null, "ord_2tNDyQbJacvUZiyfp")).data;
+
+      expect(response).toBeDefined();
+      expect(response.has_more).toBeTruthy();
+      expect(response.next_page_url).toEqual("https://api-core.stg.conekta.io/orders?limit=19&next=ord_2tKZmA749BLsMRgBg");
+      expect(response.previous_page_url).toEqual("https://api-core.stg.conekta.io/orders?limit=19&previous=ord_2tNDwzeMnVSU9kKHR");
+      expect(response.object).toEqual("list");
+      expect(response.data.length).toEqual(limit);
+      expect(response.data[0].customer_info.customer_id).toEqual("cus_2tKcHxhTz7xU5SymF");
+      expect(response.data[0].shipping_contact.address.country).toEqual("mx");
+    });
+    it("should return a list of orders with previous", async () => {
+      const limit = 21;
+
+      const response = (await client.getOrders("en", null, limit, null, null, "ord_2tHuXwkFTkjAbMGjU")).data;
+
+      expect(response).toBeDefined();
+      expect(response.has_more).toBeTruthy();
+      expect(response.next_page_url).toEqual("https://api-core.stg.conekta.io/orders?limit=21&next=ord_2tKZmA749BLsMRgBg");
+      expect(response.previous_page_url).toEqual("https://api-core.stg.conekta.io/orders?limit=21&previous=ord_2tNDzhA4Akmzj11AS");
+      expect(response.object).toEqual("list");
+      expect(response.data.length).toEqual(limit);
+      expect(response.data[0].customer_info.customer_id).toEqual("cus_2tKcHxhTz7xU5SymF");
+      expect(response.data[0].shipping_contact.address.country).toEqual("mx");
+    });
+
+    it("should return a list of orders with search", async () => {
+      const limit = 22;
+
+      const response = (await client.getOrders("en", null, limit, "ord_2tNDzhA4Akmzj11AS")).data;
+
+      expect(response).toBeDefined();
+      expect(response.has_more).toBeFalsy();
+      expect(response.next_page_url).toBeFalsy();
+      expect(response.previous_page_url).toBeFalsy();
+      expect(response.object).toEqual("list");
+      expect(response.data.length).toEqual(1);
+      expect(response.data[0].customer_info.customer_id).toEqual("cus_2tKcHxhTz7xU5SymF");
+      expect(response.data[0].id).toEqual("ord_2tNDzhA4Akmzj11AS");
+      expect(response.data[0].shipping_contact.address.postal_code).toEqual("06100");
+    });
+  });
+
+  describe("refund order", () => {
+    it("should refund an order", async () => {
+
+      const id = "ord_2tV52JvSom2w3E8bX";
+      const order_refund_request: OrderRefundRequest = {
+        amount: 15000,
+        reason: "requested_by_client"
+      }
+      const response = (await client.orderRefund(id, order_refund_request)).data;
+
+      expect(response).toBeDefined();
+      expect(response.payment_status).toEqual("partially_refunded");
+      expect(response.charges.data[0].status).toEqual("partially_refunded");
+      expect(response.amount_refunded).toEqual(order_refund_request.amount);
+      expect(response.is_refundable).toBeTruthy();
+      expect(response.charges.data[0].order_id).toEqual(id);
+      expect(response.charges.data[0].refunds.data.length).toEqual(1);
+      expect(-response.charges.data[0].refunds.data[0].amount).toEqual(order_refund_request.amount);
+      expect(response.charges.data[0].refunds.data[0].object).toEqual("refund");
+    });
+  });
+  describe("Order capture", () => {
+    it("should capture an order", async () => {
+
+      const response = (await client.ordersCreateCapture("ord_2tVKoTd79XK1GqJme", "en")).data;
+
+      expect(response).toBeDefined();
+      expect(response.payment_status).toEqual("paid");
+      expect(response.amount).toEqual(40000);
+    });
+    it("should capture an order with body", async () => {
+      const body: OrderCaptureRequest = {
+        amount: 40000,
+      }
+
+      const response = (await client.ordersCreateCapture("ord_2tVKoTd79XK1GqJmm", "en", null, body)).data;
+
+      expect(response).toBeDefined();
+      expect(response.payment_status).toEqual("paid");
+      expect(response.amount).toEqual(40000);
+    });
+  });
+
+  describe("Order update", () => {
+    it("should update an order", async () => {
+      const id = "ord_2tVPCGRXnMXKdvcsj";
+      const products : Array<Product> = [
+        {
+          name:  "Pago Mensualidad enero",
+          quantity: 2,
+          unit_price: 41000,
+          description: "Pago Mensualidad enero",
+          tags: ["Pago", "Pago mensualidad"]
+        }
+      ];
+      const request : OrderUpdateRequest = {
+        line_items: products,
+      }
+
+      const response = (await client.updateOrder(id, request)).data;
+
+      expect(response).toBeDefined();
+      expect(response.line_items.data.length).toEqual(1);
+      expect(response.line_items.data[0].unit_price).toEqual(request.line_items[0].unit_price);
+      expect(response.id).toEqual(id);
+      expect(response.line_items.data[0].tags).toEqual(request.line_items[0].tags);
+      expect(response.created_at).not.toEqual(response.updated_at);
+    });
+  });
+
+  describe("Order cancel", () => {
+    it("should cancel an order", async () => {
+      const id = "ord_2tqaGQYZyvBsMKEgs";
+
+      const response = (await client.cancelOrder(id)).data;
+
+      expect(response).toBeDefined();
+      expect(response.id).toEqual(id);
+      expect(response.payment_status).toEqual("canceled");
+      expect(response.charges.data[0].status).toEqual("canceled");
     });
   });
 });
+
+
 
 function get_order_checkout_request () {
   const products: Array<Product> = [

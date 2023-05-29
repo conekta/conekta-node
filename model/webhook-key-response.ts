@@ -21,6 +21,12 @@
  */
 export interface WebhookKeyResponse {
     /**
+     * Unique identifier of the webhook key
+     * @type {string}
+     * @memberof WebhookKeyResponse
+     */
+    'id'?: string;
+    /**
      * Indicates if the webhook key is active
      * @type {boolean}
      * @memberof WebhookKeyResponse
@@ -39,11 +45,11 @@ export interface WebhookKeyResponse {
      */
     'deactivated_at'?: number | null;
     /**
-     * Unique identifier of the webhook key
+     * Public key to be used in the webhook
      * @type {string}
      * @memberof WebhookKeyResponse
      */
-    'id'?: string;
+    'public_key'?: string;
     /**
      * Indicates if the webhook key is in live mode
      * @type {boolean}
