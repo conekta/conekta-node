@@ -32,7 +32,3 @@ jobs:
         with:
           coverageLocations: |
             ${{github.workspace}}/coverage*.lcov:lcov
-      - name: remove containers
-        if: always()
-        run: docker-compose -f docker-compose.yml -p ${{ github.run_id }} down -v
-      
