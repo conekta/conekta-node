@@ -44,5 +44,11 @@ export interface ChargeRequestPaymentMethod {
      * @memberof ChargeRequestPaymentMethod
      */
     'payment_source_id'?: string;
+    /**
+     * Optional id sent to indicate the bank contract for recurrent card charges.
+     * @type {string}
+     * @memberof ChargeRequestPaymentMethod
+     */
+    'contract_id'?: string;
 }
 

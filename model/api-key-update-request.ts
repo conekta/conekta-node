@@ -27,7 +27,7 @@ export interface ApiKeyUpdateRequest {
      */
     'active'?: boolean;
     /**
-     * Detail of the use that will be given to the api key
+     * A name or brief explanation of what this api key is used for
      * @type {string}
      * @memberof ApiKeyUpdateRequest
      */

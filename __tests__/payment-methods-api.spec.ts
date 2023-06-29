@@ -18,7 +18,7 @@ describe("PaymentMethodsApi", () => {
   describe("create customer payment method", () => {
     it("should create customer payment method", async () => {
 
-      const customer_id = "cus_2tYENskzTjjgkGQLt";
+      const customer_id = "cus_2tXyF9BwPG14UMkkg";
       const request: PaymentMethodCashRequest = {
         type: "oxxo_recurrent",
       };

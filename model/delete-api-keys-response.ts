@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ApiKeyResponse } from './api-key-response';
+import { ApiKeyResponseOnDelete } from './api-key-response-on-delete';
 // May contain unused imports in some cases
 // @ts-ignore
 import { DeleteApiKeysResponseAllOf } from './delete-api-keys-response-all-of';
@@ -24,6 +24,6 @@ import { DeleteApiKeysResponseAllOf } from './delete-api-keys-response-all-of';
  * @type DeleteApiKeysResponse
  * @export
  */
-export type DeleteApiKeysResponse = ApiKeyResponse & DeleteApiKeysResponseAllOf;
+export type DeleteApiKeysResponse = ApiKeyResponseOnDelete & DeleteApiKeysResponseAllOf;
 
 

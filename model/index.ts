@@ -2,6 +2,7 @@ export * from './api-key-create-response';
 export * from './api-key-create-response-all-of';
 export * from './api-key-request';
 export * from './api-key-response';
+export * from './api-key-response-on-delete';
 export * from './api-key-update-request';
 export * from './balance-common-field';
 export * from './balance-response';

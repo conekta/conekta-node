@@ -37,6 +37,7 @@ index.ts
 model/api-key-create-response-all-of.ts
 model/api-key-create-response.ts
 model/api-key-request.ts
+model/api-key-response-on-delete.ts
 model/api-key-response.ts
 model/api-key-update-request.ts
 model/balance-common-field.ts

@@ -99,6 +99,12 @@ export interface OrderRequest {
      */
     'pre_authorize'?: boolean;
     /**
+     * Indicates the processing mode for the order, either ecommerce, recurrent or validation.
+     * @type {string}
+     * @memberof OrderRequest
+     */
+    'processing_mode'?: string;
+    /**
      * 
      * @type {CustomerShippingContacts}
      * @memberof OrderRequest

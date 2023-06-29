@@ -17,73 +17,61 @@
 /**
  * api keys model
  * @export
- * @interface ApiKeyResponse
+ * @interface ApiKeyResponseOnDelete
  */
-export interface ApiKeyResponse {
+export interface ApiKeyResponseOnDelete {
     /**
      * Indicates if the api key is active
      * @type {boolean}
-     * @memberof ApiKeyResponse
+     * @memberof ApiKeyResponseOnDelete
      */
     'active'?: boolean;
     /**
      * Unix timestamp in seconds of when the api key was created
      * @type {number}
-     * @memberof ApiKeyResponse
+     * @memberof ApiKeyResponseOnDelete
      */
     'created_at'?: number;
     /**
-     * Unix timestamp in seconds of when the api key was last updated
-     * @type {number}
-     * @memberof ApiKeyResponse
-     */
-    'updated_at'?: number;
-    /**
-     * Unix timestamp in seconds of when the api key was deleted
-     * @type {number}
-     * @memberof ApiKeyResponse
-     */
-    'deactivated_at'?: number | null;
-    /**
      * A name or brief explanation of what this api key is used for
      * @type {string}
-     * @memberof ApiKeyResponse
+     * @memberof ApiKeyResponseOnDelete
      */
     'description'?: string;
     /**
-     * Unique identifier of the api key
-     * @type {string}
-     * @memberof ApiKeyResponse
-     */
-    'id'?: string;
-    /**
      * Indicates if the api key is in production
      * @type {boolean}
-     * @memberof ApiKeyResponse
+     * @memberof ApiKeyResponseOnDelete
      */
     'livemode'?: boolean;
     /**
-     * Indicates if the api key was deleted
-     * @type {boolean}
-     * @memberof ApiKeyResponse
-     */
-    'deleted'?: boolean;
-    /**
-     * Object name, value is \'api_key\'
-     * @type {string}
-     * @memberof ApiKeyResponse
-     */
-    'object'?: string;
-    /**
      * The first few characters of the authentication_token
      * @type {string}
-     * @memberof ApiKeyResponse
+     * @memberof ApiKeyResponseOnDelete
      */
     'prefix'?: string;
     /**
+     * Unique identifier of the api key
+     * @type {string}
+     * @memberof ApiKeyResponseOnDelete
+     */
+    'id'?: string;
+    /**
+     * Object name, value is \'api_key\'
+     * @type {string}
+     * @memberof ApiKeyResponseOnDelete
+     */
+    'object'?: string;
+    /**
+     * Indicates if the api key was deleted
+     * @type {boolean}
+     * @memberof ApiKeyResponseOnDelete
+     */
+    'deleted'?: boolean;
+    /**
      * Indicates if the api key is private or public
      * @type {string}
-     * @memberof ApiKeyResponse
+     * @memberof ApiKeyResponseOnDelete
      */
     'role'?: string;
 }

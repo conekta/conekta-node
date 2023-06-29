@@ -39,6 +39,12 @@ export interface ChargeDataPaymentMethodCardResponse {
      */
     'brand'?: string;
     /**
+     * Id sent for recurrent charges.
+     * @type {string}
+     * @memberof ChargeDataPaymentMethodCardResponse
+     */
+    'contract_id'?: string;
+    /**
      * 
      * @type {string}
      * @memberof ChargeDataPaymentMethodCardResponse

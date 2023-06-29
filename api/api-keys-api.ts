@@ -188,13 +188,13 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
          * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
-         * @param {string} [search] General order search, e.g. by mail, reference etc.
          * @param {string} [next] next page
          * @param {string} [previous] previous page
+         * @param {string} [search] General search, e.g. by id, description, prefix
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getApiKeys: async (acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getApiKeys: async (acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api_keys`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -215,16 +215,16 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['limit'] = limit;
             }
 
-            if (search !== undefined) {
-                localVarQueryParameter['search'] = search;
-            }
-
             if (next !== undefined) {
                 localVarQueryParameter['next'] = next;
             }
 
             if (previous !== undefined) {
                 localVarQueryParameter['previous'] = previous;
+            }
+
+            if (search !== undefined) {
+                localVarQueryParameter['search'] = search;
             }
 
             if (acceptLanguage != null) {
@@ -347,14 +347,14 @@ export const ApiKeysApiFp = function(configuration?: Configuration) {
          * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
-         * @param {string} [search] General order search, e.g. by mail, reference etc.
          * @param {string} [next] next page
          * @param {string} [previous] previous page
+         * @param {string} [search] General search, e.g. by id, description, prefix
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getApiKeys(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetApiKeysResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getApiKeys(acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
+        async getApiKeys(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetApiKeysResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getApiKeys(acceptLanguage, xChildCompanyId, limit, next, previous, search, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -421,14 +421,14 @@ export const ApiKeysApiFactory = function (configuration?: Configuration, basePa
          * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
-         * @param {string} [search] General order search, e.g. by mail, reference etc.
          * @param {string} [next] next page
          * @param {string} [previous] previous page
+         * @param {string} [search] General search, e.g. by id, description, prefix
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getApiKeys(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetApiKeysResponse> {
-            return localVarFp.getApiKeys(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
+        getApiKeys(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: any): AxiosPromise<GetApiKeysResponse> {
+            return localVarFp.getApiKeys(acceptLanguage, xChildCompanyId, limit, next, previous, search, options).then((request) => request(axios, basePath));
         },
         /**
          * Update an existing api key
@@ -492,14 +492,14 @@ export interface ApiKeysApiInterface {
      * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
-     * @param {string} [search] General order search, e.g. by mail, reference etc.
      * @param {string} [next] next page
      * @param {string} [previous] previous page
+     * @param {string} [search] General search, e.g. by id, description, prefix
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ApiKeysApiInterface
      */
-    getApiKeys(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): AxiosPromise<GetApiKeysResponse>;
+    getApiKeys(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: AxiosRequestConfig): AxiosPromise<GetApiKeysResponse>;
 
     /**
      * Update an existing api key
@@ -569,15 +569,15 @@ export class ApiKeysApi extends BaseAPI implements ApiKeysApiInterface {
      * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
-     * @param {string} [search] General order search, e.g. by mail, reference etc.
      * @param {string} [next] next page
      * @param {string} [previous] previous page
+     * @param {string} [search] General search, e.g. by id, description, prefix
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ApiKeysApi
      */
-    public getApiKeys(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig) {
-        return ApiKeysApiFp(this.configuration).getApiKeys(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
+    public getApiKeys(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: AxiosRequestConfig) {
+        return ApiKeysApiFp(this.configuration).getApiKeys(acceptLanguage, xChildCompanyId, limit, next, previous, search, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

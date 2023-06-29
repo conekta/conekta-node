@@ -147,6 +147,12 @@ export interface OrderResponse {
      */
     'payment_status'?: string;
     /**
+     * Indicates the processing mode for the order, either ecommerce, recurrent or validation.
+     * @type {string}
+     * @memberof OrderResponse
+     */
+    'processing_mode'?: string;
+    /**
      * 
      * @type {OrderResponseShippingContact}
      * @memberof OrderResponse

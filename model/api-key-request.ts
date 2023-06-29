@@ -21,17 +21,11 @@
  */
 export interface ApiKeyRequest {
     /**
-     * Indicates if the api key is active
-     * @type {boolean}
-     * @memberof ApiKeyRequest
-     */
-    'active': boolean;
-    /**
-     * Detail of the use that will be given to the api key
+     * A name or brief explanation of what this api key is used for
      * @type {string}
      * @memberof ApiKeyRequest
      */
-    'description': string;
+    'description'?: string;
     /**
      * 
      * @type {string}

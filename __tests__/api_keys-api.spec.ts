@@ -19,7 +19,6 @@ describe('api keys', () => {
   describe("create api key", () => {
     it('should return a api key', async () => {
       const request: ApiKeyRequest = {
-        active: true,
         description: "online store",
         role: "private"
       };
