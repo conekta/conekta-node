@@ -40,5 +40,17 @@ describe('Events API', () => {
       expect(response.webhook_logs[0].id).toEqual("webhl_2tSipZiQaZ1DLH33n");
       expect(new URL(response.webhook_logs[0].url)).toBeTruthy();
     });
+
+    it("resend event", async () => {
+      const event_id = "6463d6e35a4c3e001819e760";
+      const webhook_log_id = "webhl_2svd2sh6GbqzyWBNZ";
+
+      const response = (await client.resendEvent(event_id, webhook_log_id)).data;
+
+      expect(response).toBeDefined();
+      expect(response.failed_attempts).toEqual(6);
+      expect(response.id).toEqual(webhook_log_id);
+      expect(response.last_http_response_status).toBe(405);
+    });
   });
 });

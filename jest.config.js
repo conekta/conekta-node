@@ -9,12 +9,10 @@ module.exports = {
  ],
   roots: ['<rootDir>'],
   transform: {
-      ".ts": "ts-jest"
-  },
-  globals: {
-      "ts-jest": {
-          compiler: "ttypescript",
-          transformIgnorePatterns: ['^.+\\\\.js$']
-      }
-  },
+      ".ts": "ts-jest",
+      '^.+\\.{ts|tsx}?$': ['ts-jest', {
+        compiler: "ttypescript",
+        transformIgnorePatterns: ['^.+\\\\.js$']
+    }]
+  }
 };

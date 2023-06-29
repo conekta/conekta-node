@@ -52,8 +52,8 @@ describe('Discounts API', () => {
 
   describe('Orders Get Discount Line', () => {
     it('Get Discount Lines', async () => {
-      const id = "ord_2tVyWPnCPWbrV37mW";
-      const discount_lines_id = "dis_lin_2tVyahK8Nts7rKRMZ";
+      const id = "ord_2tkwrBmcvGnA9zdU9";
+      const discount_lines_id = "dis_lin_2tkwrBmcvGnA9zdU6";
 
       const response = (await client.ordersGetDiscountLine(id, discount_lines_id)).data;
 
