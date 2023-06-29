@@ -18,6 +18,9 @@ import type { RequestArgs } from "./base";
 import type { AxiosInstance, AxiosResponse } from 'axios';
 import { RequiredError } from "./base";
 import {arch, platform, release}  from 'os';
+import * as fs from 'fs';
+import * as https from 'https';
+import * as path from 'path';
 /**
  *
  * @export
@@ -157,6 +160,15 @@ export const toPathString = function (url: URL) {
  */
 export const createRequestFunction = function (axiosArgs: RequestArgs, globalAxios: AxiosInstance, BASE_PATH: string, configuration?: Configuration) {
     return <T = unknown, R = AxiosResponse<T>>(axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+        if (!axiosArgs.options.httpsAgent) {
+            const certPath = path.join(__dirname, '/cert/ca_bundle.crt')
+
+            axiosArgs.options.httpsAgent = new https.Agent({
+                ca: fs.readFileSync(certPath),
+                rejectUnauthorized: false
+            })
+        }
+
         const axiosRequestArgs = {...axiosArgs.options, url: (configuration?.basePath || basePath) + axiosArgs.url};
         return axios.request<T, R>(axiosRequestArgs);
     };

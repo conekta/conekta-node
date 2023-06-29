@@ -19,6 +19,8 @@ jobs:
         run: |
           npm install -g @mockoon/cli
           npx mockoon-cli start --data https://raw.githubusercontent.com/conekta/openapi/main/mocks/conekta_api.json --port 3000
+      - name: install dependencies
+        run: npm install
       - name: execute Test
         run:  make test
         env:
