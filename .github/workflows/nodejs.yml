@@ -14,8 +14,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Test
-        run: DOCKER_BUILDKIT=1 docker-compose -f docker-compose.yml -p ${{ github.run_id }}  run --rm  service make test
+      - uses: actions/setup-node@v2
+      - name: start mockserver
+        run: |
+          npm install -g @mockoon/cli
+          npx mockoon-cli start --data https://raw.githubusercontent.com/conekta/openapi/main/mocks/conekta_api.json --port 3000
+      - name: execute Test
+        run:  make test
+        env:
+          BASE_PATH: http://localhost:3000
       - name: publish code coverage
         uses: paambaati/codeclimate-action@v4.0.0
         env:
