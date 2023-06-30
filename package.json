@@ -1,6 +1,6 @@
 {
   "name": "conekta",
-  "version": "6.0.0-beta.1",
+  "version": "6.0.0-beta.2",
   "description": "OpenAPI client for conekta",
   "author": "engineering conekta",
   "repository": {
@@ -32,6 +32,7 @@
   "module": "./dist/esm/index.js",
   "sideEffects": false,
   "scripts": {
+    "postbuild": "cp -r cert dist/cert",
     "build": "tsc && tsc -p tsconfig.esm.json",
     "prepare": "npm run build",
     "test": "jest --coverage",

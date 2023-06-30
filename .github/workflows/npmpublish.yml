@@ -25,7 +25,15 @@ jobs:
           npm install
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           npm run build
-          npm publish
+          VERSION=$(node -p "require('./package.json').version" )
+          # Only publish stable versions to the latest tag
+          if [[ "$VERSION" =~ ^[^-]+$ ]]; then
+            NPM_TAG="latest"
+          else
+            NPM_TAG="beta"
+          fi
+          echo "Publishing $VERSION with $NPM_TAG tag." 
+          npm publish --tag $NPM_TAG
         env:
           GITHUB_TOKEN: ${{ secrets.USER_GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
