@@ -43,8 +43,25 @@ Check for breaking changes on the [releases page](https://github.com/conekta/con
 ## Using the library
 
 In order to submit http request to Conekta API you need to initialize the client. The following example makes a order request:
-```js
+```ts
+import { CustomersApi, Configuration, Customer, CustomerResponse } from "conekta";
 
+const apikey = "key_xxxxx";
+const config = new Configuration({ accessToken: apikey });
+const client = new CustomersApi(config);
+
+const customer: Customer = {
+  name: "John Constantine",
+  email: "frank@google.com",
+  phone: "+5215555555555"
+}
+
+client.createCustomer(customer).then(response => {
+  const customerResponse = response.data as CustomerResponse;
+  console.log(customerResponse.id);
+}).catch(error => {
+  console.error("here", error);
+});
 ```
 
 ## Running the tests
