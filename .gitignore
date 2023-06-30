@@ -1,5 +1,5 @@
+wwwroot/*.js
 node_modules
-.DS_Store
-.npmrc
-yarn.lock
-.idea
+typings
+dist
+coverage/

@@ -1,7 +1,15 @@
 {
   "name": "conekta",
-  "version": "4.2.0",
-  "description": "Conekta node Wrapper",
+  "version": "6.0.0",
+  "description": "OpenAPI client for conekta",
+  "author": "engineering conekta",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/conekta/conekta-node.git"
+  },
+  "engines": {
+    "node": ">=14"
+  },
   "keywords": [
     "conekta",
     "wrapper",
@@ -10,34 +18,38 @@
     "credit card",
     "payment",
     "payout",
-    "subscription"
+    "subscription",
+    "api",
+    "nodejs"
   ],
-  "homepage": "https://www.conekta.com",
   "bugs": {
-    "url": "https://github.com/conekta/conekta-node/issues",
-    "email": "soporte@conekta.com"
+    "url": "https://github.com/conekta/conekta-node/issues"
   },
+  "homepage": "https://github.com/conekta/conekta-node#readme",
   "license": "MIT",
-  "author": "Conekta",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/conekta/conekta-node.git"
-  },
-  "engines": {
-    "node": ">=14.21"
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "module": "./dist/esm/index.js",
+  "sideEffects": false,
+  "scripts": {
+    "postbuild": "cp -r cert dist/cert",
+    "build": "tsc && tsc -p tsconfig.esm.json",
+    "prepare": "npm run build",
+    "test": "jest --coverage",
+    "clean": "rm -rf node_modules && rm -rf dist && rm -rf coverage"
   },
   "dependencies": {
-    "axios": "^1.2.3",
-    "qs": "^6.11.0",
-    "underscore": "^1.13.6"
+    "axios": "1.4.0"
   },
   "devDependencies": {
-    "lodash": "^4.17.21",
-    "mocha": "^10.2.0",
-    "nock": "^13.2.9"
+    "@types/node": "^12.11.5",
+    "typescript": "^4.0",
+    "@types/jest": "^29.5.1",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "ttypescript": "^1.5.10"
   },
-  "main": "./lib/conekta.js",
-  "scripts": {
-    "test": "mocha"
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -1,0 +1,21 @@
+services:
+  mockserver:
+    restart: always
+    image: mockoon/cli:2.4.0
+    command: "-d https://raw.githubusercontent.com/conekta/openapi/DRE-73-config-openapi-node/mocks/conekta_api.json  -p 3000 --log-transaction"
+    healthcheck:
+      test: "wget -qO - http://mockserver:3000/ping"
+      interval: 5s
+      timeout: 10s
+      retries: 20
+  service:
+   build:
+     context: .
+     dockerfile: Dockerfile
+   environment:
+     BASE_PATH: "http://mockserver:3000"
+   depends_on:
+    mockserver:
+      condition: service_healthy
+   volumes:
+    - ./coverage:/usr/src/app/coverage

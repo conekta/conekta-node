@@ -1,155 +1,87 @@
-# Conekta Node.js
+# Conekta API library for Node.js 
+![Node.js CI](https://github.com/conekta/conekta-node/workflows/Node.js%20CI/badge.svg)
+[![Coverage Status](https://api.codeclimate.com/v1/badges/6d669b88c0b07a3ff6a3/test_coverage)](https://codeclimate.com/github/conekta/conekta-node/test_coverage)
+[![Downloads](https://img.shields.io/npm/dm/conekta.svg)](https://www.npmjs.com/package/conekta)
+![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/conekta.svg)
+[![Version](https://img.shields.io/npm/v/conekta.svg)](https://www.npmjs.com/package/conekta)
+[![Try on RunKit](https://badge.runkitcdn.com/conekta.svg)](https://runkit.com/npm/conekta)
 
-Wrapper to connect with https://api.conekta.io.
+This is the officially supported Node.js library for using Conekta's APIs.
+## Supported API versions
+The library supports all APIs under the following services:
 
-## Install
+| API                                                                                         | Description | Service Name | Supported version |
+|---------------------------------------------------------------------------------------------| ----------- |-------|-------------------|
+| [Payments API](https://developers.conekta.com/reference)                  | Our classic integration for online payments. Current supported version | Payments API | **v2.1.0**        |
 
-```sh
-npm install conekta
+For more information, refer to our [documentation](https://developers.conekta.com/v2.1.0/docs).
+
+## Prerequisites
+- [Conekta account](https://panel.conekta.com/)
+- [API key](https://developers.conekta.com/v2.1.0/docs/como-obtener-tus-api-keys).  your API credential .
+- [Install Node.js](https://nodejs.org/en/download/) version 14 or later.
+
+## Installation
+Install the [Node.JS package](https://www.npmjs.com/package/conekta):
+```bash
+npm install --save conekta
 ```
 
-This last release works with API 2, if you are using 1.0 type:
+Alternatively, you can download the [release on GitHub](https://github.com/conekta/conekta-node/releases).
 
+## Updating
 
-```sh
-npm install conekta@1.6.5
+To update the Node.JS package:
+
+``` bash
+npm update conekta
 ```
 
-## Usage
+Check for breaking changes on the [releases page](https://github.com/conekta/conekta-node/releases/).
 
-```node
-const conekta = require('conekta');
 
-conekta.api_key = '9YxqfRnx4sMQDnRsqdYn';
-conekta.locale = 'es';
+## Using the library
 
-const order = await conekta.Order.create({
-  "currency": "MXN",
-  "customer_info": {
-    "name": "Jul Ceballos",
-    "phone": "+5215555555555",
-    "email": "jul@conekta.io"
-  },
-  "line_items": [{
-    "name": "Box of Cohiba S1s",
-    "unit_price": 35000,
-    "quantity": 1
-  }],
-  "charges": [{
-    "payment_method": {
-      "type": "card",
-      "token_id": "tok_test_visa_4242"
-    }
-  }]
-})
+In order to submit http request to Conekta API you need to initialize the client. The following example makes a order request:
+```ts
+import { CustomersApi, Configuration, Customer, CustomerResponse } from "conekta";
 
-console.log(order.toObject())
+const apikey = "key_xxxxx";
+const config = new Configuration({ accessToken: apikey });
+const client = new CustomersApi(config);
+
+const customer: Customer = {
+  name: "John Constantine",
+  email: "frank@google.com",
+  phone: "+5215555555555"
+}
+
+client.createCustomer(customer).then(response => {
+  const customerResponse = response.data as CustomerResponse;
+  console.log(customerResponse.id);
+}).catch(error => {
+  console.error("here", error);
+});
 ```
 
-## Endpoints
-
-```node
-
-Conekta.Order.create
-Conekta.Order.update
-Conekta.Order.find
-Conekta.Order.where
-Conekta.Order.createCharge
-Conekta.Order.createLineItem
-Conekta.Lineitem.update
-Conekta.Order.createTaxLine
-Conekta.TaxLine.update
-Conekta.Order.createShippingLine
-Conekta.ShippingLine.update
-Conekta.Order.createDiscountLine
-Conekta.DiscountLine.update
-Conekta.Customer.create
-Conekta.Customer.update
-Conekta.Customer.find
-Conekta.Customer.where
-Conekta.Customer.destroy
-Conekta.Customer.createSource
-Conekta.Source.update
-Conekta.Customer.createShippingContact
-Conekta.ShippingContact.update
-
+## Running the tests
+Navigate to conekta-node folder and run the following commands.
+```
+npm run build
+npm run test
 ```
 
-## Documentation
+## Contributing
+We encourage you to contribute to this repository, so everyone can benefit from new features, bug fixes, and any other improvements.
+Have a look at our [contributing guidelines](https://github.com/conekta/conekta-node/blob/main/CONTRIBUTING.md) to find out how to raise a pull request.
 
-Please see https://developers.conekta.com/api?language=node for up-to-date documentation.
+## Support
+If you have a feature request, or spotted a bug or a technical problem, [create an issue here](https://github.com/conekta/conekta-node/issues/choose).
 
-## Contribute
+For other questions, [contact our Support Team](https://developers.conekta.com/discuss).
 
-### Clone repo
+## Licence
+This repository is available under the [MIT license](https://github.com/conekta/conekta-node/blob/master/LICENSE).
 
-```sh
-$ git clone https://github.com/conekta/conekta-node
-$ cd conekta-node
-```
-
-### Install dependencies
-
-```sh
-$ npm install
-```
-
-### Run interactive mode
-
-```sh
-$ bin/console
-Welcome to Conekta node console!
-Help: exit() to quit
-
-> conekta.api_key = '9YxqfRnx4sMQDnRsqdYn';
-'9YxqfRnx4sMQDnRsqdYn'
-> conekta.locale = 'es';
-'es'
-> 
-```
-
-### Run tests
-
-```sh
-$ npm test
-```
-
-### Send pull requests
-
-We love pull requests, send them from your fork to branch **dev** into **conekta/conekta-node**
-
-## How to contribute to the project
-
-1. Fork the repository
- 
-2. Clone the repository
-```
-    git clone git@github.com:yourUserName/conekta-node.git
-```
-3. Create a branch
-```
-    git checkout develop
-    git pull origin develop
-    # You should choose the name of your branch
-    git checkout -b <feature/my_branch>
-```    
-4. Make necessary changes and commit those changes
-```
-    git add .
-    git commit -m "my changes"
-```
-5. Push changes to GitHub
-```
-    git push origin <feature/my_branch>
-```
-6. Submit your changes for review, create a pull request
-
-   To create a pull request, you need to have made your code changes on a separate branch. This branch should be named like this: **feature/my_feature** or **fix/my_fix**.
-
-   Make sure that, if you add new features to our library, be sure that corresponding **unit tests** are added.
-
-   If you go to your repository on GitHub, you’ll see a Compare & pull request button. Click on that button.
-
-## License
-
-Developed in Mexico by [Conekta](https://www.conekta.com). Available with [MIT License](LICENSE).
+## See also
+* [Conekta docs](https://developers.conekta.com/docs)

@@ -23,4 +23,15 @@
 
 	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "devcontainer"
+	,"containerEnv": {
+		"BASE_PATH" : "http://host.docker.internal:3000"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"firsttris.vscode-jest-runner",
+				"GitHub.copilot"
+			]
+		}
+	}
 }

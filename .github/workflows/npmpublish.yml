@@ -1,0 +1,39 @@
+name: publish on npm
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
+      - name: Check if release creator is a code owner
+        run: |
+          if [[ $(jq '.sender.type' $GITHUB_EVENT_PATH) == '"User"' ]]; then
+            creator_login=${{ github.event.release.author.login }}
+            if ! grep -q $creator_login .github/CODEOWNERS; then
+              echo "Release creator is not a code owner, skipping the rest of the workflow."
+              exit 1
+            fi
+          fi
+      - run: |
+          npm install
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+          npm run build
+          VERSION=$(node -p "require('./package.json').version" )
+          # Only publish stable versions to the latest tag
+          if [[ "$VERSION" =~ ^[^-]+$ ]]; then
+            NPM_TAG="latest"
+          else
+            NPM_TAG="beta"
+          fi
+          echo "Publishing $VERSION with $NPM_TAG tag." 
+          npm publish --tag $NPM_TAG
+        env:
+          GITHUB_TOKEN: ${{ secrets.USER_GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
