@@ -39,7 +39,7 @@
     "clean": "rm -rf node_modules && rm -rf dist && rm -rf coverage"
   },
   "dependencies": {
-    "axios": "1.4.0"
+    "axios": "1.5.1"
   },
   "devDependencies": {
     "@types/node": "^12.11.5",
