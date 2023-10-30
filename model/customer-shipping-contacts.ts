@@ -65,5 +65,11 @@ export interface CustomerShippingContacts {
      * @memberof CustomerShippingContacts
      */
     'deleted'?: boolean | null;
+    /**
+     * Metadata associated with the shipping contact
+     * @type {{ [key: string]: any; }}
+     * @memberof CustomerShippingContacts
+     */
+    'metadata'?: { [key: string]: any; };
 }
 

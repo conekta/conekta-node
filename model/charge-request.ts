@@ -30,12 +30,6 @@ export interface ChargeRequest {
      */
     'amount'?: number;
     /**
-     * How many months without interest to apply, it can be 3, 6, 9, 12 or 18
-     * @type {number}
-     * @memberof ChargeRequest
-     */
-    'monthly_installments'?: number;
-    /**
      * 
      * @type {ChargeRequestPaymentMethod}
      * @memberof ChargeRequest

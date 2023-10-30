@@ -42,19 +42,19 @@ export interface CustomerResponse {
      */
     'antifraud_info'?: CustomerAntifraudInfoResponse | null;
     /**
-     * 
+     * true if the customer is a company
      * @type {boolean}
      * @memberof CustomerResponse
      */
     'corporate'?: boolean;
     /**
-     * 
+     * Creation date of the object
      * @type {number}
      * @memberof CustomerResponse
      */
     'created_at': number;
     /**
-     * 
+     * Custom reference
      * @type {string}
      * @memberof CustomerResponse
      */
@@ -90,23 +90,29 @@ export interface CustomerResponse {
      */
     'fiscal_entities'?: CustomerFiscalEntitiesResponse;
     /**
-     * 
+     * Customer\'s ID
      * @type {string}
      * @memberof CustomerResponse
      */
     'id': string;
     /**
-     * 
+     * true if the object exists in live mode or the value false if the object exists in test mode
      * @type {boolean}
      * @memberof CustomerResponse
      */
     'livemode': boolean;
     /**
-     * 
+     * Customer\'s name
      * @type {string}
      * @memberof CustomerResponse
      */
-    'name'?: string;
+    'name': string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof CustomerResponse
+     */
+    'metadata'?: { [key: string]: any; };
     /**
      * 
      * @type {string}
@@ -120,7 +126,7 @@ export interface CustomerResponse {
      */
     'payment_sources'?: CustomerPaymentMethodsResponse;
     /**
-     * 
+     * Customer\'s phone number
      * @type {string}
      * @memberof CustomerResponse
      */

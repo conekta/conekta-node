@@ -27,6 +27,12 @@ export interface ChargeRequestPaymentMethod {
      */
     'expires_at'?: number;
     /**
+     * How many months without interest to apply, it can be 3, 6, 9, 12 or 18
+     * @type {number}
+     * @memberof ChargeRequestPaymentMethod
+     */
+    'monthly_installments'?: number;
+    /**
      * 
      * @type {string}
      * @memberof ChargeRequestPaymentMethod

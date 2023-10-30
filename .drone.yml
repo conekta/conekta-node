@@ -1,0 +1,47 @@
+kind: pipeline
+type: docker
+name: Node.js CI
+
+trigger:
+  event:
+    - push
+  branch:
+    - main
+    - master
+
+platform:
+  os: linux
+  arch: amd64
+
+
+steps:
+  - name: checkout
+    image: alpine/git
+    commands:
+      - git clone https://github.com/$DRONE_REPO/ $DRONE_WORKSPACE
+    environment:
+      DRONE_REPO: conekta/conekta-node 
+
+  - name: setup-node
+    image: node:14
+    commands:
+      - npm install
+
+  - name: Run Mockoon CLI
+    image: mockoon/mockoon-cli
+    commands:
+      - mockoon-cli start --data-file https://raw.githubusercontent.com/conekta/openapi/testing-drone-node/mocks/conekta_api.json --port 3000
+  - name: execute Test
+    image: node:14
+    commands:
+      - make test
+    environment:
+      BASE_PATH: http://localhost:3000
+
+  - name: publish code coverage
+    image: paambaati/codeclimate-action:v4.0.0
+    environment:
+      CC_TEST_REPORTER_ID: 
+        from_secret: CC_TEST_REPORTER_ID
+    commands:
+      - codeclimate-test-reporter < $DRONE_WORKSPACE/coverage*.lcov

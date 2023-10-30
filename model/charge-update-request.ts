@@ -15,16 +15,16 @@
 
 
 /**
- * 
+ * requested field for update a charge
  * @export
- * @interface OrderResponseFiscalEntityAddressAllOf
+ * @interface ChargeUpdateRequest
  */
-export interface OrderResponseFiscalEntityAddressAllOf {
+export interface ChargeUpdateRequest {
     /**
-     * 
+     * custom reference id
      * @type {string}
-     * @memberof OrderResponseFiscalEntityAddressAllOf
+     * @memberof ChargeUpdateRequest
      */
-    'object'?: string;
+    'reference_id'?: string;
 }
 

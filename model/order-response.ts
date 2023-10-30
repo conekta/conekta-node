@@ -18,6 +18,9 @@
 import { ChargeResponseChannel } from './charge-response-channel';
 // May contain unused imports in some cases
 // @ts-ignore
+import { OrderFiscalEntityResponse } from './order-fiscal-entity-response';
+// May contain unused imports in some cases
+// @ts-ignore
 import { OrderResponseCharges } from './order-response-charges';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -28,9 +31,6 @@ import { OrderResponseCustomerInfo } from './order-response-customer-info';
 // May contain unused imports in some cases
 // @ts-ignore
 import { OrderResponseDiscountLines } from './order-response-discount-lines';
-// May contain unused imports in some cases
-// @ts-ignore
-import { OrderResponseFiscalEntity } from './order-response-fiscal-entity';
 // May contain unused imports in some cases
 // @ts-ignore
 import { OrderResponseProducts } from './order-response-products';
@@ -100,10 +100,10 @@ export interface OrderResponse {
     'discount_lines'?: OrderResponseDiscountLines;
     /**
      * 
-     * @type {OrderResponseFiscalEntity}
+     * @type {OrderFiscalEntityResponse}
      * @memberof OrderResponse
      */
-    'fiscal_entity'?: OrderResponseFiscalEntity;
+    'fiscal_entity'?: OrderFiscalEntityResponse | null;
     /**
      * 
      * @type {string}

@@ -39,7 +39,7 @@ export const BalancesApiAxiosParamCreator = function (configuration?: Configurat
          * @throws {RequiredError}
          */
         getBalance: async (acceptLanguage?: 'es' | 'en', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/balances`;
+            const localVarPath = `/balance`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;

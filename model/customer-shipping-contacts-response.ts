@@ -72,6 +72,12 @@ export interface CustomerShippingContactsResponse {
      */
     'created_at'?: number;
     /**
+     * Metadata associated with the shipping contact
+     * @type {{ [key: string]: any; }}
+     * @memberof CustomerShippingContactsResponse
+     */
+    'metadata'?: { [key: string]: any; };
+    /**
      * 
      * @type {string}
      * @memberof CustomerShippingContactsResponse

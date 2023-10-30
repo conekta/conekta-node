@@ -423,6 +423,35 @@ function get_order_cash_request () {
     line_items: products,
     charges: charges,
     pre_authorize: false,
+    metadata: { test: "true" },
+    fiscal_entity: {
+      "tax_id": "EKU9003173C9",
+      "address": {
+        "street1": "Calle 123, int 2",
+        "city": "Monterrey",
+        "state": "Nuevo Leon",
+        "country": "MX",
+        "postal_code": "64460",
+        "external_number": "311",
+      },
+      "metadata": {}
+    },
+    shipping_contact: {
+      "receiver": "Marvin Fuller",
+      "phone": "+5215555555555",
+      "between_streets": "Morelos Campeche",
+      "address": {
+        "street1": "Insurgentes Sur 1602 Piso 9",
+        "city": "Ciudad de Mexico",
+        "state": "Distrito Federal",
+        "country": "MX",
+        "postal_code": "03940",
+        "residential": true
+      },
+      "metadata": {
+
+      }
+    }
   };
   return order_requet;
 }

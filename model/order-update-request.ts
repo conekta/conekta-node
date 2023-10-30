@@ -30,6 +30,9 @@ import { OrderDiscountLinesRequest } from './order-discount-lines-request';
 import { OrderTaxRequest } from './order-tax-request';
 // May contain unused imports in some cases
 // @ts-ignore
+import { OrderUpdateFiscalEntityRequest } from './order-update-fiscal-entity-request';
+// May contain unused imports in some cases
+// @ts-ignore
 import { OrderUpdateRequestCustomerInfo } from './order-update-request-customer-info';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -74,6 +77,12 @@ export interface OrderUpdateRequest {
      * @memberof OrderUpdateRequest
      */
     'discount_lines'?: Array<OrderDiscountLinesRequest>;
+    /**
+     * 
+     * @type {OrderUpdateFiscalEntityRequest}
+     * @memberof OrderUpdateRequest
+     */
+    'fiscal_entity'?: OrderUpdateFiscalEntityRequest;
     /**
      * List of [products](https://developers.conekta.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
      * @type {Array<Product>}

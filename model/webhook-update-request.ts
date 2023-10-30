@@ -37,6 +37,6 @@ export interface WebhookUpdateRequest {
      * @type {Array<string>}
      * @memberof WebhookUpdateRequest
      */
-    'subscribed_events'?: Array<string>;
+    'events'?: Array<string>;
 }
 
