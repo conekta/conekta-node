@@ -15,10 +15,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v2
-      - name: start mockserver
-        run: |
-          npm install -g @mockoon/cli
-          npx mockoon-cli start --data https://raw.githubusercontent.com/conekta/openapi/main/mocks/conekta_api.json --port 3000
+      - name: Run Mockoon CLI
+        uses: mockoon/cli-action@v1
+        with:
+          version: 'latest'
+          data-file: 'https://raw.githubusercontent.com/conekta/openapi/20230801/mocks/conekta_api.json'
+          port: 3000
       - name: install dependencies
         run: npm install
       - name: execute Test
