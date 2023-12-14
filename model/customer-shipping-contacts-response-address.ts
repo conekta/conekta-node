@@ -67,6 +67,6 @@ export interface CustomerShippingContactsResponseAddress {
      * @type {boolean}
      * @memberof CustomerShippingContactsResponseAddress
      */
-    'residential'?: boolean;
+    'residential'?: boolean | null;
 }
 

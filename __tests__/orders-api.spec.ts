@@ -423,7 +423,29 @@ function get_order_cash_request () {
     line_items: products,
     charges: charges,
     pre_authorize: false,
-  };
+    shipping_contact: {
+      address: {
+        street1: "Calle 123, int 2",
+        city: "Queretaro",
+        state: "Queretaro",
+        country: "mx",
+        postal_code: "76000",
+        residential: true
+      },
+      metadata: {}
+    },
+    fiscal_entity: {
+      address: {
+        street1: "Calle 123, int 2",
+        city: "Queretaro",
+        state: "Queretaro",
+        country: "mx",
+        postal_code: "76000",
+        external_number: "123",
+      },
+      metadata: {}
+    }
+    }
   return order_requet;
 }
 

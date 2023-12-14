@@ -56,6 +56,7 @@ model/charge-response-refunds-all-of.ts
 model/charge-response-refunds-data.ts
 model/charge-response-refunds.ts
 model/charge-response.ts
+model/charge-update-request.ts
 model/charges-data-response.ts
 model/checkout-order-template-customer-info.ts
 model/checkout-order-template.ts
@@ -83,7 +84,6 @@ model/customer-fiscal-entities-response-all-of.ts
 model/customer-fiscal-entities-response.ts
 model/customer-info-just-customer-id-response.ts
 model/customer-info-just-customer-id.ts
-model/customer-info-response.ts
 model/customer-info.ts
 model/customer-payment-method-request.ts
 model/customer-payment-methods-data.ts
@@ -117,6 +117,7 @@ model/email-checkout-request.ts
 model/error-all-of.ts
 model/event-response.ts
 model/events-resend-response.ts
+model/fiscal-entity-address.ts
 model/get-api-keys-response-all-of.ts
 model/get-api-keys-response.ts
 model/get-charges-response-all-of.ts
@@ -147,7 +148,14 @@ model/logs-response-data.ts
 model/logs-response.ts
 model/model-error.ts
 model/order-capture-request.ts
+model/order-customer-info-response.ts
 model/order-discount-lines-request.ts
+model/order-fiscal-entity-address-response-all-of.ts
+model/order-fiscal-entity-address-response.ts
+model/order-fiscal-entity-request.ts
+model/order-fiscal-entity-response.ts
+model/order-next-action-response-redirect-to-url.ts
+model/order-next-action-response.ts
 model/order-refund-request.ts
 model/order-request-customer-info.ts
 model/order-request.ts
@@ -158,15 +166,13 @@ model/order-response-customer-info-all-of.ts
 model/order-response-customer-info.ts
 model/order-response-discount-lines-all-of.ts
 model/order-response-discount-lines.ts
-model/order-response-fiscal-entity-address-all-of.ts
-model/order-response-fiscal-entity-address.ts
-model/order-response-fiscal-entity.ts
 model/order-response-products-all-of.ts
 model/order-response-products.ts
 model/order-response-shipping-contact-all-of.ts
 model/order-response-shipping-contact.ts
 model/order-response.ts
 model/order-tax-request.ts
+model/order-update-fiscal-entity-request.ts
 model/order-update-request-customer-info.ts
 model/order-update-request.ts
 model/orders-response.ts

@@ -87,13 +87,16 @@ export const TransactionsApiAxiosParamCreator = function (configuration?: Config
          * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
-         * @param {string} [search] General order search, e.g. by mail, reference etc.
          * @param {string} [next] next page
          * @param {string} [previous] previous page
+         * @param {string} [id] id of the object to be retrieved
+         * @param {string} [chargeId] id of the charge used for filtering
+         * @param {string} [type] type of the object to be retrieved
+         * @param {string} [currency] currency of the object to be retrieved
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTransactions: async (acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getTransactions: async (acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, id?: string, chargeId?: string, type?: string, currency?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/transactions`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -114,16 +117,28 @@ export const TransactionsApiAxiosParamCreator = function (configuration?: Config
                 localVarQueryParameter['limit'] = limit;
             }
 
-            if (search !== undefined) {
-                localVarQueryParameter['search'] = search;
-            }
-
             if (next !== undefined) {
                 localVarQueryParameter['next'] = next;
             }
 
             if (previous !== undefined) {
                 localVarQueryParameter['previous'] = previous;
+            }
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
+            }
+
+            if (chargeId !== undefined) {
+                localVarQueryParameter['charge_id'] = chargeId;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (currency !== undefined) {
+                localVarQueryParameter['currency'] = currency;
             }
 
             if (acceptLanguage != null) {
@@ -174,14 +189,17 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
-         * @param {string} [search] General order search, e.g. by mail, reference etc.
          * @param {string} [next] next page
          * @param {string} [previous] previous page
+         * @param {string} [id] id of the object to be retrieved
+         * @param {string} [chargeId] id of the charge used for filtering
+         * @param {string} [type] type of the object to be retrieved
+         * @param {string} [currency] currency of the object to be retrieved
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTransactions(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTransactionsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getTransactions(acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
+        async getTransactions(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, id?: string, chargeId?: string, type?: string, currency?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTransactionsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTransactions(acceptLanguage, xChildCompanyId, limit, next, previous, id, chargeId, type, currency, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -212,14 +230,17 @@ export const TransactionsApiFactory = function (configuration?: Configuration, b
          * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
-         * @param {string} [search] General order search, e.g. by mail, reference etc.
          * @param {string} [next] next page
          * @param {string} [previous] previous page
+         * @param {string} [id] id of the object to be retrieved
+         * @param {string} [chargeId] id of the charge used for filtering
+         * @param {string} [type] type of the object to be retrieved
+         * @param {string} [currency] currency of the object to be retrieved
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTransactions(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetTransactionsResponse> {
-            return localVarFp.getTransactions(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
+        getTransactions(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, id?: string, chargeId?: string, type?: string, currency?: string, options?: any): AxiosPromise<GetTransactionsResponse> {
+            return localVarFp.getTransactions(acceptLanguage, xChildCompanyId, limit, next, previous, id, chargeId, type, currency, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -248,14 +269,17 @@ export interface TransactionsApiInterface {
      * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
-     * @param {string} [search] General order search, e.g. by mail, reference etc.
      * @param {string} [next] next page
      * @param {string} [previous] previous page
+     * @param {string} [id] id of the object to be retrieved
+     * @param {string} [chargeId] id of the charge used for filtering
+     * @param {string} [type] type of the object to be retrieved
+     * @param {string} [currency] currency of the object to be retrieved
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TransactionsApiInterface
      */
-    getTransactions(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): AxiosPromise<GetTransactionsResponse>;
+    getTransactions(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, id?: string, chargeId?: string, type?: string, currency?: string, options?: AxiosRequestConfig): AxiosPromise<GetTransactionsResponse>;
 
 }
 
@@ -286,14 +310,17 @@ export class TransactionsApi extends BaseAPI implements TransactionsApiInterface
      * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
-     * @param {string} [search] General order search, e.g. by mail, reference etc.
      * @param {string} [next] next page
      * @param {string} [previous] previous page
+     * @param {string} [id] id of the object to be retrieved
+     * @param {string} [chargeId] id of the charge used for filtering
+     * @param {string} [type] type of the object to be retrieved
+     * @param {string} [currency] currency of the object to be retrieved
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public getTransactions(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig) {
-        return TransactionsApiFp(this.configuration).getTransactions(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
+    public getTransactions(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, id?: string, chargeId?: string, type?: string, currency?: string, options?: AxiosRequestConfig) {
+        return TransactionsApiFp(this.configuration).getTransactions(acceptLanguage, xChildCompanyId, limit, next, previous, id, chargeId, type, currency, options).then((request) => request(this.axios, this.basePath));
     }
 }
