@@ -17,37 +17,43 @@
 /**
  * 
  * @export
- * @interface CustomerInfoResponse
+ * @interface OrderCustomerInfoResponse
  */
-export interface CustomerInfoResponse {
+export interface OrderCustomerInfoResponse {
+    /**
+     * Custom reference
+     * @type {string}
+     * @memberof OrderCustomerInfoResponse
+     */
+    'customer_custom_reference'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof CustomerInfoResponse
+     * @memberof OrderCustomerInfoResponse
      */
     'name'?: string;
     /**
      * 
      * @type {string}
-     * @memberof CustomerInfoResponse
+     * @memberof OrderCustomerInfoResponse
      */
     'email'?: string;
     /**
      * 
      * @type {string}
-     * @memberof CustomerInfoResponse
+     * @memberof OrderCustomerInfoResponse
      */
     'phone'?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof CustomerInfoResponse
+     * @memberof OrderCustomerInfoResponse
      */
     'corporate'?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof CustomerInfoResponse
+     * @memberof OrderCustomerInfoResponse
      */
     'object'?: string;
 }

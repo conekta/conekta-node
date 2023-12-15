@@ -82,12 +82,6 @@ export interface ChargeOrderResponse {
     'failure_message'?: string;
     /**
      * 
-     * @type {number}
-     * @memberof ChargeOrderResponse
-     */
-    'fee'?: number;
-    /**
-     * 
      * @type {string}
      * @memberof ChargeOrderResponse
      */

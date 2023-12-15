@@ -1,7 +1,7 @@
 import { ChargesApi } from "../api";
 import { baseTest } from "./base-test";
 import { Configuration } from "../configuration";
-import { ChargeRequest, PaymentMethodBankTransfer, PaymentMethodCard, PaymentMethodCash } from "../model";
+import { ChargeRequest, ChargeUpdateRequest, PaymentMethodBankTransfer, PaymentMethodCard, PaymentMethodCash } from "../model";
 
 describe('Charges API', () => {
 
@@ -93,6 +93,18 @@ describe('Charges API', () => {
       expect((response.data[0].payment_method as PaymentMethodCash).reference).toEqual("93003547316416");
       expect(response.data[0].refunds).toBeNull();
       expect(response.data[0].reference_id).toBeNull();
+    });
+  });
+  describe('Update charge', () => {
+    it('should update a charge', async () => {
+      const updateRequest : ChargeUpdateRequest = {
+          reference_id: "123456789"
+      }
+      const response = (await client.updateCharge("6524722f28c7ba0016a5b17d",updateRequest)).data;
+
+      expect(response).toBeDefined();
+      expect(response.object).toEqual("charge");
+      expect(response.reference_id).toEqual(updateRequest.reference_id);
     });
   });
 });

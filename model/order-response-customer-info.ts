@@ -18,7 +18,7 @@
 import { CustomerInfoJustCustomerIdResponse } from './customer-info-just-customer-id-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CustomerInfoResponse } from './customer-info-response';
+import { OrderCustomerInfoResponse } from './order-customer-info-response';
 // May contain unused imports in some cases
 // @ts-ignore
 import { OrderResponseCustomerInfoAllOf } from './order-response-customer-info-all-of';
@@ -27,6 +27,6 @@ import { OrderResponseCustomerInfoAllOf } from './order-response-customer-info-a
  * @type OrderResponseCustomerInfo
  * @export
  */
-export type OrderResponseCustomerInfo = CustomerInfoJustCustomerIdResponse & CustomerInfoResponse & OrderResponseCustomerInfoAllOf;
+export type OrderResponseCustomerInfo = CustomerInfoJustCustomerIdResponse & OrderCustomerInfoResponse & OrderResponseCustomerInfoAllOf;
 
 

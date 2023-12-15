@@ -27,6 +27,9 @@ import { CustomerShippingContacts } from './customer-shipping-contacts';
 import { OrderDiscountLinesRequest } from './order-discount-lines-request';
 // May contain unused imports in some cases
 // @ts-ignore
+import { OrderFiscalEntityRequest } from './order-fiscal-entity-request';
+// May contain unused imports in some cases
+// @ts-ignore
 import { OrderRequestCustomerInfo } from './order-request-customer-info';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -75,6 +78,12 @@ export interface OrderRequest {
      */
     'discount_lines'?: Array<OrderDiscountLinesRequest>;
     /**
+     * 
+     * @type {OrderFiscalEntityRequest}
+     * @memberof OrderRequest
+     */
+    'fiscal_entity'?: OrderFiscalEntityRequest;
+    /**
      * List of [products](https://developers.conekta.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
      * @type {Array<Product>}
      * @memberof OrderRequest
@@ -105,6 +114,12 @@ export interface OrderRequest {
      */
     'processing_mode'?: string;
     /**
+     * Indicates the redirection callback upon completion of the 3DS2 flow.
+     * @type {string}
+     * @memberof OrderRequest
+     */
+    'return_url'?: string;
+    /**
      * 
      * @type {CustomerShippingContacts}
      * @memberof OrderRequest
@@ -122,5 +137,11 @@ export interface OrderRequest {
      * @memberof OrderRequest
      */
     'tax_lines'?: Array<OrderTaxRequest>;
+    /**
+     * Indicates the 3DS2 mode for the order, either smart or strict.
+     * @type {string}
+     * @memberof OrderRequest
+     */
+    'three_ds_mode'?: string;
 }
 

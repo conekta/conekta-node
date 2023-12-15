@@ -15,15 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CustomerAddress } from './customer-address';
+import { FiscalEntityAddress } from './fiscal-entity-address';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderResponseFiscalEntityAddressAllOf } from './order-response-fiscal-entity-address-all-of';
+import { OrderFiscalEntityAddressResponseAllOf } from './order-fiscal-entity-address-response-all-of';
 
 /**
- * @type OrderResponseFiscalEntityAddress
+ * @type OrderFiscalEntityAddressResponse
+ * Address of the fiscal entity
  * @export
  */
-export type OrderResponseFiscalEntityAddress = CustomerAddress & OrderResponseFiscalEntityAddressAllOf;
+export type OrderFiscalEntityAddressResponse = FiscalEntityAddress & OrderFiscalEntityAddressResponseAllOf;
 
 

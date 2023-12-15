@@ -97,6 +97,24 @@ describe("Orders api", () => {
       expect(response.checkout.monthly_installments_enabled).toBeFalsy();
     });
 
+    it('3ds', async () => {
+        
+        const order_request: OrderRequest = get_order_checkout_request();
+        order_request.three_ds_mode = 'smart';
+        order_request.customer_info  = {
+          customer_id: "cus_2v4G1Zx9wRpN5vyy2"
+        }
+        order_request.return_url = 'https://www.google.com';
+  
+        const response = (await client.createOrder(order_request)).data;
+  
+        expect(response).toBeDefined();
+        expect(response.customer_info.customer_id).toEqual("cus_2v4G1Zx9wRpN5vyy2");
+        expect(response.next_action).toBeTruthy();
+        expect(response.next_action.type).toEqual("redirect_to_url");
+        expect(response.next_action.redirect_to_url.return_url).toBeDefined();
+    });
+
   });
 
   describe("Get Order", () => {
@@ -423,7 +441,29 @@ function get_order_cash_request () {
     line_items: products,
     charges: charges,
     pre_authorize: false,
-  };
+    shipping_contact: {
+      address: {
+        street1: "Calle 123, int 2",
+        city: "Queretaro",
+        state: "Queretaro",
+        country: "mx",
+        postal_code: "76000",
+        residential: true
+      },
+      metadata: {}
+    },
+    fiscal_entity: {
+      address: {
+        street1: "Calle 123, int 2",
+        city: "Queretaro",
+        state: "Queretaro",
+        country: "mx",
+        postal_code: "76000",
+        external_number: "123",
+      },
+      metadata: {}
+    }
+    }
   return order_requet;
 }
 
