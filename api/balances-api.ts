@@ -14,13 +14,13 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import { BalanceResponse } from '../model';
 // @ts-ignore
@@ -34,11 +34,11 @@ export const BalancesApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * Get a company\'s balance
          * @summary Get a company\'s balance
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetBalanceAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getBalance: async (acceptLanguage?: 'es' | 'en', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getBalance: async (acceptLanguage?: GetBalanceAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/balance`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -83,13 +83,15 @@ export const BalancesApiFp = function(configuration?: Configuration) {
         /**
          * Get a company\'s balance
          * @summary Get a company\'s balance
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetBalanceAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getBalance(acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BalanceResponse>> {
+        async getBalance(acceptLanguage?: GetBalanceAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BalanceResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getBalance(acceptLanguage, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['BalancesApi.getBalance']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
 };
@@ -104,11 +106,11 @@ export const BalancesApiFactory = function (configuration?: Configuration, baseP
         /**
          * Get a company\'s balance
          * @summary Get a company\'s balance
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetBalanceAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getBalance(acceptLanguage?: 'es' | 'en', options?: any): AxiosPromise<BalanceResponse> {
+        getBalance(acceptLanguage?: GetBalanceAcceptLanguageEnum, options?: any): AxiosPromise<BalanceResponse> {
             return localVarFp.getBalance(acceptLanguage, options).then((request) => request(axios, basePath));
         },
     };
@@ -123,12 +125,12 @@ export interface BalancesApiInterface {
     /**
      * Get a company\'s balance
      * @summary Get a company\'s balance
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetBalanceAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BalancesApiInterface
      */
-    getBalance(acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): AxiosPromise<BalanceResponse>;
+    getBalance(acceptLanguage?: GetBalanceAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<BalanceResponse>;
 
 }
 
@@ -142,12 +144,21 @@ export class BalancesApi extends BaseAPI implements BalancesApiInterface {
     /**
      * Get a company\'s balance
      * @summary Get a company\'s balance
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetBalanceAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BalancesApi
      */
-    public getBalance(acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig) {
+    public getBalance(acceptLanguage?: GetBalanceAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return BalancesApiFp(this.configuration).getBalance(acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
+
+/**
+ * @export
+ */
+export const GetBalanceAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetBalanceAcceptLanguageEnum = typeof GetBalanceAcceptLanguageEnum[keyof typeof GetBalanceAcceptLanguageEnum];

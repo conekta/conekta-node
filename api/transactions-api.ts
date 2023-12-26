@@ -14,13 +14,13 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import { GetTransactionsResponse } from '../model';
 // @ts-ignore
@@ -37,12 +37,12 @@ export const TransactionsApiAxiosParamCreator = function (configuration?: Config
          * Get the details of a transaction
          * @summary Get transaction
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetTransactionAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTransaction: async (id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getTransaction: async (id: string, acceptLanguage?: GetTransactionAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getTransaction', 'id', id)
             const localVarPath = `/transactions/{id}`
@@ -84,7 +84,7 @@ export const TransactionsApiAxiosParamCreator = function (configuration?: Config
         /**
          * Get transaction details in the form of a list
          * @summary Get List transactions
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetTransactionsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [next] next page
@@ -96,7 +96,7 @@ export const TransactionsApiAxiosParamCreator = function (configuration?: Config
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTransactions: async (acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, id?: string, chargeId?: string, type?: string, currency?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getTransactions: async (acceptLanguage?: GetTransactionsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, id?: string, chargeId?: string, type?: string, currency?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/transactions`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -174,19 +174,21 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * Get the details of a transaction
          * @summary Get transaction
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetTransactionAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTransaction(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TransactionResponse>> {
+        async getTransaction(id: string, acceptLanguage?: GetTransactionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TransactionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getTransaction(id, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['TransactionsApi.getTransaction']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Get transaction details in the form of a list
          * @summary Get List transactions
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetTransactionsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [next] next page
@@ -198,9 +200,11 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTransactions(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, id?: string, chargeId?: string, type?: string, currency?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTransactionsResponse>> {
+        async getTransactions(acceptLanguage?: GetTransactionsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, id?: string, chargeId?: string, type?: string, currency?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTransactionsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getTransactions(acceptLanguage, xChildCompanyId, limit, next, previous, id, chargeId, type, currency, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['TransactionsApi.getTransactions']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
 };
@@ -216,18 +220,18 @@ export const TransactionsApiFactory = function (configuration?: Configuration, b
          * Get the details of a transaction
          * @summary Get transaction
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetTransactionAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTransaction(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<TransactionResponse> {
+        getTransaction(id: string, acceptLanguage?: GetTransactionAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<TransactionResponse> {
             return localVarFp.getTransaction(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Get transaction details in the form of a list
          * @summary Get List transactions
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetTransactionsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [next] next page
@@ -239,7 +243,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTransactions(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, id?: string, chargeId?: string, type?: string, currency?: string, options?: any): AxiosPromise<GetTransactionsResponse> {
+        getTransactions(acceptLanguage?: GetTransactionsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, id?: string, chargeId?: string, type?: string, currency?: string, options?: any): AxiosPromise<GetTransactionsResponse> {
             return localVarFp.getTransactions(acceptLanguage, xChildCompanyId, limit, next, previous, id, chargeId, type, currency, options).then((request) => request(axios, basePath));
         },
     };
@@ -255,18 +259,18 @@ export interface TransactionsApiInterface {
      * Get the details of a transaction
      * @summary Get transaction
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetTransactionAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TransactionsApiInterface
      */
-    getTransaction(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<TransactionResponse>;
+    getTransaction(id: string, acceptLanguage?: GetTransactionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<TransactionResponse>;
 
     /**
      * Get transaction details in the form of a list
      * @summary Get List transactions
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetTransactionsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
      * @param {string} [next] next page
@@ -279,7 +283,7 @@ export interface TransactionsApiInterface {
      * @throws {RequiredError}
      * @memberof TransactionsApiInterface
      */
-    getTransactions(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, id?: string, chargeId?: string, type?: string, currency?: string, options?: AxiosRequestConfig): AxiosPromise<GetTransactionsResponse>;
+    getTransactions(acceptLanguage?: GetTransactionsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, id?: string, chargeId?: string, type?: string, currency?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetTransactionsResponse>;
 
 }
 
@@ -294,20 +298,20 @@ export class TransactionsApi extends BaseAPI implements TransactionsApiInterface
      * Get the details of a transaction
      * @summary Get transaction
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetTransactionAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public getTransaction(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public getTransaction(id: string, acceptLanguage?: GetTransactionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return TransactionsApiFp(this.configuration).getTransaction(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Get transaction details in the form of a list
      * @summary Get List transactions
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetTransactionsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
      * @param {string} [next] next page
@@ -320,7 +324,24 @@ export class TransactionsApi extends BaseAPI implements TransactionsApiInterface
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public getTransactions(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, id?: string, chargeId?: string, type?: string, currency?: string, options?: AxiosRequestConfig) {
+    public getTransactions(acceptLanguage?: GetTransactionsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, id?: string, chargeId?: string, type?: string, currency?: string, options?: RawAxiosRequestConfig) {
         return TransactionsApiFp(this.configuration).getTransactions(acceptLanguage, xChildCompanyId, limit, next, previous, id, chargeId, type, currency, options).then((request) => request(this.axios, this.basePath));
     }
 }
+
+/**
+ * @export
+ */
+export const GetTransactionAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetTransactionAcceptLanguageEnum = typeof GetTransactionAcceptLanguageEnum[keyof typeof GetTransactionAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const GetTransactionsAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetTransactionsAcceptLanguageEnum = typeof GetTransactionsAcceptLanguageEnum[keyof typeof GetTransactionsAcceptLanguageEnum];

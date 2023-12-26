@@ -14,13 +14,13 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import { BlacklistRuleResponse } from '../model';
 // @ts-ignore
@@ -45,11 +45,11 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
          * 
          * @summary Create blacklisted rule
          * @param {CreateRiskRulesData} createRiskRulesData requested field for blacklist rule
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRuleBlacklist: async (createRiskRulesData: CreateRiskRulesData, acceptLanguage?: 'es' | 'en', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createRuleBlacklist: async (createRiskRulesData: CreateRiskRulesData, acceptLanguage?: CreateRuleBlacklistAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'createRiskRulesData' is not null or undefined
             assertParamExists('createRuleBlacklist', 'createRiskRulesData', createRiskRulesData)
             const localVarPath = `/antifraud/blacklists`;
@@ -89,12 +89,12 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
         /**
          * 
          * @summary Create whitelisted rule
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {CreateRiskRulesData} [createRiskRulesData] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRuleWhitelist: async (acceptLanguage?: 'es' | 'en', createRiskRulesData?: CreateRiskRulesData, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createRuleWhitelist: async (acceptLanguage?: CreateRuleWhitelistAcceptLanguageEnum, createRiskRulesData?: CreateRiskRulesData, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/antifraud/whitelists`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -133,12 +133,12 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
          * 
          * @summary Delete blacklisted rule
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeleteRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteRuleBlacklist: async (id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteRuleBlacklist: async (id: string, acceptLanguage?: DeleteRuleBlacklistAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deleteRuleBlacklist', 'id', id)
             const localVarPath = `/antifraud/blacklists/{id}`
@@ -181,12 +181,12 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
          * 
          * @summary Delete whitelisted rule
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeleteRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteRuleWhitelist: async (id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteRuleWhitelist: async (id: string, acceptLanguage?: DeleteRuleWhitelistAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deleteRuleWhitelist', 'id', id)
             const localVarPath = `/antifraud/whitelists/{id}`
@@ -228,11 +228,11 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Return all rules
          * @summary Get list of blacklisted rules
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRuleBlacklist: async (acceptLanguage?: 'es' | 'en', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getRuleBlacklist: async (acceptLanguage?: GetRuleBlacklistAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/antifraud/blacklists`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -267,11 +267,11 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Return all rules
          * @summary Get a list of whitelisted rules
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRuleWhitelist: async (acceptLanguage?: 'es' | 'en', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getRuleWhitelist: async (acceptLanguage?: GetRuleWhitelistAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/antifraud/whitelists`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -317,73 +317,85 @@ export const AntifraudApiFp = function(configuration?: Configuration) {
          * 
          * @summary Create blacklisted rule
          * @param {CreateRiskRulesData} createRiskRulesData requested field for blacklist rule
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createRuleBlacklist(createRiskRulesData: CreateRiskRulesData, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BlacklistRuleResponse>> {
+        async createRuleBlacklist(createRiskRulesData: CreateRiskRulesData, acceptLanguage?: CreateRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BlacklistRuleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createRuleBlacklist(createRiskRulesData, acceptLanguage, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['AntifraudApi.createRuleBlacklist']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
          * @summary Create whitelisted rule
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {CreateRiskRulesData} [createRiskRulesData] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createRuleWhitelist(acceptLanguage?: 'es' | 'en', createRiskRulesData?: CreateRiskRulesData, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WhitelistlistRuleResponse>> {
+        async createRuleWhitelist(acceptLanguage?: CreateRuleWhitelistAcceptLanguageEnum, createRiskRulesData?: CreateRiskRulesData, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WhitelistlistRuleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createRuleWhitelist(acceptLanguage, createRiskRulesData, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['AntifraudApi.createRuleWhitelist']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
          * @summary Delete blacklisted rule
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeleteRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteRuleBlacklist(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeletedBlacklistRuleResponse>> {
+        async deleteRuleBlacklist(id: string, acceptLanguage?: DeleteRuleBlacklistAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeletedBlacklistRuleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteRuleBlacklist(id, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['AntifraudApi.deleteRuleBlacklist']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
          * @summary Delete whitelisted rule
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeleteRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteRuleWhitelist(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeletedWhitelistRuleResponse>> {
+        async deleteRuleWhitelist(id: string, acceptLanguage?: DeleteRuleWhitelistAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeletedWhitelistRuleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteRuleWhitelist(id, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['AntifraudApi.deleteRuleWhitelist']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Return all rules
          * @summary Get list of blacklisted rules
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRuleBlacklist(acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RiskRulesList>> {
+        async getRuleBlacklist(acceptLanguage?: GetRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RiskRulesList>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRuleBlacklist(acceptLanguage, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['AntifraudApi.getRuleBlacklist']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Return all rules
          * @summary Get a list of whitelisted rules
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRuleWhitelist(acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RiskRulesList>> {
+        async getRuleWhitelist(acceptLanguage?: GetRuleWhitelistAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RiskRulesList>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRuleWhitelist(acceptLanguage, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['AntifraudApi.getRuleWhitelist']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
 };
@@ -399,66 +411,66 @@ export const AntifraudApiFactory = function (configuration?: Configuration, base
          * 
          * @summary Create blacklisted rule
          * @param {CreateRiskRulesData} createRiskRulesData requested field for blacklist rule
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRuleBlacklist(createRiskRulesData: CreateRiskRulesData, acceptLanguage?: 'es' | 'en', options?: any): AxiosPromise<BlacklistRuleResponse> {
+        createRuleBlacklist(createRiskRulesData: CreateRiskRulesData, acceptLanguage?: CreateRuleBlacklistAcceptLanguageEnum, options?: any): AxiosPromise<BlacklistRuleResponse> {
             return localVarFp.createRuleBlacklist(createRiskRulesData, acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Create whitelisted rule
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {CreateRiskRulesData} [createRiskRulesData] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRuleWhitelist(acceptLanguage?: 'es' | 'en', createRiskRulesData?: CreateRiskRulesData, options?: any): AxiosPromise<WhitelistlistRuleResponse> {
+        createRuleWhitelist(acceptLanguage?: CreateRuleWhitelistAcceptLanguageEnum, createRiskRulesData?: CreateRiskRulesData, options?: any): AxiosPromise<WhitelistlistRuleResponse> {
             return localVarFp.createRuleWhitelist(acceptLanguage, createRiskRulesData, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Delete blacklisted rule
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeleteRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteRuleBlacklist(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<DeletedBlacklistRuleResponse> {
+        deleteRuleBlacklist(id: string, acceptLanguage?: DeleteRuleBlacklistAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<DeletedBlacklistRuleResponse> {
             return localVarFp.deleteRuleBlacklist(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Delete whitelisted rule
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeleteRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteRuleWhitelist(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<DeletedWhitelistRuleResponse> {
+        deleteRuleWhitelist(id: string, acceptLanguage?: DeleteRuleWhitelistAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<DeletedWhitelistRuleResponse> {
             return localVarFp.deleteRuleWhitelist(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Return all rules
          * @summary Get list of blacklisted rules
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRuleBlacklist(acceptLanguage?: 'es' | 'en', options?: any): AxiosPromise<RiskRulesList> {
+        getRuleBlacklist(acceptLanguage?: GetRuleBlacklistAcceptLanguageEnum, options?: any): AxiosPromise<RiskRulesList> {
             return localVarFp.getRuleBlacklist(acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * Return all rules
          * @summary Get a list of whitelisted rules
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRuleWhitelist(acceptLanguage?: 'es' | 'en', options?: any): AxiosPromise<RiskRulesList> {
+        getRuleWhitelist(acceptLanguage?: GetRuleWhitelistAcceptLanguageEnum, options?: any): AxiosPromise<RiskRulesList> {
             return localVarFp.getRuleWhitelist(acceptLanguage, options).then((request) => request(axios, basePath));
         },
     };
@@ -474,67 +486,67 @@ export interface AntifraudApiInterface {
      * 
      * @summary Create blacklisted rule
      * @param {CreateRiskRulesData} createRiskRulesData requested field for blacklist rule
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CreateRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AntifraudApiInterface
      */
-    createRuleBlacklist(createRiskRulesData: CreateRiskRulesData, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): AxiosPromise<BlacklistRuleResponse>;
+    createRuleBlacklist(createRiskRulesData: CreateRiskRulesData, acceptLanguage?: CreateRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<BlacklistRuleResponse>;
 
     /**
      * 
      * @summary Create whitelisted rule
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CreateRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {CreateRiskRulesData} [createRiskRulesData] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AntifraudApiInterface
      */
-    createRuleWhitelist(acceptLanguage?: 'es' | 'en', createRiskRulesData?: CreateRiskRulesData, options?: AxiosRequestConfig): AxiosPromise<WhitelistlistRuleResponse>;
+    createRuleWhitelist(acceptLanguage?: CreateRuleWhitelistAcceptLanguageEnum, createRiskRulesData?: CreateRiskRulesData, options?: RawAxiosRequestConfig): AxiosPromise<WhitelistlistRuleResponse>;
 
     /**
      * 
      * @summary Delete blacklisted rule
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {DeleteRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AntifraudApiInterface
      */
-    deleteRuleBlacklist(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<DeletedBlacklistRuleResponse>;
+    deleteRuleBlacklist(id: string, acceptLanguage?: DeleteRuleBlacklistAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<DeletedBlacklistRuleResponse>;
 
     /**
      * 
      * @summary Delete whitelisted rule
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {DeleteRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AntifraudApiInterface
      */
-    deleteRuleWhitelist(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<DeletedWhitelistRuleResponse>;
+    deleteRuleWhitelist(id: string, acceptLanguage?: DeleteRuleWhitelistAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<DeletedWhitelistRuleResponse>;
 
     /**
      * Return all rules
      * @summary Get list of blacklisted rules
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AntifraudApiInterface
      */
-    getRuleBlacklist(acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): AxiosPromise<RiskRulesList>;
+    getRuleBlacklist(acceptLanguage?: GetRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<RiskRulesList>;
 
     /**
      * Return all rules
      * @summary Get a list of whitelisted rules
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AntifraudApiInterface
      */
-    getRuleWhitelist(acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): AxiosPromise<RiskRulesList>;
+    getRuleWhitelist(acceptLanguage?: GetRuleWhitelistAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<RiskRulesList>;
 
 }
 
@@ -549,25 +561,25 @@ export class AntifraudApi extends BaseAPI implements AntifraudApiInterface {
      * 
      * @summary Create blacklisted rule
      * @param {CreateRiskRulesData} createRiskRulesData requested field for blacklist rule
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CreateRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AntifraudApi
      */
-    public createRuleBlacklist(createRiskRulesData: CreateRiskRulesData, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig) {
+    public createRuleBlacklist(createRiskRulesData: CreateRiskRulesData, acceptLanguage?: CreateRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return AntifraudApiFp(this.configuration).createRuleBlacklist(createRiskRulesData, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Create whitelisted rule
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CreateRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {CreateRiskRulesData} [createRiskRulesData] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AntifraudApi
      */
-    public createRuleWhitelist(acceptLanguage?: 'es' | 'en', createRiskRulesData?: CreateRiskRulesData, options?: AxiosRequestConfig) {
+    public createRuleWhitelist(acceptLanguage?: CreateRuleWhitelistAcceptLanguageEnum, createRiskRulesData?: CreateRiskRulesData, options?: RawAxiosRequestConfig) {
         return AntifraudApiFp(this.configuration).createRuleWhitelist(acceptLanguage, createRiskRulesData, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -575,13 +587,13 @@ export class AntifraudApi extends BaseAPI implements AntifraudApiInterface {
      * 
      * @summary Delete blacklisted rule
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {DeleteRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AntifraudApi
      */
-    public deleteRuleBlacklist(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public deleteRuleBlacklist(id: string, acceptLanguage?: DeleteRuleBlacklistAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return AntifraudApiFp(this.configuration).deleteRuleBlacklist(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -589,37 +601,86 @@ export class AntifraudApi extends BaseAPI implements AntifraudApiInterface {
      * 
      * @summary Delete whitelisted rule
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {DeleteRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AntifraudApi
      */
-    public deleteRuleWhitelist(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public deleteRuleWhitelist(id: string, acceptLanguage?: DeleteRuleWhitelistAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return AntifraudApiFp(this.configuration).deleteRuleWhitelist(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Return all rules
      * @summary Get list of blacklisted rules
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AntifraudApi
      */
-    public getRuleBlacklist(acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig) {
+    public getRuleBlacklist(acceptLanguage?: GetRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return AntifraudApiFp(this.configuration).getRuleBlacklist(acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Return all rules
      * @summary Get a list of whitelisted rules
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AntifraudApi
      */
-    public getRuleWhitelist(acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig) {
+    public getRuleWhitelist(acceptLanguage?: GetRuleWhitelistAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return AntifraudApiFp(this.configuration).getRuleWhitelist(acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
+
+/**
+ * @export
+ */
+export const CreateRuleBlacklistAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type CreateRuleBlacklistAcceptLanguageEnum = typeof CreateRuleBlacklistAcceptLanguageEnum[keyof typeof CreateRuleBlacklistAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const CreateRuleWhitelistAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type CreateRuleWhitelistAcceptLanguageEnum = typeof CreateRuleWhitelistAcceptLanguageEnum[keyof typeof CreateRuleWhitelistAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const DeleteRuleBlacklistAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type DeleteRuleBlacklistAcceptLanguageEnum = typeof DeleteRuleBlacklistAcceptLanguageEnum[keyof typeof DeleteRuleBlacklistAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const DeleteRuleWhitelistAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type DeleteRuleWhitelistAcceptLanguageEnum = typeof DeleteRuleWhitelistAcceptLanguageEnum[keyof typeof DeleteRuleWhitelistAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const GetRuleBlacklistAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetRuleBlacklistAcceptLanguageEnum = typeof GetRuleBlacklistAcceptLanguageEnum[keyof typeof GetRuleBlacklistAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const GetRuleWhitelistAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetRuleWhitelistAcceptLanguageEnum = typeof GetRuleWhitelistAcceptLanguageEnum[keyof typeof GetRuleWhitelistAcceptLanguageEnum];

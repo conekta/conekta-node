@@ -14,13 +14,13 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import { GetWebhookKeysResponse } from '../model';
 // @ts-ignore
@@ -44,12 +44,12 @@ export const WebhookKeysApiAxiosParamCreator = function (configuration?: Configu
         /**
          * Create a webhook key
          * @summary Create Webhook Key
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {WebhookKeyRequest} [webhookKeyRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createWebhookKey: async (acceptLanguage?: 'es' | 'en', webhookKeyRequest?: WebhookKeyRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createWebhookKey: async (acceptLanguage?: CreateWebhookKeyAcceptLanguageEnum, webhookKeyRequest?: WebhookKeyRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/webhook_keys`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -88,11 +88,11 @@ export const WebhookKeysApiAxiosParamCreator = function (configuration?: Configu
          * 
          * @summary Delete Webhook key
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeleteWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteWebhookKey: async (id: string, acceptLanguage?: 'es' | 'en', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteWebhookKey: async (id: string, acceptLanguage?: DeleteWebhookKeyAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deleteWebhookKey', 'id', id)
             const localVarPath = `/webhook_keys/{id}`
@@ -131,12 +131,12 @@ export const WebhookKeysApiAxiosParamCreator = function (configuration?: Configu
          * 
          * @summary Get Webhook Key
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWebhookKey: async (id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getWebhookKey: async (id: string, acceptLanguage?: GetWebhookKeyAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getWebhookKey', 'id', id)
             const localVarPath = `/webhook_keys/{id}`
@@ -178,7 +178,7 @@ export const WebhookKeysApiAxiosParamCreator = function (configuration?: Configu
         /**
          * Consume the list of webhook keys you have
          * @summary Get List of Webhook Keys
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetWebhookKeysAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -187,7 +187,7 @@ export const WebhookKeysApiAxiosParamCreator = function (configuration?: Configu
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWebhookKeys: async (acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getWebhookKeys: async (acceptLanguage?: GetWebhookKeysAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/webhook_keys`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -243,12 +243,12 @@ export const WebhookKeysApiAxiosParamCreator = function (configuration?: Configu
          * updates an existing webhook key
          * @summary Update Webhook Key
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {UpdateWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {WebhookKeyUpdateRequest} [webhookKeyUpdateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateWebhookKey: async (id: string, acceptLanguage?: 'es' | 'en', webhookKeyUpdateRequest?: WebhookKeyUpdateRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateWebhookKey: async (id: string, acceptLanguage?: UpdateWebhookKeyAcceptLanguageEnum, webhookKeyUpdateRequest?: WebhookKeyUpdateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateWebhookKey', 'id', id)
             const localVarPath = `/webhook_keys/{id}`
@@ -299,44 +299,50 @@ export const WebhookKeysApiFp = function(configuration?: Configuration) {
         /**
          * Create a webhook key
          * @summary Create Webhook Key
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {WebhookKeyRequest} [webhookKeyRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createWebhookKey(acceptLanguage?: 'es' | 'en', webhookKeyRequest?: WebhookKeyRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookKeyCreateResponse>> {
+        async createWebhookKey(acceptLanguage?: CreateWebhookKeyAcceptLanguageEnum, webhookKeyRequest?: WebhookKeyRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookKeyCreateResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createWebhookKey(acceptLanguage, webhookKeyRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WebhookKeysApi.createWebhookKey']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
          * @summary Delete Webhook key
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeleteWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteWebhookKey(id: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookKeyDeleteResponse>> {
+        async deleteWebhookKey(id: string, acceptLanguage?: DeleteWebhookKeyAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookKeyDeleteResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteWebhookKey(id, acceptLanguage, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WebhookKeysApi.deleteWebhookKey']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
          * @summary Get Webhook Key
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getWebhookKey(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookKeyResponse>> {
+        async getWebhookKey(id: string, acceptLanguage?: GetWebhookKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookKeyResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getWebhookKey(id, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WebhookKeysApi.getWebhookKey']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Consume the list of webhook keys you have
          * @summary Get List of Webhook Keys
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetWebhookKeysAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -345,22 +351,26 @@ export const WebhookKeysApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getWebhookKeys(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetWebhookKeysResponse>> {
+        async getWebhookKeys(acceptLanguage?: GetWebhookKeysAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetWebhookKeysResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getWebhookKeys(acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WebhookKeysApi.getWebhookKeys']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * updates an existing webhook key
          * @summary Update Webhook Key
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {UpdateWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {WebhookKeyUpdateRequest} [webhookKeyUpdateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateWebhookKey(id: string, acceptLanguage?: 'es' | 'en', webhookKeyUpdateRequest?: WebhookKeyUpdateRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookKeyResponse>> {
+        async updateWebhookKey(id: string, acceptLanguage?: UpdateWebhookKeyAcceptLanguageEnum, webhookKeyUpdateRequest?: WebhookKeyUpdateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookKeyResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateWebhookKey(id, acceptLanguage, webhookKeyUpdateRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WebhookKeysApi.updateWebhookKey']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
 };
@@ -375,41 +385,41 @@ export const WebhookKeysApiFactory = function (configuration?: Configuration, ba
         /**
          * Create a webhook key
          * @summary Create Webhook Key
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {WebhookKeyRequest} [webhookKeyRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createWebhookKey(acceptLanguage?: 'es' | 'en', webhookKeyRequest?: WebhookKeyRequest, options?: any): AxiosPromise<WebhookKeyCreateResponse> {
+        createWebhookKey(acceptLanguage?: CreateWebhookKeyAcceptLanguageEnum, webhookKeyRequest?: WebhookKeyRequest, options?: any): AxiosPromise<WebhookKeyCreateResponse> {
             return localVarFp.createWebhookKey(acceptLanguage, webhookKeyRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Delete Webhook key
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeleteWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteWebhookKey(id: string, acceptLanguage?: 'es' | 'en', options?: any): AxiosPromise<WebhookKeyDeleteResponse> {
+        deleteWebhookKey(id: string, acceptLanguage?: DeleteWebhookKeyAcceptLanguageEnum, options?: any): AxiosPromise<WebhookKeyDeleteResponse> {
             return localVarFp.deleteWebhookKey(id, acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Get Webhook Key
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWebhookKey(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<WebhookKeyResponse> {
+        getWebhookKey(id: string, acceptLanguage?: GetWebhookKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<WebhookKeyResponse> {
             return localVarFp.getWebhookKey(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Consume the list of webhook keys you have
          * @summary Get List of Webhook Keys
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetWebhookKeysAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -418,19 +428,19 @@ export const WebhookKeysApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWebhookKeys(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetWebhookKeysResponse> {
+        getWebhookKeys(acceptLanguage?: GetWebhookKeysAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetWebhookKeysResponse> {
             return localVarFp.getWebhookKeys(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
         },
         /**
          * updates an existing webhook key
          * @summary Update Webhook Key
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {UpdateWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {WebhookKeyUpdateRequest} [webhookKeyUpdateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateWebhookKey(id: string, acceptLanguage?: 'es' | 'en', webhookKeyUpdateRequest?: WebhookKeyUpdateRequest, options?: any): AxiosPromise<WebhookKeyResponse> {
+        updateWebhookKey(id: string, acceptLanguage?: UpdateWebhookKeyAcceptLanguageEnum, webhookKeyUpdateRequest?: WebhookKeyUpdateRequest, options?: any): AxiosPromise<WebhookKeyResponse> {
             return localVarFp.updateWebhookKey(id, acceptLanguage, webhookKeyUpdateRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -445,41 +455,41 @@ export interface WebhookKeysApiInterface {
     /**
      * Create a webhook key
      * @summary Create Webhook Key
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CreateWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {WebhookKeyRequest} [webhookKeyRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebhookKeysApiInterface
      */
-    createWebhookKey(acceptLanguage?: 'es' | 'en', webhookKeyRequest?: WebhookKeyRequest, options?: AxiosRequestConfig): AxiosPromise<WebhookKeyCreateResponse>;
+    createWebhookKey(acceptLanguage?: CreateWebhookKeyAcceptLanguageEnum, webhookKeyRequest?: WebhookKeyRequest, options?: RawAxiosRequestConfig): AxiosPromise<WebhookKeyCreateResponse>;
 
     /**
      * 
      * @summary Delete Webhook key
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {DeleteWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebhookKeysApiInterface
      */
-    deleteWebhookKey(id: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): AxiosPromise<WebhookKeyDeleteResponse>;
+    deleteWebhookKey(id: string, acceptLanguage?: DeleteWebhookKeyAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<WebhookKeyDeleteResponse>;
 
     /**
      * 
      * @summary Get Webhook Key
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebhookKeysApiInterface
      */
-    getWebhookKey(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<WebhookKeyResponse>;
+    getWebhookKey(id: string, acceptLanguage?: GetWebhookKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<WebhookKeyResponse>;
 
     /**
      * Consume the list of webhook keys you have
      * @summary Get List of Webhook Keys
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetWebhookKeysAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
      * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -489,19 +499,19 @@ export interface WebhookKeysApiInterface {
      * @throws {RequiredError}
      * @memberof WebhookKeysApiInterface
      */
-    getWebhookKeys(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): AxiosPromise<GetWebhookKeysResponse>;
+    getWebhookKeys(acceptLanguage?: GetWebhookKeysAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetWebhookKeysResponse>;
 
     /**
      * updates an existing webhook key
      * @summary Update Webhook Key
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {UpdateWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {WebhookKeyUpdateRequest} [webhookKeyUpdateRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebhookKeysApiInterface
      */
-    updateWebhookKey(id: string, acceptLanguage?: 'es' | 'en', webhookKeyUpdateRequest?: WebhookKeyUpdateRequest, options?: AxiosRequestConfig): AxiosPromise<WebhookKeyResponse>;
+    updateWebhookKey(id: string, acceptLanguage?: UpdateWebhookKeyAcceptLanguageEnum, webhookKeyUpdateRequest?: WebhookKeyUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<WebhookKeyResponse>;
 
 }
 
@@ -515,13 +525,13 @@ export class WebhookKeysApi extends BaseAPI implements WebhookKeysApiInterface {
     /**
      * Create a webhook key
      * @summary Create Webhook Key
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CreateWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {WebhookKeyRequest} [webhookKeyRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebhookKeysApi
      */
-    public createWebhookKey(acceptLanguage?: 'es' | 'en', webhookKeyRequest?: WebhookKeyRequest, options?: AxiosRequestConfig) {
+    public createWebhookKey(acceptLanguage?: CreateWebhookKeyAcceptLanguageEnum, webhookKeyRequest?: WebhookKeyRequest, options?: RawAxiosRequestConfig) {
         return WebhookKeysApiFp(this.configuration).createWebhookKey(acceptLanguage, webhookKeyRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -529,12 +539,12 @@ export class WebhookKeysApi extends BaseAPI implements WebhookKeysApiInterface {
      * 
      * @summary Delete Webhook key
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {DeleteWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebhookKeysApi
      */
-    public deleteWebhookKey(id: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig) {
+    public deleteWebhookKey(id: string, acceptLanguage?: DeleteWebhookKeyAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return WebhookKeysApiFp(this.configuration).deleteWebhookKey(id, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -542,20 +552,20 @@ export class WebhookKeysApi extends BaseAPI implements WebhookKeysApiInterface {
      * 
      * @summary Get Webhook Key
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebhookKeysApi
      */
-    public getWebhookKey(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public getWebhookKey(id: string, acceptLanguage?: GetWebhookKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return WebhookKeysApiFp(this.configuration).getWebhookKey(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Consume the list of webhook keys you have
      * @summary Get List of Webhook Keys
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetWebhookKeysAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
      * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -565,7 +575,7 @@ export class WebhookKeysApi extends BaseAPI implements WebhookKeysApiInterface {
      * @throws {RequiredError}
      * @memberof WebhookKeysApi
      */
-    public getWebhookKeys(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig) {
+    public getWebhookKeys(acceptLanguage?: GetWebhookKeysAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return WebhookKeysApiFp(this.configuration).getWebhookKeys(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -573,13 +583,54 @@ export class WebhookKeysApi extends BaseAPI implements WebhookKeysApiInterface {
      * updates an existing webhook key
      * @summary Update Webhook Key
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {UpdateWebhookKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {WebhookKeyUpdateRequest} [webhookKeyUpdateRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebhookKeysApi
      */
-    public updateWebhookKey(id: string, acceptLanguage?: 'es' | 'en', webhookKeyUpdateRequest?: WebhookKeyUpdateRequest, options?: AxiosRequestConfig) {
+    public updateWebhookKey(id: string, acceptLanguage?: UpdateWebhookKeyAcceptLanguageEnum, webhookKeyUpdateRequest?: WebhookKeyUpdateRequest, options?: RawAxiosRequestConfig) {
         return WebhookKeysApiFp(this.configuration).updateWebhookKey(id, acceptLanguage, webhookKeyUpdateRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
+
+/**
+ * @export
+ */
+export const CreateWebhookKeyAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type CreateWebhookKeyAcceptLanguageEnum = typeof CreateWebhookKeyAcceptLanguageEnum[keyof typeof CreateWebhookKeyAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const DeleteWebhookKeyAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type DeleteWebhookKeyAcceptLanguageEnum = typeof DeleteWebhookKeyAcceptLanguageEnum[keyof typeof DeleteWebhookKeyAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const GetWebhookKeyAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetWebhookKeyAcceptLanguageEnum = typeof GetWebhookKeyAcceptLanguageEnum[keyof typeof GetWebhookKeyAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const GetWebhookKeysAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetWebhookKeysAcceptLanguageEnum = typeof GetWebhookKeysAcceptLanguageEnum[keyof typeof GetWebhookKeysAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const UpdateWebhookKeyAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type UpdateWebhookKeyAcceptLanguageEnum = typeof UpdateWebhookKeyAcceptLanguageEnum[keyof typeof UpdateWebhookKeyAcceptLanguageEnum];

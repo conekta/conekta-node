@@ -14,13 +14,13 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import { ApiKeyCreateResponse } from '../model';
 // @ts-ignore
@@ -45,12 +45,12 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
          * Create a api key
          * @summary Create Api Key
          * @param {ApiKeyRequest} apiKeyRequest requested field for a api keys
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createApiKey: async (apiKeyRequest: ApiKeyRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createApiKey: async (apiKeyRequest: ApiKeyRequest, acceptLanguage?: CreateApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'apiKeyRequest' is not null or undefined
             assertParamExists('createApiKey', 'apiKeyRequest', apiKeyRequest)
             const localVarPath = `/api_keys`;
@@ -95,11 +95,11 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
          * Deletes a api key that corresponds to a api key ID
          * @summary Delete Api Key
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeleteApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteApiKey: async (id: string, acceptLanguage?: 'es' | 'en', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteApiKey: async (id: string, acceptLanguage?: DeleteApiKeyAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deleteApiKey', 'id', id)
             const localVarPath = `/api_keys/{id}`
@@ -138,12 +138,12 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
          * Gets a api key that corresponds to a api key ID
          * @summary Get Api Key
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getApiKey: async (id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getApiKey: async (id: string, acceptLanguage?: GetApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getApiKey', 'id', id)
             const localVarPath = `/api_keys/{id}`
@@ -185,7 +185,7 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Consume the list of api keys you have
          * @summary Get list of Api Keys
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetApiKeysAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [next] next page
@@ -194,7 +194,7 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getApiKeys: async (acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getApiKeys: async (acceptLanguage?: GetApiKeysAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api_keys`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -250,12 +250,12 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
          * Update an existing api key
          * @summary Update Api Key
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {UpdateApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {ApiKeyUpdateRequest} [apiKeyUpdateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateApiKey: async (id: string, acceptLanguage?: 'es' | 'en', apiKeyUpdateRequest?: ApiKeyUpdateRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateApiKey: async (id: string, acceptLanguage?: UpdateApiKeyAcceptLanguageEnum, apiKeyUpdateRequest?: ApiKeyUpdateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateApiKey', 'id', id)
             const localVarPath = `/api_keys/{id}`
@@ -307,44 +307,50 @@ export const ApiKeysApiFp = function(configuration?: Configuration) {
          * Create a api key
          * @summary Create Api Key
          * @param {ApiKeyRequest} apiKeyRequest requested field for a api keys
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createApiKey(apiKeyRequest: ApiKeyRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiKeyCreateResponse>> {
+        async createApiKey(apiKeyRequest: ApiKeyRequest, acceptLanguage?: CreateApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiKeyCreateResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createApiKey(apiKeyRequest, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ApiKeysApi.createApiKey']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Deletes a api key that corresponds to a api key ID
          * @summary Delete Api Key
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeleteApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteApiKey(id: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteApiKeysResponse>> {
+        async deleteApiKey(id: string, acceptLanguage?: DeleteApiKeyAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteApiKeysResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteApiKey(id, acceptLanguage, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ApiKeysApi.deleteApiKey']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Gets a api key that corresponds to a api key ID
          * @summary Get Api Key
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getApiKey(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiKeyResponse>> {
+        async getApiKey(id: string, acceptLanguage?: GetApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiKeyResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getApiKey(id, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ApiKeysApi.getApiKey']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Consume the list of api keys you have
          * @summary Get list of Api Keys
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetApiKeysAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [next] next page
@@ -353,22 +359,26 @@ export const ApiKeysApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getApiKeys(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetApiKeysResponse>> {
+        async getApiKeys(acceptLanguage?: GetApiKeysAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetApiKeysResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getApiKeys(acceptLanguage, xChildCompanyId, limit, next, previous, search, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ApiKeysApi.getApiKeys']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Update an existing api key
          * @summary Update Api Key
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {UpdateApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {ApiKeyUpdateRequest} [apiKeyUpdateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateApiKey(id: string, acceptLanguage?: 'es' | 'en', apiKeyUpdateRequest?: ApiKeyUpdateRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiKeyResponse>> {
+        async updateApiKey(id: string, acceptLanguage?: UpdateApiKeyAcceptLanguageEnum, apiKeyUpdateRequest?: ApiKeyUpdateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiKeyResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateApiKey(id, acceptLanguage, apiKeyUpdateRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ApiKeysApi.updateApiKey']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
 };
@@ -384,41 +394,41 @@ export const ApiKeysApiFactory = function (configuration?: Configuration, basePa
          * Create a api key
          * @summary Create Api Key
          * @param {ApiKeyRequest} apiKeyRequest requested field for a api keys
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createApiKey(apiKeyRequest: ApiKeyRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<ApiKeyCreateResponse> {
+        createApiKey(apiKeyRequest: ApiKeyRequest, acceptLanguage?: CreateApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<ApiKeyCreateResponse> {
             return localVarFp.createApiKey(apiKeyRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Deletes a api key that corresponds to a api key ID
          * @summary Delete Api Key
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeleteApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteApiKey(id: string, acceptLanguage?: 'es' | 'en', options?: any): AxiosPromise<DeleteApiKeysResponse> {
+        deleteApiKey(id: string, acceptLanguage?: DeleteApiKeyAcceptLanguageEnum, options?: any): AxiosPromise<DeleteApiKeysResponse> {
             return localVarFp.deleteApiKey(id, acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * Gets a api key that corresponds to a api key ID
          * @summary Get Api Key
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getApiKey(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<ApiKeyResponse> {
+        getApiKey(id: string, acceptLanguage?: GetApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<ApiKeyResponse> {
             return localVarFp.getApiKey(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Consume the list of api keys you have
          * @summary Get list of Api Keys
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetApiKeysAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [next] next page
@@ -427,19 +437,19 @@ export const ApiKeysApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getApiKeys(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: any): AxiosPromise<GetApiKeysResponse> {
+        getApiKeys(acceptLanguage?: GetApiKeysAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: any): AxiosPromise<GetApiKeysResponse> {
             return localVarFp.getApiKeys(acceptLanguage, xChildCompanyId, limit, next, previous, search, options).then((request) => request(axios, basePath));
         },
         /**
          * Update an existing api key
          * @summary Update Api Key
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {UpdateApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {ApiKeyUpdateRequest} [apiKeyUpdateRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateApiKey(id: string, acceptLanguage?: 'es' | 'en', apiKeyUpdateRequest?: ApiKeyUpdateRequest, options?: any): AxiosPromise<ApiKeyResponse> {
+        updateApiKey(id: string, acceptLanguage?: UpdateApiKeyAcceptLanguageEnum, apiKeyUpdateRequest?: ApiKeyUpdateRequest, options?: any): AxiosPromise<ApiKeyResponse> {
             return localVarFp.updateApiKey(id, acceptLanguage, apiKeyUpdateRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -455,41 +465,41 @@ export interface ApiKeysApiInterface {
      * Create a api key
      * @summary Create Api Key
      * @param {ApiKeyRequest} apiKeyRequest requested field for a api keys
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CreateApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ApiKeysApiInterface
      */
-    createApiKey(apiKeyRequest: ApiKeyRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<ApiKeyCreateResponse>;
+    createApiKey(apiKeyRequest: ApiKeyRequest, acceptLanguage?: CreateApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiKeyCreateResponse>;
 
     /**
      * Deletes a api key that corresponds to a api key ID
      * @summary Delete Api Key
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {DeleteApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ApiKeysApiInterface
      */
-    deleteApiKey(id: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): AxiosPromise<DeleteApiKeysResponse>;
+    deleteApiKey(id: string, acceptLanguage?: DeleteApiKeyAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<DeleteApiKeysResponse>;
 
     /**
      * Gets a api key that corresponds to a api key ID
      * @summary Get Api Key
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ApiKeysApiInterface
      */
-    getApiKey(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<ApiKeyResponse>;
+    getApiKey(id: string, acceptLanguage?: GetApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiKeyResponse>;
 
     /**
      * Consume the list of api keys you have
      * @summary Get list of Api Keys
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetApiKeysAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
      * @param {string} [next] next page
@@ -499,19 +509,19 @@ export interface ApiKeysApiInterface {
      * @throws {RequiredError}
      * @memberof ApiKeysApiInterface
      */
-    getApiKeys(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: AxiosRequestConfig): AxiosPromise<GetApiKeysResponse>;
+    getApiKeys(acceptLanguage?: GetApiKeysAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetApiKeysResponse>;
 
     /**
      * Update an existing api key
      * @summary Update Api Key
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {UpdateApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {ApiKeyUpdateRequest} [apiKeyUpdateRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ApiKeysApiInterface
      */
-    updateApiKey(id: string, acceptLanguage?: 'es' | 'en', apiKeyUpdateRequest?: ApiKeyUpdateRequest, options?: AxiosRequestConfig): AxiosPromise<ApiKeyResponse>;
+    updateApiKey(id: string, acceptLanguage?: UpdateApiKeyAcceptLanguageEnum, apiKeyUpdateRequest?: ApiKeyUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiKeyResponse>;
 
 }
 
@@ -526,13 +536,13 @@ export class ApiKeysApi extends BaseAPI implements ApiKeysApiInterface {
      * Create a api key
      * @summary Create Api Key
      * @param {ApiKeyRequest} apiKeyRequest requested field for a api keys
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CreateApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ApiKeysApi
      */
-    public createApiKey(apiKeyRequest: ApiKeyRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public createApiKey(apiKeyRequest: ApiKeyRequest, acceptLanguage?: CreateApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ApiKeysApiFp(this.configuration).createApiKey(apiKeyRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -540,12 +550,12 @@ export class ApiKeysApi extends BaseAPI implements ApiKeysApiInterface {
      * Deletes a api key that corresponds to a api key ID
      * @summary Delete Api Key
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {DeleteApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ApiKeysApi
      */
-    public deleteApiKey(id: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig) {
+    public deleteApiKey(id: string, acceptLanguage?: DeleteApiKeyAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return ApiKeysApiFp(this.configuration).deleteApiKey(id, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -553,20 +563,20 @@ export class ApiKeysApi extends BaseAPI implements ApiKeysApiInterface {
      * Gets a api key that corresponds to a api key ID
      * @summary Get Api Key
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ApiKeysApi
      */
-    public getApiKey(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public getApiKey(id: string, acceptLanguage?: GetApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ApiKeysApiFp(this.configuration).getApiKey(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Consume the list of api keys you have
      * @summary Get list of Api Keys
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetApiKeysAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
      * @param {string} [next] next page
@@ -576,7 +586,7 @@ export class ApiKeysApi extends BaseAPI implements ApiKeysApiInterface {
      * @throws {RequiredError}
      * @memberof ApiKeysApi
      */
-    public getApiKeys(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: AxiosRequestConfig) {
+    public getApiKeys(acceptLanguage?: GetApiKeysAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: RawAxiosRequestConfig) {
         return ApiKeysApiFp(this.configuration).getApiKeys(acceptLanguage, xChildCompanyId, limit, next, previous, search, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -584,13 +594,54 @@ export class ApiKeysApi extends BaseAPI implements ApiKeysApiInterface {
      * Update an existing api key
      * @summary Update Api Key
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {UpdateApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {ApiKeyUpdateRequest} [apiKeyUpdateRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ApiKeysApi
      */
-    public updateApiKey(id: string, acceptLanguage?: 'es' | 'en', apiKeyUpdateRequest?: ApiKeyUpdateRequest, options?: AxiosRequestConfig) {
+    public updateApiKey(id: string, acceptLanguage?: UpdateApiKeyAcceptLanguageEnum, apiKeyUpdateRequest?: ApiKeyUpdateRequest, options?: RawAxiosRequestConfig) {
         return ApiKeysApiFp(this.configuration).updateApiKey(id, acceptLanguage, apiKeyUpdateRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
+
+/**
+ * @export
+ */
+export const CreateApiKeyAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type CreateApiKeyAcceptLanguageEnum = typeof CreateApiKeyAcceptLanguageEnum[keyof typeof CreateApiKeyAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const DeleteApiKeyAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type DeleteApiKeyAcceptLanguageEnum = typeof DeleteApiKeyAcceptLanguageEnum[keyof typeof DeleteApiKeyAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const GetApiKeyAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetApiKeyAcceptLanguageEnum = typeof GetApiKeyAcceptLanguageEnum[keyof typeof GetApiKeyAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const GetApiKeysAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetApiKeysAcceptLanguageEnum = typeof GetApiKeysAcceptLanguageEnum[keyof typeof GetApiKeysAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const UpdateApiKeyAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type UpdateApiKeyAcceptLanguageEnum = typeof UpdateApiKeyAcceptLanguageEnum[keyof typeof UpdateApiKeyAcceptLanguageEnum];

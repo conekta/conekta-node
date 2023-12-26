@@ -1,17 +1,17 @@
 {
-  "name": "conekta",
-  "version": "6.0.2",
-  "description": "OpenAPI client for conekta",
+  "name": "{{npmName}}",
+  "version": "{{npmVersion}}",
+  "description": "OpenAPI client for {{npmName}}",
   "author": "engineering conekta",
   "repository": {
     "type": "git",
-    "url": "https://github.com/conekta/conekta-node.git"
+    "url": "https://{{gitHost}}/{{gitUserId}}/{{gitRepoId}}.git"
   },
   "engines": {
     "node": ">=14"
   },
   "keywords": [
-    "conekta",
+    "{{npmName}}",
     "wrapper",
     "spei",
     "oxxo",
@@ -23,17 +23,19 @@
     "nodejs"
   ],
   "bugs": {
-    "url": "https://github.com/conekta/conekta-node/issues"
+    "url": "https://{{gitHost}}/{{gitUserId}}/{{gitRepoId}}/issues"
   },
-  "homepage": "https://github.com/conekta/conekta-node#readme",
+  "homepage": "https://{{gitHost}}/{{gitUserId}}/{{gitRepoId}}#readme",
   "license": "MIT",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
+{{#supportsES6}}
   "module": "./dist/esm/index.js",
   "sideEffects": false,
+{{/supportsES6}}
   "scripts": {
     "postbuild": "cp -r cert dist/cert",
-    "build": "tsc && tsc -p tsconfig.esm.json",
+    "build": "tsc {{#supportsES6}}&& tsc -p tsconfig.esm.json{{/supportsES6}}",
     "prepare": "npm run build",
     "test": "jest --coverage",
     "clean": "rm -rf node_modules && rm -rf dist && rm -rf coverage"
@@ -48,8 +50,10 @@
     "jest": "^29.7.0",
     "ts-jest": "^29.1.1",
     "ttypescript": "^1.5.10"
-  },
+  }{{#npmRepository}},{{/npmRepository}}
+{{#npmRepository}}
   "publishConfig": {
     "access": "public"
   }
+{{/npmRepository}}
 }

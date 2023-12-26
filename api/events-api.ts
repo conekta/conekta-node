@@ -14,13 +14,13 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import { EventResponse } from '../model';
 // @ts-ignore
@@ -39,12 +39,12 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
          * Returns a single event
          * @summary Get Event
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetEventAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getEvent: async (id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getEvent: async (id: string, acceptLanguage?: GetEventAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getEvent', 'id', id)
             const localVarPath = `/events/{id}`
@@ -86,7 +86,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * 
          * @summary Get list of Events
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetEventsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -95,7 +95,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getEvents: async (acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getEvents: async (acceptLanguage?: GetEventsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/events`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -152,11 +152,11 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
          * @summary Resend Event
          * @param {string} eventId event identifier
          * @param {string} webhookLogId webhook log identifier
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {ResendEventAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        resendEvent: async (eventId: string, webhookLogId: string, acceptLanguage?: 'es' | 'en', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        resendEvent: async (eventId: string, webhookLogId: string, acceptLanguage?: ResendEventAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'eventId' is not null or undefined
             assertParamExists('resendEvent', 'eventId', eventId)
             // verify required parameter 'webhookLogId' is not null or undefined
@@ -208,19 +208,21 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * Returns a single event
          * @summary Get Event
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetEventAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getEvent(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EventResponse>> {
+        async getEvent(id: string, acceptLanguage?: GetEventAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EventResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getEvent(id, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['EventsApi.getEvent']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
          * @summary Get list of Events
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetEventsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -229,22 +231,26 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getEvents(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetEventsResponse>> {
+        async getEvents(acceptLanguage?: GetEventsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetEventsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getEvents(acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['EventsApi.getEvents']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Try to send an event
          * @summary Resend Event
          * @param {string} eventId event identifier
          * @param {string} webhookLogId webhook log identifier
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {ResendEventAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async resendEvent(eventId: string, webhookLogId: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EventsResendResponse>> {
+        async resendEvent(eventId: string, webhookLogId: string, acceptLanguage?: ResendEventAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EventsResendResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.resendEvent(eventId, webhookLogId, acceptLanguage, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['EventsApi.resendEvent']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
 };
@@ -260,18 +266,18 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * Returns a single event
          * @summary Get Event
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetEventAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getEvent(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<EventResponse> {
+        getEvent(id: string, acceptLanguage?: GetEventAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<EventResponse> {
             return localVarFp.getEvent(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Get list of Events
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetEventsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -280,7 +286,7 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getEvents(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetEventsResponse> {
+        getEvents(acceptLanguage?: GetEventsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetEventsResponse> {
             return localVarFp.getEvents(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
         },
         /**
@@ -288,11 +294,11 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @summary Resend Event
          * @param {string} eventId event identifier
          * @param {string} webhookLogId webhook log identifier
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {ResendEventAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        resendEvent(eventId: string, webhookLogId: string, acceptLanguage?: 'es' | 'en', options?: any): AxiosPromise<EventsResendResponse> {
+        resendEvent(eventId: string, webhookLogId: string, acceptLanguage?: ResendEventAcceptLanguageEnum, options?: any): AxiosPromise<EventsResendResponse> {
             return localVarFp.resendEvent(eventId, webhookLogId, acceptLanguage, options).then((request) => request(axios, basePath));
         },
     };
@@ -308,18 +314,18 @@ export interface EventsApiInterface {
      * Returns a single event
      * @summary Get Event
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetEventAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    getEvent(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<EventResponse>;
+    getEvent(id: string, acceptLanguage?: GetEventAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<EventResponse>;
 
     /**
      * 
      * @summary Get list of Events
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetEventsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
      * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -329,19 +335,19 @@ export interface EventsApiInterface {
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    getEvents(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): AxiosPromise<GetEventsResponse>;
+    getEvents(acceptLanguage?: GetEventsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetEventsResponse>;
 
     /**
      * Try to send an event
      * @summary Resend Event
      * @param {string} eventId event identifier
      * @param {string} webhookLogId webhook log identifier
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {ResendEventAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    resendEvent(eventId: string, webhookLogId: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): AxiosPromise<EventsResendResponse>;
+    resendEvent(eventId: string, webhookLogId: string, acceptLanguage?: ResendEventAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<EventsResendResponse>;
 
 }
 
@@ -356,20 +362,20 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
      * Returns a single event
      * @summary Get Event
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetEventAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public getEvent(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public getEvent(id: string, acceptLanguage?: GetEventAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return EventsApiFp(this.configuration).getEvent(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Get list of Events
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetEventsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
      * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -379,7 +385,7 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public getEvents(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig) {
+    public getEvents(acceptLanguage?: GetEventsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return EventsApiFp(this.configuration).getEvents(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -388,12 +394,37 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
      * @summary Resend Event
      * @param {string} eventId event identifier
      * @param {string} webhookLogId webhook log identifier
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {ResendEventAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public resendEvent(eventId: string, webhookLogId: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig) {
+    public resendEvent(eventId: string, webhookLogId: string, acceptLanguage?: ResendEventAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return EventsApiFp(this.configuration).resendEvent(eventId, webhookLogId, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
+
+/**
+ * @export
+ */
+export const GetEventAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetEventAcceptLanguageEnum = typeof GetEventAcceptLanguageEnum[keyof typeof GetEventAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const GetEventsAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetEventsAcceptLanguageEnum = typeof GetEventsAcceptLanguageEnum[keyof typeof GetEventsAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const ResendEventAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type ResendEventAcceptLanguageEnum = typeof ResendEventAcceptLanguageEnum[keyof typeof ResendEventAcceptLanguageEnum];

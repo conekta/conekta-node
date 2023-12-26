@@ -14,13 +14,13 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import { LogResponse } from '../model';
 // @ts-ignore
@@ -37,12 +37,12 @@ export const LogsApiAxiosParamCreator = function (configuration?: Configuration)
          * Get the details of a specific log
          * @summary Get Log
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetLogByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLogById: async (id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getLogById: async (id: string, acceptLanguage?: GetLogByIdAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getLogById', 'id', id)
             const localVarPath = `/logs/{id}`
@@ -84,7 +84,7 @@ export const LogsApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Get log details in the form of a list
          * @summary Get List Of Logs
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetLogsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -93,7 +93,7 @@ export const LogsApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLogs: async (acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getLogs: async (acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/logs`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -159,19 +159,21 @@ export const LogsApiFp = function(configuration?: Configuration) {
          * Get the details of a specific log
          * @summary Get Log
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetLogByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getLogById(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LogResponse>> {
+        async getLogById(id: string, acceptLanguage?: GetLogByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LogResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getLogById(id, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['LogsApi.getLogById']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Get log details in the form of a list
          * @summary Get List Of Logs
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetLogsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -180,9 +182,11 @@ export const LogsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getLogs(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LogsResponse>> {
+        async getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LogsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getLogs(acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['LogsApi.getLogs']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
 };
@@ -198,18 +202,18 @@ export const LogsApiFactory = function (configuration?: Configuration, basePath?
          * Get the details of a specific log
          * @summary Get Log
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetLogByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLogById(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<LogResponse> {
+        getLogById(id: string, acceptLanguage?: GetLogByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<LogResponse> {
             return localVarFp.getLogById(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Get log details in the form of a list
          * @summary Get List Of Logs
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetLogsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -218,7 +222,7 @@ export const LogsApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLogs(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<LogsResponse> {
+        getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<LogsResponse> {
             return localVarFp.getLogs(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
         },
     };
@@ -234,18 +238,18 @@ export interface LogsApiInterface {
      * Get the details of a specific log
      * @summary Get Log
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetLogByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof LogsApiInterface
      */
-    getLogById(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<LogResponse>;
+    getLogById(id: string, acceptLanguage?: GetLogByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogResponse>;
 
     /**
      * Get log details in the form of a list
      * @summary Get List Of Logs
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetLogsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
      * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -255,7 +259,7 @@ export interface LogsApiInterface {
      * @throws {RequiredError}
      * @memberof LogsApiInterface
      */
-    getLogs(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): AxiosPromise<LogsResponse>;
+    getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogsResponse>;
 
 }
 
@@ -270,20 +274,20 @@ export class LogsApi extends BaseAPI implements LogsApiInterface {
      * Get the details of a specific log
      * @summary Get Log
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetLogByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof LogsApi
      */
-    public getLogById(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public getLogById(id: string, acceptLanguage?: GetLogByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return LogsApiFp(this.configuration).getLogById(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Get log details in the form of a list
      * @summary Get List Of Logs
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetLogsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
      * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -293,7 +297,24 @@ export class LogsApi extends BaseAPI implements LogsApiInterface {
      * @throws {RequiredError}
      * @memberof LogsApi
      */
-    public getLogs(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig) {
+    public getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return LogsApiFp(this.configuration).getLogs(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
     }
 }
+
+/**
+ * @export
+ */
+export const GetLogByIdAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetLogByIdAcceptLanguageEnum = typeof GetLogByIdAcceptLanguageEnum[keyof typeof GetLogByIdAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const GetLogsAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetLogsAcceptLanguageEnum = typeof GetLogsAcceptLanguageEnum[keyof typeof GetLogsAcceptLanguageEnum];
