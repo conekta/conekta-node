@@ -14,13 +14,13 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import { ModelError } from '../model';
 // @ts-ignore
@@ -37,11 +37,11 @@ export const TokensApiAxiosParamCreator = function (configuration?: Configuratio
          * Generate a payment token, to associate it with a card 
          * @summary Create Token
          * @param {Token} token requested field for token
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateTokenAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createToken: async (token: Token, acceptLanguage?: 'es' | 'en', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createToken: async (token: Token, acceptLanguage?: CreateTokenAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'token' is not null or undefined
             assertParamExists('createToken', 'token', token)
             const localVarPath = `/tokens`;
@@ -92,13 +92,15 @@ export const TokensApiFp = function(configuration?: Configuration) {
          * Generate a payment token, to associate it with a card 
          * @summary Create Token
          * @param {Token} token requested field for token
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateTokenAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createToken(token: Token, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenResponse>> {
+        async createToken(token: Token, acceptLanguage?: CreateTokenAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createToken(token, acceptLanguage, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['TokensApi.createToken']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
 };
@@ -114,11 +116,11 @@ export const TokensApiFactory = function (configuration?: Configuration, basePat
          * Generate a payment token, to associate it with a card 
          * @summary Create Token
          * @param {Token} token requested field for token
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateTokenAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createToken(token: Token, acceptLanguage?: 'es' | 'en', options?: any): AxiosPromise<TokenResponse> {
+        createToken(token: Token, acceptLanguage?: CreateTokenAcceptLanguageEnum, options?: any): AxiosPromise<TokenResponse> {
             return localVarFp.createToken(token, acceptLanguage, options).then((request) => request(axios, basePath));
         },
     };
@@ -134,12 +136,12 @@ export interface TokensApiInterface {
      * Generate a payment token, to associate it with a card 
      * @summary Create Token
      * @param {Token} token requested field for token
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CreateTokenAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TokensApiInterface
      */
-    createToken(token: Token, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): AxiosPromise<TokenResponse>;
+    createToken(token: Token, acceptLanguage?: CreateTokenAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<TokenResponse>;
 
 }
 
@@ -154,12 +156,21 @@ export class TokensApi extends BaseAPI implements TokensApiInterface {
      * Generate a payment token, to associate it with a card 
      * @summary Create Token
      * @param {Token} token requested field for token
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CreateTokenAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TokensApi
      */
-    public createToken(token: Token, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig) {
+    public createToken(token: Token, acceptLanguage?: CreateTokenAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return TokensApiFp(this.configuration).createToken(token, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
+
+/**
+ * @export
+ */
+export const CreateTokenAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type CreateTokenAcceptLanguageEnum = typeof CreateTokenAcceptLanguageEnum[keyof typeof CreateTokenAcceptLanguageEnum];

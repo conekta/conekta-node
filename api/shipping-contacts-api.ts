@@ -14,13 +14,13 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import { CustomerShippingContacts } from '../model';
 // @ts-ignore
@@ -40,12 +40,12 @@ export const ShippingContactsApiAxiosParamCreator = function (configuration?: Co
          * @summary Create a shipping contacts
          * @param {string} id Identifier of the resource
          * @param {CustomerShippingContacts} customerShippingContacts requested field for customer shippings contacts
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateCustomerShippingContactsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCustomerShippingContacts: async (id: string, customerShippingContacts: CustomerShippingContacts, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createCustomerShippingContacts: async (id: string, customerShippingContacts: CustomerShippingContacts, acceptLanguage?: CreateCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('createCustomerShippingContacts', 'id', id)
             // verify required parameter 'customerShippingContacts' is not null or undefined
@@ -94,12 +94,12 @@ export const ShippingContactsApiAxiosParamCreator = function (configuration?: Co
          * @summary Delete shipping contacts
          * @param {string} id Identifier of the resource
          * @param {string} shippingContactsId identifier
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeleteCustomerShippingContactsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCustomerShippingContacts: async (id: string, shippingContactsId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteCustomerShippingContacts: async (id: string, shippingContactsId: string, acceptLanguage?: DeleteCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deleteCustomerShippingContacts', 'id', id)
             // verify required parameter 'shippingContactsId' is not null or undefined
@@ -147,12 +147,12 @@ export const ShippingContactsApiAxiosParamCreator = function (configuration?: Co
          * @param {string} id Identifier of the resource
          * @param {string} shippingContactsId identifier
          * @param {CustomerUpdateShippingContacts} customerUpdateShippingContacts requested field for customer update shippings contacts
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {UpdateCustomerShippingContactsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCustomerShippingContacts: async (id: string, shippingContactsId: string, customerUpdateShippingContacts: CustomerUpdateShippingContacts, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateCustomerShippingContacts: async (id: string, shippingContactsId: string, customerUpdateShippingContacts: CustomerUpdateShippingContacts, acceptLanguage?: UpdateCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateCustomerShippingContacts', 'id', id)
             // verify required parameter 'shippingContactsId' is not null or undefined
@@ -214,28 +214,32 @@ export const ShippingContactsApiFp = function(configuration?: Configuration) {
          * @summary Create a shipping contacts
          * @param {string} id Identifier of the resource
          * @param {CustomerShippingContacts} customerShippingContacts requested field for customer shippings contacts
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateCustomerShippingContactsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createCustomerShippingContacts(id: string, customerShippingContacts: CustomerShippingContacts, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CustomerShippingContactsResponse>> {
+        async createCustomerShippingContacts(id: string, customerShippingContacts: CustomerShippingContacts, acceptLanguage?: CreateCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CustomerShippingContactsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createCustomerShippingContacts(id, customerShippingContacts, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ShippingContactsApi.createCustomerShippingContacts']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Delete shipping contact that corresponds to a customer ID.
          * @summary Delete shipping contacts
          * @param {string} id Identifier of the resource
          * @param {string} shippingContactsId identifier
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeleteCustomerShippingContactsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteCustomerShippingContacts(id: string, shippingContactsId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CustomerShippingContactsResponse>> {
+        async deleteCustomerShippingContacts(id: string, shippingContactsId: string, acceptLanguage?: DeleteCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CustomerShippingContactsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteCustomerShippingContacts(id, shippingContactsId, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ShippingContactsApi.deleteCustomerShippingContacts']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Update shipping contact that corresponds to a customer ID.
@@ -243,14 +247,16 @@ export const ShippingContactsApiFp = function(configuration?: Configuration) {
          * @param {string} id Identifier of the resource
          * @param {string} shippingContactsId identifier
          * @param {CustomerUpdateShippingContacts} customerUpdateShippingContacts requested field for customer update shippings contacts
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {UpdateCustomerShippingContactsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateCustomerShippingContacts(id: string, shippingContactsId: string, customerUpdateShippingContacts: CustomerUpdateShippingContacts, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CustomerShippingContactsResponse>> {
+        async updateCustomerShippingContacts(id: string, shippingContactsId: string, customerUpdateShippingContacts: CustomerUpdateShippingContacts, acceptLanguage?: UpdateCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CustomerShippingContactsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateCustomerShippingContacts(id, shippingContactsId, customerUpdateShippingContacts, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ShippingContactsApi.updateCustomerShippingContacts']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
 };
@@ -267,12 +273,12 @@ export const ShippingContactsApiFactory = function (configuration?: Configuratio
          * @summary Create a shipping contacts
          * @param {string} id Identifier of the resource
          * @param {CustomerShippingContacts} customerShippingContacts requested field for customer shippings contacts
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateCustomerShippingContactsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCustomerShippingContacts(id: string, customerShippingContacts: CustomerShippingContacts, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<CustomerShippingContactsResponse> {
+        createCustomerShippingContacts(id: string, customerShippingContacts: CustomerShippingContacts, acceptLanguage?: CreateCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<CustomerShippingContactsResponse> {
             return localVarFp.createCustomerShippingContacts(id, customerShippingContacts, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -280,12 +286,12 @@ export const ShippingContactsApiFactory = function (configuration?: Configuratio
          * @summary Delete shipping contacts
          * @param {string} id Identifier of the resource
          * @param {string} shippingContactsId identifier
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeleteCustomerShippingContactsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCustomerShippingContacts(id: string, shippingContactsId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<CustomerShippingContactsResponse> {
+        deleteCustomerShippingContacts(id: string, shippingContactsId: string, acceptLanguage?: DeleteCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<CustomerShippingContactsResponse> {
             return localVarFp.deleteCustomerShippingContacts(id, shippingContactsId, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -294,12 +300,12 @@ export const ShippingContactsApiFactory = function (configuration?: Configuratio
          * @param {string} id Identifier of the resource
          * @param {string} shippingContactsId identifier
          * @param {CustomerUpdateShippingContacts} customerUpdateShippingContacts requested field for customer update shippings contacts
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {UpdateCustomerShippingContactsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCustomerShippingContacts(id: string, shippingContactsId: string, customerUpdateShippingContacts: CustomerUpdateShippingContacts, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<CustomerShippingContactsResponse> {
+        updateCustomerShippingContacts(id: string, shippingContactsId: string, customerUpdateShippingContacts: CustomerUpdateShippingContacts, acceptLanguage?: UpdateCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<CustomerShippingContactsResponse> {
             return localVarFp.updateCustomerShippingContacts(id, shippingContactsId, customerUpdateShippingContacts, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
     };
@@ -316,26 +322,26 @@ export interface ShippingContactsApiInterface {
      * @summary Create a shipping contacts
      * @param {string} id Identifier of the resource
      * @param {CustomerShippingContacts} customerShippingContacts requested field for customer shippings contacts
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CreateCustomerShippingContactsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ShippingContactsApiInterface
      */
-    createCustomerShippingContacts(id: string, customerShippingContacts: CustomerShippingContacts, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<CustomerShippingContactsResponse>;
+    createCustomerShippingContacts(id: string, customerShippingContacts: CustomerShippingContacts, acceptLanguage?: CreateCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CustomerShippingContactsResponse>;
 
     /**
      * Delete shipping contact that corresponds to a customer ID.
      * @summary Delete shipping contacts
      * @param {string} id Identifier of the resource
      * @param {string} shippingContactsId identifier
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {DeleteCustomerShippingContactsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ShippingContactsApiInterface
      */
-    deleteCustomerShippingContacts(id: string, shippingContactsId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<CustomerShippingContactsResponse>;
+    deleteCustomerShippingContacts(id: string, shippingContactsId: string, acceptLanguage?: DeleteCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CustomerShippingContactsResponse>;
 
     /**
      * Update shipping contact that corresponds to a customer ID.
@@ -343,13 +349,13 @@ export interface ShippingContactsApiInterface {
      * @param {string} id Identifier of the resource
      * @param {string} shippingContactsId identifier
      * @param {CustomerUpdateShippingContacts} customerUpdateShippingContacts requested field for customer update shippings contacts
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {UpdateCustomerShippingContactsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ShippingContactsApiInterface
      */
-    updateCustomerShippingContacts(id: string, shippingContactsId: string, customerUpdateShippingContacts: CustomerUpdateShippingContacts, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<CustomerShippingContactsResponse>;
+    updateCustomerShippingContacts(id: string, shippingContactsId: string, customerUpdateShippingContacts: CustomerUpdateShippingContacts, acceptLanguage?: UpdateCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CustomerShippingContactsResponse>;
 
 }
 
@@ -365,13 +371,13 @@ export class ShippingContactsApi extends BaseAPI implements ShippingContactsApiI
      * @summary Create a shipping contacts
      * @param {string} id Identifier of the resource
      * @param {CustomerShippingContacts} customerShippingContacts requested field for customer shippings contacts
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CreateCustomerShippingContactsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ShippingContactsApi
      */
-    public createCustomerShippingContacts(id: string, customerShippingContacts: CustomerShippingContacts, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public createCustomerShippingContacts(id: string, customerShippingContacts: CustomerShippingContacts, acceptLanguage?: CreateCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ShippingContactsApiFp(this.configuration).createCustomerShippingContacts(id, customerShippingContacts, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -380,13 +386,13 @@ export class ShippingContactsApi extends BaseAPI implements ShippingContactsApiI
      * @summary Delete shipping contacts
      * @param {string} id Identifier of the resource
      * @param {string} shippingContactsId identifier
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {DeleteCustomerShippingContactsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ShippingContactsApi
      */
-    public deleteCustomerShippingContacts(id: string, shippingContactsId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public deleteCustomerShippingContacts(id: string, shippingContactsId: string, acceptLanguage?: DeleteCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ShippingContactsApiFp(this.configuration).deleteCustomerShippingContacts(id, shippingContactsId, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -396,13 +402,38 @@ export class ShippingContactsApi extends BaseAPI implements ShippingContactsApiI
      * @param {string} id Identifier of the resource
      * @param {string} shippingContactsId identifier
      * @param {CustomerUpdateShippingContacts} customerUpdateShippingContacts requested field for customer update shippings contacts
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {UpdateCustomerShippingContactsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ShippingContactsApi
      */
-    public updateCustomerShippingContacts(id: string, shippingContactsId: string, customerUpdateShippingContacts: CustomerUpdateShippingContacts, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public updateCustomerShippingContacts(id: string, shippingContactsId: string, customerUpdateShippingContacts: CustomerUpdateShippingContacts, acceptLanguage?: UpdateCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ShippingContactsApiFp(this.configuration).updateCustomerShippingContacts(id, shippingContactsId, customerUpdateShippingContacts, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
+
+/**
+ * @export
+ */
+export const CreateCustomerShippingContactsAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type CreateCustomerShippingContactsAcceptLanguageEnum = typeof CreateCustomerShippingContactsAcceptLanguageEnum[keyof typeof CreateCustomerShippingContactsAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const DeleteCustomerShippingContactsAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type DeleteCustomerShippingContactsAcceptLanguageEnum = typeof DeleteCustomerShippingContactsAcceptLanguageEnum[keyof typeof DeleteCustomerShippingContactsAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const UpdateCustomerShippingContactsAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type UpdateCustomerShippingContactsAcceptLanguageEnum = typeof UpdateCustomerShippingContactsAcceptLanguageEnum[keyof typeof UpdateCustomerShippingContactsAcceptLanguageEnum];

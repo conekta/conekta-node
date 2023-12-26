@@ -14,13 +14,13 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import { ModelError } from '../model';
 // @ts-ignore
@@ -40,12 +40,12 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
          * @summary Create Product
          * @param {string} id Identifier of the resource
          * @param {Product} product requested field for a product
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {OrdersCreateProductAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersCreateProduct: async (id: string, product: Product, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        ordersCreateProduct: async (id: string, product: Product, acceptLanguage?: OrdersCreateProductAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('ordersCreateProduct', 'id', id)
             // verify required parameter 'product' is not null or undefined
@@ -94,12 +94,12 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
          * @summary Delete Product
          * @param {string} id Identifier of the resource
          * @param {string} lineItemId identifier
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {OrdersDeleteProductAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersDeleteProduct: async (id: string, lineItemId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        ordersDeleteProduct: async (id: string, lineItemId: string, acceptLanguage?: OrdersDeleteProductAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('ordersDeleteProduct', 'id', id)
             // verify required parameter 'lineItemId' is not null or undefined
@@ -147,12 +147,12 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {string} id Identifier of the resource
          * @param {string} lineItemId identifier
          * @param {UpdateProduct} updateProduct requested field for products
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {OrdersUpdateProductAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersUpdateProduct: async (id: string, lineItemId: string, updateProduct: UpdateProduct, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        ordersUpdateProduct: async (id: string, lineItemId: string, updateProduct: UpdateProduct, acceptLanguage?: OrdersUpdateProductAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('ordersUpdateProduct', 'id', id)
             // verify required parameter 'lineItemId' is not null or undefined
@@ -214,28 +214,32 @@ export const ProductsApiFp = function(configuration?: Configuration) {
          * @summary Create Product
          * @param {string} id Identifier of the resource
          * @param {Product} product requested field for a product
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {OrdersCreateProductAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async ordersCreateProduct(id: string, product: Product, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductOrderResponse>> {
+        async ordersCreateProduct(id: string, product: Product, acceptLanguage?: OrdersCreateProductAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductOrderResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ordersCreateProduct(id, product, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ProductsApi.ordersCreateProduct']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Delete product for an existing orden
          * @summary Delete Product
          * @param {string} id Identifier of the resource
          * @param {string} lineItemId identifier
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {OrdersDeleteProductAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async ordersDeleteProduct(id: string, lineItemId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductOrderResponse>> {
+        async ordersDeleteProduct(id: string, lineItemId: string, acceptLanguage?: OrdersDeleteProductAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductOrderResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ordersDeleteProduct(id, lineItemId, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ProductsApi.ordersDeleteProduct']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Update an existing product for an existing orden
@@ -243,14 +247,16 @@ export const ProductsApiFp = function(configuration?: Configuration) {
          * @param {string} id Identifier of the resource
          * @param {string} lineItemId identifier
          * @param {UpdateProduct} updateProduct requested field for products
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {OrdersUpdateProductAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async ordersUpdateProduct(id: string, lineItemId: string, updateProduct: UpdateProduct, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductOrderResponse>> {
+        async ordersUpdateProduct(id: string, lineItemId: string, updateProduct: UpdateProduct, acceptLanguage?: OrdersUpdateProductAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductOrderResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ordersUpdateProduct(id, lineItemId, updateProduct, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ProductsApi.ordersUpdateProduct']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
 };
@@ -267,12 +273,12 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
          * @summary Create Product
          * @param {string} id Identifier of the resource
          * @param {Product} product requested field for a product
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {OrdersCreateProductAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersCreateProduct(id: string, product: Product, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<ProductOrderResponse> {
+        ordersCreateProduct(id: string, product: Product, acceptLanguage?: OrdersCreateProductAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<ProductOrderResponse> {
             return localVarFp.ordersCreateProduct(id, product, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -280,12 +286,12 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
          * @summary Delete Product
          * @param {string} id Identifier of the resource
          * @param {string} lineItemId identifier
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {OrdersDeleteProductAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersDeleteProduct(id: string, lineItemId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<ProductOrderResponse> {
+        ordersDeleteProduct(id: string, lineItemId: string, acceptLanguage?: OrdersDeleteProductAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<ProductOrderResponse> {
             return localVarFp.ordersDeleteProduct(id, lineItemId, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -294,12 +300,12 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
          * @param {string} id Identifier of the resource
          * @param {string} lineItemId identifier
          * @param {UpdateProduct} updateProduct requested field for products
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {OrdersUpdateProductAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersUpdateProduct(id: string, lineItemId: string, updateProduct: UpdateProduct, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<ProductOrderResponse> {
+        ordersUpdateProduct(id: string, lineItemId: string, updateProduct: UpdateProduct, acceptLanguage?: OrdersUpdateProductAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<ProductOrderResponse> {
             return localVarFp.ordersUpdateProduct(id, lineItemId, updateProduct, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
     };
@@ -316,26 +322,26 @@ export interface ProductsApiInterface {
      * @summary Create Product
      * @param {string} id Identifier of the resource
      * @param {Product} product requested field for a product
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {OrdersCreateProductAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductsApiInterface
      */
-    ordersCreateProduct(id: string, product: Product, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<ProductOrderResponse>;
+    ordersCreateProduct(id: string, product: Product, acceptLanguage?: OrdersCreateProductAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ProductOrderResponse>;
 
     /**
      * Delete product for an existing orden
      * @summary Delete Product
      * @param {string} id Identifier of the resource
      * @param {string} lineItemId identifier
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {OrdersDeleteProductAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductsApiInterface
      */
-    ordersDeleteProduct(id: string, lineItemId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<ProductOrderResponse>;
+    ordersDeleteProduct(id: string, lineItemId: string, acceptLanguage?: OrdersDeleteProductAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ProductOrderResponse>;
 
     /**
      * Update an existing product for an existing orden
@@ -343,13 +349,13 @@ export interface ProductsApiInterface {
      * @param {string} id Identifier of the resource
      * @param {string} lineItemId identifier
      * @param {UpdateProduct} updateProduct requested field for products
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {OrdersUpdateProductAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductsApiInterface
      */
-    ordersUpdateProduct(id: string, lineItemId: string, updateProduct: UpdateProduct, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<ProductOrderResponse>;
+    ordersUpdateProduct(id: string, lineItemId: string, updateProduct: UpdateProduct, acceptLanguage?: OrdersUpdateProductAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ProductOrderResponse>;
 
 }
 
@@ -365,13 +371,13 @@ export class ProductsApi extends BaseAPI implements ProductsApiInterface {
      * @summary Create Product
      * @param {string} id Identifier of the resource
      * @param {Product} product requested field for a product
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {OrdersCreateProductAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductsApi
      */
-    public ordersCreateProduct(id: string, product: Product, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public ordersCreateProduct(id: string, product: Product, acceptLanguage?: OrdersCreateProductAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ProductsApiFp(this.configuration).ordersCreateProduct(id, product, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -380,13 +386,13 @@ export class ProductsApi extends BaseAPI implements ProductsApiInterface {
      * @summary Delete Product
      * @param {string} id Identifier of the resource
      * @param {string} lineItemId identifier
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {OrdersDeleteProductAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductsApi
      */
-    public ordersDeleteProduct(id: string, lineItemId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public ordersDeleteProduct(id: string, lineItemId: string, acceptLanguage?: OrdersDeleteProductAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ProductsApiFp(this.configuration).ordersDeleteProduct(id, lineItemId, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -396,13 +402,38 @@ export class ProductsApi extends BaseAPI implements ProductsApiInterface {
      * @param {string} id Identifier of the resource
      * @param {string} lineItemId identifier
      * @param {UpdateProduct} updateProduct requested field for products
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {OrdersUpdateProductAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductsApi
      */
-    public ordersUpdateProduct(id: string, lineItemId: string, updateProduct: UpdateProduct, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public ordersUpdateProduct(id: string, lineItemId: string, updateProduct: UpdateProduct, acceptLanguage?: OrdersUpdateProductAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ProductsApiFp(this.configuration).ordersUpdateProduct(id, lineItemId, updateProduct, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
+
+/**
+ * @export
+ */
+export const OrdersCreateProductAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type OrdersCreateProductAcceptLanguageEnum = typeof OrdersCreateProductAcceptLanguageEnum[keyof typeof OrdersCreateProductAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const OrdersDeleteProductAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type OrdersDeleteProductAcceptLanguageEnum = typeof OrdersDeleteProductAcceptLanguageEnum[keyof typeof OrdersDeleteProductAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const OrdersUpdateProductAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type OrdersUpdateProductAcceptLanguageEnum = typeof OrdersUpdateProductAcceptLanguageEnum[keyof typeof OrdersUpdateProductAcceptLanguageEnum];

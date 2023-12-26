@@ -14,13 +14,13 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import { GetOrdersResponse } from '../model';
 // @ts-ignore
@@ -45,12 +45,12 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * Cancel an order that has been previously created.
          * @summary Cancel Order
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CancelOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cancelOrder: async (id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        cancelOrder: async (id: string, acceptLanguage?: CancelOrderAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('cancelOrder', 'id', id)
             const localVarPath = `/orders/{id}/cancel`
@@ -93,12 +93,12 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * Create a new order.
          * @summary Create order
          * @param {OrderRequest} orderRequest requested field for order
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createOrder: async (orderRequest: OrderRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createOrder: async (orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'orderRequest' is not null or undefined
             assertParamExists('createOrder', 'orderRequest', orderRequest)
             const localVarPath = `/orders`;
@@ -143,12 +143,12 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * Info for a specific order
          * @summary Get Order
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetOrderByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrderById: async (id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getOrderById: async (id: string, acceptLanguage?: GetOrderByIdAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getOrderById', 'id', id)
             const localVarPath = `/orders/{id}`
@@ -190,7 +190,7 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Get order details in the form of a list
          * @summary Get a list of Orders
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetOrdersAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -199,7 +199,7 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrders: async (acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getOrders: async (acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/orders`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -256,12 +256,12 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * @summary Cancel Refund
          * @param {string} id Identifier of the resource
          * @param {string} refundId refund identifier
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {OrderCancelRefundAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orderCancelRefund: async (id: string, refundId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        orderCancelRefund: async (id: string, refundId: string, acceptLanguage?: OrderCancelRefundAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('orderCancelRefund', 'id', id)
             // verify required parameter 'refundId' is not null or undefined
@@ -308,12 +308,12 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * @summary Refund Order
          * @param {string} id Identifier of the resource
          * @param {OrderRefundRequest} orderRefundRequest requested field for a refund
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {OrderRefundAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orderRefund: async (id: string, orderRefundRequest: OrderRefundRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        orderRefund: async (id: string, orderRefundRequest: OrderRefundRequest, acceptLanguage?: OrderRefundAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('orderRefund', 'id', id)
             // verify required parameter 'orderRefundRequest' is not null or undefined
@@ -361,13 +361,13 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * Processes an order that has been previously authorized.
          * @summary Capture Order
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {OrdersCreateCaptureAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {OrderCaptureRequest} [orderCaptureRequest] requested fields for capture order
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersCreateCapture: async (id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, orderCaptureRequest?: OrderCaptureRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        ordersCreateCapture: async (id: string, acceptLanguage?: OrdersCreateCaptureAcceptLanguageEnum, xChildCompanyId?: string, orderCaptureRequest?: OrderCaptureRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('ordersCreateCapture', 'id', id)
             const localVarPath = `/orders/{id}/capture`
@@ -414,11 +414,11 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * @summary Update Order
          * @param {string} id Identifier of the resource
          * @param {OrderUpdateRequest} orderUpdateRequest requested field for an order
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {UpdateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateOrder: async (id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: 'es' | 'en', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateOrder: async (id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateOrder', 'id', id)
             // verify required parameter 'orderUpdateRequest' is not null or undefined
@@ -472,45 +472,51 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * Cancel an order that has been previously created.
          * @summary Cancel Order
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CancelOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async cancelOrder(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
+        async cancelOrder(id: string, acceptLanguage?: CancelOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.cancelOrder(id, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['OrdersApi.cancelOrder']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Create a new order.
          * @summary Create order
          * @param {OrderRequest} orderRequest requested field for order
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createOrder(orderRequest: OrderRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
+        async createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createOrder(orderRequest, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['OrdersApi.createOrder']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Info for a specific order
          * @summary Get Order
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetOrderByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrderById(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
+        async getOrderById(id: string, acceptLanguage?: GetOrderByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getOrderById(id, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['OrdersApi.getOrderById']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Get order details in the form of a list
          * @summary Get a list of Orders
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetOrdersAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -519,64 +525,74 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrders(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOrdersResponse>> {
+        async getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOrdersResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['OrdersApi.getOrders']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * A refunded order describes the items, amount, and reason an order is being refunded.
          * @summary Cancel Refund
          * @param {string} id Identifier of the resource
          * @param {string} refundId refund identifier
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {OrderCancelRefundAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async orderCancelRefund(id: string, refundId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
+        async orderCancelRefund(id: string, refundId: string, acceptLanguage?: OrderCancelRefundAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.orderCancelRefund(id, refundId, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['OrdersApi.orderCancelRefund']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * A refunded order describes the items, amount, and reason an order is being refunded.
          * @summary Refund Order
          * @param {string} id Identifier of the resource
          * @param {OrderRefundRequest} orderRefundRequest requested field for a refund
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {OrderRefundAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async orderRefund(id: string, orderRefundRequest: OrderRefundRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
+        async orderRefund(id: string, orderRefundRequest: OrderRefundRequest, acceptLanguage?: OrderRefundAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.orderRefund(id, orderRefundRequest, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['OrdersApi.orderRefund']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Processes an order that has been previously authorized.
          * @summary Capture Order
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {OrdersCreateCaptureAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {OrderCaptureRequest} [orderCaptureRequest] requested fields for capture order
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async ordersCreateCapture(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, orderCaptureRequest?: OrderCaptureRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
+        async ordersCreateCapture(id: string, acceptLanguage?: OrdersCreateCaptureAcceptLanguageEnum, xChildCompanyId?: string, orderCaptureRequest?: OrderCaptureRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ordersCreateCapture(id, acceptLanguage, xChildCompanyId, orderCaptureRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['OrdersApi.ordersCreateCapture']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Update an existing Order.
          * @summary Update Order
          * @param {string} id Identifier of the resource
          * @param {OrderUpdateRequest} orderUpdateRequest requested field for an order
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {UpdateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateOrder(id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
+        async updateOrder(id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateOrder(id, orderUpdateRequest, acceptLanguage, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['OrdersApi.updateOrder']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
 };
@@ -592,42 +608,42 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * Cancel an order that has been previously created.
          * @summary Cancel Order
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CancelOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cancelOrder(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<OrderResponse> {
+        cancelOrder(id: string, acceptLanguage?: CancelOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<OrderResponse> {
             return localVarFp.cancelOrder(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Create a new order.
          * @summary Create order
          * @param {OrderRequest} orderRequest requested field for order
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createOrder(orderRequest: OrderRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<OrderResponse> {
+        createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<OrderResponse> {
             return localVarFp.createOrder(orderRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Info for a specific order
          * @summary Get Order
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetOrderByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrderById(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<OrderResponse> {
+        getOrderById(id: string, acceptLanguage?: GetOrderByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<OrderResponse> {
             return localVarFp.getOrderById(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Get order details in the form of a list
          * @summary Get a list of Orders
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetOrdersAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -636,7 +652,7 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrders(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetOrdersResponse> {
+        getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetOrdersResponse> {
             return localVarFp.getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
         },
         /**
@@ -644,12 +660,12 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @summary Cancel Refund
          * @param {string} id Identifier of the resource
          * @param {string} refundId refund identifier
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {OrderCancelRefundAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orderCancelRefund(id: string, refundId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<OrderResponse> {
+        orderCancelRefund(id: string, refundId: string, acceptLanguage?: OrderCancelRefundAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<OrderResponse> {
             return localVarFp.orderCancelRefund(id, refundId, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -657,25 +673,25 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @summary Refund Order
          * @param {string} id Identifier of the resource
          * @param {OrderRefundRequest} orderRefundRequest requested field for a refund
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {OrderRefundAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orderRefund(id: string, orderRefundRequest: OrderRefundRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<OrderResponse> {
+        orderRefund(id: string, orderRefundRequest: OrderRefundRequest, acceptLanguage?: OrderRefundAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<OrderResponse> {
             return localVarFp.orderRefund(id, orderRefundRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Processes an order that has been previously authorized.
          * @summary Capture Order
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {OrdersCreateCaptureAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {OrderCaptureRequest} [orderCaptureRequest] requested fields for capture order
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersCreateCapture(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, orderCaptureRequest?: OrderCaptureRequest, options?: any): AxiosPromise<OrderResponse> {
+        ordersCreateCapture(id: string, acceptLanguage?: OrdersCreateCaptureAcceptLanguageEnum, xChildCompanyId?: string, orderCaptureRequest?: OrderCaptureRequest, options?: any): AxiosPromise<OrderResponse> {
             return localVarFp.ordersCreateCapture(id, acceptLanguage, xChildCompanyId, orderCaptureRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -683,11 +699,11 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @summary Update Order
          * @param {string} id Identifier of the resource
          * @param {OrderUpdateRequest} orderUpdateRequest requested field for an order
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {UpdateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateOrder(id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: 'es' | 'en', options?: any): AxiosPromise<OrderResponse> {
+        updateOrder(id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: any): AxiosPromise<OrderResponse> {
             return localVarFp.updateOrder(id, orderUpdateRequest, acceptLanguage, options).then((request) => request(axios, basePath));
         },
     };
@@ -703,42 +719,42 @@ export interface OrdersApiInterface {
      * Cancel an order that has been previously created.
      * @summary Cancel Order
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CancelOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApiInterface
      */
-    cancelOrder(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<OrderResponse>;
+    cancelOrder(id: string, acceptLanguage?: CancelOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
     /**
      * Create a new order.
      * @summary Create order
      * @param {OrderRequest} orderRequest requested field for order
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CreateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApiInterface
      */
-    createOrder(orderRequest: OrderRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<OrderResponse>;
+    createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
     /**
      * Info for a specific order
      * @summary Get Order
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetOrderByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApiInterface
      */
-    getOrderById(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<OrderResponse>;
+    getOrderById(id: string, acceptLanguage?: GetOrderByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
     /**
      * Get order details in the form of a list
      * @summary Get a list of Orders
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetOrdersAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
      * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -748,58 +764,58 @@ export interface OrdersApiInterface {
      * @throws {RequiredError}
      * @memberof OrdersApiInterface
      */
-    getOrders(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): AxiosPromise<GetOrdersResponse>;
+    getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetOrdersResponse>;
 
     /**
      * A refunded order describes the items, amount, and reason an order is being refunded.
      * @summary Cancel Refund
      * @param {string} id Identifier of the resource
      * @param {string} refundId refund identifier
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {OrderCancelRefundAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApiInterface
      */
-    orderCancelRefund(id: string, refundId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<OrderResponse>;
+    orderCancelRefund(id: string, refundId: string, acceptLanguage?: OrderCancelRefundAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
     /**
      * A refunded order describes the items, amount, and reason an order is being refunded.
      * @summary Refund Order
      * @param {string} id Identifier of the resource
      * @param {OrderRefundRequest} orderRefundRequest requested field for a refund
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {OrderRefundAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApiInterface
      */
-    orderRefund(id: string, orderRefundRequest: OrderRefundRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<OrderResponse>;
+    orderRefund(id: string, orderRefundRequest: OrderRefundRequest, acceptLanguage?: OrderRefundAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
     /**
      * Processes an order that has been previously authorized.
      * @summary Capture Order
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {OrdersCreateCaptureAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {OrderCaptureRequest} [orderCaptureRequest] requested fields for capture order
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApiInterface
      */
-    ordersCreateCapture(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, orderCaptureRequest?: OrderCaptureRequest, options?: AxiosRequestConfig): AxiosPromise<OrderResponse>;
+    ordersCreateCapture(id: string, acceptLanguage?: OrdersCreateCaptureAcceptLanguageEnum, xChildCompanyId?: string, orderCaptureRequest?: OrderCaptureRequest, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
     /**
      * Update an existing Order.
      * @summary Update Order
      * @param {string} id Identifier of the resource
      * @param {OrderUpdateRequest} orderUpdateRequest requested field for an order
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {UpdateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApiInterface
      */
-    updateOrder(id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): AxiosPromise<OrderResponse>;
+    updateOrder(id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
 }
 
@@ -814,13 +830,13 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * Cancel an order that has been previously created.
      * @summary Cancel Order
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CancelOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public cancelOrder(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public cancelOrder(id: string, acceptLanguage?: CancelOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return OrdersApiFp(this.configuration).cancelOrder(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -828,13 +844,13 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * Create a new order.
      * @summary Create order
      * @param {OrderRequest} orderRequest requested field for order
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CreateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public createOrder(orderRequest: OrderRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return OrdersApiFp(this.configuration).createOrder(orderRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -842,20 +858,20 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * Info for a specific order
      * @summary Get Order
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetOrderByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public getOrderById(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public getOrderById(id: string, acceptLanguage?: GetOrderByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return OrdersApiFp(this.configuration).getOrderById(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Get order details in the form of a list
      * @summary Get a list of Orders
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetOrdersAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
      * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -865,7 +881,7 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public getOrders(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig) {
+    public getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return OrdersApiFp(this.configuration).getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -874,13 +890,13 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @summary Cancel Refund
      * @param {string} id Identifier of the resource
      * @param {string} refundId refund identifier
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {OrderCancelRefundAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public orderCancelRefund(id: string, refundId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public orderCancelRefund(id: string, refundId: string, acceptLanguage?: OrderCancelRefundAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return OrdersApiFp(this.configuration).orderCancelRefund(id, refundId, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -889,13 +905,13 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @summary Refund Order
      * @param {string} id Identifier of the resource
      * @param {OrderRefundRequest} orderRefundRequest requested field for a refund
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {OrderRefundAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public orderRefund(id: string, orderRefundRequest: OrderRefundRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public orderRefund(id: string, orderRefundRequest: OrderRefundRequest, acceptLanguage?: OrderRefundAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return OrdersApiFp(this.configuration).orderRefund(id, orderRefundRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -903,14 +919,14 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * Processes an order that has been previously authorized.
      * @summary Capture Order
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {OrdersCreateCaptureAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {OrderCaptureRequest} [orderCaptureRequest] requested fields for capture order
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public ordersCreateCapture(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, orderCaptureRequest?: OrderCaptureRequest, options?: AxiosRequestConfig) {
+    public ordersCreateCapture(id: string, acceptLanguage?: OrdersCreateCaptureAcceptLanguageEnum, xChildCompanyId?: string, orderCaptureRequest?: OrderCaptureRequest, options?: RawAxiosRequestConfig) {
         return OrdersApiFp(this.configuration).ordersCreateCapture(id, acceptLanguage, xChildCompanyId, orderCaptureRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -919,12 +935,77 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @summary Update Order
      * @param {string} id Identifier of the resource
      * @param {OrderUpdateRequest} orderUpdateRequest requested field for an order
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {UpdateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public updateOrder(id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig) {
+    public updateOrder(id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return OrdersApiFp(this.configuration).updateOrder(id, orderUpdateRequest, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
+
+/**
+ * @export
+ */
+export const CancelOrderAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type CancelOrderAcceptLanguageEnum = typeof CancelOrderAcceptLanguageEnum[keyof typeof CancelOrderAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const CreateOrderAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type CreateOrderAcceptLanguageEnum = typeof CreateOrderAcceptLanguageEnum[keyof typeof CreateOrderAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const GetOrderByIdAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetOrderByIdAcceptLanguageEnum = typeof GetOrderByIdAcceptLanguageEnum[keyof typeof GetOrderByIdAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const GetOrdersAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetOrdersAcceptLanguageEnum = typeof GetOrdersAcceptLanguageEnum[keyof typeof GetOrdersAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const OrderCancelRefundAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type OrderCancelRefundAcceptLanguageEnum = typeof OrderCancelRefundAcceptLanguageEnum[keyof typeof OrderCancelRefundAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const OrderRefundAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type OrderRefundAcceptLanguageEnum = typeof OrderRefundAcceptLanguageEnum[keyof typeof OrderRefundAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const OrdersCreateCaptureAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type OrdersCreateCaptureAcceptLanguageEnum = typeof OrdersCreateCaptureAcceptLanguageEnum[keyof typeof OrdersCreateCaptureAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const UpdateOrderAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type UpdateOrderAcceptLanguageEnum = typeof UpdateOrderAcceptLanguageEnum[keyof typeof UpdateOrderAcceptLanguageEnum];

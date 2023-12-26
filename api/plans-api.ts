@@ -14,13 +14,13 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import { GetPlansResponse } from '../model';
 // @ts-ignore
@@ -41,12 +41,12 @@ export const PlansApiAxiosParamCreator = function (configuration?: Configuration
          * Create a new plan for an existing order
          * @summary Create Plan
          * @param {PlanRequest} planRequest requested field for plan
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreatePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createPlan: async (planRequest: PlanRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createPlan: async (planRequest: PlanRequest, acceptLanguage?: CreatePlanAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'planRequest' is not null or undefined
             assertParamExists('createPlan', 'planRequest', planRequest)
             const localVarPath = `/plans`;
@@ -91,11 +91,11 @@ export const PlansApiAxiosParamCreator = function (configuration?: Configuration
          * 
          * @summary Delete Plan
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeletePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deletePlan: async (id: string, acceptLanguage?: 'es' | 'en', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deletePlan: async (id: string, acceptLanguage?: DeletePlanAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deletePlan', 'id', id)
             const localVarPath = `/plans/{id}`
@@ -134,12 +134,12 @@ export const PlansApiAxiosParamCreator = function (configuration?: Configuration
          * 
          * @summary Get Plan
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetPlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPlan: async (id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getPlan: async (id: string, acceptLanguage?: GetPlanAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getPlan', 'id', id)
             const localVarPath = `/plans/{id}`
@@ -181,7 +181,7 @@ export const PlansApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @summary Get A List of Plans
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetPlansAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -190,7 +190,7 @@ export const PlansApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPlans: async (acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getPlans: async (acceptLanguage?: GetPlansAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/plans`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -247,12 +247,12 @@ export const PlansApiAxiosParamCreator = function (configuration?: Configuration
          * @summary Update Plan
          * @param {string} id Identifier of the resource
          * @param {PlanUpdateRequest} planUpdateRequest requested field for plan
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {UpdatePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePlan: async (id: string, planUpdateRequest: PlanUpdateRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updatePlan: async (id: string, planUpdateRequest: PlanUpdateRequest, acceptLanguage?: UpdatePlanAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updatePlan', 'id', id)
             // verify required parameter 'planUpdateRequest' is not null or undefined
@@ -310,44 +310,50 @@ export const PlansApiFp = function(configuration?: Configuration) {
          * Create a new plan for an existing order
          * @summary Create Plan
          * @param {PlanRequest} planRequest requested field for plan
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreatePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createPlan(planRequest: PlanRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PlanResponse>> {
+        async createPlan(planRequest: PlanRequest, acceptLanguage?: CreatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PlanResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createPlan(planRequest, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['PlansApi.createPlan']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
          * @summary Delete Plan
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeletePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deletePlan(id: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PlanResponse>> {
+        async deletePlan(id: string, acceptLanguage?: DeletePlanAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PlanResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deletePlan(id, acceptLanguage, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['PlansApi.deletePlan']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
          * @summary Get Plan
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetPlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPlan(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PlanResponse>> {
+        async getPlan(id: string, acceptLanguage?: GetPlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PlanResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPlan(id, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['PlansApi.getPlan']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
          * @summary Get A List of Plans
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetPlansAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -356,23 +362,27 @@ export const PlansApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPlans(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPlansResponse>> {
+        async getPlans(acceptLanguage?: GetPlansAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPlansResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPlans(acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['PlansApi.getPlans']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
          * @summary Update Plan
          * @param {string} id Identifier of the resource
          * @param {PlanUpdateRequest} planUpdateRequest requested field for plan
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {UpdatePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updatePlan(id: string, planUpdateRequest: PlanUpdateRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PlanResponse>> {
+        async updatePlan(id: string, planUpdateRequest: PlanUpdateRequest, acceptLanguage?: UpdatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PlanResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updatePlan(id, planUpdateRequest, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['PlansApi.updatePlan']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
 };
@@ -388,41 +398,41 @@ export const PlansApiFactory = function (configuration?: Configuration, basePath
          * Create a new plan for an existing order
          * @summary Create Plan
          * @param {PlanRequest} planRequest requested field for plan
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreatePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createPlan(planRequest: PlanRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<PlanResponse> {
+        createPlan(planRequest: PlanRequest, acceptLanguage?: CreatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<PlanResponse> {
             return localVarFp.createPlan(planRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Delete Plan
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeletePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deletePlan(id: string, acceptLanguage?: 'es' | 'en', options?: any): AxiosPromise<PlanResponse> {
+        deletePlan(id: string, acceptLanguage?: DeletePlanAcceptLanguageEnum, options?: any): AxiosPromise<PlanResponse> {
             return localVarFp.deletePlan(id, acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Get Plan
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetPlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPlan(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<PlanResponse> {
+        getPlan(id: string, acceptLanguage?: GetPlanAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<PlanResponse> {
             return localVarFp.getPlan(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Get A List of Plans
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetPlansAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -431,7 +441,7 @@ export const PlansApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPlans(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetPlansResponse> {
+        getPlans(acceptLanguage?: GetPlansAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetPlansResponse> {
             return localVarFp.getPlans(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
         },
         /**
@@ -439,12 +449,12 @@ export const PlansApiFactory = function (configuration?: Configuration, basePath
          * @summary Update Plan
          * @param {string} id Identifier of the resource
          * @param {PlanUpdateRequest} planUpdateRequest requested field for plan
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {UpdatePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePlan(id: string, planUpdateRequest: PlanUpdateRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<PlanResponse> {
+        updatePlan(id: string, planUpdateRequest: PlanUpdateRequest, acceptLanguage?: UpdatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<PlanResponse> {
             return localVarFp.updatePlan(id, planUpdateRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
     };
@@ -460,41 +470,41 @@ export interface PlansApiInterface {
      * Create a new plan for an existing order
      * @summary Create Plan
      * @param {PlanRequest} planRequest requested field for plan
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CreatePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlansApiInterface
      */
-    createPlan(planRequest: PlanRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<PlanResponse>;
+    createPlan(planRequest: PlanRequest, acceptLanguage?: CreatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<PlanResponse>;
 
     /**
      * 
      * @summary Delete Plan
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {DeletePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlansApiInterface
      */
-    deletePlan(id: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): AxiosPromise<PlanResponse>;
+    deletePlan(id: string, acceptLanguage?: DeletePlanAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<PlanResponse>;
 
     /**
      * 
      * @summary Get Plan
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetPlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlansApiInterface
      */
-    getPlan(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<PlanResponse>;
+    getPlan(id: string, acceptLanguage?: GetPlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<PlanResponse>;
 
     /**
      * 
      * @summary Get A List of Plans
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetPlansAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
      * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -504,20 +514,20 @@ export interface PlansApiInterface {
      * @throws {RequiredError}
      * @memberof PlansApiInterface
      */
-    getPlans(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): AxiosPromise<GetPlansResponse>;
+    getPlans(acceptLanguage?: GetPlansAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetPlansResponse>;
 
     /**
      * 
      * @summary Update Plan
      * @param {string} id Identifier of the resource
      * @param {PlanUpdateRequest} planUpdateRequest requested field for plan
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {UpdatePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlansApiInterface
      */
-    updatePlan(id: string, planUpdateRequest: PlanUpdateRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<PlanResponse>;
+    updatePlan(id: string, planUpdateRequest: PlanUpdateRequest, acceptLanguage?: UpdatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<PlanResponse>;
 
 }
 
@@ -532,13 +542,13 @@ export class PlansApi extends BaseAPI implements PlansApiInterface {
      * Create a new plan for an existing order
      * @summary Create Plan
      * @param {PlanRequest} planRequest requested field for plan
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CreatePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlansApi
      */
-    public createPlan(planRequest: PlanRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public createPlan(planRequest: PlanRequest, acceptLanguage?: CreatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return PlansApiFp(this.configuration).createPlan(planRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -546,12 +556,12 @@ export class PlansApi extends BaseAPI implements PlansApiInterface {
      * 
      * @summary Delete Plan
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {DeletePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlansApi
      */
-    public deletePlan(id: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig) {
+    public deletePlan(id: string, acceptLanguage?: DeletePlanAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return PlansApiFp(this.configuration).deletePlan(id, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -559,20 +569,20 @@ export class PlansApi extends BaseAPI implements PlansApiInterface {
      * 
      * @summary Get Plan
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetPlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlansApi
      */
-    public getPlan(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public getPlan(id: string, acceptLanguage?: GetPlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return PlansApiFp(this.configuration).getPlan(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Get A List of Plans
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetPlansAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
      * @param {string} [search] General order search, e.g. by mail, reference etc.
@@ -582,7 +592,7 @@ export class PlansApi extends BaseAPI implements PlansApiInterface {
      * @throws {RequiredError}
      * @memberof PlansApi
      */
-    public getPlans(acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig) {
+    public getPlans(acceptLanguage?: GetPlansAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return PlansApiFp(this.configuration).getPlans(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -591,13 +601,54 @@ export class PlansApi extends BaseAPI implements PlansApiInterface {
      * @summary Update Plan
      * @param {string} id Identifier of the resource
      * @param {PlanUpdateRequest} planUpdateRequest requested field for plan
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {UpdatePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlansApi
      */
-    public updatePlan(id: string, planUpdateRequest: PlanUpdateRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public updatePlan(id: string, planUpdateRequest: PlanUpdateRequest, acceptLanguage?: UpdatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return PlansApiFp(this.configuration).updatePlan(id, planUpdateRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
+
+/**
+ * @export
+ */
+export const CreatePlanAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type CreatePlanAcceptLanguageEnum = typeof CreatePlanAcceptLanguageEnum[keyof typeof CreatePlanAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const DeletePlanAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type DeletePlanAcceptLanguageEnum = typeof DeletePlanAcceptLanguageEnum[keyof typeof DeletePlanAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const GetPlanAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetPlanAcceptLanguageEnum = typeof GetPlanAcceptLanguageEnum[keyof typeof GetPlanAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const GetPlansAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetPlansAcceptLanguageEnum = typeof GetPlansAcceptLanguageEnum[keyof typeof GetPlansAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const UpdatePlanAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type UpdatePlanAcceptLanguageEnum = typeof UpdatePlanAcceptLanguageEnum[keyof typeof UpdatePlanAcceptLanguageEnum];

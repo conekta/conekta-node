@@ -14,13 +14,13 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import { CompanyResponse } from '../model';
 // @ts-ignore
@@ -36,7 +36,7 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Consume the list of child companies.  This is used for holding companies with several child entities.
          * @summary Get List of Companies
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetCompaniesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [search] General order search, e.g. by mail, reference etc.
          * @param {string} [next] next page
@@ -44,7 +44,7 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCompanies: async (acceptLanguage?: 'es' | 'en', limit?: number, search?: string, next?: string, previous?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getCompanies: async (acceptLanguage?: GetCompaniesAcceptLanguageEnum, limit?: number, search?: string, next?: string, previous?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/companies`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -96,11 +96,11 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
          * 
          * @summary Get Company
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetCompanyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCompany: async (id: string, acceptLanguage?: 'es' | 'en', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getCompany: async (id: string, acceptLanguage?: GetCompanyAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getCompany', 'id', id)
             const localVarPath = `/companies/{id}`
@@ -148,7 +148,7 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
         /**
          * Consume the list of child companies.  This is used for holding companies with several child entities.
          * @summary Get List of Companies
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetCompaniesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [search] General order search, e.g. by mail, reference etc.
          * @param {string} [next] next page
@@ -156,21 +156,25 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCompanies(acceptLanguage?: 'es' | 'en', limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCompaniesResponse>> {
+        async getCompanies(acceptLanguage?: GetCompaniesAcceptLanguageEnum, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCompaniesResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCompanies(acceptLanguage, limit, search, next, previous, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['CompaniesApi.getCompanies']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
          * @summary Get Company
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetCompanyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCompany(id: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CompanyResponse>> {
+        async getCompany(id: string, acceptLanguage?: GetCompanyAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CompanyResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCompany(id, acceptLanguage, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['CompaniesApi.getCompany']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
 };
@@ -185,7 +189,7 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
         /**
          * Consume the list of child companies.  This is used for holding companies with several child entities.
          * @summary Get List of Companies
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetCompaniesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [search] General order search, e.g. by mail, reference etc.
          * @param {string} [next] next page
@@ -193,18 +197,18 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCompanies(acceptLanguage?: 'es' | 'en', limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetCompaniesResponse> {
+        getCompanies(acceptLanguage?: GetCompaniesAcceptLanguageEnum, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetCompaniesResponse> {
             return localVarFp.getCompanies(acceptLanguage, limit, search, next, previous, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Get Company
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetCompanyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCompany(id: string, acceptLanguage?: 'es' | 'en', options?: any): AxiosPromise<CompanyResponse> {
+        getCompany(id: string, acceptLanguage?: GetCompanyAcceptLanguageEnum, options?: any): AxiosPromise<CompanyResponse> {
             return localVarFp.getCompany(id, acceptLanguage, options).then((request) => request(axios, basePath));
         },
     };
@@ -219,7 +223,7 @@ export interface CompaniesApiInterface {
     /**
      * Consume the list of child companies.  This is used for holding companies with several child entities.
      * @summary Get List of Companies
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetCompaniesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
      * @param {string} [search] General order search, e.g. by mail, reference etc.
      * @param {string} [next] next page
@@ -228,18 +232,18 @@ export interface CompaniesApiInterface {
      * @throws {RequiredError}
      * @memberof CompaniesApiInterface
      */
-    getCompanies(acceptLanguage?: 'es' | 'en', limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig): AxiosPromise<GetCompaniesResponse>;
+    getCompanies(acceptLanguage?: GetCompaniesAcceptLanguageEnum, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetCompaniesResponse>;
 
     /**
      * 
      * @summary Get Company
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetCompanyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompaniesApiInterface
      */
-    getCompany(id: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig): AxiosPromise<CompanyResponse>;
+    getCompany(id: string, acceptLanguage?: GetCompanyAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<CompanyResponse>;
 
 }
 
@@ -253,7 +257,7 @@ export class CompaniesApi extends BaseAPI implements CompaniesApiInterface {
     /**
      * Consume the list of child companies.  This is used for holding companies with several child entities.
      * @summary Get List of Companies
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetCompaniesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
      * @param {string} [search] General order search, e.g. by mail, reference etc.
      * @param {string} [next] next page
@@ -262,7 +266,7 @@ export class CompaniesApi extends BaseAPI implements CompaniesApiInterface {
      * @throws {RequiredError}
      * @memberof CompaniesApi
      */
-    public getCompanies(acceptLanguage?: 'es' | 'en', limit?: number, search?: string, next?: string, previous?: string, options?: AxiosRequestConfig) {
+    public getCompanies(acceptLanguage?: GetCompaniesAcceptLanguageEnum, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return CompaniesApiFp(this.configuration).getCompanies(acceptLanguage, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -270,12 +274,29 @@ export class CompaniesApi extends BaseAPI implements CompaniesApiInterface {
      * 
      * @summary Get Company
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetCompanyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompaniesApi
      */
-    public getCompany(id: string, acceptLanguage?: 'es' | 'en', options?: AxiosRequestConfig) {
+    public getCompany(id: string, acceptLanguage?: GetCompanyAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return CompaniesApiFp(this.configuration).getCompany(id, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
+
+/**
+ * @export
+ */
+export const GetCompaniesAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetCompaniesAcceptLanguageEnum = typeof GetCompaniesAcceptLanguageEnum[keyof typeof GetCompaniesAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const GetCompanyAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetCompanyAcceptLanguageEnum = typeof GetCompanyAcceptLanguageEnum[keyof typeof GetCompanyAcceptLanguageEnum];

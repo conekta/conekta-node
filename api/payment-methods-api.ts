@@ -14,13 +14,13 @@
 
 
 import type { Configuration } from '../configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import { CreateCustomerPaymentMethodsRequest } from '../model';
 // @ts-ignore
@@ -44,12 +44,12 @@ export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Conf
          * @summary Create Payment Method
          * @param {string} id Identifier of the resource
          * @param {CreateCustomerPaymentMethodsRequest} createCustomerPaymentMethodsRequest requested field for customer payment methods
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCustomerPaymentMethods: async (id: string, createCustomerPaymentMethodsRequest: CreateCustomerPaymentMethodsRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createCustomerPaymentMethods: async (id: string, createCustomerPaymentMethodsRequest: CreateCustomerPaymentMethodsRequest, acceptLanguage?: CreateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('createCustomerPaymentMethods', 'id', id)
             // verify required parameter 'createCustomerPaymentMethodsRequest' is not null or undefined
@@ -98,12 +98,12 @@ export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Conf
          * @summary Delete Payment Method
          * @param {string} id Identifier of the resource
          * @param {string} paymentMethodId Identifier of the payment method
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeleteCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCustomerPaymentMethods: async (id: string, paymentMethodId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteCustomerPaymentMethods: async (id: string, paymentMethodId: string, acceptLanguage?: DeleteCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deleteCustomerPaymentMethods', 'id', id)
             // verify required parameter 'paymentMethodId' is not null or undefined
@@ -149,7 +149,7 @@ export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Conf
          * Get a list of Payment Methods
          * @summary Get Payment Methods
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [next] next page
@@ -158,7 +158,7 @@ export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCustomerPaymentMethods: async (id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getCustomerPaymentMethods: async (id: string, acceptLanguage?: GetCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getCustomerPaymentMethods', 'id', id)
             const localVarPath = `/customers/{id}/payment_sources`
@@ -219,12 +219,12 @@ export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Conf
          * @param {string} id Identifier of the resource
          * @param {string} paymentMethodId Identifier of the payment method
          * @param {UpdatePaymentMethods} updatePaymentMethods requested field for customer payment methods
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {UpdateCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCustomerPaymentMethods: async (id: string, paymentMethodId: string, updatePaymentMethods: UpdatePaymentMethods, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateCustomerPaymentMethods: async (id: string, paymentMethodId: string, updatePaymentMethods: UpdatePaymentMethods, acceptLanguage?: UpdateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateCustomerPaymentMethods', 'id', id)
             // verify required parameter 'paymentMethodId' is not null or undefined
@@ -286,34 +286,38 @@ export const PaymentMethodsApiFp = function(configuration?: Configuration) {
          * @summary Create Payment Method
          * @param {string} id Identifier of the resource
          * @param {CreateCustomerPaymentMethodsRequest} createCustomerPaymentMethodsRequest requested field for customer payment methods
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createCustomerPaymentMethods(id: string, createCustomerPaymentMethodsRequest: CreateCustomerPaymentMethodsRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateCustomerPaymentMethodsResponse>> {
+        async createCustomerPaymentMethods(id: string, createCustomerPaymentMethodsRequest: CreateCustomerPaymentMethodsRequest, acceptLanguage?: CreateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateCustomerPaymentMethodsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createCustomerPaymentMethods(id, createCustomerPaymentMethodsRequest, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['PaymentMethodsApi.createCustomerPaymentMethods']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Delete an existing payment method
          * @summary Delete Payment Method
          * @param {string} id Identifier of the resource
          * @param {string} paymentMethodId Identifier of the payment method
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeleteCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteCustomerPaymentMethods(id: string, paymentMethodId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCustomerPaymentMethodsResponse>> {
+        async deleteCustomerPaymentMethods(id: string, paymentMethodId: string, acceptLanguage?: DeleteCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCustomerPaymentMethodsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteCustomerPaymentMethods(id, paymentMethodId, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['PaymentMethodsApi.deleteCustomerPaymentMethods']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Get a list of Payment Methods
          * @summary Get Payment Methods
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [next] next page
@@ -322,9 +326,11 @@ export const PaymentMethodsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCustomerPaymentMethods(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPaymentMethodResponse>> {
+        async getCustomerPaymentMethods(id: string, acceptLanguage?: GetCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPaymentMethodResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCustomerPaymentMethods(id, acceptLanguage, xChildCompanyId, limit, next, previous, search, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['PaymentMethodsApi.getCustomerPaymentMethods']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * Gets a payment Method that corresponds to a customer ID.
@@ -332,14 +338,16 @@ export const PaymentMethodsApiFp = function(configuration?: Configuration) {
          * @param {string} id Identifier of the resource
          * @param {string} paymentMethodId Identifier of the payment method
          * @param {UpdatePaymentMethods} updatePaymentMethods requested field for customer payment methods
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {UpdateCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateCustomerPaymentMethods(id: string, paymentMethodId: string, updatePaymentMethods: UpdatePaymentMethods, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCustomerPaymentMethodsResponse>> {
+        async updateCustomerPaymentMethods(id: string, paymentMethodId: string, updatePaymentMethods: UpdatePaymentMethods, acceptLanguage?: UpdateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCustomerPaymentMethodsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateCustomerPaymentMethods(id, paymentMethodId, updatePaymentMethods, acceptLanguage, xChildCompanyId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['PaymentMethodsApi.updateCustomerPaymentMethods']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
 };
@@ -356,12 +364,12 @@ export const PaymentMethodsApiFactory = function (configuration?: Configuration,
          * @summary Create Payment Method
          * @param {string} id Identifier of the resource
          * @param {CreateCustomerPaymentMethodsRequest} createCustomerPaymentMethodsRequest requested field for customer payment methods
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {CreateCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCustomerPaymentMethods(id: string, createCustomerPaymentMethodsRequest: CreateCustomerPaymentMethodsRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<CreateCustomerPaymentMethodsResponse> {
+        createCustomerPaymentMethods(id: string, createCustomerPaymentMethodsRequest: CreateCustomerPaymentMethodsRequest, acceptLanguage?: CreateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<CreateCustomerPaymentMethodsResponse> {
             return localVarFp.createCustomerPaymentMethods(id, createCustomerPaymentMethodsRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -369,19 +377,19 @@ export const PaymentMethodsApiFactory = function (configuration?: Configuration,
          * @summary Delete Payment Method
          * @param {string} id Identifier of the resource
          * @param {string} paymentMethodId Identifier of the payment method
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {DeleteCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCustomerPaymentMethods(id: string, paymentMethodId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<UpdateCustomerPaymentMethodsResponse> {
+        deleteCustomerPaymentMethods(id: string, paymentMethodId: string, acceptLanguage?: DeleteCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<UpdateCustomerPaymentMethodsResponse> {
             return localVarFp.deleteCustomerPaymentMethods(id, paymentMethodId, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Get a list of Payment Methods
          * @summary Get Payment Methods
          * @param {string} id Identifier of the resource
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {GetCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {number} [limit] The numbers of items to return, the maximum value is 250
          * @param {string} [next] next page
@@ -390,7 +398,7 @@ export const PaymentMethodsApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCustomerPaymentMethods(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: any): AxiosPromise<GetPaymentMethodResponse> {
+        getCustomerPaymentMethods(id: string, acceptLanguage?: GetCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: any): AxiosPromise<GetPaymentMethodResponse> {
             return localVarFp.getCustomerPaymentMethods(id, acceptLanguage, xChildCompanyId, limit, next, previous, search, options).then((request) => request(axios, basePath));
         },
         /**
@@ -399,12 +407,12 @@ export const PaymentMethodsApiFactory = function (configuration?: Configuration,
          * @param {string} id Identifier of the resource
          * @param {string} paymentMethodId Identifier of the payment method
          * @param {UpdatePaymentMethods} updatePaymentMethods requested field for customer payment methods
-         * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+         * @param {UpdateCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCustomerPaymentMethods(id: string, paymentMethodId: string, updatePaymentMethods: UpdatePaymentMethods, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: any): AxiosPromise<UpdateCustomerPaymentMethodsResponse> {
+        updateCustomerPaymentMethods(id: string, paymentMethodId: string, updatePaymentMethods: UpdatePaymentMethods, acceptLanguage?: UpdateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<UpdateCustomerPaymentMethodsResponse> {
             return localVarFp.updateCustomerPaymentMethods(id, paymentMethodId, updatePaymentMethods, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
     };
@@ -421,32 +429,32 @@ export interface PaymentMethodsApiInterface {
      * @summary Create Payment Method
      * @param {string} id Identifier of the resource
      * @param {CreateCustomerPaymentMethodsRequest} createCustomerPaymentMethodsRequest requested field for customer payment methods
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CreateCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaymentMethodsApiInterface
      */
-    createCustomerPaymentMethods(id: string, createCustomerPaymentMethodsRequest: CreateCustomerPaymentMethodsRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<CreateCustomerPaymentMethodsResponse>;
+    createCustomerPaymentMethods(id: string, createCustomerPaymentMethodsRequest: CreateCustomerPaymentMethodsRequest, acceptLanguage?: CreateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CreateCustomerPaymentMethodsResponse>;
 
     /**
      * Delete an existing payment method
      * @summary Delete Payment Method
      * @param {string} id Identifier of the resource
      * @param {string} paymentMethodId Identifier of the payment method
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {DeleteCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaymentMethodsApiInterface
      */
-    deleteCustomerPaymentMethods(id: string, paymentMethodId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<UpdateCustomerPaymentMethodsResponse>;
+    deleteCustomerPaymentMethods(id: string, paymentMethodId: string, acceptLanguage?: DeleteCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateCustomerPaymentMethodsResponse>;
 
     /**
      * Get a list of Payment Methods
      * @summary Get Payment Methods
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
      * @param {string} [next] next page
@@ -456,7 +464,7 @@ export interface PaymentMethodsApiInterface {
      * @throws {RequiredError}
      * @memberof PaymentMethodsApiInterface
      */
-    getCustomerPaymentMethods(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: AxiosRequestConfig): AxiosPromise<GetPaymentMethodResponse>;
+    getCustomerPaymentMethods(id: string, acceptLanguage?: GetCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetPaymentMethodResponse>;
 
     /**
      * Gets a payment Method that corresponds to a customer ID.
@@ -464,13 +472,13 @@ export interface PaymentMethodsApiInterface {
      * @param {string} id Identifier of the resource
      * @param {string} paymentMethodId Identifier of the payment method
      * @param {UpdatePaymentMethods} updatePaymentMethods requested field for customer payment methods
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {UpdateCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaymentMethodsApiInterface
      */
-    updateCustomerPaymentMethods(id: string, paymentMethodId: string, updatePaymentMethods: UpdatePaymentMethods, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig): AxiosPromise<UpdateCustomerPaymentMethodsResponse>;
+    updateCustomerPaymentMethods(id: string, paymentMethodId: string, updatePaymentMethods: UpdatePaymentMethods, acceptLanguage?: UpdateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateCustomerPaymentMethodsResponse>;
 
 }
 
@@ -486,13 +494,13 @@ export class PaymentMethodsApi extends BaseAPI implements PaymentMethodsApiInter
      * @summary Create Payment Method
      * @param {string} id Identifier of the resource
      * @param {CreateCustomerPaymentMethodsRequest} createCustomerPaymentMethodsRequest requested field for customer payment methods
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {CreateCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaymentMethodsApi
      */
-    public createCustomerPaymentMethods(id: string, createCustomerPaymentMethodsRequest: CreateCustomerPaymentMethodsRequest, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public createCustomerPaymentMethods(id: string, createCustomerPaymentMethodsRequest: CreateCustomerPaymentMethodsRequest, acceptLanguage?: CreateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return PaymentMethodsApiFp(this.configuration).createCustomerPaymentMethods(id, createCustomerPaymentMethodsRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -501,13 +509,13 @@ export class PaymentMethodsApi extends BaseAPI implements PaymentMethodsApiInter
      * @summary Delete Payment Method
      * @param {string} id Identifier of the resource
      * @param {string} paymentMethodId Identifier of the payment method
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {DeleteCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaymentMethodsApi
      */
-    public deleteCustomerPaymentMethods(id: string, paymentMethodId: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public deleteCustomerPaymentMethods(id: string, paymentMethodId: string, acceptLanguage?: DeleteCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return PaymentMethodsApiFp(this.configuration).deleteCustomerPaymentMethods(id, paymentMethodId, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -515,7 +523,7 @@ export class PaymentMethodsApi extends BaseAPI implements PaymentMethodsApiInter
      * Get a list of Payment Methods
      * @summary Get Payment Methods
      * @param {string} id Identifier of the resource
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {GetCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {number} [limit] The numbers of items to return, the maximum value is 250
      * @param {string} [next] next page
@@ -525,7 +533,7 @@ export class PaymentMethodsApi extends BaseAPI implements PaymentMethodsApiInter
      * @throws {RequiredError}
      * @memberof PaymentMethodsApi
      */
-    public getCustomerPaymentMethods(id: string, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: AxiosRequestConfig) {
+    public getCustomerPaymentMethods(id: string, acceptLanguage?: GetCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: RawAxiosRequestConfig) {
         return PaymentMethodsApiFp(this.configuration).getCustomerPaymentMethods(id, acceptLanguage, xChildCompanyId, limit, next, previous, search, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -535,13 +543,46 @@ export class PaymentMethodsApi extends BaseAPI implements PaymentMethodsApiInter
      * @param {string} id Identifier of the resource
      * @param {string} paymentMethodId Identifier of the payment method
      * @param {UpdatePaymentMethods} updatePaymentMethods requested field for customer payment methods
-     * @param {'es' | 'en'} [acceptLanguage] Use for knowing which language to use
+     * @param {UpdateCustomerPaymentMethodsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaymentMethodsApi
      */
-    public updateCustomerPaymentMethods(id: string, paymentMethodId: string, updatePaymentMethods: UpdatePaymentMethods, acceptLanguage?: 'es' | 'en', xChildCompanyId?: string, options?: AxiosRequestConfig) {
+    public updateCustomerPaymentMethods(id: string, paymentMethodId: string, updatePaymentMethods: UpdatePaymentMethods, acceptLanguage?: UpdateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return PaymentMethodsApiFp(this.configuration).updateCustomerPaymentMethods(id, paymentMethodId, updatePaymentMethods, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
+
+/**
+ * @export
+ */
+export const CreateCustomerPaymentMethodsAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type CreateCustomerPaymentMethodsAcceptLanguageEnum = typeof CreateCustomerPaymentMethodsAcceptLanguageEnum[keyof typeof CreateCustomerPaymentMethodsAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const DeleteCustomerPaymentMethodsAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type DeleteCustomerPaymentMethodsAcceptLanguageEnum = typeof DeleteCustomerPaymentMethodsAcceptLanguageEnum[keyof typeof DeleteCustomerPaymentMethodsAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const GetCustomerPaymentMethodsAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetCustomerPaymentMethodsAcceptLanguageEnum = typeof GetCustomerPaymentMethodsAcceptLanguageEnum[keyof typeof GetCustomerPaymentMethodsAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const UpdateCustomerPaymentMethodsAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type UpdateCustomerPaymentMethodsAcceptLanguageEnum = typeof UpdateCustomerPaymentMethodsAcceptLanguageEnum[keyof typeof UpdateCustomerPaymentMethodsAcceptLanguageEnum];
