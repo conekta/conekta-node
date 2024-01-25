@@ -15,11 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Node.js for test
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-
       - name: Setup Node.js 20 for Mockoon CLI
         uses: actions/setup-node@v2
         with:
@@ -31,6 +26,11 @@ jobs:
           version: '6.0.1'
           data-file: 'https://raw.githubusercontent.com/conekta/openapi/main/mocks/conekta_api.json'
           port: 3000
+
+      - name: Setup Node.js for test
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
         run: npm install
