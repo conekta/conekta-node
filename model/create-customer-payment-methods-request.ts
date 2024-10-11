@@ -15,19 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PaymentMethodCardRequest } from './payment-method-card-request';
-// May contain unused imports in some cases
-// @ts-ignore
 import { PaymentMethodCashRequest } from './payment-method-cash-request';
 // May contain unused imports in some cases
 // @ts-ignore
 import { PaymentMethodSpeiRequest } from './payment-method-spei-request';
+// May contain unused imports in some cases
+// @ts-ignore
+import { PaymentMethodTokenRequest } from './payment-method-token-request';
 
 /**
  * @type CreateCustomerPaymentMethodsRequest
  * Contains details of the payment methods that the customer has active or has used in Conekta
  * @export
  */
-export type CreateCustomerPaymentMethodsRequest = PaymentMethodCardRequest | PaymentMethodCashRequest | PaymentMethodSpeiRequest;
+export type CreateCustomerPaymentMethodsRequest = PaymentMethodCashRequest | PaymentMethodSpeiRequest | PaymentMethodTokenRequest;
 
 

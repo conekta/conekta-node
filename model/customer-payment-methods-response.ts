@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CustomerPaymentMethods } from './customer-payment-methods';
-// May contain unused imports in some cases
-// @ts-ignore
 import { CustomerPaymentMethodsData } from './customer-payment-methods-data';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -30,6 +27,6 @@ import { Pagination } from './pagination';
  * @type CustomerPaymentMethodsResponse
  * @export
  */
-export type CustomerPaymentMethodsResponse = CustomerPaymentMethods & Page & Pagination;
+export type CustomerPaymentMethodsResponse = Page & Pagination;
 
 

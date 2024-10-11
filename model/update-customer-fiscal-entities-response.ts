@@ -15,18 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { CustomerAddress } from './customer-address';
+// May contain unused imports in some cases
+// @ts-ignore
 import { CustomerFiscalEntitiesRequest } from './customer-fiscal-entities-request';
-// May contain unused imports in some cases
-// @ts-ignore
-import { CustomerFiscalEntitiesRequestAddress } from './customer-fiscal-entities-request-address';
-// May contain unused imports in some cases
-// @ts-ignore
-import { UpdateCustomerFiscalEntitiesResponseAllOf } from './update-customer-fiscal-entities-response-all-of';
 
 /**
  * @type UpdateCustomerFiscalEntitiesResponse
  * @export
  */
-export type UpdateCustomerFiscalEntitiesResponse = CustomerFiscalEntitiesRequest & UpdateCustomerFiscalEntitiesResponseAllOf;
+export type UpdateCustomerFiscalEntitiesResponse = CustomerFiscalEntitiesRequest;
 
 

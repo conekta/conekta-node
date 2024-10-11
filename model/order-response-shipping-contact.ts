@@ -19,14 +19,11 @@ import { CustomerShippingContactsResponse } from './customer-shipping-contacts-r
 // May contain unused imports in some cases
 // @ts-ignore
 import { CustomerShippingContactsResponseAddress } from './customer-shipping-contacts-response-address';
-// May contain unused imports in some cases
-// @ts-ignore
-import { OrderResponseShippingContactAllOf } from './order-response-shipping-contact-all-of';
 
 /**
  * @type OrderResponseShippingContact
  * @export
  */
-export type OrderResponseShippingContact = CustomerShippingContactsResponse & OrderResponseShippingContactAllOf;
+export type OrderResponseShippingContact = CustomerShippingContactsResponse;
 
 

@@ -15,19 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargeResponseRefundsData } from './charge-response-refunds-data';
+import { PayoutMethod } from './payout-method';
 
 /**
- * 
+ * The payout information of the payout order.
  * @export
- * @interface ChargeResponseRefundsAllOf
+ * @interface Payout
  */
-export interface ChargeResponseRefundsAllOf {
+export interface Payout {
     /**
-     * refunds
-     * @type {Array<ChargeResponseRefundsData>}
-     * @memberof ChargeResponseRefundsAllOf
+     * 
+     * @type {PayoutMethod}
+     * @memberof Payout
      */
-    'data'?: Array<ChargeResponseRefundsData>;
+    'payout_method': PayoutMethod;
 }
 

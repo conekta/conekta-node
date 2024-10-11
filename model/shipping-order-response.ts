@@ -15,15 +15,12 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ProductOrderResponseAllOf } from './product-order-response-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { ShippingRequest } from './shipping-request';
 
 /**
  * @type ShippingOrderResponse
  * @export
  */
-export type ShippingOrderResponse = ProductOrderResponseAllOf & ShippingRequest;
+export type ShippingOrderResponse = ShippingRequest;
 
 

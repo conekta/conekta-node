@@ -15,15 +15,12 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PaymentMethodCardResponseAllOf } from './payment-method-card-response-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { PaymentMethodResponse } from './payment-method-response';
 
 /**
  * @type PaymentMethodCardResponse
  * @export
  */
-export type PaymentMethodCardResponse = PaymentMethodCardResponseAllOf & PaymentMethodResponse;
+export type PaymentMethodCardResponse = PaymentMethodResponse;
 
 

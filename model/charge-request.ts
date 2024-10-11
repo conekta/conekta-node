@@ -24,7 +24,7 @@ import { ChargeRequestPaymentMethod } from './charge-request-payment-method';
  */
 export interface ChargeRequest {
     /**
-     * 
+     * Amount to be charged in cents
      * @type {number}
      * @memberof ChargeRequest
      */

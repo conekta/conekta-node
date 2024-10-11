@@ -15,15 +15,12 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { DiscountLinesResponseAllOf } from './discount-lines-response-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { OrderDiscountLinesRequest } from './order-discount-lines-request';
 
 /**
  * @type DiscountLinesResponse
  * @export
  */
-export type DiscountLinesResponse = DiscountLinesResponseAllOf & OrderDiscountLinesRequest;
+export type DiscountLinesResponse = OrderDiscountLinesRequest;
 
 

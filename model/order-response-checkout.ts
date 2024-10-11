@@ -135,6 +135,12 @@ export interface OrderResponseCheckout {
      */
     'recurrent'?: boolean;
     /**
+     * number of seconds to wait before redirecting to the success_url
+     * @type {number}
+     * @memberof OrderResponseCheckout
+     */
+    'redirection_time'?: number | null;
+    /**
      * 
      * @type {string}
      * @memberof OrderResponseCheckout

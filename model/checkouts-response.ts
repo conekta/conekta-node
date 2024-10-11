@@ -18,9 +18,6 @@
 import { CheckoutResponse } from './checkout-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CheckoutsResponseAllOf } from './checkouts-response-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -30,6 +27,6 @@ import { Pagination } from './pagination';
  * @type CheckoutsResponse
  * @export
  */
-export type CheckoutsResponse = CheckoutsResponseAllOf & Page & Pagination;
+export type CheckoutsResponse = Page & Pagination;
 
 

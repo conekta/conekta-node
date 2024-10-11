@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargeResponseRefundsAllOf } from './charge-response-refunds-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { ChargeResponseRefundsData } from './charge-response-refunds-data';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -30,6 +27,6 @@ import { Pagination } from './pagination';
  * @type ChargeResponseRefunds
  * @export
  */
-export type ChargeResponseRefunds = ChargeResponseRefundsAllOf & Page & Pagination;
+export type ChargeResponseRefunds = Page & Pagination;
 
 

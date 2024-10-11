@@ -15,19 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { RiskRulesData } from './risk-rules-data';
+import { OrderCustomerInfoResponse } from './order-customer-info-response';
 
 /**
- * 
+ * @type PayoutOrderResponseCustomerInfo
+ * The customer information of the payout order.
  * @export
- * @interface RiskRules
  */
-export interface RiskRules {
-    /**
-     * 
-     * @type {Array<RiskRulesData>}
-     * @memberof RiskRules
-     */
-    'data'?: Array<RiskRulesData>;
-}
+export type PayoutOrderResponseCustomerInfo = OrderCustomerInfoResponse;
+
 

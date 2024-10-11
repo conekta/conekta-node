@@ -15,15 +15,12 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ApiKeyCreateResponseAllOf } from './api-key-create-response-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { ApiKeyResponse } from './api-key-response';
 
 /**
  * @type ApiKeyCreateResponse
  * @export
  */
-export type ApiKeyCreateResponse = ApiKeyCreateResponseAllOf & ApiKeyResponse;
+export type ApiKeyCreateResponse = ApiKeyResponse;
 
 

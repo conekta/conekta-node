@@ -63,6 +63,12 @@ export interface CheckoutRequest {
      */
     'on_demand_enabled'?: boolean;
     /**
+     * number of seconds to wait before redirecting to the success_url
+     * @type {number}
+     * @memberof CheckoutRequest
+     */
+    'redirection_time'?: number;
+    /**
      * Redirection url back to the site in case of successful payment, applies only to HostedPayment
      * @type {string}
      * @memberof CheckoutRequest

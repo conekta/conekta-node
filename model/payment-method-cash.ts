@@ -15,15 +15,12 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargeDataPaymentMethodCashResponse } from './charge-data-payment-method-cash-response';
-// May contain unused imports in some cases
-// @ts-ignore
 import { PaymentMethod } from './payment-method';
 
 /**
  * @type PaymentMethodCash
  * @export
  */
-export type PaymentMethodCash = ChargeDataPaymentMethodCashResponse & PaymentMethod;
+export type PaymentMethodCash = PaymentMethod;
 
 

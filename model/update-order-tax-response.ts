@@ -16,15 +16,12 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import { OrderTaxRequest } from './order-tax-request';
-// May contain unused imports in some cases
-// @ts-ignore
-import { UpdateOrderTaxResponseAllOf } from './update-order-tax-response-all-of';
 
 /**
  * @type UpdateOrderTaxResponse
  * create new taxes for an existing order response
  * @export
  */
-export type UpdateOrderTaxResponse = OrderTaxRequest & UpdateOrderTaxResponseAllOf;
+export type UpdateOrderTaxResponse = OrderTaxRequest;
 
 

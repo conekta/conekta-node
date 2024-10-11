@@ -39,6 +39,12 @@ export interface SubscriptionResponse {
      */
     'canceled_at'?: number | null;
     /**
+     * Reason for cancellation. This field appears when the subscription status is \'canceled\'.
+     * @type {string}
+     * @memberof SubscriptionResponse
+     */
+    'canceled_reason'?: string;
+    /**
      * 
      * @type {string}
      * @memberof SubscriptionResponse

@@ -19,14 +19,11 @@ import { CustomerInfoJustCustomerIdResponse } from './customer-info-just-custome
 // May contain unused imports in some cases
 // @ts-ignore
 import { OrderCustomerInfoResponse } from './order-customer-info-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import { OrderResponseCustomerInfoAllOf } from './order-response-customer-info-all-of';
 
 /**
  * @type OrderResponseCustomerInfo
  * @export
  */
-export type OrderResponseCustomerInfo = CustomerInfoJustCustomerIdResponse & OrderCustomerInfoResponse & OrderResponseCustomerInfoAllOf;
+export type OrderResponseCustomerInfo = CustomerInfoJustCustomerIdResponse & OrderCustomerInfoResponse;
 
 

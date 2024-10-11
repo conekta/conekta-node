@@ -18,9 +18,6 @@
 import { ChargeResponse } from './charge-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetChargesResponseAllOf } from './get-charges-response-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -30,6 +27,6 @@ import { Pagination } from './pagination';
  * @type GetChargesResponse
  * @export
  */
-export type GetChargesResponse = GetChargesResponseAllOf & Page & Pagination;
+export type GetChargesResponse = Page & Pagination;
 
 

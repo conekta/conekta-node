@@ -19,15 +19,12 @@ import { Details } from './details';
 // May contain unused imports in some cases
 // @ts-ignore
 import { DetailsError } from './details-error';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ErrorAllOf } from './error-all-of';
 
 /**
  * @type ModelError
  * err model
  * @export
  */
-export type ModelError = Details & ErrorAllOf;
+export type ModelError = Details;
 
 

@@ -13,18 +13,14 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { CustomerPaymentMethodRequest } from './customer-payment-method-request';
 
 /**
- * 
+ * @type PaymentMethodTokenRequest
  * @export
- * @interface PaymentMethodCashRequestAllOf
  */
-export interface PaymentMethodCashRequestAllOf {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaymentMethodCashRequestAllOf
-     */
-    'expires_at'?: number;
-}
+export type PaymentMethodTokenRequest = CustomerPaymentMethodRequest;
+
 

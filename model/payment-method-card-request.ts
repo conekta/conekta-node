@@ -16,14 +16,11 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import { CustomerPaymentMethodRequest } from './customer-payment-method-request';
-// May contain unused imports in some cases
-// @ts-ignore
-import { PaymentMethodCardRequestAllOf } from './payment-method-card-request-all-of';
 
 /**
  * @type PaymentMethodCardRequest
  * @export
  */
-export type PaymentMethodCardRequest = CustomerPaymentMethodRequest & PaymentMethodCardRequestAllOf;
+export type PaymentMethodCardRequest = CustomerPaymentMethodRequest;
 
 

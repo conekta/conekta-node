@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetWebhooksResponseAllOf } from './get-webhooks-response-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -30,6 +27,6 @@ import { WebhookResponse } from './webhook-response';
  * @type GetWebhooksResponse
  * @export
  */
-export type GetWebhooksResponse = GetWebhooksResponseAllOf & Page & Pagination;
+export type GetWebhooksResponse = Page & Pagination;
 
 

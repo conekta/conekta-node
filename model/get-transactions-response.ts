@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetTransactionsResponseAllOf } from './get-transactions-response-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -30,6 +27,6 @@ import { TransactionResponse } from './transaction-response';
  * @type GetTransactionsResponse
  * @export
  */
-export type GetTransactionsResponse = GetTransactionsResponseAllOf & Page & Pagination;
+export type GetTransactionsResponse = Page & Pagination;
 
 

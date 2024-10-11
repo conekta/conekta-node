@@ -21,7 +21,7 @@
  */
 export interface OrderRefundRequest {
     /**
-     * 
+     * Amount to be refunded in cents
      * @type {number}
      * @memberof OrderRefundRequest
      */
@@ -33,7 +33,7 @@ export interface OrderRefundRequest {
      */
     'expires_at'?: number | null;
     /**
-     * 
+     * Reason for the refund
      * @type {string}
      * @memberof OrderRefundRequest
      */
