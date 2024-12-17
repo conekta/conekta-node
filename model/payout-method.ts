@@ -13,21 +13,18 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { TransactionResponse } from './transaction-response';
 
 /**
- * 
+ * The payout method of the payout order.
  * @export
- * @interface GetTransactionsResponseAllOf
+ * @interface PayoutMethod
  */
-export interface GetTransactionsResponseAllOf {
+export interface PayoutMethod {
     /**
-     * Transactions
-     * @type {Array<TransactionResponse>}
-     * @memberof GetTransactionsResponseAllOf
+     * The type of the payout method.
+     * @type {string}
+     * @memberof PayoutMethod
      */
-    'data'?: Array<TransactionResponse>;
+    'type': string;
 }
 

@@ -60,6 +60,12 @@ export interface CustomerResponse {
      */
     'custom_reference'?: string;
     /**
+     * It is a parameter that allows to identify the date of birth of the client.
+     * @type {string}
+     * @memberof CustomerResponse
+     */
+    'date_of_birth'?: string;
+    /**
      * 
      * @type {string}
      * @memberof CustomerResponse
@@ -107,6 +113,12 @@ export interface CustomerResponse {
      * @memberof CustomerResponse
      */
     'name': string;
+    /**
+     * It is a parameter that allows to identify the national identification number of the client.
+     * @type {string}
+     * @memberof CustomerResponse
+     */
+    'national_id'?: string;
     /**
      * 
      * @type {{ [key: string]: any; }}

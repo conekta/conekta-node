@@ -18,9 +18,6 @@
 import { ApiKeyResponse } from './api-key-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetApiKeysResponseAllOf } from './get-api-keys-response-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -30,6 +27,6 @@ import { Pagination } from './pagination';
  * @type GetApiKeysResponse
  * @export
  */
-export type GetApiKeysResponse = GetApiKeysResponseAllOf & Page & Pagination;
+export type GetApiKeysResponse = Page & Pagination;
 
 

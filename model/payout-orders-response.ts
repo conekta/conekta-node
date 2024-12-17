@@ -15,19 +15,18 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookResponse } from './webhook-response';
+import { Page } from './page';
+// May contain unused imports in some cases
+// @ts-ignore
+import { Pagination } from './pagination';
+// May contain unused imports in some cases
+// @ts-ignore
+import { PayoutOrderResponse } from './payout-order-response';
 
 /**
- * 
+ * @type PayoutOrdersResponse
  * @export
- * @interface GetWebhooksResponseAllOf
  */
-export interface GetWebhooksResponseAllOf {
-    /**
-     * 
-     * @type {Array<WebhookResponse>}
-     * @memberof GetWebhooksResponseAllOf
-     */
-    'data'?: Array<WebhookResponse>;
-}
+export type PayoutOrdersResponse = Page & Pagination;
+
 

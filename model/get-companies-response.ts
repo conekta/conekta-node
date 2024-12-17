@@ -18,9 +18,6 @@
 import { CompanyResponse } from './company-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetCompaniesResponseAllOf } from './get-companies-response-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -30,6 +27,6 @@ import { Pagination } from './pagination';
  * @type GetCompaniesResponse
  * @export
  */
-export type GetCompaniesResponse = GetCompaniesResponseAllOf & Page & Pagination;
+export type GetCompaniesResponse = Page & Pagination;
 
 

@@ -15,18 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CreateCustomerFiscalEntitiesResponseAllOf } from './create-customer-fiscal-entities-response-all-of';
+import { CustomerAddress } from './customer-address';
 // May contain unused imports in some cases
 // @ts-ignore
 import { CustomerFiscalEntitiesRequest } from './customer-fiscal-entities-request';
-// May contain unused imports in some cases
-// @ts-ignore
-import { CustomerFiscalEntitiesRequestAddress } from './customer-fiscal-entities-request-address';
 
 /**
  * @type CustomerFiscalEntitiesDataResponse
  * @export
  */
-export type CustomerFiscalEntitiesDataResponse = CreateCustomerFiscalEntitiesResponseAllOf & CustomerFiscalEntitiesRequest;
+export type CustomerFiscalEntitiesDataResponse = CustomerFiscalEntitiesRequest;
 
 

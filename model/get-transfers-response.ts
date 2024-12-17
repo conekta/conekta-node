@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetTransfersResponseAllOf } from './get-transfers-response-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -30,6 +27,6 @@ import { TransfersResponse } from './transfers-response';
  * @type GetTransfersResponse
  * @export
  */
-export type GetTransfersResponse = GetTransfersResponseAllOf & Page & Pagination;
+export type GetTransfersResponse = Page & Pagination;
 
 

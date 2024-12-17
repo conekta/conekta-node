@@ -26,6 +26,7 @@ export * from './api/logs-api';
 export * from './api/orders-api';
 export * from './api/payment-link-api';
 export * from './api/payment-methods-api';
+export * from './api/payout-orders-api';
 export * from './api/plans-api';
 export * from './api/products-api';
 export * from './api/shipping-contacts-api';

@@ -18,15 +18,12 @@
 import { DiscountLinesDataResponse } from './discount-lines-data-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderResponseDiscountLinesAllOf } from './order-response-discount-lines-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { Pagination } from './pagination';
 
 /**
  * @type OrderResponseDiscountLines
  * @export
  */
-export type OrderResponseDiscountLines = OrderResponseDiscountLinesAllOf & Pagination;
+export type OrderResponseDiscountLines = Pagination;
 
 

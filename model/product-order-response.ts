@@ -16,14 +16,11 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import { Product } from './product';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ProductOrderResponseAllOf } from './product-order-response-all-of';
 
 /**
  * @type ProductOrderResponse
  * @export
  */
-export type ProductOrderResponse = Product & ProductOrderResponseAllOf;
+export type ProductOrderResponse = Product;
 
 

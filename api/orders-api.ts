@@ -196,10 +196,17 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {string} [search] General order search, e.g. by mail, reference etc.
          * @param {string} [next] next page
          * @param {string} [previous] previous page
+         * @param {string} [paymentStatus] Filters by order status
+         * @param {string} [lastPaymentInfoStatus] Filters by last payment info status
+         * @param {number} [createdAt] created equal to
+         * @param {number} [createdAtGte] created at greater than or equal to
+         * @param {number} [createdAtLte] created at less than or equal to
+         * @param {number} [updatedAtGte] updated at greater than or equal to
+         * @param {number} [updatedAtLte] updated at less than or equal to
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrders: async (acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getOrders: async (acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/orders`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -230,6 +237,34 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
 
             if (previous !== undefined) {
                 localVarQueryParameter['previous'] = previous;
+            }
+
+            if (paymentStatus !== undefined) {
+                localVarQueryParameter['payment_status'] = paymentStatus;
+            }
+
+            if (lastPaymentInfoStatus !== undefined) {
+                localVarQueryParameter['last_payment_info.status'] = lastPaymentInfoStatus;
+            }
+
+            if (createdAt !== undefined) {
+                localVarQueryParameter['created_at'] = createdAt;
+            }
+
+            if (createdAtGte !== undefined) {
+                localVarQueryParameter['created_at.gte'] = createdAtGte;
+            }
+
+            if (createdAtLte !== undefined) {
+                localVarQueryParameter['created_at.lte'] = createdAtLte;
+            }
+
+            if (updatedAtGte !== undefined) {
+                localVarQueryParameter['updated_at.gte'] = updatedAtGte;
+            }
+
+            if (updatedAtLte !== undefined) {
+                localVarQueryParameter['updated_at.lte'] = updatedAtLte;
             }
 
             if (acceptLanguage != null) {
@@ -522,11 +557,18 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * @param {string} [search] General order search, e.g. by mail, reference etc.
          * @param {string} [next] next page
          * @param {string} [previous] previous page
+         * @param {string} [paymentStatus] Filters by order status
+         * @param {string} [lastPaymentInfoStatus] Filters by last payment info status
+         * @param {number} [createdAt] created equal to
+         * @param {number} [createdAtGte] created at greater than or equal to
+         * @param {number} [createdAtLte] created at less than or equal to
+         * @param {number} [updatedAtGte] updated at greater than or equal to
+         * @param {number} [updatedAtLte] updated at less than or equal to
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOrdersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
+        async getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOrdersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, paymentStatus, lastPaymentInfoStatus, createdAt, createdAtGte, createdAtLte, updatedAtGte, updatedAtLte, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['OrdersApi.getOrders']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -649,11 +691,18 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @param {string} [search] General order search, e.g. by mail, reference etc.
          * @param {string} [next] next page
          * @param {string} [previous] previous page
+         * @param {string} [paymentStatus] Filters by order status
+         * @param {string} [lastPaymentInfoStatus] Filters by last payment info status
+         * @param {number} [createdAt] created equal to
+         * @param {number} [createdAtGte] created at greater than or equal to
+         * @param {number} [createdAtLte] created at less than or equal to
+         * @param {number} [updatedAtGte] updated at greater than or equal to
+         * @param {number} [updatedAtLte] updated at less than or equal to
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetOrdersResponse> {
-            return localVarFp.getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
+        getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, options?: any): AxiosPromise<GetOrdersResponse> {
+            return localVarFp.getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, paymentStatus, lastPaymentInfoStatus, createdAt, createdAtGte, createdAtLte, updatedAtGte, updatedAtLte, options).then((request) => request(axios, basePath));
         },
         /**
          * A refunded order describes the items, amount, and reason an order is being refunded.
@@ -760,11 +809,18 @@ export interface OrdersApiInterface {
      * @param {string} [search] General order search, e.g. by mail, reference etc.
      * @param {string} [next] next page
      * @param {string} [previous] previous page
+     * @param {string} [paymentStatus] Filters by order status
+     * @param {string} [lastPaymentInfoStatus] Filters by last payment info status
+     * @param {number} [createdAt] created equal to
+     * @param {number} [createdAtGte] created at greater than or equal to
+     * @param {number} [createdAtLte] created at less than or equal to
+     * @param {number} [updatedAtGte] updated at greater than or equal to
+     * @param {number} [updatedAtLte] updated at less than or equal to
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApiInterface
      */
-    getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetOrdersResponse>;
+    getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, options?: RawAxiosRequestConfig): AxiosPromise<GetOrdersResponse>;
 
     /**
      * A refunded order describes the items, amount, and reason an order is being refunded.
@@ -877,12 +933,19 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @param {string} [search] General order search, e.g. by mail, reference etc.
      * @param {string} [next] next page
      * @param {string} [previous] previous page
+     * @param {string} [paymentStatus] Filters by order status
+     * @param {string} [lastPaymentInfoStatus] Filters by last payment info status
+     * @param {number} [createdAt] created equal to
+     * @param {number} [createdAtGte] created at greater than or equal to
+     * @param {number} [createdAtLte] created at less than or equal to
+     * @param {number} [updatedAtGte] updated at greater than or equal to
+     * @param {number} [updatedAtLte] updated at less than or equal to
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
-        return OrdersApiFp(this.configuration).getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
+    public getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, paymentStatus, lastPaymentInfoStatus, createdAt, createdAtGte, createdAtLte, updatedAtGte, updatedAtLte, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

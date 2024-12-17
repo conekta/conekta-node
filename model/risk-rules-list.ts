@@ -21,15 +21,12 @@ import { Page } from './page';
 import { Pagination } from './pagination';
 // May contain unused imports in some cases
 // @ts-ignore
-import { RiskRules } from './risk-rules';
-// May contain unused imports in some cases
-// @ts-ignore
 import { RiskRulesData } from './risk-rules-data';
 
 /**
  * @type RiskRulesList
  * @export
  */
-export type RiskRulesList = Page & Pagination & RiskRules;
+export type RiskRulesList = Page & Pagination;
 
 

@@ -54,6 +54,12 @@ export interface Customer {
      */
     'custom_reference'?: string;
     /**
+     * It is a parameter that allows to identify the date of birth of the client.
+     * @type {string}
+     * @memberof Customer
+     */
+    'date_of_birth'?: string;
+    /**
      * An email address is a series of customizable characters followed by a universal Internet symbol, the at symbol (@), the name of a host server, and a web domain ending (.mx, .com, .org, . net, etc).
      * @type {string}
      * @memberof Customer
@@ -89,6 +95,12 @@ export interface Customer {
      * @memberof Customer
      */
     'name': string;
+    /**
+     * It is a parameter that allows to identify the national identification number of the client.
+     * @type {string}
+     * @memberof Customer
+     */
+    'national_id'?: string;
     /**
      * Contains details of the payment methods that the customer has active or has used in Conekta
      * @type {Array<CustomerPaymentMethodsRequest>}

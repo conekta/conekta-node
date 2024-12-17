@@ -15,19 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargeResponseRefundsData } from './charge-response-refunds-data';
+import { ChargesOrderResponseAllOfData } from './charges-order-response-all-of-data';
+// May contain unused imports in some cases
+// @ts-ignore
+import { Pagination } from './pagination';
 
 /**
- * 
+ * @type ChargesOrderResponse
+ * The charges associated with the order
  * @export
- * @interface ChargeResponseRefundsAllOf
  */
-export interface ChargeResponseRefundsAllOf {
-    /**
-     * refunds
-     * @type {Array<ChargeResponseRefundsData>}
-     * @memberof ChargeResponseRefundsAllOf
-     */
-    'data'?: Array<ChargeResponseRefundsData>;
-}
+export type ChargesOrderResponse = Pagination;
+
 

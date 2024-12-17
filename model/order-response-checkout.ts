@@ -81,6 +81,12 @@ export interface OrderResponseCheckout {
      */
     'livemode'?: boolean;
     /**
+     * Number of retries allowed before the checkout is marked as failed
+     * @type {number}
+     * @memberof OrderResponseCheckout
+     */
+    'max_failed_retries'?: number | null;
+    /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof OrderResponseCheckout
@@ -134,6 +140,12 @@ export interface OrderResponseCheckout {
      * @memberof OrderResponseCheckout
      */
     'recurrent'?: boolean;
+    /**
+     * number of seconds to wait before redirecting to the success_url
+     * @type {number}
+     * @memberof OrderResponseCheckout
+     */
+    'redirection_time'?: number | null;
     /**
      * 
      * @type {string}

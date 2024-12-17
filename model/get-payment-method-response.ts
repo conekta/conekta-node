@@ -18,9 +18,6 @@
 import { GetCustomerPaymentMethodDataResponse } from './get-customer-payment-method-data-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetPaymentMethodResponseAllOf } from './get-payment-method-response-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -30,6 +27,6 @@ import { Pagination } from './pagination';
  * @type GetPaymentMethodResponse
  * @export
  */
-export type GetPaymentMethodResponse = GetPaymentMethodResponseAllOf & Page & Pagination;
+export type GetPaymentMethodResponse = Page & Pagination;
 
 

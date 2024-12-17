@@ -18,9 +18,6 @@
 import { ChargesDataResponse } from './charges-data-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderResponseChargesAllOf } from './order-response-charges-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { Pagination } from './pagination';
 
 /**
@@ -28,6 +25,6 @@ import { Pagination } from './pagination';
  * The charges associated with the order
  * @export
  */
-export type OrderResponseCharges = OrderResponseChargesAllOf & Pagination;
+export type OrderResponseCharges = Pagination;
 
 

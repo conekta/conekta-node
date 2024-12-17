@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetPlansResponseAllOf } from './get-plans-response-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -30,6 +27,6 @@ import { PlanResponse } from './plan-response';
  * @type GetPlansResponse
  * @export
  */
-export type GetPlansResponse = GetPlansResponseAllOf & Page & Pagination;
+export type GetPlansResponse = Page & Pagination;
 
 

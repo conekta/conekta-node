@@ -42,6 +42,12 @@ export interface UpdateCustomer {
      */
     'antifraud_info'?: UpdateCustomerAntifraudInfo | null;
     /**
+     * It is a parameter that allows to identify the date of birth of the client.
+     * @type {string}
+     * @memberof UpdateCustomer
+     */
+    'date_of_birth'?: string;
+    /**
      * It is a parameter that allows to identify in the response, the Conekta ID of a payment method (payment_id)
      * @type {string}
      * @memberof UpdateCustomer
@@ -101,6 +107,12 @@ export interface UpdateCustomer {
      * @memberof UpdateCustomer
      */
     'metadata'?: { [key: string]: any; };
+    /**
+     * It is a parameter that allows to identify the national identification number of the client.
+     * @type {string}
+     * @memberof UpdateCustomer
+     */
+    'national_id'?: string;
     /**
      * Contains details of the payment methods that the customer has active or has used in Conekta
      * @type {Array<CustomerPaymentMethodsRequest>}

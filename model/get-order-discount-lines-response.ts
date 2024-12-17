@@ -18,9 +18,6 @@
 import { DiscountLinesResponse } from './discount-lines-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetOrderDiscountLinesResponseAllOf } from './get-order-discount-lines-response-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -30,6 +27,6 @@ import { Pagination } from './pagination';
  * @type GetOrderDiscountLinesResponse
  * @export
  */
-export type GetOrderDiscountLinesResponse = GetOrderDiscountLinesResponseAllOf & Page & Pagination;
+export type GetOrderDiscountLinesResponse = Page & Pagination;
 
 

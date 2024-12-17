@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderResponseProductsAllOf } from './order-response-products-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -30,6 +27,6 @@ import { ProductDataResponse } from './product-data-response';
  * @type OrderResponseProducts
  * @export
  */
-export type OrderResponseProducts = OrderResponseProductsAllOf & Page & Pagination;
+export type OrderResponseProducts = Page & Pagination;
 
 

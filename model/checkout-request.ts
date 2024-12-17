@@ -51,6 +51,12 @@ export interface CheckoutRequest {
      */
     'monthly_installments_options'?: Array<number>;
     /**
+     * Number of retries allowed before the checkout is marked as failed
+     * @type {number}
+     * @memberof CheckoutRequest
+     */
+    'max_failed_retries'?: number;
+    /**
      * Reason for payment
      * @type {string}
      * @memberof CheckoutRequest
@@ -62,6 +68,12 @@ export interface CheckoutRequest {
      * @memberof CheckoutRequest
      */
     'on_demand_enabled'?: boolean;
+    /**
+     * number of seconds to wait before redirecting to the success_url
+     * @type {number}
+     * @memberof CheckoutRequest
+     */
+    'redirection_time'?: number;
     /**
      * Redirection url back to the site in case of successful payment, applies only to HostedPayment
      * @type {string}

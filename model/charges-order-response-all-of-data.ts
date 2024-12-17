@@ -15,18 +15,21 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Page } from './page';
+import { ChargeResponse } from './charge-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Pagination } from './pagination';
+import { ChargeResponseChannel } from './charge-response-channel';
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookResponse } from './webhook-response';
+import { ChargeResponsePaymentMethod } from './charge-response-payment-method';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ChargeResponseRefunds } from './charge-response-refunds';
 
 /**
- * @type GetWebhooksResponse
+ * @type ChargesOrderResponseAllOfData
  * @export
  */
-export type GetWebhooksResponse = Page & Pagination;
+export type ChargesOrderResponseAllOfData = ChargeResponse;
 
 

@@ -40,10 +40,10 @@ export interface Product {
     'description'?: string;
     /**
      * It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters.
-     * @type {{ [key: string]: string; }}
+     * @type {{ [key: string]: any; }}
      * @memberof Product
      */
-    'metadata'?: { [key: string]: string; };
+    'metadata'?: { [key: string]: any; };
     /**
      * The name of the item. It will be displayed in the order.
      * @type {string}

@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CustomerFiscalEntitiesRequestAddress } from './customer-fiscal-entities-request-address';
+import { CustomerAddress } from './customer-address';
 
 /**
  * 
@@ -25,10 +25,10 @@ import { CustomerFiscalEntitiesRequestAddress } from './customer-fiscal-entities
 export interface CustomerUpdateFiscalEntitiesRequest {
     /**
      * 
-     * @type {CustomerFiscalEntitiesRequestAddress}
+     * @type {CustomerAddress}
      * @memberof CustomerUpdateFiscalEntitiesRequest
      */
-    'address'?: CustomerFiscalEntitiesRequestAddress;
+    'address'?: CustomerAddress;
     /**
      * 
      * @type {string}

@@ -48,6 +48,12 @@ export interface Checkout {
      */
     'monthly_installments_options'?: Array<number>;
     /**
+     * Indicates the 3DS2 mode for the order, either smart or strict.
+     * @type {string}
+     * @memberof Checkout
+     */
+    'three_ds_mode'?: string;
+    /**
      * Reason for charge
      * @type {string}
      * @memberof Checkout

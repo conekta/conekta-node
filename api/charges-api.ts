@@ -30,6 +30,8 @@ import { ChargeResponse } from '../model';
 // @ts-ignore
 import { ChargeUpdateRequest } from '../model';
 // @ts-ignore
+import { ChargesOrderResponse } from '../model';
+// @ts-ignore
 import { GetChargesResponse } from '../model';
 // @ts-ignore
 import { ModelError } from '../model';
@@ -119,6 +121,60 @@ export const ChargesApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'chargeRequest' is not null or undefined
             assertParamExists('ordersCreateCharge', 'chargeRequest', chargeRequest)
             const localVarPath = `/orders/{id}/charges`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(chargeRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Create charges for an existing orden
+         * @summary Create charges
+         * @param {string} id Identifier of the resource
+         * @param {ChargeRequest} chargeRequest requested field for a charge
+         * @param {OrdersCreateChargesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+         * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersCreateCharges: async (id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargesAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('ordersCreateCharges', 'id', id)
+            // verify required parameter 'chargeRequest' is not null or undefined
+            assertParamExists('ordersCreateCharges', 'chargeRequest', chargeRequest)
+            const localVarPath = `/orders/{id}/add_charges`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -256,6 +312,22 @@ export const ChargesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
+         * Create charges for an existing orden
+         * @summary Create charges
+         * @param {string} id Identifier of the resource
+         * @param {ChargeRequest} chargeRequest requested field for a charge
+         * @param {OrdersCreateChargesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+         * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async ordersCreateCharges(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChargesOrderResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.ordersCreateCharges(id, chargeRequest, acceptLanguage, xChildCompanyId, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ChargesApi.ordersCreateCharges']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
          * 
          * @summary Update a charge
          * @param {string} id Identifier of the resource
@@ -310,6 +382,19 @@ export const ChargesApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.ordersCreateCharge(id, chargeRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
+         * Create charges for an existing orden
+         * @summary Create charges
+         * @param {string} id Identifier of the resource
+         * @param {ChargeRequest} chargeRequest requested field for a charge
+         * @param {OrdersCreateChargesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+         * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersCreateCharges(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargesAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<ChargesOrderResponse> {
+            return localVarFp.ordersCreateCharges(id, chargeRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * 
          * @summary Update a charge
          * @param {string} id Identifier of the resource
@@ -358,6 +443,19 @@ export interface ChargesApiInterface {
      * @memberof ChargesApiInterface
      */
     ordersCreateCharge(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargeAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChargeOrderResponse>;
+
+    /**
+     * Create charges for an existing orden
+     * @summary Create charges
+     * @param {string} id Identifier of the resource
+     * @param {ChargeRequest} chargeRequest requested field for a charge
+     * @param {OrdersCreateChargesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+     * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChargesApiInterface
+     */
+    ordersCreateCharges(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChargesOrderResponse>;
 
     /**
      * 
@@ -414,6 +512,21 @@ export class ChargesApi extends BaseAPI implements ChargesApiInterface {
     }
 
     /**
+     * Create charges for an existing orden
+     * @summary Create charges
+     * @param {string} id Identifier of the resource
+     * @param {ChargeRequest} chargeRequest requested field for a charge
+     * @param {OrdersCreateChargesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+     * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChargesApi
+     */
+    public ordersCreateCharges(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
+        return ChargesApiFp(this.configuration).ordersCreateCharges(id, chargeRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * 
      * @summary Update a charge
      * @param {string} id Identifier of the resource
@@ -445,6 +558,14 @@ export const OrdersCreateChargeAcceptLanguageEnum = {
     en: 'en'
 } as const;
 export type OrdersCreateChargeAcceptLanguageEnum = typeof OrdersCreateChargeAcceptLanguageEnum[keyof typeof OrdersCreateChargeAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const OrdersCreateChargesAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type OrdersCreateChargesAcceptLanguageEnum = typeof OrdersCreateChargesAcceptLanguageEnum[keyof typeof OrdersCreateChargesAcceptLanguageEnum];
 /**
  * @export
  */

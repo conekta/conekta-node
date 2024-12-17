@@ -15,19 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargeResponse } from './charge-response';
+import { PayoutMethod } from './payout-method';
 
 /**
- * 
+ * The payout information of the payout order.
  * @export
- * @interface GetChargesResponseAllOf
+ * @interface Payout
  */
-export interface GetChargesResponseAllOf {
+export interface Payout {
     /**
      * 
-     * @type {Array<ChargeResponse>}
-     * @memberof GetChargesResponseAllOf
+     * @type {PayoutMethod}
+     * @memberof Payout
      */
-    'data'?: Array<ChargeResponse>;
+    'payout_method': PayoutMethod;
 }
 

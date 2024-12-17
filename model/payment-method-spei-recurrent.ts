@@ -16,14 +16,11 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import { PaymentMethodResponse } from './payment-method-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import { PaymentMethodSpeiRecurrentAllOf } from './payment-method-spei-recurrent-all-of';
 
 /**
  * @type PaymentMethodSpeiRecurrent
  * @export
  */
-export type PaymentMethodSpeiRecurrent = PaymentMethodResponse & PaymentMethodSpeiRecurrentAllOf;
+export type PaymentMethodSpeiRecurrent = PaymentMethodResponse;
 
 

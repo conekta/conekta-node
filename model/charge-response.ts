@@ -84,13 +84,13 @@ export interface ChargeResponse {
      */
     'failure_message'?: string;
     /**
-     * 
+     * Charge ID
      * @type {string}
      * @memberof ChargeResponse
      */
     'id'?: string;
     /**
-     * 
+     * Whether the charge was made in live mode or not
      * @type {boolean}
      * @memberof ChargeResponse
      */
@@ -102,13 +102,13 @@ export interface ChargeResponse {
      */
     'object'?: string;
     /**
-     * 
+     * Order ID
      * @type {string}
      * @memberof ChargeResponse
      */
     'order_id'?: string;
     /**
-     * 
+     * Payment date
      * @type {number}
      * @memberof ChargeResponse
      */
