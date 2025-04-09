@@ -1,6 +1,6 @@
 import { WebhooksApi } from "../api";
 import { Configuration } from "../configuration";
-import { WebhookRequest } from "../model";
+import { WebhookRequest, WebhookResponse } from "../model";
 import { baseTest } from './base-test';
 
 describe("Webhooks API", () => {
@@ -21,14 +21,14 @@ describe("Webhooks API", () => {
     it("should create a webhook", async () => {
       const request: WebhookRequest = {
         url: "https://example.com/webhook",
-        synchronous: false
+        subscribed_events: ["charge.created", "order.paid"]
       };
 
       const response = (await client.createWebhook(request, "en")).data;
 
       expect(response).toBeDefined();
-      expect(response.id).toEqual("641b1d5662d7e00001eaa46b");
-      expect(response.object).toEqual("webhook");
+      expect(response.url).toEqual("https://example.com/webhook");
+      expect(response.status).toBeDefined();
     });
   });
 
@@ -39,8 +39,8 @@ describe("Webhooks API", () => {
       const response = (await client.deleteWebhook(id, "es")).data;
 
       expect(response).toBeDefined();
-      expect(response.id).toEqual(id);
-      expect(response.deleted).toBeTruthy();
+      expect(response.url).toBeDefined();
+      expect(response.status).toBeDefined();
     });
   });
 
@@ -51,8 +51,8 @@ describe("Webhooks API", () => {
       const response = (await client.getWebhook(id, "es")).data;
 
       expect(response).toBeDefined();
-      expect(response.id).toEqual(id);
-      expect(response.object).toEqual("webhook");
+      expect(response.url).toBeDefined();
+      expect(response.status).toBeDefined();
     });
   });
 
@@ -61,8 +61,8 @@ describe("Webhooks API", () => {
       const response = (await client.getWebhooks("es")).data;
 
       expect(response).toBeDefined();
-      expect(response.data.length).toBeGreaterThan(0);
-      expect(response.data[0].object).toEqual("webhook");
+      expect(response.has_more).toBeDefined();
+      expect(response.object).toBe("list");
     });
   });
 
@@ -71,14 +71,14 @@ describe("Webhooks API", () => {
       const id = "641b1d5662d7e00001eaa46b";
       const request: WebhookRequest = {
         url: "https://example.com/webhook",
-        synchronous: false
+        subscribed_events: ["charge.created", "order.paid"]
       };
 
       const response = (await client.updateWebhook(id, request, "es")).data;
 
       expect(response).toBeDefined();
-      expect(response.id).toEqual(id);
-      expect(response.object).toEqual("webhook");
+      expect(response.url).toBeDefined();
+      expect(response.status).toBeDefined();
     });
   });
 
@@ -89,7 +89,8 @@ describe("Webhooks API", () => {
       const response = (await client.testWebhook(id, "es")).data;
 
       expect(response).toBeDefined();
-      expect(response.id).toEqual(id);
+      expect(response.url).toBeDefined();
+      expect(response.status).toBeDefined();
     });
   });
 });

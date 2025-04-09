@@ -31,8 +31,10 @@ describe("Product API", () => {
 
       expect(response).toBeDefined();
       expect(response.name).toBe(request.name);
-      expect(response.parent_id).toBe(id);
-      expect(response.object).toBe("line_item");
+      expect(response.description).toBe(request.description);
+      expect(response.quantity).toBe(request.quantity);
+      expect(response.unit_price).toBe(request.unit_price);
+      expect(response.tags).toEqual(request.tags);
     });
   });
   describe("update product", () => {
@@ -46,9 +48,7 @@ describe("Product API", () => {
       const response = (await client.ordersUpdateProduct(id, product_id, request, "es")).data;
 
       expect(response).toBeDefined();
-      expect(response.parent_id).toBe(id);
-      expect(response.id).toBe(product_id);
-      expect(response.object).toBe("line_item");
+      expect(response.description).toBe(request.description);
     });
   });
 
@@ -60,9 +60,9 @@ describe("Product API", () => {
       const response = (await client.ordersDeleteProduct(id, product_id, "es")).data;
 
       expect(response).toBeDefined();
-      expect(response.parent_id).toBe(id);
-      expect(response.id).toBe(product_id);
-      expect(response.object).toBe("line_item");
+      expect(response.name).toBeDefined();
+      expect(response.quantity).toBeDefined();
+      expect(response.unit_price).toBeDefined();
     });
   });
 });

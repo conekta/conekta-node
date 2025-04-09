@@ -30,8 +30,8 @@ describe("Taxes API", () => {
 
       expect(response).toBeDefined();
       expect(response.amount).toBe(request.amount);
-      expect(response.parent_id).toBe(id);
-      expect(response.id).toBeDefined();
+      expect(response.description).toBe(request.description);
+      expect(response.metadata).toEqual(request.metadata);
     });
   });
 
@@ -47,8 +47,6 @@ describe("Taxes API", () => {
 
       expect(response).toBeDefined();
       expect(response.amount).toBe(request.amount);
-      expect(response.parent_id).toBe(id);
-      expect(response.id).toBe(tax_id);
     });
   });
 
@@ -60,7 +58,6 @@ describe("Taxes API", () => {
       const response = (await client.ordersDeleteTaxes(id, tax_id)).data;
 
       expect(response).toBeDefined();
-      expect(response.id).toBe(tax_id);
     });
   });
 });

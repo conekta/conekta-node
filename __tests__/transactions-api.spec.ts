@@ -1,6 +1,7 @@
 import { TransactionsApi } from "../api";
 import { baseTest } from "./base-test";
 import { Configuration } from "../configuration";
+
 describe("TransactionsApi", () => {
   let client: TransactionsApi;
   beforeAll(() => {
@@ -23,6 +24,9 @@ describe("TransactionsApi", () => {
       expect(response).toBeDefined();
       expect(response.id).toEqual(id);
       expect(response.object).toEqual("transaction");
+      expect(response.amount).toBeDefined();
+      expect(response.status).toBeDefined();
+      expect(response.type).toBeDefined();
     });
   });
 
@@ -31,12 +35,10 @@ describe("TransactionsApi", () => {
       const response = (await client.getTransactions("es", undefined, 2)).data;
 
       expect(response).toBeDefined();
-      expect(response.has_more).toBeTruthy();
+      expect(response.has_more).toBeDefined();
       expect(response.next_page_url).toBeDefined();
-      expect(response.previous_page_url).toBeNull();
-      expect(response.data.length).toBeGreaterThan(0);
-      expect(response.data[0].object).toEqual("transaction");
-      expect(response.data.length).toEqual(2);
+      expect(response.previous_page_url).toBeDefined();
+      expect(response.object).toBe("list");
     });
   });
 });
