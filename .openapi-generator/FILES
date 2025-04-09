@@ -125,8 +125,11 @@ model/logs-response-data.ts
 model/logs-response.ts
 model/model-error.ts
 model/order-capture-request.ts
+model/order-channel-response.ts
+model/order-charges-response.ts
 model/order-customer-info-response.ts
 model/order-discount-lines-request.ts
+model/order-discount-lines-response.ts
 model/order-fiscal-entity-address-response.ts
 model/order-fiscal-entity-request.ts
 model/order-fiscal-entity-response.ts
@@ -135,10 +138,8 @@ model/order-next-action-response.ts
 model/order-refund-request.ts
 model/order-request-customer-info.ts
 model/order-request.ts
-model/order-response-charges.ts
 model/order-response-checkout.ts
 model/order-response-customer-info.ts
-model/order-response-discount-lines.ts
 model/order-response-products.ts
 model/order-response-shipping-contact.ts
 model/order-response.ts
@@ -150,10 +151,13 @@ model/orders-response.ts
 model/page.ts
 model/pagination.ts
 model/payment-method-bank-transfer.ts
+model/payment-method-bnpl-payment.ts
+model/payment-method-bnpl-request.ts
 model/payment-method-card-request.ts
 model/payment-method-card-response.ts
 model/payment-method-card.ts
 model/payment-method-cash-request.ts
+model/payment-method-cash-response-all-of-agreements.ts
 model/payment-method-cash-response.ts
 model/payment-method-cash.ts
 model/payment-method-general-request.ts
@@ -175,6 +179,7 @@ model/plan-update-request.ts
 model/product-data-response.ts
 model/product-order-response.ts
 model/product.ts
+model/resend-request.ts
 model/risk-rules-data.ts
 model/risk-rules-list.ts
 model/shipping-order-response.ts
