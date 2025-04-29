@@ -18,14 +18,15 @@ describe('Events API', () => {
   describe('Events Get', () => {
     it('Get Events', async () => {
       const response = (await client.getEvents()).data;
+      const data = (response as unknown as { data: any[]}).data 
 
       expect(response).toBeDefined();
-      expect(response.data).toBeDefined();
+      expect(data).toBeDefined();
       expect(response.has_more).toEqual(true);
       expect(response.previous_page_url).toBeNull();
       expect(response.next_page_url).toBeDefined();
       expect(response.object).toEqual("list");
-      expect(response.data.length).toEqual(20);
+      expect(data.length).toEqual(20);
     });
     it('Get event', async () => {
       const id = "63fe3d2ddf70970001cfb41a";
@@ -43,9 +44,9 @@ describe('Events API', () => {
 
     it("resend event", async () => {
       const event_id = "6463d6e35a4c3e001819e760";
-      const webhook_log_id = "webhl_2svd2sh6GbqzyWBNZ";
+      const webhook_log_id = ["webhl_2svd2sh6GbqzyWBNZ"];
 
-      const response = (await client.resendEvent(event_id, webhook_log_id)).data;
+      const response = (await client.resendEvent(event_id, { webhooks_ids: webhook_log_id})).data;
 
       expect(response).toBeDefined();
       expect(response.failed_attempts).toEqual(6);

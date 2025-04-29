@@ -3,6 +3,16 @@ import { Configuration } from "../configuration";
 import { Customer, CustomerFiscalEntitiesRequest, CustomerPaymentMethodsRequest, PaymentMethodSpeiRecurrent, CustomerShippingContacts, PaymentMethodCardResponse, PaymentMethodCashResponse, SubscriptionRequest, UpdateCustomer, CustomerUpdateFiscalEntitiesRequest } from "../model";
 import { baseTest } from './base-test';
 
+interface IPaymentMethodSpeiRecurrentMock extends PaymentMethodSpeiRecurrent { 
+  reference: string;
+  object: string;
+  expires_at: string;
+}
+
+interface ICustomerPaymentMethodsRequestMock extends CustomerPaymentMethodsRequest {
+  token_id: string 
+}
+
 describe('CustomersApi', () => {
   let api: CustomersApi;
 
@@ -20,17 +30,18 @@ describe('CustomersApi', () => {
       var customer = get_full_customer();
 
       const customer_response = (await api.createCustomer(customer)).data
+      const fiscal_entities = (customer_response as unknown as { fiscal_entities: { data: any[], has_more: boolean}}).fiscal_entities
 
       expect(customer_response.id).toBeTruthy();
       expect(customer_response.custom_reference).toBe(customer.custom_reference);
-      expect(customer_response.fiscal_entities.data).toHaveLength(1);
-      expect(customer_response.fiscal_entities.has_more).toBeFalsy();
+      expect(fiscal_entities.data).toHaveLength(1);
+      expect(fiscal_entities.has_more).toBeFalsy();
       expect(customer_response.livemode).toBeTruthy()
     });
   });
   describe('Create customer Fiscal entities', () => {
     it('should return a customer', async () => {
-      const id = "cus_2tXyF9BwPG14UMkkg";
+      const ID = "cus_2tXyF9BwPG14UMkkg";
       var customer_fiscal_entity: CustomerFiscalEntitiesRequest = {
         address: {
           street1: "Calle 123, int 404",
@@ -41,12 +52,14 @@ describe('CustomersApi', () => {
         }
       };
 
-      const response = (await api.createCustomerFiscalEntities(id, customer_fiscal_entity)).data;
+      const response = (await api.createCustomerFiscalEntities(ID, customer_fiscal_entity)).data;
+      const parent_id = (response as unknown as { parent_id: string}).parent_id
+      const id = (response as unknown as { id: string}).id
 
       expect(response).toBeDefined();
       expect(response.address.country).toEqual(customer_fiscal_entity.address.country);
-      expect(response.parent_id).toEqual(id);
-      expect(response.id).toBeTruthy();
+      expect(parent_id).toEqual(ID);
+      expect(id).toBeTruthy();
     });
   });
   describe('Delete a customer', () => {
@@ -64,17 +77,20 @@ describe('CustomersApi', () => {
 
       const id = "cus_2tXx8KUxw6311kEbs";
 
-      const customer = (await api.getCustomerById(id)).data
+      const response = (await api.getCustomerById(id)).data
+      const data = (response.payment_sources as unknown as { data: any[]}).data
 
-      expect(customer).toBeDefined();
-      expect(customer.id).toBe(id);
-      expect(customer.payment_sources?.data).toHaveLength(1);
-      expect(customer.payment_sources?.data[0].type).toBe("card");
+      expect(response).toBeDefined();
+      expect(response.id).toBe(id);
+      expect(data).toHaveLength(1);
+      expect(data[0].type).toBe("card");
 
-      const credit = customer.payment_sources?.data[0] as PaymentMethodCardResponse
-      expect(credit.card_type).toBe("credit");
-      expect(customer.subscription).not.toBeNull();
-      expect(customer.subscription?.customer_id).toBe(id);
+      const credit = data[0] as PaymentMethodCardResponse 
+      const card_type = (credit as unknown as { card_type: string}).card_type
+
+      expect(card_type).toBe("credit");
+      expect(response.subscription).not.toBeNull();
+      expect(response.subscription?.customer_id).toBe(id);
 
     });
 
@@ -82,13 +98,17 @@ describe('CustomersApi', () => {
       const id = "cus_2rGtVzg5V2KZrKXBh";
 
       const response = (await api.getCustomerById(id)).data
+      const data = (response.payment_sources as unknown as { data: any[]}).data
 
       expect(response).toBeDefined();
       expect(response.id).toBe(id);
-      expect(response.payment_sources?.data).toHaveLength(1);
-      expect(response.payment_sources?.data[0].type).toBe("oxxo_recurrent");
-      const cash = response.payment_sources?.data[0] as PaymentMethodCashResponse
-      expect(cash.provider).toBe("Oxxo");
+      expect(data).toHaveLength(1);
+      expect(data[0].type).toBe("oxxo_recurrent");
+
+      const cash = data[0] as PaymentMethodCashResponse
+      const provider = (cash as unknown as {provider: string}).provider
+
+      expect(provider).toBe("Oxxo");
       expect(cash.object).toBe("payment_source");
     });
 
@@ -96,12 +116,14 @@ describe('CustomersApi', () => {
       const id = "cus_2tYELwYTKSB5hDXsr";
 
       const response = (await api.getCustomerById(id)).data
+      const data = (response.payment_sources as unknown as { data: any[]}).data
 
       expect(response).toBeDefined();
       expect(response.id).toBe(id);
-      expect(response.payment_sources?.data).toHaveLength(1);
-      expect(response.payment_sources?.data[0].type).toBe("spei_recurrent");
-      const transfer = response.payment_sources?.data[0] as PaymentMethodSpeiRecurrent
+      expect(data).toHaveLength(1);
+      expect(data[0].type).toBe("spei_recurrent");
+
+      const transfer = data[0] as IPaymentMethodSpeiRecurrentMock
 
       expect(transfer.reference).toBe("646180111805035870");
       expect(transfer.object).toBe("payment_source");
@@ -113,32 +135,34 @@ describe('CustomersApi', () => {
 
       const limit = 21;
       const response = (await api.getCustomers("es", undefined, limit)).data
+      const data = (response as unknown as { data: any[]}).data
 
       expect(response).toBeDefined();
       expect(response.next_page_url).not.toBeNull();
       expect(response.previous_page_url).toBeNull();
       expect(response.has_more).toBeTruthy();
       expect(response.object).toBe("list");
-      expect(response.data).toHaveLength(limit);
+      expect(data).toHaveLength(limit);
     });
     it('should return a list of customers with next ', async () => {
       const limit = 22;
       const next = "cus_2sthLBEZRLp2s6GWc";
 
-      var response = (await api.getCustomers("es", undefined, limit, undefined, next)).data
+      const response = (await api.getCustomers("es", undefined, limit, undefined, next)).data
+      const data = (response as unknown as { data: any[]}).data
 
       expect(response).toBeDefined();
       expect(response.next_page_url).not.toBeNull();
       expect(response.previous_page_url).not.toBeNull();
       expect(response.has_more).toBeTruthy();
       expect(response.object).toBe("list");
-      expect(response.data).toHaveLength(limit);
+      expect(data).toHaveLength(limit);
     });
     it('should return a list of customers with previous ', async () => {
       const limit = 23;
       const previous = "cus_2ss5YAeTKuEr5M4fD";
 
-      var response = (await api.getCustomers("es", undefined, limit, undefined, previous)).data
+      const response = (await api.getCustomers("es", undefined, limit, undefined, previous)).data
 
       expect(response).toBeDefined();
       expect(response.next_page_url).not.toBeNull();
@@ -165,20 +189,24 @@ describe('CustomersApi', () => {
 
   describe('update customer fiscal entities', () => {
     it('should return a customer fiscal entities', async () => {
-      const id = "cus_2tYENskzTjjgkGQLt";
+      const ID = "cus_2tYENskzTjjgkGQLt";
       const fiscal_entities_id = "fis_ent_2tYENskzTjjgkGQLr";
       var update_customer_fiscal_entity: CustomerUpdateFiscalEntitiesRequest = {
         tax_id: "tax_28764234"
       };
 
-      const response = (await api.updateCustomerFiscalEntities(id, fiscal_entities_id, update_customer_fiscal_entity)).data
+      const response = (await api.updateCustomerFiscalEntities(ID, fiscal_entities_id, update_customer_fiscal_entity)).data
+      const parent_id = (response as unknown as { parent_id: any[]}).parent_id
+      const id = (response as unknown as { id: any[]}).id
+      const response_default = (response as unknown as { default: any[]}).default
+      const response_object = (response as unknown as { object: any[]}).object
 
       expect(response).toBeDefined();
       expect(response.tax_id).toEqual(update_customer_fiscal_entity.tax_id);
-      expect(response.parent_id).toEqual(id);
-      expect(response.id).toEqual(fiscal_entities_id);
-      expect(response.default).toBeTruthy();
-      expect(response.object).toBe("fiscal_entity");
+      expect(parent_id).toEqual(ID);
+      expect(id).toEqual(fiscal_entities_id);
+      expect(response_default).toBeTruthy();
+      expect(response_object).toBe("fiscal_entity");
     });
   });
 
@@ -199,7 +227,7 @@ function get_full_customer (): Customer {
       external_number: "404",
     }
   }];
-  var payment_sources: Array<CustomerPaymentMethodsRequest> = [{
+  var payment_sources: Array<ICustomerPaymentMethodsRequestMock> = [{
     type: "card",
     token_id: "tok_2tXyExrU6U7yiaTto",
   }];

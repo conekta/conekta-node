@@ -108,11 +108,12 @@ describe('Payment Link API', () => {
 
     it("should get a list of checkouts", async () => {
       const response = (await client.getCheckouts("en")).data;
+      const data = (response as unknown as { data: any[]}).data
 
       expect(response).toBeDefined();
       expect(response.object).toEqual("list");
       expect(response.next_page_url).toEqual("https://api-core.stg.conekta.io/checkouts?next=bac0ed14-6888-4d1d-927a-c80d3f55c009");
-      expect(response.data.length).toEqual(20);
+      expect(data.length).toEqual(20);
     });
   });
 });

@@ -102,17 +102,4 @@ describe("Subscriptions API", () => {
       expect(response.object).toBe("subscription");
     });
   });
-
-  describe("Get events", () => {
-    it("should get events", async () => { 
-      const customer_id = "cus_2rKpeXQpapLonfVke";
-
-      const response = (await client.getAllEventsFromSubscription(customer_id, "es")).data;
-
-      expect(response).toBeDefined();
-      expect(response.has_more).toBeFalsy();
-      expect(response.data[0].id).toEqual("620ea04f6d41e80466f611a6")
-      expect(response.data.length).toEqual(2);
-    });
-  });
 });

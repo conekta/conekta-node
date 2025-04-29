@@ -29,14 +29,15 @@ describe("TransfersApi", () => {
   describe("Get Transfers", () => {
     it("should get transfers", async () => {
       const response = (await client.getTransfers("es", undefined, 5)).data;
+      const data = (response as unknown as { data: any[]}).data
 
       expect(response).toBeDefined();
       expect(response.has_more).toBeTruthy();
       expect(response.next_page_url).toBeDefined();
       expect(response.previous_page_url).toBeNull();
-      expect(response.data.length).toBeGreaterThan(0);
-      expect(response.data[0].object).toEqual("transfer");
-      expect(response.data.length).toEqual(5);
+      expect(data.length).toBeGreaterThan(0);
+      expect(data[0].object).toEqual("transfer");
+      expect(data.length).toEqual(5);
     });
     it("should get transfers with next", async () => {
 

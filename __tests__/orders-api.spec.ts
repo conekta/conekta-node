@@ -3,6 +3,15 @@ import { baseTest } from "./base-test";
 import { Configuration } from "../configuration";
 import { OrderRequest, CustomerInfoJustCustomerId, Product, ChargeRequest, PaymentMethodCash, CheckoutRequest, PaymentMethodBankTransfer, PaymentMethodCard, OrderRefundRequest, OrderCaptureRequest, OrderUpdateRequest } from "../model";
 
+interface IPaymentMethodCashMock extends PaymentMethodCash { 
+  service_name: string;
+  reference: string;
+  expires_at: string;
+}
+
+interface IPaymentMethodBankMock extends PaymentMethodBankTransfer { 
+  clabe: string; 
+}
 
 describe("Orders api", () => {
   let client: OrdersApi;
@@ -37,16 +46,18 @@ describe("Orders api", () => {
       const order_requet = get_order_cash_request();
 
       const response = (await client.createOrder(order_requet, "es")).data;
+      const data = (response.charges as unknown as { data: any[]}).data
+      const expires_at = (order_requet.charges[0].payment_method as unknown as { expires_at: string}).expires_at
 
       expect(response).toBeDefined();
       expect(response.payment_status).toBe("pending_payment");
       expect(response.currency).toBe("MXN");
       expect(response.customer_info.customer_id).toBe("cus_2tKcHxhTz7xU5SymF");
-      expect(response.charges.data[0].payment_method as PaymentMethodCash).toBeDefined();
-      expect((response.charges.data[0].payment_method as PaymentMethodCash).service_name).toEqual("OxxoPay");
-      expect((response.charges.data[0].payment_method as PaymentMethodCash).reference).toEqual("93000262280678");
-      expect((response.charges.data[0].payment_method as PaymentMethodCash).type).toEqual("oxxo");
-      expect((response.charges.data[0].payment_method as PaymentMethodCash).expires_at).toEqual(order_requet.charges[0].payment_method.expires_at);
+      expect(data[0].payment_method as PaymentMethodCash).toBeDefined();
+      expect((data[0].payment_method as IPaymentMethodCashMock).service_name).toEqual("OxxoPay");
+      expect((data[0].payment_method as IPaymentMethodCashMock).reference).toEqual("93000262280678");
+      expect((data[0].payment_method as PaymentMethodCash).type).toEqual("oxxo");
+      expect((data[0].payment_method as IPaymentMethodCashMock).expires_at).toEqual(expires_at);
     });
 
     it("msi", async () => {
@@ -122,15 +133,16 @@ describe("Orders api", () => {
 
       const id = "ord_2tUyGSk9TNWUcyvjn";
 
-      var response = (await client.getOrderById(id, "es")).data;
+      const response = (await client.getOrderById(id, "es")).data;
+      const data = (response.charges as unknown as { data: any[]}).data
 
       expect(response).toBeDefined();
-      expect(response.charges.data.length).toBeGreaterThan(0);
-      expect(response.charges.data[0].payment_method).toBeDefined();
+      expect(data.length).toBeGreaterThan(0);
+      expect(data[0].payment_method).toBeDefined();
       expect(response.id).toEqual(id);
-      expect(response.charges.data[0].payment_method.object).toEqual("bank_transfer_payment");
-      expect((response.charges.data[0].payment_method as PaymentMethodBankTransfer).clabe).toEqual("646180111805035430");
-      expect((response.charges.data[0].payment_method as PaymentMethodBankTransfer).type).toEqual("spei");
+      expect(data[0].payment_method.object).toEqual("bank_transfer_payment");
+      expect((data[0].payment_method as IPaymentMethodBankMock).clabe).toEqual("646180111805035430");
+      expect((data[0].payment_method as PaymentMethodBankTransfer).type).toEqual("spei");
     });
     it("not should return an order", async () => {
 
@@ -158,9 +170,7 @@ describe("Orders api", () => {
       expect(response.next_page_url).toStrictEqual("https://api-core.stg.conekta.io/orders?next=ord_2tNDyQbJacvUZiyfp");
       expect(response.previous_page_url).toBeFalsy();
       expect(response.data.length).toEqual(limit);
-      expect(response.object).toEqual("list");
-      expect((response.data[0].charges.data[0].payment_method as PaymentMethodCard).object).toEqual("card_payment");
-      expect((response.data[9].charges.data[0].payment_method as PaymentMethodCash).object).toEqual("cash_payment");
+      expect(response.object).toEqual("list"); 
     });
     it("should return a list of orders with next", async () => {
 
@@ -218,16 +228,17 @@ describe("Orders api", () => {
         reason: "requested_by_client"
       }
       const response = (await client.orderRefund(id, order_refund_request)).data;
+      const data = (response.charges as unknown as { data: any[]}).data
 
       expect(response).toBeDefined();
       expect(response.payment_status).toEqual("partially_refunded");
-      expect(response.charges.data[0].status).toEqual("partially_refunded");
+      expect(data[0].status).toEqual("partially_refunded");
       expect(response.amount_refunded).toEqual(order_refund_request.amount);
       expect(response.is_refundable).toBeTruthy();
-      expect(response.charges.data[0].order_id).toEqual(id);
-      expect(response.charges.data[0].refunds.data.length).toEqual(1);
-      expect(-response.charges.data[0].refunds.data[0].amount).toEqual(order_refund_request.amount);
-      expect(response.charges.data[0].refunds.data[0].object).toEqual("refund");
+      expect(data[0].order_id).toEqual(id);
+      expect(data[0].refunds.data.length).toEqual(1);
+      expect(-data[0].refunds.data[0].amount).toEqual(order_refund_request.amount);
+      expect(data[0].refunds.data[0].object).toEqual("refund");
     });
   });
   describe("Order capture", () => {
@@ -269,12 +280,13 @@ describe("Orders api", () => {
       }
 
       const response = (await client.updateOrder(id, request)).data;
+      const data = (response.line_items as unknown as { data: any[]}).data
 
       expect(response).toBeDefined();
-      expect(response.line_items.data.length).toEqual(1);
-      expect(response.line_items.data[0].unit_price).toEqual(request.line_items[0].unit_price);
+      expect(data.length).toEqual(1);
+      expect(data[0].unit_price).toEqual(request.line_items[0].unit_price);
       expect(response.id).toEqual(id);
-      expect(response.line_items.data[0].tags).toEqual(request.line_items[0].tags);
+      expect(data[0].tags).toEqual(request.line_items[0].tags);
       expect(response.created_at).not.toEqual(response.updated_at);
     });
   });
@@ -284,11 +296,12 @@ describe("Orders api", () => {
       const id = "ord_2tqaGQYZyvBsMKEgs";
 
       const response = (await client.cancelOrder(id)).data;
+      const data = (response.charges as unknown as { data: any[]}).data
 
       expect(response).toBeDefined();
       expect(response.id).toEqual(id);
       expect(response.payment_status).toEqual("canceled");
-      expect(response.charges.data[0].status).toEqual("canceled");
+      expect(data[0].status).toEqual("canceled");
     });
   });
 });

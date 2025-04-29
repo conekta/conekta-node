@@ -73,9 +73,10 @@ describe("WebhookKeysApi", () => {
     it("should get webhook keys", async () => {
 
       const response = (await client.getWebhookKeys("es", undefined, 2)).data;
+      const data = (response as unknown as { data: any[]}).data
 
       expect(response).toBeDefined();
-      expect(response.data.length).toEqual(2);
+      expect(data.length).toEqual(2);
       expect(response.has_more).toBeFalsy();
       expect(response.next_page_url).toBeNull();
       expect(response.previous_page_url).toBeNull();
