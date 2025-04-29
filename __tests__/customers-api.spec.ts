@@ -53,8 +53,8 @@ describe('CustomersApi', () => {
       };
 
       const response = (await api.createCustomerFiscalEntities(ID, customer_fiscal_entity)).data;
-      const parent_id = (response as unknown as { parent_id: string}).parent_id
-      const id = (response as unknown as { id: string}).id
+      const parent_id = (response && typeof response === 'object' && 'parent_id' in response) ? (response as unknown as { parent_id: string}).parent_id : '';
+      const id = (response && typeof response === 'object' && 'id' in response) ? (response as unknown as { id: string}).id : '';
 
       expect(response).toBeDefined();
       expect(response.address.country).toEqual(customer_fiscal_entity.address.country);
@@ -78,7 +78,7 @@ describe('CustomersApi', () => {
       const id = "cus_2tXx8KUxw6311kEbs";
 
       const response = (await api.getCustomerById(id)).data
-      const data = (response.payment_sources as unknown as { data: any[]}).data
+      const data = (response.payment_sources && typeof response.payment_sources === 'object' && 'data' in response.payment_sources) ? (response.payment_sources as unknown as { data: any[]}).data : [];
 
       expect(response).toBeDefined();
       expect(response.id).toBe(id);
@@ -86,7 +86,7 @@ describe('CustomersApi', () => {
       expect(data[0].type).toBe("card");
 
       const credit = data[0] as PaymentMethodCardResponse 
-      const card_type = (credit as unknown as { card_type: string}).card_type
+      const card_type = (credit && typeof credit === 'object' && 'card_type' in credit) ? (credit as unknown as { card_type: string}).card_type : '';
 
       expect(card_type).toBe("credit");
       expect(response.subscription).not.toBeNull();
@@ -106,7 +106,7 @@ describe('CustomersApi', () => {
       expect(data[0].type).toBe("oxxo_recurrent");
 
       const cash = data[0] as PaymentMethodCashResponse
-      const provider = (cash as unknown as {provider: string}).provider
+      const provider = (cash && typeof cash === 'object' && 'provider' in cash) ? (cash as unknown as {provider: string}).provider : '';
 
       expect(provider).toBe("Oxxo");
       expect(cash.object).toBe("payment_source");
@@ -116,7 +116,7 @@ describe('CustomersApi', () => {
       const id = "cus_2tYELwYTKSB5hDXsr";
 
       const response = (await api.getCustomerById(id)).data
-      const data = (response.payment_sources as unknown as { data: any[]}).data
+      const data = (response && typeof response === 'object' && 'data' in response) ? (response as unknown as { data: any[]}).data : [];
 
       expect(response).toBeDefined();
       expect(response.id).toBe(id);
@@ -149,8 +149,8 @@ describe('CustomersApi', () => {
       const next = "cus_2sthLBEZRLp2s6GWc";
 
       const response = (await api.getCustomers("es", undefined, limit, undefined, next)).data
-      const data = (response as unknown as { data: any[]}).data
-
+      const data = (response && typeof response === 'object' && 'data' in response) ? (response as unknown as { data: any[]}).data : [];
+      
       expect(response).toBeDefined();
       expect(response.next_page_url).not.toBeNull();
       expect(response.previous_page_url).not.toBeNull();

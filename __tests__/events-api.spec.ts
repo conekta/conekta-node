@@ -18,8 +18,8 @@ describe('Events API', () => {
   describe('Events Get', () => {
     it('Get Events', async () => {
       const response = (await client.getEvents()).data;
-      const data = (response as unknown as { data: any[]}).data 
-
+      const data = (response && typeof response === 'object' && 'data' in response) ? (response as unknown as { data: any[]}).data : [];
+      
       expect(response).toBeDefined();
       expect(data).toBeDefined();
       expect(response.has_more).toEqual(true);
@@ -47,7 +47,7 @@ describe('Events API', () => {
       const webhook_log_id = ["webhl_2svd2sh6GbqzyWBNZ"];
 
       const response = (await client.resendEvent(event_id, { webhooks_ids: webhook_log_id})).data;
-
+      
       expect(response).toBeDefined();
       expect(response.failed_attempts).toEqual(6);
       expect(response.id).toEqual(webhook_log_id);

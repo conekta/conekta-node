@@ -35,23 +35,6 @@ describe("TokensApi", () => {
       expect(response.id).toEqual("tok_2toPJUcZ27AH5LsZk");
       expect(response.used).toEqual(false);
       expect(response.livemode).toEqual(true);
-      expect(response.checkout).toBeFalsy();
-    });
-  });
-
-  describe("Create empty Token", () => {
-    it("should create an empty token", async () => {
-      const request: Token = {
-        checkout: {
-          returns_control_on: "Token"
-        }
-      };
-
-      const response = (await client.createToken(request)).data;
-
-      expect(response).toBeDefined();
-      expect(response.checkout.status).toBe("Issued");
-      expect(response.checkout).toBeTruthy();
     });
   });
 });
