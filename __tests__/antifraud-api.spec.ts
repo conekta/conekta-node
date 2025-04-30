@@ -46,9 +46,10 @@ describe('Antifraud API', () => {
     it('get a list of whistelist, should return a whitelist', async () => {
 
       const response = (await client.getRuleWhitelist()).data;
+      const data = (response as unknown as { data: any[]}).data 
 
       expect(response).toBeDefined();
-      expect(response.data.length).toEqual(25);
+      expect(data.length).toEqual(25);
       expect(response.has_more).toBe(true);
     });
   });
@@ -81,11 +82,12 @@ describe('Antifraud API', () => {
     it('get a list of blacklist, should return a blacklist', async () => {
 
       const response = (await client.getRuleBlacklist()).data;
+      const data = (response as unknown as { data: any[]}).data 
 
       expect(response).toBeDefined();
-      expect(response.data.length).toEqual(25);
+      expect(data.length).toEqual(25);
       expect(response.has_more).toBe(true);
-      expect(response.data[0].field).toEqual("email");
+      expect(data[0].field).toEqual("email");
     });
   });
 });

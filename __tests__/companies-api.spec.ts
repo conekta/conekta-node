@@ -27,10 +27,11 @@ describe('Companies API', () => {
   it('should get a list of companies', async () => {
 
     const response = (await client.getCompanies()).data;
+    const data = (response as unknown as { data: any[]}).data 
 
     expect(response).toBeDefined();
-    expect(response.data.length).toBeGreaterThan(0);
+    expect(data.length).toBeGreaterThan(0);
     expect(response.has_more).toEqual(false);
-    expect(response.data[0].id).toEqual("6441bb27659a060465da7335");
+    expect(data[0].id).toEqual("6441bb27659a060465da7335");
   });
 });

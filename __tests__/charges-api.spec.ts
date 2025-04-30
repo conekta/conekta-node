@@ -1,7 +1,17 @@
 import { ChargesApi } from "../api";
 import { baseTest } from "./base-test";
 import { Configuration } from "../configuration";
-import { ChargeRequest, ChargeUpdateRequest, PaymentMethodBankTransfer, PaymentMethodCard, PaymentMethodCash } from "../model";
+import { ChargeRequest, ChargeUpdateRequest, PaymentMethodCash } from "../model";
+
+interface IPaymentMethodMock extends PaymentMethodCash { 
+  barcode_url: string,
+  cashier_id: null,
+  auth_code: null,
+  store: null,
+  clabe: string,
+  bank: string,
+  reference: string,
+}
 
 describe('Charges API', () => {
 
@@ -26,14 +36,15 @@ describe('Charges API', () => {
         }
       };
 
-      var response = (await client.ordersCreateCharge(id, request)).data;
+      const response = (await client.ordersCreateCharge(id, request)).data;
+      const payment_method = response.payment_method as IPaymentMethodMock
 
       expect(response).toBeDefined();
       expect(response.amount).toEqual(request.amount);
       expect(response.object).toEqual("charge");
       expect(response.status).toEqual("pre_authorized");
-      expect((response.payment_method as PaymentMethodCard).object).toEqual("card_payment");
-      expect((response.payment_method as PaymentMethodCard).type).toEqual("credit");
+      expect(payment_method.object).toEqual("card_payment");
+      expect(payment_method.type).toEqual("credit");
     });
 
     it('cash', async () => {
@@ -44,17 +55,18 @@ describe('Charges API', () => {
       };
 
       const response = (await client.ordersCreateCharge(id, charge_request)).data;
+      const payment_method = response.payment_method as IPaymentMethodMock
 
       expect(response).toBeDefined();
       expect(response.amount).toEqual(charge_request.amount);
       expect(response.object).toEqual("charge");
       expect(response.status).toEqual("pending_payment");
-      expect((response.payment_method as PaymentMethodCash).object).toEqual("cash_payment");
-      expect((response.payment_method as PaymentMethodCash).type).toEqual("oxxo");
-      expect((response.payment_method as PaymentMethodCash).barcode_url).not.toBeNull();
-      expect((response.payment_method as PaymentMethodCash).cashier_id).toBeNull();
-      expect((response.payment_method as PaymentMethodCash).auth_code).toBeNull();
-      expect((response.payment_method as PaymentMethodCash).store).toBeNull();
+      expect(payment_method.object).toEqual("cash_payment");
+      expect(payment_method.type).toEqual("oxxo");
+      expect(payment_method.barcode_url).not.toBeNull();
+      expect(payment_method.cashier_id).toBeNull();
+      expect(payment_method.auth_code).toBeNull();
+      expect(payment_method.store).toBeNull();
     });
 
     it('spei', async () => {
@@ -65,34 +77,36 @@ describe('Charges API', () => {
         payment_method: { type: "spei" }
       };
 
-      var response = (await client.ordersCreateCharge(id, charge_request)).data;
+      const response = (await client.ordersCreateCharge(id, charge_request)).data;
+      const payment_method = response.payment_method as IPaymentMethodMock
 
       expect(response).toBeDefined();
       expect(response.amount).toEqual(charge_request.amount);
       expect(response.object).toEqual("charge");
       expect(response.status).toEqual("pending_payment");
-      expect((response.payment_method as PaymentMethodBankTransfer).object).toEqual("bank_transfer_payment");
-      expect((response.payment_method as PaymentMethodBankTransfer).type).toEqual("spei");
+      expect(payment_method.object).toEqual("bank_transfer_payment");
+      expect(payment_method.type).toEqual("spei");
       expect(response.id).toEqual("6408c87bde4b8e00010744e3");
       expect(response.order_id).toEqual(id);
-      expect((response.payment_method as PaymentMethodBankTransfer).clabe).toEqual("646180111805035472");
-      expect((response.payment_method as PaymentMethodBankTransfer).bank).toEqual("STP");
+      expect(payment_method.clabe).toEqual("646180111805035472");
+      expect(payment_method.bank).toEqual("STP");
     });
   });
 
   describe('Get charges', () => {
     it('should return a list of charges', async () => {
       const response = (await client.getCharges("es", undefined, 20)).data;
+      const data = (response as unknown as { data: any[]}).data 
 
       expect(response).toBeDefined();
       expect(response.object).toEqual("list");
-      expect(response.data).toBeDefined();
-      expect(response.data.length).toEqual(20);
+      expect(data).toBeDefined();
+      expect(data.length).toEqual(20);
       expect(response.has_more).toBeTruthy();
-      expect(response.data[0].channel.id).toEqual("channel_2tqJMS7on7HBVqWKo");
-      expect((response.data[0].payment_method as PaymentMethodCash).reference).toEqual("93003547316416");
-      expect(response.data[0].refunds).toBeNull();
-      expect(response.data[0].reference_id).toBeNull();
+      expect(data[0].channel.id).toEqual("channel_2tqJMS7on7HBVqWKo");
+      expect((data[0].payment_method as IPaymentMethodMock).reference).toEqual("93003547316416");
+      expect(data[0].refunds).toBeNull();
+      expect(data[0].reference_id).toBeNull();
     });
   });
   describe('Update charge', () => {

@@ -21,7 +21,6 @@ describe("Webhooks API", () => {
     it("should create a webhook", async () => {
       const request: WebhookRequest = {
         url: "https://example.com/webhook",
-        synchronous: false
       };
 
       const response = (await client.createWebhook(request, "en")).data;
@@ -37,10 +36,11 @@ describe("Webhooks API", () => {
       const id = "641b1d5662d7e00001eaa46b";
 
       const response = (await client.deleteWebhook(id, "es")).data;
+      const deleted = (response as unknown as { deleted: any[]}).deleted
 
       expect(response).toBeDefined();
       expect(response.id).toEqual(id);
-      expect(response.deleted).toBeTruthy();
+      expect(deleted).toBeTruthy();
     });
   });
 
@@ -59,10 +59,11 @@ describe("Webhooks API", () => {
   describe("List webhooks", () => {
     it("should list webhooks", async () => {
       const response = (await client.getWebhooks("es")).data;
+      const data = (response as unknown as { data: any[]}).data
 
       expect(response).toBeDefined();
-      expect(response.data.length).toBeGreaterThan(0);
-      expect(response.data[0].object).toEqual("webhook");
+      expect(data.length).toBeGreaterThan(0);
+      expect(data[0].object).toEqual("webhook");
     });
   });
 
@@ -71,7 +72,6 @@ describe("Webhooks API", () => {
       const id = "641b1d5662d7e00001eaa46b";
       const request: WebhookRequest = {
         url: "https://example.com/webhook",
-        synchronous: false
       };
 
       const response = (await client.updateWebhook(id, request, "es")).data;

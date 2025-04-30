@@ -17,49 +17,57 @@ describe("shpping api", () => {
   });
   describe("Order Create shipping", () => {
     it("should create shipping", async () => {
-      const id = "ord_2tVyWPnCPWbrV37mW";
+      const ID = "ord_2tVyWPnCPWbrV37mW";
       const request: ShippingRequest = {
         amount: 500,
       }
 
-      const response = (await client.ordersCreateShipping(id, request, "es")).data;
+      const response = (await client.ordersCreateShipping(ID, request, "es")).data;
+      const parent_id = (response as unknown as {parent_id: string}).parent_id;
+      const response_object = (response as unknown as {object: string}).object;
 
       expect(response).toBeDefined();
-      expect(response.parent_id).toBe(id);
+      expect(parent_id).toBe(ID);
       expect(response.amount).toBe(request.amount);
-      expect(response.object).toBe("shipping_line");
+      expect(response_object).toBe("shipping_line");
     });
   });
 
   describe("Order Update shipping", () => {
     it("should update shipping", async () => {
-      const id = "ord_2tVyWPnCPWbrV37mW";
+      const ID = "ord_2tVyWPnCPWbrV37mW";
       const shipping_id = "ship_lin_2tVzNuDGSaDwreMg6";
       const request: ShippingRequest = {
         amount: 540,
       }
 
-      const response = (await client.ordersUpdateShipping(id, shipping_id, request, "es")).data;
+      const response = (await client.ordersUpdateShipping(ID, shipping_id, request, "es")).data;
+      const parent_id = (response as unknown as {parent_id: string}).parent_id;
+      const response_object = (response as unknown as {object: string}).object;
+      const id = (response as unknown as {id: string}).id;
 
       expect(response).toBeDefined();
-      expect(response.parent_id).toBe(id);
-      expect(response.id).toBe(shipping_id);
+      expect(parent_id).toBe(ID);
+      expect(id).toBe(shipping_id);
       expect(response.amount).toBe(request.amount);
-      expect(response.object).toBe("shipping_line");
+      expect(response_object).toBe("shipping_line");
     });
   });
 
   describe("Order Delete shipping", () => {
     it("should delete shipping", async () => {
-      const id = "ord_2tVyWPnCPWbrV37mW";
+      const ID = "ord_2tVyWPnCPWbrV37mW";
       const shipping_id = "ship_lin_2tVzNuDGSaDwreMg6";
 
-      const response = (await client.ordersDeleteShipping(id, shipping_id, "es")).data;
+      const response = (await client.ordersDeleteShipping(ID, shipping_id, "es")).data;
+      const parent_id = (response as unknown as {parent_id: string}).parent_id;
+      const response_object = (response as unknown as {object: string}).object;
+      const id = (response as unknown as {id: string}).id;
 
       expect(response).toBeDefined();
-      expect(response.parent_id).toBe(id);
-      expect(response.id).toBe(shipping_id);
-      expect(response.object).toBe("shipping_line");
+      expect(parent_id).toBe(ID);
+      expect(id).toBe(shipping_id);
+      expect(response_object).toBe("shipping_line");
     });
   });
 });

@@ -51,9 +51,10 @@ describe("PaymentMethodsApi", () => {
       };
 
       const response = (await client.updateCustomerPaymentMethods(customer_id, payment_method_id, request)).data;
+      const response_name = (response as unknown as { name: string}).name;
 
       expect(response).toBeDefined();
-      expect((response as PaymentMethodCard).name).toBe("name of person");
+      expect(response_name).toBe("name of person");
       expect(response.parent_id).toBe(customer_id);
       expect(response.id).toBe(payment_method_id);
     });
@@ -64,9 +65,10 @@ describe("PaymentMethodsApi", () => {
       const payment_method_id = "src_2tbd5Bgy67RL9oycM";
 
       const response = (await client.getCustomerPaymentMethods(payment_method_id)).data;
+      const data = (response as unknown as { data: any[]}).data
 
       expect(response).toBeDefined();
-      expect(response.data[0].id).toBe(payment_method_id);
+      expect(data[0].id).toBe(payment_method_id);
       expect(response.next_page_url).toBeNull();
       expect(response.previous_page_url).toBeNull();
       expect(response.has_more).toBeFalsy();

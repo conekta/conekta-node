@@ -19,48 +19,53 @@ describe("Taxes API", () => {
 
   describe("Order create tax", () => {
     it("should create a tax for an order", async () => {
-      const id = "ord_2tVyWPnCPWbrV37mW";
+      const ID = "ord_2tVyWPnCPWbrV37mW";
       const request: OrderTaxRequest = {
         amount: 100,
         description: "test",
         metadata: { key: "value" },
       };
 
-      const response = (await client.ordersCreateTaxes(id, request)).data;
+      const response = (await client.ordersCreateTaxes(ID, request)).data;
+      const parent_id = (response as unknown as {parent_id: string}).parent_id;
+      const id = (response as unknown as {id: string}).id;
 
       expect(response).toBeDefined();
       expect(response.amount).toBe(request.amount);
-      expect(response.parent_id).toBe(id);
-      expect(response.id).toBeDefined();
+      expect(parent_id).toBe(ID);
+      expect(id).toBeDefined();
     });
   });
 
   describe("Order update tax", () => {
     it("should update a tax for an order", async () => {
-      const id = "ord_2tVyWPnCPWbrV37mW";
+      const ID = "ord_2tVyWPnCPWbrV37mW";
       const tax_id = "tax_lin_2tVzVp6AAptCRHhgt";
       const request: UpdateOrderTaxRequest = {
         amount: 99,
       };
 
-      const response = (await client.ordersUpdateTaxes(id, tax_id, request)).data;
+      const response = (await client.ordersUpdateTaxes(ID, tax_id, request)).data;
+      const parent_id = (response as unknown as {parent_id: string}).parent_id;
+      const id = (response as unknown as {id: string}).id;
 
       expect(response).toBeDefined();
       expect(response.amount).toBe(request.amount);
-      expect(response.parent_id).toBe(id);
-      expect(response.id).toBe(tax_id);
+      expect(parent_id).toBe(ID);
+      expect(id).toBe(tax_id);
     });
   });
 
   describe("Delete Order Tax", () => {
     it("should delete a tax for an order", async () => {
-      const id = "ord_2tVyWPnCPWbrV37mW";
+      const ID = "ord_2tVyWPnCPWbrV37mW";
       const tax_id = "tax_lin_2tVzVp6AAptCRHhgt";
 
-      const response = (await client.ordersDeleteTaxes(id, tax_id)).data;
+      const response = (await client.ordersDeleteTaxes(ID, tax_id)).data;
+      const id = (response as unknown as {id: string}).id;
 
       expect(response).toBeDefined();
-      expect(response.id).toBe(tax_id);
+      expect(id).toBe(tax_id);
     });
   });
 });

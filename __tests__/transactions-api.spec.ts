@@ -29,14 +29,15 @@ describe("TransactionsApi", () => {
   describe("Get Transactions", () => {
     it("should get transactions", async () => {
       const response = (await client.getTransactions("es", undefined, 2)).data;
+      const data = (response as unknown as { data: any[]}).data
 
       expect(response).toBeDefined();
       expect(response.has_more).toBeTruthy();
       expect(response.next_page_url).toBeDefined();
       expect(response.previous_page_url).toBeNull();
-      expect(response.data.length).toBeGreaterThan(0);
-      expect(response.data[0].object).toEqual("transaction");
-      expect(response.data.length).toEqual(2);
+      expect(data.length).toBeGreaterThan(0);
+      expect(data[0].object).toEqual("transaction");
+      expect(data.length).toEqual(2);
     });
   });
 });

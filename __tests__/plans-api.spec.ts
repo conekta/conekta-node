@@ -59,9 +59,10 @@ describe('Plans API', () => {
   describe("Get plans", () => {
     it("should get plans", async () => {
       const response = (await client.getPlans("es", undefined, 20)).data;
+      const data = (response as unknown as { data: any[]}).data
 
       expect(response).toBeDefined();
-      expect(response.data.length).toBe(10);
+      expect(data.length).toBe(10);
       expect(response.has_more).toBeFalsy();
       expect(response.next_page_url).toBeNull();
       expect(response.previous_page_url).toBeNull();

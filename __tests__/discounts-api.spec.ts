@@ -19,19 +19,21 @@ describe('Discounts API', () => {
 
   describe('Orders Create Discount Lines', () => {
     it('Create Discount Lines', async () => {
-      const id = "ord_2tVyWPnCPWbrV37mW";
+      const ID = "ord_2tVyWPnCPWbrV37mW";
       const order_discount_lines: OrderDiscountLinesRequest = {
         amount: 500,
         code: "track",
         type: "loyalty"
       };
 
-      const response = (await client.ordersCreateDiscountLine(id, order_discount_lines)).data;
+      const response = (await client.ordersCreateDiscountLine(ID, order_discount_lines)).data;
+      const parent_id = (response as unknown as { parent_id: string }).parent_id;
+      const id = (response as unknown as { id: string }).id;
 
       expect(response).toBeDefined();
-      expect(response.parent_id).toEqual(id);
+      expect(parent_id).toEqual(ID);
       expect(response.amount).toEqual(order_discount_lines.amount);
-      expect(response.id).toBeTruthy();
+      expect(id).toBeTruthy();
     });
   });
 
@@ -39,27 +41,31 @@ describe('Discounts API', () => {
 
     it('Delete Discount Lines', async () => {
 
-      const id = "ord_2tVyWPnCPWbrV37mW";
+      const ID = "ord_2tVyWPnCPWbrV37mW";
       const order_discount_line_id = "dis_lin_2tVyahK8Nts7rKRMZ";
 
-      const response = (await client.ordersDeleteDiscountLines(id, order_discount_line_id)).data
+      const response = (await client.ordersDeleteDiscountLines(ID, order_discount_line_id)).data
+      const parent_id = (response as unknown as { parent_id: string }).parent_id;
+      const id = (response as unknown as { id: string }).id;
 
       expect(response).toBeDefined();
-      expect(response.parent_id).toEqual(id);
-      expect(response.id).toEqual(order_discount_line_id);
+      expect(parent_id).toEqual(ID);
+      expect(id).toEqual(order_discount_line_id);
     });
   });
 
   describe('Orders Get Discount Line', () => {
     it('Get Discount Lines', async () => {
-      const id = "ord_2tkwrBmcvGnA9zdU9";
+      const ID = "ord_2tkwrBmcvGnA9zdU9";
       const discount_lines_id = "dis_lin_2tkwrBmcvGnA9zdU6";
 
-      const response = (await client.ordersGetDiscountLine(id, discount_lines_id)).data;
-
+      const response = (await client.ordersGetDiscountLine(ID, discount_lines_id)).data;
+      const parent_id = (response as unknown as { parent_id: string }).parent_id;
+      const id = (response as unknown as { id: string }).id;
+      
       expect(response).toBeDefined();
-      expect(response.parent_id).toEqual(id);
-      expect(response.id).toBeTruthy();
+      expect(parent_id).toEqual(ID);
+      expect(id).toBeTruthy();
     });
   });
 
@@ -69,30 +75,33 @@ describe('Discounts API', () => {
       const order_id = "ord_2tVyWPnCPWbrV37mW";
 
       const response = (await client.ordersGetDiscountLines(order_id)).data;
+      const data = (response as unknown as { data: any[]}).data
 
       expect(response).toBeDefined();
-      expect(response.data).toBeDefined();
-      expect(response.data.length).toEqual(2);
+      expect(data).toBeDefined();
+      expect(data.length).toEqual(2);
       expect(response.has_more).toEqual(false);
-      expect(response.data[0].parent_id).toEqual(order_id);
-      expect(response.data[0].amount).toEqual(100);
-      expect(response.data[0].code).toEqual("trac");
+      expect(data[0].parent_id).toEqual(order_id);
+      expect(data[0].amount).toEqual(100);
+      expect(data[0].code).toEqual("trac");
     });
   });
 
   describe('Orders Update Discount Lines', () => {
     it('Update Discount Lines', async () => {
-      const id = "ord_2tVyWPnCPWbrV37mW";
+      const ID = "ord_2tVyWPnCPWbrV37mW";
       const order_discount_line_id = "dis_lin_2tVyahK8Nts7rKRMZ";
       const order_discount_lines: UpdateOrderDiscountLinesRequest = {
         amount: 100,
       };
 
-      const response = (await client.ordersUpdateDiscountLines(id, order_discount_line_id, order_discount_lines, "es")).data;
+      const response = (await client.ordersUpdateDiscountLines(ID, order_discount_line_id, order_discount_lines, "es")).data;
+      const parent_id = (response as unknown as { parent_id: string }).parent_id;
+      const id = (response as unknown as { id: string }).id;
 
       expect(response).toBeDefined();
-      expect(response.parent_id).toEqual(id);
-      expect(response.id).toEqual(order_discount_line_id);
+      expect(parent_id).toEqual(ID);
+      expect(id).toEqual(order_discount_line_id);
       expect(response.amount).toEqual(order_discount_lines.amount);
     });
   });

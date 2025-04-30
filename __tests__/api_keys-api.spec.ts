@@ -73,9 +73,10 @@ describe('api keys', () => {
   describe("get api keys", () => {
     it('should return a list api key', async () => {
       const response = (await client.getApiKeys("es", undefined, 20)).data;
+      const data = (response as unknown as { data: any[]}).data 
 
       expect(response).toBeDefined();
-      expect(response.data.length).toEqual(1);
+      expect(data.length).toEqual(1);
     });
   });
   describe("get api key", () => {
