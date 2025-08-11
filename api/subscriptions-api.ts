@@ -20,17 +20,17 @@ import globalAxios from 'axios';
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { ModelError } from '../model';
+import type { ModelError } from '../model';
 // @ts-ignore
-import { SubscriptionEventsResponse } from '../model';
+import type { SubscriptionEventsResponse } from '../model';
 // @ts-ignore
-import { SubscriptionRequest } from '../model';
+import type { SubscriptionRequest } from '../model';
 // @ts-ignore
-import { SubscriptionResponse } from '../model';
+import type { SubscriptionResponse } from '../model';
 // @ts-ignore
-import { SubscriptionUpdateRequest } from '../model';
+import type { SubscriptionUpdateRequest } from '../model';
 /**
  * SubscriptionsApi - axios parameter creator
  * @export
@@ -67,16 +67,14 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -119,18 +117,16 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -170,12 +166,11 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -215,16 +210,14 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -264,16 +257,14 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -313,16 +304,14 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -365,16 +354,14 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -416,18 +403,16 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -491,16 +476,14 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
                 localVarQueryParameter['previous'] = previous;
             }
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -559,16 +542,14 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
                 localVarQueryParameter['previous'] = previous;
             }
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -611,16 +592,14 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -663,16 +642,14 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -718,18 +695,16 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -773,16 +748,14 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -825,16 +798,14 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -877,18 +848,16 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -921,9 +890,9 @@ export const SubscriptionsApiFp = function(configuration?: Configuration) {
          */
         async cancelSubscription(id: string, acceptLanguage?: CancelSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.cancelSubscription(id, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['SubscriptionsApi.cancelSubscription']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscriptionsApi.cancelSubscription']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * DEPRECATED: This endpoint will be removed in version 2.3.0. You can create the subscription to include the plans that your customers consume
@@ -938,9 +907,9 @@ export const SubscriptionsApiFp = function(configuration?: Configuration) {
          */
         async createSubscription(id: string, subscriptionRequest: SubscriptionRequest, acceptLanguage?: CreateSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createSubscription(id, subscriptionRequest, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['SubscriptionsApi.createSubscription']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscriptionsApi.createSubscription']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * DEPRECATED: This endpoint will be removed in version 2.3.0.
@@ -953,9 +922,9 @@ export const SubscriptionsApiFp = function(configuration?: Configuration) {
          */
         async getSubscription(id: string, acceptLanguage?: GetSubscriptionAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSubscription(id, acceptLanguage, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['SubscriptionsApi.getSubscription']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscriptionsApi.getSubscription']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * DEPRECATED: This endpoint will be removed in version 2.3.0. You can get the events of the subscription(s) of a client, with the customer id
@@ -969,9 +938,9 @@ export const SubscriptionsApiFp = function(configuration?: Configuration) {
          */
         async getSubscriptionEvents(id: string, acceptLanguage?: GetSubscriptionEventsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionEventsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSubscriptionEvents(id, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['SubscriptionsApi.getSubscriptionEvents']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscriptionsApi.getSubscriptionEvents']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * DEPRECATED: This endpoint will be removed in version 2.3.0.
@@ -985,9 +954,9 @@ export const SubscriptionsApiFp = function(configuration?: Configuration) {
          */
         async pauseSubscription(id: string, acceptLanguage?: PauseSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.pauseSubscription(id, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['SubscriptionsApi.pauseSubscription']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscriptionsApi.pauseSubscription']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * DEPRECATED: This endpoint will be removed in version 2.3.0.
@@ -1001,9 +970,9 @@ export const SubscriptionsApiFp = function(configuration?: Configuration) {
          */
         async resumeSubscription(id: string, acceptLanguage?: ResumeSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.resumeSubscription(id, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['SubscriptionsApi.resumeSubscription']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscriptionsApi.resumeSubscription']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Cancel a specific subscription
@@ -1017,9 +986,9 @@ export const SubscriptionsApiFp = function(configuration?: Configuration) {
          */
         async subscriptionCancel(customerId: string, id: string, acceptLanguage?: SubscriptionCancelAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionCancel(customerId, id, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['SubscriptionsApi.subscriptionCancel']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscriptionsApi.subscriptionCancel']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Create a new subscription for a customer (keeps existing subscriptions active)
@@ -1033,9 +1002,9 @@ export const SubscriptionsApiFp = function(configuration?: Configuration) {
          */
         async subscriptionCreate(customerId: string, subscriptionRequest: SubscriptionRequest, acceptLanguage?: SubscriptionCreateAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionCreate(customerId, subscriptionRequest, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['SubscriptionsApi.subscriptionCreate']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscriptionsApi.subscriptionCreate']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get events for a specific subscription
@@ -1053,9 +1022,9 @@ export const SubscriptionsApiFp = function(configuration?: Configuration) {
          */
         async subscriptionEvents(customerId: string, id: string, acceptLanguage?: SubscriptionEventsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionEventsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionEvents(customerId, id, acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['SubscriptionsApi.subscriptionEvents']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscriptionsApi.subscriptionEvents']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get a list of subscriptions for a customer
@@ -1072,9 +1041,9 @@ export const SubscriptionsApiFp = function(configuration?: Configuration) {
          */
         async subscriptionList(customerId: string, acceptLanguage?: SubscriptionListAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionList(customerId, acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['SubscriptionsApi.subscriptionList']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscriptionsApi.subscriptionList']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Pause a specific subscription
@@ -1088,9 +1057,9 @@ export const SubscriptionsApiFp = function(configuration?: Configuration) {
          */
         async subscriptionPause(customerId: string, id: string, acceptLanguage?: SubscriptionPauseAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionPause(customerId, id, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['SubscriptionsApi.subscriptionPause']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscriptionsApi.subscriptionPause']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Resume a specific paused subscription
@@ -1104,9 +1073,9 @@ export const SubscriptionsApiFp = function(configuration?: Configuration) {
          */
         async subscriptionResume(customerId: string, id: string, acceptLanguage?: SubscriptionResumeAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionResume(customerId, id, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['SubscriptionsApi.subscriptionResume']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscriptionsApi.subscriptionResume']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Update a specific subscription
@@ -1121,9 +1090,9 @@ export const SubscriptionsApiFp = function(configuration?: Configuration) {
          */
         async subscriptionUpdate(customerId: string, id: string, subscriptionUpdateRequest: SubscriptionUpdateRequest, acceptLanguage?: SubscriptionUpdateAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionUpdate(customerId, id, subscriptionUpdateRequest, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['SubscriptionsApi.subscriptionUpdate']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscriptionsApi.subscriptionUpdate']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Retrieve a specific subscription
@@ -1137,9 +1106,9 @@ export const SubscriptionsApiFp = function(configuration?: Configuration) {
          */
         async subscriptionsGet(customerId: string, id: string, acceptLanguage?: SubscriptionsGetAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionsGet(customerId, id, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['SubscriptionsApi.subscriptionsGet']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscriptionsApi.subscriptionsGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Retry a failed payment for a specific subscription
@@ -1153,9 +1122,9 @@ export const SubscriptionsApiFp = function(configuration?: Configuration) {
          */
         async subscriptionsRetry(customerId: string, id: string, acceptLanguage?: SubscriptionsRetryAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionsRetry(customerId, id, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['SubscriptionsApi.subscriptionsRetry']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscriptionsApi.subscriptionsRetry']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * DEPRECATED: This endpoint will be removed in version 2.3.0. You can modify the subscription to change the plans that your customers consume
@@ -1170,9 +1139,9 @@ export const SubscriptionsApiFp = function(configuration?: Configuration) {
          */
         async updateSubscription(id: string, subscriptionUpdateRequest: SubscriptionUpdateRequest, acceptLanguage?: UpdateSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateSubscription(id, subscriptionUpdateRequest, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['SubscriptionsApi.updateSubscription']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SubscriptionsApi.updateSubscription']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -1194,7 +1163,7 @@ export const SubscriptionsApiFactory = function (configuration?: Configuration, 
          * @deprecated
          * @throws {RequiredError}
          */
-        cancelSubscription(id: string, acceptLanguage?: CancelSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<SubscriptionResponse> {
+        cancelSubscription(id: string, acceptLanguage?: CancelSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse> {
             return localVarFp.cancelSubscription(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1208,7 +1177,7 @@ export const SubscriptionsApiFactory = function (configuration?: Configuration, 
          * @deprecated
          * @throws {RequiredError}
          */
-        createSubscription(id: string, subscriptionRequest: SubscriptionRequest, acceptLanguage?: CreateSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<SubscriptionResponse> {
+        createSubscription(id: string, subscriptionRequest: SubscriptionRequest, acceptLanguage?: CreateSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse> {
             return localVarFp.createSubscription(id, subscriptionRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1220,7 +1189,7 @@ export const SubscriptionsApiFactory = function (configuration?: Configuration, 
          * @deprecated
          * @throws {RequiredError}
          */
-        getSubscription(id: string, acceptLanguage?: GetSubscriptionAcceptLanguageEnum, options?: any): AxiosPromise<SubscriptionResponse> {
+        getSubscription(id: string, acceptLanguage?: GetSubscriptionAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse> {
             return localVarFp.getSubscription(id, acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1233,7 +1202,7 @@ export const SubscriptionsApiFactory = function (configuration?: Configuration, 
          * @deprecated
          * @throws {RequiredError}
          */
-        getSubscriptionEvents(id: string, acceptLanguage?: GetSubscriptionEventsAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<SubscriptionEventsResponse> {
+        getSubscriptionEvents(id: string, acceptLanguage?: GetSubscriptionEventsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionEventsResponse> {
             return localVarFp.getSubscriptionEvents(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1246,7 +1215,7 @@ export const SubscriptionsApiFactory = function (configuration?: Configuration, 
          * @deprecated
          * @throws {RequiredError}
          */
-        pauseSubscription(id: string, acceptLanguage?: PauseSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<SubscriptionResponse> {
+        pauseSubscription(id: string, acceptLanguage?: PauseSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse> {
             return localVarFp.pauseSubscription(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1259,7 +1228,7 @@ export const SubscriptionsApiFactory = function (configuration?: Configuration, 
          * @deprecated
          * @throws {RequiredError}
          */
-        resumeSubscription(id: string, acceptLanguage?: ResumeSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<SubscriptionResponse> {
+        resumeSubscription(id: string, acceptLanguage?: ResumeSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse> {
             return localVarFp.resumeSubscription(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1272,7 +1241,7 @@ export const SubscriptionsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscriptionCancel(customerId: string, id: string, acceptLanguage?: SubscriptionCancelAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<SubscriptionResponse> {
+        subscriptionCancel(customerId: string, id: string, acceptLanguage?: SubscriptionCancelAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse> {
             return localVarFp.subscriptionCancel(customerId, id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1285,7 +1254,7 @@ export const SubscriptionsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscriptionCreate(customerId: string, subscriptionRequest: SubscriptionRequest, acceptLanguage?: SubscriptionCreateAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<SubscriptionResponse> {
+        subscriptionCreate(customerId: string, subscriptionRequest: SubscriptionRequest, acceptLanguage?: SubscriptionCreateAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse> {
             return localVarFp.subscriptionCreate(customerId, subscriptionRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1302,7 +1271,7 @@ export const SubscriptionsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscriptionEvents(customerId: string, id: string, acceptLanguage?: SubscriptionEventsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<SubscriptionEventsResponse> {
+        subscriptionEvents(customerId: string, id: string, acceptLanguage?: SubscriptionEventsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionEventsResponse> {
             return localVarFp.subscriptionEvents(customerId, id, acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1318,7 +1287,7 @@ export const SubscriptionsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscriptionList(customerId: string, acceptLanguage?: SubscriptionListAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<SubscriptionResponse> {
+        subscriptionList(customerId: string, acceptLanguage?: SubscriptionListAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse> {
             return localVarFp.subscriptionList(customerId, acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1331,7 +1300,7 @@ export const SubscriptionsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscriptionPause(customerId: string, id: string, acceptLanguage?: SubscriptionPauseAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<SubscriptionResponse> {
+        subscriptionPause(customerId: string, id: string, acceptLanguage?: SubscriptionPauseAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse> {
             return localVarFp.subscriptionPause(customerId, id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1344,7 +1313,7 @@ export const SubscriptionsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscriptionResume(customerId: string, id: string, acceptLanguage?: SubscriptionResumeAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<SubscriptionResponse> {
+        subscriptionResume(customerId: string, id: string, acceptLanguage?: SubscriptionResumeAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse> {
             return localVarFp.subscriptionResume(customerId, id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1358,7 +1327,7 @@ export const SubscriptionsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscriptionUpdate(customerId: string, id: string, subscriptionUpdateRequest: SubscriptionUpdateRequest, acceptLanguage?: SubscriptionUpdateAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<SubscriptionResponse> {
+        subscriptionUpdate(customerId: string, id: string, subscriptionUpdateRequest: SubscriptionUpdateRequest, acceptLanguage?: SubscriptionUpdateAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse> {
             return localVarFp.subscriptionUpdate(customerId, id, subscriptionUpdateRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1371,7 +1340,7 @@ export const SubscriptionsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscriptionsGet(customerId: string, id: string, acceptLanguage?: SubscriptionsGetAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<SubscriptionResponse> {
+        subscriptionsGet(customerId: string, id: string, acceptLanguage?: SubscriptionsGetAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse> {
             return localVarFp.subscriptionsGet(customerId, id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1384,7 +1353,7 @@ export const SubscriptionsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscriptionsRetry(customerId: string, id: string, acceptLanguage?: SubscriptionsRetryAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<SubscriptionResponse> {
+        subscriptionsRetry(customerId: string, id: string, acceptLanguage?: SubscriptionsRetryAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse> {
             return localVarFp.subscriptionsRetry(customerId, id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1398,7 +1367,7 @@ export const SubscriptionsApiFactory = function (configuration?: Configuration, 
          * @deprecated
          * @throws {RequiredError}
          */
-        updateSubscription(id: string, subscriptionUpdateRequest: SubscriptionUpdateRequest, acceptLanguage?: UpdateSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<SubscriptionResponse> {
+        updateSubscription(id: string, subscriptionUpdateRequest: SubscriptionUpdateRequest, acceptLanguage?: UpdateSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse> {
             return localVarFp.updateSubscription(id, subscriptionUpdateRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
     };

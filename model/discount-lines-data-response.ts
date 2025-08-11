@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { DiscountLinesResponse } from './discount-lines-response';
+import type { DiscountLinesResponse } from './discount-lines-response';
 
 /**
  * @type DiscountLinesDataResponse

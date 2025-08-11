@@ -15,18 +15,18 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Page } from './page';
+import type { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Pagination } from './pagination';
+import type { Pagination } from './pagination';
 // May contain unused imports in some cases
 // @ts-ignore
-import { PlanResponse } from './plan-response';
+import type { PlanResponse } from './plan-response';
 
 /**
  * @type GetPlansResponse
  * @export
  */
-export type GetPlansResponse = Page & Pagination;
+export type GetPlansResponse = PlanResponse & Page & Pagination;
 
 

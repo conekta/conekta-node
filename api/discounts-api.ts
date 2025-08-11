@@ -20,17 +20,17 @@ import globalAxios from 'axios';
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { DiscountLinesResponse } from '../model';
+import type { DiscountLinesResponse } from '../model';
 // @ts-ignore
-import { GetOrderDiscountLinesResponse } from '../model';
+import type { GetOrderDiscountLinesResponse } from '../model';
 // @ts-ignore
-import { ModelError } from '../model';
+import type { ModelError } from '../model';
 // @ts-ignore
-import { OrderDiscountLinesRequest } from '../model';
+import type { OrderDiscountLinesRequest } from '../model';
 // @ts-ignore
-import { UpdateOrderDiscountLinesRequest } from '../model';
+import type { UpdateOrderDiscountLinesRequest } from '../model';
 /**
  * DiscountsApi - axios parameter creator
  * @export
@@ -69,18 +69,16 @@ export const DiscountsApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -124,16 +122,14 @@ export const DiscountsApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -176,16 +172,14 @@ export const DiscountsApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -244,16 +238,14 @@ export const DiscountsApiAxiosParamCreator = function (configuration?: Configura
                 localVarQueryParameter['previous'] = previous;
             }
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -299,18 +291,16 @@ export const DiscountsApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -343,9 +333,9 @@ export const DiscountsApiFp = function(configuration?: Configuration) {
          */
         async ordersCreateDiscountLine(id: string, orderDiscountLinesRequest: OrderDiscountLinesRequest, acceptLanguage?: OrdersCreateDiscountLineAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DiscountLinesResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ordersCreateDiscountLine(id, orderDiscountLinesRequest, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DiscountsApi.ordersCreateDiscountLine']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DiscountsApi.ordersCreateDiscountLine']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Delete an existing discount lines for an existing orden
@@ -359,9 +349,9 @@ export const DiscountsApiFp = function(configuration?: Configuration) {
          */
         async ordersDeleteDiscountLines(id: string, discountLinesId: string, acceptLanguage?: OrdersDeleteDiscountLinesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DiscountLinesResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ordersDeleteDiscountLines(id, discountLinesId, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DiscountsApi.ordersDeleteDiscountLines']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DiscountsApi.ordersDeleteDiscountLines']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get an existing discount lines for an existing orden
@@ -375,9 +365,9 @@ export const DiscountsApiFp = function(configuration?: Configuration) {
          */
         async ordersGetDiscountLine(id: string, discountLinesId: string, acceptLanguage?: OrdersGetDiscountLineAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DiscountLinesResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ordersGetDiscountLine(id, discountLinesId, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DiscountsApi.ordersGetDiscountLine']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DiscountsApi.ordersGetDiscountLine']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get discount lines for an existing orden
@@ -394,9 +384,9 @@ export const DiscountsApiFp = function(configuration?: Configuration) {
          */
         async ordersGetDiscountLines(id: string, acceptLanguage?: OrdersGetDiscountLinesAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOrderDiscountLinesResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ordersGetDiscountLines(id, acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DiscountsApi.ordersGetDiscountLines']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DiscountsApi.ordersGetDiscountLines']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Update an existing discount lines for an existing orden
@@ -411,9 +401,9 @@ export const DiscountsApiFp = function(configuration?: Configuration) {
          */
         async ordersUpdateDiscountLines(id: string, discountLinesId: string, updateOrderDiscountLinesRequest: UpdateOrderDiscountLinesRequest, acceptLanguage?: OrdersUpdateDiscountLinesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DiscountLinesResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ordersUpdateDiscountLines(id, discountLinesId, updateOrderDiscountLinesRequest, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DiscountsApi.ordersUpdateDiscountLines']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DiscountsApi.ordersUpdateDiscountLines']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -435,7 +425,7 @@ export const DiscountsApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersCreateDiscountLine(id: string, orderDiscountLinesRequest: OrderDiscountLinesRequest, acceptLanguage?: OrdersCreateDiscountLineAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<DiscountLinesResponse> {
+        ordersCreateDiscountLine(id: string, orderDiscountLinesRequest: OrderDiscountLinesRequest, acceptLanguage?: OrdersCreateDiscountLineAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<DiscountLinesResponse> {
             return localVarFp.ordersCreateDiscountLine(id, orderDiscountLinesRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -448,7 +438,7 @@ export const DiscountsApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersDeleteDiscountLines(id: string, discountLinesId: string, acceptLanguage?: OrdersDeleteDiscountLinesAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<DiscountLinesResponse> {
+        ordersDeleteDiscountLines(id: string, discountLinesId: string, acceptLanguage?: OrdersDeleteDiscountLinesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<DiscountLinesResponse> {
             return localVarFp.ordersDeleteDiscountLines(id, discountLinesId, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -461,7 +451,7 @@ export const DiscountsApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersGetDiscountLine(id: string, discountLinesId: string, acceptLanguage?: OrdersGetDiscountLineAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<DiscountLinesResponse> {
+        ordersGetDiscountLine(id: string, discountLinesId: string, acceptLanguage?: OrdersGetDiscountLineAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<DiscountLinesResponse> {
             return localVarFp.ordersGetDiscountLine(id, discountLinesId, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -477,7 +467,7 @@ export const DiscountsApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersGetDiscountLines(id: string, acceptLanguage?: OrdersGetDiscountLinesAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetOrderDiscountLinesResponse> {
+        ordersGetDiscountLines(id: string, acceptLanguage?: OrdersGetDiscountLinesAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetOrderDiscountLinesResponse> {
             return localVarFp.ordersGetDiscountLines(id, acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
         },
         /**
@@ -491,7 +481,7 @@ export const DiscountsApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersUpdateDiscountLines(id: string, discountLinesId: string, updateOrderDiscountLinesRequest: UpdateOrderDiscountLinesRequest, acceptLanguage?: OrdersUpdateDiscountLinesAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<DiscountLinesResponse> {
+        ordersUpdateDiscountLines(id: string, discountLinesId: string, updateOrderDiscountLinesRequest: UpdateOrderDiscountLinesRequest, acceptLanguage?: OrdersUpdateDiscountLinesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<DiscountLinesResponse> {
             return localVarFp.ordersUpdateDiscountLines(id, discountLinesId, updateOrderDiscountLinesRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
     };

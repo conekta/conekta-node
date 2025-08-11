@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CustomerShippingContactsResponseAddress } from './customer-shipping-contacts-response-address';
+import type { CustomerShippingContactsResponseAddress } from './customer-shipping-contacts-response-address';
 
 /**
  * Contains the detail of the shipping addresses that the client has active or has used in Conekta

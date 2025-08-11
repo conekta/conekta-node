@@ -15,18 +15,18 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CompanyResponse } from './company-response';
+import type { CompanyResponse } from './company-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Page } from './page';
+import type { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Pagination } from './pagination';
+import type { Pagination } from './pagination';
 
 /**
  * @type GetCompaniesResponse
  * @export
  */
-export type GetCompaniesResponse = Page & Pagination;
+export type GetCompaniesResponse = CompanyResponse & Page & Pagination;
 
 

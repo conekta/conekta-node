@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { TokenCard } from './token-card';
+import type { TokenCard } from './token-card';
 // May contain unused imports in some cases
 // @ts-ignore
-import { TokenCheckout } from './token-checkout';
+import type { TokenCheckout } from './token-checkout';
 
 /**
  * a token

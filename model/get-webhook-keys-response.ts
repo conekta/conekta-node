@@ -15,18 +15,18 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Page } from './page';
+import type { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Pagination } from './pagination';
+import type { Pagination } from './pagination';
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookKeyResponse } from './webhook-key-response';
+import type { WebhookKeyResponse } from './webhook-key-response';
 
 /**
  * @type GetWebhookKeysResponse
  * @export
  */
-export type GetWebhookKeysResponse = Page & Pagination;
+export type GetWebhookKeysResponse = WebhookKeyResponse & Page & Pagination;
 
 

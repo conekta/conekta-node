@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CheckoutOrderTemplateCustomerInfo } from './checkout-order-template-customer-info';
+import type { CheckoutOrderTemplateCustomerInfo } from './checkout-order-template-customer-info';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Product } from './product';
+import type { Product } from './product';
 
 /**
  * It maintains the attributes with which the order will be created when receiving a new payment.

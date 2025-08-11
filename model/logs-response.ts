@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { LogsResponseData } from './logs-response-data';
+import type { LogsResponseData } from './logs-response-data';
 
 /**
  * logs model

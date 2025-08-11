@@ -15,18 +15,18 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Page } from './page';
+import type { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Pagination } from './pagination';
+import type { Pagination } from './pagination';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ProductDataResponse } from './product-data-response';
+import type { ProductDataResponse } from './product-data-response';
 
 /**
  * @type OrderResponseProducts
  * @export
  */
-export type OrderResponseProducts = Page & Pagination;
+export type OrderResponseProducts = ProductDataResponse & Page & Pagination;
 
 

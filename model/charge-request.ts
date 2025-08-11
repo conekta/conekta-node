@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargeRequestPaymentMethod } from './charge-request-payment-method';
+import type { ChargeRequestPaymentMethod } from './charge-request-payment-method';
 
 /**
  * The charges to be made

@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderCustomerInfoResponse } from './order-customer-info-response';
+import type { OrderCustomerInfoResponse } from './order-customer-info-response';
 
 /**
  * @type PayoutOrderResponseCustomerInfo

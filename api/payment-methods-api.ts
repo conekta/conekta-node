@@ -20,19 +20,19 @@ import globalAxios from 'axios';
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { CreateCustomerPaymentMethodsRequest } from '../model';
+import type { CreateCustomerPaymentMethodsRequest } from '../model';
 // @ts-ignore
-import { CreateCustomerPaymentMethodsResponse } from '../model';
+import type { CreateCustomerPaymentMethodsResponse } from '../model';
 // @ts-ignore
-import { GetPaymentMethodResponse } from '../model';
+import type { GetPaymentMethodResponse } from '../model';
 // @ts-ignore
-import { ModelError } from '../model';
+import type { ModelError } from '../model';
 // @ts-ignore
-import { UpdateCustomerPaymentMethodsResponse } from '../model';
+import type { UpdateCustomerPaymentMethodsResponse } from '../model';
 // @ts-ignore
-import { UpdatePaymentMethods } from '../model';
+import type { UpdatePaymentMethods } from '../model';
 /**
  * PaymentMethodsApi - axios parameter creator
  * @export
@@ -71,18 +71,16 @@ export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Conf
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -126,16 +124,14 @@ export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Conf
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -194,16 +190,14 @@ export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Conf
                 localVarQueryParameter['search'] = search;
             }
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -249,18 +243,16 @@ export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Conf
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -293,9 +285,9 @@ export const PaymentMethodsApiFp = function(configuration?: Configuration) {
          */
         async createCustomerPaymentMethods(id: string, createCustomerPaymentMethodsRequest: CreateCustomerPaymentMethodsRequest, acceptLanguage?: CreateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateCustomerPaymentMethodsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createCustomerPaymentMethods(id, createCustomerPaymentMethodsRequest, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['PaymentMethodsApi.createCustomerPaymentMethods']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PaymentMethodsApi.createCustomerPaymentMethods']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Delete an existing payment method
@@ -309,9 +301,9 @@ export const PaymentMethodsApiFp = function(configuration?: Configuration) {
          */
         async deleteCustomerPaymentMethods(id: string, paymentMethodId: string, acceptLanguage?: DeleteCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCustomerPaymentMethodsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteCustomerPaymentMethods(id, paymentMethodId, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['PaymentMethodsApi.deleteCustomerPaymentMethods']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PaymentMethodsApi.deleteCustomerPaymentMethods']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get a list of Payment Methods
@@ -328,9 +320,9 @@ export const PaymentMethodsApiFp = function(configuration?: Configuration) {
          */
         async getCustomerPaymentMethods(id: string, acceptLanguage?: GetCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPaymentMethodResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCustomerPaymentMethods(id, acceptLanguage, xChildCompanyId, limit, next, previous, search, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['PaymentMethodsApi.getCustomerPaymentMethods']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PaymentMethodsApi.getCustomerPaymentMethods']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Gets a payment Method that corresponds to a customer ID.
@@ -345,9 +337,9 @@ export const PaymentMethodsApiFp = function(configuration?: Configuration) {
          */
         async updateCustomerPaymentMethods(id: string, paymentMethodId: string, updatePaymentMethods: UpdatePaymentMethods, acceptLanguage?: UpdateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCustomerPaymentMethodsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateCustomerPaymentMethods(id, paymentMethodId, updatePaymentMethods, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['PaymentMethodsApi.updateCustomerPaymentMethods']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PaymentMethodsApi.updateCustomerPaymentMethods']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -369,7 +361,7 @@ export const PaymentMethodsApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCustomerPaymentMethods(id: string, createCustomerPaymentMethodsRequest: CreateCustomerPaymentMethodsRequest, acceptLanguage?: CreateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<CreateCustomerPaymentMethodsResponse> {
+        createCustomerPaymentMethods(id: string, createCustomerPaymentMethodsRequest: CreateCustomerPaymentMethodsRequest, acceptLanguage?: CreateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CreateCustomerPaymentMethodsResponse> {
             return localVarFp.createCustomerPaymentMethods(id, createCustomerPaymentMethodsRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -382,7 +374,7 @@ export const PaymentMethodsApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCustomerPaymentMethods(id: string, paymentMethodId: string, acceptLanguage?: DeleteCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<UpdateCustomerPaymentMethodsResponse> {
+        deleteCustomerPaymentMethods(id: string, paymentMethodId: string, acceptLanguage?: DeleteCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateCustomerPaymentMethodsResponse> {
             return localVarFp.deleteCustomerPaymentMethods(id, paymentMethodId, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -398,7 +390,7 @@ export const PaymentMethodsApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCustomerPaymentMethods(id: string, acceptLanguage?: GetCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: any): AxiosPromise<GetPaymentMethodResponse> {
+        getCustomerPaymentMethods(id: string, acceptLanguage?: GetCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetPaymentMethodResponse> {
             return localVarFp.getCustomerPaymentMethods(id, acceptLanguage, xChildCompanyId, limit, next, previous, search, options).then((request) => request(axios, basePath));
         },
         /**
@@ -412,7 +404,7 @@ export const PaymentMethodsApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCustomerPaymentMethods(id: string, paymentMethodId: string, updatePaymentMethods: UpdatePaymentMethods, acceptLanguage?: UpdateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<UpdateCustomerPaymentMethodsResponse> {
+        updateCustomerPaymentMethods(id: string, paymentMethodId: string, updatePaymentMethods: UpdatePaymentMethods, acceptLanguage?: UpdateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateCustomerPaymentMethodsResponse> {
             return localVarFp.updateCustomerPaymentMethods(id, paymentMethodId, updatePaymentMethods, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
     };

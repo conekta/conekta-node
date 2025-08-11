@@ -20,15 +20,15 @@ import globalAxios from 'axios';
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { ModelError } from '../model';
+import type { ModelError } from '../model';
 // @ts-ignore
-import { PayoutOrder } from '../model';
+import type { PayoutOrder } from '../model';
 // @ts-ignore
-import { PayoutOrderResponse } from '../model';
+import type { PayoutOrderResponse } from '../model';
 // @ts-ignore
-import { PayoutOrdersResponse } from '../model';
+import type { PayoutOrdersResponse } from '../model';
 /**
  * PayoutOrdersApi - axios parameter creator
  * @export
@@ -63,12 +63,11 @@ export const PayoutOrdersApiAxiosParamCreator = function (configuration?: Config
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -105,14 +104,13 @@ export const PayoutOrdersApiAxiosParamCreator = function (configuration?: Config
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -151,12 +149,11 @@ export const PayoutOrdersApiAxiosParamCreator = function (configuration?: Config
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -210,12 +207,11 @@ export const PayoutOrdersApiAxiosParamCreator = function (configuration?: Config
                 localVarQueryParameter['previous'] = previous;
             }
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -245,9 +241,9 @@ export const PayoutOrdersApiFp = function(configuration?: Configuration) {
          */
         async cancelPayoutOrderById(id: string, acceptLanguage?: CancelPayoutOrderByIdAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PayoutOrderResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.cancelPayoutOrderById(id, acceptLanguage, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['PayoutOrdersApi.cancelPayoutOrderById']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PayoutOrdersApi.cancelPayoutOrderById']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Create a new payout order.
@@ -259,9 +255,9 @@ export const PayoutOrdersApiFp = function(configuration?: Configuration) {
          */
         async createPayoutOrder(payoutOrder: PayoutOrder, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PayoutOrderResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createPayoutOrder(payoutOrder, acceptLanguage, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['PayoutOrdersApi.createPayoutOrder']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PayoutOrdersApi.createPayoutOrder']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Gets a payout Order resource that corresponds to a payout order ID.
@@ -273,9 +269,9 @@ export const PayoutOrdersApiFp = function(configuration?: Configuration) {
          */
         async getPayoutOrderById(id: string, acceptLanguage?: GetPayoutOrderByIdAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PayoutOrderResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPayoutOrderById(id, acceptLanguage, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['PayoutOrdersApi.getPayoutOrderById']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PayoutOrdersApi.getPayoutOrderById']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get Payout order details in the form of a list
@@ -290,9 +286,9 @@ export const PayoutOrdersApiFp = function(configuration?: Configuration) {
          */
         async getPayoutOrders(acceptLanguage?: GetPayoutOrdersAcceptLanguageEnum, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PayoutOrdersResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPayoutOrders(acceptLanguage, limit, search, next, previous, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['PayoutOrdersApi.getPayoutOrders']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PayoutOrdersApi.getPayoutOrders']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -312,7 +308,7 @@ export const PayoutOrdersApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cancelPayoutOrderById(id: string, acceptLanguage?: CancelPayoutOrderByIdAcceptLanguageEnum, options?: any): AxiosPromise<PayoutOrderResponse> {
+        cancelPayoutOrderById(id: string, acceptLanguage?: CancelPayoutOrderByIdAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<PayoutOrderResponse> {
             return localVarFp.cancelPayoutOrderById(id, acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -323,7 +319,7 @@ export const PayoutOrdersApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createPayoutOrder(payoutOrder: PayoutOrder, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: any): AxiosPromise<PayoutOrderResponse> {
+        createPayoutOrder(payoutOrder: PayoutOrder, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<PayoutOrderResponse> {
             return localVarFp.createPayoutOrder(payoutOrder, acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -334,7 +330,7 @@ export const PayoutOrdersApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPayoutOrderById(id: string, acceptLanguage?: GetPayoutOrderByIdAcceptLanguageEnum, options?: any): AxiosPromise<PayoutOrderResponse> {
+        getPayoutOrderById(id: string, acceptLanguage?: GetPayoutOrderByIdAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<PayoutOrderResponse> {
             return localVarFp.getPayoutOrderById(id, acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -348,7 +344,7 @@ export const PayoutOrdersApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPayoutOrders(acceptLanguage?: GetPayoutOrdersAcceptLanguageEnum, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<PayoutOrdersResponse> {
+        getPayoutOrders(acceptLanguage?: GetPayoutOrdersAcceptLanguageEnum, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<PayoutOrdersResponse> {
             return localVarFp.getPayoutOrders(acceptLanguage, limit, search, next, previous, options).then((request) => request(axios, basePath));
         },
     };

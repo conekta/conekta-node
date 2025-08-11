@@ -15,18 +15,18 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ApiKeyResponse } from './api-key-response';
+import type { ApiKeyResponse } from './api-key-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Page } from './page';
+import type { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Pagination } from './pagination';
+import type { Pagination } from './pagination';
 
 /**
  * @type GetApiKeysResponse
  * @export
  */
-export type GetApiKeysResponse = Page & Pagination;
+export type GetApiKeysResponse = ApiKeyResponse & Page & Pagination;
 
 

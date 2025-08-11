@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PaymentMethodCashRequest } from './payment-method-cash-request';
+import type { PaymentMethodCashRequest } from './payment-method-cash-request';
 // May contain unused imports in some cases
 // @ts-ignore
-import { PaymentMethodSpeiRequest } from './payment-method-spei-request';
+import type { PaymentMethodSpeiRequest } from './payment-method-spei-request';
 // May contain unused imports in some cases
 // @ts-ignore
-import { PaymentMethodTokenRequest } from './payment-method-token-request';
+import type { PaymentMethodTokenRequest } from './payment-method-token-request';
 
 /**
  * @type CreateCustomerPaymentMethodsRequest

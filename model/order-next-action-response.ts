@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderNextActionResponseRedirectToUrl } from './order-next-action-response-redirect-to-url';
+import type { OrderNextActionResponseRedirectToUrl } from './order-next-action-response-redirect-to-url';
 
 /**
  * contains the following attributes that will guide to continue the flow

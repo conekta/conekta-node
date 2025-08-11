@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargeOrderResponsePaymentMethod } from './charge-order-response-payment-method';
+import type { ChargeOrderResponsePaymentMethod } from './charge-order-response-payment-method';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargeResponseChannel } from './charge-response-channel';
+import type { ChargeResponseChannel } from './charge-response-channel';
 
 /**
  * 

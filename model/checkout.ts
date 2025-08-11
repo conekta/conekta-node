@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CheckoutOrderTemplate } from './checkout-order-template';
+import type { CheckoutOrderTemplate } from './checkout-order-template';
 
 /**
  * It is a sub-resource of the Order model that can be stipulated in order to configure its corresponding checkout

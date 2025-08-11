@@ -20,13 +20,13 @@ import globalAxios from 'axios';
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { ModelError } from '../model';
+import type { ModelError } from '../model';
 // @ts-ignore
-import { ShippingOrderResponse } from '../model';
+import type { ShippingOrderResponse } from '../model';
 // @ts-ignore
-import { ShippingRequest } from '../model';
+import type { ShippingRequest } from '../model';
 /**
  * ShippingsApi - axios parameter creator
  * @export
@@ -65,18 +65,16 @@ export const ShippingsApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -120,16 +118,14 @@ export const ShippingsApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -175,18 +171,16 @@ export const ShippingsApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -219,9 +213,9 @@ export const ShippingsApiFp = function(configuration?: Configuration) {
          */
         async ordersCreateShipping(id: string, shippingRequest: ShippingRequest, acceptLanguage?: OrdersCreateShippingAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShippingOrderResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ordersCreateShipping(id, shippingRequest, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ShippingsApi.ordersCreateShipping']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ShippingsApi.ordersCreateShipping']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Delete shipping
@@ -235,9 +229,9 @@ export const ShippingsApiFp = function(configuration?: Configuration) {
          */
         async ordersDeleteShipping(id: string, shippingId: string, acceptLanguage?: OrdersDeleteShippingAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShippingOrderResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ordersDeleteShipping(id, shippingId, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ShippingsApi.ordersDeleteShipping']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ShippingsApi.ordersDeleteShipping']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Update existing shipping for an existing orden
@@ -252,9 +246,9 @@ export const ShippingsApiFp = function(configuration?: Configuration) {
          */
         async ordersUpdateShipping(id: string, shippingId: string, shippingRequest: ShippingRequest, acceptLanguage?: OrdersUpdateShippingAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShippingOrderResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ordersUpdateShipping(id, shippingId, shippingRequest, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ShippingsApi.ordersUpdateShipping']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ShippingsApi.ordersUpdateShipping']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -276,7 +270,7 @@ export const ShippingsApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersCreateShipping(id: string, shippingRequest: ShippingRequest, acceptLanguage?: OrdersCreateShippingAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<ShippingOrderResponse> {
+        ordersCreateShipping(id: string, shippingRequest: ShippingRequest, acceptLanguage?: OrdersCreateShippingAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ShippingOrderResponse> {
             return localVarFp.ordersCreateShipping(id, shippingRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -289,7 +283,7 @@ export const ShippingsApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersDeleteShipping(id: string, shippingId: string, acceptLanguage?: OrdersDeleteShippingAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<ShippingOrderResponse> {
+        ordersDeleteShipping(id: string, shippingId: string, acceptLanguage?: OrdersDeleteShippingAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ShippingOrderResponse> {
             return localVarFp.ordersDeleteShipping(id, shippingId, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -303,7 +297,7 @@ export const ShippingsApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersUpdateShipping(id: string, shippingId: string, shippingRequest: ShippingRequest, acceptLanguage?: OrdersUpdateShippingAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<ShippingOrderResponse> {
+        ordersUpdateShipping(id: string, shippingId: string, shippingRequest: ShippingRequest, acceptLanguage?: OrdersUpdateShippingAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ShippingOrderResponse> {
             return localVarFp.ordersUpdateShipping(id, shippingId, shippingRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
     };

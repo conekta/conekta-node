@@ -20,15 +20,15 @@ import globalAxios from 'axios';
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { ModelError } from '../model';
+import type { ModelError } from '../model';
 // @ts-ignore
-import { OrderTaxRequest } from '../model';
+import type { OrderTaxRequest } from '../model';
 // @ts-ignore
-import { UpdateOrderTaxRequest } from '../model';
+import type { UpdateOrderTaxRequest } from '../model';
 // @ts-ignore
-import { UpdateOrderTaxResponse } from '../model';
+import type { UpdateOrderTaxResponse } from '../model';
 /**
  * TaxesApi - axios parameter creator
  * @export
@@ -67,18 +67,16 @@ export const TaxesApiAxiosParamCreator = function (configuration?: Configuration
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -122,16 +120,14 @@ export const TaxesApiAxiosParamCreator = function (configuration?: Configuration
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -177,18 +173,16 @@ export const TaxesApiAxiosParamCreator = function (configuration?: Configuration
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -221,9 +215,9 @@ export const TaxesApiFp = function(configuration?: Configuration) {
          */
         async ordersCreateTaxes(id: string, orderTaxRequest: OrderTaxRequest, acceptLanguage?: OrdersCreateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateOrderTaxResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ordersCreateTaxes(id, orderTaxRequest, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['TaxesApi.ordersCreateTaxes']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TaxesApi.ordersCreateTaxes']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Delete taxes for an existing orden
@@ -237,9 +231,9 @@ export const TaxesApiFp = function(configuration?: Configuration) {
          */
         async ordersDeleteTaxes(id: string, taxId: string, acceptLanguage?: OrdersDeleteTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateOrderTaxResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ordersDeleteTaxes(id, taxId, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['TaxesApi.ordersDeleteTaxes']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TaxesApi.ordersDeleteTaxes']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Update taxes for an existing orden
@@ -254,9 +248,9 @@ export const TaxesApiFp = function(configuration?: Configuration) {
          */
         async ordersUpdateTaxes(id: string, taxId: string, updateOrderTaxRequest: UpdateOrderTaxRequest, acceptLanguage?: OrdersUpdateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateOrderTaxResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ordersUpdateTaxes(id, taxId, updateOrderTaxRequest, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['TaxesApi.ordersUpdateTaxes']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TaxesApi.ordersUpdateTaxes']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -278,7 +272,7 @@ export const TaxesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersCreateTaxes(id: string, orderTaxRequest: OrderTaxRequest, acceptLanguage?: OrdersCreateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<UpdateOrderTaxResponse> {
+        ordersCreateTaxes(id: string, orderTaxRequest: OrderTaxRequest, acceptLanguage?: OrdersCreateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateOrderTaxResponse> {
             return localVarFp.ordersCreateTaxes(id, orderTaxRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -291,7 +285,7 @@ export const TaxesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersDeleteTaxes(id: string, taxId: string, acceptLanguage?: OrdersDeleteTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<UpdateOrderTaxResponse> {
+        ordersDeleteTaxes(id: string, taxId: string, acceptLanguage?: OrdersDeleteTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateOrderTaxResponse> {
             return localVarFp.ordersDeleteTaxes(id, taxId, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -305,7 +299,7 @@ export const TaxesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersUpdateTaxes(id: string, taxId: string, updateOrderTaxRequest: UpdateOrderTaxRequest, acceptLanguage?: OrdersUpdateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<UpdateOrderTaxResponse> {
+        ordersUpdateTaxes(id: string, taxId: string, updateOrderTaxRequest: UpdateOrderTaxRequest, acceptLanguage?: OrdersUpdateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateOrderTaxResponse> {
             return localVarFp.ordersUpdateTaxes(id, taxId, updateOrderTaxRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
     };

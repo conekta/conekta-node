@@ -20,21 +20,21 @@ import globalAxios from 'axios';
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { GetWebhookKeysResponse } from '../model';
+import type { GetWebhookKeysResponse } from '../model';
 // @ts-ignore
-import { ModelError } from '../model';
+import type { ModelError } from '../model';
 // @ts-ignore
-import { WebhookKeyCreateResponse } from '../model';
+import type { WebhookKeyCreateResponse } from '../model';
 // @ts-ignore
-import { WebhookKeyDeleteResponse } from '../model';
+import type { WebhookKeyDeleteResponse } from '../model';
 // @ts-ignore
-import { WebhookKeyRequest } from '../model';
+import type { WebhookKeyRequest } from '../model';
 // @ts-ignore
-import { WebhookKeyResponse } from '../model';
+import type { WebhookKeyResponse } from '../model';
 // @ts-ignore
-import { WebhookKeyUpdateRequest } from '../model';
+import type { WebhookKeyUpdateRequest } from '../model';
 /**
  * WebhookKeysApi - axios parameter creator
  * @export
@@ -66,14 +66,13 @@ export const WebhookKeysApiAxiosParamCreator = function (configuration?: Configu
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -112,12 +111,11 @@ export const WebhookKeysApiAxiosParamCreator = function (configuration?: Configu
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -156,16 +154,14 @@ export const WebhookKeysApiAxiosParamCreator = function (configuration?: Configu
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -220,16 +216,14 @@ export const WebhookKeysApiAxiosParamCreator = function (configuration?: Configu
                 localVarQueryParameter['previous'] = previous;
             }
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -268,14 +262,13 @@ export const WebhookKeysApiAxiosParamCreator = function (configuration?: Configu
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -306,9 +299,9 @@ export const WebhookKeysApiFp = function(configuration?: Configuration) {
          */
         async createWebhookKey(acceptLanguage?: CreateWebhookKeyAcceptLanguageEnum, webhookKeyRequest?: WebhookKeyRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookKeyCreateResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createWebhookKey(acceptLanguage, webhookKeyRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['WebhookKeysApi.createWebhookKey']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookKeysApi.createWebhookKey']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -320,9 +313,9 @@ export const WebhookKeysApiFp = function(configuration?: Configuration) {
          */
         async deleteWebhookKey(id: string, acceptLanguage?: DeleteWebhookKeyAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookKeyDeleteResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteWebhookKey(id, acceptLanguage, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['WebhookKeysApi.deleteWebhookKey']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookKeysApi.deleteWebhookKey']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -335,9 +328,9 @@ export const WebhookKeysApiFp = function(configuration?: Configuration) {
          */
         async getWebhookKey(id: string, acceptLanguage?: GetWebhookKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookKeyResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getWebhookKey(id, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['WebhookKeysApi.getWebhookKey']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookKeysApi.getWebhookKey']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Consume the list of webhook keys you have
@@ -353,9 +346,9 @@ export const WebhookKeysApiFp = function(configuration?: Configuration) {
          */
         async getWebhookKeys(acceptLanguage?: GetWebhookKeysAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetWebhookKeysResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getWebhookKeys(acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['WebhookKeysApi.getWebhookKeys']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookKeysApi.getWebhookKeys']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * updates an existing webhook key
@@ -368,9 +361,9 @@ export const WebhookKeysApiFp = function(configuration?: Configuration) {
          */
         async updateWebhookKey(id: string, acceptLanguage?: UpdateWebhookKeyAcceptLanguageEnum, webhookKeyUpdateRequest?: WebhookKeyUpdateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookKeyResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateWebhookKey(id, acceptLanguage, webhookKeyUpdateRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['WebhookKeysApi.updateWebhookKey']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookKeysApi.updateWebhookKey']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -390,7 +383,7 @@ export const WebhookKeysApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createWebhookKey(acceptLanguage?: CreateWebhookKeyAcceptLanguageEnum, webhookKeyRequest?: WebhookKeyRequest, options?: any): AxiosPromise<WebhookKeyCreateResponse> {
+        createWebhookKey(acceptLanguage?: CreateWebhookKeyAcceptLanguageEnum, webhookKeyRequest?: WebhookKeyRequest, options?: RawAxiosRequestConfig): AxiosPromise<WebhookKeyCreateResponse> {
             return localVarFp.createWebhookKey(acceptLanguage, webhookKeyRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -401,7 +394,7 @@ export const WebhookKeysApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteWebhookKey(id: string, acceptLanguage?: DeleteWebhookKeyAcceptLanguageEnum, options?: any): AxiosPromise<WebhookKeyDeleteResponse> {
+        deleteWebhookKey(id: string, acceptLanguage?: DeleteWebhookKeyAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<WebhookKeyDeleteResponse> {
             return localVarFp.deleteWebhookKey(id, acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -413,7 +406,7 @@ export const WebhookKeysApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWebhookKey(id: string, acceptLanguage?: GetWebhookKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<WebhookKeyResponse> {
+        getWebhookKey(id: string, acceptLanguage?: GetWebhookKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<WebhookKeyResponse> {
             return localVarFp.getWebhookKey(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -428,7 +421,7 @@ export const WebhookKeysApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWebhookKeys(acceptLanguage?: GetWebhookKeysAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetWebhookKeysResponse> {
+        getWebhookKeys(acceptLanguage?: GetWebhookKeysAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetWebhookKeysResponse> {
             return localVarFp.getWebhookKeys(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
         },
         /**
@@ -440,7 +433,7 @@ export const WebhookKeysApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateWebhookKey(id: string, acceptLanguage?: UpdateWebhookKeyAcceptLanguageEnum, webhookKeyUpdateRequest?: WebhookKeyUpdateRequest, options?: any): AxiosPromise<WebhookKeyResponse> {
+        updateWebhookKey(id: string, acceptLanguage?: UpdateWebhookKeyAcceptLanguageEnum, webhookKeyUpdateRequest?: WebhookKeyUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<WebhookKeyResponse> {
             return localVarFp.updateWebhookKey(id, acceptLanguage, webhookKeyUpdateRequest, options).then((request) => request(axios, basePath));
         },
     };

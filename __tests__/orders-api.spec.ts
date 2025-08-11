@@ -1,7 +1,9 @@
 import { OrdersApi } from "../api";
 import { baseTest } from "./base-test";
 import { Configuration } from "../configuration";
-import { OrderRequest, CustomerInfoJustCustomerId, Product, ChargeRequest, PaymentMethodCash, CheckoutRequest, PaymentMethodBankTransfer, PaymentMethodCard, OrderRefundRequest, OrderCaptureRequest, OrderUpdateRequest } from "../model";
+import { OrderRequest, CustomerInfoJustCustomerId, Product, ChargeRequest, PaymentMethodCash,
+  PaymentMethodBnplPayment,PaymentMethodBnplRequest,
+  CheckoutRequest, PaymentMethodBankTransfer, PaymentMethodCard, OrderRefundRequest, OrderCaptureRequest, OrderUpdateRequest } from "../model";
 
 interface IPaymentMethodCashMock extends PaymentMethodCash { 
   service_name: string;
@@ -477,6 +479,52 @@ function get_order_cash_request () {
       metadata: {}
     }
     }
+  return order_requet;
+}
+
+function get_order_bnpl_request () {
+  const products: Array<Product> = [
+    {
+      name: "toshiba",
+      quantity: 1,
+      unit_price: 1555
+    }
+  ];
+
+  const thirty_days_from_now_date_time = new Date();
+  thirty_days_from_now_date_time.setDate(thirty_days_from_now_date_time.getDate() + 30);
+  const expires_at = Math.floor(thirty_days_from_now_date_time.getTime() / 1000);
+  const pm : PaymentMethodBnplRequest = {
+    type: "bnpl",
+  };
+  const charges: Array<ChargeRequest> = [
+    {
+      amount: 1555,
+      payment_method: pm
+    }
+  ];
+
+  const customer_info: CustomerInfoJustCustomerId = {
+    customer_id: "cus_2tKcHxhTz7xU5SymF"
+  };
+  const order_requet: OrderRequest = {
+    currency: "MXN",
+    customer_info: customer_info,
+    line_items: products,
+    charges: charges,
+    pre_authorize: false,
+    shipping_contact: {
+      address: {
+        street1: "Calle 123, int 2",
+        city: "Queretaro",
+        state: "Queretaro",
+        country: "mx",
+        postal_code: "76000",
+        residential: true
+      },
+      metadata: {}
+    }
+  }
   return order_requet;
 }
 

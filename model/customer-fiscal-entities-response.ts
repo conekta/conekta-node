@@ -15,15 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CustomerFiscalEntitiesDataResponse } from './customer-fiscal-entities-data-response';
+import type { CustomerFiscalEntitiesDataResponse } from './customer-fiscal-entities-data-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Pagination } from './pagination';
+import type { Pagination } from './pagination';
 
 /**
  * @type CustomerFiscalEntitiesResponse
  * @export
  */
-export type CustomerFiscalEntitiesResponse = Pagination;
+export type CustomerFiscalEntitiesResponse = CustomerFiscalEntitiesDataResponse & Pagination;
 
 

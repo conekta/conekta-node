@@ -15,16 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PaymentMethodCardResponse } from './payment-method-card-response';
+import type { PaymentMethodCardResponse } from './payment-method-card-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { PaymentMethodCashResponse } from './payment-method-cash-response';
+import type { PaymentMethodCashResponse } from './payment-method-cash-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { PaymentMethodCashResponseAllOfAgreements } from './payment-method-cash-response-all-of-agreements';
+import type { PaymentMethodCashResponseAllOfAgreements } from './payment-method-cash-response-all-of-agreements';
 // May contain unused imports in some cases
 // @ts-ignore
-import { PaymentMethodSpeiRecurrent } from './payment-method-spei-recurrent';
+import type { PaymentMethodSpeiRecurrent } from './payment-method-spei-recurrent';
 
 /**
  * @type CreateCustomerPaymentMethodsResponse

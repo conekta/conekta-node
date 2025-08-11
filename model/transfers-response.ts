@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { TransferMethodResponse } from './transfer-method-response';
+import type { TransferMethodResponse } from './transfer-method-response';
 
 /**
  * A transfer represents the action of sending an amount to a business bank account including the status, amount and method used to make the transfer.

@@ -15,15 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { DiscountLinesDataResponse } from './discount-lines-data-response';
+import type { DiscountLinesDataResponse } from './discount-lines-data-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Pagination } from './pagination';
+import type { Pagination } from './pagination';
 
 /**
  * @type OrderDiscountLinesResponse
  * @export
  */
-export type OrderDiscountLinesResponse = Pagination;
+export type OrderDiscountLinesResponse = DiscountLinesDataResponse & Pagination;
 
 
