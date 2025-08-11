@@ -12,13 +12,13 @@ The library supports all APIs under the following services:
 
 | API                                                                                         | Description | Service Name | Supported version |
 |---------------------------------------------------------------------------------------------| ----------- |-------|-------------------|
-| [Payments API](https://developers.conekta.com/reference)                  | Our classic integration for online payments. Current supported version | Payments API | **v2.1.0**        |
+| [Payments API](https://developers.conekta.com/reference)                  | Our classic integration for online payments. Current supported version | Payments API | **v2.2.0**        |
 
-For more information, refer to our [documentation](https://developers.conekta.com/v2.1.0/docs).
+For more information, refer to our [documentation](https://developers.conekta.com/v2.2.0/docs).
 
 ## Prerequisites
 - [Conekta account](https://panel.conekta.com/)
-- [API key](https://developers.conekta.com/v2.1.0/docs/como-obtener-tus-api-keys).  your API credential .
+- [API key](https://developers.conekta.com/v2.2.0/docs/como-obtener-tus-api-keys).  your API credential .
 - [Install Node.js](https://nodejs.org/en/download/) version 14 or later.
 
 ## Installation
