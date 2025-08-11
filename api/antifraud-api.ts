@@ -20,21 +20,21 @@ import globalAxios from 'axios';
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { BlacklistRuleResponse } from '../model';
+import type { BlacklistRuleResponse } from '../model';
 // @ts-ignore
-import { CreateRiskRulesData } from '../model';
+import type { CreateRiskRulesData } from '../model';
 // @ts-ignore
-import { DeletedBlacklistRuleResponse } from '../model';
+import type { DeletedBlacklistRuleResponse } from '../model';
 // @ts-ignore
-import { DeletedWhitelistRuleResponse } from '../model';
+import type { DeletedWhitelistRuleResponse } from '../model';
 // @ts-ignore
-import { ModelError } from '../model';
+import type { ModelError } from '../model';
 // @ts-ignore
-import { RiskRulesList } from '../model';
+import type { RiskRulesList } from '../model';
 // @ts-ignore
-import { WhitelistlistRuleResponse } from '../model';
+import type { WhitelistlistRuleResponse } from '../model';
 /**
  * AntifraudApi - axios parameter creator
  * @export
@@ -68,14 +68,13 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -111,14 +110,13 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -158,16 +156,14 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -206,16 +202,14 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -249,12 +243,11 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -288,12 +281,11 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -323,9 +315,9 @@ export const AntifraudApiFp = function(configuration?: Configuration) {
          */
         async createRuleBlacklist(createRiskRulesData: CreateRiskRulesData, acceptLanguage?: CreateRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BlacklistRuleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createRuleBlacklist(createRiskRulesData, acceptLanguage, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['AntifraudApi.createRuleBlacklist']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AntifraudApi.createRuleBlacklist']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -337,9 +329,9 @@ export const AntifraudApiFp = function(configuration?: Configuration) {
          */
         async createRuleWhitelist(acceptLanguage?: CreateRuleWhitelistAcceptLanguageEnum, createRiskRulesData?: CreateRiskRulesData, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WhitelistlistRuleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createRuleWhitelist(acceptLanguage, createRiskRulesData, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['AntifraudApi.createRuleWhitelist']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AntifraudApi.createRuleWhitelist']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -352,9 +344,9 @@ export const AntifraudApiFp = function(configuration?: Configuration) {
          */
         async deleteRuleBlacklist(id: string, acceptLanguage?: DeleteRuleBlacklistAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeletedBlacklistRuleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteRuleBlacklist(id, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['AntifraudApi.deleteRuleBlacklist']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AntifraudApi.deleteRuleBlacklist']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -367,9 +359,9 @@ export const AntifraudApiFp = function(configuration?: Configuration) {
          */
         async deleteRuleWhitelist(id: string, acceptLanguage?: DeleteRuleWhitelistAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeletedWhitelistRuleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteRuleWhitelist(id, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['AntifraudApi.deleteRuleWhitelist']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AntifraudApi.deleteRuleWhitelist']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Return all rules
@@ -380,9 +372,9 @@ export const AntifraudApiFp = function(configuration?: Configuration) {
          */
         async getRuleBlacklist(acceptLanguage?: GetRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RiskRulesList>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRuleBlacklist(acceptLanguage, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['AntifraudApi.getRuleBlacklist']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AntifraudApi.getRuleBlacklist']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Return all rules
@@ -393,9 +385,9 @@ export const AntifraudApiFp = function(configuration?: Configuration) {
          */
         async getRuleWhitelist(acceptLanguage?: GetRuleWhitelistAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RiskRulesList>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRuleWhitelist(acceptLanguage, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['AntifraudApi.getRuleWhitelist']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AntifraudApi.getRuleWhitelist']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -415,7 +407,7 @@ export const AntifraudApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRuleBlacklist(createRiskRulesData: CreateRiskRulesData, acceptLanguage?: CreateRuleBlacklistAcceptLanguageEnum, options?: any): AxiosPromise<BlacklistRuleResponse> {
+        createRuleBlacklist(createRiskRulesData: CreateRiskRulesData, acceptLanguage?: CreateRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<BlacklistRuleResponse> {
             return localVarFp.createRuleBlacklist(createRiskRulesData, acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -426,7 +418,7 @@ export const AntifraudApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRuleWhitelist(acceptLanguage?: CreateRuleWhitelistAcceptLanguageEnum, createRiskRulesData?: CreateRiskRulesData, options?: any): AxiosPromise<WhitelistlistRuleResponse> {
+        createRuleWhitelist(acceptLanguage?: CreateRuleWhitelistAcceptLanguageEnum, createRiskRulesData?: CreateRiskRulesData, options?: RawAxiosRequestConfig): AxiosPromise<WhitelistlistRuleResponse> {
             return localVarFp.createRuleWhitelist(acceptLanguage, createRiskRulesData, options).then((request) => request(axios, basePath));
         },
         /**
@@ -438,7 +430,7 @@ export const AntifraudApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteRuleBlacklist(id: string, acceptLanguage?: DeleteRuleBlacklistAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<DeletedBlacklistRuleResponse> {
+        deleteRuleBlacklist(id: string, acceptLanguage?: DeleteRuleBlacklistAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<DeletedBlacklistRuleResponse> {
             return localVarFp.deleteRuleBlacklist(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -450,7 +442,7 @@ export const AntifraudApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteRuleWhitelist(id: string, acceptLanguage?: DeleteRuleWhitelistAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<DeletedWhitelistRuleResponse> {
+        deleteRuleWhitelist(id: string, acceptLanguage?: DeleteRuleWhitelistAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<DeletedWhitelistRuleResponse> {
             return localVarFp.deleteRuleWhitelist(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -460,7 +452,7 @@ export const AntifraudApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRuleBlacklist(acceptLanguage?: GetRuleBlacklistAcceptLanguageEnum, options?: any): AxiosPromise<RiskRulesList> {
+        getRuleBlacklist(acceptLanguage?: GetRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<RiskRulesList> {
             return localVarFp.getRuleBlacklist(acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -470,7 +462,7 @@ export const AntifraudApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRuleWhitelist(acceptLanguage?: GetRuleWhitelistAcceptLanguageEnum, options?: any): AxiosPromise<RiskRulesList> {
+        getRuleWhitelist(acceptLanguage?: GetRuleWhitelistAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<RiskRulesList> {
             return localVarFp.getRuleWhitelist(acceptLanguage, options).then((request) => request(axios, basePath));
         },
     };

@@ -15,18 +15,18 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { EventResponse } from './event-response';
+import type { EventResponse } from './event-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Page } from './page';
+import type { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Pagination } from './pagination';
+import type { Pagination } from './pagination';
 
 /**
  * @type GetEventsResponse
  * @export
  */
-export type GetEventsResponse = Page & Pagination;
+export type GetEventsResponse = EventResponse & Page & Pagination;
 
 

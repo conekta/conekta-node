@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PaymentMethodResponse } from './payment-method-response';
+import type { PaymentMethodResponse } from './payment-method-response';
 
 /**
  * @type PaymentMethodSpeiRecurrent

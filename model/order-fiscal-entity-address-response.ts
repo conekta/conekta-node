@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { FiscalEntityAddress } from './fiscal-entity-address';
+import type { FiscalEntityAddress } from './fiscal-entity-address';
 
 /**
  * @type OrderFiscalEntityAddressResponse

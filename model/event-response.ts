@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookLog } from './webhook-log';
+import type { WebhookLog } from './webhook-log';
 
 /**
  * event model

@@ -15,31 +15,31 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargeRequest } from './charge-request';
+import type { ChargeRequest } from './charge-request';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CheckoutRequest } from './checkout-request';
+import type { CheckoutRequest } from './checkout-request';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CustomerShippingContacts } from './customer-shipping-contacts';
+import type { CustomerShippingContacts } from './customer-shipping-contacts';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderDiscountLinesRequest } from './order-discount-lines-request';
+import type { OrderDiscountLinesRequest } from './order-discount-lines-request';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderFiscalEntityRequest } from './order-fiscal-entity-request';
+import type { OrderFiscalEntityRequest } from './order-fiscal-entity-request';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderRequestCustomerInfo } from './order-request-customer-info';
+import type { OrderRequestCustomerInfo } from './order-request-customer-info';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderTaxRequest } from './order-tax-request';
+import type { OrderTaxRequest } from './order-tax-request';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Product } from './product';
+import type { Product } from './product';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ShippingRequest } from './shipping-request';
+import type { ShippingRequest } from './shipping-request';
 
 /**
  * a order

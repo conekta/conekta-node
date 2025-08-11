@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CustomerAddress } from './customer-address';
+import type { CustomerAddress } from './customer-address';
 
 /**
  * 

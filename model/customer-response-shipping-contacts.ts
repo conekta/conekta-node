@@ -15,15 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CustomerShippingContactsDataResponse } from './customer-shipping-contacts-data-response';
+import type { CustomerShippingContactsDataResponse } from './customer-shipping-contacts-data-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Pagination } from './pagination';
+import type { Pagination } from './pagination';
 
 /**
  * @type CustomerResponseShippingContacts
  * @export
  */
-export type CustomerResponseShippingContacts = Pagination;
+export type CustomerResponseShippingContacts = CustomerShippingContactsDataResponse & Pagination;
 
 

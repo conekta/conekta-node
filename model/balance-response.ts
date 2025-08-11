@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { BalanceCommonField } from './balance-common-field';
+import type { BalanceCommonField } from './balance-common-field';
 
 /**
  * balance model

@@ -20,13 +20,13 @@ import globalAxios from 'axios';
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { ModelError } from '../model';
+import type { ModelError } from '../model';
 // @ts-ignore
-import { Token } from '../model';
+import type { Token } from '../model';
 // @ts-ignore
-import { TokenResponse } from '../model';
+import type { TokenResponse } from '../model';
 /**
  * TokensApi - axios parameter creator
  * @export
@@ -60,14 +60,13 @@ export const TokensApiAxiosParamCreator = function (configuration?: Configuratio
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -98,9 +97,9 @@ export const TokensApiFp = function(configuration?: Configuration) {
          */
         async createToken(token: Token, acceptLanguage?: CreateTokenAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createToken(token, acceptLanguage, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['TokensApi.createToken']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TokensApi.createToken']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -120,7 +119,7 @@ export const TokensApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createToken(token: Token, acceptLanguage?: CreateTokenAcceptLanguageEnum, options?: any): AxiosPromise<TokenResponse> {
+        createToken(token: Token, acceptLanguage?: CreateTokenAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<TokenResponse> {
             return localVarFp.createToken(token, acceptLanguage, options).then((request) => request(axios, basePath));
         },
     };

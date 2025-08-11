@@ -20,11 +20,11 @@ import globalAxios from 'axios';
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { BalanceResponse } from '../model';
+import type { BalanceResponse } from '../model';
 // @ts-ignore
-import { ModelError } from '../model';
+import type { ModelError } from '../model';
 /**
  * BalancesApi - axios parameter creator
  * @export
@@ -55,12 +55,11 @@ export const BalancesApiAxiosParamCreator = function (configuration?: Configurat
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -89,9 +88,9 @@ export const BalancesApiFp = function(configuration?: Configuration) {
          */
         async getBalance(acceptLanguage?: GetBalanceAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BalanceResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getBalance(acceptLanguage, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['BalancesApi.getBalance']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BalancesApi.getBalance']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -110,7 +109,7 @@ export const BalancesApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getBalance(acceptLanguage?: GetBalanceAcceptLanguageEnum, options?: any): AxiosPromise<BalanceResponse> {
+        getBalance(acceptLanguage?: GetBalanceAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<BalanceResponse> {
             return localVarFp.getBalance(acceptLanguage, options).then((request) => request(axios, basePath));
         },
     };

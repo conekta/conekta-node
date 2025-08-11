@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderResponse } from './order-response';
+import type { OrderResponse } from './order-response';
 
 /**
  * 

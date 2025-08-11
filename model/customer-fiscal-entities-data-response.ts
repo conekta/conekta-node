@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CustomerAddress } from './customer-address';
+import type { CustomerAddress } from './customer-address';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CustomerFiscalEntitiesRequest } from './customer-fiscal-entities-request';
+import type { CustomerFiscalEntitiesRequest } from './customer-fiscal-entities-request';
 
 /**
  * @type CustomerFiscalEntitiesDataResponse

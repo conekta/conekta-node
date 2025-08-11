@@ -20,19 +20,65 @@ import globalAxios from 'axios';
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { CompanyResponse } from '../model';
+import type { CompanyDocumentRequest } from '../model';
 // @ts-ignore
-import { GetCompaniesResponse } from '../model';
+import type { CompanyDocumentResponse } from '../model';
 // @ts-ignore
-import { ModelError } from '../model';
+import type { CompanyResponse } from '../model';
+// @ts-ignore
+import type { CreateCompanyRequest } from '../model';
+// @ts-ignore
+import type { GetCompaniesResponse } from '../model';
+// @ts-ignore
+import type { ModelError } from '../model';
 /**
  * CompaniesApi - axios parameter creator
  * @export
  */
 export const CompaniesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * Create a new company.
+         * @summary Create Company
+         * @param {CreateCompanyRequest} createCompanyRequest Company data
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createCompany: async (createCompanyRequest: CreateCompanyRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'createCompanyRequest' is not null or undefined
+            assertParamExists('createCompany', 'createCompanyRequest', createCompanyRequest)
+            const localVarPath = `/companies`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createCompanyRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * Consume the list of child companies.  This is used for holding companies with several child entities.
          * @summary Get List of Companies
@@ -77,12 +123,11 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
                 localVarQueryParameter['previous'] = previous;
             }
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -120,15 +165,152 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a list of documents associated with a specific company.
+         * @summary Get Company Documents
+         * @param {string} companyId The unique identifier of the company.
+         * @param {GetCompanyDocumentsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCompanyDocuments: async (companyId: string, acceptLanguage?: GetCompanyDocumentsAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getCompanyDocuments', 'companyId', companyId)
+            const localVarPath = `/companies/{company_id}/documents`
+                .replace(`{${"company_id"}}`, encodeURIComponent(String(companyId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates an existing document associated with a specific company.
+         * @summary Update Company Document
+         * @param {string} companyId The unique identifier of the company.
+         * @param {CompanyDocumentRequest} companyDocumentRequest Document information to update.
+         * @param {UpdateCompanyDocumentAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateCompanyDocument: async (companyId: string, companyDocumentRequest: CompanyDocumentRequest, acceptLanguage?: UpdateCompanyDocumentAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('updateCompanyDocument', 'companyId', companyId)
+            // verify required parameter 'companyDocumentRequest' is not null or undefined
+            assertParamExists('updateCompanyDocument', 'companyDocumentRequest', companyDocumentRequest)
+            const localVarPath = `/companies/{company_id}/document`
+                .replace(`{${"company_id"}}`, encodeURIComponent(String(companyId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(companyDocumentRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Uploads a document associated with a specific company.
+         * @summary Upload Company Document
+         * @param {string} companyId The unique identifier of the company.
+         * @param {CompanyDocumentRequest} companyDocumentRequest Document information to upload.
+         * @param {UploadCompanyDocumentAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        uploadCompanyDocument: async (companyId: string, companyDocumentRequest: CompanyDocumentRequest, acceptLanguage?: UploadCompanyDocumentAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('uploadCompanyDocument', 'companyId', companyId)
+            // verify required parameter 'companyDocumentRequest' is not null or undefined
+            assertParamExists('uploadCompanyDocument', 'companyDocumentRequest', companyDocumentRequest)
+            const localVarPath = `/companies/{company_id}/document`
+                .replace(`{${"company_id"}}`, encodeURIComponent(String(companyId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(companyDocumentRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -146,6 +328,19 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = CompaniesApiAxiosParamCreator(configuration)
     return {
         /**
+         * Create a new company.
+         * @summary Create Company
+         * @param {CreateCompanyRequest} createCompanyRequest Company data
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createCompany(createCompanyRequest: CreateCompanyRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CompanyResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createCompany(createCompanyRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.createCompany']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Consume the list of child companies.  This is used for holding companies with several child entities.
          * @summary Get List of Companies
          * @param {GetCompaniesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
@@ -158,9 +353,9 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
          */
         async getCompanies(acceptLanguage?: GetCompaniesAcceptLanguageEnum, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCompaniesResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCompanies(acceptLanguage, limit, search, next, previous, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CompaniesApi.getCompanies']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.getCompanies']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -172,9 +367,53 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
          */
         async getCompany(id: string, acceptLanguage?: GetCompanyAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CompanyResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCompany(id, acceptLanguage, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CompaniesApi.getCompany']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.getCompany']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieve a list of documents associated with a specific company.
+         * @summary Get Company Documents
+         * @param {string} companyId The unique identifier of the company.
+         * @param {GetCompanyDocumentsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getCompanyDocuments(companyId: string, acceptLanguage?: GetCompanyDocumentsAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CompanyDocumentResponse>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCompanyDocuments(companyId, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.getCompanyDocuments']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Updates an existing document associated with a specific company.
+         * @summary Update Company Document
+         * @param {string} companyId The unique identifier of the company.
+         * @param {CompanyDocumentRequest} companyDocumentRequest Document information to update.
+         * @param {UpdateCompanyDocumentAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateCompanyDocument(companyId: string, companyDocumentRequest: CompanyDocumentRequest, acceptLanguage?: UpdateCompanyDocumentAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CompanyDocumentResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateCompanyDocument(companyId, companyDocumentRequest, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.updateCompanyDocument']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Uploads a document associated with a specific company.
+         * @summary Upload Company Document
+         * @param {string} companyId The unique identifier of the company.
+         * @param {CompanyDocumentRequest} companyDocumentRequest Document information to upload.
+         * @param {UploadCompanyDocumentAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async uploadCompanyDocument(companyId: string, companyDocumentRequest: CompanyDocumentRequest, acceptLanguage?: UploadCompanyDocumentAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CompanyDocumentResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.uploadCompanyDocument(companyId, companyDocumentRequest, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.uploadCompanyDocument']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -187,6 +426,16 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
     const localVarFp = CompaniesApiFp(configuration)
     return {
         /**
+         * Create a new company.
+         * @summary Create Company
+         * @param {CreateCompanyRequest} createCompanyRequest Company data
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createCompany(createCompanyRequest: CreateCompanyRequest, options?: RawAxiosRequestConfig): AxiosPromise<CompanyResponse> {
+            return localVarFp.createCompany(createCompanyRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Consume the list of child companies.  This is used for holding companies with several child entities.
          * @summary Get List of Companies
          * @param {GetCompaniesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
@@ -197,7 +446,7 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCompanies(acceptLanguage?: GetCompaniesAcceptLanguageEnum, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<GetCompaniesResponse> {
+        getCompanies(acceptLanguage?: GetCompaniesAcceptLanguageEnum, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetCompaniesResponse> {
             return localVarFp.getCompanies(acceptLanguage, limit, search, next, previous, options).then((request) => request(axios, basePath));
         },
         /**
@@ -208,8 +457,43 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCompany(id: string, acceptLanguage?: GetCompanyAcceptLanguageEnum, options?: any): AxiosPromise<CompanyResponse> {
+        getCompany(id: string, acceptLanguage?: GetCompanyAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<CompanyResponse> {
             return localVarFp.getCompany(id, acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve a list of documents associated with a specific company.
+         * @summary Get Company Documents
+         * @param {string} companyId The unique identifier of the company.
+         * @param {GetCompanyDocumentsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCompanyDocuments(companyId: string, acceptLanguage?: GetCompanyDocumentsAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<Array<CompanyDocumentResponse>> {
+            return localVarFp.getCompanyDocuments(companyId, acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Updates an existing document associated with a specific company.
+         * @summary Update Company Document
+         * @param {string} companyId The unique identifier of the company.
+         * @param {CompanyDocumentRequest} companyDocumentRequest Document information to update.
+         * @param {UpdateCompanyDocumentAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateCompanyDocument(companyId: string, companyDocumentRequest: CompanyDocumentRequest, acceptLanguage?: UpdateCompanyDocumentAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<CompanyDocumentResponse> {
+            return localVarFp.updateCompanyDocument(companyId, companyDocumentRequest, acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Uploads a document associated with a specific company.
+         * @summary Upload Company Document
+         * @param {string} companyId The unique identifier of the company.
+         * @param {CompanyDocumentRequest} companyDocumentRequest Document information to upload.
+         * @param {UploadCompanyDocumentAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        uploadCompanyDocument(companyId: string, companyDocumentRequest: CompanyDocumentRequest, acceptLanguage?: UploadCompanyDocumentAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<CompanyDocumentResponse> {
+            return localVarFp.uploadCompanyDocument(companyId, companyDocumentRequest, acceptLanguage, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -220,6 +504,16 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
  * @interface CompaniesApi
  */
 export interface CompaniesApiInterface {
+    /**
+     * Create a new company.
+     * @summary Create Company
+     * @param {CreateCompanyRequest} createCompanyRequest Company data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompaniesApiInterface
+     */
+    createCompany(createCompanyRequest: CreateCompanyRequest, options?: RawAxiosRequestConfig): AxiosPromise<CompanyResponse>;
+
     /**
      * Consume the list of child companies.  This is used for holding companies with several child entities.
      * @summary Get List of Companies
@@ -245,6 +539,41 @@ export interface CompaniesApiInterface {
      */
     getCompany(id: string, acceptLanguage?: GetCompanyAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<CompanyResponse>;
 
+    /**
+     * Retrieve a list of documents associated with a specific company.
+     * @summary Get Company Documents
+     * @param {string} companyId The unique identifier of the company.
+     * @param {GetCompanyDocumentsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompaniesApiInterface
+     */
+    getCompanyDocuments(companyId: string, acceptLanguage?: GetCompanyDocumentsAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<Array<CompanyDocumentResponse>>;
+
+    /**
+     * Updates an existing document associated with a specific company.
+     * @summary Update Company Document
+     * @param {string} companyId The unique identifier of the company.
+     * @param {CompanyDocumentRequest} companyDocumentRequest Document information to update.
+     * @param {UpdateCompanyDocumentAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompaniesApiInterface
+     */
+    updateCompanyDocument(companyId: string, companyDocumentRequest: CompanyDocumentRequest, acceptLanguage?: UpdateCompanyDocumentAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<CompanyDocumentResponse>;
+
+    /**
+     * Uploads a document associated with a specific company.
+     * @summary Upload Company Document
+     * @param {string} companyId The unique identifier of the company.
+     * @param {CompanyDocumentRequest} companyDocumentRequest Document information to upload.
+     * @param {UploadCompanyDocumentAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompaniesApiInterface
+     */
+    uploadCompanyDocument(companyId: string, companyDocumentRequest: CompanyDocumentRequest, acceptLanguage?: UploadCompanyDocumentAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<CompanyDocumentResponse>;
+
 }
 
 /**
@@ -254,6 +583,18 @@ export interface CompaniesApiInterface {
  * @extends {BaseAPI}
  */
 export class CompaniesApi extends BaseAPI implements CompaniesApiInterface {
+    /**
+     * Create a new company.
+     * @summary Create Company
+     * @param {CreateCompanyRequest} createCompanyRequest Company data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompaniesApi
+     */
+    public createCompany(createCompanyRequest: CreateCompanyRequest, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).createCompany(createCompanyRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Consume the list of child companies.  This is used for holding companies with several child entities.
      * @summary Get List of Companies
@@ -282,6 +623,47 @@ export class CompaniesApi extends BaseAPI implements CompaniesApiInterface {
     public getCompany(id: string, acceptLanguage?: GetCompanyAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return CompaniesApiFp(this.configuration).getCompany(id, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
+
+    /**
+     * Retrieve a list of documents associated with a specific company.
+     * @summary Get Company Documents
+     * @param {string} companyId The unique identifier of the company.
+     * @param {GetCompanyDocumentsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompaniesApi
+     */
+    public getCompanyDocuments(companyId: string, acceptLanguage?: GetCompanyDocumentsAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).getCompanyDocuments(companyId, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Updates an existing document associated with a specific company.
+     * @summary Update Company Document
+     * @param {string} companyId The unique identifier of the company.
+     * @param {CompanyDocumentRequest} companyDocumentRequest Document information to update.
+     * @param {UpdateCompanyDocumentAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompaniesApi
+     */
+    public updateCompanyDocument(companyId: string, companyDocumentRequest: CompanyDocumentRequest, acceptLanguage?: UpdateCompanyDocumentAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).updateCompanyDocument(companyId, companyDocumentRequest, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Uploads a document associated with a specific company.
+     * @summary Upload Company Document
+     * @param {string} companyId The unique identifier of the company.
+     * @param {CompanyDocumentRequest} companyDocumentRequest Document information to upload.
+     * @param {UploadCompanyDocumentAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompaniesApi
+     */
+    public uploadCompanyDocument(companyId: string, companyDocumentRequest: CompanyDocumentRequest, acceptLanguage?: UploadCompanyDocumentAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).uploadCompanyDocument(companyId, companyDocumentRequest, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
 }
 
 /**
@@ -300,3 +682,27 @@ export const GetCompanyAcceptLanguageEnum = {
     en: 'en'
 } as const;
 export type GetCompanyAcceptLanguageEnum = typeof GetCompanyAcceptLanguageEnum[keyof typeof GetCompanyAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const GetCompanyDocumentsAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type GetCompanyDocumentsAcceptLanguageEnum = typeof GetCompanyDocumentsAcceptLanguageEnum[keyof typeof GetCompanyDocumentsAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const UpdateCompanyDocumentAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type UpdateCompanyDocumentAcceptLanguageEnum = typeof UpdateCompanyDocumentAcceptLanguageEnum[keyof typeof UpdateCompanyDocumentAcceptLanguageEnum];
+/**
+ * @export
+ */
+export const UploadCompanyDocumentAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en'
+} as const;
+export type UploadCompanyDocumentAcceptLanguageEnum = typeof UploadCompanyDocumentAcceptLanguageEnum[keyof typeof UploadCompanyDocumentAcceptLanguageEnum];

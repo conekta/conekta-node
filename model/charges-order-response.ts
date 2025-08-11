@@ -15,16 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ChargesOrderResponseAllOfData } from './charges-order-response-all-of-data';
+import type { ChargesOrderResponseAllOfData } from './charges-order-response-all-of-data';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Pagination } from './pagination';
+import type { Pagination } from './pagination';
 
 /**
  * @type ChargesOrderResponse
  * The charges associated with the order
  * @export
  */
-export type ChargesOrderResponse = Pagination;
+export type ChargesOrderResponse = ChargesOrderResponseAllOfData & Pagination;
 
 

@@ -15,18 +15,18 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Page } from './page';
+import type { Page } from './page';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Pagination } from './pagination';
+import type { Pagination } from './pagination';
 // May contain unused imports in some cases
 // @ts-ignore
-import { PayoutOrderResponse } from './payout-order-response';
+import type { PayoutOrderResponse } from './payout-order-response';
 
 /**
  * @type PayoutOrdersResponse
  * @export
  */
-export type PayoutOrdersResponse = Page & Pagination;
+export type PayoutOrdersResponse = PayoutOrderResponse & Page & Pagination;
 
 

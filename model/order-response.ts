@@ -15,31 +15,31 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderChannelResponse } from './order-channel-response';
+import type { OrderChannelResponse } from './order-channel-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderChargesResponse } from './order-charges-response';
+import type { OrderChargesResponse } from './order-charges-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderDiscountLinesResponse } from './order-discount-lines-response';
+import type { OrderDiscountLinesResponse } from './order-discount-lines-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderFiscalEntityResponse } from './order-fiscal-entity-response';
+import type { OrderFiscalEntityResponse } from './order-fiscal-entity-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderNextActionResponse } from './order-next-action-response';
+import type { OrderNextActionResponse } from './order-next-action-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderResponseCheckout } from './order-response-checkout';
+import type { OrderResponseCheckout } from './order-response-checkout';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderResponseCustomerInfo } from './order-response-customer-info';
+import type { OrderResponseCustomerInfo } from './order-response-customer-info';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderResponseProducts } from './order-response-products';
+import type { OrderResponseProducts } from './order-response-products';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderResponseShippingContact } from './order-response-shipping-contact';
+import type { OrderResponseShippingContact } from './order-response-shipping-contact';
 
 /**
  * order response

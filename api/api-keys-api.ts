@@ -20,21 +20,21 @@ import globalAxios from 'axios';
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { ApiKeyCreateResponse } from '../model';
+import type { ApiKeyCreateResponse } from '../model';
 // @ts-ignore
-import { ApiKeyRequest } from '../model';
+import type { ApiKeyRequest } from '../model';
 // @ts-ignore
-import { ApiKeyResponse } from '../model';
+import type { ApiKeyResponse } from '../model';
 // @ts-ignore
-import { ApiKeyUpdateRequest } from '../model';
+import type { ApiKeyUpdateRequest } from '../model';
 // @ts-ignore
-import { DeleteApiKeysResponse } from '../model';
+import type { DeleteApiKeysResponse } from '../model';
 // @ts-ignore
-import { GetApiKeysResponse } from '../model';
+import type { GetApiKeysResponse } from '../model';
 // @ts-ignore
-import { ModelError } from '../model';
+import type { ModelError } from '../model';
 /**
  * ApiKeysApi - axios parameter creator
  * @export
@@ -69,18 +69,16 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -119,12 +117,11 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -163,16 +160,14 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -227,16 +222,14 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['search'] = search;
             }
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -275,14 +268,13 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -314,9 +306,9 @@ export const ApiKeysApiFp = function(configuration?: Configuration) {
          */
         async createApiKey(apiKeyRequest: ApiKeyRequest, acceptLanguage?: CreateApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiKeyCreateResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createApiKey(apiKeyRequest, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ApiKeysApi.createApiKey']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ApiKeysApi.createApiKey']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Deletes a api key that corresponds to a api key ID
@@ -328,9 +320,9 @@ export const ApiKeysApiFp = function(configuration?: Configuration) {
          */
         async deleteApiKey(id: string, acceptLanguage?: DeleteApiKeyAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteApiKeysResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteApiKey(id, acceptLanguage, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ApiKeysApi.deleteApiKey']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ApiKeysApi.deleteApiKey']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Gets a api key that corresponds to a api key ID
@@ -343,9 +335,9 @@ export const ApiKeysApiFp = function(configuration?: Configuration) {
          */
         async getApiKey(id: string, acceptLanguage?: GetApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiKeyResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getApiKey(id, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ApiKeysApi.getApiKey']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ApiKeysApi.getApiKey']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Consume the list of api keys you have
@@ -361,9 +353,9 @@ export const ApiKeysApiFp = function(configuration?: Configuration) {
          */
         async getApiKeys(acceptLanguage?: GetApiKeysAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetApiKeysResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getApiKeys(acceptLanguage, xChildCompanyId, limit, next, previous, search, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ApiKeysApi.getApiKeys']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ApiKeysApi.getApiKeys']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Update an existing api key
@@ -376,9 +368,9 @@ export const ApiKeysApiFp = function(configuration?: Configuration) {
          */
         async updateApiKey(id: string, acceptLanguage?: UpdateApiKeyAcceptLanguageEnum, apiKeyUpdateRequest?: ApiKeyUpdateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiKeyResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateApiKey(id, acceptLanguage, apiKeyUpdateRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ApiKeysApi.updateApiKey']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ApiKeysApi.updateApiKey']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -399,7 +391,7 @@ export const ApiKeysApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createApiKey(apiKeyRequest: ApiKeyRequest, acceptLanguage?: CreateApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<ApiKeyCreateResponse> {
+        createApiKey(apiKeyRequest: ApiKeyRequest, acceptLanguage?: CreateApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiKeyCreateResponse> {
             return localVarFp.createApiKey(apiKeyRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -410,7 +402,7 @@ export const ApiKeysApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteApiKey(id: string, acceptLanguage?: DeleteApiKeyAcceptLanguageEnum, options?: any): AxiosPromise<DeleteApiKeysResponse> {
+        deleteApiKey(id: string, acceptLanguage?: DeleteApiKeyAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<DeleteApiKeysResponse> {
             return localVarFp.deleteApiKey(id, acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -422,7 +414,7 @@ export const ApiKeysApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getApiKey(id: string, acceptLanguage?: GetApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<ApiKeyResponse> {
+        getApiKey(id: string, acceptLanguage?: GetApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiKeyResponse> {
             return localVarFp.getApiKey(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -437,7 +429,7 @@ export const ApiKeysApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getApiKeys(acceptLanguage?: GetApiKeysAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: any): AxiosPromise<GetApiKeysResponse> {
+        getApiKeys(acceptLanguage?: GetApiKeysAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetApiKeysResponse> {
             return localVarFp.getApiKeys(acceptLanguage, xChildCompanyId, limit, next, previous, search, options).then((request) => request(axios, basePath));
         },
         /**
@@ -449,7 +441,7 @@ export const ApiKeysApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateApiKey(id: string, acceptLanguage?: UpdateApiKeyAcceptLanguageEnum, apiKeyUpdateRequest?: ApiKeyUpdateRequest, options?: any): AxiosPromise<ApiKeyResponse> {
+        updateApiKey(id: string, acceptLanguage?: UpdateApiKeyAcceptLanguageEnum, apiKeyUpdateRequest?: ApiKeyUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiKeyResponse> {
             return localVarFp.updateApiKey(id, acceptLanguage, apiKeyUpdateRequest, options).then((request) => request(axios, basePath));
         },
     };

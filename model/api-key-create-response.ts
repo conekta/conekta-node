@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ApiKeyResponse } from './api-key-response';
+import type { ApiKeyResponse } from './api-key-response';
 
 /**
  * @type ApiKeyCreateResponse

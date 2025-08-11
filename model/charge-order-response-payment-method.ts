@@ -15,16 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PaymentMethodBankTransfer } from './payment-method-bank-transfer';
+import type { PaymentMethodBankTransfer } from './payment-method-bank-transfer';
 // May contain unused imports in some cases
 // @ts-ignore
-import { PaymentMethodBnplPayment } from './payment-method-bnpl-payment';
+import type { PaymentMethodBnplPayment } from './payment-method-bnpl-payment';
 // May contain unused imports in some cases
 // @ts-ignore
-import { PaymentMethodCard } from './payment-method-card';
+import type { PaymentMethodCard } from './payment-method-card';
 // May contain unused imports in some cases
 // @ts-ignore
-import { PaymentMethodCash } from './payment-method-cash';
+import type { PaymentMethodCash } from './payment-method-cash';
 
 /**
  * @type ChargeOrderResponsePaymentMethod

@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { DetailsError } from './details-error';
+import type { DetailsError } from './details-error';
 
 /**
  * 

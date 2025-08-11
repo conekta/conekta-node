@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CustomerInfoJustCustomerId } from './customer-info-just-customer-id';
+import type { CustomerInfoJustCustomerId } from './customer-info-just-customer-id';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Payout } from './payout';
+import type { Payout } from './payout';
 
 /**
  * a payout order

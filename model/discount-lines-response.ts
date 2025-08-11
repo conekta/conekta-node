@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderDiscountLinesRequest } from './order-discount-lines-request';
+import type { OrderDiscountLinesRequest } from './order-discount-lines-request';
 
 /**
  * @type DiscountLinesResponse

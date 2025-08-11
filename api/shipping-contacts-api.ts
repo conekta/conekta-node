@@ -20,15 +20,15 @@ import globalAxios from 'axios';
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { CustomerShippingContacts } from '../model';
+import type { CustomerShippingContacts } from '../model';
 // @ts-ignore
-import { CustomerShippingContactsResponse } from '../model';
+import type { CustomerShippingContactsResponse } from '../model';
 // @ts-ignore
-import { CustomerUpdateShippingContacts } from '../model';
+import type { CustomerUpdateShippingContacts } from '../model';
 // @ts-ignore
-import { ModelError } from '../model';
+import type { ModelError } from '../model';
 /**
  * ShippingContactsApi - axios parameter creator
  * @export
@@ -67,18 +67,16 @@ export const ShippingContactsApiAxiosParamCreator = function (configuration?: Co
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -122,16 +120,14 @@ export const ShippingContactsApiAxiosParamCreator = function (configuration?: Co
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -177,18 +173,16 @@ export const ShippingContactsApiAxiosParamCreator = function (configuration?: Co
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -221,9 +215,9 @@ export const ShippingContactsApiFp = function(configuration?: Configuration) {
          */
         async createCustomerShippingContacts(id: string, customerShippingContacts: CustomerShippingContacts, acceptLanguage?: CreateCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CustomerShippingContactsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createCustomerShippingContacts(id, customerShippingContacts, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ShippingContactsApi.createCustomerShippingContacts']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ShippingContactsApi.createCustomerShippingContacts']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Delete shipping contact that corresponds to a customer ID.
@@ -237,9 +231,9 @@ export const ShippingContactsApiFp = function(configuration?: Configuration) {
          */
         async deleteCustomerShippingContacts(id: string, shippingContactsId: string, acceptLanguage?: DeleteCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CustomerShippingContactsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteCustomerShippingContacts(id, shippingContactsId, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ShippingContactsApi.deleteCustomerShippingContacts']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ShippingContactsApi.deleteCustomerShippingContacts']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Update shipping contact that corresponds to a customer ID.
@@ -254,9 +248,9 @@ export const ShippingContactsApiFp = function(configuration?: Configuration) {
          */
         async updateCustomerShippingContacts(id: string, shippingContactsId: string, customerUpdateShippingContacts: CustomerUpdateShippingContacts, acceptLanguage?: UpdateCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CustomerShippingContactsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateCustomerShippingContacts(id, shippingContactsId, customerUpdateShippingContacts, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ShippingContactsApi.updateCustomerShippingContacts']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ShippingContactsApi.updateCustomerShippingContacts']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -278,7 +272,7 @@ export const ShippingContactsApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCustomerShippingContacts(id: string, customerShippingContacts: CustomerShippingContacts, acceptLanguage?: CreateCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<CustomerShippingContactsResponse> {
+        createCustomerShippingContacts(id: string, customerShippingContacts: CustomerShippingContacts, acceptLanguage?: CreateCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CustomerShippingContactsResponse> {
             return localVarFp.createCustomerShippingContacts(id, customerShippingContacts, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -291,7 +285,7 @@ export const ShippingContactsApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCustomerShippingContacts(id: string, shippingContactsId: string, acceptLanguage?: DeleteCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<CustomerShippingContactsResponse> {
+        deleteCustomerShippingContacts(id: string, shippingContactsId: string, acceptLanguage?: DeleteCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CustomerShippingContactsResponse> {
             return localVarFp.deleteCustomerShippingContacts(id, shippingContactsId, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -305,7 +299,7 @@ export const ShippingContactsApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCustomerShippingContacts(id: string, shippingContactsId: string, customerUpdateShippingContacts: CustomerUpdateShippingContacts, acceptLanguage?: UpdateCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<CustomerShippingContactsResponse> {
+        updateCustomerShippingContacts(id: string, shippingContactsId: string, customerUpdateShippingContacts: CustomerUpdateShippingContacts, acceptLanguage?: UpdateCustomerShippingContactsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CustomerShippingContactsResponse> {
             return localVarFp.updateCustomerShippingContacts(id, shippingContactsId, customerUpdateShippingContacts, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
     };

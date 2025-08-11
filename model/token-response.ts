@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { TokenResponseCheckout } from './token-response-checkout';
+import type { TokenResponseCheckout } from './token-response-checkout';
 
 /**
  * token response

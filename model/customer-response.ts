@@ -15,19 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CustomerAntifraudInfoResponse } from './customer-antifraud-info-response';
+import type { CustomerAntifraudInfoResponse } from './customer-antifraud-info-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CustomerFiscalEntitiesResponse } from './customer-fiscal-entities-response';
+import type { CustomerFiscalEntitiesResponse } from './customer-fiscal-entities-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CustomerPaymentMethodsResponse } from './customer-payment-methods-response';
+import type { CustomerPaymentMethodsResponse } from './customer-payment-methods-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CustomerResponseShippingContacts } from './customer-response-shipping-contacts';
+import type { CustomerResponseShippingContacts } from './customer-response-shipping-contacts';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SubscriptionResponse } from './subscription-response';
+import type { SubscriptionResponse } from './subscription-response';
 
 /**
  * customer response

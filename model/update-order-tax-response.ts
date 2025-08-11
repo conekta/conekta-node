@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderTaxRequest } from './order-tax-request';
+import type { OrderTaxRequest } from './order-tax-request';
 
 /**
  * @type UpdateOrderTaxResponse

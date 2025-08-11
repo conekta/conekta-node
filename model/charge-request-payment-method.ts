@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PaymentMethodBnplRequest } from './payment-method-bnpl-request';
+import type { PaymentMethodBnplRequest } from './payment-method-bnpl-request';
 // May contain unused imports in some cases
 // @ts-ignore
-import { PaymentMethodCardRequest } from './payment-method-card-request';
+import type { PaymentMethodCardRequest } from './payment-method-card-request';
 // May contain unused imports in some cases
 // @ts-ignore
-import { PaymentMethodGeneralRequest } from './payment-method-general-request';
+import type { PaymentMethodGeneralRequest } from './payment-method-general-request';
 
 /**
  * @type ChargeRequestPaymentMethod

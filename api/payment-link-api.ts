@@ -20,19 +20,19 @@ import globalAxios from 'axios';
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { Checkout } from '../model';
+import type { Checkout } from '../model';
 // @ts-ignore
-import { CheckoutResponse } from '../model';
+import type { CheckoutResponse } from '../model';
 // @ts-ignore
-import { CheckoutsResponse } from '../model';
+import type { CheckoutsResponse } from '../model';
 // @ts-ignore
-import { EmailCheckoutRequest } from '../model';
+import type { EmailCheckoutRequest } from '../model';
 // @ts-ignore
-import { ModelError } from '../model';
+import type { ModelError } from '../model';
 // @ts-ignore
-import { SmsCheckoutRequest } from '../model';
+import type { SmsCheckoutRequest } from '../model';
 /**
  * PaymentLinkApi - axios parameter creator
  * @export
@@ -68,16 +68,14 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -115,18 +113,16 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -169,18 +165,16 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -220,16 +214,14 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -284,16 +276,14 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
                 localVarQueryParameter['previous'] = previous;
             }
 
+
+    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
-
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -335,18 +325,16 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -378,9 +366,9 @@ export const PaymentLinkApiFp = function(configuration?: Configuration) {
          */
         async cancelCheckout(id: string, acceptLanguage?: CancelCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CheckoutResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.cancelCheckout(id, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['PaymentLinkApi.cancelCheckout']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PaymentLinkApi.cancelCheckout']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -393,9 +381,9 @@ export const PaymentLinkApiFp = function(configuration?: Configuration) {
          */
         async createCheckout(checkout: Checkout, acceptLanguage?: CreateCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CheckoutResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createCheckout(checkout, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['PaymentLinkApi.createCheckout']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PaymentLinkApi.createCheckout']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -409,9 +397,9 @@ export const PaymentLinkApiFp = function(configuration?: Configuration) {
          */
         async emailCheckout(id: string, emailCheckoutRequest: EmailCheckoutRequest, acceptLanguage?: EmailCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CheckoutResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.emailCheckout(id, emailCheckoutRequest, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['PaymentLinkApi.emailCheckout']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PaymentLinkApi.emailCheckout']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -424,9 +412,9 @@ export const PaymentLinkApiFp = function(configuration?: Configuration) {
          */
         async getCheckout(id: string, acceptLanguage?: GetCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CheckoutResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCheckout(id, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['PaymentLinkApi.getCheckout']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PaymentLinkApi.getCheckout']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns a list of links generated by the merchant
@@ -442,9 +430,9 @@ export const PaymentLinkApiFp = function(configuration?: Configuration) {
          */
         async getCheckouts(acceptLanguage?: GetCheckoutsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CheckoutsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCheckouts(acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['PaymentLinkApi.getCheckouts']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PaymentLinkApi.getCheckouts']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -458,9 +446,9 @@ export const PaymentLinkApiFp = function(configuration?: Configuration) {
          */
         async smsCheckout(id: string, smsCheckoutRequest: SmsCheckoutRequest, acceptLanguage?: SmsCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CheckoutResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.smsCheckout(id, smsCheckoutRequest, acceptLanguage, xChildCompanyId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['PaymentLinkApi.smsCheckout']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PaymentLinkApi.smsCheckout']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -481,7 +469,7 @@ export const PaymentLinkApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cancelCheckout(id: string, acceptLanguage?: CancelCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<CheckoutResponse> {
+        cancelCheckout(id: string, acceptLanguage?: CancelCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutResponse> {
             return localVarFp.cancelCheckout(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -493,7 +481,7 @@ export const PaymentLinkApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCheckout(checkout: Checkout, acceptLanguage?: CreateCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<CheckoutResponse> {
+        createCheckout(checkout: Checkout, acceptLanguage?: CreateCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutResponse> {
             return localVarFp.createCheckout(checkout, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -506,7 +494,7 @@ export const PaymentLinkApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        emailCheckout(id: string, emailCheckoutRequest: EmailCheckoutRequest, acceptLanguage?: EmailCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<CheckoutResponse> {
+        emailCheckout(id: string, emailCheckoutRequest: EmailCheckoutRequest, acceptLanguage?: EmailCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutResponse> {
             return localVarFp.emailCheckout(id, emailCheckoutRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -518,7 +506,7 @@ export const PaymentLinkApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCheckout(id: string, acceptLanguage?: GetCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<CheckoutResponse> {
+        getCheckout(id: string, acceptLanguage?: GetCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutResponse> {
             return localVarFp.getCheckout(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -533,7 +521,7 @@ export const PaymentLinkApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCheckouts(acceptLanguage?: GetCheckoutsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: any): AxiosPromise<CheckoutsResponse> {
+        getCheckouts(acceptLanguage?: GetCheckoutsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutsResponse> {
             return localVarFp.getCheckouts(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
         },
         /**
@@ -546,7 +534,7 @@ export const PaymentLinkApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        smsCheckout(id: string, smsCheckoutRequest: SmsCheckoutRequest, acceptLanguage?: SmsCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: any): AxiosPromise<CheckoutResponse> {
+        smsCheckout(id: string, smsCheckoutRequest: SmsCheckoutRequest, acceptLanguage?: SmsCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutResponse> {
             return localVarFp.smsCheckout(id, smsCheckoutRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
     };

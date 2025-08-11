@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PayoutOrderPayoutsItem } from './payout-order-payouts-item';
+import type { PayoutOrderPayoutsItem } from './payout-order-payouts-item';
 // May contain unused imports in some cases
 // @ts-ignore
-import { PayoutOrderResponseCustomerInfo } from './payout-order-response-customer-info';
+import type { PayoutOrderResponseCustomerInfo } from './payout-order-response-customer-info';
 
 /**
  * payout order model response

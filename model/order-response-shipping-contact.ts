@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CustomerShippingContactsResponse } from './customer-shipping-contacts-response';
+import type { CustomerShippingContactsResponse } from './customer-shipping-contacts-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CustomerShippingContactsResponseAddress } from './customer-shipping-contacts-response-address';
+import type { CustomerShippingContactsResponseAddress } from './customer-shipping-contacts-response-address';
 
 /**
  * @type OrderResponseShippingContact

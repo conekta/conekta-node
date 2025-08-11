@@ -15,71 +15,67 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CompanyFiscalInfoResponse } from './company-fiscal-info-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import { CompanyPayoutDestinationResponse } from './company-payout-destination-response';
+import type { CompanyResponseDocumentsInner } from './company-response-documents-inner';
 
 /**
- * Company model
+ * 
  * @export
  * @interface CompanyResponse
  */
 export interface CompanyResponse {
     /**
-     * The child company\'s unique identifier
+     * The unique identifier for the company.
      * @type {string}
      * @memberof CompanyResponse
      */
-    'id'?: string;
+    'id': string;
     /**
-     * The resource\'s creation date (unix timestamp)
-     * @type {number}
-     * @memberof CompanyResponse
-     */
-    'created_at'?: number;
-    /**
-     * The child company\'s name
+     * The name of the company.
      * @type {string}
      * @memberof CompanyResponse
      */
-    'name'?: string;
+    'name': string;
     /**
-     * The resource\'s type
-     * @type {string}
-     * @memberof CompanyResponse
-     */
-    'object'?: CompanyResponseObjectEnum;
-    /**
-     * Id of the parent company
-     * @type {string}
-     * @memberof CompanyResponse
-     */
-    'parent_company_id'?: string;
-    /**
-     * Whether the parent company\'s fiscal data is to be used for liquidation and tax purposes
+     * Indicates if the company is active.
      * @type {boolean}
      * @memberof CompanyResponse
      */
-    'use_parent_fiscal_data'?: boolean;
+    'active': boolean;
     /**
-     * 
-     * @type {CompanyPayoutDestinationResponse}
+     * The current status of the company\'s account.
+     * @type {string}
      * @memberof CompanyResponse
      */
-    'payout_destination'?: CompanyPayoutDestinationResponse;
+    'account_status': string;
     /**
-     * 
-     * @type {CompanyFiscalInfoResponse}
+     * The identifier of the parent company, if any.
+     * @type {string}
      * @memberof CompanyResponse
      */
-    'fiscal_info'?: CompanyFiscalInfoResponse;
+    'parent_company_id'?: string | null;
+    /**
+     * The current status of the company\'s onboarding process.
+     * @type {string}
+     * @memberof CompanyResponse
+     */
+    'onboarding_status': string;
+    /**
+     * A list of documents related to the company.
+     * @type {Array<CompanyResponseDocumentsInner>}
+     * @memberof CompanyResponse
+     */
+    'documents': Array<CompanyResponseDocumentsInner>;
+    /**
+     * Timestamp of when the company was created.
+     * @type {number}
+     * @memberof CompanyResponse
+     */
+    'created_at': number;
+    /**
+     * The type of object, typically \"company\".
+     * @type {string}
+     * @memberof CompanyResponse
+     */
+    'object': string;
 }
-
-export const CompanyResponseObjectEnum = {
-    company: 'company'
-} as const;
-
-export type CompanyResponseObjectEnum = typeof CompanyResponseObjectEnum[keyof typeof CompanyResponseObjectEnum];
-
 
