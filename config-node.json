@@ -35,5 +35,5 @@
   "templateDir": "/local/templates/node",
   "enumPropertyNaming" : "camelCase",
   "paramNaming" : "camelCase",
-  "apiVersion" :"application/vnd.conekta-v2.1.0+json"
+  "apiVersion" :"application/vnd.conekta-v2.2.0+json"
 }
