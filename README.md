@@ -46,8 +46,8 @@ In order to submit http request to Conekta API you need to initialize the client
 ```ts
 import { CustomersApi, Configuration, Customer, CustomerResponse } from "conekta";
 
-const apikey = "key_xxxxx";
-const config = new Configuration({ accessToken: apikey });
+const accessToken = "key_xxxxx";
+const config = new Configuration({ accessToken: accessToken });
 const client = new CustomersApi(config);
 
 const customer: Customer = {
