@@ -15,18 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ChargeResponse } from './charge-response';
+import type { PaymentMethodCashResponse } from './payment-method-cash-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Page } from './page';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Pagination } from './pagination';
+import type { PaymentMethodCashResponseAllOfAgreements } from './payment-method-cash-response-all-of-agreements';
 
 /**
- * @type GetChargesResponse
+ * @type PaymentMethodCashRecurrentResponse
+ * Alias of cash response used when type=cash_recurrent
  * @export
  */
-export type GetChargesResponse = Page & Pagination;
+export type PaymentMethodCashRecurrentResponse = PaymentMethodCashResponse;
 
 

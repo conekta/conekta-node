@@ -22,11 +22,14 @@ import type { PaymentMethodCardRequest } from './payment-method-card-request';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { PaymentMethodGeneralRequest } from './payment-method-general-request';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { PaymentMethodPbbRequest } from './payment-method-pbb-request';
 
 /**
  * @type ChargeRequestPaymentMethod
  * @export
  */
-export type ChargeRequestPaymentMethod = PaymentMethodBnplRequest | PaymentMethodCardRequest | PaymentMethodGeneralRequest;
+export type ChargeRequestPaymentMethod = PaymentMethodBnplRequest | PaymentMethodCardRequest | PaymentMethodGeneralRequest | PaymentMethodPbbRequest;
 
 

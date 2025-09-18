@@ -27,6 +27,6 @@ import type { Pagination } from './pagination';
  * @type GetCompaniesResponse
  * @export
  */
-export type GetCompaniesResponse = CompanyResponse & Page & Pagination;
+export type GetCompaniesResponse = Page & Pagination;
 
 

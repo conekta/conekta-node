@@ -27,6 +27,6 @@ import type { Pagination } from './pagination';
  * @type GetApiKeysResponse
  * @export
  */
-export type GetApiKeysResponse = ApiKeyResponse & Page & Pagination;
+export type GetApiKeysResponse = Page & Pagination;
 
 

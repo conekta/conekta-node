@@ -138,10 +138,10 @@ export interface OrderRequest {
      */
     'tax_lines'?: Array<OrderTaxRequest>;
     /**
-     * Indicates the 3DS2 mode for the order, either smart or strict.
+     * Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null.
      * @type {string}
      * @memberof OrderRequest
      */
-    'three_ds_mode'?: string;
+    'three_ds_mode'?: string | null;
 }
 
