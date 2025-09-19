@@ -27,6 +27,6 @@ import type { Pagination } from './pagination';
  * @type CheckoutsResponse
  * @export
  */
-export type CheckoutsResponse = CheckoutResponse & Page & Pagination;
+export type CheckoutsResponse = Page & Pagination;
 
 

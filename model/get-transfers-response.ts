@@ -27,6 +27,6 @@ import type { TransfersResponse } from './transfers-response';
  * @type GetTransfersResponse
  * @export
  */
-export type GetTransfersResponse = TransfersResponse & Page & Pagination;
+export type GetTransfersResponse = Page & Pagination;
 
 

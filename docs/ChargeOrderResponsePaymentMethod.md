@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **agreement** | **string** | Agreement ID | [optional] [default to undefined]
 **auth_code** | **string** |  | [optional] [default to undefined]
 **cashier_id** | **string** |  | [optional] [default to undefined]
-**reference** | **string** |  | [optional] [default to undefined]
+**reference** | **string** | Reference for the payment | [default to undefined]
 **barcode_url** | **string** |  | [optional] [default to undefined]
 **expires_at** | **number** | Expiration date of the charge | [default to undefined]
 **product_type** | **string** | Product type of the charge | [default to undefined]
@@ -45,8 +45,9 @@ Name | Type | Description | Notes
 **tracking_code** | **string** |  | [optional] [default to undefined]
 **cancel_url** | **string** | URL to redirect the customer after a canceled payment | [optional] [default to undefined]
 **failure_url** | **string** | URL to redirect the customer after a failed payment | [optional] [default to undefined]
-**redirect_url** | **string** | URL to redirect the customer to complete the payment | [optional] [default to undefined]
+**redirect_url** | **string** | URL to redirect the customer to complete the payment | [default to undefined]
 **success_url** | **string** | URL to redirect the customer after a successful payment | [optional] [default to undefined]
+**deep_link** | **string** | Deep link for the payment, use for mobile apps/flows | [default to undefined]
 
 ## Example
 
@@ -96,6 +97,7 @@ const instance: ChargeOrderResponsePaymentMethod = {
     failure_url,
     redirect_url,
     success_url,
+    deep_link,
 };
 ```
 

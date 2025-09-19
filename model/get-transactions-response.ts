@@ -27,6 +27,6 @@ import type { TransactionResponse } from './transaction-response';
  * @type GetTransactionsResponse
  * @export
  */
-export type GetTransactionsResponse = TransactionResponse & Page & Pagination;
+export type GetTransactionsResponse = Page & Pagination;
 
 

@@ -5,7 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **string** |  | [optional] [default to undefined]
+**name** | **string** | The name of the payment method holder | [optional] [default to undefined]
+**expires_at** | **number** | The expiration date of the payment method in Unix timestamp format | [optional] [default to undefined]
 
 ## Example
 
@@ -14,6 +15,7 @@ import { UpdatePaymentMethods } from 'conekta';
 
 const instance: UpdatePaymentMethods = {
     name,
+    expires_at,
 };
 ```
 

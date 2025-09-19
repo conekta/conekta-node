@@ -21,10 +21,16 @@
  */
 export interface UpdatePaymentMethods {
     /**
-     * 
+     * The name of the payment method holder
      * @type {string}
      * @memberof UpdatePaymentMethods
      */
     'name'?: string;
+    /**
+     * The expiration date of the payment method in Unix timestamp format
+     * @type {number}
+     * @memberof UpdatePaymentMethods
+     */
+    'expires_at'?: number;
 }
 

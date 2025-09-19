@@ -24,6 +24,6 @@ import type { Pagination } from './pagination';
  * @type OrderDiscountLinesResponse
  * @export
  */
-export type OrderDiscountLinesResponse = DiscountLinesDataResponse & Pagination;
+export type OrderDiscountLinesResponse = Pagination;
 
 
