@@ -1,6 +1,6 @@
 {
   "name": "conekta",
-  "version": "7.0.5",
+  "version": "7.0.6",
   "description": "OpenAPI client for conekta",
   "author": "engineering conekta",
   "repository": {
