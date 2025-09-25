@@ -15,18 +15,12 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ChargeResponse } from './charge-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Page } from './page';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Pagination } from './pagination';
+import type { PaymentMethod } from './payment-method';
 
 /**
- * @type GetChargesResponse
+ * @type PaymentMethodPbbPayment
  * @export
  */
-export type GetChargesResponse = Page & Pagination;
+export type PaymentMethodPbbPayment = PaymentMethod;
 
 

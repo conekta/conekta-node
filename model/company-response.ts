@@ -77,5 +77,25 @@ export interface CompanyResponse {
      * @memberof CompanyResponse
      */
     'object': string;
+    /**
+     * Indicates if 3DS authentication is enabled for the company.
+     * @type {boolean}
+     * @memberof CompanyResponse
+     */
+    'three_ds_enabled'?: boolean;
+    /**
+     * The 3DS mode for the company, either \'smart\' or \'strict\'. This property is only applicable when three_ds_enabled is true. When three_ds_enabled is false, this field will be null.
+     * @type {string}
+     * @memberof CompanyResponse
+     */
+    'three_ds_mode'?: CompanyResponseThreeDsModeEnum | null;
 }
+
+export const CompanyResponseThreeDsModeEnum = {
+    smart: 'smart',
+    strict: 'strict'
+} as const;
+
+export type CompanyResponseThreeDsModeEnum = typeof CompanyResponseThreeDsModeEnum[keyof typeof CompanyResponseThreeDsModeEnum];
+
 

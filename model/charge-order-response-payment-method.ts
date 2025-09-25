@@ -25,11 +25,14 @@ import type { PaymentMethodCard } from './payment-method-card';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { PaymentMethodCash } from './payment-method-cash';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { PaymentMethodPbbPayment } from './payment-method-pbb-payment';
 
 /**
  * @type ChargeOrderResponsePaymentMethod
  * @export
  */
-export type ChargeOrderResponsePaymentMethod = { object: 'bank_transfer_payment' } & PaymentMethodBankTransfer | { object: 'bnpl_payment' } & PaymentMethodBnplPayment | { object: 'card_payment' } & PaymentMethodCard | { object: 'cash_payment' } & PaymentMethodCash;
+export type ChargeOrderResponsePaymentMethod = { object: 'bank_transfer_payment' } & PaymentMethodBankTransfer | { object: 'bnpl_payment' } & PaymentMethodBnplPayment | { object: 'card_payment' } & PaymentMethodCard | { object: 'cash_payment' } & PaymentMethodCash | { object: 'pbb_payment' } & PaymentMethodPbbPayment;
 
 

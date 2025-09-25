@@ -27,6 +27,6 @@ import type { Pagination } from './pagination';
  * @type GetEventsResponse
  * @export
  */
-export type GetEventsResponse = EventResponse & Page & Pagination;
+export type GetEventsResponse = Page & Pagination;
 
 

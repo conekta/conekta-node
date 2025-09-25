@@ -27,6 +27,6 @@ import type { PlanResponse } from './plan-response';
  * @type GetPlansResponse
  * @export
  */
-export type GetPlansResponse = PlanResponse & Page & Pagination;
+export type GetPlansResponse = Page & Pagination;
 
 

@@ -27,6 +27,6 @@ import type { Pagination } from './pagination';
  * @type CustomerPaymentMethodsResponse
  * @export
  */
-export type CustomerPaymentMethodsResponse = CustomerPaymentMethodsData & Page & Pagination;
+export type CustomerPaymentMethodsResponse = Page & Pagination;
 
 

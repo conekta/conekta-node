@@ -25,6 +25,6 @@ import type { Pagination } from './pagination';
  * The charges associated with the order
  * @export
  */
-export type ChargesOrderResponse = ChargesOrderResponseAllOfData & Pagination;
+export type ChargesOrderResponse = Pagination;
 
 

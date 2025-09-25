@@ -27,6 +27,6 @@ import type { RiskRulesData } from './risk-rules-data';
  * @type RiskRulesList
  * @export
  */
-export type RiskRulesList = RiskRulesData & Page & Pagination;
+export type RiskRulesList = Page & Pagination;
 
 

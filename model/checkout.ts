@@ -48,11 +48,11 @@ export interface Checkout {
      */
     'monthly_installments_options'?: Array<number>;
     /**
-     * Indicates the 3DS2 mode for the order, either smart or strict.
+     * Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null.
      * @type {string}
      * @memberof Checkout
      */
-    'three_ds_mode'?: string;
+    'three_ds_mode'?: string | null;
     /**
      * Reason for charge
      * @type {string}

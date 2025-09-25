@@ -27,6 +27,6 @@ import type { ProductDataResponse } from './product-data-response';
  * @type OrderResponseProducts
  * @export
  */
-export type OrderResponseProducts = ProductDataResponse & Page & Pagination;
+export type OrderResponseProducts = Page & Pagination;
 
 

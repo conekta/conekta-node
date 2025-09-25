@@ -27,6 +27,6 @@ import type { WebhookKeyResponse } from './webhook-key-response';
  * @type GetWebhookKeysResponse
  * @export
  */
-export type GetWebhookKeysResponse = WebhookKeyResponse & Page & Pagination;
+export type GetWebhookKeysResponse = Page & Pagination;
 
 

@@ -98,7 +98,8 @@ export const CheckoutRequestAllowedPaymentMethodsEnum = {
     cash: 'cash',
     card: 'card',
     bankTransfer: 'bank_transfer',
-    bnpl: 'bnpl'
+    bnpl: 'bnpl',
+    payByBank: 'pay_by_bank'
 } as const;
 
 export type CheckoutRequestAllowedPaymentMethodsEnum = typeof CheckoutRequestAllowedPaymentMethodsEnum[keyof typeof CheckoutRequestAllowedPaymentMethodsEnum];

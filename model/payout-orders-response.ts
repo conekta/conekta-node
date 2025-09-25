@@ -27,6 +27,6 @@ import type { PayoutOrderResponse } from './payout-order-response';
  * @type PayoutOrdersResponse
  * @export
  */
-export type PayoutOrdersResponse = PayoutOrderResponse & Page & Pagination;
+export type PayoutOrdersResponse = Page & Pagination;
 
 

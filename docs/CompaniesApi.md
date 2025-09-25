@@ -8,6 +8,7 @@ All URIs are relative to *https://api.conekta.io*
 |[**getCompanies**](#getcompanies) | **GET** /companies | Get List of Companies|
 |[**getCompany**](#getcompany) | **GET** /companies/{id} | Get Company|
 |[**getCompanyDocuments**](#getcompanydocuments) | **GET** /companies/{company_id}/documents | Get Company Documents|
+|[**getCurrentCompany**](#getcurrentcompany) | **GET** /companies/current | Get Current Company|
 |[**updateCompanyDocument**](#updatecompanydocument) | **PATCH** /companies/{company_id}/document | Update Company Document|
 |[**uploadCompanyDocument**](#uploadcompanydocument) | **POST** /companies/{company_id}/document | Upload Company Document|
 
@@ -239,6 +240,59 @@ const { status, data } = await apiInstance.getCompanyDocuments(
 |**200** | A list of documents for the company. |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  * Conekta-Media-Type -  <br>  |
 |**401** | authentication error |  -  |
 |**404** | not found entity |  -  |
+|**500** | internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getCurrentCompany**
+> CompanyResponse getCurrentCompany()
+
+Retrieves information about the currently authenticated company. This endpoint returns the same data as the standard company endpoint but automatically uses the current company\'s context.
+
+### Example
+
+```typescript
+import {
+    CompaniesApi,
+    Configuration
+} from 'conekta';
+
+const configuration = new Configuration();
+const apiInstance = new CompaniesApi(configuration);
+
+let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
+
+const { status, data } = await apiInstance.getCurrentCompany(
+    acceptLanguage
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
+
+
+### Return type
+
+**CompanyResponse**
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/vnd.conekta-v2.2.0+json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  * Conekta-Media-Type -  <br>  |
+|**401** | authentication error |  -  |
 |**500** | internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

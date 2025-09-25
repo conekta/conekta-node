@@ -27,6 +27,6 @@ import type { WebhookResponse } from './webhook-response';
  * @type GetWebhooksResponse
  * @export
  */
-export type GetWebhooksResponse = WebhookResponse & Page & Pagination;
+export type GetWebhooksResponse = Page & Pagination;
 
 
