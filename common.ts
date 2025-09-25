@@ -32,7 +32,7 @@ export const DUMMY_BASE_URL = 'https://example.com'
  * @export
  */
 export const conektaHeaders = {
-    bindings_version: ['Conekta::', "7.06"].join(''),
+    bindings_version: ['Conekta::', "7.0.6"].join(''),
     lang: 'node',
     lang_version: process.version,
     publisher: 'conekta',
