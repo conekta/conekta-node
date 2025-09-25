@@ -32,7 +32,7 @@ export const DUMMY_BASE_URL = 'https://example.com'
  * @export
  */
 export const conektaHeaders = {
-    bindings_version: ['Conekta::', "7.0.5"].join(''),
+    bindings_version: ['Conekta::', "7.0.6"].join(''),
     lang: 'node',
     lang_version: process.version,
     publisher: 'conekta',
@@ -177,7 +177,7 @@ export const createRequestFunction = function (axiosArgs: RequestArgs, globalAxi
  * @export
  */
 export const setCommonHeaders = async function (object: any) {
-    object["User-Agent"] = "Conekta/v2 NodeBindings/" + "7.0.5";
+    object["User-Agent"] = "Conekta/v2 NodeBindings/" + "7.0.6";
     object["X-Conekta-Client-User-Agent"] = JSON.stringify(conektaHeaders);
     object["Accept"] = "application/vnd.conekta-v2.2.0+json";
 }
