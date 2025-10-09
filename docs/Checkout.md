@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **name** | **string** | Reason for charge | [default to undefined]
 **needs_shipping_contact** | **boolean** | This flag allows you to fill in the shipping information at checkout. | [optional] [default to undefined]
 **on_demand_enabled** | **boolean** | This flag allows you to specify if the link will be on demand. | [optional] [default to undefined]
+**plan_ids** | **Array&lt;string&gt;** | It is a list of plan IDs that will be associated with the order. | [optional] [default to undefined]
 **order_template** | [**CheckoutOrderTemplate**](CheckoutOrderTemplate.md) |  | [default to undefined]
 **payments_limit_count** | **number** | It is the number of payments that can be made through the link. | [optional] [default to undefined]
 **recurrent** | **boolean** | false: single use. true: multiple payments | [default to undefined]
@@ -33,6 +34,7 @@ const instance: Checkout = {
     name,
     needs_shipping_contact,
     on_demand_enabled,
+    plan_ids,
     order_template,
     payments_limit_count,
     recurrent,

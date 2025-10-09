@@ -45,12 +45,6 @@ export interface CheckoutOrderTemplate {
      */
     'line_items': Array<Product>;
     /**
-     * It is a list of plan IDs that will be associated with the order.
-     * @type {Array<string>}
-     * @memberof CheckoutOrderTemplate
-     */
-    'plan_ids'?: Array<string>;
-    /**
      * It is a set of key-value pairs that you can attach to the order. It can be used to store additional information about the order in a structured format.
      * @type {{ [key: string]: any; }}
      * @memberof CheckoutOrderTemplate
