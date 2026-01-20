@@ -1,6 +1,5 @@
 # Conekta API library for Node.js 
 ![Node.js CI](https://github.com/conekta/conekta-node/workflows/Node.js%20CI/badge.svg)
-[![Coverage Status](https://api.codeclimate.com/v1/badges/6d669b88c0b07a3ff6a3/test_coverage)](https://codeclimate.com/github/conekta/conekta-node/test_coverage)
 [![Downloads](https://img.shields.io/npm/dm/conekta.svg)](https://www.npmjs.com/package/conekta)
 ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/conekta.svg)
 [![Version](https://img.shields.io/npm/v/conekta.svg)](https://www.npmjs.com/package/conekta)
@@ -19,7 +18,7 @@ For more information, refer to our [documentation](https://developers.conekta.co
 ## Prerequisites
 - [Conekta account](https://panel.conekta.com/)
 - [API key](https://developers.conekta.com/v2.2.0/docs/como-obtener-tus-api-keys).  your API credential .
-- [Install Node.js](https://nodejs.org/en/download/) version 14 or later.
+- [Install Node.js](https://nodejs.org/en/download/) version 18 or later.
 
 ## Installation
 Install the [Node.JS package](https://www.npmjs.com/package/conekta):
