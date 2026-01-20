@@ -72,6 +72,12 @@ export interface Checkout {
      */
     'on_demand_enabled'?: boolean | null;
     /**
+     * It is a list of plan IDs that will be associated with the order.
+     * @type {Array<string>}
+     * @memberof Checkout
+     */
+    'plan_ids'?: Array<string>;
+    /**
      * 
      * @type {CheckoutOrderTemplate}
      * @memberof Checkout
