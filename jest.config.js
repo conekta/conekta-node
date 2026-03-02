@@ -9,8 +9,6 @@ module.exports = {
  ],
   roots: ['<rootDir>'],
   transform: {
-      '^.+\\.ts$': ['ts-jest', {
-        compiler: "ttypescript",
-    }]
+      '^.+\\.ts$': 'ts-jest'
   }
 };

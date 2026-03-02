@@ -5,7 +5,7 @@
 Official Node.js SDK for the Conekta Payments API. Auto-generated client library from an OpenAPI specification that enables integration with payments, subscriptions, BNPL, SPEI transfers, credit cards, and payouts.
 
 - **npm package**: `conekta`
-- **Version**: 7.0.7
+- **Version**: 7.0.8
 - **API version**: 2.2.0
 - **License**: MIT
 - **Node.js**: >= 18
@@ -99,7 +99,7 @@ console.log(response.data.id);
 
 - Bearer token via `Configuration({ accessToken: "key_xxxxx" })`
 - Automatic headers:
-  - `User-Agent: Conekta/v2 NodeBindings/7.0.7`
+  - `User-Agent: Conekta/v2 NodeBindings/7.0.8`
   - `Accept: application/vnd.conekta-v2.2.0+json`
 
 ## Distribution
