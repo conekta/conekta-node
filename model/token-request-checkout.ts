@@ -14,16 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface TokenRequestCheckout
- */
 export interface TokenRequestCheckout {
     /**
      * It is a value that allows identifying the returns control on.
-     * @type {string}
-     * @memberof TokenRequestCheckout
      */
     'returns_control_on'?: string;
 }

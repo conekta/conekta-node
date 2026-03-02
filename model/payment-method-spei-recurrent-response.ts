@@ -14,59 +14,17 @@
 
 
 
-/**
- * 
- * @export
- * @interface PaymentMethodSpeiRecurrentResponse
- */
 export interface PaymentMethodSpeiRecurrentResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodSpeiRecurrentResponse
-     */
     'type': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodSpeiRecurrentResponse
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodSpeiRecurrentResponse
-     */
     'object': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PaymentMethodSpeiRecurrentResponse
-     */
     'created_at': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodSpeiRecurrentResponse
-     */
     'parent_id'?: string;
     /**
      * Bank name for the SPEI payment method
-     * @type {string}
-     * @memberof PaymentMethodSpeiRecurrentResponse
      */
     'bank'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodSpeiRecurrentResponse
-     */
     'reference'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodSpeiRecurrentResponse
-     */
     'expires_at'?: string;
 }
 

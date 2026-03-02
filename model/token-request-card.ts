@@ -14,46 +14,29 @@
 
 
 
-/**
- * 
- * @export
- * @interface TokenRequestCard
- */
 export interface TokenRequestCard {
     /**
      * It is a value that allows identifying the security code of the card.
-     * @type {string}
-     * @memberof TokenRequestCard
      */
     'cvc': string;
     /**
      * It is a value that allows identifying the device fingerprint.
-     * @type {string}
-     * @memberof TokenRequestCard
      */
     'device_fingerprint'?: string;
     /**
      * It is a value that allows identifying the expiration month of the card.
-     * @type {string}
-     * @memberof TokenRequestCard
      */
     'exp_month': string;
     /**
      * It is a value that allows identifying the expiration year of the card.
-     * @type {string}
-     * @memberof TokenRequestCard
      */
     'exp_year': string;
     /**
      * It is a value that allows identifying the name of the cardholder.
-     * @type {string}
-     * @memberof TokenRequestCard
      */
     'name': string;
     /**
      * It is a value that allows identifying the number of the card.
-     * @type {string}
-     * @memberof TokenRequestCard
      */
     'number': string;
 }

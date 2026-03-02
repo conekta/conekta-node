@@ -16,14 +16,10 @@
 
 /**
  * Bank account information for the company.
- * @export
- * @interface CreateCompanyRequestBankAccountInfo
  */
 export interface CreateCompanyRequestBankAccountInfo {
     /**
      * The 18-digit CLABE for the bank account.
-     * @type {string}
-     * @memberof CreateCompanyRequestBankAccountInfo
      */
     'clabe'?: string;
 }

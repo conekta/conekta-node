@@ -43,104 +43,58 @@ import type { ShippingRequest } from './shipping-request';
 
 /**
  * a order
- * @export
- * @interface OrderRequest
  */
 export interface OrderRequest {
     /**
      * List of [charges](https://developers.conekta.com/v2.2.0/reference/orderscreatecharge) that are applied to the order
-     * @type {Array<ChargeRequest>}
-     * @memberof OrderRequest
      */
     'charges'?: Array<ChargeRequest>;
-    /**
-     * 
-     * @type {OrderCheckoutRequest}
-     * @memberof OrderRequest
-     */
     'checkout'?: OrderCheckoutRequest;
     /**
      * Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
-     * @type {string}
-     * @memberof OrderRequest
      */
     'currency': string;
-    /**
-     * 
-     * @type {OrderRequestCustomerInfo}
-     * @memberof OrderRequest
-     */
     'customer_info': OrderRequestCustomerInfo;
     /**
      * List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order.
-     * @type {Array<OrderDiscountLinesRequest>}
-     * @memberof OrderRequest
      */
     'discount_lines'?: Array<OrderDiscountLinesRequest>;
-    /**
-     * 
-     * @type {OrderFiscalEntityRequest}
-     * @memberof OrderRequest
-     */
     'fiscal_entity'?: OrderFiscalEntityRequest;
     /**
      * List of [products](https://developers.conekta.com/v2.2.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
-     * @type {Array<Product>}
-     * @memberof OrderRequest
      */
     'line_items': Array<Product>;
     /**
      * Metadata associated with the order
-     * @type {{ [key: string]: any; }}
-     * @memberof OrderRequest
      */
     'metadata'?: { [key: string]: any; };
     /**
      * Allows you to fill out the shipping information at checkout
-     * @type {boolean}
-     * @memberof OrderRequest
      */
     'needs_shipping_contact'?: boolean;
     /**
      * Indicates whether the order charges must be preauthorized
-     * @type {boolean}
-     * @memberof OrderRequest
      */
     'pre_authorize'?: boolean;
     /**
      * Indicates the processing mode for the order, either ecommerce, recurrent or validation.
-     * @type {string}
-     * @memberof OrderRequest
      */
     'processing_mode'?: string;
     /**
      * Indicates the redirection callback upon completion of the 3DS2 flow. Do not use this parameter if your order has a checkout parameter
-     * @type {string}
-     * @memberof OrderRequest
      */
     'return_url'?: string;
-    /**
-     * 
-     * @type {CustomerShippingContactsRequest}
-     * @memberof OrderRequest
-     */
     'shipping_contact'?: CustomerShippingContactsRequest;
     /**
      * List of [shipping costs](https://developers.conekta.com/v2.2.0/reference/orderscreateshipping). If the online store offers digital products.
-     * @type {Array<ShippingRequest>}
-     * @memberof OrderRequest
      */
     'shipping_lines'?: Array<ShippingRequest>;
     /**
      * List of [taxes](https://developers.conekta.com/v2.2.0/reference/orderscreatetaxes) that are applied to the order.
-     * @type {Array<OrderTaxRequest>}
-     * @memberof OrderRequest
      */
     'tax_lines'?: Array<OrderTaxRequest>;
     /**
      * Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null.
-     * @type {string}
-     * @memberof OrderRequest
      */
     'three_ds_mode'?: string;
 }

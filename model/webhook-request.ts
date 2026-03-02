@@ -16,20 +16,14 @@
 
 /**
  * a webhook
- * @export
- * @interface WebhookRequest
  */
 export interface WebhookRequest {
     /**
      * Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security.
-     * @type {string}
-     * @memberof WebhookRequest
      */
     'url': string;
     /**
      * events that will be sent to the webhook
-     * @type {Array<string>}
-     * @memberof WebhookRequest
      */
     'subscribed_events'?: Array<string>;
 }

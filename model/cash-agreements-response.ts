@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface CashAgreementsResponse
- */
 export interface CashAgreementsResponse {
     /**
      * Agreement number, you can use this number to pay in the store/bbva
-     * @type {string}
-     * @memberof CashAgreementsResponse
      */
     'agreement'?: string;
     /**
      * Provider name, you can use this to know where to pay
-     * @type {string}
-     * @memberof CashAgreementsResponse
      */
     'provider'?: string;
 }

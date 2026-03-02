@@ -14,46 +14,29 @@
 
 
 
-/**
- * 
- * @export
- * @interface PaymentMethodBnplRequest
- */
 export interface PaymentMethodBnplRequest {
     /**
      * Type of the payment method
-     * @type {string}
-     * @memberof PaymentMethodBnplRequest
      */
     'type': string;
     /**
      * URL to redirect the customer after a canceled payment
-     * @type {string}
-     * @memberof PaymentMethodBnplRequest
      */
     'cancel_url': string;
     /**
      * Indicates if the payment method can not expire
-     * @type {boolean}
-     * @memberof PaymentMethodBnplRequest
      */
     'can_not_expire': boolean;
     /**
      * URL to redirect the customer after a failed payment
-     * @type {string}
-     * @memberof PaymentMethodBnplRequest
      */
     'failure_url': string;
     /**
      * Product type of the payment method, use for the payment method to know the product type
-     * @type {string}
-     * @memberof PaymentMethodBnplRequest
      */
     'product_type': PaymentMethodBnplRequestProductTypeEnum;
     /**
      * URL to redirect the customer after a successful payment
-     * @type {string}
-     * @memberof PaymentMethodBnplRequest
      */
     'success_url': string;
 }

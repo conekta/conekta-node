@@ -16,44 +16,30 @@
 
 /**
  * webhook keys model
- * @export
- * @interface WebhookKeyDeleteResponse
  */
 export interface WebhookKeyDeleteResponse {
     /**
      * Indicates if the webhook key is active
-     * @type {boolean}
-     * @memberof WebhookKeyDeleteResponse
      */
     'active'?: boolean;
     /**
      * Unix timestamp in seconds with the creation date of the webhook key
-     * @type {number}
-     * @memberof WebhookKeyDeleteResponse
      */
     'created_at'?: number;
     /**
      * Indicates if the webhook key is deleted
-     * @type {boolean}
-     * @memberof WebhookKeyDeleteResponse
      */
     'deleted'?: boolean;
     /**
      * Unique identifier of the webhook key
-     * @type {string}
-     * @memberof WebhookKeyDeleteResponse
      */
     'id'?: string;
     /**
      * Indicates if the webhook key is in live mode
-     * @type {boolean}
-     * @memberof WebhookKeyDeleteResponse
      */
     'livemode'?: boolean;
     /**
      * Object name, value is webhook_key
-     * @type {string}
-     * @memberof WebhookKeyDeleteResponse
      */
     'object'?: string;
 }

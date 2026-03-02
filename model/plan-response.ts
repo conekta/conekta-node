@@ -16,87 +16,20 @@
 
 /**
  * plans model
- * @export
- * @interface PlanResponse
  */
 export interface PlanResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof PlanResponse
-     */
     'amount'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PlanResponse
-     */
     'created_at'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PlanResponse
-     */
     'currency'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PlanResponse
-     */
     'expiry_count'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PlanResponse
-     */
     'frequency'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PlanResponse
-     */
     'id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PlanResponse
-     */
     'interval'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PlanResponse
-     */
     'livemode'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof PlanResponse
-     */
     'name'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PlanResponse
-     */
     'object'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PlanResponse
-     */
     'trial_period_days'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PlanResponse
-     */
     'max_retries'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PlanResponse
-     */
     'retry_delay_hours'?: number;
 }
 

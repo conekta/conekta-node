@@ -14,16 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface ResendEventRequest
- */
 export interface ResendEventRequest {
     /**
      * webhooks ids to resend event
-     * @type {Array<string>}
-     * @memberof ResendEventRequest
      */
     'webhooks_ids': Array<string>;
 }

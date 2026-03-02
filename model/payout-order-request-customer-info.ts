@@ -16,15 +16,8 @@
 
 /**
  * The customer information to whom the payout order is made.
- * @export
- * @interface PayoutOrderRequestCustomerInfo
  */
 export interface PayoutOrderRequestCustomerInfo {
-    /**
-     * 
-     * @type {string}
-     * @memberof PayoutOrderRequestCustomerInfo
-     */
     'customer_id': string;
 }
 

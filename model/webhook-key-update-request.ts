@@ -14,16 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface WebhookKeyUpdateRequest
- */
 export interface WebhookKeyUpdateRequest {
     /**
      * Indicates if the webhook key is active
-     * @type {boolean}
-     * @memberof WebhookKeyUpdateRequest
      */
     'active'?: boolean;
 }

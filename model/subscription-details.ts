@@ -22,69 +22,17 @@ import type { SubscriptionDetailsPlan } from './subscription-details-plan';
 
 /**
  * Subscription details for customer portal
- * @export
- * @interface SubscriptionDetails
  */
 export interface SubscriptionDetails {
-    /**
-     * 
-     * @type {SubscriptionDetailsCard}
-     * @memberof SubscriptionDetails
-     */
     'card'?: SubscriptionDetailsCard;
-    /**
-     * 
-     * @type {SubscriptionDetailsPlan}
-     * @memberof SubscriptionDetails
-     */
     'plan'?: SubscriptionDetailsPlan;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetails
-     */
     'id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetails
-     */
     'object'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetails
-     */
     'status'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetails
-     */
     'plan_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetails
-     */
     'customer_id'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionDetails
-     */
     'next_billing_cycle'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionDetails
-     */
     'created_at'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionDetails
-     */
     'updated_at'?: number;
 }
 

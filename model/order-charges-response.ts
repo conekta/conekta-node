@@ -19,39 +19,24 @@ import type { ChargesDataResponse } from './charges-data-response';
 
 /**
  * The charges associated with the order
- * @export
- * @interface OrderChargesResponse
  */
 export interface OrderChargesResponse {
     /**
      * Indicates if there are more pages to be requested
-     * @type {boolean}
-     * @memberof OrderChargesResponse
      */
     'has_more': boolean;
     /**
      * Object type, in this case is list
-     * @type {string}
-     * @memberof OrderChargesResponse
      */
     'object': string;
     /**
      * URL of the next page.
-     * @type {string}
-     * @memberof OrderChargesResponse
      */
     'next_page_url'?: string;
     /**
      * Url of the previous page.
-     * @type {string}
-     * @memberof OrderChargesResponse
      */
     'previous_page_url'?: string;
-    /**
-     * 
-     * @type {Array<ChargesDataResponse>}
-     * @memberof OrderChargesResponse
-     */
     'data'?: Array<ChargesDataResponse>;
 }
 

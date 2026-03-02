@@ -16,27 +16,13 @@
 
 /**
  * List of discounts that apply to the order.
- * @export
- * @interface UpdateOrderDiscountLinesRequest
  */
 export interface UpdateOrderDiscountLinesRequest {
-    /**
-     * 
-     * @type {number}
-     * @memberof UpdateOrderDiscountLinesRequest
-     */
     'amount'?: number;
     /**
      * Discount code.
-     * @type {string}
-     * @memberof UpdateOrderDiscountLinesRequest
      */
     'code'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateOrderDiscountLinesRequest
-     */
     'type'?: string;
 }
 

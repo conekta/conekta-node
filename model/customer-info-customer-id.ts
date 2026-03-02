@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface CustomerInfoCustomerId
- */
 export interface CustomerInfoCustomerId {
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerInfoCustomerId
-     */
     'customer_id': string;
 }
 

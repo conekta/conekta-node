@@ -43,81 +43,34 @@ import type { ShippingRequest } from './shipping-request';
 
 /**
  * a order
- * @export
- * @interface OrderUpdate
  */
 export interface OrderUpdate {
-    /**
-     * 
-     * @type {Array<ChargeRequest>}
-     * @memberof OrderUpdate
-     */
     'charges'?: Array<ChargeRequest>;
-    /**
-     * 
-     * @type {OrderCheckoutRequest}
-     * @memberof OrderUpdate
-     */
     'checkout'?: OrderCheckoutRequest;
     /**
      * Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
-     * @type {string}
-     * @memberof OrderUpdate
      */
     'currency'?: string;
-    /**
-     * 
-     * @type {OrderUpdateCustomerInfo}
-     * @memberof OrderUpdate
-     */
     'customer_info'?: OrderUpdateCustomerInfo;
     /**
      * List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order.
-     * @type {Array<OrderDiscountLinesRequest>}
-     * @memberof OrderUpdate
      */
     'discount_lines'?: Array<OrderDiscountLinesRequest>;
-    /**
-     * 
-     * @type {OrderUpdateFiscalEntityRequest}
-     * @memberof OrderUpdate
-     */
     'fiscal_entity'?: OrderUpdateFiscalEntityRequest;
     /**
      * List of [products](https://developers.conekta.com/v2.2.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
-     * @type {Array<Product>}
-     * @memberof OrderUpdate
      */
     'line_items'?: Array<Product>;
-    /**
-     * 
-     * @type {{ [key: string]: string; }}
-     * @memberof OrderUpdate
-     */
     'metadata'?: { [key: string]: string; };
     /**
      * Indicates whether the order charges must be preauthorized
-     * @type {boolean}
-     * @memberof OrderUpdate
      */
     'pre_authorize'?: boolean;
-    /**
-     * 
-     * @type {CustomerShippingContactsRequest}
-     * @memberof OrderUpdate
-     */
     'shipping_contact'?: CustomerShippingContactsRequest;
     /**
      * List of [shipping costs](https://developers.conekta.com/v2.2.0/reference/orderscreateshipping). If the online store offers digital products.
-     * @type {Array<ShippingRequest>}
-     * @memberof OrderUpdate
      */
     'shipping_lines'?: Array<ShippingRequest>;
-    /**
-     * 
-     * @type {Array<OrderTaxRequest>}
-     * @memberof OrderUpdate
-     */
     'tax_lines'?: Array<OrderTaxRequest>;
 }
 

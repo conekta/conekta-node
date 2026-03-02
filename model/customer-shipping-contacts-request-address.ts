@@ -16,51 +16,17 @@
 
 /**
  * Address of the person who will receive the order
- * @export
- * @interface CustomerShippingContactsRequestAddress
  */
 export interface CustomerShippingContactsRequestAddress {
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsRequestAddress
-     */
     'street1'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsRequestAddress
-     */
     'street2'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsRequestAddress
-     */
     'postal_code'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsRequestAddress
-     */
     'city'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsRequestAddress
-     */
     'state'?: string;
     /**
      * this field follows the [ISO 3166-1 alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
-     * @type {string}
-     * @memberof CustomerShippingContactsRequestAddress
      */
     'country'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CustomerShippingContactsRequestAddress
-     */
     'residential'?: boolean;
 }
 

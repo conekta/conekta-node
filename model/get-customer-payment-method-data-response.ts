@@ -31,7 +31,6 @@ import type { PaymentMethodSpeiRecurrentResponse } from './payment-method-spei-r
 
 /**
  * @type GetCustomerPaymentMethodDataResponse
- * @export
  */
 export type GetCustomerPaymentMethodDataResponse = { type: 'card' } & PaymentMethodCardResponse | { type: 'cash' } & PaymentMethodCashResponse | { type: 'cash_recurrent' } & PaymentMethodCashRecurrentResponse | { type: 'spei_recurrent' } & PaymentMethodSpeiRecurrentResponse;
 

@@ -14,52 +14,33 @@
 
 
 
-/**
- * 
- * @export
- * @interface PaymentMethodCardRequest
- */
 export interface PaymentMethodCardRequest {
     /**
      * Type of payment method
-     * @type {string}
-     * @memberof PaymentMethodCardRequest
      */
     'type': string;
     /**
      * Card security code
-     * @type {string}
-     * @memberof PaymentMethodCardRequest
      */
     'cvc': string;
     /**
      * Card expiration month
-     * @type {string}
-     * @memberof PaymentMethodCardRequest
      */
     'exp_month': string;
     /**
      * Card expiration year
-     * @type {string}
-     * @memberof PaymentMethodCardRequest
      */
     'exp_year': string;
     /**
      * Cardholder name
-     * @type {string}
-     * @memberof PaymentMethodCardRequest
      */
     'name': string;
     /**
      * Card number
-     * @type {string}
-     * @memberof PaymentMethodCardRequest
      */
     'number': string;
     /**
      * Optional field used to capture the customer\'s IP address for fraud prevention and security monitoring purposes
-     * @type {string}
-     * @memberof PaymentMethodCardRequest
      */
     'customer_ip_address'?: string;
 }

@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -33,7 +33,6 @@ import type { PlanResponse } from '../model';
 import type { UpdatePlan } from '../model';
 /**
  * PlansApi - axios parameter creator
- * @export
  */
 export const PlansApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -65,9 +64,8 @@ export const PlansApiAxiosParamCreator = function (configuration?: Configuration
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -113,8 +111,8 @@ export const PlansApiAxiosParamCreator = function (configuration?: Configuration
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -156,8 +154,8 @@ export const PlansApiAxiosParamCreator = function (configuration?: Configuration
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -218,8 +216,8 @@ export const PlansApiAxiosParamCreator = function (configuration?: Configuration
                 localVarQueryParameter['previous'] = previous;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -267,9 +265,8 @@ export const PlansApiAxiosParamCreator = function (configuration?: Configuration
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -292,7 +289,6 @@ export const PlansApiAxiosParamCreator = function (configuration?: Configuration
 
 /**
  * PlansApi - functional programming interface
- * @export
  */
 export const PlansApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = PlansApiAxiosParamCreator(configuration)
@@ -380,7 +376,6 @@ export const PlansApiFp = function(configuration?: Configuration) {
 
 /**
  * PlansApi - factory interface
- * @export
  */
 export const PlansApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = PlansApiFp(configuration)
@@ -453,8 +448,6 @@ export const PlansApiFactory = function (configuration?: Configuration, basePath
 
 /**
  * PlansApi - interface
- * @export
- * @interface PlansApi
  */
 export interface PlansApiInterface {
     /**
@@ -465,7 +458,6 @@ export interface PlansApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PlansApiInterface
      */
     createPlan(planRequest: PlanRequest, acceptLanguage?: CreatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<PlanResponse>;
 
@@ -476,7 +468,6 @@ export interface PlansApiInterface {
      * @param {DeletePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PlansApiInterface
      */
     deletePlan(id: string, acceptLanguage?: DeletePlanAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<PlanResponse>;
 
@@ -488,7 +479,6 @@ export interface PlansApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PlansApiInterface
      */
     getPlan(id: string, acceptLanguage?: GetPlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<PlanResponse>;
 
@@ -503,7 +493,6 @@ export interface PlansApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PlansApiInterface
      */
     getPlans(acceptLanguage?: GetPlansAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetPlansResponse>;
 
@@ -516,7 +505,6 @@ export interface PlansApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PlansApiInterface
      */
     updatePlan(id: string, updatePlan: UpdatePlan, acceptLanguage?: UpdatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<PlanResponse>;
 
@@ -524,9 +512,6 @@ export interface PlansApiInterface {
 
 /**
  * PlansApi - object-oriented interface
- * @export
- * @class PlansApi
- * @extends {BaseAPI}
  */
 export class PlansApi extends BaseAPI implements PlansApiInterface {
     /**
@@ -537,7 +522,6 @@ export class PlansApi extends BaseAPI implements PlansApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PlansApi
      */
     public createPlan(planRequest: PlanRequest, acceptLanguage?: CreatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return PlansApiFp(this.configuration).createPlan(planRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -550,7 +534,6 @@ export class PlansApi extends BaseAPI implements PlansApiInterface {
      * @param {DeletePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PlansApi
      */
     public deletePlan(id: string, acceptLanguage?: DeletePlanAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return PlansApiFp(this.configuration).deletePlan(id, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
@@ -564,7 +547,6 @@ export class PlansApi extends BaseAPI implements PlansApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PlansApi
      */
     public getPlan(id: string, acceptLanguage?: GetPlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return PlansApiFp(this.configuration).getPlan(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -581,7 +563,6 @@ export class PlansApi extends BaseAPI implements PlansApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PlansApi
      */
     public getPlans(acceptLanguage?: GetPlansAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return PlansApiFp(this.configuration).getPlans(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
@@ -596,48 +577,32 @@ export class PlansApi extends BaseAPI implements PlansApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PlansApi
      */
     public updatePlan(id: string, updatePlan: UpdatePlan, acceptLanguage?: UpdatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return PlansApiFp(this.configuration).updatePlan(id, updatePlan, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const CreatePlanAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type CreatePlanAcceptLanguageEnum = typeof CreatePlanAcceptLanguageEnum[keyof typeof CreatePlanAcceptLanguageEnum];
-/**
- * @export
- */
 export const DeletePlanAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type DeletePlanAcceptLanguageEnum = typeof DeletePlanAcceptLanguageEnum[keyof typeof DeletePlanAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetPlanAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetPlanAcceptLanguageEnum = typeof GetPlanAcceptLanguageEnum[keyof typeof GetPlanAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetPlansAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetPlansAcceptLanguageEnum = typeof GetPlansAcceptLanguageEnum[keyof typeof GetPlansAcceptLanguageEnum];
-/**
- * @export
- */
 export const UpdatePlanAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

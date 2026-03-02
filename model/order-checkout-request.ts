@@ -16,86 +16,49 @@
 
 /**
  * [Checkout](https://developers.conekta.com/v2.2.0/reference/payment-link) details 
- * @export
- * @interface OrderCheckoutRequest
  */
 export interface OrderCheckoutRequest {
     /**
      * Are the payment methods available for this link. For subscriptions, only \'card\' is allowed due to the recurring nature of the payments.
-     * @type {Array<string>}
-     * @memberof OrderCheckoutRequest
      */
     'allowed_payment_methods': Array<OrderCheckoutRequestAllowedPaymentMethodsEnum>;
     /**
      * List of card networks to exclude from the checkout. This field is only applicable for card payments.
-     * @type {Array<string>}
-     * @memberof OrderCheckoutRequest
      */
     'exclude_card_networks'?: Array<OrderCheckoutRequestExcludeCardNetworksEnum>;
     /**
      * List of plan IDs that will be available for subscription. This field is required for subscription payments.
-     * @type {Array<string>}
-     * @memberof OrderCheckoutRequest
      */
     'plan_ids'?: Array<string>;
     /**
      * Unix timestamp of checkout expiration
-     * @type {number}
-     * @memberof OrderCheckoutRequest
      */
     'expires_at'?: number;
     /**
      * Redirection url back to the site in case of failed payment, applies only to HostedPayment.
-     * @type {string}
-     * @memberof OrderCheckoutRequest
      */
     'failure_url'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OrderCheckoutRequest
-     */
     'monthly_installments_enabled'?: boolean;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof OrderCheckoutRequest
-     */
     'monthly_installments_options'?: Array<number>;
     /**
      * Number of retries allowed before the checkout is marked as failed
-     * @type {number}
-     * @memberof OrderCheckoutRequest
      */
     'max_failed_retries'?: number;
     /**
      * Reason for payment
-     * @type {string}
-     * @memberof OrderCheckoutRequest
      */
     'name'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OrderCheckoutRequest
-     */
     'on_demand_enabled'?: boolean;
     /**
      * number of seconds to wait before redirecting to the success_url
-     * @type {number}
-     * @memberof OrderCheckoutRequest
      */
     'redirection_time'?: number;
     /**
      * Redirection url back to the site in case of successful payment, applies only to HostedPayment
-     * @type {string}
-     * @memberof OrderCheckoutRequest
      */
     'success_url'?: string;
     /**
      * Required. This field represents the type of checkout, which determines the user experience during the payment process. \'HostedPayment\' will redirect the customer to a Conekta-hosted page to complete the payment, while \'Integration\' allows the payment process to be handled entirely on your site using Conekta\'s APIs and SDKs.
-     * @type {string}
-     * @memberof OrderCheckoutRequest
      */
     'type'?: OrderCheckoutRequestTypeEnum;
 }

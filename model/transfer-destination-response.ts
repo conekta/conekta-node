@@ -16,56 +16,38 @@
 
 /**
  * Method used to make the transfer.
- * @export
- * @interface TransferDestinationResponse
  */
 export interface TransferDestinationResponse {
     /**
      * Name of the account holder.
-     * @type {string}
-     * @memberof TransferDestinationResponse
      */
     'account_holder'?: string;
     /**
      * Account number of the bank account.
-     * @type {string}
-     * @memberof TransferDestinationResponse
      */
     'account_number'?: string;
     /**
      * Name of the bank.
-     * @type {string}
-     * @memberof TransferDestinationResponse
      */
     'bank'?: string;
     /**
      * Date and time of creation of the transfer.
-     * @type {number}
-     * @memberof TransferDestinationResponse
      */
     'created_at'?: number;
     /**
      * Unique identifier of the transfer.
-     * @type {string}
-     * @memberof TransferDestinationResponse
      */
     'id'?: string;
     /**
      * Object name, which is bank_transfer_payout_method.
-     * @type {string}
-     * @memberof TransferDestinationResponse
      */
     'object'?: string;
     /**
      * Unique identifier of the payee.
-     * @type {string}
-     * @memberof TransferDestinationResponse
      */
     'payee_id'?: string;
     /**
      * Type of the payee.
-     * @type {string}
-     * @memberof TransferDestinationResponse
      */
     'type'?: string;
 }

@@ -14,46 +14,29 @@
 
 
 
-/**
- * 
- * @export
- * @interface DiscountLinesResponse
- */
 export interface DiscountLinesResponse {
     /**
      * The amount to be deducted from the total sum of all payments, in cents.
-     * @type {number}
-     * @memberof DiscountLinesResponse
      */
     'amount': number;
     /**
      * Discount code.
-     * @type {string}
-     * @memberof DiscountLinesResponse
      */
     'code': string;
     /**
      * It can be \'loyalty\', \'campaign\', \'coupon\' o \'sign\'
-     * @type {string}
-     * @memberof DiscountLinesResponse
      */
     'type': string;
     /**
      * The discount line id
-     * @type {string}
-     * @memberof DiscountLinesResponse
      */
     'id': string;
     /**
      * The object name
-     * @type {string}
-     * @memberof DiscountLinesResponse
      */
     'object': string;
     /**
      * The order id
-     * @type {string}
-     * @memberof DiscountLinesResponse
      */
     'parent_id': string;
 }

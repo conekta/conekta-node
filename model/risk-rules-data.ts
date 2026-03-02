@@ -14,52 +14,33 @@
 
 
 
-/**
- * 
- * @export
- * @interface RiskRulesData
- */
 export interface RiskRulesData {
     /**
      * rule id
-     * @type {string}
-     * @memberof RiskRulesData
      */
     'id'?: string;
     /**
      * field to be used for the rule
-     * @type {string}
-     * @memberof RiskRulesData
      */
     'field'?: string;
     /**
      * rule creation date
-     * @type {string}
-     * @memberof RiskRulesData
      */
     'created_at'?: string;
     /**
      * value to be used for the rule
-     * @type {string}
-     * @memberof RiskRulesData
      */
     'value'?: string;
     /**
      * if the rule is global
-     * @type {boolean}
-     * @memberof RiskRulesData
      */
     'is_global'?: boolean;
     /**
      * if the rule is test
-     * @type {boolean}
-     * @memberof RiskRulesData
      */
     'is_test'?: boolean;
     /**
      * description of the rule
-     * @type {string}
-     * @memberof RiskRulesData
      */
     'description'?: string;
 }

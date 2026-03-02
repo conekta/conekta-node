@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -41,7 +41,6 @@ import type { UpdateCustomerFiscalEntitiesResponse } from '../model';
 import type { UpdateFiscalEntityRequest } from '../model';
 /**
  * CustomersApi - axios parameter creator
- * @export
  */
 export const CustomersApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -73,9 +72,8 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -125,9 +123,8 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -174,8 +171,8 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -220,8 +217,8 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -282,8 +279,8 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
                 localVarQueryParameter['previous'] = previous;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -331,9 +328,8 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -387,9 +383,8 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -412,7 +407,6 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
 
 /**
  * CustomersApi - functional programming interface
- * @export
  */
 export const CustomersApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = CustomersApiAxiosParamCreator(configuration)
@@ -534,7 +528,6 @@ export const CustomersApiFp = function(configuration?: Configuration) {
 
 /**
  * CustomersApi - factory interface
- * @export
  */
 export const CustomersApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = CustomersApiFp(configuration)
@@ -635,8 +628,6 @@ export const CustomersApiFactory = function (configuration?: Configuration, base
 
 /**
  * CustomersApi - interface
- * @export
- * @interface CustomersApi
  */
 export interface CustomersApiInterface {
     /**
@@ -647,7 +638,6 @@ export interface CustomersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CustomersApiInterface
      */
     createCustomer(customer: Customer, acceptLanguage?: CreateCustomerAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CustomerResponse>;
 
@@ -660,7 +650,6 @@ export interface CustomersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CustomersApiInterface
      */
     createCustomerFiscalEntities(id: string, fiscalEntityRequest: FiscalEntityRequest, acceptLanguage?: CreateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CreateCustomerFiscalEntitiesResponse>;
 
@@ -672,7 +661,6 @@ export interface CustomersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CustomersApiInterface
      */
     deleteCustomerById(id: string, acceptLanguage?: DeleteCustomerByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CustomerResponse>;
 
@@ -684,7 +672,6 @@ export interface CustomersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CustomersApiInterface
      */
     getCustomerById(id: string, acceptLanguage?: GetCustomerByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CustomerResponse>;
 
@@ -699,7 +686,6 @@ export interface CustomersApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CustomersApiInterface
      */
     getCustomers(acceptLanguage?: GetCustomersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<CustomersResponse>;
 
@@ -712,7 +698,6 @@ export interface CustomersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CustomersApiInterface
      */
     updateCustomer(id: string, updateCustomer: UpdateCustomer, acceptLanguage?: UpdateCustomerAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CustomerResponse>;
 
@@ -726,7 +711,6 @@ export interface CustomersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CustomersApiInterface
      */
     updateCustomerFiscalEntities(id: string, fiscalEntitiesId: string, updateFiscalEntityRequest: UpdateFiscalEntityRequest, acceptLanguage?: UpdateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateCustomerFiscalEntitiesResponse>;
 
@@ -734,9 +718,6 @@ export interface CustomersApiInterface {
 
 /**
  * CustomersApi - object-oriented interface
- * @export
- * @class CustomersApi
- * @extends {BaseAPI}
  */
 export class CustomersApi extends BaseAPI implements CustomersApiInterface {
     /**
@@ -747,7 +728,6 @@ export class CustomersApi extends BaseAPI implements CustomersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CustomersApi
      */
     public createCustomer(customer: Customer, acceptLanguage?: CreateCustomerAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return CustomersApiFp(this.configuration).createCustomer(customer, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -762,7 +742,6 @@ export class CustomersApi extends BaseAPI implements CustomersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CustomersApi
      */
     public createCustomerFiscalEntities(id: string, fiscalEntityRequest: FiscalEntityRequest, acceptLanguage?: CreateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return CustomersApiFp(this.configuration).createCustomerFiscalEntities(id, fiscalEntityRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -776,7 +755,6 @@ export class CustomersApi extends BaseAPI implements CustomersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CustomersApi
      */
     public deleteCustomerById(id: string, acceptLanguage?: DeleteCustomerByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return CustomersApiFp(this.configuration).deleteCustomerById(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -790,7 +768,6 @@ export class CustomersApi extends BaseAPI implements CustomersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CustomersApi
      */
     public getCustomerById(id: string, acceptLanguage?: GetCustomerByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return CustomersApiFp(this.configuration).getCustomerById(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -807,7 +784,6 @@ export class CustomersApi extends BaseAPI implements CustomersApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CustomersApi
      */
     public getCustomers(acceptLanguage?: GetCustomersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return CustomersApiFp(this.configuration).getCustomers(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
@@ -822,7 +798,6 @@ export class CustomersApi extends BaseAPI implements CustomersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CustomersApi
      */
     public updateCustomer(id: string, updateCustomer: UpdateCustomer, acceptLanguage?: UpdateCustomerAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return CustomersApiFp(this.configuration).updateCustomer(id, updateCustomer, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -838,64 +813,42 @@ export class CustomersApi extends BaseAPI implements CustomersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CustomersApi
      */
     public updateCustomerFiscalEntities(id: string, fiscalEntitiesId: string, updateFiscalEntityRequest: UpdateFiscalEntityRequest, acceptLanguage?: UpdateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return CustomersApiFp(this.configuration).updateCustomerFiscalEntities(id, fiscalEntitiesId, updateFiscalEntityRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const CreateCustomerAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type CreateCustomerAcceptLanguageEnum = typeof CreateCustomerAcceptLanguageEnum[keyof typeof CreateCustomerAcceptLanguageEnum];
-/**
- * @export
- */
 export const CreateCustomerFiscalEntitiesAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type CreateCustomerFiscalEntitiesAcceptLanguageEnum = typeof CreateCustomerFiscalEntitiesAcceptLanguageEnum[keyof typeof CreateCustomerFiscalEntitiesAcceptLanguageEnum];
-/**
- * @export
- */
 export const DeleteCustomerByIdAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type DeleteCustomerByIdAcceptLanguageEnum = typeof DeleteCustomerByIdAcceptLanguageEnum[keyof typeof DeleteCustomerByIdAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetCustomerByIdAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetCustomerByIdAcceptLanguageEnum = typeof GetCustomerByIdAcceptLanguageEnum[keyof typeof GetCustomerByIdAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetCustomersAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetCustomersAcceptLanguageEnum = typeof GetCustomersAcceptLanguageEnum[keyof typeof GetCustomersAcceptLanguageEnum];
-/**
- * @export
- */
 export const UpdateCustomerAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type UpdateCustomerAcceptLanguageEnum = typeof UpdateCustomerAcceptLanguageEnum[keyof typeof UpdateCustomerAcceptLanguageEnum];
-/**
- * @export
- */
 export const UpdateCustomerFiscalEntitiesAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

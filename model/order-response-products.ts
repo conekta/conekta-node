@@ -17,41 +17,23 @@
 // @ts-ignore
 import type { ProductDataResponse } from './product-data-response';
 
-/**
- * 
- * @export
- * @interface OrderResponseProducts
- */
 export interface OrderResponseProducts {
     /**
      * Indicates if there are more pages to be requested
-     * @type {boolean}
-     * @memberof OrderResponseProducts
      */
     'has_more': boolean;
     /**
      * Object type, in this case is list
-     * @type {string}
-     * @memberof OrderResponseProducts
      */
     'object': string;
     /**
      * URL of the next page.
-     * @type {string}
-     * @memberof OrderResponseProducts
      */
     'next_page_url'?: string;
     /**
      * Url of the previous page.
-     * @type {string}
-     * @memberof OrderResponseProducts
      */
     'previous_page_url'?: string;
-    /**
-     * 
-     * @type {Array<ProductDataResponse>}
-     * @memberof OrderResponseProducts
-     */
     'data'?: Array<ProductDataResponse>;
 }
 

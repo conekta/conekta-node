@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -35,7 +35,6 @@ import type { GetCompaniesResponse } from '../model';
 import type { ModelError } from '../model';
 /**
  * CompaniesApi - axios parameter creator
- * @export
  */
 export const CompaniesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -65,9 +64,8 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -123,8 +121,8 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
                 localVarQueryParameter['previous'] = previous;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -165,8 +163,8 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -207,8 +205,8 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -245,8 +243,8 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -290,9 +288,8 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -338,9 +335,8 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -360,7 +356,6 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
 
 /**
  * CompaniesApi - functional programming interface
- * @export
  */
 export const CompaniesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = CompaniesApiAxiosParamCreator(configuration)
@@ -471,7 +466,6 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
 
 /**
  * CompaniesApi - factory interface
- * @export
  */
 export const CompaniesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = CompaniesApiFp(configuration)
@@ -561,8 +555,6 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
 
 /**
  * CompaniesApi - interface
- * @export
- * @interface CompaniesApi
  */
 export interface CompaniesApiInterface {
     /**
@@ -571,7 +563,6 @@ export interface CompaniesApiInterface {
      * @param {CreateCompanyRequest} createCompanyRequest Company data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CompaniesApiInterface
      */
     createCompany(createCompanyRequest: CreateCompanyRequest, options?: RawAxiosRequestConfig): AxiosPromise<CompanyResponse>;
 
@@ -585,7 +576,6 @@ export interface CompaniesApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CompaniesApiInterface
      */
     getCompanies(acceptLanguage?: GetCompaniesAcceptLanguageEnum, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetCompaniesResponse>;
 
@@ -596,7 +586,6 @@ export interface CompaniesApiInterface {
      * @param {GetCompanyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CompaniesApiInterface
      */
     getCompany(id: string, acceptLanguage?: GetCompanyAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<CompanyResponse>;
 
@@ -607,7 +596,6 @@ export interface CompaniesApiInterface {
      * @param {GetCompanyDocumentsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CompaniesApiInterface
      */
     getCompanyDocuments(companyId: string, acceptLanguage?: GetCompanyDocumentsAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<Array<CompanyDocumentResponse>>;
 
@@ -617,7 +605,6 @@ export interface CompaniesApiInterface {
      * @param {GetCurrentCompanyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CompaniesApiInterface
      */
     getCurrentCompany(acceptLanguage?: GetCurrentCompanyAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<CompanyResponse>;
 
@@ -629,7 +616,6 @@ export interface CompaniesApiInterface {
      * @param {UpdateCompanyDocumentAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CompaniesApiInterface
      */
     updateCompanyDocument(companyId: string, companyDocumentRequest: CompanyDocumentRequest, acceptLanguage?: UpdateCompanyDocumentAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<CompanyDocumentResponse>;
 
@@ -641,7 +627,6 @@ export interface CompaniesApiInterface {
      * @param {UploadCompanyDocumentAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CompaniesApiInterface
      */
     uploadCompanyDocument(companyId: string, companyDocumentRequest: CompanyDocumentRequest, acceptLanguage?: UploadCompanyDocumentAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<CompanyDocumentResponse>;
 
@@ -649,9 +634,6 @@ export interface CompaniesApiInterface {
 
 /**
  * CompaniesApi - object-oriented interface
- * @export
- * @class CompaniesApi
- * @extends {BaseAPI}
  */
 export class CompaniesApi extends BaseAPI implements CompaniesApiInterface {
     /**
@@ -660,7 +642,6 @@ export class CompaniesApi extends BaseAPI implements CompaniesApiInterface {
      * @param {CreateCompanyRequest} createCompanyRequest Company data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CompaniesApi
      */
     public createCompany(createCompanyRequest: CreateCompanyRequest, options?: RawAxiosRequestConfig) {
         return CompaniesApiFp(this.configuration).createCompany(createCompanyRequest, options).then((request) => request(this.axios, this.basePath));
@@ -676,7 +657,6 @@ export class CompaniesApi extends BaseAPI implements CompaniesApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CompaniesApi
      */
     public getCompanies(acceptLanguage?: GetCompaniesAcceptLanguageEnum, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return CompaniesApiFp(this.configuration).getCompanies(acceptLanguage, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
@@ -689,7 +669,6 @@ export class CompaniesApi extends BaseAPI implements CompaniesApiInterface {
      * @param {GetCompanyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CompaniesApi
      */
     public getCompany(id: string, acceptLanguage?: GetCompanyAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return CompaniesApiFp(this.configuration).getCompany(id, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
@@ -702,7 +681,6 @@ export class CompaniesApi extends BaseAPI implements CompaniesApiInterface {
      * @param {GetCompanyDocumentsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CompaniesApi
      */
     public getCompanyDocuments(companyId: string, acceptLanguage?: GetCompanyDocumentsAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return CompaniesApiFp(this.configuration).getCompanyDocuments(companyId, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
@@ -714,7 +692,6 @@ export class CompaniesApi extends BaseAPI implements CompaniesApiInterface {
      * @param {GetCurrentCompanyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CompaniesApi
      */
     public getCurrentCompany(acceptLanguage?: GetCurrentCompanyAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return CompaniesApiFp(this.configuration).getCurrentCompany(acceptLanguage, options).then((request) => request(this.axios, this.basePath));
@@ -728,7 +705,6 @@ export class CompaniesApi extends BaseAPI implements CompaniesApiInterface {
      * @param {UpdateCompanyDocumentAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CompaniesApi
      */
     public updateCompanyDocument(companyId: string, companyDocumentRequest: CompanyDocumentRequest, acceptLanguage?: UpdateCompanyDocumentAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return CompaniesApiFp(this.configuration).updateCompanyDocument(companyId, companyDocumentRequest, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
@@ -742,56 +718,37 @@ export class CompaniesApi extends BaseAPI implements CompaniesApiInterface {
      * @param {UploadCompanyDocumentAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CompaniesApi
      */
     public uploadCompanyDocument(companyId: string, companyDocumentRequest: CompanyDocumentRequest, acceptLanguage?: UploadCompanyDocumentAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return CompaniesApiFp(this.configuration).uploadCompanyDocument(companyId, companyDocumentRequest, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const GetCompaniesAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetCompaniesAcceptLanguageEnum = typeof GetCompaniesAcceptLanguageEnum[keyof typeof GetCompaniesAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetCompanyAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetCompanyAcceptLanguageEnum = typeof GetCompanyAcceptLanguageEnum[keyof typeof GetCompanyAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetCompanyDocumentsAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetCompanyDocumentsAcceptLanguageEnum = typeof GetCompanyDocumentsAcceptLanguageEnum[keyof typeof GetCompanyDocumentsAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetCurrentCompanyAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetCurrentCompanyAcceptLanguageEnum = typeof GetCurrentCompanyAcceptLanguageEnum[keyof typeof GetCurrentCompanyAcceptLanguageEnum];
-/**
- * @export
- */
 export const UpdateCompanyDocumentAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type UpdateCompanyDocumentAcceptLanguageEnum = typeof UpdateCompanyDocumentAcceptLanguageEnum[keyof typeof UpdateCompanyDocumentAcceptLanguageEnum];
-/**
- * @export
- */
 export const UploadCompanyDocumentAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

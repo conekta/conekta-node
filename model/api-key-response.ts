@@ -16,74 +16,50 @@
 
 /**
  * api keys model
- * @export
- * @interface ApiKeyResponse
  */
 export interface ApiKeyResponse {
     /**
      * Indicates if the api key is active
-     * @type {boolean}
-     * @memberof ApiKeyResponse
      */
     'active'?: boolean;
     /**
      * Unix timestamp in seconds of when the api key was created
-     * @type {number}
-     * @memberof ApiKeyResponse
      */
     'created_at'?: number;
     /**
      * Unix timestamp in seconds of when the api key was last updated
-     * @type {number}
-     * @memberof ApiKeyResponse
      */
     'updated_at'?: number;
     /**
      * Unix timestamp in seconds of when the api key was deleted
-     * @type {number}
-     * @memberof ApiKeyResponse
      */
     'deactivated_at'?: number;
     /**
      * Unix timestamp in seconds with the api key was used
-     * @type {number}
-     * @memberof ApiKeyResponse
      */
     'last_used_at'?: number;
     /**
      * A name or brief explanation of what this api key is used for
-     * @type {string}
-     * @memberof ApiKeyResponse
      */
     'description'?: string;
     /**
      * Unique identifier of the api key
-     * @type {string}
-     * @memberof ApiKeyResponse
      */
     'id'?: string;
     /**
      * Indicates if the api key is in production
-     * @type {boolean}
-     * @memberof ApiKeyResponse
      */
     'livemode'?: boolean;
     /**
      * Object name, value is \'api_key\'
-     * @type {string}
-     * @memberof ApiKeyResponse
      */
     'object'?: string;
     /**
      * The first few characters of the authentication_token
-     * @type {string}
-     * @memberof ApiKeyResponse
      */
     'prefix'?: string;
     /**
      * Indicates if the api key is private or public
-     * @type {string}
-     * @memberof ApiKeyResponse
      */
     'role'?: string;
 }

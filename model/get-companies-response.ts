@@ -17,41 +17,23 @@
 // @ts-ignore
 import type { CompanyResponse } from './company-response';
 
-/**
- * 
- * @export
- * @interface GetCompaniesResponse
- */
 export interface GetCompaniesResponse {
     /**
      * Indicates if there are more pages to be requested
-     * @type {boolean}
-     * @memberof GetCompaniesResponse
      */
     'has_more': boolean;
     /**
      * Object type, in this case is list
-     * @type {string}
-     * @memberof GetCompaniesResponse
      */
     'object': string;
     /**
      * URL of the next page.
-     * @type {string}
-     * @memberof GetCompaniesResponse
      */
     'next_page_url'?: string;
     /**
      * Url of the previous page.
-     * @type {string}
-     * @memberof GetCompaniesResponse
      */
     'previous_page_url'?: string;
-    /**
-     * 
-     * @type {Array<CompanyResponse>}
-     * @memberof GetCompaniesResponse
-     */
     'data'?: Array<CompanyResponse>;
 }
 

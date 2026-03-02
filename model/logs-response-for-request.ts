@@ -19,38 +19,26 @@ import type { LogsResponseData } from './logs-response-data';
 
 /**
  * logs model
- * @export
- * @interface LogsResponseForRequest
  */
 export interface LogsResponseForRequest {
     /**
      * True, if there are more pages.
-     * @type {boolean}
-     * @memberof LogsResponseForRequest
      */
     'has_more'?: boolean;
     /**
      * The object type
-     * @type {string}
-     * @memberof LogsResponseForRequest
      */
     'object'?: string;
     /**
      * URL of the next page.
-     * @type {string}
-     * @memberof LogsResponseForRequest
      */
     'next_page_url'?: string;
     /**
      * Url of the previous page.
-     * @type {string}
-     * @memberof LogsResponseForRequest
      */
     'previous_page_url'?: string;
     /**
      * set to page results.
-     * @type {Array<LogsResponseData>}
-     * @memberof LogsResponseForRequest
      */
     'data'?: Array<LogsResponseData>;
 }

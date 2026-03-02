@@ -19,75 +19,21 @@ import type { CustomerShippingContactsAddress } from './customer-shipping-contac
 
 /**
  * Contains the detail of the shipping addresses that the client has active or has used in Conekta
- * @export
- * @interface CustomerShippingContactsResponse
  */
 export interface CustomerShippingContactsResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsResponse
-     */
     'phone'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsResponse
-     */
     'receiver'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsResponse
-     */
     'between_streets'?: string;
-    /**
-     * 
-     * @type {CustomerShippingContactsAddress}
-     * @memberof CustomerShippingContactsResponse
-     */
     'address'?: CustomerShippingContactsAddress;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsResponse
-     */
     'parent_id'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CustomerShippingContactsResponse
-     */
     'default'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsResponse
-     */
     'id'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerShippingContactsResponse
-     */
     'created_at'?: number;
     /**
      * Metadata associated with the shipping contact
-     * @type {{ [key: string]: any; }}
-     * @memberof CustomerShippingContactsResponse
      */
     'metadata'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsResponse
-     */
     'object'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CustomerShippingContactsResponse
-     */
     'deleted'?: boolean;
 }
 

@@ -17,29 +17,15 @@
 // @ts-ignore
 import type { CustomerShippingContactsDataResponse } from './customer-shipping-contacts-data-response';
 
-/**
- * 
- * @export
- * @interface CustomerResponseShippingContacts
- */
 export interface CustomerResponseShippingContacts {
     /**
      * Indicates if there are more pages to be requested
-     * @type {boolean}
-     * @memberof CustomerResponseShippingContacts
      */
     'has_more': boolean;
     /**
      * Object type, in this case is list
-     * @type {string}
-     * @memberof CustomerResponseShippingContacts
      */
     'object': string;
-    /**
-     * 
-     * @type {Array<CustomerShippingContactsDataResponse>}
-     * @memberof CustomerResponseShippingContacts
-     */
     'data'?: Array<CustomerShippingContactsDataResponse>;
 }
 

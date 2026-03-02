@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -33,7 +33,6 @@ import type { SubscriptionResponse } from '../model';
 import type { UpdatesASubscription } from '../model';
 /**
  * SubscriptionsApi - axios parameter creator
- * @export
  */
 export const SubscriptionsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -67,8 +66,8 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -117,9 +116,8 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -166,8 +164,8 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -210,8 +208,8 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -257,8 +255,8 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -304,8 +302,8 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -354,8 +352,8 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -403,9 +401,8 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -476,8 +473,8 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
                 localVarQueryParameter['previous'] = previous;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -542,8 +539,8 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
                 localVarQueryParameter['previous'] = previous;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -592,8 +589,8 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -642,8 +639,8 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -695,9 +692,8 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -748,8 +744,8 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -798,8 +794,8 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -848,9 +844,8 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -873,7 +868,6 @@ export const SubscriptionsApiAxiosParamCreator = function (configuration?: Confi
 
 /**
  * SubscriptionsApi - functional programming interface
- * @export
  */
 export const SubscriptionsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = SubscriptionsApiAxiosParamCreator(configuration)
@@ -1148,7 +1142,6 @@ export const SubscriptionsApiFp = function(configuration?: Configuration) {
 
 /**
  * SubscriptionsApi - factory interface
- * @export
  */
 export const SubscriptionsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = SubscriptionsApiFp(configuration)
@@ -1375,8 +1368,6 @@ export const SubscriptionsApiFactory = function (configuration?: Configuration, 
 
 /**
  * SubscriptionsApi - interface
- * @export
- * @interface SubscriptionsApi
  */
 export interface SubscriptionsApiInterface {
     /**
@@ -1388,7 +1379,6 @@ export interface SubscriptionsApiInterface {
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
-     * @memberof SubscriptionsApiInterface
      */
     cancelSubscription(id: string, acceptLanguage?: CancelSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse>;
 
@@ -1402,7 +1392,6 @@ export interface SubscriptionsApiInterface {
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
-     * @memberof SubscriptionsApiInterface
      */
     createSubscription(id: string, subscriptionRequest: SubscriptionRequest, acceptLanguage?: CreateSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse>;
 
@@ -1414,7 +1403,6 @@ export interface SubscriptionsApiInterface {
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
-     * @memberof SubscriptionsApiInterface
      */
     getSubscription(id: string, acceptLanguage?: GetSubscriptionAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse>;
 
@@ -1427,7 +1415,6 @@ export interface SubscriptionsApiInterface {
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
-     * @memberof SubscriptionsApiInterface
      */
     getSubscriptionEvents(id: string, acceptLanguage?: GetSubscriptionEventsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionEventsResponse>;
 
@@ -1440,7 +1427,6 @@ export interface SubscriptionsApiInterface {
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
-     * @memberof SubscriptionsApiInterface
      */
     pauseSubscription(id: string, acceptLanguage?: PauseSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse>;
 
@@ -1453,7 +1439,6 @@ export interface SubscriptionsApiInterface {
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
-     * @memberof SubscriptionsApiInterface
      */
     resumeSubscription(id: string, acceptLanguage?: ResumeSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse>;
 
@@ -1466,7 +1451,6 @@ export interface SubscriptionsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsApiInterface
      */
     subscriptionCancel(customerId: string, id: string, acceptLanguage?: SubscriptionCancelAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse>;
 
@@ -1479,7 +1463,6 @@ export interface SubscriptionsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsApiInterface
      */
     subscriptionCreate(customerId: string, subscriptionRequest: SubscriptionRequest, acceptLanguage?: SubscriptionCreateAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse>;
 
@@ -1496,7 +1479,6 @@ export interface SubscriptionsApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsApiInterface
      */
     subscriptionEvents(customerId: string, id: string, acceptLanguage?: SubscriptionEventsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionEventsResponse>;
 
@@ -1512,7 +1494,6 @@ export interface SubscriptionsApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsApiInterface
      */
     subscriptionList(customerId: string, acceptLanguage?: SubscriptionListAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse>;
 
@@ -1525,7 +1506,6 @@ export interface SubscriptionsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsApiInterface
      */
     subscriptionPause(customerId: string, id: string, acceptLanguage?: SubscriptionPauseAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse>;
 
@@ -1538,7 +1518,6 @@ export interface SubscriptionsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsApiInterface
      */
     subscriptionResume(customerId: string, id: string, acceptLanguage?: SubscriptionResumeAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse>;
 
@@ -1552,7 +1531,6 @@ export interface SubscriptionsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsApiInterface
      */
     subscriptionUpdate(customerId: string, id: string, updatesASubscription: UpdatesASubscription, acceptLanguage?: SubscriptionUpdateAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse>;
 
@@ -1565,7 +1543,6 @@ export interface SubscriptionsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsApiInterface
      */
     subscriptionsGet(customerId: string, id: string, acceptLanguage?: SubscriptionsGetAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse>;
 
@@ -1578,7 +1555,6 @@ export interface SubscriptionsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsApiInterface
      */
     subscriptionsRetry(customerId: string, id: string, acceptLanguage?: SubscriptionsRetryAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse>;
 
@@ -1592,7 +1568,6 @@ export interface SubscriptionsApiInterface {
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
-     * @memberof SubscriptionsApiInterface
      */
     updateSubscription(id: string, updatesASubscription: UpdatesASubscription, acceptLanguage?: UpdateSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionResponse>;
 
@@ -1600,9 +1575,6 @@ export interface SubscriptionsApiInterface {
 
 /**
  * SubscriptionsApi - object-oriented interface
- * @export
- * @class SubscriptionsApi
- * @extends {BaseAPI}
  */
 export class SubscriptionsApi extends BaseAPI implements SubscriptionsApiInterface {
     /**
@@ -1614,7 +1586,6 @@ export class SubscriptionsApi extends BaseAPI implements SubscriptionsApiInterfa
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
-     * @memberof SubscriptionsApi
      */
     public cancelSubscription(id: string, acceptLanguage?: CancelSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return SubscriptionsApiFp(this.configuration).cancelSubscription(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -1630,7 +1601,6 @@ export class SubscriptionsApi extends BaseAPI implements SubscriptionsApiInterfa
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
-     * @memberof SubscriptionsApi
      */
     public createSubscription(id: string, subscriptionRequest: SubscriptionRequest, acceptLanguage?: CreateSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return SubscriptionsApiFp(this.configuration).createSubscription(id, subscriptionRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -1644,7 +1614,6 @@ export class SubscriptionsApi extends BaseAPI implements SubscriptionsApiInterfa
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
-     * @memberof SubscriptionsApi
      */
     public getSubscription(id: string, acceptLanguage?: GetSubscriptionAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return SubscriptionsApiFp(this.configuration).getSubscription(id, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
@@ -1659,7 +1628,6 @@ export class SubscriptionsApi extends BaseAPI implements SubscriptionsApiInterfa
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
-     * @memberof SubscriptionsApi
      */
     public getSubscriptionEvents(id: string, acceptLanguage?: GetSubscriptionEventsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return SubscriptionsApiFp(this.configuration).getSubscriptionEvents(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -1674,7 +1642,6 @@ export class SubscriptionsApi extends BaseAPI implements SubscriptionsApiInterfa
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
-     * @memberof SubscriptionsApi
      */
     public pauseSubscription(id: string, acceptLanguage?: PauseSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return SubscriptionsApiFp(this.configuration).pauseSubscription(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -1689,7 +1656,6 @@ export class SubscriptionsApi extends BaseAPI implements SubscriptionsApiInterfa
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
-     * @memberof SubscriptionsApi
      */
     public resumeSubscription(id: string, acceptLanguage?: ResumeSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return SubscriptionsApiFp(this.configuration).resumeSubscription(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -1704,7 +1670,6 @@ export class SubscriptionsApi extends BaseAPI implements SubscriptionsApiInterfa
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsApi
      */
     public subscriptionCancel(customerId: string, id: string, acceptLanguage?: SubscriptionCancelAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return SubscriptionsApiFp(this.configuration).subscriptionCancel(customerId, id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -1719,7 +1684,6 @@ export class SubscriptionsApi extends BaseAPI implements SubscriptionsApiInterfa
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsApi
      */
     public subscriptionCreate(customerId: string, subscriptionRequest: SubscriptionRequest, acceptLanguage?: SubscriptionCreateAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return SubscriptionsApiFp(this.configuration).subscriptionCreate(customerId, subscriptionRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -1738,7 +1702,6 @@ export class SubscriptionsApi extends BaseAPI implements SubscriptionsApiInterfa
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsApi
      */
     public subscriptionEvents(customerId: string, id: string, acceptLanguage?: SubscriptionEventsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return SubscriptionsApiFp(this.configuration).subscriptionEvents(customerId, id, acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
@@ -1756,7 +1719,6 @@ export class SubscriptionsApi extends BaseAPI implements SubscriptionsApiInterfa
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsApi
      */
     public subscriptionList(customerId: string, acceptLanguage?: SubscriptionListAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return SubscriptionsApiFp(this.configuration).subscriptionList(customerId, acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
@@ -1771,7 +1733,6 @@ export class SubscriptionsApi extends BaseAPI implements SubscriptionsApiInterfa
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsApi
      */
     public subscriptionPause(customerId: string, id: string, acceptLanguage?: SubscriptionPauseAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return SubscriptionsApiFp(this.configuration).subscriptionPause(customerId, id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -1786,7 +1747,6 @@ export class SubscriptionsApi extends BaseAPI implements SubscriptionsApiInterfa
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsApi
      */
     public subscriptionResume(customerId: string, id: string, acceptLanguage?: SubscriptionResumeAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return SubscriptionsApiFp(this.configuration).subscriptionResume(customerId, id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -1802,7 +1762,6 @@ export class SubscriptionsApi extends BaseAPI implements SubscriptionsApiInterfa
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsApi
      */
     public subscriptionUpdate(customerId: string, id: string, updatesASubscription: UpdatesASubscription, acceptLanguage?: SubscriptionUpdateAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return SubscriptionsApiFp(this.configuration).subscriptionUpdate(customerId, id, updatesASubscription, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -1817,7 +1776,6 @@ export class SubscriptionsApi extends BaseAPI implements SubscriptionsApiInterfa
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsApi
      */
     public subscriptionsGet(customerId: string, id: string, acceptLanguage?: SubscriptionsGetAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return SubscriptionsApiFp(this.configuration).subscriptionsGet(customerId, id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -1832,7 +1790,6 @@ export class SubscriptionsApi extends BaseAPI implements SubscriptionsApiInterfa
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsApi
      */
     public subscriptionsRetry(customerId: string, id: string, acceptLanguage?: SubscriptionsRetryAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return SubscriptionsApiFp(this.configuration).subscriptionsRetry(customerId, id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -1848,136 +1805,87 @@ export class SubscriptionsApi extends BaseAPI implements SubscriptionsApiInterfa
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
-     * @memberof SubscriptionsApi
      */
     public updateSubscription(id: string, updatesASubscription: UpdatesASubscription, acceptLanguage?: UpdateSubscriptionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return SubscriptionsApiFp(this.configuration).updateSubscription(id, updatesASubscription, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const CancelSubscriptionAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type CancelSubscriptionAcceptLanguageEnum = typeof CancelSubscriptionAcceptLanguageEnum[keyof typeof CancelSubscriptionAcceptLanguageEnum];
-/**
- * @export
- */
 export const CreateSubscriptionAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type CreateSubscriptionAcceptLanguageEnum = typeof CreateSubscriptionAcceptLanguageEnum[keyof typeof CreateSubscriptionAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetSubscriptionAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetSubscriptionAcceptLanguageEnum = typeof GetSubscriptionAcceptLanguageEnum[keyof typeof GetSubscriptionAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetSubscriptionEventsAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetSubscriptionEventsAcceptLanguageEnum = typeof GetSubscriptionEventsAcceptLanguageEnum[keyof typeof GetSubscriptionEventsAcceptLanguageEnum];
-/**
- * @export
- */
 export const PauseSubscriptionAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type PauseSubscriptionAcceptLanguageEnum = typeof PauseSubscriptionAcceptLanguageEnum[keyof typeof PauseSubscriptionAcceptLanguageEnum];
-/**
- * @export
- */
 export const ResumeSubscriptionAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type ResumeSubscriptionAcceptLanguageEnum = typeof ResumeSubscriptionAcceptLanguageEnum[keyof typeof ResumeSubscriptionAcceptLanguageEnum];
-/**
- * @export
- */
 export const SubscriptionCancelAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type SubscriptionCancelAcceptLanguageEnum = typeof SubscriptionCancelAcceptLanguageEnum[keyof typeof SubscriptionCancelAcceptLanguageEnum];
-/**
- * @export
- */
 export const SubscriptionCreateAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type SubscriptionCreateAcceptLanguageEnum = typeof SubscriptionCreateAcceptLanguageEnum[keyof typeof SubscriptionCreateAcceptLanguageEnum];
-/**
- * @export
- */
 export const SubscriptionEventsAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type SubscriptionEventsAcceptLanguageEnum = typeof SubscriptionEventsAcceptLanguageEnum[keyof typeof SubscriptionEventsAcceptLanguageEnum];
-/**
- * @export
- */
 export const SubscriptionListAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type SubscriptionListAcceptLanguageEnum = typeof SubscriptionListAcceptLanguageEnum[keyof typeof SubscriptionListAcceptLanguageEnum];
-/**
- * @export
- */
 export const SubscriptionPauseAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type SubscriptionPauseAcceptLanguageEnum = typeof SubscriptionPauseAcceptLanguageEnum[keyof typeof SubscriptionPauseAcceptLanguageEnum];
-/**
- * @export
- */
 export const SubscriptionResumeAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type SubscriptionResumeAcceptLanguageEnum = typeof SubscriptionResumeAcceptLanguageEnum[keyof typeof SubscriptionResumeAcceptLanguageEnum];
-/**
- * @export
- */
 export const SubscriptionUpdateAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type SubscriptionUpdateAcceptLanguageEnum = typeof SubscriptionUpdateAcceptLanguageEnum[keyof typeof SubscriptionUpdateAcceptLanguageEnum];
-/**
- * @export
- */
 export const SubscriptionsGetAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type SubscriptionsGetAcceptLanguageEnum = typeof SubscriptionsGetAcceptLanguageEnum[keyof typeof SubscriptionsGetAcceptLanguageEnum];
-/**
- * @export
- */
 export const SubscriptionsRetryAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type SubscriptionsRetryAcceptLanguageEnum = typeof SubscriptionsRetryAcceptLanguageEnum[keyof typeof SubscriptionsRetryAcceptLanguageEnum];
-/**
- * @export
- */
 export const UpdateSubscriptionAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

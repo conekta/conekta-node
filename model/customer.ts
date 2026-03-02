@@ -31,105 +31,59 @@ import type { SubscriptionRequest } from './subscription-request';
 
 /**
  * a customer
- * @export
- * @interface Customer
  */
 export interface Customer {
-    /**
-     * 
-     * @type {CustomerAntifraudInfo}
-     * @memberof Customer
-     */
     'antifraud_info'?: CustomerAntifraudInfo;
     /**
      * It is a value that allows identifying if the email is corporate or not.
-     * @type {boolean}
-     * @memberof Customer
      */
     'corporate'?: boolean;
     /**
      * It is an undefined value.
-     * @type {string}
-     * @memberof Customer
      */
     'custom_reference'?: string;
     /**
      * It is a parameter that allows to identify the date of birth of the client.
-     * @type {string}
-     * @memberof Customer
      */
     'date_of_birth'?: string;
     /**
      * An email address is a series of customizable characters followed by a universal Internet symbol, the at symbol (@), the name of a host server, and a web domain ending (.mx, .com, .org, . net, etc).
-     * @type {string}
-     * @memberof Customer
      */
     'email': string;
     /**
      * It is a parameter that allows to identify in the response, the Conekta ID of a payment method (payment_id)
-     * @type {string}
-     * @memberof Customer
      */
     'default_payment_source_id'?: string;
     /**
      * It is a parameter that allows to identify in the response, the Conekta ID of the shipping address (shipping_contact)
-     * @type {string}
-     * @memberof Customer
      */
     'default_shipping_contact_id'?: string;
-    /**
-     * 
-     * @type {Array<FiscalEntityRequest>}
-     * @memberof Customer
-     */
     'fiscal_entities'?: Array<FiscalEntityRequest>;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof Customer
-     */
     'metadata'?: { [key: string]: any; };
     /**
      * Client\'s name
-     * @type {string}
-     * @memberof Customer
      */
     'name': string;
     /**
      * It is a parameter that allows to identify the national identification number of the client.
-     * @type {string}
-     * @memberof Customer
      */
     'national_id'?: string;
     /**
      * Contains details of the payment methods that the customer has active or has used in Conekta
-     * @type {Array<CustomerPaymentMethodsRequest>}
-     * @memberof Customer
      */
     'payment_sources'?: Array<CustomerPaymentMethodsRequest>;
     /**
      * Is the customer\'s phone number
-     * @type {string}
-     * @memberof Customer
      */
     'phone': string;
     /**
      * Contains the ID of a plan, which could together with name, email and phone create a client directly to a subscription
-     * @type {string}
-     * @memberof Customer
      */
     'plan_id'?: string;
     /**
      * Contains the detail of the shipping addresses that the client has active or has used in Conekta
-     * @type {Array<CustomerShippingContactsRequest>}
-     * @memberof Customer
      */
     'shipping_contacts'?: Array<CustomerShippingContactsRequest>;
-    /**
-     * 
-     * @type {SubscriptionRequest}
-     * @memberof Customer
-     */
     'subscription'?: SubscriptionRequest;
 }
 

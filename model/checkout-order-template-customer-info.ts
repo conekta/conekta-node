@@ -23,7 +23,6 @@ import type { CustomerInfoCustomerId } from './customer-info-customer-id';
 /**
  * @type CheckoutOrderTemplateCustomerInfo
  * It is the information of the customer who will be created when receiving a new payment.
- * @export
  */
 export type CheckoutOrderTemplateCustomerInfo = CustomerInfo | CustomerInfoCustomerId;
 

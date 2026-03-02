@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -35,7 +35,6 @@ import type { UpdateCustomerPaymentMethodsResponse } from '../model';
 import type { UpdatePaymentMethodsCard } from '../model';
 /**
  * PaymentMethodsApi - axios parameter creator
- * @export
  */
 export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -71,9 +70,8 @@ export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Conf
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -124,8 +122,8 @@ export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Conf
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -190,8 +188,8 @@ export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Conf
                 localVarQueryParameter['search'] = search;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -243,9 +241,8 @@ export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Conf
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -268,7 +265,6 @@ export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Conf
 
 /**
  * PaymentMethodsApi - functional programming interface
- * @export
  */
 export const PaymentMethodsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = PaymentMethodsApiAxiosParamCreator(configuration)
@@ -346,7 +342,6 @@ export const PaymentMethodsApiFp = function(configuration?: Configuration) {
 
 /**
  * PaymentMethodsApi - factory interface
- * @export
  */
 export const PaymentMethodsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = PaymentMethodsApiFp(configuration)
@@ -412,8 +407,6 @@ export const PaymentMethodsApiFactory = function (configuration?: Configuration,
 
 /**
  * PaymentMethodsApi - interface
- * @export
- * @interface PaymentMethodsApi
  */
 export interface PaymentMethodsApiInterface {
     /**
@@ -425,7 +418,6 @@ export interface PaymentMethodsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentMethodsApiInterface
      */
     createCustomerPaymentMethods(id: string, createCustomerPaymentMethodsRequest: CreateCustomerPaymentMethodsRequest, acceptLanguage?: CreateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CreateCustomerPaymentMethodsResponse>;
 
@@ -438,7 +430,6 @@ export interface PaymentMethodsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentMethodsApiInterface
      */
     deleteCustomerPaymentMethods(id: string, paymentMethodId: string, acceptLanguage?: DeleteCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateCustomerPaymentMethodsResponse>;
 
@@ -454,7 +445,6 @@ export interface PaymentMethodsApiInterface {
      * @param {string} [search] General order search, e.g. by mail, reference etc.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentMethodsApiInterface
      */
     getCustomerPaymentMethods(id: string, acceptLanguage?: GetCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetPaymentMethodResponse>;
 
@@ -468,7 +458,6 @@ export interface PaymentMethodsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentMethodsApiInterface
      */
     updateCustomerPaymentMethods(id: string, paymentMethodId: string, updatePaymentMethodsCard: UpdatePaymentMethodsCard, acceptLanguage?: UpdateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateCustomerPaymentMethodsResponse>;
 
@@ -476,9 +465,6 @@ export interface PaymentMethodsApiInterface {
 
 /**
  * PaymentMethodsApi - object-oriented interface
- * @export
- * @class PaymentMethodsApi
- * @extends {BaseAPI}
  */
 export class PaymentMethodsApi extends BaseAPI implements PaymentMethodsApiInterface {
     /**
@@ -490,7 +476,6 @@ export class PaymentMethodsApi extends BaseAPI implements PaymentMethodsApiInter
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentMethodsApi
      */
     public createCustomerPaymentMethods(id: string, createCustomerPaymentMethodsRequest: CreateCustomerPaymentMethodsRequest, acceptLanguage?: CreateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return PaymentMethodsApiFp(this.configuration).createCustomerPaymentMethods(id, createCustomerPaymentMethodsRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -505,7 +490,6 @@ export class PaymentMethodsApi extends BaseAPI implements PaymentMethodsApiInter
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentMethodsApi
      */
     public deleteCustomerPaymentMethods(id: string, paymentMethodId: string, acceptLanguage?: DeleteCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return PaymentMethodsApiFp(this.configuration).deleteCustomerPaymentMethods(id, paymentMethodId, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -523,7 +507,6 @@ export class PaymentMethodsApi extends BaseAPI implements PaymentMethodsApiInter
      * @param {string} [search] General order search, e.g. by mail, reference etc.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentMethodsApi
      */
     public getCustomerPaymentMethods(id: string, acceptLanguage?: GetCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: RawAxiosRequestConfig) {
         return PaymentMethodsApiFp(this.configuration).getCustomerPaymentMethods(id, acceptLanguage, xChildCompanyId, limit, next, previous, search, options).then((request) => request(this.axios, this.basePath));
@@ -539,40 +522,27 @@ export class PaymentMethodsApi extends BaseAPI implements PaymentMethodsApiInter
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentMethodsApi
      */
     public updateCustomerPaymentMethods(id: string, paymentMethodId: string, updatePaymentMethodsCard: UpdatePaymentMethodsCard, acceptLanguage?: UpdateCustomerPaymentMethodsAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return PaymentMethodsApiFp(this.configuration).updateCustomerPaymentMethods(id, paymentMethodId, updatePaymentMethodsCard, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const CreateCustomerPaymentMethodsAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type CreateCustomerPaymentMethodsAcceptLanguageEnum = typeof CreateCustomerPaymentMethodsAcceptLanguageEnum[keyof typeof CreateCustomerPaymentMethodsAcceptLanguageEnum];
-/**
- * @export
- */
 export const DeleteCustomerPaymentMethodsAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type DeleteCustomerPaymentMethodsAcceptLanguageEnum = typeof DeleteCustomerPaymentMethodsAcceptLanguageEnum[keyof typeof DeleteCustomerPaymentMethodsAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetCustomerPaymentMethodsAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetCustomerPaymentMethodsAcceptLanguageEnum = typeof GetCustomerPaymentMethodsAcceptLanguageEnum[keyof typeof GetCustomerPaymentMethodsAcceptLanguageEnum];
-/**
- * @export
- */
 export const UpdateCustomerPaymentMethodsAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

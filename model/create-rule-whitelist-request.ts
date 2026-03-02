@@ -14,28 +14,17 @@
 
 
 
-/**
- * 
- * @export
- * @interface CreateRuleWhitelistRequest
- */
 export interface CreateRuleWhitelistRequest {
     /**
      * Description of the rule
-     * @type {string}
-     * @memberof CreateRuleWhitelistRequest
      */
     'description': string;
     /**
      * Field to be used for the rule
-     * @type {string}
-     * @memberof CreateRuleWhitelistRequest
      */
     'field': string;
     /**
      * Value to be used for the rule
-     * @type {string}
-     * @memberof CreateRuleWhitelistRequest
      */
     'value': string;
 }

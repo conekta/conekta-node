@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface EmailCheckoutRequest
- */
 export interface EmailCheckoutRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof EmailCheckoutRequest
-     */
     'email': string;
 }
 

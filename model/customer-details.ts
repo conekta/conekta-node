@@ -16,33 +16,11 @@
 
 /**
  * Customer details for customer portal
- * @export
- * @interface CustomerDetails
  */
 export interface CustomerDetails {
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerDetails
-     */
     'id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerDetails
-     */
     'object'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerDetails
-     */
     'name'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerDetails
-     */
     'email'?: string;
 }
 

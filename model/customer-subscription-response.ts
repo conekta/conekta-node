@@ -16,117 +16,28 @@
 
 /**
  * subscription model
- * @export
- * @interface CustomerSubscriptionResponse
  */
 export interface CustomerSubscriptionResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerSubscriptionResponse
-     */
     'billing_cycle_start'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerSubscriptionResponse
-     */
     'billing_cycle_end'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerSubscriptionResponse
-     */
     'canceled_at'?: number;
     /**
      * Reason for cancellation. This field appears when the subscription status is \'canceled\'.
-     * @type {string}
-     * @memberof CustomerSubscriptionResponse
      */
     'canceled_reason'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerSubscriptionResponse
-     */
     'card_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerSubscriptionResponse
-     */
     'charge_id'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerSubscriptionResponse
-     */
     'created_at'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerSubscriptionResponse
-     */
     'customer_custom_reference'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerSubscriptionResponse
-     */
     'customer_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerSubscriptionResponse
-     */
     'id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerSubscriptionResponse
-     */
     'last_billing_cycle_order_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerSubscriptionResponse
-     */
     'object'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerSubscriptionResponse
-     */
     'paused_at'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerSubscriptionResponse
-     */
     'plan_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerSubscriptionResponse
-     */
     'status'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerSubscriptionResponse
-     */
     'subscription_start'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerSubscriptionResponse
-     */
     'trial_start'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerSubscriptionResponse
-     */
     'trial_end'?: number;
 }
 

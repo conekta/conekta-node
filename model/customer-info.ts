@@ -14,41 +14,11 @@
 
 
 
-/**
- * 
- * @export
- * @interface CustomerInfo
- */
 export interface CustomerInfo {
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerInfo
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerInfo
-     */
     'email': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerInfo
-     */
     'phone': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CustomerInfo
-     */
     'corporate'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerInfo
-     */
     'object'?: string;
 }
 

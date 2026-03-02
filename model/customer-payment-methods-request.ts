@@ -25,7 +25,6 @@ import type { PaymentMethodTokenRequest } from './payment-method-token-request';
 
 /**
  * @type CustomerPaymentMethodsRequest
- * @export
  */
 export type CustomerPaymentMethodsRequest = PaymentMethodCashRequest | PaymentMethodSpeiRequest | PaymentMethodTokenRequest;
 

@@ -14,23 +14,11 @@
 
 
 
-/**
- * 
- * @export
- * @interface PaymentMethodCashRequest
- */
 export interface PaymentMethodCashRequest {
     /**
      * Type of payment method
-     * @type {string}
-     * @memberof PaymentMethodCashRequest
      */
     'type': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PaymentMethodCashRequest
-     */
     'expires_at'?: number;
 }
 

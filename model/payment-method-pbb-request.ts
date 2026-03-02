@@ -14,28 +14,17 @@
 
 
 
-/**
- * 
- * @export
- * @interface PaymentMethodPbbRequest
- */
 export interface PaymentMethodPbbRequest {
     /**
      * Type of the payment method
-     * @type {string}
-     * @memberof PaymentMethodPbbRequest
      */
     'type': string;
     /**
      * Expiration date of the payment method, in Unix timestamp format
-     * @type {number}
-     * @memberof PaymentMethodPbbRequest
      */
     'expires_at'?: number;
     /**
      * Product type of the payment method, use for the payment method to know the product type
-     * @type {string}
-     * @memberof PaymentMethodPbbRequest
      */
     'product_type': PaymentMethodPbbRequestProductTypeEnum;
 }

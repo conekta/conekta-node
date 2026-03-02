@@ -14,83 +14,42 @@
 
 
 
-/**
- * 
- * @export
- * @interface ProductOrderResponse
- */
 export interface ProductOrderResponse {
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof ProductOrderResponse
-     */
     'antifraud_info'?: { [key: string]: any; };
     /**
      * The brand of the item.
-     * @type {string}
-     * @memberof ProductOrderResponse
      */
     'brand'?: string;
     /**
      * Short description of the item
-     * @type {string}
-     * @memberof ProductOrderResponse
      */
     'description'?: string;
     /**
      * It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters.
-     * @type {{ [key: string]: any; }}
-     * @memberof ProductOrderResponse
      */
     'metadata'?: { [key: string]: any; };
     /**
      * The name of the item. It will be displayed in the order.
-     * @type {string}
-     * @memberof ProductOrderResponse
      */
     'name': string;
     /**
      * The quantity of the item in the order.
-     * @type {number}
-     * @memberof ProductOrderResponse
      */
     'quantity': number;
     /**
      * The stock keeping unit for the item. It is used to identify the item in the order.
-     * @type {string}
-     * @memberof ProductOrderResponse
      */
     'sku'?: string;
     /**
      * List of tags for the item. It is used to identify the item in the order.
-     * @type {Array<string>}
-     * @memberof ProductOrderResponse
      */
     'tags'?: Array<string>;
     /**
      * The price of the item in cents.
-     * @type {number}
-     * @memberof ProductOrderResponse
      */
     'unit_price': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductOrderResponse
-     */
     'id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductOrderResponse
-     */
     'object'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductOrderResponse
-     */
     'parent_id'?: string;
 }
 

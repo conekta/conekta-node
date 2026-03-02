@@ -46,140 +46,64 @@ import type { OrderTaxResponse } from './order-tax-response';
 
 /**
  * order response
- * @export
- * @interface OrderResponse
  */
 export interface OrderResponse {
     /**
      * The total amount to be collected in cents
-     * @type {number}
-     * @memberof OrderResponse
      */
     'amount'?: number;
     /**
      * The total amount refunded in cents
-     * @type {number}
-     * @memberof OrderResponse
      */
     'amount_refunded'?: number;
-    /**
-     * 
-     * @type {OrderChannelResponse}
-     * @memberof OrderResponse
-     */
     'channel'?: OrderChannelResponse;
-    /**
-     * 
-     * @type {OrderChargesResponse}
-     * @memberof OrderResponse
-     */
     'charges'?: OrderChargesResponse;
-    /**
-     * 
-     * @type {OrderResponseCheckout}
-     * @memberof OrderResponse
-     */
     'checkout'?: OrderResponseCheckout;
     /**
      * The time at which the object was created in seconds since the Unix epoch
-     * @type {number}
-     * @memberof OrderResponse
      */
     'created_at'?: number;
     /**
      * The three-letter ISO 4217 currency code. The currency of the order.
-     * @type {string}
-     * @memberof OrderResponse
      */
     'currency'?: string;
-    /**
-     * 
-     * @type {OrderResponseCustomerInfo}
-     * @memberof OrderResponse
-     */
     'customer_info'?: OrderResponseCustomerInfo;
     /**
      * List of discounts that are applied to the order
-     * @type {Array<DiscountLinesResponse>}
-     * @memberof OrderResponse
      */
     'discount_lines'?: Array<DiscountLinesResponse>;
     /**
      * List of taxes that are applied to the order
-     * @type {Array<OrderTaxResponse>}
-     * @memberof OrderResponse
      */
     'tax_lines'?: Array<OrderTaxResponse>;
-    /**
-     * 
-     * @type {OrderFiscalEntityResponse}
-     * @memberof OrderResponse
-     */
     'fiscal_entity'?: OrderFiscalEntityResponse;
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderResponse
-     */
     'id'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OrderResponse
-     */
     'is_refundable'?: boolean;
-    /**
-     * 
-     * @type {OrderResponseProducts}
-     * @memberof OrderResponse
-     */
     'line_items'?: OrderResponseProducts;
     /**
      * Whether the object exists in live mode or test mode
-     * @type {boolean}
-     * @memberof OrderResponse
      */
     'livemode'?: boolean;
     /**
      * Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
-     * @type {{ [key: string]: any; }}
-     * @memberof OrderResponse
      */
     'metadata'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {OrderNextActionResponse}
-     * @memberof OrderResponse
-     */
     'next_action'?: OrderNextActionResponse;
     /**
      * String representing the object’s type. Objects of the same type share the same value.
-     * @type {string}
-     * @memberof OrderResponse
      */
     'object'?: string;
     /**
      * The payment status of the order.
-     * @type {string}
-     * @memberof OrderResponse
      */
     'payment_status'?: string;
     /**
      * Indicates the processing mode for the order, either ecommerce, recurrent or validation.
-     * @type {string}
-     * @memberof OrderResponse
      */
     'processing_mode'?: string;
-    /**
-     * 
-     * @type {OrderResponseShippingContact}
-     * @memberof OrderResponse
-     */
     'shipping_contact'?: OrderResponseShippingContact;
     /**
      * The time at which the object was last updated in seconds since the Unix epoch
-     * @type {number}
-     * @memberof OrderResponse
      */
     'updated_at'?: number;
 }

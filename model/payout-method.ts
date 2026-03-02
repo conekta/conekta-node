@@ -16,14 +16,10 @@
 
 /**
  * The payout method of the payout order.
- * @export
- * @interface PayoutMethod
  */
 export interface PayoutMethod {
     /**
      * The type of the payout method.
-     * @type {string}
-     * @memberof PayoutMethod
      */
     'type': string;
 }

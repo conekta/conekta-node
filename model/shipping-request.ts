@@ -14,40 +14,25 @@
 
 
 
-/**
- * 
- * @export
- * @interface ShippingRequest
- */
 export interface ShippingRequest {
     /**
      * Shipping amount in cents
-     * @type {number}
-     * @memberof ShippingRequest
      */
     'amount': number;
     /**
      * Carrier name for the shipment
-     * @type {string}
-     * @memberof ShippingRequest
      */
     'carrier'?: string;
     /**
      * Tracking number can be used to track the shipment
-     * @type {string}
-     * @memberof ShippingRequest
      */
     'tracking_number'?: string;
     /**
      * Method of shipment
-     * @type {string}
-     * @memberof ShippingRequest
      */
     'method'?: string;
     /**
      * Hash where the user can send additional information for each \'shipping\'.
-     * @type {{ [key: string]: any; }}
-     * @memberof ShippingRequest
      */
     'metadata'?: { [key: string]: any; };
 }

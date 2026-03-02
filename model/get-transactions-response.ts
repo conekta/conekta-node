@@ -17,40 +17,25 @@
 // @ts-ignore
 import type { TransactionResponse } from './transaction-response';
 
-/**
- * 
- * @export
- * @interface GetTransactionsResponse
- */
 export interface GetTransactionsResponse {
     /**
      * Indicates if there are more pages to be requested
-     * @type {boolean}
-     * @memberof GetTransactionsResponse
      */
     'has_more': boolean;
     /**
      * Object type, in this case is list
-     * @type {string}
-     * @memberof GetTransactionsResponse
      */
     'object': string;
     /**
      * URL of the next page.
-     * @type {string}
-     * @memberof GetTransactionsResponse
      */
     'next_page_url'?: string;
     /**
      * Url of the previous page.
-     * @type {string}
-     * @memberof GetTransactionsResponse
      */
     'previous_page_url'?: string;
     /**
      * Transactions
-     * @type {Array<TransactionResponse>}
-     * @memberof GetTransactionsResponse
      */
     'data'?: Array<TransactionResponse>;
 }

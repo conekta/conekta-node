@@ -19,75 +19,21 @@ import type { CashAgreementsResponse } from './cash-agreements-response';
 
 /**
  * Alias of cash response used when type=cash_recurrent
- * @export
- * @interface PaymentMethodCashRecurrentResponse
  */
 export interface PaymentMethodCashRecurrentResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodCashRecurrentResponse
-     */
     'type': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodCashRecurrentResponse
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodCashRecurrentResponse
-     */
     'object': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PaymentMethodCashRecurrentResponse
-     */
     'created_at': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodCashRecurrentResponse
-     */
     'parent_id'?: string;
-    /**
-     * 
-     * @type {Array<CashAgreementsResponse>}
-     * @memberof PaymentMethodCashRecurrentResponse
-     */
     'agreements'?: Array<CashAgreementsResponse>;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodCashRecurrentResponse
-     */
     'reference'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodCashRecurrentResponse
-     */
     'barcode'?: string;
     /**
      * URL to the barcode image, reference is the same as barcode
-     * @type {string}
-     * @memberof PaymentMethodCashRecurrentResponse
      */
     'barcode_url'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PaymentMethodCashRecurrentResponse
-     */
     'expires_at'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodCashRecurrentResponse
-     */
     'provider'?: string;
 }
 

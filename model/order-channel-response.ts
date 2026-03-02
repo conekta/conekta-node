@@ -14,35 +14,10 @@
 
 
 
-/**
- * 
- * @export
- * @interface OrderChannelResponse
- */
 export interface OrderChannelResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderChannelResponse
-     */
     'segment'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderChannelResponse
-     */
     'checkout_request_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderChannelResponse
-     */
     'checkout_request_type'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderChannelResponse
-     */
     'id'?: string;
 }
 

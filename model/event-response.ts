@@ -19,57 +19,15 @@ import type { WebhookLog } from './webhook-log';
 
 /**
  * event model
- * @export
- * @interface EventResponse
  */
 export interface EventResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof EventResponse
-     */
     'created_at'?: number;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof EventResponse
-     */
     'data'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {string}
-     * @memberof EventResponse
-     */
     'id'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EventResponse
-     */
     'livemode'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventResponse
-     */
     'object'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventResponse
-     */
     'type'?: string;
-    /**
-     * 
-     * @type {Array<WebhookLog>}
-     * @memberof EventResponse
-     */
     'webhook_logs'?: Array<WebhookLog>;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventResponse
-     */
     'webhook_status'?: string;
 }
 

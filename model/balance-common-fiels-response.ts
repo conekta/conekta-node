@@ -16,20 +16,14 @@
 
 /**
  * balance common fields model
- * @export
- * @interface BalanceCommonFielsResponse
  */
 export interface BalanceCommonFielsResponse {
     /**
      * The balance\'s amount
-     * @type {number}
-     * @memberof BalanceCommonFielsResponse
      */
     'amount'?: number;
     /**
      * The balance\'s currency
-     * @type {string}
-     * @memberof BalanceCommonFielsResponse
      */
     'currency'?: string;
 }

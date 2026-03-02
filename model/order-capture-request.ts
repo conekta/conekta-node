@@ -14,16 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface OrderCaptureRequest
- */
 export interface OrderCaptureRequest {
     /**
      * Amount to capture
-     * @type {number}
-     * @memberof OrderCaptureRequest
      */
     'amount': number;
 }

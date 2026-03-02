@@ -19,44 +19,27 @@ import type { FiscalEntityAddress } from './fiscal-entity-address';
 
 /**
  * Fiscal entity of the order, Currently it is a purely informative field
- * @export
- * @interface OrderFiscalEntityRequest
  */
 export interface OrderFiscalEntityRequest {
-    /**
-     * 
-     * @type {FiscalEntityAddress}
-     * @memberof OrderFiscalEntityRequest
-     */
     'address': FiscalEntityAddress;
     /**
      * Email of the fiscal entity
-     * @type {string}
-     * @memberof OrderFiscalEntityRequest
      */
     'email'?: string;
     /**
      * Metadata associated with the fiscal entity
-     * @type {{ [key: string]: any; }}
-     * @memberof OrderFiscalEntityRequest
      */
     'metadata'?: { [key: string]: any; };
     /**
      * Name of the fiscal entity
-     * @type {string}
-     * @memberof OrderFiscalEntityRequest
      */
     'name'?: string;
     /**
      * Phone of the fiscal entity
-     * @type {string}
-     * @memberof OrderFiscalEntityRequest
      */
     'phone'?: string;
     /**
      * Tax ID of the fiscal entity
-     * @type {string}
-     * @memberof OrderFiscalEntityRequest
      */
     'tax_id'?: string;
 }

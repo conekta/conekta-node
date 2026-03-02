@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface DeletedBlacklistRuleResponse
- */
 export interface DeletedBlacklistRuleResponse {
     /**
      * Blacklist rule id
-     * @type {string}
-     * @memberof DeletedBlacklistRuleResponse
      */
     'id'?: string;
     /**
      * field used for blacklists rule deleted
-     * @type {string}
-     * @memberof DeletedBlacklistRuleResponse
      */
     'field'?: string;
     /**
      * value used for blacklists rule deleted
-     * @type {string}
-     * @memberof DeletedBlacklistRuleResponse
      */
     'value'?: string;
     /**
      * use an description for blacklisted rule
-     * @type {string}
-     * @memberof DeletedBlacklistRuleResponse
      */
     'description'?: string;
 }

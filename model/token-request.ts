@@ -22,20 +22,10 @@ import type { TokenRequestCheckout } from './token-request-checkout';
 
 /**
  * a token
- * @export
- * @interface TokenRequest
  */
 export interface TokenRequest {
-    /**
-     * 
-     * @type {TokenRequestCard}
-     * @memberof TokenRequest
-     */
     'card'?: TokenRequestCard;
     /**
-     * 
-     * @type {TokenRequestCheckout}
-     * @memberof TokenRequest
      * @deprecated
      */
     'checkout'?: TokenRequestCheckout;

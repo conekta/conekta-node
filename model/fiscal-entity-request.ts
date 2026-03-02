@@ -17,47 +17,12 @@
 // @ts-ignore
 import type { FiscalEntityRequestAddress } from './fiscal-entity-request-address';
 
-/**
- * 
- * @export
- * @interface FiscalEntityRequest
- */
 export interface FiscalEntityRequest {
-    /**
-     * 
-     * @type {FiscalEntityRequestAddress}
-     * @memberof FiscalEntityRequest
-     */
     'address': FiscalEntityRequestAddress;
-    /**
-     * 
-     * @type {string}
-     * @memberof FiscalEntityRequest
-     */
     'tax_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FiscalEntityRequest
-     */
     'email'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FiscalEntityRequest
-     */
     'phone'?: string;
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof FiscalEntityRequest
-     */
     'metadata'?: { [key: string]: object; };
-    /**
-     * 
-     * @type {string}
-     * @memberof FiscalEntityRequest
-     */
     'company_name'?: string;
 }
 

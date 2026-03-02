@@ -19,20 +19,11 @@ import type { OrderNextActionResponseRedirectToUrl } from './order-next-action-r
 
 /**
  * contains the following attributes that will guide to continue the flow
- * @export
- * @interface OrderNextActionResponse
  */
 export interface OrderNextActionResponse {
-    /**
-     * 
-     * @type {OrderNextActionResponseRedirectToUrl}
-     * @memberof OrderNextActionResponse
-     */
     'redirect_to_url'?: OrderNextActionResponseRedirectToUrl;
     /**
      * Indicates the type of action to be taken
-     * @type {string}
-     * @memberof OrderNextActionResponse
      */
     'type'?: string;
 }

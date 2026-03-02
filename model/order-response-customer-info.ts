@@ -14,53 +14,16 @@
 
 
 
-/**
- * 
- * @export
- * @interface OrderResponseCustomerInfo
- */
 export interface OrderResponseCustomerInfo {
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderResponseCustomerInfo
-     */
     'object'?: string;
     /**
      * Custom reference
-     * @type {string}
-     * @memberof OrderResponseCustomerInfo
      */
     'customer_custom_reference'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderResponseCustomerInfo
-     */
     'name'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderResponseCustomerInfo
-     */
     'email'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderResponseCustomerInfo
-     */
     'phone'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OrderResponseCustomerInfo
-     */
     'corporate'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderResponseCustomerInfo
-     */
     'customer_id'?: string;
 }
 

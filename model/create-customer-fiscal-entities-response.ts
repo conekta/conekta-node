@@ -17,77 +17,17 @@
 // @ts-ignore
 import type { FiscalEntityRequestAddress } from './fiscal-entity-request-address';
 
-/**
- * 
- * @export
- * @interface CreateCustomerFiscalEntitiesResponse
- */
 export interface CreateCustomerFiscalEntitiesResponse {
-    /**
-     * 
-     * @type {FiscalEntityRequestAddress}
-     * @memberof CreateCustomerFiscalEntitiesResponse
-     */
     'address': FiscalEntityRequestAddress;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateCustomerFiscalEntitiesResponse
-     */
     'tax_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateCustomerFiscalEntitiesResponse
-     */
     'email'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateCustomerFiscalEntitiesResponse
-     */
     'phone'?: string;
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof CreateCustomerFiscalEntitiesResponse
-     */
     'metadata'?: { [key: string]: object; };
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateCustomerFiscalEntitiesResponse
-     */
     'company_name'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateCustomerFiscalEntitiesResponse
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateCustomerFiscalEntitiesResponse
-     */
     'object': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateCustomerFiscalEntitiesResponse
-     */
     'created_at': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateCustomerFiscalEntitiesResponse
-     */
     'parent_id'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CreateCustomerFiscalEntitiesResponse
-     */
     'default'?: boolean;
 }
 

@@ -16,26 +16,18 @@
 
 /**
  * an updated webhook
- * @export
- * @interface UpdateWebhook
  */
 export interface UpdateWebhook {
     /**
      * Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security.
-     * @type {string}
-     * @memberof UpdateWebhook
      */
     'url'?: string;
     /**
      * events that will be sent to the webhook
-     * @type {Array<string>}
-     * @memberof UpdateWebhook
      */
     'subscribed_events'?: Array<string>;
     /**
      * whether the webhook is active or not
-     * @type {boolean}
-     * @memberof UpdateWebhook
      */
     'active'?: boolean;
 }

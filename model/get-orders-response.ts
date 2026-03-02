@@ -17,40 +17,22 @@
 // @ts-ignore
 import type { OrderResponse } from './order-response';
 
-/**
- * 
- * @export
- * @interface GetOrdersResponse
- */
 export interface GetOrdersResponse {
-    /**
-     * 
-     * @type {Array<OrderResponse>}
-     * @memberof GetOrdersResponse
-     */
     'data': Array<OrderResponse>;
     /**
      * Indicates if there are more pages to be requested
-     * @type {boolean}
-     * @memberof GetOrdersResponse
      */
     'has_more': boolean;
     /**
      * Object type, in this case is list
-     * @type {string}
-     * @memberof GetOrdersResponse
      */
     'object': string;
     /**
      * URL of the next page.
-     * @type {string}
-     * @memberof GetOrdersResponse
      */
     'next_page_url'?: string;
     /**
      * Url of the previous page.
-     * @type {string}
-     * @memberof GetOrdersResponse
      */
     'previous_page_url'?: string;
 }

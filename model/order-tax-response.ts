@@ -16,45 +16,19 @@
 
 /**
  * create new taxes for an existing order response
- * @export
- * @interface OrderTaxResponse
  */
 export interface OrderTaxResponse {
     /**
      * The amount to be collected for tax in cents
-     * @type {number}
-     * @memberof OrderTaxResponse
      */
     'amount': number;
     /**
      * description or tax\'s name
-     * @type {string}
-     * @memberof OrderTaxResponse
      */
     'description': string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OrderTaxResponse
-     */
     'metadata'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderTaxResponse
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderTaxResponse
-     */
     'object'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderTaxResponse
-     */
     'parent_id'?: string;
 }
 

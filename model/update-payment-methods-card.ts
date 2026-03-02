@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface UpdatePaymentMethodsCard
- */
 export interface UpdatePaymentMethodsCard {
     /**
      * The name of the payment method holder
-     * @type {string}
-     * @memberof UpdatePaymentMethodsCard
      */
     'name'?: string;
     /**
      * The expiration date of the payment method in Unix timestamp format
-     * @type {number}
-     * @memberof UpdatePaymentMethodsCard
      */
     'expires_at'?: number;
 }

@@ -19,33 +19,14 @@ import type { DetailsError } from './details-error';
 
 /**
  * err model
- * @export
- * @interface ModelError
  */
 export interface ModelError {
-    /**
-     * 
-     * @type {Array<DetailsError>}
-     * @memberof ModelError
-     */
     'details'?: Array<DetailsError>;
     /**
      * log id
-     * @type {string}
-     * @memberof ModelError
      */
     'log_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ModelError
-     */
     'type'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ModelError
-     */
     'object'?: string;
 }
 

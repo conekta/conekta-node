@@ -16,27 +16,16 @@
 
 /**
  * create new taxes for an existing order
- * @export
- * @interface OrdersUpdateTaxesRequest
  */
 export interface OrdersUpdateTaxesRequest {
     /**
      * The amount to be collected for tax in cents
-     * @type {number}
-     * @memberof OrdersUpdateTaxesRequest
      */
     'amount'?: number;
     /**
      * description or tax\'s name
-     * @type {string}
-     * @memberof OrdersUpdateTaxesRequest
      */
     'description'?: string;
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof OrdersUpdateTaxesRequest
-     */
     'metadata'?: { [key: string]: object; };
 }
 

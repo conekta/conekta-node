@@ -17,29 +17,15 @@
 // @ts-ignore
 import type { CustomerFiscalEntitiesDataResponse } from './customer-fiscal-entities-data-response';
 
-/**
- * 
- * @export
- * @interface CustomerFiscalEntitiesResponse
- */
 export interface CustomerFiscalEntitiesResponse {
     /**
      * Indicates if there are more pages to be requested
-     * @type {boolean}
-     * @memberof CustomerFiscalEntitiesResponse
      */
     'has_more': boolean;
     /**
      * Object type, in this case is list
-     * @type {string}
-     * @memberof CustomerFiscalEntitiesResponse
      */
     'object': string;
-    /**
-     * 
-     * @type {Array<CustomerFiscalEntitiesDataResponse>}
-     * @memberof CustomerFiscalEntitiesResponse
-     */
     'data'?: Array<CustomerFiscalEntitiesDataResponse>;
 }
 

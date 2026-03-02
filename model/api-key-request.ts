@@ -14,23 +14,11 @@
 
 
 
-/**
- * 
- * @export
- * @interface ApiKeyRequest
- */
 export interface ApiKeyRequest {
     /**
      * A name or brief explanation of what this api key is used for
-     * @type {string}
-     * @memberof ApiKeyRequest
      */
     'description'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ApiKeyRequest
-     */
     'role': string;
 }
 

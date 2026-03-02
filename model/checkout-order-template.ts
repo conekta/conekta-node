@@ -28,44 +28,27 @@ import type { Product } from './product';
 
 /**
  * It maintains the attributes with which the order will be created when receiving a new payment.
- * @export
- * @interface CheckoutOrderTemplate
  */
 export interface CheckoutOrderTemplate {
     /**
      * It is the currency in which the order will be created. It must be a valid ISO 4217 currency code.
-     * @type {string}
-     * @memberof CheckoutOrderTemplate
      */
     'currency': string;
-    /**
-     * 
-     * @type {CheckoutOrderTemplateCustomerInfo}
-     * @memberof CheckoutOrderTemplate
-     */
     'customer_info'?: CheckoutOrderTemplateCustomerInfo;
     /**
      * They are the products to buy. Each contains the \"unit price\" and \"quantity\" parameters that are used to calculate the total amount of the order.
-     * @type {Array<Product>}
-     * @memberof CheckoutOrderTemplate
      */
     'line_items': Array<Product>;
     /**
      * It is a set of key-value pairs that you can attach to the order. It can be used to store additional information about the order in a structured format.
-     * @type {{ [key: string]: any; }}
-     * @memberof CheckoutOrderTemplate
      */
     'metadata'?: { [key: string]: any; };
     /**
      * List of [taxes](https://developers.conekta.com/v2.2.0/reference/orderscreatetaxes) that are applied to the order.
-     * @type {Array<OrderTaxRequest>}
-     * @memberof CheckoutOrderTemplate
      */
     'tax_lines'?: Array<OrderTaxRequest>;
     /**
      * List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order.
-     * @type {Array<OrderDiscountLinesRequest>}
-     * @memberof CheckoutOrderTemplate
      */
     'discount_lines'?: Array<OrderDiscountLinesRequest>;
 }

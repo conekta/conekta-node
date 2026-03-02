@@ -22,56 +22,32 @@ import type { PayoutOrderRequestCustomerInfo } from './payout-order-request-cust
 
 /**
  * a payout order
- * @export
- * @interface PayoutOrderRequest
  */
 export interface PayoutOrderRequest {
     /**
      * The payout methods that are allowed for the payout order.
-     * @type {Array<string>}
-     * @memberof PayoutOrderRequest
      */
     'allowed_payout_methods': Array<string>;
     /**
      * The amount of the payout order.
-     * @type {number}
-     * @memberof PayoutOrderRequest
      */
     'amount': number;
     /**
      * The currency in which the payout order is made.
-     * @type {string}
-     * @memberof PayoutOrderRequest
      */
     'currency': string;
-    /**
-     * 
-     * @type {PayoutOrderRequestCustomerInfo}
-     * @memberof PayoutOrderRequest
-     */
     'customer_info': PayoutOrderRequestCustomerInfo;
     /**
      * The expiration time of the payout order in Unix timestamp.
-     * @type {number}
-     * @memberof PayoutOrderRequest
      */
     'expires_at': number;
     /**
      * The metadata of the payout order.
-     * @type {{ [key: string]: any; }}
-     * @memberof PayoutOrderRequest
      */
     'metadata'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {Payout}
-     * @memberof PayoutOrderRequest
-     */
     'payout': Payout;
     /**
      * The reason for the payout order.
-     * @type {string}
-     * @memberof PayoutOrderRequest
      */
     'reason': string;
 }

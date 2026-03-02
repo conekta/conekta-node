@@ -31,129 +31,54 @@ import type { CustomerSubscriptionResponse } from './customer-subscription-respo
 
 /**
  * customer response
- * @export
- * @interface CustomerResponse
  */
 export interface CustomerResponse {
-    /**
-     * 
-     * @type {CustomerAntifraudInfoResponse}
-     * @memberof CustomerResponse
-     */
     'antifraud_info'?: CustomerAntifraudInfoResponse;
     /**
      * true if the customer is a company
-     * @type {boolean}
-     * @memberof CustomerResponse
      */
     'corporate'?: boolean;
     /**
      * Creation date of the object
-     * @type {number}
-     * @memberof CustomerResponse
      */
     'created_at': number;
     /**
      * Custom reference
-     * @type {string}
-     * @memberof CustomerResponse
      */
     'custom_reference'?: string;
     /**
      * It is a parameter that allows to identify the date of birth of the client.
-     * @type {string}
-     * @memberof CustomerResponse
      */
     'date_of_birth'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerResponse
-     */
     'default_fiscal_entity_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerResponse
-     */
     'default_shipping_contact_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerResponse
-     */
     'default_payment_source_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerResponse
-     */
     'email'?: string;
-    /**
-     * 
-     * @type {CustomerFiscalEntitiesResponse}
-     * @memberof CustomerResponse
-     */
     'fiscal_entities'?: CustomerFiscalEntitiesResponse;
     /**
      * Customer\'s ID
-     * @type {string}
-     * @memberof CustomerResponse
      */
     'id': string;
     /**
      * true if the object exists in live mode or the value false if the object exists in test mode
-     * @type {boolean}
-     * @memberof CustomerResponse
      */
     'livemode': boolean;
     /**
      * Customer\'s name
-     * @type {string}
-     * @memberof CustomerResponse
      */
     'name': string;
     /**
      * It is a parameter that allows to identify the national identification number of the client.
-     * @type {string}
-     * @memberof CustomerResponse
      */
     'national_id'?: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof CustomerResponse
-     */
     'metadata'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerResponse
-     */
     'object': string;
-    /**
-     * 
-     * @type {CustomerPaymentMethodsResponse}
-     * @memberof CustomerResponse
-     */
     'payment_sources'?: CustomerPaymentMethodsResponse;
     /**
      * Customer\'s phone number
-     * @type {string}
-     * @memberof CustomerResponse
      */
     'phone'?: string;
-    /**
-     * 
-     * @type {CustomerResponseShippingContacts}
-     * @memberof CustomerResponse
-     */
     'shipping_contacts'?: CustomerResponseShippingContacts;
-    /**
-     * 
-     * @type {CustomerSubscriptionResponse}
-     * @memberof CustomerResponse
-     */
     'subscription'?: CustomerSubscriptionResponse;
 }
 

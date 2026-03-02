@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -27,7 +27,6 @@ import type { CustomerPortalResponse } from '../model';
 import type { ModelError } from '../model';
 /**
  * SubscriptionsCustomerPortalApi - axios parameter creator
- * @export
  */
 export const SubscriptionsCustomerPortalApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -60,8 +59,8 @@ export const SubscriptionsCustomerPortalApiAxiosParamCreator = function (configu
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -106,8 +105,8 @@ export const SubscriptionsCustomerPortalApiAxiosParamCreator = function (configu
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -128,7 +127,6 @@ export const SubscriptionsCustomerPortalApiAxiosParamCreator = function (configu
 
 /**
  * SubscriptionsCustomerPortalApi - functional programming interface
- * @export
  */
 export const SubscriptionsCustomerPortalApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = SubscriptionsCustomerPortalApiAxiosParamCreator(configuration)
@@ -168,7 +166,6 @@ export const SubscriptionsCustomerPortalApiFp = function(configuration?: Configu
 
 /**
  * SubscriptionsCustomerPortalApi - factory interface
- * @export
  */
 export const SubscriptionsCustomerPortalApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = SubscriptionsCustomerPortalApiFp(configuration)
@@ -202,8 +199,6 @@ export const SubscriptionsCustomerPortalApiFactory = function (configuration?: C
 
 /**
  * SubscriptionsCustomerPortalApi - interface
- * @export
- * @interface SubscriptionsCustomerPortalApi
  */
 export interface SubscriptionsCustomerPortalApiInterface {
     /**
@@ -214,7 +209,6 @@ export interface SubscriptionsCustomerPortalApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsCustomerPortalApiInterface
      */
     createCustomerPortal(subscriptionId: string, acceptLanguage?: CreateCustomerPortalAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CustomerPortalResponse>;
 
@@ -226,7 +220,6 @@ export interface SubscriptionsCustomerPortalApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsCustomerPortalApiInterface
      */
     getCustomerPortal(subscriptionId: string, acceptLanguage?: GetCustomerPortalAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CustomerPortalResponse>;
 
@@ -234,9 +227,6 @@ export interface SubscriptionsCustomerPortalApiInterface {
 
 /**
  * SubscriptionsCustomerPortalApi - object-oriented interface
- * @export
- * @class SubscriptionsCustomerPortalApi
- * @extends {BaseAPI}
  */
 export class SubscriptionsCustomerPortalApi extends BaseAPI implements SubscriptionsCustomerPortalApiInterface {
     /**
@@ -247,7 +237,6 @@ export class SubscriptionsCustomerPortalApi extends BaseAPI implements Subscript
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsCustomerPortalApi
      */
     public createCustomerPortal(subscriptionId: string, acceptLanguage?: CreateCustomerPortalAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return SubscriptionsCustomerPortalApiFp(this.configuration).createCustomerPortal(subscriptionId, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -261,24 +250,17 @@ export class SubscriptionsCustomerPortalApi extends BaseAPI implements Subscript
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SubscriptionsCustomerPortalApi
      */
     public getCustomerPortal(subscriptionId: string, acceptLanguage?: GetCustomerPortalAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return SubscriptionsCustomerPortalApiFp(this.configuration).getCustomerPortal(subscriptionId, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const CreateCustomerPortalAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type CreateCustomerPortalAcceptLanguageEnum = typeof CreateCustomerPortalAcceptLanguageEnum[keyof typeof CreateCustomerPortalAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetCustomerPortalAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

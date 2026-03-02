@@ -16,32 +16,22 @@
 
 /**
  * a plan
- * @export
- * @interface UpdatePlan
  */
 export interface UpdatePlan {
     /**
      * The amount in cents that will be charged on the interval specified.
-     * @type {number}
-     * @memberof UpdatePlan
      */
     'amount'?: number;
     /**
      * ISO 4217 for currencies, for the Mexican peso it is MXN/USD
-     * @type {string}
-     * @memberof UpdatePlan
      */
     'currency'?: string;
     /**
      * Number of repetitions of the frequency NUMBER OF CHARGES TO BE MADE, considering the interval and frequency, this evolves over time, but is subject to the expiration count.
-     * @type {number}
-     * @memberof UpdatePlan
      */
     'expiry_count'?: number;
     /**
      * The name of the plan.
-     * @type {string}
-     * @memberof UpdatePlan
      */
     'name'?: string;
 }

@@ -22,7 +22,6 @@ import type { CustomerInfoCustomerId } from './customer-info-customer-id';
 
 /**
  * @type OrderUpdateCustomerInfo
- * @export
  */
 export type OrderUpdateCustomerInfo = CustomerInfo | CustomerInfoCustomerId;
 

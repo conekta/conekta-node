@@ -16,27 +16,10 @@
 
 /**
  * It is a parameter that allows to identify in the response, the detailed content of the plans to which the client has subscribed
- * @export
- * @interface SubscriptionRequest
  */
 export interface SubscriptionRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionRequest
-     */
     'plan_id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionRequest
-     */
     'card_id'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionRequest
-     */
     'trial_end'?: number;
 }
 

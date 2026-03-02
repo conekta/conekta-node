@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -33,7 +33,6 @@ import type { ModelError } from '../model';
 import type { ResendEventRequest } from '../model';
 /**
  * EventsApi - axios parameter creator
- * @export
  */
 export const EventsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -66,8 +65,8 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -128,8 +127,8 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
                 localVarQueryParameter['previous'] = previous;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -176,9 +175,8 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -198,7 +196,6 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
 
 /**
  * EventsApi - functional programming interface
- * @export
  */
 export const EventsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = EventsApiAxiosParamCreator(configuration)
@@ -256,7 +253,6 @@ export const EventsApiFp = function(configuration?: Configuration) {
 
 /**
  * EventsApi - factory interface
- * @export
  */
 export const EventsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = EventsApiFp(configuration)
@@ -305,8 +301,6 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
 
 /**
  * EventsApi - interface
- * @export
- * @interface EventsApi
  */
 export interface EventsApiInterface {
     /**
@@ -317,7 +311,6 @@ export interface EventsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof EventsApiInterface
      */
     getEvent(id: string, acceptLanguage?: GetEventAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<EventResponse>;
 
@@ -332,7 +325,6 @@ export interface EventsApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof EventsApiInterface
      */
     getEvents(acceptLanguage?: GetEventsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetEventsResponse>;
 
@@ -344,7 +336,6 @@ export interface EventsApiInterface {
      * @param {ResendEventAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof EventsApiInterface
      */
     resendEvent(eventId: string, resendEventRequest: ResendEventRequest, acceptLanguage?: ResendEventAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<EventsResendResponse>;
 
@@ -352,9 +343,6 @@ export interface EventsApiInterface {
 
 /**
  * EventsApi - object-oriented interface
- * @export
- * @class EventsApi
- * @extends {BaseAPI}
  */
 export class EventsApi extends BaseAPI implements EventsApiInterface {
     /**
@@ -365,7 +353,6 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof EventsApi
      */
     public getEvent(id: string, acceptLanguage?: GetEventAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return EventsApiFp(this.configuration).getEvent(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -382,7 +369,6 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof EventsApi
      */
     public getEvents(acceptLanguage?: GetEventsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return EventsApiFp(this.configuration).getEvents(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
@@ -396,32 +382,22 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
      * @param {ResendEventAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof EventsApi
      */
     public resendEvent(eventId: string, resendEventRequest: ResendEventRequest, acceptLanguage?: ResendEventAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return EventsApiFp(this.configuration).resendEvent(eventId, resendEventRequest, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const GetEventAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetEventAcceptLanguageEnum = typeof GetEventAcceptLanguageEnum[keyof typeof GetEventAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetEventsAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetEventsAcceptLanguageEnum = typeof GetEventsAcceptLanguageEnum[keyof typeof GetEventsAcceptLanguageEnum];
-/**
- * @export
- */
 export const ResendEventAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

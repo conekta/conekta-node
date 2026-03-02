@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -29,7 +29,6 @@ import type { ModelError } from '../model';
 import type { TransactionResponse } from '../model';
 /**
  * TransactionsApi - axios parameter creator
- * @export
  */
 export const TransactionsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -62,8 +61,8 @@ export const TransactionsApiAxiosParamCreator = function (configuration?: Config
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -139,8 +138,8 @@ export const TransactionsApiAxiosParamCreator = function (configuration?: Config
                 localVarQueryParameter['currency'] = currency;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -161,7 +160,6 @@ export const TransactionsApiAxiosParamCreator = function (configuration?: Config
 
 /**
  * TransactionsApi - functional programming interface
- * @export
  */
 export const TransactionsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = TransactionsApiAxiosParamCreator(configuration)
@@ -207,7 +205,6 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
 
 /**
  * TransactionsApi - factory interface
- * @export
  */
 export const TransactionsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = TransactionsApiFp(configuration)
@@ -247,8 +244,6 @@ export const TransactionsApiFactory = function (configuration?: Configuration, b
 
 /**
  * TransactionsApi - interface
- * @export
- * @interface TransactionsApi
  */
 export interface TransactionsApiInterface {
     /**
@@ -259,7 +254,6 @@ export interface TransactionsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TransactionsApiInterface
      */
     getTransaction(id: string, acceptLanguage?: GetTransactionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<TransactionResponse>;
 
@@ -277,7 +271,6 @@ export interface TransactionsApiInterface {
      * @param {string} [currency] currency of the object to be retrieved
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TransactionsApiInterface
      */
     getTransactions(acceptLanguage?: GetTransactionsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, id?: string, chargeId?: string, type?: string, currency?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetTransactionsResponse>;
 
@@ -285,9 +278,6 @@ export interface TransactionsApiInterface {
 
 /**
  * TransactionsApi - object-oriented interface
- * @export
- * @class TransactionsApi
- * @extends {BaseAPI}
  */
 export class TransactionsApi extends BaseAPI implements TransactionsApiInterface {
     /**
@@ -298,7 +288,6 @@ export class TransactionsApi extends BaseAPI implements TransactionsApiInterface
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TransactionsApi
      */
     public getTransaction(id: string, acceptLanguage?: GetTransactionAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return TransactionsApiFp(this.configuration).getTransaction(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -318,24 +307,17 @@ export class TransactionsApi extends BaseAPI implements TransactionsApiInterface
      * @param {string} [currency] currency of the object to be retrieved
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TransactionsApi
      */
     public getTransactions(acceptLanguage?: GetTransactionsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, id?: string, chargeId?: string, type?: string, currency?: string, options?: RawAxiosRequestConfig) {
         return TransactionsApiFp(this.configuration).getTransactions(acceptLanguage, xChildCompanyId, limit, next, previous, id, chargeId, type, currency, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const GetTransactionAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetTransactionAcceptLanguageEnum = typeof GetTransactionAcceptLanguageEnum[keyof typeof GetTransactionAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetTransactionsAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

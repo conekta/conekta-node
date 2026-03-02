@@ -16,44 +16,30 @@
 
 /**
  * webhook keys model
- * @export
- * @interface WebhookKeyCreateResponse
  */
 export interface WebhookKeyCreateResponse {
     /**
      * Indicates if the webhook key is active
-     * @type {boolean}
-     * @memberof WebhookKeyCreateResponse
      */
     'active'?: boolean;
     /**
      * Unix timestamp in seconds with the creation date of the webhook key
-     * @type {number}
-     * @memberof WebhookKeyCreateResponse
      */
     'created_at'?: number;
     /**
      * Unique identifier of the webhook key
-     * @type {string}
-     * @memberof WebhookKeyCreateResponse
      */
     'id'?: string;
     /**
      * Indicates if the webhook key is in live mode
-     * @type {boolean}
-     * @memberof WebhookKeyCreateResponse
      */
     'livemode'?: boolean;
     /**
      * Object name, value is webhook_key
-     * @type {string}
-     * @memberof WebhookKeyCreateResponse
      */
     'object'?: string;
     /**
      * Public key to be used in the webhook
-     * @type {string}
-     * @memberof WebhookKeyCreateResponse
      */
     'public_key'?: string;
 }

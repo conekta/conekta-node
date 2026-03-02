@@ -17,41 +17,23 @@
 // @ts-ignore
 import type { CustomerPaymentMethodsData } from './customer-payment-methods-data';
 
-/**
- * 
- * @export
- * @interface CustomerPaymentMethodsResponse
- */
 export interface CustomerPaymentMethodsResponse {
     /**
      * Indicates if there are more pages to be requested
-     * @type {boolean}
-     * @memberof CustomerPaymentMethodsResponse
      */
     'has_more': boolean;
     /**
      * Object type, in this case is list
-     * @type {string}
-     * @memberof CustomerPaymentMethodsResponse
      */
     'object': string;
     /**
      * URL of the next page.
-     * @type {string}
-     * @memberof CustomerPaymentMethodsResponse
      */
     'next_page_url'?: string;
     /**
      * Url of the previous page.
-     * @type {string}
-     * @memberof CustomerPaymentMethodsResponse
      */
     'previous_page_url'?: string;
-    /**
-     * 
-     * @type {Array<CustomerPaymentMethodsData>}
-     * @memberof CustomerPaymentMethodsResponse
-     */
     'data'?: Array<CustomerPaymentMethodsData>;
 }
 

@@ -17,41 +17,23 @@
 // @ts-ignore
 import type { CheckoutResponse } from './checkout-response';
 
-/**
- * 
- * @export
- * @interface CheckoutsResponse
- */
 export interface CheckoutsResponse {
     /**
      * Indicates if there are more pages to be requested
-     * @type {boolean}
-     * @memberof CheckoutsResponse
      */
     'has_more': boolean;
     /**
      * Object type, in this case is list
-     * @type {string}
-     * @memberof CheckoutsResponse
      */
     'object': string;
     /**
      * URL of the next page.
-     * @type {string}
-     * @memberof CheckoutsResponse
      */
     'next_page_url'?: string;
     /**
      * Url of the previous page.
-     * @type {string}
-     * @memberof CheckoutsResponse
      */
     'previous_page_url'?: string;
-    /**
-     * 
-     * @type {Array<CheckoutResponse>}
-     * @memberof CheckoutsResponse
-     */
     'data'?: Array<CheckoutResponse>;
 }
 

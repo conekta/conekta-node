@@ -16,56 +16,38 @@
 
 /**
  * webhooks model
- * @export
- * @interface WebhookResponse
  */
 export interface WebhookResponse {
     /**
      * id of the webhook
-     * @type {string}
-     * @memberof WebhookResponse
      */
     'id'?: string;
     /**
      * A name or brief explanation of what this webhook is used for
-     * @type {string}
-     * @memberof WebhookResponse
      */
     'description'?: string;
     /**
      * Indicates if the webhook is in production
-     * @type {boolean}
-     * @memberof WebhookResponse
      */
     'livemode'?: boolean;
     /**
      * Indicates if the webhook is actived or not
-     * @type {boolean}
-     * @memberof WebhookResponse
      */
     'active'?: boolean;
     /**
      * Object name, value is \'webhook\'
-     * @type {string}
-     * @memberof WebhookResponse
      */
     'object'?: string;
     /**
      * Indicates if the webhook is ready to receive events or failing
-     * @type {string}
-     * @memberof WebhookResponse
      */
     'status'?: string;
     /**
      * lists the events that will be sent to the webhook
-     * @type {Array<string>}
-     * @memberof WebhookResponse
      */
     'subscribed_events'?: Array<string>;
     /**
      * url or endpoint of the webhook
-     * @type {string}
-     * @memberof WebhookResponse
      */
     'url'?: string;
 }

@@ -22,80 +22,45 @@ import type { SubscriptionDetails } from './subscription-details';
 
 /**
  * Customer portal model
- * @export
- * @interface CustomerPortalResponse
  */
 export interface CustomerPortalResponse {
     /**
      * Unique slug identifier for the portal
-     * @type {string}
-     * @memberof CustomerPortalResponse
      */
     'slug'?: string;
     /**
      * Associated subscription ID
-     * @type {string}
-     * @memberof CustomerPortalResponse
      */
     'subscription_id'?: string;
     /**
      * Associated customer ID
-     * @type {string}
-     * @memberof CustomerPortalResponse
      */
     'customer_id'?: string;
     /**
      * Whether this is a live or test mode portal
-     * @type {boolean}
-     * @memberof CustomerPortalResponse
      */
     'livemode'?: boolean;
-    /**
-     * 
-     * @type {SubscriptionDetails}
-     * @memberof CustomerPortalResponse
-     */
     'subscription'?: SubscriptionDetails;
-    /**
-     * 
-     * @type {CustomerDetails}
-     * @memberof CustomerPortalResponse
-     */
     'customer'?: CustomerDetails;
     /**
      * Customer portal ID
-     * @type {string}
-     * @memberof CustomerPortalResponse
      */
     'id'?: string;
     /**
      * Associated company ID
-     * @type {string}
-     * @memberof CustomerPortalResponse
      */
     'company_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerPortalResponse
-     */
     'object'?: string;
     /**
      * Unix timestamp of creation
-     * @type {number}
-     * @memberof CustomerPortalResponse
      */
     'created_at'?: number;
     /**
      * Unix timestamp of last update
-     * @type {number}
-     * @memberof CustomerPortalResponse
      */
     'updated_at'?: number;
     /**
      * URL to access the customer portal
-     * @type {string}
-     * @memberof CustomerPortalResponse
      */
     'portal_url'?: string;
 }

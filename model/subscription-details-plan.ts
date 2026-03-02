@@ -14,71 +14,16 @@
 
 
 
-/**
- * 
- * @export
- * @interface SubscriptionDetailsPlan
- */
 export interface SubscriptionDetailsPlan {
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetailsPlan
-     */
     'id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetailsPlan
-     */
     'object'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetailsPlan
-     */
     'name'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionDetailsPlan
-     */
     'amount'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetailsPlan
-     */
     'currency'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetailsPlan
-     */
     'interval'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionDetailsPlan
-     */
     'frequency'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionDetailsPlan
-     */
     'trial_period_days'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionDetailsPlan
-     */
     'expiry_count'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionDetailsPlan
-     */
     'created_at'?: number;
 }
 

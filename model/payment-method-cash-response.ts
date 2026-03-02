@@ -17,77 +17,20 @@
 // @ts-ignore
 import type { CashAgreementsResponse } from './cash-agreements-response';
 
-/**
- * 
- * @export
- * @interface PaymentMethodCashResponse
- */
 export interface PaymentMethodCashResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodCashResponse
-     */
     'type': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodCashResponse
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodCashResponse
-     */
     'object': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PaymentMethodCashResponse
-     */
     'created_at': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodCashResponse
-     */
     'parent_id'?: string;
-    /**
-     * 
-     * @type {Array<CashAgreementsResponse>}
-     * @memberof PaymentMethodCashResponse
-     */
     'agreements'?: Array<CashAgreementsResponse>;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodCashResponse
-     */
     'reference'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodCashResponse
-     */
     'barcode'?: string;
     /**
      * URL to the barcode image, reference is the same as barcode
-     * @type {string}
-     * @memberof PaymentMethodCashResponse
      */
     'barcode_url'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PaymentMethodCashResponse
-     */
     'expires_at'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentMethodCashResponse
-     */
     'provider'?: string;
 }
 

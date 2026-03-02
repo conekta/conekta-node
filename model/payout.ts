@@ -19,15 +19,8 @@ import type { PayoutMethod } from './payout-method';
 
 /**
  * The payout information of the payout order.
- * @export
- * @interface Payout
  */
 export interface Payout {
-    /**
-     * 
-     * @type {PayoutMethod}
-     * @memberof Payout
-     */
     'payout_method': PayoutMethod;
 }
 

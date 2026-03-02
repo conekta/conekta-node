@@ -17,41 +17,23 @@
 // @ts-ignore
 import type { EventResponse } from './event-response';
 
-/**
- * 
- * @export
- * @interface SubscriptionEventsResponse
- */
 export interface SubscriptionEventsResponse {
     /**
      * Indicates if there are more pages to be requested
-     * @type {boolean}
-     * @memberof SubscriptionEventsResponse
      */
     'has_more': boolean;
     /**
      * Object type, in this case is list
-     * @type {string}
-     * @memberof SubscriptionEventsResponse
      */
     'object': string;
     /**
      * URL of the next page.
-     * @type {string}
-     * @memberof SubscriptionEventsResponse
      */
     'next_page_url'?: string;
     /**
      * Url of the previous page.
-     * @type {string}
-     * @memberof SubscriptionEventsResponse
      */
     'previous_page_url'?: string;
-    /**
-     * 
-     * @type {Array<EventResponse>}
-     * @memberof SubscriptionEventsResponse
-     */
     'data'?: Array<EventResponse>;
 }
 

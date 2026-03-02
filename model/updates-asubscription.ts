@@ -16,27 +16,10 @@
 
 /**
  * You can modify the subscription to change the plan used by your customers.
- * @export
- * @interface UpdatesASubscription
  */
 export interface UpdatesASubscription {
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdatesASubscription
-     */
     'plan_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdatesASubscription
-     */
     'card_id'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof UpdatesASubscription
-     */
     'trial_end'?: number;
 }
 

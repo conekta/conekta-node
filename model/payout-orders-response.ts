@@ -17,40 +17,22 @@
 // @ts-ignore
 import type { PayoutOrderResponse } from './payout-order-response';
 
-/**
- * 
- * @export
- * @interface PayoutOrdersResponse
- */
 export interface PayoutOrdersResponse {
-    /**
-     * 
-     * @type {Array<PayoutOrderResponse>}
-     * @memberof PayoutOrdersResponse
-     */
     'data'?: Array<PayoutOrderResponse>;
     /**
      * Indicates if there are more pages to be requested
-     * @type {boolean}
-     * @memberof PayoutOrdersResponse
      */
     'has_more': boolean;
     /**
      * Object type, in this case is list
-     * @type {string}
-     * @memberof PayoutOrdersResponse
      */
     'object': string;
     /**
      * URL of the next page.
-     * @type {string}
-     * @memberof PayoutOrdersResponse
      */
     'next_page_url'?: string;
     /**
      * Url of the previous page.
-     * @type {string}
-     * @memberof PayoutOrdersResponse
      */
     'previous_page_url'?: string;
 }

@@ -19,56 +19,26 @@ import type { CustomerShippingContactsRequestAddress } from './customer-shipping
 
 /**
  * [Shipping](https://developers.conekta.com/v2.2.0/reference/createcustomershippingcontacts) details, required in case of sending a shipping. If we do not receive a shipping_contact on the order, the default shipping_contact of the customer will be used.
- * @export
- * @interface CustomerShippingContactsRequest
  */
 export interface CustomerShippingContactsRequest {
     /**
      * Phone contact
-     * @type {string}
-     * @memberof CustomerShippingContactsRequest
      */
     'phone'?: string;
     /**
      * Name of the person who will receive the order
-     * @type {string}
-     * @memberof CustomerShippingContactsRequest
      */
     'receiver'?: string;
     /**
      * The street names between which the order will be delivered.
-     * @type {string}
-     * @memberof CustomerShippingContactsRequest
      */
     'between_streets'?: string;
-    /**
-     * 
-     * @type {CustomerShippingContactsRequestAddress}
-     * @memberof CustomerShippingContactsRequest
-     */
     'address': CustomerShippingContactsRequestAddress;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsRequest
-     */
     'parent_id'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CustomerShippingContactsRequest
-     */
     'default'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CustomerShippingContactsRequest
-     */
     'deleted'?: boolean;
     /**
      * Metadata associated with the shipping contact
-     * @type {{ [key: string]: any; }}
-     * @memberof CustomerShippingContactsRequest
      */
     'metadata'?: { [key: string]: any; };
 }

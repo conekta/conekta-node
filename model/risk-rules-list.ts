@@ -17,41 +17,23 @@
 // @ts-ignore
 import type { RiskRulesData } from './risk-rules-data';
 
-/**
- * 
- * @export
- * @interface RiskRulesList
- */
 export interface RiskRulesList {
     /**
      * Indicates if there are more pages to be requested
-     * @type {boolean}
-     * @memberof RiskRulesList
      */
     'has_more': boolean;
     /**
      * Object type, in this case is list
-     * @type {string}
-     * @memberof RiskRulesList
      */
     'object': string;
     /**
      * URL of the next page.
-     * @type {string}
-     * @memberof RiskRulesList
      */
     'next_page_url'?: string;
     /**
      * Url of the previous page.
-     * @type {string}
-     * @memberof RiskRulesList
      */
     'previous_page_url'?: string;
-    /**
-     * 
-     * @type {Array<RiskRulesData>}
-     * @memberof RiskRulesList
-     */
     'data'?: Array<RiskRulesData>;
 }
 

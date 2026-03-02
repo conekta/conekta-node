@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -31,7 +31,6 @@ import type { ProductOrderResponse } from '../model';
 import type { UpdateProduct } from '../model';
 /**
  * ProductsApi - axios parameter creator
- * @export
  */
 export const ProductsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -67,9 +66,8 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -120,8 +118,8 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -173,9 +171,8 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -198,7 +195,6 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
 
 /**
  * ProductsApi - functional programming interface
- * @export
  */
 export const ProductsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ProductsApiAxiosParamCreator(configuration)
@@ -257,7 +253,6 @@ export const ProductsApiFp = function(configuration?: Configuration) {
 
 /**
  * ProductsApi - factory interface
- * @export
  */
 export const ProductsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ProductsApiFp(configuration)
@@ -307,8 +302,6 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
 
 /**
  * ProductsApi - interface
- * @export
- * @interface ProductsApi
  */
 export interface ProductsApiInterface {
     /**
@@ -320,7 +313,6 @@ export interface ProductsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProductsApiInterface
      */
     ordersCreateProduct(id: string, product: Product, acceptLanguage?: OrdersCreateProductAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ProductOrderResponse>;
 
@@ -333,7 +325,6 @@ export interface ProductsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProductsApiInterface
      */
     ordersDeleteProduct(id: string, lineItemId: string, acceptLanguage?: OrdersDeleteProductAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ProductOrderResponse>;
 
@@ -347,7 +338,6 @@ export interface ProductsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProductsApiInterface
      */
     ordersUpdateProduct(id: string, lineItemId: string, updateProduct: UpdateProduct, acceptLanguage?: OrdersUpdateProductAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ProductOrderResponse>;
 
@@ -355,9 +345,6 @@ export interface ProductsApiInterface {
 
 /**
  * ProductsApi - object-oriented interface
- * @export
- * @class ProductsApi
- * @extends {BaseAPI}
  */
 export class ProductsApi extends BaseAPI implements ProductsApiInterface {
     /**
@@ -369,7 +356,6 @@ export class ProductsApi extends BaseAPI implements ProductsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProductsApi
      */
     public ordersCreateProduct(id: string, product: Product, acceptLanguage?: OrdersCreateProductAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ProductsApiFp(this.configuration).ordersCreateProduct(id, product, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -384,7 +370,6 @@ export class ProductsApi extends BaseAPI implements ProductsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProductsApi
      */
     public ordersDeleteProduct(id: string, lineItemId: string, acceptLanguage?: OrdersDeleteProductAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ProductsApiFp(this.configuration).ordersDeleteProduct(id, lineItemId, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -400,32 +385,22 @@ export class ProductsApi extends BaseAPI implements ProductsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProductsApi
      */
     public ordersUpdateProduct(id: string, lineItemId: string, updateProduct: UpdateProduct, acceptLanguage?: OrdersUpdateProductAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ProductsApiFp(this.configuration).ordersUpdateProduct(id, lineItemId, updateProduct, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const OrdersCreateProductAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type OrdersCreateProductAcceptLanguageEnum = typeof OrdersCreateProductAcceptLanguageEnum[keyof typeof OrdersCreateProductAcceptLanguageEnum];
-/**
- * @export
- */
 export const OrdersDeleteProductAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type OrdersDeleteProductAcceptLanguageEnum = typeof OrdersDeleteProductAcceptLanguageEnum[keyof typeof OrdersDeleteProductAcceptLanguageEnum];
-/**
- * @export
- */
 export const OrdersUpdateProductAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

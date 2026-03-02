@@ -20,125 +20,28 @@ import type { ChargeOrderResponsePaymentMethod } from './charge-order-response-p
 // @ts-ignore
 import type { ChargeResponseChannel } from './charge-response-channel';
 
-/**
- * 
- * @export
- * @interface ChargeOrderResponse
- */
 export interface ChargeOrderResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof ChargeOrderResponse
-     */
     'amount'?: number;
-    /**
-     * 
-     * @type {ChargeResponseChannel}
-     * @memberof ChargeOrderResponse
-     */
     'channel'?: ChargeResponseChannel;
-    /**
-     * 
-     * @type {number}
-     * @memberof ChargeOrderResponse
-     */
     'created_at'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeOrderResponse
-     */
     'currency'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeOrderResponse
-     */
     'customer_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeOrderResponse
-     */
     'description'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeOrderResponse
-     */
     'device_fingerprint'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeOrderResponse
-     */
     'failure_code'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeOrderResponse
-     */
     'failure_message'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeOrderResponse
-     */
     'id'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ChargeOrderResponse
-     */
     'livemode'?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof ChargeOrderResponse
-     */
     'monthly_installments'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeOrderResponse
-     */
     'object'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeOrderResponse
-     */
     'order_id'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ChargeOrderResponse
-     */
     'paid_at'?: number;
-    /**
-     * 
-     * @type {ChargeOrderResponsePaymentMethod}
-     * @memberof ChargeOrderResponse
-     */
     'payment_method'?: ChargeOrderResponsePaymentMethod;
     /**
      * Reference ID of the charge
-     * @type {string}
-     * @memberof ChargeOrderResponse
      */
     'reference_id'?: string;
-    /**
-     * 
-     * @type {Array<any>}
-     * @memberof ChargeOrderResponse
-     */
     'refunds'?: Array<any>;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeOrderResponse
-     */
     'status'?: string;
 }
 

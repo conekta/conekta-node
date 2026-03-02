@@ -14,83 +14,18 @@
 
 
 
-/**
- * 
- * @export
- * @interface SubscriptionDetailsCard
- */
 export interface SubscriptionDetailsCard {
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetailsCard
-     */
     'id'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionDetailsCard
-     */
     'created_at'?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubscriptionDetailsCard
-     */
     'active'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetailsCard
-     */
     'object'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetailsCard
-     */
     'exp_month'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetailsCard
-     */
     'exp_year'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetailsCard
-     */
     'brand'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetailsCard
-     */
     'last4'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetailsCard
-     */
     'name'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetailsCard
-     */
     'payment_source_status'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetailsCard
-     */
     'customer_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionDetailsCard
-     */
     'customer_custom_reference'?: string;
 }
 

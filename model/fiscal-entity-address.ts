@@ -16,50 +16,34 @@
 
 /**
  * Address of the fiscal entity
- * @export
- * @interface FiscalEntityAddress
  */
 export interface FiscalEntityAddress {
     /**
      * Street name and number
-     * @type {string}
-     * @memberof FiscalEntityAddress
      */
     'street1': string;
     /**
      * Street name and number
-     * @type {string}
-     * @memberof FiscalEntityAddress
      */
     'street2'?: string;
     /**
      * Postal code
-     * @type {string}
-     * @memberof FiscalEntityAddress
      */
     'postal_code': string;
     /**
      * City
-     * @type {string}
-     * @memberof FiscalEntityAddress
      */
     'city': string;
     /**
      * State
-     * @type {string}
-     * @memberof FiscalEntityAddress
      */
     'state'?: string;
     /**
      * this field follows the [ISO 3166-1 alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
-     * @type {string}
-     * @memberof FiscalEntityAddress
      */
     'country': string;
     /**
      * External number
-     * @type {string}
-     * @memberof FiscalEntityAddress
      */
     'external_number': string;
 }

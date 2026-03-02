@@ -14,59 +14,14 @@
 
 
 
-/**
- * 
- * @export
- * @interface CustomerShippingContactsAddress
- */
 export interface CustomerShippingContactsAddress {
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsAddress
-     */
     'object'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsAddress
-     */
     'street1'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsAddress
-     */
     'street2'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsAddress
-     */
     'postal_code'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsAddress
-     */
     'city'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsAddress
-     */
     'state'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerShippingContactsAddress
-     */
     'country'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CustomerShippingContactsAddress
-     */
     'residential'?: boolean;
 }
 
