@@ -5,7 +5,7 @@
 Official Node.js SDK for the Conekta Payments API. Auto-generated client library from an OpenAPI specification that enables integration with payments, subscriptions, BNPL, SPEI transfers, credit cards, and payouts.
 
 - **npm package**: `conekta`
-- **Version**: 7.0.8
+- **Version**: 8.0.0
 - **API version**: 2.2.0
 - **License**: MIT
 - **Node.js**: >= 18
@@ -20,15 +20,16 @@ Official Node.js SDK for the Conekta Payments API. Auto-generated client library
 | Build | tsc + ttypescript |
 | Tests | Jest 30.2 + ts-jest |
 | Mocking | Mockoon 6.0.1 |
-| Code Gen | OpenAPI Generator v7.14.0 |
+| Code Gen | OpenAPI Generator v7.20.0 |
 | CI/CD | GitHub Actions |
 
 ## Project Structure
 
 ```
 conekta-node/
-├── api/                  # 24 API classes (auto-generated)
-├── model/                # 192 data models (auto-generated)
+├── api/                  # 25 API classes (auto-generated)
+├── model/                # 183 data models (auto-generated)
+├── examples/             # Usage examples
 ├── __tests__/            # Tests (*.spec.ts)
 ├── dist/                 # Build output (CommonJS + ESM)
 ├── cert/                 # CA bundle for HTTPS
@@ -49,7 +50,7 @@ conekta-node/
 └── docker-compose.yml     # Mock server for tests
 ```
 
-## Available APIs (24)
+## Available APIs (25)
 
 | API | Domain |
 |---|---|
@@ -71,6 +72,7 @@ conekta-node/
 | ShippingContactsApi | Shipping contacts |
 | ShippingsApi | Shipments |
 | SubscriptionsApi | Recurring subscriptions |
+| SubscriptionsCustomerPortalApi | Customer portal for subscriptions |
 | TaxesApi | Taxes |
 | TokensApi | Payment tokenization |
 | TransactionsApi | Transaction history |
@@ -98,8 +100,9 @@ console.log(response.data.id);
 ## Authentication
 
 - Bearer token via `Configuration({ accessToken: "key_xxxxx" })`
+- AWS v4 Signature via `Configuration({ awsv4: { options, credentials } })`
 - Automatic headers:
-  - `User-Agent: Conekta/v2 NodeBindings/7.0.8`
+  - `User-Agent: Conekta/v2 NodeBindings/8.0.0`
   - `Accept: application/vnd.conekta-v2.2.0+json`
 
 ## Distribution
@@ -147,7 +150,7 @@ BASE_PATH=http://localhost:3000 npm test
 Code in `api/` and `model/` is **auto-generated** from the OpenAPI specification. Do not edit manually.
 
 - Spec: `https://raw.githubusercontent.com/conekta/openapi/main/_build/api.yaml`
-- Generator: OpenAPI Generator v7.14.0
+- Generator: OpenAPI Generator v7.20.0
 - Config: `config-node.json`
 - Command: `make node`
 
