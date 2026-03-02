@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **livemode** | **boolean** | Whether the charge was made in live mode or not | [default to undefined]
 **object** | **string** |  | [default to undefined]
 **order_id** | **string** | Order ID | [default to undefined]
-**paid_at** | **number** | Payment date | [optional] [default to undefined]
+**paid_at** | **number** | charge Payment date | [optional] [default to undefined]
 **payment_method** | [**ChargeResponsePaymentMethod**](ChargeResponsePaymentMethod.md) |  | [optional] [default to undefined]
 **reference_id** | **string** | Reference ID of the charge | [optional] [default to undefined]
 **refunds** | [**ChargeResponseRefunds**](ChargeResponseRefunds.md) |  | [optional] [default to undefined]

@@ -13,15 +13,60 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { FiscalEntityAddress } from './fiscal-entity-address';
 
 /**
- * @type OrderFiscalEntityAddressResponse
  * Address of the fiscal entity
  * @export
+ * @interface OrderFiscalEntityAddressResponse
  */
-export type OrderFiscalEntityAddressResponse = FiscalEntityAddress;
-
+export interface OrderFiscalEntityAddressResponse {
+    /**
+     * Street name and number
+     * @type {string}
+     * @memberof OrderFiscalEntityAddressResponse
+     */
+    'street1': string;
+    /**
+     * Street name and number
+     * @type {string}
+     * @memberof OrderFiscalEntityAddressResponse
+     */
+    'street2'?: string;
+    /**
+     * Postal code
+     * @type {string}
+     * @memberof OrderFiscalEntityAddressResponse
+     */
+    'postal_code': string;
+    /**
+     * City
+     * @type {string}
+     * @memberof OrderFiscalEntityAddressResponse
+     */
+    'city': string;
+    /**
+     * State
+     * @type {string}
+     * @memberof OrderFiscalEntityAddressResponse
+     */
+    'state'?: string;
+    /**
+     * this field follows the [ISO 3166-1 alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+     * @type {string}
+     * @memberof OrderFiscalEntityAddressResponse
+     */
+    'country': string;
+    /**
+     * External number
+     * @type {string}
+     * @memberof OrderFiscalEntityAddressResponse
+     */
+    'external_number': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderFiscalEntityAddressResponse
+     */
+    'object'?: string;
+}
 

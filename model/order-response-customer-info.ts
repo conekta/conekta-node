@@ -13,17 +13,54 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { CustomerInfoJustCustomerIdResponse } from './customer-info-just-customer-id-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { OrderCustomerInfoResponse } from './order-customer-info-response';
 
 /**
- * @type OrderResponseCustomerInfo
+ * 
  * @export
+ * @interface OrderResponseCustomerInfo
  */
-export type OrderResponseCustomerInfo = CustomerInfoJustCustomerIdResponse & OrderCustomerInfoResponse;
-
+export interface OrderResponseCustomerInfo {
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderResponseCustomerInfo
+     */
+    'object'?: string;
+    /**
+     * Custom reference
+     * @type {string}
+     * @memberof OrderResponseCustomerInfo
+     */
+    'customer_custom_reference'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderResponseCustomerInfo
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderResponseCustomerInfo
+     */
+    'email'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderResponseCustomerInfo
+     */
+    'phone'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OrderResponseCustomerInfo
+     */
+    'corporate'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderResponseCustomerInfo
+     */
+    'customer_id'?: string;
+}
 

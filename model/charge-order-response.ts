@@ -67,7 +67,7 @@ export interface ChargeOrderResponse {
      * @type {string}
      * @memberof ChargeOrderResponse
      */
-    'device_fingerprint'?: string | null;
+    'device_fingerprint'?: string;
     /**
      * 
      * @type {string}
@@ -97,7 +97,7 @@ export interface ChargeOrderResponse {
      * @type {number}
      * @memberof ChargeOrderResponse
      */
-    'monthly_installments'?: number | null;
+    'monthly_installments'?: number;
     /**
      * 
      * @type {string}
@@ -115,7 +115,7 @@ export interface ChargeOrderResponse {
      * @type {number}
      * @memberof ChargeOrderResponse
      */
-    'paid_at'?: number | null;
+    'paid_at'?: number;
     /**
      * 
      * @type {ChargeOrderResponsePaymentMethod}
@@ -127,13 +127,13 @@ export interface ChargeOrderResponse {
      * @type {string}
      * @memberof ChargeOrderResponse
      */
-    'reference_id'?: string | null;
+    'reference_id'?: string;
     /**
      * 
-     * @type {Array<object>}
+     * @type {Array<any>}
      * @memberof ChargeOrderResponse
      */
-    'refunds'?: Array<object>;
+    'refunds'?: Array<any>;
     /**
      * 
      * @type {string}

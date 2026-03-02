@@ -43,43 +43,15 @@ describe('Events API', () => {
     });
 
     it("resend event", async () => {
-      const event_id = "63fe3d2ddf70970001cfb41a";
+      const event_id = "6463d6e35a4c3e001819e761";
       const webhook_log_id = ["webhl_2svd2sh6GbqzyWBNZ"];
-      const expected_webhook_id = "webhl_2svd2sh6GbqzyWBNZ";
 
-      const mockResponseData = {
-        id: expected_webhook_id, 
-        failed_attempts: 0,
-        last_http_response_status: 200,
-        object: "event_resend_log"
-      };
+      const response = (await client.resendEvent(event_id, { webhooks_ids: webhook_log_id })).data;
 
-      const mockAxiosResponse = {
-        data: mockResponseData,
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-        config: {} as any,  
-      };
-      const resendEventSpy = jest.spyOn(client, 'resendEvent')
-                                 .mockResolvedValue(mockAxiosResponse); 
-
-      try {
-        const response = (await client.resendEvent(event_id, { webhooks_ids: webhook_log_id})).data;
-        
-        expect(resendEventSpy).toHaveBeenCalledWith(event_id, { webhooks_ids: webhook_log_id });
-        expect(response).toBeDefined();
-        expect(response.id).toEqual(expected_webhook_id);
-        expect(response).toHaveProperty('failed_attempts', 0);
-        expect(response).toHaveProperty('last_http_response_status', 200);
-        expect(typeof response.last_http_response_status).toBe('number');
-
-      } catch (error: any) {
-        console.error("Test failed unexpectedly even with mock:", error);
-        throw error;
-      } finally {
-         resendEventSpy.mockRestore();
-      }
+      expect(response).toBeDefined();
+      expect(response.failed_attempts).toBeDefined();
+      expect(response.last_http_response_status).toBeDefined();
+      expect(typeof response.last_http_response_status).toBe('number');
     });
   });
 });

@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { BalanceCommonField } from './balance-common-field';
+import type { BalanceCommonFielsResponse } from './balance-common-fiels-response';
 
 /**
  * balance model
@@ -25,46 +25,46 @@ import type { BalanceCommonField } from './balance-common-field';
 export interface BalanceResponse {
     /**
      * The balance\'s available
-     * @type {Array<BalanceCommonField>}
+     * @type {Array<BalanceCommonFielsResponse>}
      * @memberof BalanceResponse
      */
-    'available'?: Array<BalanceCommonField>;
+    'available'?: Array<BalanceCommonFielsResponse>;
     /**
      * The balance\'s cashout retention amount
-     * @type {Array<BalanceCommonField>}
+     * @type {Array<BalanceCommonFielsResponse>}
      * @memberof BalanceResponse
      */
-    'cashout_retention_amount'?: Array<BalanceCommonField>;
+    'cashout_retention_amount'?: Array<BalanceCommonFielsResponse>;
     /**
      * The balance\'s conekta retention
-     * @type {Array<BalanceCommonField>}
+     * @type {Array<BalanceCommonFielsResponse>}
      * @memberof BalanceResponse
      */
-    'conekta_retention'?: Array<BalanceCommonField>;
+    'conekta_retention'?: Array<BalanceCommonFielsResponse>;
     /**
      * The balance\'s gateway
-     * @type {Array<BalanceCommonField>}
+     * @type {Array<BalanceCommonFielsResponse>}
      * @memberof BalanceResponse
      */
-    'gateway'?: Array<BalanceCommonField>;
+    'gateway'?: Array<BalanceCommonFielsResponse>;
     /**
      * The balance\'s pending
-     * @type {Array<BalanceCommonField>}
+     * @type {Array<BalanceCommonFielsResponse>}
      * @memberof BalanceResponse
      */
-    'pending'?: Array<BalanceCommonField>;
+    'pending'?: Array<BalanceCommonFielsResponse>;
     /**
      * The balance\'s retained
-     * @type {Array<BalanceCommonField>}
+     * @type {Array<BalanceCommonFielsResponse>}
      * @memberof BalanceResponse
      */
-    'retained'?: Array<BalanceCommonField>;
+    'retained'?: Array<BalanceCommonFielsResponse>;
     /**
      * The balance\'s retention amount
-     * @type {Array<BalanceCommonField>}
+     * @type {Array<BalanceCommonFielsResponse>}
      * @memberof BalanceResponse
      */
-    'retention_amount'?: Array<BalanceCommonField>;
+    'retention_amount'?: Array<BalanceCommonFielsResponse>;
     /**
      * The balance\'s target collateral amount
      * @type {object}
@@ -73,15 +73,15 @@ export interface BalanceResponse {
     'target_collateral_amount'?: object;
     /**
      * The balance\'s target retention amount
-     * @type {Array<BalanceCommonField>}
+     * @type {Array<BalanceCommonFielsResponse>}
      * @memberof BalanceResponse
      */
-    'target_retention_amount'?: Array<BalanceCommonField>;
+    'target_retention_amount'?: Array<BalanceCommonFielsResponse>;
     /**
      * The balance\'s temporarily retained
-     * @type {Array<BalanceCommonField>}
+     * @type {Array<BalanceCommonFielsResponse>}
      * @memberof BalanceResponse
      */
-    'temporarily_retained'?: Array<BalanceCommonField>;
+    'temporarily_retained'?: Array<BalanceCommonFielsResponse>;
 }
 

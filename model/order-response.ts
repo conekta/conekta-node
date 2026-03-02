@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import type { DiscountLinesResponse } from './discount-lines-response';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { OrderChannelResponse } from './order-channel-response';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { OrderChargesResponse } from './order-charges-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { OrderDiscountLinesResponse } from './order-discount-lines-response';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { OrderFiscalEntityResponse } from './order-fiscal-entity-response';
@@ -40,6 +40,9 @@ import type { OrderResponseProducts } from './order-response-products';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { OrderResponseShippingContact } from './order-response-shipping-contact';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { OrderTaxResponse } from './order-tax-response';
 
 /**
  * order response
@@ -96,17 +99,23 @@ export interface OrderResponse {
      */
     'customer_info'?: OrderResponseCustomerInfo;
     /**
-     * 
-     * @type {OrderDiscountLinesResponse}
+     * List of discounts that are applied to the order
+     * @type {Array<DiscountLinesResponse>}
      * @memberof OrderResponse
      */
-    'discount_lines'?: OrderDiscountLinesResponse;
+    'discount_lines'?: Array<DiscountLinesResponse>;
+    /**
+     * List of taxes that are applied to the order
+     * @type {Array<OrderTaxResponse>}
+     * @memberof OrderResponse
+     */
+    'tax_lines'?: Array<OrderTaxResponse>;
     /**
      * 
      * @type {OrderFiscalEntityResponse}
      * @memberof OrderResponse
      */
-    'fiscal_entity'?: OrderFiscalEntityResponse | null;
+    'fiscal_entity'?: OrderFiscalEntityResponse;
     /**
      * 
      * @type {string}

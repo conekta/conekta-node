@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **account_status** | **string** | The current status of the company\&#39;s account. | [default to undefined]
 **parent_company_id** | **string** | The identifier of the parent company, if any. | [optional] [default to undefined]
 **onboarding_status** | **string** | The current status of the company\&#39;s onboarding process. | [default to undefined]
-**documents** | [**Array&lt;CompanyResponseDocumentsInner&gt;**](CompanyResponseDocumentsInner.md) | A list of documents related to the company. | [default to undefined]
+**documents** | [**Array&lt;CompanyDocumentResponse&gt;**](CompanyDocumentResponse.md) | A list of documents related to the company. | [default to undefined]
 **created_at** | **number** | Timestamp of when the company was created. | [default to undefined]
 **object** | **string** | The type of object, typically \&quot;company\&quot;. | [default to undefined]
 **three_ds_enabled** | **boolean** | Indicates if 3DS authentication is enabled for the company. | [optional] [default to undefined]

@@ -136,7 +136,7 @@ const { status, data } = await apiInstance.getEvents(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **resendEvent**
-> EventsResendResponse resendEvent(resendRequest)
+> EventsResendResponse resendEvent(resendEventRequest)
 
 Resend event to selected webhooks
 
@@ -146,19 +146,19 @@ Resend event to selected webhooks
 import {
     EventsApi,
     Configuration,
-    ResendRequest
+    ResendEventRequest
 } from 'conekta';
 
 const configuration = new Configuration();
 const apiInstance = new EventsApi(configuration);
 
 let eventId: string; //event identifier (default to undefined)
-let resendRequest: ResendRequest; //requested fields for resend an event
+let resendEventRequest: ResendEventRequest; //requested fields for resend an event
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
 
 const { status, data } = await apiInstance.resendEvent(
     eventId,
-    resendRequest,
+    resendEventRequest,
     acceptLanguage
 );
 ```
@@ -167,7 +167,7 @@ const { status, data } = await apiInstance.resendEvent(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **resendRequest** | **ResendRequest**| requested fields for resend an event | |
+| **resendEventRequest** | **ResendEventRequest**| requested fields for resend an event | |
 | **eventId** | [**string**] | event identifier | defaults to undefined|
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
 

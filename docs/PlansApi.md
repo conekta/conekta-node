@@ -257,7 +257,7 @@ const { status, data } = await apiInstance.getPlans(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updatePlan**
-> PlanResponse updatePlan(planUpdateRequest)
+> PlanResponse updatePlan(updatePlan)
 
 
 ### Example
@@ -266,20 +266,20 @@ const { status, data } = await apiInstance.getPlans(
 import {
     PlansApi,
     Configuration,
-    PlanUpdateRequest
+    UpdatePlan
 } from 'conekta';
 
 const configuration = new Configuration();
 const apiInstance = new PlansApi(configuration);
 
 let id: string; //Identifier of the resource (default to undefined)
-let planUpdateRequest: PlanUpdateRequest; //requested field for plan
+let updatePlan: UpdatePlan; //requested field for plan
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
 let xChildCompanyId: string; //In the case of a holding company, the company id of the child company to which will process the request. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.updatePlan(
     id,
-    planUpdateRequest,
+    updatePlan,
     acceptLanguage,
     xChildCompanyId
 );
@@ -289,7 +289,7 @@ const { status, data } = await apiInstance.updatePlan(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **planUpdateRequest** | **PlanUpdateRequest**| requested field for plan | |
+| **updatePlan** | **UpdatePlan**| requested field for plan | |
 | **id** | [**string**] | Identifier of the resource | defaults to undefined|
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
 | **xChildCompanyId** | [**string**] | In the case of a holding company, the company id of the child company to which will process the request. | (optional) defaults to undefined|

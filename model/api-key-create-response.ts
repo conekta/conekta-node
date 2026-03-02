@@ -13,14 +13,84 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { ApiKeyResponse } from './api-key-response';
 
 /**
- * @type ApiKeyCreateResponse
+ * 
  * @export
+ * @interface ApiKeyCreateResponse
  */
-export type ApiKeyCreateResponse = ApiKeyResponse;
-
+export interface ApiKeyCreateResponse {
+    /**
+     * It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key. Copy and save it in a safe place.
+     * @type {string}
+     * @memberof ApiKeyCreateResponse
+     */
+    'authentication_token'?: string;
+    /**
+     * Indicates if the api key is active
+     * @type {boolean}
+     * @memberof ApiKeyCreateResponse
+     */
+    'active'?: boolean;
+    /**
+     * Unix timestamp in seconds of when the api key was created
+     * @type {number}
+     * @memberof ApiKeyCreateResponse
+     */
+    'created_at'?: number;
+    /**
+     * Unix timestamp in seconds of when the api key was last updated
+     * @type {number}
+     * @memberof ApiKeyCreateResponse
+     */
+    'updated_at'?: number;
+    /**
+     * Unix timestamp in seconds of when the api key was deleted
+     * @type {number}
+     * @memberof ApiKeyCreateResponse
+     */
+    'deactivated_at'?: number;
+    /**
+     * Unix timestamp in seconds with the api key was used
+     * @type {number}
+     * @memberof ApiKeyCreateResponse
+     */
+    'last_used_at'?: number;
+    /**
+     * A name or brief explanation of what this api key is used for
+     * @type {string}
+     * @memberof ApiKeyCreateResponse
+     */
+    'description'?: string;
+    /**
+     * Unique identifier of the api key
+     * @type {string}
+     * @memberof ApiKeyCreateResponse
+     */
+    'id'?: string;
+    /**
+     * Indicates if the api key is in production
+     * @type {boolean}
+     * @memberof ApiKeyCreateResponse
+     */
+    'livemode'?: boolean;
+    /**
+     * Object name, value is \'api_key\'
+     * @type {string}
+     * @memberof ApiKeyCreateResponse
+     */
+    'object'?: string;
+    /**
+     * The first few characters of the authentication_token
+     * @type {string}
+     * @memberof ApiKeyCreateResponse
+     */
+    'prefix'?: string;
+    /**
+     * Indicates if the api key is private or public
+     * @type {string}
+     * @memberof ApiKeyCreateResponse
+     */
+    'role'?: string;
+}
 

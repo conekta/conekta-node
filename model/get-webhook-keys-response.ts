@@ -15,18 +15,43 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Page } from './page';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Pagination } from './pagination';
-// May contain unused imports in some cases
-// @ts-ignore
 import type { WebhookKeyResponse } from './webhook-key-response';
 
 /**
- * @type GetWebhookKeysResponse
+ * 
  * @export
+ * @interface GetWebhookKeysResponse
  */
-export type GetWebhookKeysResponse = Page & Pagination;
-
+export interface GetWebhookKeysResponse {
+    /**
+     * Indicates if there are more pages to be requested
+     * @type {boolean}
+     * @memberof GetWebhookKeysResponse
+     */
+    'has_more': boolean;
+    /**
+     * Object type, in this case is list
+     * @type {string}
+     * @memberof GetWebhookKeysResponse
+     */
+    'object': string;
+    /**
+     * URL of the next page.
+     * @type {string}
+     * @memberof GetWebhookKeysResponse
+     */
+    'next_page_url'?: string;
+    /**
+     * Url of the previous page.
+     * @type {string}
+     * @memberof GetWebhookKeysResponse
+     */
+    'previous_page_url'?: string;
+    /**
+     * 
+     * @type {Array<WebhookKeyResponse>}
+     * @memberof GetWebhookKeysResponse
+     */
+    'data'?: Array<WebhookKeyResponse>;
+}
 

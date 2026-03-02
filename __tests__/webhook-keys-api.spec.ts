@@ -1,7 +1,7 @@
 import { WebhookKeysApi } from "../api";
 import { baseTest } from "./base-test";
 import { Configuration } from "../configuration";
-import { WebhookKeyRequest, WebhookKeyUpdateRequest, WebhookRequest } from "../model";
+import { WebhookKeyRequest, WebhookKeyUpdateRequest } from "../model";
 describe("WebhookKeysApi", () => {
   let client: WebhookKeysApi;
   beforeAll(() => {

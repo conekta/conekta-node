@@ -18,10 +18,10 @@
 import type { ChargeRequest } from './charge-request';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CheckoutRequest } from './checkout-request';
+import type { CustomerShippingContactsRequest } from './customer-shipping-contacts-request';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CustomerShippingContacts } from './customer-shipping-contacts';
+import type { OrderCheckoutRequest } from './order-checkout-request';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { OrderDiscountLinesRequest } from './order-discount-lines-request';
@@ -55,10 +55,10 @@ export interface OrderRequest {
     'charges'?: Array<ChargeRequest>;
     /**
      * 
-     * @type {CheckoutRequest}
+     * @type {OrderCheckoutRequest}
      * @memberof OrderRequest
      */
-    'checkout'?: CheckoutRequest;
+    'checkout'?: OrderCheckoutRequest;
     /**
      * Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
      * @type {string}
@@ -72,7 +72,7 @@ export interface OrderRequest {
      */
     'customer_info': OrderRequestCustomerInfo;
     /**
-     * List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount.
+     * List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order.
      * @type {Array<OrderDiscountLinesRequest>}
      * @memberof OrderRequest
      */
@@ -121,10 +121,10 @@ export interface OrderRequest {
     'return_url'?: string;
     /**
      * 
-     * @type {CustomerShippingContacts}
+     * @type {CustomerShippingContactsRequest}
      * @memberof OrderRequest
      */
-    'shipping_contact'?: CustomerShippingContacts;
+    'shipping_contact'?: CustomerShippingContactsRequest;
     /**
      * List of [shipping costs](https://developers.conekta.com/v2.2.0/reference/orderscreateshipping). If the online store offers digital products.
      * @type {Array<ShippingRequest>}
@@ -142,6 +142,6 @@ export interface OrderRequest {
      * @type {string}
      * @memberof OrderRequest
      */
-    'three_ds_mode'?: string | null;
+    'three_ds_mode'?: string;
 }
 

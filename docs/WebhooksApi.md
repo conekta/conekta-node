@@ -312,7 +312,7 @@ const { status, data } = await apiInstance.testWebhook(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateWebhook**
-> WebhookResponse updateWebhook(webhookUpdateRequest)
+> WebhookResponse updateWebhook(updateWebhook)
 
 updates an existing webhook
 
@@ -322,20 +322,20 @@ updates an existing webhook
 import {
     WebhooksApi,
     Configuration,
-    WebhookUpdateRequest
+    UpdateWebhook
 } from 'conekta';
 
 const configuration = new Configuration();
 const apiInstance = new WebhooksApi(configuration);
 
 let id: string; //Identifier of the resource (default to undefined)
-let webhookUpdateRequest: WebhookUpdateRequest; //requested fields in order to update a webhook
+let updateWebhook: UpdateWebhook; //requested fields in order to update a webhook
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
 let xChildCompanyId: string; //In the case of a holding company, the company id of the child company to which will process the request. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.updateWebhook(
     id,
-    webhookUpdateRequest,
+    updateWebhook,
     acceptLanguage,
     xChildCompanyId
 );
@@ -345,7 +345,7 @@ const { status, data } = await apiInstance.updateWebhook(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **webhookUpdateRequest** | **WebhookUpdateRequest**| requested fields in order to update a webhook | |
+| **updateWebhook** | **UpdateWebhook**| requested fields in order to update a webhook | |
 | **id** | [**string**] | Identifier of the resource | defaults to undefined|
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
 | **xChildCompanyId** | [**string**] | In the case of a holding company, the company id of the child company to which will process the request. | (optional) defaults to undefined|

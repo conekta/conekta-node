@@ -25,19 +25,19 @@ export interface SubscriptionResponse {
      * @type {number}
      * @memberof SubscriptionResponse
      */
-    'billing_cycle_start'?: number | null;
+    'billing_cycle_start'?: number;
     /**
      * 
      * @type {number}
      * @memberof SubscriptionResponse
      */
-    'billing_cycle_end'?: number | null;
+    'billing_cycle_end'?: number;
     /**
      * 
      * @type {number}
      * @memberof SubscriptionResponse
      */
-    'canceled_at'?: number | null;
+    'canceled_at'?: number;
     /**
      * Reason for cancellation. This field appears when the subscription status is \'canceled\'.
      * @type {string}
@@ -55,7 +55,7 @@ export interface SubscriptionResponse {
      * @type {string}
      * @memberof SubscriptionResponse
      */
-    'charge_id'?: string | null;
+    'charge_id'?: string;
     /**
      * 
      * @type {number}
@@ -97,7 +97,7 @@ export interface SubscriptionResponse {
      * @type {number}
      * @memberof SubscriptionResponse
      */
-    'paused_at'?: number | null;
+    'paused_at'?: number;
     /**
      * 
      * @type {string}
@@ -121,12 +121,12 @@ export interface SubscriptionResponse {
      * @type {number}
      * @memberof SubscriptionResponse
      */
-    'trial_start'?: number | null;
+    'trial_start'?: number;
     /**
      * 
      * @type {number}
      * @memberof SubscriptionResponse
      */
-    'trial_end'?: number | null;
+    'trial_end'?: number;
 }
 

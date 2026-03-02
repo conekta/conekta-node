@@ -18,6 +18,12 @@
 import type { CheckoutOrderTemplateCustomerInfo } from './checkout-order-template-customer-info';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { OrderDiscountLinesRequest } from './order-discount-lines-request';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { OrderTaxRequest } from './order-tax-request';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { Product } from './product';
 
 /**
@@ -50,5 +56,17 @@ export interface CheckoutOrderTemplate {
      * @memberof CheckoutOrderTemplate
      */
     'metadata'?: { [key: string]: any; };
+    /**
+     * List of [taxes](https://developers.conekta.com/v2.2.0/reference/orderscreatetaxes) that are applied to the order.
+     * @type {Array<OrderTaxRequest>}
+     * @memberof CheckoutOrderTemplate
+     */
+    'tax_lines'?: Array<OrderTaxRequest>;
+    /**
+     * List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order.
+     * @type {Array<OrderDiscountLinesRequest>}
+     * @memberof CheckoutOrderTemplate
+     */
+    'discount_lines'?: Array<OrderDiscountLinesRequest>;
 }
 

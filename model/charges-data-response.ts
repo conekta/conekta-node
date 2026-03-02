@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ChargeResponse } from './charge-response';
-// May contain unused imports in some cases
-// @ts-ignore
 import type { ChargeResponseChannel } from './charge-response-channel';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -27,9 +24,118 @@ import type { ChargeResponsePaymentMethod } from './charge-response-payment-meth
 import type { ChargeResponseRefunds } from './charge-response-refunds';
 
 /**
- * @type ChargesDataResponse
+ * 
  * @export
+ * @interface ChargesDataResponse
  */
-export type ChargesDataResponse = ChargeResponse;
-
+export interface ChargesDataResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof ChargesDataResponse
+     */
+    'amount': number;
+    /**
+     * 
+     * @type {ChargeResponseChannel}
+     * @memberof ChargesDataResponse
+     */
+    'channel'?: ChargeResponseChannel;
+    /**
+     * 
+     * @type {number}
+     * @memberof ChargesDataResponse
+     */
+    'created_at': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ChargesDataResponse
+     */
+    'currency': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ChargesDataResponse
+     */
+    'customer_id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ChargesDataResponse
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ChargesDataResponse
+     */
+    'device_fingerprint'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ChargesDataResponse
+     */
+    'failure_code'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ChargesDataResponse
+     */
+    'failure_message'?: string;
+    /**
+     * Charge ID
+     * @type {string}
+     * @memberof ChargesDataResponse
+     */
+    'id': string;
+    /**
+     * Whether the charge was made in live mode or not
+     * @type {boolean}
+     * @memberof ChargesDataResponse
+     */
+    'livemode': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ChargesDataResponse
+     */
+    'object': string;
+    /**
+     * Order ID
+     * @type {string}
+     * @memberof ChargesDataResponse
+     */
+    'order_id': string;
+    /**
+     * charge Payment date
+     * @type {number}
+     * @memberof ChargesDataResponse
+     */
+    'paid_at'?: number;
+    /**
+     * 
+     * @type {ChargeResponsePaymentMethod}
+     * @memberof ChargesDataResponse
+     */
+    'payment_method'?: ChargeResponsePaymentMethod;
+    /**
+     * Reference ID of the charge
+     * @type {string}
+     * @memberof ChargesDataResponse
+     */
+    'reference_id'?: string;
+    /**
+     * 
+     * @type {ChargeResponseRefunds}
+     * @memberof ChargesDataResponse
+     */
+    'refunds'?: ChargeResponseRefunds;
+    /**
+     * Charge status
+     * @type {string}
+     * @memberof ChargesDataResponse
+     */
+    'status': string;
+}
 

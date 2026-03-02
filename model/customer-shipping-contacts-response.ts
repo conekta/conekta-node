@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CustomerShippingContactsResponseAddress } from './customer-shipping-contacts-response-address';
+import type { CustomerShippingContactsAddress } from './customer-shipping-contacts-address';
 
 /**
  * Contains the detail of the shipping addresses that the client has active or has used in Conekta
@@ -40,13 +40,13 @@ export interface CustomerShippingContactsResponse {
      * @type {string}
      * @memberof CustomerShippingContactsResponse
      */
-    'between_streets'?: string | null;
+    'between_streets'?: string;
     /**
      * 
-     * @type {CustomerShippingContactsResponseAddress}
+     * @type {CustomerShippingContactsAddress}
      * @memberof CustomerShippingContactsResponse
      */
-    'address'?: CustomerShippingContactsResponseAddress;
+    'address'?: CustomerShippingContactsAddress;
     /**
      * 
      * @type {string}

@@ -26,19 +26,19 @@ import type { CreateCustomerFiscalEntitiesResponse } from '../model';
 // @ts-ignore
 import type { Customer } from '../model';
 // @ts-ignore
-import type { CustomerFiscalEntitiesRequest } from '../model';
-// @ts-ignore
 import type { CustomerResponse } from '../model';
 // @ts-ignore
-import type { CustomerUpdateFiscalEntitiesRequest } from '../model';
-// @ts-ignore
 import type { CustomersResponse } from '../model';
+// @ts-ignore
+import type { FiscalEntityRequest } from '../model';
 // @ts-ignore
 import type { ModelError } from '../model';
 // @ts-ignore
 import type { UpdateCustomer } from '../model';
 // @ts-ignore
 import type { UpdateCustomerFiscalEntitiesResponse } from '../model';
+// @ts-ignore
+import type { UpdateFiscalEntityRequest } from '../model';
 /**
  * CustomersApi - axios parameter creator
  * @export
@@ -97,17 +97,17 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
          * Create Fiscal entity resource that corresponds to a customer ID.
          * @summary Create Fiscal Entity
          * @param {string} id Identifier of the resource
-         * @param {CustomerFiscalEntitiesRequest} customerFiscalEntitiesRequest requested field for customer fiscal entities
+         * @param {FiscalEntityRequest} fiscalEntityRequest requested field for customer fiscal entities
          * @param {CreateCustomerFiscalEntitiesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCustomerFiscalEntities: async (id: string, customerFiscalEntitiesRequest: CustomerFiscalEntitiesRequest, acceptLanguage?: CreateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createCustomerFiscalEntities: async (id: string, fiscalEntityRequest: FiscalEntityRequest, acceptLanguage?: CreateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('createCustomerFiscalEntities', 'id', id)
-            // verify required parameter 'customerFiscalEntitiesRequest' is not null or undefined
-            assertParamExists('createCustomerFiscalEntities', 'customerFiscalEntitiesRequest', customerFiscalEntitiesRequest)
+            // verify required parameter 'fiscalEntityRequest' is not null or undefined
+            assertParamExists('createCustomerFiscalEntities', 'fiscalEntityRequest', fiscalEntityRequest)
             const localVarPath = `/customers/{id}/fiscal_entities`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -138,7 +138,7 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(customerFiscalEntitiesRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(fiscalEntityRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -356,19 +356,19 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
          * @summary Update  Fiscal Entity
          * @param {string} id Identifier of the resource
          * @param {string} fiscalEntitiesId identifier
-         * @param {CustomerUpdateFiscalEntitiesRequest} customerUpdateFiscalEntitiesRequest requested field for customer update fiscal entities
+         * @param {UpdateFiscalEntityRequest} updateFiscalEntityRequest requested field for customer update fiscal entities
          * @param {UpdateCustomerFiscalEntitiesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCustomerFiscalEntities: async (id: string, fiscalEntitiesId: string, customerUpdateFiscalEntitiesRequest: CustomerUpdateFiscalEntitiesRequest, acceptLanguage?: UpdateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateCustomerFiscalEntities: async (id: string, fiscalEntitiesId: string, updateFiscalEntityRequest: UpdateFiscalEntityRequest, acceptLanguage?: UpdateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateCustomerFiscalEntities', 'id', id)
             // verify required parameter 'fiscalEntitiesId' is not null or undefined
             assertParamExists('updateCustomerFiscalEntities', 'fiscalEntitiesId', fiscalEntitiesId)
-            // verify required parameter 'customerUpdateFiscalEntitiesRequest' is not null or undefined
-            assertParamExists('updateCustomerFiscalEntities', 'customerUpdateFiscalEntitiesRequest', customerUpdateFiscalEntitiesRequest)
+            // verify required parameter 'updateFiscalEntityRequest' is not null or undefined
+            assertParamExists('updateCustomerFiscalEntities', 'updateFiscalEntityRequest', updateFiscalEntityRequest)
             const localVarPath = `/customers/{id}/fiscal_entities/{fiscal_entities_id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"fiscal_entities_id"}}`, encodeURIComponent(String(fiscalEntitiesId)));
@@ -400,7 +400,7 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(customerUpdateFiscalEntitiesRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(updateFiscalEntityRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -436,14 +436,14 @@ export const CustomersApiFp = function(configuration?: Configuration) {
          * Create Fiscal entity resource that corresponds to a customer ID.
          * @summary Create Fiscal Entity
          * @param {string} id Identifier of the resource
-         * @param {CustomerFiscalEntitiesRequest} customerFiscalEntitiesRequest requested field for customer fiscal entities
+         * @param {FiscalEntityRequest} fiscalEntityRequest requested field for customer fiscal entities
          * @param {CreateCustomerFiscalEntitiesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createCustomerFiscalEntities(id: string, customerFiscalEntitiesRequest: CustomerFiscalEntitiesRequest, acceptLanguage?: CreateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateCustomerFiscalEntitiesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createCustomerFiscalEntities(id, customerFiscalEntitiesRequest, acceptLanguage, xChildCompanyId, options);
+        async createCustomerFiscalEntities(id: string, fiscalEntityRequest: FiscalEntityRequest, acceptLanguage?: CreateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateCustomerFiscalEntitiesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createCustomerFiscalEntities(id, fiscalEntityRequest, acceptLanguage, xChildCompanyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CustomersApi.createCustomerFiscalEntities']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -517,14 +517,14 @@ export const CustomersApiFp = function(configuration?: Configuration) {
          * @summary Update  Fiscal Entity
          * @param {string} id Identifier of the resource
          * @param {string} fiscalEntitiesId identifier
-         * @param {CustomerUpdateFiscalEntitiesRequest} customerUpdateFiscalEntitiesRequest requested field for customer update fiscal entities
+         * @param {UpdateFiscalEntityRequest} updateFiscalEntityRequest requested field for customer update fiscal entities
          * @param {UpdateCustomerFiscalEntitiesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateCustomerFiscalEntities(id: string, fiscalEntitiesId: string, customerUpdateFiscalEntitiesRequest: CustomerUpdateFiscalEntitiesRequest, acceptLanguage?: UpdateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCustomerFiscalEntitiesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateCustomerFiscalEntities(id, fiscalEntitiesId, customerUpdateFiscalEntitiesRequest, acceptLanguage, xChildCompanyId, options);
+        async updateCustomerFiscalEntities(id: string, fiscalEntitiesId: string, updateFiscalEntityRequest: UpdateFiscalEntityRequest, acceptLanguage?: UpdateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCustomerFiscalEntitiesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateCustomerFiscalEntities(id, fiscalEntitiesId, updateFiscalEntityRequest, acceptLanguage, xChildCompanyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CustomersApi.updateCustomerFiscalEntities']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -555,14 +555,14 @@ export const CustomersApiFactory = function (configuration?: Configuration, base
          * Create Fiscal entity resource that corresponds to a customer ID.
          * @summary Create Fiscal Entity
          * @param {string} id Identifier of the resource
-         * @param {CustomerFiscalEntitiesRequest} customerFiscalEntitiesRequest requested field for customer fiscal entities
+         * @param {FiscalEntityRequest} fiscalEntityRequest requested field for customer fiscal entities
          * @param {CreateCustomerFiscalEntitiesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCustomerFiscalEntities(id: string, customerFiscalEntitiesRequest: CustomerFiscalEntitiesRequest, acceptLanguage?: CreateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CreateCustomerFiscalEntitiesResponse> {
-            return localVarFp.createCustomerFiscalEntities(id, customerFiscalEntitiesRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
+        createCustomerFiscalEntities(id: string, fiscalEntityRequest: FiscalEntityRequest, acceptLanguage?: CreateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CreateCustomerFiscalEntitiesResponse> {
+            return localVarFp.createCustomerFiscalEntities(id, fiscalEntityRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Deleted a customer resource that corresponds to a customer ID.
@@ -621,14 +621,14 @@ export const CustomersApiFactory = function (configuration?: Configuration, base
          * @summary Update  Fiscal Entity
          * @param {string} id Identifier of the resource
          * @param {string} fiscalEntitiesId identifier
-         * @param {CustomerUpdateFiscalEntitiesRequest} customerUpdateFiscalEntitiesRequest requested field for customer update fiscal entities
+         * @param {UpdateFiscalEntityRequest} updateFiscalEntityRequest requested field for customer update fiscal entities
          * @param {UpdateCustomerFiscalEntitiesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCustomerFiscalEntities(id: string, fiscalEntitiesId: string, customerUpdateFiscalEntitiesRequest: CustomerUpdateFiscalEntitiesRequest, acceptLanguage?: UpdateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateCustomerFiscalEntitiesResponse> {
-            return localVarFp.updateCustomerFiscalEntities(id, fiscalEntitiesId, customerUpdateFiscalEntitiesRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
+        updateCustomerFiscalEntities(id: string, fiscalEntitiesId: string, updateFiscalEntityRequest: UpdateFiscalEntityRequest, acceptLanguage?: UpdateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateCustomerFiscalEntitiesResponse> {
+            return localVarFp.updateCustomerFiscalEntities(id, fiscalEntitiesId, updateFiscalEntityRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -655,14 +655,14 @@ export interface CustomersApiInterface {
      * Create Fiscal entity resource that corresponds to a customer ID.
      * @summary Create Fiscal Entity
      * @param {string} id Identifier of the resource
-     * @param {CustomerFiscalEntitiesRequest} customerFiscalEntitiesRequest requested field for customer fiscal entities
+     * @param {FiscalEntityRequest} fiscalEntityRequest requested field for customer fiscal entities
      * @param {CreateCustomerFiscalEntitiesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomersApiInterface
      */
-    createCustomerFiscalEntities(id: string, customerFiscalEntitiesRequest: CustomerFiscalEntitiesRequest, acceptLanguage?: CreateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CreateCustomerFiscalEntitiesResponse>;
+    createCustomerFiscalEntities(id: string, fiscalEntityRequest: FiscalEntityRequest, acceptLanguage?: CreateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CreateCustomerFiscalEntitiesResponse>;
 
     /**
      * Deleted a customer resource that corresponds to a customer ID.
@@ -721,14 +721,14 @@ export interface CustomersApiInterface {
      * @summary Update  Fiscal Entity
      * @param {string} id Identifier of the resource
      * @param {string} fiscalEntitiesId identifier
-     * @param {CustomerUpdateFiscalEntitiesRequest} customerUpdateFiscalEntitiesRequest requested field for customer update fiscal entities
+     * @param {UpdateFiscalEntityRequest} updateFiscalEntityRequest requested field for customer update fiscal entities
      * @param {UpdateCustomerFiscalEntitiesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomersApiInterface
      */
-    updateCustomerFiscalEntities(id: string, fiscalEntitiesId: string, customerUpdateFiscalEntitiesRequest: CustomerUpdateFiscalEntitiesRequest, acceptLanguage?: UpdateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateCustomerFiscalEntitiesResponse>;
+    updateCustomerFiscalEntities(id: string, fiscalEntitiesId: string, updateFiscalEntityRequest: UpdateFiscalEntityRequest, acceptLanguage?: UpdateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateCustomerFiscalEntitiesResponse>;
 
 }
 
@@ -757,15 +757,15 @@ export class CustomersApi extends BaseAPI implements CustomersApiInterface {
      * Create Fiscal entity resource that corresponds to a customer ID.
      * @summary Create Fiscal Entity
      * @param {string} id Identifier of the resource
-     * @param {CustomerFiscalEntitiesRequest} customerFiscalEntitiesRequest requested field for customer fiscal entities
+     * @param {FiscalEntityRequest} fiscalEntityRequest requested field for customer fiscal entities
      * @param {CreateCustomerFiscalEntitiesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomersApi
      */
-    public createCustomerFiscalEntities(id: string, customerFiscalEntitiesRequest: CustomerFiscalEntitiesRequest, acceptLanguage?: CreateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
-        return CustomersApiFp(this.configuration).createCustomerFiscalEntities(id, customerFiscalEntitiesRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
+    public createCustomerFiscalEntities(id: string, fiscalEntityRequest: FiscalEntityRequest, acceptLanguage?: CreateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
+        return CustomersApiFp(this.configuration).createCustomerFiscalEntities(id, fiscalEntityRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -833,15 +833,15 @@ export class CustomersApi extends BaseAPI implements CustomersApiInterface {
      * @summary Update  Fiscal Entity
      * @param {string} id Identifier of the resource
      * @param {string} fiscalEntitiesId identifier
-     * @param {CustomerUpdateFiscalEntitiesRequest} customerUpdateFiscalEntitiesRequest requested field for customer update fiscal entities
+     * @param {UpdateFiscalEntityRequest} updateFiscalEntityRequest requested field for customer update fiscal entities
      * @param {UpdateCustomerFiscalEntitiesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomersApi
      */
-    public updateCustomerFiscalEntities(id: string, fiscalEntitiesId: string, customerUpdateFiscalEntitiesRequest: CustomerUpdateFiscalEntitiesRequest, acceptLanguage?: UpdateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
-        return CustomersApiFp(this.configuration).updateCustomerFiscalEntities(id, fiscalEntitiesId, customerUpdateFiscalEntitiesRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
+    public updateCustomerFiscalEntities(id: string, fiscalEntitiesId: string, updateFiscalEntityRequest: UpdateFiscalEntityRequest, acceptLanguage?: UpdateCustomerFiscalEntitiesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
+        return CustomersApiFp(this.configuration).updateCustomerFiscalEntities(id, fiscalEntitiesId, updateFiscalEntityRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

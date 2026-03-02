@@ -34,7 +34,7 @@ export interface OrderFiscalEntityResponse {
      * @type {string}
      * @memberof OrderFiscalEntityResponse
      */
-    'email'?: string | null;
+    'email'?: string;
     /**
      * Metadata associated with the fiscal entity
      * @type {{ [key: string]: any; }}
@@ -46,13 +46,13 @@ export interface OrderFiscalEntityResponse {
      * @type {string}
      * @memberof OrderFiscalEntityResponse
      */
-    'name'?: string | null;
+    'name'?: string;
     /**
      * Tax ID of the fiscal entity
      * @type {string}
      * @memberof OrderFiscalEntityResponse
      */
-    'tax_id'?: string | null;
+    'tax_id'?: string;
     /**
      * ID of the fiscal entity
      * @type {string}
@@ -76,6 +76,6 @@ export interface OrderFiscalEntityResponse {
      * @type {string}
      * @memberof OrderFiscalEntityResponse
      */
-    'phone'?: string | null;
+    'phone'?: string;
 }
 

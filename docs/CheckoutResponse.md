@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **plan_ids** | **Array&lt;string&gt;** | List of plan IDs that are available for subscription | [optional] [default to undefined]
 **can_not_expire** | **boolean** |  | [optional] [default to undefined]
 **emails_sent** | **number** |  | [optional] [default to undefined]
-**exclude_card_networks** | **Array&lt;object&gt;** |  | [optional] [default to undefined]
+**exclude_card_networks** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
 **expires_at** | **number** |  | [optional] [default to undefined]
 **failure_url** | **string** |  | [optional] [default to undefined]
 **force_3ds_flow** | **boolean** |  | [optional] [default to undefined]
@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 **sms_sent** | **number** |  | [optional] [default to undefined]
 **starts_at** | **number** |  | [optional] [default to undefined]
 **status** | **string** |  | [optional] [default to undefined]
-**success_url** | **string** |  | [optional] [default to undefined]
+**success_url** | **string** | The URL to redirect to after a successful payment. | [optional] [default to undefined]
 **type** | **string** |  | [optional] [default to undefined]
 **url** | **string** |  | [optional] [default to undefined]
 

@@ -13,14 +13,67 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PaymentMethod } from './payment-method';
 
 /**
- * @type PaymentMethodBnplPayment
+ * 
  * @export
+ * @interface PaymentMethodBnplPayment
  */
-export type PaymentMethodBnplPayment = PaymentMethod;
+export interface PaymentMethodBnplPayment {
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBnplPayment
+     */
+    'type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBnplPayment
+     */
+    'object': PaymentMethodBnplPaymentObjectEnum;
+    /**
+     * URL to redirect the customer after a canceled payment
+     * @type {string}
+     * @memberof PaymentMethodBnplPayment
+     */
+    'cancel_url'?: string;
+    /**
+     * Expiration date of the charge
+     * @type {number}
+     * @memberof PaymentMethodBnplPayment
+     */
+    'expires_at': number;
+    /**
+     * URL to redirect the customer after a failed payment
+     * @type {string}
+     * @memberof PaymentMethodBnplPayment
+     */
+    'failure_url'?: string;
+    /**
+     * Product type of the charge
+     * @type {string}
+     * @memberof PaymentMethodBnplPayment
+     */
+    'product_type': string;
+    /**
+     * URL to redirect the customer to complete the payment
+     * @type {string}
+     * @memberof PaymentMethodBnplPayment
+     */
+    'redirect_url'?: string;
+    /**
+     * URL to redirect the customer after a successful payment
+     * @type {string}
+     * @memberof PaymentMethodBnplPayment
+     */
+    'success_url'?: string;
+}
+
+export const PaymentMethodBnplPaymentObjectEnum = {
+    bnplPayment: 'bnpl_payment'
+} as const;
+
+export type PaymentMethodBnplPaymentObjectEnum = typeof PaymentMethodBnplPaymentObjectEnum[keyof typeof PaymentMethodBnplPaymentObjectEnum];
 
 

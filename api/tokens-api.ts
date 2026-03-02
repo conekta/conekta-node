@@ -24,7 +24,7 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 // @ts-ignore
 import type { ModelError } from '../model';
 // @ts-ignore
-import type { Token } from '../model';
+import type { TokenRequest } from '../model';
 // @ts-ignore
 import type { TokenResponse } from '../model';
 /**
@@ -34,16 +34,16 @@ import type { TokenResponse } from '../model';
 export const TokensApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Generate a payment token, to associate it with a card 
+         * Generate a payment token, to associate it with a card, Endpoint could be use directly only for PCI compliance account 
          * @summary Create Token
-         * @param {Token} token requested field for token
+         * @param {TokenRequest} tokenRequest requested field for token
          * @param {CreateTokenAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createToken: async (token: Token, acceptLanguage?: CreateTokenAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'token' is not null or undefined
-            assertParamExists('createToken', 'token', token)
+        createToken: async (tokenRequest: TokenRequest, acceptLanguage?: CreateTokenAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'tokenRequest' is not null or undefined
+            assertParamExists('createToken', 'tokenRequest', tokenRequest)
             const localVarPath = `/tokens`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -70,7 +70,7 @@ export const TokensApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(token, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(tokenRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -88,15 +88,15 @@ export const TokensApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = TokensApiAxiosParamCreator(configuration)
     return {
         /**
-         * Generate a payment token, to associate it with a card 
+         * Generate a payment token, to associate it with a card, Endpoint could be use directly only for PCI compliance account 
          * @summary Create Token
-         * @param {Token} token requested field for token
+         * @param {TokenRequest} tokenRequest requested field for token
          * @param {CreateTokenAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createToken(token: Token, acceptLanguage?: CreateTokenAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createToken(token, acceptLanguage, options);
+        async createToken(tokenRequest: TokenRequest, acceptLanguage?: CreateTokenAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createToken(tokenRequest, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TokensApi.createToken']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -112,15 +112,15 @@ export const TokensApiFactory = function (configuration?: Configuration, basePat
     const localVarFp = TokensApiFp(configuration)
     return {
         /**
-         * Generate a payment token, to associate it with a card 
+         * Generate a payment token, to associate it with a card, Endpoint could be use directly only for PCI compliance account 
          * @summary Create Token
-         * @param {Token} token requested field for token
+         * @param {TokenRequest} tokenRequest requested field for token
          * @param {CreateTokenAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createToken(token: Token, acceptLanguage?: CreateTokenAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<TokenResponse> {
-            return localVarFp.createToken(token, acceptLanguage, options).then((request) => request(axios, basePath));
+        createToken(tokenRequest: TokenRequest, acceptLanguage?: CreateTokenAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<TokenResponse> {
+            return localVarFp.createToken(tokenRequest, acceptLanguage, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -132,15 +132,15 @@ export const TokensApiFactory = function (configuration?: Configuration, basePat
  */
 export interface TokensApiInterface {
     /**
-     * Generate a payment token, to associate it with a card 
+     * Generate a payment token, to associate it with a card, Endpoint could be use directly only for PCI compliance account 
      * @summary Create Token
-     * @param {Token} token requested field for token
+     * @param {TokenRequest} tokenRequest requested field for token
      * @param {CreateTokenAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TokensApiInterface
      */
-    createToken(token: Token, acceptLanguage?: CreateTokenAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<TokenResponse>;
+    createToken(tokenRequest: TokenRequest, acceptLanguage?: CreateTokenAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<TokenResponse>;
 
 }
 
@@ -152,16 +152,16 @@ export interface TokensApiInterface {
  */
 export class TokensApi extends BaseAPI implements TokensApiInterface {
     /**
-     * Generate a payment token, to associate it with a card 
+     * Generate a payment token, to associate it with a card, Endpoint could be use directly only for PCI compliance account 
      * @summary Create Token
-     * @param {Token} token requested field for token
+     * @param {TokenRequest} tokenRequest requested field for token
      * @param {CreateTokenAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TokensApi
      */
-    public createToken(token: Token, acceptLanguage?: CreateTokenAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
-        return TokensApiFp(this.configuration).createToken(token, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public createToken(tokenRequest: TokenRequest, acceptLanguage?: CreateTokenAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
+        return TokensApiFp(this.configuration).createToken(tokenRequest, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

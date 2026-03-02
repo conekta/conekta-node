@@ -25,7 +25,7 @@ export interface OrderResponseCheckout {
      * @type {Array<string>}
      * @memberof OrderResponseCheckout
      */
-    'allowed_payment_methods'?: Array<string>;
+    'allowed_payment_methods': Array<string>;
     /**
      * 
      * @type {boolean}
@@ -40,10 +40,10 @@ export interface OrderResponseCheckout {
     'emails_sent'?: number;
     /**
      * 
-     * @type {Array<object>}
+     * @type {Array<string>}
      * @memberof OrderResponseCheckout
      */
-    'exclude_card_networks'?: Array<object>;
+    'exclude_card_networks'?: Array<OrderResponseCheckoutExcludeCardNetworksEnum>;
     /**
      * 
      * @type {number}
@@ -67,7 +67,7 @@ export interface OrderResponseCheckout {
      * @type {string}
      * @memberof OrderResponseCheckout
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {boolean}
@@ -85,7 +85,7 @@ export interface OrderResponseCheckout {
      * @type {number}
      * @memberof OrderResponseCheckout
      */
-    'max_failed_retries'?: number | null;
+    'max_failed_retries'?: number;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -109,7 +109,7 @@ export interface OrderResponseCheckout {
      * @type {string}
      * @memberof OrderResponseCheckout
      */
-    'name'?: string;
+    'name': string;
     /**
      * 
      * @type {boolean}
@@ -121,13 +121,13 @@ export interface OrderResponseCheckout {
      * @type {string}
      * @memberof OrderResponseCheckout
      */
-    'object'?: string;
+    'object': string;
     /**
      * 
      * @type {boolean}
      * @memberof OrderResponseCheckout
      */
-    'on_demand_enabled'?: boolean | null;
+    'on_demand_enabled'?: boolean;
     /**
      * 
      * @type {number}
@@ -145,7 +145,7 @@ export interface OrderResponseCheckout {
      * @type {number}
      * @memberof OrderResponseCheckout
      */
-    'redirection_time'?: number | null;
+    'redirection_time'?: number;
     /**
      * 
      * @type {string}
@@ -159,7 +159,7 @@ export interface OrderResponseCheckout {
      */
     'sms_sent'?: number;
     /**
-     * 
+     * Redirection url back to the site in case of successful payment, applies only to HostedPayment
      * @type {string}
      * @memberof OrderResponseCheckout
      */
@@ -177,16 +177,25 @@ export interface OrderResponseCheckout {
      */
     'status'?: string;
     /**
-     * 
+     * This field represents the type of checkout, which determines the user experience during the payment process. \'HostedPayment\' will redirect the customer to a Conekta-hosted page to complete the payment, while \'Integration\' allows the payment process to be handled entirely on your site using Conekta\'s APIs and SDKs.
      * @type {string}
      * @memberof OrderResponseCheckout
      */
-    'type'?: string;
+    'type': string;
     /**
-     * 
+     * Indicate the url of the Conekta component to complete the payment. For HostedPayment, this will be a Conekta-hosted page
      * @type {string}
      * @memberof OrderResponseCheckout
      */
     'url'?: string;
 }
+
+export const OrderResponseCheckoutExcludeCardNetworksEnum = {
+    visa: 'visa',
+    mastercard: 'mastercard',
+    amex: 'amex'
+} as const;
+
+export type OrderResponseCheckoutExcludeCardNetworksEnum = typeof OrderResponseCheckoutExcludeCardNetworksEnum[keyof typeof OrderResponseCheckoutExcludeCardNetworksEnum];
+
 

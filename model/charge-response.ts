@@ -108,11 +108,11 @@ export interface ChargeResponse {
      */
     'order_id': string;
     /**
-     * Payment date
+     * charge Payment date
      * @type {number}
      * @memberof ChargeResponse
      */
-    'paid_at'?: number | null;
+    'paid_at'?: number;
     /**
      * 
      * @type {ChargeResponsePaymentMethod}
@@ -124,13 +124,13 @@ export interface ChargeResponse {
      * @type {string}
      * @memberof ChargeResponse
      */
-    'reference_id'?: string | null;
+    'reference_id'?: string;
     /**
      * 
      * @type {ChargeResponseRefunds}
      * @memberof ChargeResponse
      */
-    'refunds'?: ChargeResponseRefunds | null;
+    'refunds'?: ChargeResponseRefunds;
     /**
      * Charge status
      * @type {string}

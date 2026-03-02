@@ -27,7 +27,7 @@ import type { CustomerPaymentMethodsResponse } from './customer-payment-methods-
 import type { CustomerResponseShippingContacts } from './customer-response-shipping-contacts';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { SubscriptionResponse } from './subscription-response';
+import type { CustomerSubscriptionResponse } from './customer-subscription-response';
 
 /**
  * customer response
@@ -40,7 +40,7 @@ export interface CustomerResponse {
      * @type {CustomerAntifraudInfoResponse}
      * @memberof CustomerResponse
      */
-    'antifraud_info'?: CustomerAntifraudInfoResponse | null;
+    'antifraud_info'?: CustomerAntifraudInfoResponse;
     /**
      * true if the customer is a company
      * @type {boolean}
@@ -70,7 +70,7 @@ export interface CustomerResponse {
      * @type {string}
      * @memberof CustomerResponse
      */
-    'default_fiscal_entity_id'?: string | null;
+    'default_fiscal_entity_id'?: string;
     /**
      * 
      * @type {string}
@@ -82,7 +82,7 @@ export interface CustomerResponse {
      * @type {string}
      * @memberof CustomerResponse
      */
-    'default_payment_source_id'?: string | null;
+    'default_payment_source_id'?: string;
     /**
      * 
      * @type {string}
@@ -151,9 +151,9 @@ export interface CustomerResponse {
     'shipping_contacts'?: CustomerResponseShippingContacts;
     /**
      * 
-     * @type {SubscriptionResponse}
+     * @type {CustomerSubscriptionResponse}
      * @memberof CustomerResponse
      */
-    'subscription'?: SubscriptionResponse;
+    'subscription'?: CustomerSubscriptionResponse;
 }
 

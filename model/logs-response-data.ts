@@ -49,13 +49,13 @@ export interface LogsResponseData {
      * @type {string}
      * @memberof LogsResponseData
      */
-    'loggable_id'?: string | null;
+    'loggable_id'?: string;
     /**
      * 
      * @type {string}
      * @memberof LogsResponseData
      */
-    'loggable_type'?: string | null;
+    'loggable_type'?: string;
     /**
      * 
      * @type {string}
@@ -67,7 +67,7 @@ export interface LogsResponseData {
      * @type {string}
      * @memberof LogsResponseData
      */
-    'oauth_token_id'?: string | null;
+    'oauth_token_id'?: string;
     /**
      * 
      * @type {{ [key: string]: any; }}

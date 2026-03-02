@@ -16,17 +16,42 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import type { CustomerResponse } from './customer-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Page } from './page';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Pagination } from './pagination';
 
 /**
- * @type CustomersResponse
+ * 
  * @export
+ * @interface CustomersResponse
  */
-export type CustomersResponse = Page & Pagination;
-
+export interface CustomersResponse {
+    /**
+     * 
+     * @type {Array<CustomerResponse>}
+     * @memberof CustomersResponse
+     */
+    'data'?: Array<CustomerResponse>;
+    /**
+     * Indicates if there are more pages to be requested
+     * @type {boolean}
+     * @memberof CustomersResponse
+     */
+    'has_more': boolean;
+    /**
+     * Object type, in this case is list
+     * @type {string}
+     * @memberof CustomersResponse
+     */
+    'object': string;
+    /**
+     * URL of the next page.
+     * @type {string}
+     * @memberof CustomersResponse
+     */
+    'next_page_url'?: string;
+    /**
+     * Url of the previous page.
+     * @type {string}
+     * @memberof CustomersResponse
+     */
+    'previous_page_url'?: string;
+}
 

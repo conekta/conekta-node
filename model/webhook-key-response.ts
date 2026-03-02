@@ -43,7 +43,7 @@ export interface WebhookKeyResponse {
      * @type {number}
      * @memberof WebhookKeyResponse
      */
-    'deactivated_at'?: number | null;
+    'deactivated_at'?: number;
     /**
      * Public key to be used in the webhook
      * @type {string}

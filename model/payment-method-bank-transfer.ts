@@ -13,14 +13,126 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PaymentMethod } from './payment-method';
 
 /**
- * @type PaymentMethodBankTransfer
+ * 
  * @export
+ * @interface PaymentMethodBankTransfer
  */
-export type PaymentMethodBankTransfer = PaymentMethod;
-
+export interface PaymentMethodBankTransfer {
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'object': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'bank'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'clabe'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'executed_at'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'expires_at'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'issuing_account_bank'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'issuing_account_number'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'issuing_account_holder_name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'issuing_account_tax_id'?: string;
+    /**
+     * 
+     * @type {Array<any>}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'payment_attempts'?: Array<any>;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'receiving_account_holder_name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'receiving_account_number'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'receiving_account_bank'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'receiving_account_tax_id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'reference_number'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'tracking_code'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodBankTransfer
+     */
+    'customer_ip_address'?: string;
+}
 

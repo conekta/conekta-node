@@ -13,14 +13,102 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PaymentMethodResponse } from './payment-method-response';
 
 /**
- * @type PaymentMethodCardResponse
+ * 
  * @export
+ * @interface PaymentMethodCardResponse
  */
-export type PaymentMethodCardResponse = PaymentMethodResponse;
-
+export interface PaymentMethodCardResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCardResponse
+     */
+    'type': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCardResponse
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCardResponse
+     */
+    'object': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PaymentMethodCardResponse
+     */
+    'created_at': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCardResponse
+     */
+    'parent_id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCardResponse
+     */
+    'last4'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCardResponse
+     */
+    'bin'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCardResponse
+     */
+    'card_type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCardResponse
+     */
+    'exp_month'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCardResponse
+     */
+    'exp_year'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCardResponse
+     */
+    'brand'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCardResponse
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentMethodCardResponse
+     */
+    'default'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentMethodCardResponse
+     */
+    'visible_on_checkout'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCardResponse
+     */
+    'payment_source_status'?: string;
+}
 

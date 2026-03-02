@@ -15,15 +15,79 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CustomerShippingContactsResponse } from './customer-shipping-contacts-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { CustomerShippingContactsResponseAddress } from './customer-shipping-contacts-response-address';
+import type { CustomerShippingContactsAddress } from './customer-shipping-contacts-address';
 
 /**
- * @type OrderResponseShippingContact
+ * 
  * @export
+ * @interface OrderResponseShippingContact
  */
-export type OrderResponseShippingContact = CustomerShippingContactsResponse;
-
+export interface OrderResponseShippingContact {
+    /**
+     * 
+     * @type {number}
+     * @memberof OrderResponseShippingContact
+     */
+    'created_at'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderResponseShippingContact
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderResponseShippingContact
+     */
+    'object'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderResponseShippingContact
+     */
+    'phone'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderResponseShippingContact
+     */
+    'receiver'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderResponseShippingContact
+     */
+    'between_streets'?: string;
+    /**
+     * 
+     * @type {CustomerShippingContactsAddress}
+     * @memberof OrderResponseShippingContact
+     */
+    'address'?: CustomerShippingContactsAddress;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderResponseShippingContact
+     */
+    'parent_id'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OrderResponseShippingContact
+     */
+    'default'?: boolean;
+    /**
+     * Metadata associated with the shipping contact
+     * @type {{ [key: string]: any; }}
+     * @memberof OrderResponseShippingContact
+     */
+    'metadata'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OrderResponseShippingContact
+     */
+    'deleted'?: boolean;
+}
 

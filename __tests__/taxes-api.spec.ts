@@ -1,6 +1,6 @@
 import { TaxesApi } from "../api";
 import { Configuration } from "../configuration";
-import { OrderTaxRequest, UpdateOrderTaxRequest } from "../model";
+import { OrderTaxRequest, OrdersUpdateTaxesRequest } from "../model";
 import { baseTest } from "./base-test";
 
 describe("Taxes API", () => {
@@ -41,7 +41,7 @@ describe("Taxes API", () => {
     it("should update a tax for an order", async () => {
       const ID = "ord_2tVyWPnCPWbrV37mW";
       const tax_id = "tax_lin_2tVzVp6AAptCRHhgt";
-      const request: UpdateOrderTaxRequest = {
+      const request: OrdersUpdateTaxesRequest = {
         amount: 99,
       };
 

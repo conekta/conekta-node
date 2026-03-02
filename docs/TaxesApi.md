@@ -9,7 +9,7 @@ All URIs are relative to *https://api.conekta.io*
 |[**ordersUpdateTaxes**](#ordersupdatetaxes) | **PUT** /orders/{id}/tax_lines/{tax_id} | Update Tax|
 
 # **ordersCreateTaxes**
-> UpdateOrderTaxResponse ordersCreateTaxes(orderTaxRequest)
+> OrderTaxResponse ordersCreateTaxes(orderTaxRequest)
 
 Create new taxes for an existing orden
 
@@ -50,7 +50,7 @@ const { status, data } = await apiInstance.ordersCreateTaxes(
 
 ### Return type
 
-**UpdateOrderTaxResponse**
+**OrderTaxResponse**
 
 ### Authorization
 
@@ -73,7 +73,7 @@ const { status, data } = await apiInstance.ordersCreateTaxes(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ordersDeleteTaxes**
-> UpdateOrderTaxResponse ordersDeleteTaxes()
+> OrderTaxResponse ordersDeleteTaxes()
 
 Delete taxes for an existing orden
 
@@ -113,7 +113,7 @@ const { status, data } = await apiInstance.ordersDeleteTaxes(
 
 ### Return type
 
-**UpdateOrderTaxResponse**
+**OrderTaxResponse**
 
 ### Authorization
 
@@ -137,7 +137,7 @@ const { status, data } = await apiInstance.ordersDeleteTaxes(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ordersUpdateTaxes**
-> UpdateOrderTaxResponse ordersUpdateTaxes(updateOrderTaxRequest)
+> OrderTaxResponse ordersUpdateTaxes(ordersUpdateTaxesRequest)
 
 Update taxes for an existing orden
 
@@ -147,7 +147,7 @@ Update taxes for an existing orden
 import {
     TaxesApi,
     Configuration,
-    UpdateOrderTaxRequest
+    OrdersUpdateTaxesRequest
 } from 'conekta';
 
 const configuration = new Configuration();
@@ -155,14 +155,14 @@ const apiInstance = new TaxesApi(configuration);
 
 let id: string; //Identifier of the resource (default to undefined)
 let taxId: string; //identifier (default to undefined)
-let updateOrderTaxRequest: UpdateOrderTaxRequest; //requested field for taxes
+let ordersUpdateTaxesRequest: OrdersUpdateTaxesRequest; //requested field for taxes
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
 let xChildCompanyId: string; //In the case of a holding company, the company id of the child company to which will process the request. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.ordersUpdateTaxes(
     id,
     taxId,
-    updateOrderTaxRequest,
+    ordersUpdateTaxesRequest,
     acceptLanguage,
     xChildCompanyId
 );
@@ -172,7 +172,7 @@ const { status, data } = await apiInstance.ordersUpdateTaxes(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **updateOrderTaxRequest** | **UpdateOrderTaxRequest**| requested field for taxes | |
+| **ordersUpdateTaxesRequest** | **OrdersUpdateTaxesRequest**| requested field for taxes | |
 | **id** | [**string**] | Identifier of the resource | defaults to undefined|
 | **taxId** | [**string**] | identifier | defaults to undefined|
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
@@ -181,7 +181,7 @@ const { status, data } = await apiInstance.ordersUpdateTaxes(
 
 ### Return type
 
-**UpdateOrderTaxResponse**
+**OrderTaxResponse**
 
 ### Authorization
 

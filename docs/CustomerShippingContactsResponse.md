@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **phone** | **string** |  | [optional] [default to undefined]
 **receiver** | **string** |  | [optional] [default to undefined]
 **between_streets** | **string** |  | [optional] [default to undefined]
-**address** | [**CustomerShippingContactsResponseAddress**](CustomerShippingContactsResponseAddress.md) |  | [optional] [default to undefined]
+**address** | [**CustomerShippingContactsAddress**](CustomerShippingContactsAddress.md) |  | [optional] [default to undefined]
 **parent_id** | **string** |  | [optional] [default to undefined]
 **_default** | **boolean** |  | [optional] [default to undefined]
 **id** | **string** |  | [optional] [default to undefined]

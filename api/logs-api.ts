@@ -22,9 +22,9 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import type { LogResponse } from '../model';
+import type { LogResponseForRequest } from '../model';
 // @ts-ignore
-import type { LogsResponse } from '../model';
+import type { LogsResponseForRequest } from '../model';
 // @ts-ignore
 import type { ModelError } from '../model';
 /**
@@ -160,7 +160,7 @@ export const LogsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getLogById(id: string, acceptLanguage?: GetLogByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LogResponse>> {
+        async getLogById(id: string, acceptLanguage?: GetLogByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LogResponseForRequest>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getLogById(id, acceptLanguage, xChildCompanyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['LogsApi.getLogById']?.[localVarOperationServerIndex]?.url;
@@ -178,7 +178,7 @@ export const LogsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LogsResponse>> {
+        async getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LogsResponseForRequest>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getLogs(acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['LogsApi.getLogs']?.[localVarOperationServerIndex]?.url;
@@ -203,7 +203,7 @@ export const LogsApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLogById(id: string, acceptLanguage?: GetLogByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogResponse> {
+        getLogById(id: string, acceptLanguage?: GetLogByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogResponseForRequest> {
             return localVarFp.getLogById(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -218,7 +218,7 @@ export const LogsApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogsResponse> {
+        getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogsResponseForRequest> {
             return localVarFp.getLogs(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
         },
     };
@@ -240,7 +240,7 @@ export interface LogsApiInterface {
      * @throws {RequiredError}
      * @memberof LogsApiInterface
      */
-    getLogById(id: string, acceptLanguage?: GetLogByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogResponse>;
+    getLogById(id: string, acceptLanguage?: GetLogByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogResponseForRequest>;
 
     /**
      * Get log details in the form of a list
@@ -255,7 +255,7 @@ export interface LogsApiInterface {
      * @throws {RequiredError}
      * @memberof LogsApiInterface
      */
-    getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogsResponse>;
+    getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogsResponseForRequest>;
 
 }
 

@@ -13,14 +13,72 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { ApiKeyResponseOnDelete } from './api-key-response-on-delete';
 
 /**
- * @type DeleteApiKeysResponse
+ * 
  * @export
+ * @interface DeleteApiKeysResponse
  */
-export type DeleteApiKeysResponse = ApiKeyResponseOnDelete;
-
+export interface DeleteApiKeysResponse {
+    /**
+     * Indicates if the api key is active
+     * @type {boolean}
+     * @memberof DeleteApiKeysResponse
+     */
+    'active'?: boolean;
+    /**
+     * Unix timestamp in seconds of when the api key was created
+     * @type {number}
+     * @memberof DeleteApiKeysResponse
+     */
+    'created_at'?: number;
+    /**
+     * A name or brief explanation of what this api key is used for
+     * @type {string}
+     * @memberof DeleteApiKeysResponse
+     */
+    'description'?: string;
+    /**
+     * Indicates if the api key is in production
+     * @type {boolean}
+     * @memberof DeleteApiKeysResponse
+     */
+    'livemode'?: boolean;
+    /**
+     * The first few characters of the authentication_token
+     * @type {string}
+     * @memberof DeleteApiKeysResponse
+     */
+    'prefix'?: string;
+    /**
+     * Unique identifier of the api key
+     * @type {string}
+     * @memberof DeleteApiKeysResponse
+     */
+    'id'?: string;
+    /**
+     * Object name, value is \'api_key\'
+     * @type {string}
+     * @memberof DeleteApiKeysResponse
+     */
+    'object'?: string;
+    /**
+     * Unix timestamp in seconds with the api key was used
+     * @type {number}
+     * @memberof DeleteApiKeysResponse
+     */
+    'last_used_at'?: number;
+    /**
+     * Indicates if the api key is private or public
+     * @type {string}
+     * @memberof DeleteApiKeysResponse
+     */
+    'role'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DeleteApiKeysResponse
+     */
+    'deleted'?: boolean;
+}
 

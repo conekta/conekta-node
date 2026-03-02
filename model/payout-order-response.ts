@@ -61,7 +61,7 @@ export interface PayoutOrderResponse {
      * @type {number}
      * @memberof PayoutOrderResponse
      */
-    'expires_at'?: number;
+    'expires_at': number;
     /**
      * The id of the payout order.
      * @type {string}
@@ -103,7 +103,7 @@ export interface PayoutOrderResponse {
      * @type {string}
      * @memberof PayoutOrderResponse
      */
-    'status'?: string;
+    'status': string;
     /**
      * The update date of the payout order.
      * @type {number}

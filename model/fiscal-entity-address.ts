@@ -31,7 +31,7 @@ export interface FiscalEntityAddress {
      * @type {string}
      * @memberof FiscalEntityAddress
      */
-    'street2'?: string | null;
+    'street2'?: string;
     /**
      * Postal code
      * @type {string}

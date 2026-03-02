@@ -34,7 +34,7 @@ import type { OrderRequest } from '../model';
 // @ts-ignore
 import type { OrderResponse } from '../model';
 // @ts-ignore
-import type { OrderUpdateRequest } from '../model';
+import type { OrderUpdate } from '../model';
 /**
  * OrdersApi - axios parameter creator
  * @export
@@ -434,16 +434,16 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * Update an existing Order.
          * @summary Update Order
          * @param {string} id Identifier of the resource
-         * @param {OrderUpdateRequest} orderUpdateRequest requested field for an order
+         * @param {OrderUpdate} orderUpdate requested field for an order
          * @param {UpdateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateOrder: async (id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateOrder: async (id: string, orderUpdate: OrderUpdate, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateOrder', 'id', id)
-            // verify required parameter 'orderUpdateRequest' is not null or undefined
-            assertParamExists('updateOrder', 'orderUpdateRequest', orderUpdateRequest)
+            // verify required parameter 'orderUpdate' is not null or undefined
+            assertParamExists('updateOrder', 'orderUpdate', orderUpdate)
             const localVarPath = `/orders/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -471,7 +471,7 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(orderUpdateRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(orderUpdate, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -610,13 +610,13 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * Update an existing Order.
          * @summary Update Order
          * @param {string} id Identifier of the resource
-         * @param {OrderUpdateRequest} orderUpdateRequest requested field for an order
+         * @param {OrderUpdate} orderUpdate requested field for an order
          * @param {UpdateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateOrder(id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateOrder(id, orderUpdateRequest, acceptLanguage, options);
+        async updateOrder(id: string, orderUpdate: OrderUpdate, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateOrder(id, orderUpdate, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['OrdersApi.updateOrder']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -732,13 +732,13 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * Update an existing Order.
          * @summary Update Order
          * @param {string} id Identifier of the resource
-         * @param {OrderUpdateRequest} orderUpdateRequest requested field for an order
+         * @param {OrderUpdate} orderUpdate requested field for an order
          * @param {UpdateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateOrder(id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse> {
-            return localVarFp.updateOrder(id, orderUpdateRequest, acceptLanguage, options).then((request) => request(axios, basePath));
+        updateOrder(id: string, orderUpdate: OrderUpdate, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse> {
+            return localVarFp.updateOrder(id, orderUpdate, acceptLanguage, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -850,13 +850,13 @@ export interface OrdersApiInterface {
      * Update an existing Order.
      * @summary Update Order
      * @param {string} id Identifier of the resource
-     * @param {OrderUpdateRequest} orderUpdateRequest requested field for an order
+     * @param {OrderUpdate} orderUpdate requested field for an order
      * @param {UpdateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApiInterface
      */
-    updateOrder(id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
+    updateOrder(id: string, orderUpdate: OrderUpdate, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
 }
 
@@ -982,14 +982,14 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * Update an existing Order.
      * @summary Update Order
      * @param {string} id Identifier of the resource
-     * @param {OrderUpdateRequest} orderUpdateRequest requested field for an order
+     * @param {OrderUpdate} orderUpdate requested field for an order
      * @param {UpdateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public updateOrder(id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
-        return OrdersApiFp(this.configuration).updateOrder(id, orderUpdateRequest, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public updateOrder(id: string, orderUpdate: OrderUpdate, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).updateOrder(id, orderUpdate, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

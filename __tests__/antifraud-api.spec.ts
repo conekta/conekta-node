@@ -1,6 +1,6 @@
 import { AntifraudApi } from "../api";
 import { Configuration } from "../configuration";
-import { CreateRiskRulesData } from "../model";
+import { CreateRuleWhitelistRequest } from "../model";
 import { baseTest } from './base-test';
 
 describe('Antifraud API', () => {
@@ -18,7 +18,7 @@ describe('Antifraud API', () => {
   });
   describe('whitelist', () => {
     it('create a whistelist, should return a whitelist', async () => {
-      const request: CreateRiskRulesData = {
+      const request: CreateRuleWhitelistRequest = {
         description: "test description",
         field: "email",
         value: "fcarrero@gmail.com"
@@ -56,7 +56,7 @@ describe('Antifraud API', () => {
 
   describe('blacklist', () => {
     it('create a blacklist, should return a blacklist', async () => {
-      const request: CreateRiskRulesData = {
+      const request: CreateRuleWhitelistRequest = {
         description: "test description",
         field: "email",
         value: "fcarrero_black@gmail.com"

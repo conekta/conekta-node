@@ -43,13 +43,13 @@ export interface ApiKeyResponse {
      * @type {number}
      * @memberof ApiKeyResponse
      */
-    'deactivated_at'?: number | null;
+    'deactivated_at'?: number;
     /**
      * Unix timestamp in seconds with the api key was used
      * @type {number}
      * @memberof ApiKeyResponse
      */
-    'last_used_at'?: number | null;
+    'last_used_at'?: number;
     /**
      * A name or brief explanation of what this api key is used for
      * @type {string}

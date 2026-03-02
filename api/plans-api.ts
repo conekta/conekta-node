@@ -30,7 +30,7 @@ import type { PlanRequest } from '../model';
 // @ts-ignore
 import type { PlanResponse } from '../model';
 // @ts-ignore
-import type { PlanUpdateRequest } from '../model';
+import type { UpdatePlan } from '../model';
 /**
  * PlansApi - axios parameter creator
  * @export
@@ -239,17 +239,17 @@ export const PlansApiAxiosParamCreator = function (configuration?: Configuration
          * 
          * @summary Update Plan
          * @param {string} id Identifier of the resource
-         * @param {PlanUpdateRequest} planUpdateRequest requested field for plan
+         * @param {UpdatePlan} updatePlan requested field for plan
          * @param {UpdatePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePlan: async (id: string, planUpdateRequest: PlanUpdateRequest, acceptLanguage?: UpdatePlanAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updatePlan: async (id: string, updatePlan: UpdatePlan, acceptLanguage?: UpdatePlanAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updatePlan', 'id', id)
-            // verify required parameter 'planUpdateRequest' is not null or undefined
-            assertParamExists('updatePlan', 'planUpdateRequest', planUpdateRequest)
+            // verify required parameter 'updatePlan' is not null or undefined
+            assertParamExists('updatePlan', 'updatePlan', updatePlan)
             const localVarPath = `/plans/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -280,7 +280,7 @@ export const PlansApiAxiosParamCreator = function (configuration?: Configuration
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(planUpdateRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(updatePlan, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -363,14 +363,14 @@ export const PlansApiFp = function(configuration?: Configuration) {
          * 
          * @summary Update Plan
          * @param {string} id Identifier of the resource
-         * @param {PlanUpdateRequest} planUpdateRequest requested field for plan
+         * @param {UpdatePlan} updatePlan requested field for plan
          * @param {UpdatePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updatePlan(id: string, planUpdateRequest: PlanUpdateRequest, acceptLanguage?: UpdatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PlanResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePlan(id, planUpdateRequest, acceptLanguage, xChildCompanyId, options);
+        async updatePlan(id: string, updatePlan: UpdatePlan, acceptLanguage?: UpdatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PlanResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePlan(id, updatePlan, acceptLanguage, xChildCompanyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PlansApi.updatePlan']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -439,14 +439,14 @@ export const PlansApiFactory = function (configuration?: Configuration, basePath
          * 
          * @summary Update Plan
          * @param {string} id Identifier of the resource
-         * @param {PlanUpdateRequest} planUpdateRequest requested field for plan
+         * @param {UpdatePlan} updatePlan requested field for plan
          * @param {UpdatePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePlan(id: string, planUpdateRequest: PlanUpdateRequest, acceptLanguage?: UpdatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<PlanResponse> {
-            return localVarFp.updatePlan(id, planUpdateRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
+        updatePlan(id: string, updatePlan: UpdatePlan, acceptLanguage?: UpdatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<PlanResponse> {
+            return localVarFp.updatePlan(id, updatePlan, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -511,14 +511,14 @@ export interface PlansApiInterface {
      * 
      * @summary Update Plan
      * @param {string} id Identifier of the resource
-     * @param {PlanUpdateRequest} planUpdateRequest requested field for plan
+     * @param {UpdatePlan} updatePlan requested field for plan
      * @param {UpdatePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlansApiInterface
      */
-    updatePlan(id: string, planUpdateRequest: PlanUpdateRequest, acceptLanguage?: UpdatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<PlanResponse>;
+    updatePlan(id: string, updatePlan: UpdatePlan, acceptLanguage?: UpdatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<PlanResponse>;
 
 }
 
@@ -591,15 +591,15 @@ export class PlansApi extends BaseAPI implements PlansApiInterface {
      * 
      * @summary Update Plan
      * @param {string} id Identifier of the resource
-     * @param {PlanUpdateRequest} planUpdateRequest requested field for plan
+     * @param {UpdatePlan} updatePlan requested field for plan
      * @param {UpdatePlanAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlansApi
      */
-    public updatePlan(id: string, planUpdateRequest: PlanUpdateRequest, acceptLanguage?: UpdatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
-        return PlansApiFp(this.configuration).updatePlan(id, planUpdateRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
+    public updatePlan(id: string, updatePlan: UpdatePlan, acceptLanguage?: UpdatePlanAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
+        return PlansApiFp(this.configuration).updatePlan(id, updatePlan, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

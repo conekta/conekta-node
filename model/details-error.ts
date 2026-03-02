@@ -31,7 +31,7 @@ export interface DetailsError {
      * @type {string}
      * @memberof DetailsError
      */
-    'param'?: string | null;
+    'param'?: string;
     /**
      * 
      * @type {string}

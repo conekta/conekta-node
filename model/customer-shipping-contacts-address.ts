@@ -15,11 +15,17 @@
 
 
 /**
- * Address of the person who will receive the order
+ * 
  * @export
  * @interface CustomerShippingContactsAddress
  */
 export interface CustomerShippingContactsAddress {
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerShippingContactsAddress
+     */
+    'object'?: string;
     /**
      * 
      * @type {string}
@@ -51,7 +57,7 @@ export interface CustomerShippingContactsAddress {
      */
     'state'?: string;
     /**
-     * this field follows the [ISO 3166-1 alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+     * 
      * @type {string}
      * @memberof CustomerShippingContactsAddress
      */
@@ -61,6 +67,6 @@ export interface CustomerShippingContactsAddress {
      * @type {boolean}
      * @memberof CustomerShippingContactsAddress
      */
-    'residential'?: boolean | null;
+    'residential'?: boolean;
 }
 

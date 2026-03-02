@@ -1,6 +1,6 @@
 import { PlansApi } from "../api";
 import { Configuration } from "../configuration";
-import { PlanRequest, PlanUpdateRequest } from "../model";
+import { PlanRequest, UpdatePlan } from "../model";
 import { baseTest } from "./base-test";
 
 describe('Plans API', () => {
@@ -71,7 +71,7 @@ describe('Plans API', () => {
   describe("Update plan", () => {
     it("should update plan", async () => {
       const plan_id = "plan_2tZb5q8Z3PYpg6SJd";
-      const request: PlanUpdateRequest = {
+      const request: UpdatePlan = {
         name: "updated name",
       };
 

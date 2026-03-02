@@ -24,7 +24,7 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 // @ts-ignore
 import type { ModelError } from '../model';
 // @ts-ignore
-import type { PayoutOrder } from '../model';
+import type { PayoutOrderRequest } from '../model';
 // @ts-ignore
 import type { PayoutOrderResponse } from '../model';
 // @ts-ignore
@@ -80,14 +80,14 @@ export const PayoutOrdersApiAxiosParamCreator = function (configuration?: Config
         /**
          * Create a new payout order.
          * @summary Create payout order
-         * @param {PayoutOrder} payoutOrder requested field for payout order
+         * @param {PayoutOrderRequest} payoutOrderRequest requested field for payout order
          * @param {CreatePayoutOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createPayoutOrder: async (payoutOrder: PayoutOrder, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'payoutOrder' is not null or undefined
-            assertParamExists('createPayoutOrder', 'payoutOrder', payoutOrder)
+        createPayoutOrder: async (payoutOrderRequest: PayoutOrderRequest, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'payoutOrderRequest' is not null or undefined
+            assertParamExists('createPayoutOrder', 'payoutOrderRequest', payoutOrderRequest)
             const localVarPath = `/payout_orders`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -114,7 +114,7 @@ export const PayoutOrdersApiAxiosParamCreator = function (configuration?: Config
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(payoutOrder, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(payoutOrderRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -248,13 +248,13 @@ export const PayoutOrdersApiFp = function(configuration?: Configuration) {
         /**
          * Create a new payout order.
          * @summary Create payout order
-         * @param {PayoutOrder} payoutOrder requested field for payout order
+         * @param {PayoutOrderRequest} payoutOrderRequest requested field for payout order
          * @param {CreatePayoutOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createPayoutOrder(payoutOrder: PayoutOrder, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PayoutOrderResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createPayoutOrder(payoutOrder, acceptLanguage, options);
+        async createPayoutOrder(payoutOrderRequest: PayoutOrderRequest, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PayoutOrderResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createPayoutOrder(payoutOrderRequest, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PayoutOrdersApi.createPayoutOrder']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -314,13 +314,13 @@ export const PayoutOrdersApiFactory = function (configuration?: Configuration, b
         /**
          * Create a new payout order.
          * @summary Create payout order
-         * @param {PayoutOrder} payoutOrder requested field for payout order
+         * @param {PayoutOrderRequest} payoutOrderRequest requested field for payout order
          * @param {CreatePayoutOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createPayoutOrder(payoutOrder: PayoutOrder, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<PayoutOrderResponse> {
-            return localVarFp.createPayoutOrder(payoutOrder, acceptLanguage, options).then((request) => request(axios, basePath));
+        createPayoutOrder(payoutOrderRequest: PayoutOrderRequest, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<PayoutOrderResponse> {
+            return localVarFp.createPayoutOrder(payoutOrderRequest, acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * Gets a payout Order resource that corresponds to a payout order ID.
@@ -370,13 +370,13 @@ export interface PayoutOrdersApiInterface {
     /**
      * Create a new payout order.
      * @summary Create payout order
-     * @param {PayoutOrder} payoutOrder requested field for payout order
+     * @param {PayoutOrderRequest} payoutOrderRequest requested field for payout order
      * @param {CreatePayoutOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PayoutOrdersApiInterface
      */
-    createPayoutOrder(payoutOrder: PayoutOrder, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<PayoutOrderResponse>;
+    createPayoutOrder(payoutOrderRequest: PayoutOrderRequest, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<PayoutOrderResponse>;
 
     /**
      * Gets a payout Order resource that corresponds to a payout order ID.
@@ -428,14 +428,14 @@ export class PayoutOrdersApi extends BaseAPI implements PayoutOrdersApiInterface
     /**
      * Create a new payout order.
      * @summary Create payout order
-     * @param {PayoutOrder} payoutOrder requested field for payout order
+     * @param {PayoutOrderRequest} payoutOrderRequest requested field for payout order
      * @param {CreatePayoutOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PayoutOrdersApi
      */
-    public createPayoutOrder(payoutOrder: PayoutOrder, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
-        return PayoutOrdersApiFp(this.configuration).createPayoutOrder(payoutOrder, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public createPayoutOrder(payoutOrderRequest: PayoutOrderRequest, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
+        return PayoutOrdersApiFp(this.configuration).createPayoutOrder(payoutOrderRequest, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

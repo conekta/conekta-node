@@ -13,14 +13,60 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { ShippingRequest } from './shipping-request';
 
 /**
- * @type ShippingOrderResponse
+ * 
  * @export
+ * @interface ShippingOrderResponse
  */
-export type ShippingOrderResponse = ShippingRequest;
-
+export interface ShippingOrderResponse {
+    /**
+     * Shipping amount in cents
+     * @type {number}
+     * @memberof ShippingOrderResponse
+     */
+    'amount': number;
+    /**
+     * Carrier name for the shipment
+     * @type {string}
+     * @memberof ShippingOrderResponse
+     */
+    'carrier'?: string;
+    /**
+     * Tracking number can be used to track the shipment
+     * @type {string}
+     * @memberof ShippingOrderResponse
+     */
+    'tracking_number'?: string;
+    /**
+     * Method of shipment
+     * @type {string}
+     * @memberof ShippingOrderResponse
+     */
+    'method'?: string;
+    /**
+     * Hash where the user can send additional information for each \'shipping\'.
+     * @type {{ [key: string]: any; }}
+     * @memberof ShippingOrderResponse
+     */
+    'metadata'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof ShippingOrderResponse
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShippingOrderResponse
+     */
+    'object'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShippingOrderResponse
+     */
+    'parent_id'?: string;
+}
 

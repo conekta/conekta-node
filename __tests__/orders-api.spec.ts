@@ -1,19 +1,10 @@
 import { OrdersApi } from "../api";
 import { baseTest } from "./base-test";
 import { Configuration } from "../configuration";
-import { OrderRequest, CustomerInfoJustCustomerId, Product, ChargeRequest, PaymentMethodCash,
-  PaymentMethodBnplPayment,PaymentMethodBnplRequest,
-  CheckoutRequest, PaymentMethodBankTransfer, PaymentMethodCard, OrderRefundRequest, OrderCaptureRequest, OrderUpdateRequest } from "../model";
+import { OrderRequest, CustomerInfoCustomerId, Product, ChargeRequest, PaymentMethodCash,
+  PaymentMethodBnplRequest,
+  OrderCheckoutRequest, PaymentMethodBankTransfer, OrderRefundRequest, OrderCaptureRequest, OrderUpdate } from "../model";
 
-interface IPaymentMethodCashMock extends PaymentMethodCash { 
-  service_name: string;
-  reference: string;
-  expires_at: string;
-}
-
-interface IPaymentMethodBankMock extends PaymentMethodBankTransfer { 
-  clabe: string; 
-}
 
 describe("Orders api", () => {
   let client: OrdersApi;
@@ -56,10 +47,10 @@ describe("Orders api", () => {
       expect(response.currency).toBe("MXN");
       expect(response.customer_info.customer_id).toBe("cus_2tKcHxhTz7xU5SymF");
       expect(data[0].payment_method as PaymentMethodCash).toBeDefined();
-      expect((data[0].payment_method as IPaymentMethodCashMock).service_name).toEqual("OxxoPay");
-      expect((data[0].payment_method as IPaymentMethodCashMock).reference).toEqual("93000262280678");
+      expect((data[0].payment_method as PaymentMethodCash).service_name).toEqual("OxxoPay");
+      expect((data[0].payment_method as PaymentMethodCash).reference).toEqual("93000262280678");
       expect((data[0].payment_method as PaymentMethodCash).type).toEqual("oxxo");
-      expect((data[0].payment_method as IPaymentMethodCashMock).expires_at).toEqual(expires_at);
+      expect((data[0].payment_method as PaymentMethodCash).expires_at).toEqual(expires_at);
     });
 
     it("msi", async () => {
@@ -143,7 +134,7 @@ describe("Orders api", () => {
       expect(data[0].payment_method).toBeDefined();
       expect(response.id).toEqual(id);
       expect(data[0].payment_method.object).toEqual("bank_transfer_payment");
-      expect((data[0].payment_method as IPaymentMethodBankMock).clabe).toEqual("646180111805035430");
+      expect((data[0].payment_method as PaymentMethodBankTransfer).clabe).toEqual("646180111805035430");
       expect((data[0].payment_method as PaymentMethodBankTransfer).type).toEqual("spei");
     });
     it("not should return an order", async () => {
@@ -277,7 +268,7 @@ describe("Orders api", () => {
           tags: ["Pago", "Pago mensualidad"]
         }
       ];
-      const request : OrderUpdateRequest = {
+      const request : OrderUpdate = {
         line_items: products,
       }
 
@@ -318,7 +309,7 @@ function get_order_checkout_request () {
       unit_price: 35000
     }
   ];
-  const checkout: CheckoutRequest = {
+  const checkout: OrderCheckoutRequest = {
     expires_at: Math.round((new Date().getTime() + 259200000) / 1000) - 2208988800,
     allowed_payment_methods: ["cash", "card", "bank_transfer"],
   };
@@ -342,12 +333,12 @@ function get_order_card_request () {
       unit_price: 1555
     }
   ];
-  const checkout: CheckoutRequest = {
+  const checkout: OrderCheckoutRequest = {
     expires_at: Math.round((new Date().getTime() + 259200000) / 1000) - 2208988800,
     allowed_payment_methods: ["cash", "card", "bank_transfer"],
     on_demand_enabled: true
   };
-  const customer_info: CustomerInfoJustCustomerId = {
+  const customer_info: CustomerInfoCustomerId = {
     customer_id: "cus_save_card_2o8jK3TDtejmz1sYd"
   };
   const order_request: OrderRequest = {
@@ -361,7 +352,7 @@ function get_order_card_request () {
 }
 
 function get_order_msi_request () {
-  const customer_info: CustomerInfoJustCustomerId = {
+  const customer_info: CustomerInfoCustomerId = {
     customer_id: "cus_msi_2o8jK3TDtejmz1sYd"
   };
   const products: Array<Product> = [
@@ -371,7 +362,7 @@ function get_order_msi_request () {
       unit_price: 1555
     }
   ];
-  const checkout: CheckoutRequest = {
+  const checkout: OrderCheckoutRequest = {
     expires_at: Math.round((new Date().getTime() + 259200000) / 1000) - 2208988800,
     allowed_payment_methods: ["cash", "card", "bank_transfer"],
     monthly_installments_enabled: true,
@@ -399,7 +390,7 @@ function get_order_request_fail () {
       }
     }
   ];
-  const customer_info: CustomerInfoJustCustomerId = {
+  const customer_info: CustomerInfoCustomerId = {
     customer_id: "cus_2tKcHxhTz7xU5SymF2"
   };
   const thirty_days_from_now_date_time = new Date();
@@ -447,7 +438,7 @@ function get_order_cash_request () {
     }
   ];
 
-  const customer_info: CustomerInfoJustCustomerId = {
+  const customer_info: CustomerInfoCustomerId = {
     customer_id: "cus_2tKcHxhTz7xU5SymF"
   };
   const order_requet: OrderRequest = {
@@ -494,9 +485,9 @@ function get_order_bnpl_request () {
   const thirty_days_from_now_date_time = new Date();
   thirty_days_from_now_date_time.setDate(thirty_days_from_now_date_time.getDate() + 30);
   const expires_at = Math.floor(thirty_days_from_now_date_time.getTime() / 1000);
-  const pm : PaymentMethodBnplRequest = {
+  const pm = {
     type: "bnpl",
-  };
+  } as PaymentMethodBnplRequest;
   const charges: Array<ChargeRequest> = [
     {
       amount: 1555,
@@ -504,7 +495,7 @@ function get_order_bnpl_request () {
     }
   ];
 
-  const customer_info: CustomerInfoJustCustomerId = {
+  const customer_info: CustomerInfoCustomerId = {
     customer_id: "cus_2tKcHxhTz7xU5SymF"
   };
   const order_requet: OrderRequest = {

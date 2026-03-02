@@ -1,7 +1,7 @@
 import { PaymentMethodsApi } from "../api/payment-methods-api";
 import { baseTest } from "./base-test";
 import { Configuration } from "../configuration";
-import { PaymentMethodCard, PaymentMethodCashRequest, UpdatePaymentMethods } from "../model";
+import { PaymentMethodCashRequest, UpdatePaymentMethodsCard } from "../model";
 describe("PaymentMethodsApi", () => {
   let client: PaymentMethodsApi;
   beforeAll(() => {
@@ -46,7 +46,7 @@ describe("PaymentMethodsApi", () => {
 
       const customer_id = "cus_2tZWxbTPtQgGJGh8P";
       const payment_method_id = "src_2tZWxbTPtQgGJGh8R";
-      const request: UpdatePaymentMethods = {
+      const request: UpdatePaymentMethodsCard = {
         name: "name of person",
       };
 

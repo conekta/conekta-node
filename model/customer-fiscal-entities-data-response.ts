@@ -15,15 +15,79 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CustomerAddress } from './customer-address';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { CustomerFiscalEntitiesRequest } from './customer-fiscal-entities-request';
+import type { FiscalEntityRequestAddress } from './fiscal-entity-request-address';
 
 /**
- * @type CustomerFiscalEntitiesDataResponse
+ * 
  * @export
+ * @interface CustomerFiscalEntitiesDataResponse
  */
-export type CustomerFiscalEntitiesDataResponse = CustomerFiscalEntitiesRequest;
-
+export interface CustomerFiscalEntitiesDataResponse {
+    /**
+     * 
+     * @type {FiscalEntityRequestAddress}
+     * @memberof CustomerFiscalEntitiesDataResponse
+     */
+    'address': FiscalEntityRequestAddress;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerFiscalEntitiesDataResponse
+     */
+    'tax_id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerFiscalEntitiesDataResponse
+     */
+    'email'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerFiscalEntitiesDataResponse
+     */
+    'phone'?: string;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof CustomerFiscalEntitiesDataResponse
+     */
+    'metadata'?: { [key: string]: object; };
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerFiscalEntitiesDataResponse
+     */
+    'company_name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerFiscalEntitiesDataResponse
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerFiscalEntitiesDataResponse
+     */
+    'object': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerFiscalEntitiesDataResponse
+     */
+    'created_at': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerFiscalEntitiesDataResponse
+     */
+    'parent_id'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomerFiscalEntitiesDataResponse
+     */
+    'default'?: boolean;
+}
 

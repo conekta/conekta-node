@@ -13,14 +13,96 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PaymentMethod } from './payment-method';
 
 /**
- * @type PaymentMethodCard
+ * 
  * @export
+ * @interface PaymentMethodCard
  */
-export type PaymentMethodCard = PaymentMethod;
-
+export interface PaymentMethodCard {
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCard
+     */
+    'type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCard
+     */
+    'object': string;
+    /**
+     * Account type of the card
+     * @type {string}
+     * @memberof PaymentMethodCard
+     */
+    'account_type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCard
+     */
+    'auth_code'?: string;
+    /**
+     * Brand of the card
+     * @type {string}
+     * @memberof PaymentMethodCard
+     */
+    'brand'?: string;
+    /**
+     * Id sent for recurrent charges.
+     * @type {string}
+     * @memberof PaymentMethodCard
+     */
+    'contract_id'?: string;
+    /**
+     * Country of the card
+     * @type {string}
+     * @memberof PaymentMethodCard
+     */
+    'country'?: string;
+    /**
+     * Expiration month of the card
+     * @type {string}
+     * @memberof PaymentMethodCard
+     */
+    'exp_month'?: string;
+    /**
+     * Expiration year of the card
+     * @type {string}
+     * @memberof PaymentMethodCard
+     */
+    'exp_year'?: string;
+    /**
+     * 
+     * @type {Array<any>}
+     * @memberof PaymentMethodCard
+     */
+    'fraud_indicators'?: Array<any>;
+    /**
+     * Issuer of the card
+     * @type {string}
+     * @memberof PaymentMethodCard
+     */
+    'issuer'?: string;
+    /**
+     * Last 4 digits of the card
+     * @type {string}
+     * @memberof PaymentMethodCard
+     */
+    'last4'?: string;
+    /**
+     * Name of the cardholder
+     * @type {string}
+     * @memberof PaymentMethodCard
+     */
+    'name'?: string;
+    /**
+     * Optional field used to capture the customer\'s IP address for fraud prevention and security monitoring purposes
+     * @type {string}
+     * @memberof PaymentMethodCard
+     */
+    'customer_ip_address'?: string;
+}
 

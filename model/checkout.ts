@@ -30,7 +30,13 @@ export interface Checkout {
      */
     'allowed_payment_methods': Array<string>;
     /**
-     * It is the time when the link will expire. It is expressed in seconds since the Unix epoch. The valid range is from 2 to 365 days (the valid range will be taken from the next day of the creation date at 00:01 hrs) 
+     * List of card networks to exclude from the checkout. This field is only applicable for card payments.
+     * @type {Array<string>}
+     * @memberof Checkout
+     */
+    'exclude_card_networks'?: Array<CheckoutExcludeCardNetworksEnum>;
+    /**
+     * It is the time when the link will expire.  It is expressed in seconds since the Unix epoch. The valid range is from 10 minutes to 365 days from the creation date. 
      * @type {number}
      * @memberof Checkout
      */
@@ -52,7 +58,7 @@ export interface Checkout {
      * @type {string}
      * @memberof Checkout
      */
-    'three_ds_mode'?: string | null;
+    'three_ds_mode'?: string;
     /**
      * Reason for charge
      * @type {string}
@@ -70,7 +76,7 @@ export interface Checkout {
      * @type {boolean}
      * @memberof Checkout
      */
-    'on_demand_enabled'?: boolean | null;
+    'on_demand_enabled'?: boolean;
     /**
      * It is a list of plan IDs that will be associated with the order.
      * @type {Array<string>}
@@ -90,6 +96,12 @@ export interface Checkout {
      */
     'payments_limit_count'?: number;
     /**
+     * The URL to redirect to after a successful payment.
+     * @type {string}
+     * @memberof Checkout
+     */
+    'success_url'?: string;
+    /**
      * false: single use. true: multiple payments
      * @type {boolean}
      * @memberof Checkout
@@ -102,4 +114,13 @@ export interface Checkout {
      */
     'type': string;
 }
+
+export const CheckoutExcludeCardNetworksEnum = {
+    visa: 'visa',
+    mastercard: 'mastercard',
+    amex: 'amex'
+} as const;
+
+export type CheckoutExcludeCardNetworksEnum = typeof CheckoutExcludeCardNetworksEnum[keyof typeof CheckoutExcludeCardNetworksEnum];
+
 

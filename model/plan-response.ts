@@ -43,7 +43,7 @@ export interface PlanResponse {
      * @type {number}
      * @memberof PlanResponse
      */
-    'expiry_count'?: number | null;
+    'expiry_count'?: number;
     /**
      * 
      * @type {number}
@@ -85,7 +85,7 @@ export interface PlanResponse {
      * @type {number}
      * @memberof PlanResponse
      */
-    'trial_period_days'?: number | null;
+    'trial_period_days'?: number;
     /**
      * 
      * @type {number}

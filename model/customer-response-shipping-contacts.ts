@@ -16,14 +16,30 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import type { CustomerShippingContactsDataResponse } from './customer-shipping-contacts-data-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Pagination } from './pagination';
 
 /**
- * @type CustomerResponseShippingContacts
+ * 
  * @export
+ * @interface CustomerResponseShippingContacts
  */
-export type CustomerResponseShippingContacts = Pagination;
-
+export interface CustomerResponseShippingContacts {
+    /**
+     * Indicates if there are more pages to be requested
+     * @type {boolean}
+     * @memberof CustomerResponseShippingContacts
+     */
+    'has_more': boolean;
+    /**
+     * Object type, in this case is list
+     * @type {string}
+     * @memberof CustomerResponseShippingContacts
+     */
+    'object': string;
+    /**
+     * 
+     * @type {Array<CustomerShippingContactsDataResponse>}
+     * @memberof CustomerResponseShippingContacts
+     */
+    'data'?: Array<CustomerShippingContactsDataResponse>;
+}
 

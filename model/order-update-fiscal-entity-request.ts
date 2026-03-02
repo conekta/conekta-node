@@ -40,7 +40,7 @@ export interface OrderUpdateFiscalEntityRequest {
      * @type {string}
      * @memberof OrderUpdateFiscalEntityRequest
      */
-    'name'?: string | null;
+    'name'?: string;
     /**
      * Metadata associated with the fiscal entity
      * @type {{ [key: string]: any; }}
@@ -58,6 +58,6 @@ export interface OrderUpdateFiscalEntityRequest {
      * @type {string}
      * @memberof OrderUpdateFiscalEntityRequest
      */
-    'tax_id'?: string | null;
+    'tax_id'?: string;
 }
 

@@ -13,15 +13,54 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { OrderCustomerInfoResponse } from './order-customer-info-response';
 
 /**
- * @type PayoutOrderResponseCustomerInfo
  * The customer information of the payout order.
  * @export
+ * @interface PayoutOrderResponseCustomerInfo
  */
-export type PayoutOrderResponseCustomerInfo = OrderCustomerInfoResponse;
-
+export interface PayoutOrderResponseCustomerInfo {
+    /**
+     * The id of the customer.
+     * @type {string}
+     * @memberof PayoutOrderResponseCustomerInfo
+     */
+    'id': string;
+    /**
+     * Custom reference
+     * @type {string}
+     * @memberof PayoutOrderResponseCustomerInfo
+     */
+    'customer_custom_reference'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayoutOrderResponseCustomerInfo
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayoutOrderResponseCustomerInfo
+     */
+    'email'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayoutOrderResponseCustomerInfo
+     */
+    'phone'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PayoutOrderResponseCustomerInfo
+     */
+    'corporate'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PayoutOrderResponseCustomerInfo
+     */
+    'object'?: string;
+}
 

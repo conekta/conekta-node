@@ -15,15 +15,79 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CustomerShippingContacts } from './customer-shipping-contacts';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { CustomerShippingContactsAddress } from './customer-shipping-contacts-address';
+import type { CustomerShippingContactsRequestAddress } from './customer-shipping-contacts-request-address';
 
 /**
- * @type CustomerShippingContactsDataResponse
+ * 
  * @export
+ * @interface CustomerShippingContactsDataResponse
  */
-export type CustomerShippingContactsDataResponse = CustomerShippingContacts;
-
+export interface CustomerShippingContactsDataResponse {
+    /**
+     * Phone contact
+     * @type {string}
+     * @memberof CustomerShippingContactsDataResponse
+     */
+    'phone'?: string;
+    /**
+     * Name of the person who will receive the order
+     * @type {string}
+     * @memberof CustomerShippingContactsDataResponse
+     */
+    'receiver'?: string;
+    /**
+     * The street names between which the order will be delivered.
+     * @type {string}
+     * @memberof CustomerShippingContactsDataResponse
+     */
+    'between_streets'?: string;
+    /**
+     * 
+     * @type {CustomerShippingContactsRequestAddress}
+     * @memberof CustomerShippingContactsDataResponse
+     */
+    'address': CustomerShippingContactsRequestAddress;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerShippingContactsDataResponse
+     */
+    'parent_id'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomerShippingContactsDataResponse
+     */
+    'default'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomerShippingContactsDataResponse
+     */
+    'deleted'?: boolean;
+    /**
+     * Metadata associated with the shipping contact
+     * @type {{ [key: string]: any; }}
+     * @memberof CustomerShippingContactsDataResponse
+     */
+    'metadata'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerShippingContactsDataResponse
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerShippingContactsDataResponse
+     */
+    'object': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerShippingContactsDataResponse
+     */
+    'created_at': number;
+}
 

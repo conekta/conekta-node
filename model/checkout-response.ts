@@ -46,10 +46,10 @@ export interface CheckoutResponse {
     'emails_sent'?: number;
     /**
      * 
-     * @type {Array<object>}
+     * @type {Array<string>}
      * @memberof CheckoutResponse
      */
-    'exclude_card_networks'?: Array<object>;
+    'exclude_card_networks'?: Array<CheckoutResponseExcludeCardNetworksEnum>;
     /**
      * 
      * @type {number}
@@ -127,7 +127,7 @@ export interface CheckoutResponse {
      * @type {number}
      * @memberof CheckoutResponse
      */
-    'payments_limit_count'?: number | null;
+    'payments_limit_count'?: number;
     /**
      * 
      * @type {boolean}
@@ -159,7 +159,7 @@ export interface CheckoutResponse {
      */
     'status'?: string;
     /**
-     * 
+     * The URL to redirect to after a successful payment.
      * @type {string}
      * @memberof CheckoutResponse
      */
@@ -177,4 +177,13 @@ export interface CheckoutResponse {
      */
     'url'?: string;
 }
+
+export const CheckoutResponseExcludeCardNetworksEnum = {
+    visa: 'visa',
+    mastercard: 'mastercard',
+    amex: 'amex'
+} as const;
+
+export type CheckoutResponseExcludeCardNetworksEnum = typeof CheckoutResponseExcludeCardNetworksEnum[keyof typeof CheckoutResponseExcludeCardNetworksEnum];
+
 

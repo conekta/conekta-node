@@ -9,7 +9,7 @@ All URIs are relative to *https://api.conekta.io*
 |[**updateCustomerShippingContacts**](#updatecustomershippingcontacts) | **PUT** /customers/{id}/shipping_contacts/{shipping_contacts_id} | Update shipping contacts|
 
 # **createCustomerShippingContacts**
-> CustomerShippingContactsResponse createCustomerShippingContacts(customerShippingContacts)
+> CustomerShippingContactsResponse createCustomerShippingContacts(customerShippingContactsRequest)
 
 Create a shipping contacts for a customer.
 
@@ -19,20 +19,20 @@ Create a shipping contacts for a customer.
 import {
     ShippingContactsApi,
     Configuration,
-    CustomerShippingContacts
+    CustomerShippingContactsRequest
 } from 'conekta';
 
 const configuration = new Configuration();
 const apiInstance = new ShippingContactsApi(configuration);
 
 let id: string; //Identifier of the resource (default to undefined)
-let customerShippingContacts: CustomerShippingContacts; //requested field for customer shippings contacts
+let customerShippingContactsRequest: CustomerShippingContactsRequest; //requested field for customer shippings contacts
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
 let xChildCompanyId: string; //In the case of a holding company, the company id of the child company to which will process the request. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.createCustomerShippingContacts(
     id,
-    customerShippingContacts,
+    customerShippingContactsRequest,
     acceptLanguage,
     xChildCompanyId
 );
@@ -42,7 +42,7 @@ const { status, data } = await apiInstance.createCustomerShippingContacts(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **customerShippingContacts** | **CustomerShippingContacts**| requested field for customer shippings contacts | |
+| **customerShippingContactsRequest** | **CustomerShippingContactsRequest**| requested field for customer shippings contacts | |
 | **id** | [**string**] | Identifier of the resource | defaults to undefined|
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
 | **xChildCompanyId** | [**string**] | In the case of a holding company, the company id of the child company to which will process the request. | (optional) defaults to undefined|
@@ -138,7 +138,7 @@ const { status, data } = await apiInstance.deleteCustomerShippingContacts(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateCustomerShippingContacts**
-> CustomerShippingContactsResponse updateCustomerShippingContacts(customerUpdateShippingContacts)
+> CustomerShippingContactsResponse updateCustomerShippingContacts(customerUpdateShippingContactsRequest)
 
 Update shipping contact that corresponds to a customer ID.
 
@@ -148,7 +148,7 @@ Update shipping contact that corresponds to a customer ID.
 import {
     ShippingContactsApi,
     Configuration,
-    CustomerUpdateShippingContacts
+    CustomerUpdateShippingContactsRequest
 } from 'conekta';
 
 const configuration = new Configuration();
@@ -156,14 +156,14 @@ const apiInstance = new ShippingContactsApi(configuration);
 
 let id: string; //Identifier of the resource (default to undefined)
 let shippingContactsId: string; //identifier (default to undefined)
-let customerUpdateShippingContacts: CustomerUpdateShippingContacts; //requested field for customer update shippings contacts
+let customerUpdateShippingContactsRequest: CustomerUpdateShippingContactsRequest; //requested field for customer update shippings contacts
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
 let xChildCompanyId: string; //In the case of a holding company, the company id of the child company to which will process the request. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.updateCustomerShippingContacts(
     id,
     shippingContactsId,
-    customerUpdateShippingContacts,
+    customerUpdateShippingContactsRequest,
     acceptLanguage,
     xChildCompanyId
 );
@@ -173,7 +173,7 @@ const { status, data } = await apiInstance.updateCustomerShippingContacts(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **customerUpdateShippingContacts** | **CustomerUpdateShippingContacts**| requested field for customer update shippings contacts | |
+| **customerUpdateShippingContactsRequest** | **CustomerUpdateShippingContactsRequest**| requested field for customer update shippings contacts | |
 | **id** | [**string**] | Identifier of the resource | defaults to undefined|
 | **shippingContactsId** | [**string**] | identifier | defaults to undefined|
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|

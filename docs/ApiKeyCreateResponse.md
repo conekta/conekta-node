@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**authentication_token** | **string** | It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key. Copy and save it in a safe place. | [optional] [default to undefined]
 **active** | **boolean** | Indicates if the api key is active | [optional] [default to undefined]
 **created_at** | **number** | Unix timestamp in seconds of when the api key was created | [optional] [default to undefined]
 **updated_at** | **number** | Unix timestamp in seconds of when the api key was last updated | [optional] [default to undefined]
@@ -16,7 +17,6 @@ Name | Type | Description | Notes
 **object** | **string** | Object name, value is \&#39;api_key\&#39; | [optional] [default to undefined]
 **prefix** | **string** | The first few characters of the authentication_token | [optional] [default to undefined]
 **role** | **string** | Indicates if the api key is private or public | [optional] [default to undefined]
-**authentication_token** | **string** | It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key. Copy and save it in a safe place. | [optional] [default to undefined]
 
 ## Example
 
@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 import { ApiKeyCreateResponse } from 'conekta';
 
 const instance: ApiKeyCreateResponse = {
+    authentication_token,
     active,
     created_at,
     updated_at,
@@ -35,7 +36,6 @@ const instance: ApiKeyCreateResponse = {
     object,
     prefix,
     role,
-    authentication_token,
 };
 ```
 

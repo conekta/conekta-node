@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CustomerFiscalEntitiesRequest } from './customer-fiscal-entities-request';
-// May contain unused imports in some cases
-// @ts-ignore
 import type { CustomerPaymentMethodsRequest } from './customer-payment-methods-request';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CustomerShippingContacts } from './customer-shipping-contacts';
+import type { CustomerShippingContactsRequest } from './customer-shipping-contacts-request';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { FiscalEntityRequest } from './fiscal-entity-request';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { SubscriptionRequest } from './subscription-request';
@@ -40,7 +40,7 @@ export interface UpdateCustomer {
      * @type {UpdateCustomerAntifraudInfo}
      * @memberof UpdateCustomer
      */
-    'antifraud_info'?: UpdateCustomerAntifraudInfo | null;
+    'antifraud_info'?: UpdateCustomerAntifraudInfo;
     /**
      * It is a parameter that allows to identify the date of birth of the client.
      * @type {string}
@@ -97,10 +97,10 @@ export interface UpdateCustomer {
     'custom_reference'?: string;
     /**
      * 
-     * @type {Array<CustomerFiscalEntitiesRequest>}
+     * @type {Array<FiscalEntityRequest>}
      * @memberof UpdateCustomer
      */
-    'fiscal_entities'?: Array<CustomerFiscalEntitiesRequest>;
+    'fiscal_entities'?: Array<FiscalEntityRequest>;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -121,10 +121,10 @@ export interface UpdateCustomer {
     'payment_sources'?: Array<CustomerPaymentMethodsRequest>;
     /**
      * Contains the detail of the shipping addresses that the client has active or has used in Conekta
-     * @type {Array<CustomerShippingContacts>}
+     * @type {Array<CustomerShippingContactsRequest>}
      * @memberof UpdateCustomer
      */
-    'shipping_contacts'?: Array<CustomerShippingContacts>;
+    'shipping_contacts'?: Array<CustomerShippingContactsRequest>;
     /**
      * 
      * @type {SubscriptionRequest}

@@ -13,14 +13,90 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PaymentMethod } from './payment-method';
 
 /**
- * @type PaymentMethodCash
+ * 
  * @export
+ * @interface PaymentMethodCash
  */
-export type PaymentMethodCash = PaymentMethod;
-
+export interface PaymentMethodCash {
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCash
+     */
+    'type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCash
+     */
+    'object': string;
+    /**
+     * Agreement ID
+     * @type {string}
+     * @memberof PaymentMethodCash
+     */
+    'agreement'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PaymentMethodCash
+     */
+    'auth_code'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCash
+     */
+    'cashier_id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCash
+     */
+    'reference'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCash
+     */
+    'barcode_url'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PaymentMethodCash
+     */
+    'expires_at'?: number;
+    /**
+     * Product type, e.g. bbva_cash_in, cash_in, pespay_cash_in, etc.
+     * @type {string}
+     * @memberof PaymentMethodCash
+     */
+    'product_type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCash
+     */
+    'service_name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCash
+     */
+    'store'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCash
+     */
+    'store_name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodCash
+     */
+    'customer_ip_address'?: string;
+}
 

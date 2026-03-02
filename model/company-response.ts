@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CompanyResponseDocumentsInner } from './company-response-documents-inner';
+import type { CompanyDocumentResponse } from './company-document-response';
 
 /**
  * 
@@ -52,7 +52,7 @@ export interface CompanyResponse {
      * @type {string}
      * @memberof CompanyResponse
      */
-    'parent_company_id'?: string | null;
+    'parent_company_id'?: string;
     /**
      * The current status of the company\'s onboarding process.
      * @type {string}
@@ -61,10 +61,10 @@ export interface CompanyResponse {
     'onboarding_status': string;
     /**
      * A list of documents related to the company.
-     * @type {Array<CompanyResponseDocumentsInner>}
+     * @type {Array<CompanyDocumentResponse>}
      * @memberof CompanyResponse
      */
-    'documents': Array<CompanyResponseDocumentsInner>;
+    'documents': Array<CompanyDocumentResponse>;
     /**
      * Timestamp of when the company was created.
      * @type {number}
@@ -88,7 +88,7 @@ export interface CompanyResponse {
      * @type {string}
      * @memberof CompanyResponse
      */
-    'three_ds_mode'?: CompanyResponseThreeDsModeEnum | null;
+    'three_ds_mode'?: CompanyResponseThreeDsModeEnum;
 }
 
 export const CompanyResponseThreeDsModeEnum = {

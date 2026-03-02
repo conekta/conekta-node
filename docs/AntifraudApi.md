@@ -12,7 +12,7 @@ All URIs are relative to *https://api.conekta.io*
 |[**getRuleWhitelist**](#getrulewhitelist) | **GET** /antifraud/whitelists | Get a list of whitelisted rules|
 
 # **createRuleBlacklist**
-> BlacklistRuleResponse createRuleBlacklist(createRiskRulesData)
+> BlacklistRuleResponse createRuleBlacklist(createRuleWhitelistRequest)
 
 
 ### Example
@@ -21,17 +21,17 @@ All URIs are relative to *https://api.conekta.io*
 import {
     AntifraudApi,
     Configuration,
-    CreateRiskRulesData
+    CreateRuleWhitelistRequest
 } from 'conekta';
 
 const configuration = new Configuration();
 const apiInstance = new AntifraudApi(configuration);
 
-let createRiskRulesData: CreateRiskRulesData; //requested field for blacklist rule
+let createRuleWhitelistRequest: CreateRuleWhitelistRequest; //requested field for blacklist rule
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
 
 const { status, data } = await apiInstance.createRuleBlacklist(
-    createRiskRulesData,
+    createRuleWhitelistRequest,
     acceptLanguage
 );
 ```
@@ -40,7 +40,7 @@ const { status, data } = await apiInstance.createRuleBlacklist(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **createRiskRulesData** | **CreateRiskRulesData**| requested field for blacklist rule | |
+| **createRuleWhitelistRequest** | **CreateRuleWhitelistRequest**| requested field for blacklist rule | |
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
 
 
@@ -77,18 +77,18 @@ const { status, data } = await apiInstance.createRuleBlacklist(
 import {
     AntifraudApi,
     Configuration,
-    CreateRiskRulesData
+    CreateRuleWhitelistRequest
 } from 'conekta';
 
 const configuration = new Configuration();
 const apiInstance = new AntifraudApi(configuration);
 
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
-let createRiskRulesData: CreateRiskRulesData; // (optional)
+let createRuleWhitelistRequest: CreateRuleWhitelistRequest; // (optional)
 
 const { status, data } = await apiInstance.createRuleWhitelist(
     acceptLanguage,
-    createRiskRulesData
+    createRuleWhitelistRequest
 );
 ```
 
@@ -96,7 +96,7 @@ const { status, data } = await apiInstance.createRuleWhitelist(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **createRiskRulesData** | **CreateRiskRulesData**|  | |
+| **createRuleWhitelistRequest** | **CreateRuleWhitelistRequest**|  | |
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
 
 

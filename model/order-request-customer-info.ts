@@ -18,13 +18,13 @@
 import type { CustomerInfo } from './customer-info';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CustomerInfoJustCustomerId } from './customer-info-just-customer-id';
+import type { CustomerInfoCustomerId } from './customer-info-customer-id';
 
 /**
  * @type OrderRequestCustomerInfo
  * Customer information
  * @export
  */
-export type OrderRequestCustomerInfo = CustomerInfo | CustomerInfoJustCustomerId;
+export type OrderRequestCustomerInfo = CustomerInfo | CustomerInfoCustomerId;
 
 

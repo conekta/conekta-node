@@ -16,17 +16,42 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import type { ApiKeyResponse } from './api-key-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Page } from './page';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Pagination } from './pagination';
 
 /**
- * @type GetApiKeysResponse
+ * 
  * @export
+ * @interface GetApiKeysResponse
  */
-export type GetApiKeysResponse = Page & Pagination;
-
+export interface GetApiKeysResponse {
+    /**
+     * URL of the next page.
+     * @type {string}
+     * @memberof GetApiKeysResponse
+     */
+    'next_page_url'?: string;
+    /**
+     * Url of the previous page.
+     * @type {string}
+     * @memberof GetApiKeysResponse
+     */
+    'previous_page_url'?: string;
+    /**
+     * Indicates if there are more pages to be requested
+     * @type {boolean}
+     * @memberof GetApiKeysResponse
+     */
+    'has_more': boolean;
+    /**
+     * Object type, in this case is list
+     * @type {string}
+     * @memberof GetApiKeysResponse
+     */
+    'object': string;
+    /**
+     * 
+     * @type {Array<ApiKeyResponse>}
+     * @memberof GetApiKeysResponse
+     */
+    'data'?: Array<ApiKeyResponse>;
+}
 
