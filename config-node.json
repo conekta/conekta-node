@@ -1,7 +1,7 @@
 {
   "npmName": "conekta",
   "generateSourceCodeOnly": "false",
-  "npmVersion": "7.0.7",
+  "npmVersion": "7.0.8",
   "packageUrl": "https://developers.conekta.com/",
   "projectName": "conekta-node",
   "appDescription": "Conekta Node Library",
@@ -13,8 +13,8 @@
     "/local/AUTHORS.md": {},
     "/local/LICENSE": {},
     "/local/conekta.png": {},
-    "/local/CONTRIBUTING.md" : {},
-    "VERSION.mustache" : {
+    "/local/CONTRIBUTING.md": {},
+    "VERSION.mustache": {
       "templateType": "SupportingFiles",
       "destinationFilename": "VERSION"
     }
@@ -28,12 +28,12 @@
   "npmRepository": "https://www.npmjs.com/package/conekta",
   "supportsES6": true,
   "legacyDiscriminatorBehavior": true,
-  "modelPackage" : "model",
-  "apiPackage" : "api",
+  "modelPackage": "model",
+  "apiPackage": "api",
   "withSeparateModelsAndApi": true,
-  "withInterfaces" :true,
+  "withInterfaces": true,
   "templateDir": "/local/templates/node",
-  "enumPropertyNaming" : "camelCase",
-  "paramNaming" : "camelCase",
-  "apiVersion" :"application/vnd.conekta-v2.2.0+json"
+  "enumPropertyNaming": "camelCase",
+  "paramNaming": "camelCase",
+  "apiVersion": "application/vnd.conekta-v2.2.0+json"
 }

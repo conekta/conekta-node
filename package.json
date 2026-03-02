@@ -1,6 +1,6 @@
 {
   "name": "conekta",
-  "version": "7.0.7",
+  "version": "7.0.8",
   "description": "OpenAPI client for conekta",
   "author": "engineering conekta",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "https://github.com/conekta/conekta-node.git"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "keywords": [
     "conekta",
@@ -47,8 +47,8 @@
     "typescript": "^5.4",
     "@types/jest": "^30.0.0",
     "jest": "^30.2.0",
-    "ts-jest": "^29.4.6",
-    "ttypescript": "^1.5.10"
+    "jest-util": "^30.2.0",
+    "ts-jest": "^29.4.6"
   },
   "publishConfig": {
     "access": "public"
