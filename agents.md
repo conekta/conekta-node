@@ -16,7 +16,7 @@ Official Node.js SDK for the Conekta Payments API. Auto-generated client library
 |---|---|
 | Language | TypeScript 5.4+ |
 | Runtime | Node.js >= 18 |
-| HTTP Client | Axios 1.12.2 |
+| HTTP Client | Axios 1.13.6 |
 | Build | tsc + ttypescript |
 | Tests | Jest 30.2 + ts-jest |
 | Mocking | Mockoon 6.0.1 |
