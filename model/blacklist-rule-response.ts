@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface BlacklistRuleResponse
- */
 export interface BlacklistRuleResponse {
     /**
      * Blacklist rule id
-     * @type {string}
-     * @memberof BlacklistRuleResponse
      */
     'id'?: string;
     /**
      * field used for blacklists rule
-     * @type {string}
-     * @memberof BlacklistRuleResponse
      */
     'field'?: string;
     /**
      * value used for blacklists rule
-     * @type {string}
-     * @memberof BlacklistRuleResponse
      */
     'value'?: string;
     /**
      * use an description for blacklisted rule
-     * @type {string}
-     * @memberof BlacklistRuleResponse
      */
     'description'?: string;
 }

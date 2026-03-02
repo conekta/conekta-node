@@ -13,14 +13,39 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { CustomerPaymentMethodRequest } from './customer-payment-method-request';
 
-/**
- * @type PaymentMethodBnplRequest
- * @export
- */
-export type PaymentMethodBnplRequest = CustomerPaymentMethodRequest;
+export interface PaymentMethodBnplRequest {
+    /**
+     * Type of the payment method
+     */
+    'type': string;
+    /**
+     * URL to redirect the customer after a canceled payment
+     */
+    'cancel_url': string;
+    /**
+     * Indicates if the payment method can not expire
+     */
+    'can_not_expire': boolean;
+    /**
+     * URL to redirect the customer after a failed payment
+     */
+    'failure_url': string;
+    /**
+     * Product type of the payment method, use for the payment method to know the product type
+     */
+    'product_type': PaymentMethodBnplRequestProductTypeEnum;
+    /**
+     * URL to redirect the customer after a successful payment
+     */
+    'success_url': string;
+}
+
+export const PaymentMethodBnplRequestProductTypeEnum = {
+    aplazoBnpl: 'aplazo_bnpl',
+    crediteaBnpl: 'creditea_bnpl'
+} as const;
+
+export type PaymentMethodBnplRequestProductTypeEnum = typeof PaymentMethodBnplRequestProductTypeEnum[keyof typeof PaymentMethodBnplRequestProductTypeEnum];
 
 

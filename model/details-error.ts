@@ -14,35 +14,10 @@
 
 
 
-/**
- * 
- * @export
- * @interface DetailsError
- */
 export interface DetailsError {
-    /**
-     * 
-     * @type {string}
-     * @memberof DetailsError
-     */
     'code'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DetailsError
-     */
-    'param'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof DetailsError
-     */
+    'param'?: string;
     'message'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DetailsError
-     */
     'debug_message'?: string;
 }
 

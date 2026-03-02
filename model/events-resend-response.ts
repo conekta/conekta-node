@@ -16,45 +16,13 @@
 
 /**
  * event model
- * @export
- * @interface EventsResendResponse
  */
 export interface EventsResendResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof EventsResendResponse
-     */
     'failed_attempts'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventsResendResponse
-     */
     'id'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof EventsResendResponse
-     */
     'last_attempted_at'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EventsResendResponse
-     */
     'last_http_response_status'?: number;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof EventsResendResponse
-     */
     'response_data'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {string}
-     * @memberof EventsResendResponse
-     */
     'url'?: string;
 }
 

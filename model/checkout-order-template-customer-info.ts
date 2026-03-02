@@ -18,13 +18,12 @@
 import type { CustomerInfo } from './customer-info';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CustomerInfoJustCustomerId } from './customer-info-just-customer-id';
+import type { CustomerInfoCustomerId } from './customer-info-customer-id';
 
 /**
  * @type CheckoutOrderTemplateCustomerInfo
  * It is the information of the customer who will be created when receiving a new payment.
- * @export
  */
-export type CheckoutOrderTemplateCustomerInfo = CustomerInfo | CustomerInfoJustCustomerId;
+export type CheckoutOrderTemplateCustomerInfo = CustomerInfo | CustomerInfoCustomerId;
 
 

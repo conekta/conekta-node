@@ -211,7 +211,7 @@ const { status, data } = await apiInstance.getCustomerPaymentMethods(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateCustomerPaymentMethods**
-> UpdateCustomerPaymentMethodsResponse updateCustomerPaymentMethods(updatePaymentMethods)
+> UpdateCustomerPaymentMethodsResponse updateCustomerPaymentMethods(updatePaymentMethodsCard)
 
 Gets a payment Method that corresponds to a customer ID.
 
@@ -221,7 +221,7 @@ Gets a payment Method that corresponds to a customer ID.
 import {
     PaymentMethodsApi,
     Configuration,
-    UpdatePaymentMethods
+    UpdatePaymentMethodsCard
 } from 'conekta';
 
 const configuration = new Configuration();
@@ -229,14 +229,14 @@ const apiInstance = new PaymentMethodsApi(configuration);
 
 let id: string; //Identifier of the resource (default to undefined)
 let paymentMethodId: string; //Identifier of the payment method (default to undefined)
-let updatePaymentMethods: UpdatePaymentMethods; //requested field for customer payment methods
+let updatePaymentMethodsCard: UpdatePaymentMethodsCard; //requested field for customer payment methods
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
 let xChildCompanyId: string; //In the case of a holding company, the company id of the child company to which will process the request. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.updateCustomerPaymentMethods(
     id,
     paymentMethodId,
-    updatePaymentMethods,
+    updatePaymentMethodsCard,
     acceptLanguage,
     xChildCompanyId
 );
@@ -246,7 +246,7 @@ const { status, data } = await apiInstance.updateCustomerPaymentMethods(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **updatePaymentMethods** | **UpdatePaymentMethods**| requested field for customer payment methods | |
+| **updatePaymentMethodsCard** | **UpdatePaymentMethodsCard**| requested field for customer payment methods | |
 | **id** | [**string**] | Identifier of the resource | defaults to undefined|
 | **paymentMethodId** | [**string**] | Identifier of the payment method | defaults to undefined|
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|

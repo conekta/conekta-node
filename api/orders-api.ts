@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -34,10 +34,9 @@ import type { OrderRequest } from '../model';
 // @ts-ignore
 import type { OrderResponse } from '../model';
 // @ts-ignore
-import type { OrderUpdateRequest } from '../model';
+import type { OrderUpdate } from '../model';
 /**
  * OrdersApi - axios parameter creator
- * @export
  */
 export const OrdersApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -70,8 +69,8 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -115,9 +114,8 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -164,8 +162,8 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -261,8 +259,8 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
                 localVarQueryParameter['updated_at.lte'] = updatedAtLte;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -311,8 +309,8 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -360,9 +358,8 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -410,9 +407,8 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -434,16 +430,16 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * Update an existing Order.
          * @summary Update Order
          * @param {string} id Identifier of the resource
-         * @param {OrderUpdateRequest} orderUpdateRequest requested field for an order
+         * @param {OrderUpdate} orderUpdate requested field for an order
          * @param {UpdateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateOrder: async (id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateOrder: async (id: string, orderUpdate: OrderUpdate, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateOrder', 'id', id)
-            // verify required parameter 'orderUpdateRequest' is not null or undefined
-            assertParamExists('updateOrder', 'orderUpdateRequest', orderUpdateRequest)
+            // verify required parameter 'orderUpdate' is not null or undefined
+            assertParamExists('updateOrder', 'orderUpdate', orderUpdate)
             const localVarPath = `/orders/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -461,9 +457,8 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -471,7 +466,7 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(orderUpdateRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(orderUpdate, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -483,7 +478,6 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
 
 /**
  * OrdersApi - functional programming interface
- * @export
  */
 export const OrdersApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = OrdersApiAxiosParamCreator(configuration)
@@ -610,13 +604,13 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * Update an existing Order.
          * @summary Update Order
          * @param {string} id Identifier of the resource
-         * @param {OrderUpdateRequest} orderUpdateRequest requested field for an order
+         * @param {OrderUpdate} orderUpdate requested field for an order
          * @param {UpdateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateOrder(id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateOrder(id, orderUpdateRequest, acceptLanguage, options);
+        async updateOrder(id: string, orderUpdate: OrderUpdate, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateOrder(id, orderUpdate, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['OrdersApi.updateOrder']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -626,7 +620,6 @@ export const OrdersApiFp = function(configuration?: Configuration) {
 
 /**
  * OrdersApi - factory interface
- * @export
  */
 export const OrdersApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = OrdersApiFp(configuration)
@@ -732,21 +725,19 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * Update an existing Order.
          * @summary Update Order
          * @param {string} id Identifier of the resource
-         * @param {OrderUpdateRequest} orderUpdateRequest requested field for an order
+         * @param {OrderUpdate} orderUpdate requested field for an order
          * @param {UpdateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateOrder(id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse> {
-            return localVarFp.updateOrder(id, orderUpdateRequest, acceptLanguage, options).then((request) => request(axios, basePath));
+        updateOrder(id: string, orderUpdate: OrderUpdate, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse> {
+            return localVarFp.updateOrder(id, orderUpdate, acceptLanguage, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
  * OrdersApi - interface
- * @export
- * @interface OrdersApi
  */
 export interface OrdersApiInterface {
     /**
@@ -757,7 +748,6 @@ export interface OrdersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersApiInterface
      */
     cancelOrder(id: string, acceptLanguage?: CancelOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
@@ -769,7 +759,6 @@ export interface OrdersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersApiInterface
      */
     createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
@@ -781,7 +770,6 @@ export interface OrdersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersApiInterface
      */
     getOrderById(id: string, acceptLanguage?: GetOrderByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
@@ -803,7 +791,6 @@ export interface OrdersApiInterface {
      * @param {number} [updatedAtLte] updated at less than or equal to
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersApiInterface
      */
     getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, options?: RawAxiosRequestConfig): AxiosPromise<GetOrdersResponse>;
 
@@ -816,7 +803,6 @@ export interface OrdersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersApiInterface
      */
     orderCancelRefund(id: string, refundId: string, acceptLanguage?: OrderCancelRefundAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
@@ -829,7 +815,6 @@ export interface OrdersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersApiInterface
      */
     orderRefund(id: string, orderRefundRequest: OrderRefundRequest, acceptLanguage?: OrderRefundAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
@@ -842,7 +827,6 @@ export interface OrdersApiInterface {
      * @param {OrderCaptureRequest} [orderCaptureRequest] requested fields for capture order
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersApiInterface
      */
     ordersCreateCapture(id: string, acceptLanguage?: OrdersCreateCaptureAcceptLanguageEnum, xChildCompanyId?: string, orderCaptureRequest?: OrderCaptureRequest, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
@@ -850,21 +834,17 @@ export interface OrdersApiInterface {
      * Update an existing Order.
      * @summary Update Order
      * @param {string} id Identifier of the resource
-     * @param {OrderUpdateRequest} orderUpdateRequest requested field for an order
+     * @param {OrderUpdate} orderUpdate requested field for an order
      * @param {UpdateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersApiInterface
      */
-    updateOrder(id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
+    updateOrder(id: string, orderUpdate: OrderUpdate, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
 }
 
 /**
  * OrdersApi - object-oriented interface
- * @export
- * @class OrdersApi
- * @extends {BaseAPI}
  */
 export class OrdersApi extends BaseAPI implements OrdersApiInterface {
     /**
@@ -875,7 +855,6 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersApi
      */
     public cancelOrder(id: string, acceptLanguage?: CancelOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return OrdersApiFp(this.configuration).cancelOrder(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -889,7 +868,6 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersApi
      */
     public createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return OrdersApiFp(this.configuration).createOrder(orderRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -903,7 +881,6 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersApi
      */
     public getOrderById(id: string, acceptLanguage?: GetOrderByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return OrdersApiFp(this.configuration).getOrderById(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -927,7 +904,6 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @param {number} [updatedAtLte] updated at less than or equal to
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersApi
      */
     public getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, options?: RawAxiosRequestConfig) {
         return OrdersApiFp(this.configuration).getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, paymentStatus, lastPaymentInfoStatus, createdAt, createdAtGte, createdAtLte, updatedAtGte, updatedAtLte, options).then((request) => request(this.axios, this.basePath));
@@ -942,7 +918,6 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersApi
      */
     public orderCancelRefund(id: string, refundId: string, acceptLanguage?: OrderCancelRefundAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return OrdersApiFp(this.configuration).orderCancelRefund(id, refundId, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -957,7 +932,6 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersApi
      */
     public orderRefund(id: string, orderRefundRequest: OrderRefundRequest, acceptLanguage?: OrderRefundAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return OrdersApiFp(this.configuration).orderRefund(id, orderRefundRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -972,7 +946,6 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @param {OrderCaptureRequest} [orderCaptureRequest] requested fields for capture order
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersApi
      */
     public ordersCreateCapture(id: string, acceptLanguage?: OrdersCreateCaptureAcceptLanguageEnum, xChildCompanyId?: string, orderCaptureRequest?: OrderCaptureRequest, options?: RawAxiosRequestConfig) {
         return OrdersApiFp(this.configuration).ordersCreateCapture(id, acceptLanguage, xChildCompanyId, orderCaptureRequest, options).then((request) => request(this.axios, this.basePath));
@@ -982,76 +955,51 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * Update an existing Order.
      * @summary Update Order
      * @param {string} id Identifier of the resource
-     * @param {OrderUpdateRequest} orderUpdateRequest requested field for an order
+     * @param {OrderUpdate} orderUpdate requested field for an order
      * @param {UpdateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersApi
      */
-    public updateOrder(id: string, orderUpdateRequest: OrderUpdateRequest, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
-        return OrdersApiFp(this.configuration).updateOrder(id, orderUpdateRequest, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public updateOrder(id: string, orderUpdate: OrderUpdate, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).updateOrder(id, orderUpdate, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const CancelOrderAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type CancelOrderAcceptLanguageEnum = typeof CancelOrderAcceptLanguageEnum[keyof typeof CancelOrderAcceptLanguageEnum];
-/**
- * @export
- */
 export const CreateOrderAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type CreateOrderAcceptLanguageEnum = typeof CreateOrderAcceptLanguageEnum[keyof typeof CreateOrderAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetOrderByIdAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetOrderByIdAcceptLanguageEnum = typeof GetOrderByIdAcceptLanguageEnum[keyof typeof GetOrderByIdAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetOrdersAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetOrdersAcceptLanguageEnum = typeof GetOrdersAcceptLanguageEnum[keyof typeof GetOrdersAcceptLanguageEnum];
-/**
- * @export
- */
 export const OrderCancelRefundAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type OrderCancelRefundAcceptLanguageEnum = typeof OrderCancelRefundAcceptLanguageEnum[keyof typeof OrderCancelRefundAcceptLanguageEnum];
-/**
- * @export
- */
 export const OrderRefundAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type OrderRefundAcceptLanguageEnum = typeof OrderRefundAcceptLanguageEnum[keyof typeof OrderRefundAcceptLanguageEnum];
-/**
- * @export
- */
 export const OrdersCreateCaptureAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type OrdersCreateCaptureAcceptLanguageEnum = typeof OrdersCreateCaptureAcceptLanguageEnum[keyof typeof OrdersCreateCaptureAcceptLanguageEnum];
-/**
- * @export
- */
 export const UpdateOrderAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

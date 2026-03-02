@@ -18,13 +18,13 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import type { BlacklistRuleResponse } from '../model';
 // @ts-ignore
-import type { CreateRiskRulesData } from '../model';
+import type { CreateRuleWhitelistRequest } from '../model';
 // @ts-ignore
 import type { DeletedBlacklistRuleResponse } from '../model';
 // @ts-ignore
@@ -37,21 +37,20 @@ import type { RiskRulesList } from '../model';
 import type { WhitelistlistRuleResponse } from '../model';
 /**
  * AntifraudApi - axios parameter creator
- * @export
  */
 export const AntifraudApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
          * @summary Create blacklisted rule
-         * @param {CreateRiskRulesData} createRiskRulesData requested field for blacklist rule
+         * @param {CreateRuleWhitelistRequest} createRuleWhitelistRequest requested field for blacklist rule
          * @param {CreateRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRuleBlacklist: async (createRiskRulesData: CreateRiskRulesData, acceptLanguage?: CreateRuleBlacklistAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'createRiskRulesData' is not null or undefined
-            assertParamExists('createRuleBlacklist', 'createRiskRulesData', createRiskRulesData)
+        createRuleBlacklist: async (createRuleWhitelistRequest: CreateRuleWhitelistRequest, acceptLanguage?: CreateRuleBlacklistAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'createRuleWhitelistRequest' is not null or undefined
+            assertParamExists('createRuleBlacklist', 'createRuleWhitelistRequest', createRuleWhitelistRequest)
             const localVarPath = `/antifraud/blacklists`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -68,9 +67,8 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -78,7 +76,7 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createRiskRulesData, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(createRuleWhitelistRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -89,11 +87,11 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
          * 
          * @summary Create whitelisted rule
          * @param {CreateRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
-         * @param {CreateRiskRulesData} [createRiskRulesData] 
+         * @param {CreateRuleWhitelistRequest} [createRuleWhitelistRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRuleWhitelist: async (acceptLanguage?: CreateRuleWhitelistAcceptLanguageEnum, createRiskRulesData?: CreateRiskRulesData, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createRuleWhitelist: async (acceptLanguage?: CreateRuleWhitelistAcceptLanguageEnum, createRuleWhitelistRequest?: CreateRuleWhitelistRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/antifraud/whitelists`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -110,9 +108,8 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -120,7 +117,7 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createRiskRulesData, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(createRuleWhitelistRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -156,8 +153,8 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -202,8 +199,8 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -243,8 +240,8 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -281,8 +278,8 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -300,7 +297,6 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
 
 /**
  * AntifraudApi - functional programming interface
- * @export
  */
 export const AntifraudApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = AntifraudApiAxiosParamCreator(configuration)
@@ -308,13 +304,13 @@ export const AntifraudApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Create blacklisted rule
-         * @param {CreateRiskRulesData} createRiskRulesData requested field for blacklist rule
+         * @param {CreateRuleWhitelistRequest} createRuleWhitelistRequest requested field for blacklist rule
          * @param {CreateRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createRuleBlacklist(createRiskRulesData: CreateRiskRulesData, acceptLanguage?: CreateRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BlacklistRuleResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createRuleBlacklist(createRiskRulesData, acceptLanguage, options);
+        async createRuleBlacklist(createRuleWhitelistRequest: CreateRuleWhitelistRequest, acceptLanguage?: CreateRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BlacklistRuleResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createRuleBlacklist(createRuleWhitelistRequest, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AntifraudApi.createRuleBlacklist']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -323,12 +319,12 @@ export const AntifraudApiFp = function(configuration?: Configuration) {
          * 
          * @summary Create whitelisted rule
          * @param {CreateRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
-         * @param {CreateRiskRulesData} [createRiskRulesData] 
+         * @param {CreateRuleWhitelistRequest} [createRuleWhitelistRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createRuleWhitelist(acceptLanguage?: CreateRuleWhitelistAcceptLanguageEnum, createRiskRulesData?: CreateRiskRulesData, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WhitelistlistRuleResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createRuleWhitelist(acceptLanguage, createRiskRulesData, options);
+        async createRuleWhitelist(acceptLanguage?: CreateRuleWhitelistAcceptLanguageEnum, createRuleWhitelistRequest?: CreateRuleWhitelistRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WhitelistlistRuleResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createRuleWhitelist(acceptLanguage, createRuleWhitelistRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AntifraudApi.createRuleWhitelist']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -394,7 +390,6 @@ export const AntifraudApiFp = function(configuration?: Configuration) {
 
 /**
  * AntifraudApi - factory interface
- * @export
  */
 export const AntifraudApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = AntifraudApiFp(configuration)
@@ -402,24 +397,24 @@ export const AntifraudApiFactory = function (configuration?: Configuration, base
         /**
          * 
          * @summary Create blacklisted rule
-         * @param {CreateRiskRulesData} createRiskRulesData requested field for blacklist rule
+         * @param {CreateRuleWhitelistRequest} createRuleWhitelistRequest requested field for blacklist rule
          * @param {CreateRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRuleBlacklist(createRiskRulesData: CreateRiskRulesData, acceptLanguage?: CreateRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<BlacklistRuleResponse> {
-            return localVarFp.createRuleBlacklist(createRiskRulesData, acceptLanguage, options).then((request) => request(axios, basePath));
+        createRuleBlacklist(createRuleWhitelistRequest: CreateRuleWhitelistRequest, acceptLanguage?: CreateRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<BlacklistRuleResponse> {
+            return localVarFp.createRuleBlacklist(createRuleWhitelistRequest, acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Create whitelisted rule
          * @param {CreateRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
-         * @param {CreateRiskRulesData} [createRiskRulesData] 
+         * @param {CreateRuleWhitelistRequest} [createRuleWhitelistRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRuleWhitelist(acceptLanguage?: CreateRuleWhitelistAcceptLanguageEnum, createRiskRulesData?: CreateRiskRulesData, options?: RawAxiosRequestConfig): AxiosPromise<WhitelistlistRuleResponse> {
-            return localVarFp.createRuleWhitelist(acceptLanguage, createRiskRulesData, options).then((request) => request(axios, basePath));
+        createRuleWhitelist(acceptLanguage?: CreateRuleWhitelistAcceptLanguageEnum, createRuleWhitelistRequest?: CreateRuleWhitelistRequest, options?: RawAxiosRequestConfig): AxiosPromise<WhitelistlistRuleResponse> {
+            return localVarFp.createRuleWhitelist(acceptLanguage, createRuleWhitelistRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -470,31 +465,27 @@ export const AntifraudApiFactory = function (configuration?: Configuration, base
 
 /**
  * AntifraudApi - interface
- * @export
- * @interface AntifraudApi
  */
 export interface AntifraudApiInterface {
     /**
      * 
      * @summary Create blacklisted rule
-     * @param {CreateRiskRulesData} createRiskRulesData requested field for blacklist rule
+     * @param {CreateRuleWhitelistRequest} createRuleWhitelistRequest requested field for blacklist rule
      * @param {CreateRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AntifraudApiInterface
      */
-    createRuleBlacklist(createRiskRulesData: CreateRiskRulesData, acceptLanguage?: CreateRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<BlacklistRuleResponse>;
+    createRuleBlacklist(createRuleWhitelistRequest: CreateRuleWhitelistRequest, acceptLanguage?: CreateRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<BlacklistRuleResponse>;
 
     /**
      * 
      * @summary Create whitelisted rule
      * @param {CreateRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
-     * @param {CreateRiskRulesData} [createRiskRulesData] 
+     * @param {CreateRuleWhitelistRequest} [createRuleWhitelistRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AntifraudApiInterface
      */
-    createRuleWhitelist(acceptLanguage?: CreateRuleWhitelistAcceptLanguageEnum, createRiskRulesData?: CreateRiskRulesData, options?: RawAxiosRequestConfig): AxiosPromise<WhitelistlistRuleResponse>;
+    createRuleWhitelist(acceptLanguage?: CreateRuleWhitelistAcceptLanguageEnum, createRuleWhitelistRequest?: CreateRuleWhitelistRequest, options?: RawAxiosRequestConfig): AxiosPromise<WhitelistlistRuleResponse>;
 
     /**
      * 
@@ -504,7 +495,6 @@ export interface AntifraudApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AntifraudApiInterface
      */
     deleteRuleBlacklist(id: string, acceptLanguage?: DeleteRuleBlacklistAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<DeletedBlacklistRuleResponse>;
 
@@ -516,7 +506,6 @@ export interface AntifraudApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AntifraudApiInterface
      */
     deleteRuleWhitelist(id: string, acceptLanguage?: DeleteRuleWhitelistAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<DeletedWhitelistRuleResponse>;
 
@@ -526,7 +515,6 @@ export interface AntifraudApiInterface {
      * @param {GetRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AntifraudApiInterface
      */
     getRuleBlacklist(acceptLanguage?: GetRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<RiskRulesList>;
 
@@ -536,7 +524,6 @@ export interface AntifraudApiInterface {
      * @param {GetRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AntifraudApiInterface
      */
     getRuleWhitelist(acceptLanguage?: GetRuleWhitelistAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<RiskRulesList>;
 
@@ -544,35 +531,30 @@ export interface AntifraudApiInterface {
 
 /**
  * AntifraudApi - object-oriented interface
- * @export
- * @class AntifraudApi
- * @extends {BaseAPI}
  */
 export class AntifraudApi extends BaseAPI implements AntifraudApiInterface {
     /**
      * 
      * @summary Create blacklisted rule
-     * @param {CreateRiskRulesData} createRiskRulesData requested field for blacklist rule
+     * @param {CreateRuleWhitelistRequest} createRuleWhitelistRequest requested field for blacklist rule
      * @param {CreateRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AntifraudApi
      */
-    public createRuleBlacklist(createRiskRulesData: CreateRiskRulesData, acceptLanguage?: CreateRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
-        return AntifraudApiFp(this.configuration).createRuleBlacklist(createRiskRulesData, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public createRuleBlacklist(createRuleWhitelistRequest: CreateRuleWhitelistRequest, acceptLanguage?: CreateRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
+        return AntifraudApiFp(this.configuration).createRuleBlacklist(createRuleWhitelistRequest, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Create whitelisted rule
      * @param {CreateRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
-     * @param {CreateRiskRulesData} [createRiskRulesData] 
+     * @param {CreateRuleWhitelistRequest} [createRuleWhitelistRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AntifraudApi
      */
-    public createRuleWhitelist(acceptLanguage?: CreateRuleWhitelistAcceptLanguageEnum, createRiskRulesData?: CreateRiskRulesData, options?: RawAxiosRequestConfig) {
-        return AntifraudApiFp(this.configuration).createRuleWhitelist(acceptLanguage, createRiskRulesData, options).then((request) => request(this.axios, this.basePath));
+    public createRuleWhitelist(acceptLanguage?: CreateRuleWhitelistAcceptLanguageEnum, createRuleWhitelistRequest?: CreateRuleWhitelistRequest, options?: RawAxiosRequestConfig) {
+        return AntifraudApiFp(this.configuration).createRuleWhitelist(acceptLanguage, createRuleWhitelistRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -583,7 +565,6 @@ export class AntifraudApi extends BaseAPI implements AntifraudApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AntifraudApi
      */
     public deleteRuleBlacklist(id: string, acceptLanguage?: DeleteRuleBlacklistAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return AntifraudApiFp(this.configuration).deleteRuleBlacklist(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -597,7 +578,6 @@ export class AntifraudApi extends BaseAPI implements AntifraudApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AntifraudApi
      */
     public deleteRuleWhitelist(id: string, acceptLanguage?: DeleteRuleWhitelistAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return AntifraudApiFp(this.configuration).deleteRuleWhitelist(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -609,7 +589,6 @@ export class AntifraudApi extends BaseAPI implements AntifraudApiInterface {
      * @param {GetRuleBlacklistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AntifraudApi
      */
     public getRuleBlacklist(acceptLanguage?: GetRuleBlacklistAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return AntifraudApiFp(this.configuration).getRuleBlacklist(acceptLanguage, options).then((request) => request(this.axios, this.basePath));
@@ -621,56 +600,37 @@ export class AntifraudApi extends BaseAPI implements AntifraudApiInterface {
      * @param {GetRuleWhitelistAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AntifraudApi
      */
     public getRuleWhitelist(acceptLanguage?: GetRuleWhitelistAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return AntifraudApiFp(this.configuration).getRuleWhitelist(acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const CreateRuleBlacklistAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type CreateRuleBlacklistAcceptLanguageEnum = typeof CreateRuleBlacklistAcceptLanguageEnum[keyof typeof CreateRuleBlacklistAcceptLanguageEnum];
-/**
- * @export
- */
 export const CreateRuleWhitelistAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type CreateRuleWhitelistAcceptLanguageEnum = typeof CreateRuleWhitelistAcceptLanguageEnum[keyof typeof CreateRuleWhitelistAcceptLanguageEnum];
-/**
- * @export
- */
 export const DeleteRuleBlacklistAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type DeleteRuleBlacklistAcceptLanguageEnum = typeof DeleteRuleBlacklistAcceptLanguageEnum[keyof typeof DeleteRuleBlacklistAcceptLanguageEnum];
-/**
- * @export
- */
 export const DeleteRuleWhitelistAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type DeleteRuleWhitelistAcceptLanguageEnum = typeof DeleteRuleWhitelistAcceptLanguageEnum[keyof typeof DeleteRuleWhitelistAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetRuleBlacklistAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetRuleBlacklistAcceptLanguageEnum = typeof GetRuleBlacklistAcceptLanguageEnum[keyof typeof GetRuleBlacklistAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetRuleWhitelistAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

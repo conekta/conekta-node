@@ -7,9 +7,9 @@ All URIs are relative to *https://api.conekta.io*
 |[**createToken**](#createtoken) | **POST** /tokens | Create Token|
 
 # **createToken**
-> TokenResponse createToken(token)
+> TokenResponse createToken(tokenRequest)
 
-Generate a payment token, to associate it with a card 
+Generate a payment token, to associate it with a card, Endpoint could be use directly only for PCI compliance account 
 
 ### Example
 
@@ -17,17 +17,17 @@ Generate a payment token, to associate it with a card
 import {
     TokensApi,
     Configuration,
-    Token
+    TokenRequest
 } from 'conekta';
 
 const configuration = new Configuration();
 const apiInstance = new TokensApi(configuration);
 
-let token: Token; //requested field for token
+let tokenRequest: TokenRequest; //requested field for token
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
 
 const { status, data } = await apiInstance.createToken(
-    token,
+    tokenRequest,
     acceptLanguage
 );
 ```
@@ -36,7 +36,7 @@ const { status, data } = await apiInstance.createToken(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **token** | **Token**| requested field for token | |
+| **tokenRequest** | **TokenRequest**| requested field for token | |
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
 
 

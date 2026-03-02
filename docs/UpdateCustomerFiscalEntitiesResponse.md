@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**address** | [**CustomerAddress**](CustomerAddress.md) |  | [default to undefined]
+**address** | [**FiscalEntityRequestAddress**](FiscalEntityRequestAddress.md) |  | [default to undefined]
 **tax_id** | **string** |  | [optional] [default to undefined]
 **email** | **string** |  | [optional] [default to undefined]
 **phone** | **string** |  | [optional] [default to undefined]

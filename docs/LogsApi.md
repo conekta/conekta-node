@@ -8,7 +8,7 @@ All URIs are relative to *https://api.conekta.io*
 |[**getLogs**](#getlogs) | **GET** /logs | Get List Of Logs|
 
 # **getLogById**
-> LogResponse getLogById()
+> LogResponseForRequest getLogById()
 
 Get the details of a specific log
 
@@ -45,7 +45,7 @@ const { status, data } = await apiInstance.getLogById(
 
 ### Return type
 
-**LogResponse**
+**LogResponseForRequest**
 
 ### Authorization
 
@@ -68,7 +68,7 @@ const { status, data } = await apiInstance.getLogById(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getLogs**
-> LogsResponse getLogs()
+> LogsResponseForRequest getLogs()
 
 Get log details in the form of a list
 
@@ -114,7 +114,7 @@ const { status, data } = await apiInstance.getLogs(
 
 ### Return type
 
-**LogsResponse**
+**LogsResponseForRequest**
 
 ### Authorization
 

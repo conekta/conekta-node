@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -29,7 +29,6 @@ import type { ModelError } from '../model';
 import type { TransferResponse } from '../model';
 /**
  * TransfersApi - axios parameter creator
- * @export
  */
 export const TransfersApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -62,8 +61,8 @@ export const TransfersApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -124,8 +123,8 @@ export const TransfersApiAxiosParamCreator = function (configuration?: Configura
                 localVarQueryParameter['previous'] = previous;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -146,7 +145,6 @@ export const TransfersApiAxiosParamCreator = function (configuration?: Configura
 
 /**
  * TransfersApi - functional programming interface
- * @export
  */
 export const TransfersApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = TransfersApiAxiosParamCreator(configuration)
@@ -189,7 +187,6 @@ export const TransfersApiFp = function(configuration?: Configuration) {
 
 /**
  * TransfersApi - factory interface
- * @export
  */
 export const TransfersApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = TransfersApiFp(configuration)
@@ -226,8 +223,6 @@ export const TransfersApiFactory = function (configuration?: Configuration, base
 
 /**
  * TransfersApi - interface
- * @export
- * @interface TransfersApi
  */
 export interface TransfersApiInterface {
     /**
@@ -238,7 +233,6 @@ export interface TransfersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TransfersApiInterface
      */
     getTransfer(id: string, acceptLanguage?: GetTransferAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<TransferResponse>;
 
@@ -253,7 +247,6 @@ export interface TransfersApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TransfersApiInterface
      */
     getTransfers(acceptLanguage?: GetTransfersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetTransfersResponse>;
 
@@ -261,9 +254,6 @@ export interface TransfersApiInterface {
 
 /**
  * TransfersApi - object-oriented interface
- * @export
- * @class TransfersApi
- * @extends {BaseAPI}
  */
 export class TransfersApi extends BaseAPI implements TransfersApiInterface {
     /**
@@ -274,7 +264,6 @@ export class TransfersApi extends BaseAPI implements TransfersApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TransfersApi
      */
     public getTransfer(id: string, acceptLanguage?: GetTransferAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return TransfersApiFp(this.configuration).getTransfer(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -291,24 +280,17 @@ export class TransfersApi extends BaseAPI implements TransfersApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TransfersApi
      */
     public getTransfers(acceptLanguage?: GetTransfersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return TransfersApiFp(this.configuration).getTransfers(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const GetTransferAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetTransferAcceptLanguageEnum = typeof GetTransferAcceptLanguageEnum[keyof typeof GetTransferAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetTransfersAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

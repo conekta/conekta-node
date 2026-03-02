@@ -16,26 +16,18 @@
 
 /**
  * List of discounts that apply to the order.
- * @export
- * @interface OrderDiscountLinesRequest
  */
 export interface OrderDiscountLinesRequest {
     /**
      * The amount to be deducted from the total sum of all payments, in cents.
-     * @type {number}
-     * @memberof OrderDiscountLinesRequest
      */
     'amount': number;
     /**
      * Discount code.
-     * @type {string}
-     * @memberof OrderDiscountLinesRequest
      */
     'code': string;
     /**
      * It can be \'loyalty\', \'campaign\', \'coupon\' o \'sign\'
-     * @type {string}
-     * @memberof OrderDiscountLinesRequest
      */
     'type': string;
 }

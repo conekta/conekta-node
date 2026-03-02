@@ -1,6 +1,6 @@
 import { SubscriptionsApi } from "../api";
 import { Configuration } from "../configuration";
-import { SubscriptionRequest, SubscriptionUpdateRequest } from "../model";
+import { SubscriptionRequest, UpdatesASubscription } from "../model";
 import { baseTest } from "./base-test";
 
 describe("Subscriptions API", () => {
@@ -88,7 +88,7 @@ describe("Subscriptions API", () => {
   describe("Update Subscription", () => {
     it("should update a subscription", async () => {
       const customer_id = "cus_2tZWxbTPtQgGJGh8P";
-      const request: SubscriptionUpdateRequest = {
+      const request: UpdatesASubscription = {
         trial_end: 1679752328,
       };
 

@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -29,7 +29,6 @@ import type { ShippingOrderResponse } from '../model';
 import type { ShippingRequest } from '../model';
 /**
  * ShippingsApi - axios parameter creator
- * @export
  */
 export const ShippingsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -65,9 +64,8 @@ export const ShippingsApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -118,8 +116,8 @@ export const ShippingsApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -171,9 +169,8 @@ export const ShippingsApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -196,7 +193,6 @@ export const ShippingsApiAxiosParamCreator = function (configuration?: Configura
 
 /**
  * ShippingsApi - functional programming interface
- * @export
  */
 export const ShippingsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ShippingsApiAxiosParamCreator(configuration)
@@ -255,7 +251,6 @@ export const ShippingsApiFp = function(configuration?: Configuration) {
 
 /**
  * ShippingsApi - factory interface
- * @export
  */
 export const ShippingsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ShippingsApiFp(configuration)
@@ -305,8 +300,6 @@ export const ShippingsApiFactory = function (configuration?: Configuration, base
 
 /**
  * ShippingsApi - interface
- * @export
- * @interface ShippingsApi
  */
 export interface ShippingsApiInterface {
     /**
@@ -318,7 +311,6 @@ export interface ShippingsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ShippingsApiInterface
      */
     ordersCreateShipping(id: string, shippingRequest: ShippingRequest, acceptLanguage?: OrdersCreateShippingAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ShippingOrderResponse>;
 
@@ -331,7 +323,6 @@ export interface ShippingsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ShippingsApiInterface
      */
     ordersDeleteShipping(id: string, shippingId: string, acceptLanguage?: OrdersDeleteShippingAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ShippingOrderResponse>;
 
@@ -345,7 +336,6 @@ export interface ShippingsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ShippingsApiInterface
      */
     ordersUpdateShipping(id: string, shippingId: string, shippingRequest: ShippingRequest, acceptLanguage?: OrdersUpdateShippingAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ShippingOrderResponse>;
 
@@ -353,9 +343,6 @@ export interface ShippingsApiInterface {
 
 /**
  * ShippingsApi - object-oriented interface
- * @export
- * @class ShippingsApi
- * @extends {BaseAPI}
  */
 export class ShippingsApi extends BaseAPI implements ShippingsApiInterface {
     /**
@@ -367,7 +354,6 @@ export class ShippingsApi extends BaseAPI implements ShippingsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ShippingsApi
      */
     public ordersCreateShipping(id: string, shippingRequest: ShippingRequest, acceptLanguage?: OrdersCreateShippingAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ShippingsApiFp(this.configuration).ordersCreateShipping(id, shippingRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -382,7 +368,6 @@ export class ShippingsApi extends BaseAPI implements ShippingsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ShippingsApi
      */
     public ordersDeleteShipping(id: string, shippingId: string, acceptLanguage?: OrdersDeleteShippingAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ShippingsApiFp(this.configuration).ordersDeleteShipping(id, shippingId, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -398,32 +383,22 @@ export class ShippingsApi extends BaseAPI implements ShippingsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ShippingsApi
      */
     public ordersUpdateShipping(id: string, shippingId: string, shippingRequest: ShippingRequest, acceptLanguage?: OrdersUpdateShippingAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ShippingsApiFp(this.configuration).ordersUpdateShipping(id, shippingId, shippingRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const OrdersCreateShippingAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type OrdersCreateShippingAcceptLanguageEnum = typeof OrdersCreateShippingAcceptLanguageEnum[keyof typeof OrdersCreateShippingAcceptLanguageEnum];
-/**
- * @export
- */
 export const OrdersDeleteShippingAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type OrdersDeleteShippingAcceptLanguageEnum = typeof OrdersDeleteShippingAcceptLanguageEnum[keyof typeof OrdersDeleteShippingAcceptLanguageEnum];
-/**
- * @export
- */
 export const OrdersUpdateShippingAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

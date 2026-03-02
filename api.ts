@@ -32,6 +32,7 @@ export * from './api/products-api';
 export * from './api/shipping-contacts-api';
 export * from './api/shippings-api';
 export * from './api/subscriptions-api';
+export * from './api/subscriptions-customer-portal-api';
 export * from './api/taxes-api';
 export * from './api/tokens-api';
 export * from './api/transactions-api';

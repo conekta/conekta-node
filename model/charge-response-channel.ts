@@ -14,35 +14,10 @@
 
 
 
-/**
- * 
- * @export
- * @interface ChargeResponseChannel
- */
 export interface ChargeResponseChannel {
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeResponseChannel
-     */
     'segment'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeResponseChannel
-     */
     'checkout_request_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeResponseChannel
-     */
     'checkout_request_type'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeResponseChannel
-     */
     'id'?: string;
 }
 

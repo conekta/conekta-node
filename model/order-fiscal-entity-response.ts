@@ -19,63 +19,37 @@ import type { OrderFiscalEntityAddressResponse } from './order-fiscal-entity-add
 
 /**
  * Fiscal entity of the order, Currently it is a purely informative field
- * @export
- * @interface OrderFiscalEntityResponse
  */
 export interface OrderFiscalEntityResponse {
-    /**
-     * 
-     * @type {OrderFiscalEntityAddressResponse}
-     * @memberof OrderFiscalEntityResponse
-     */
     'address': OrderFiscalEntityAddressResponse;
     /**
      * Email of the fiscal entity
-     * @type {string}
-     * @memberof OrderFiscalEntityResponse
      */
-    'email'?: string | null;
+    'email'?: string;
     /**
      * Metadata associated with the fiscal entity
-     * @type {{ [key: string]: any; }}
-     * @memberof OrderFiscalEntityResponse
      */
     'metadata'?: { [key: string]: any; };
     /**
      * Name of the fiscal entity
-     * @type {string}
-     * @memberof OrderFiscalEntityResponse
      */
-    'name'?: string | null;
+    'name'?: string;
     /**
      * Tax ID of the fiscal entity
-     * @type {string}
-     * @memberof OrderFiscalEntityResponse
      */
-    'tax_id'?: string | null;
+    'tax_id'?: string;
     /**
      * ID of the fiscal entity
-     * @type {string}
-     * @memberof OrderFiscalEntityResponse
      */
     'id': string;
     /**
      * The time at which the object was created in seconds since the Unix epoch
-     * @type {number}
-     * @memberof OrderFiscalEntityResponse
      */
     'created_at': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderFiscalEntityResponse
-     */
     'object': string;
     /**
      * Phone of the fiscal entity
-     * @type {string}
-     * @memberof OrderFiscalEntityResponse
      */
-    'phone'?: string | null;
+    'phone'?: string;
 }
 

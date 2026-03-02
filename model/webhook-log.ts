@@ -14,53 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface WebhookLog
- */
 export interface WebhookLog {
-    /**
-     * 
-     * @type {number}
-     * @memberof WebhookLog
-     */
     'failed_attempts'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookLog
-     */
     'id'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebhookLog
-     */
     'last_attempted_at'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebhookLog
-     */
     'last_http_response_status'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookLog
-     */
     'object'?: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof WebhookLog
-     */
     'response_data'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {string}
-     * @memberof WebhookLog
-     */
     'url'?: string;
 }
 

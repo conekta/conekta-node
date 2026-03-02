@@ -13,14 +13,22 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PaymentMethodResponse } from './payment-method-response';
 
-/**
- * @type PaymentMethodCardResponse
- * @export
- */
-export type PaymentMethodCardResponse = PaymentMethodResponse;
-
+export interface PaymentMethodCardResponse {
+    'type': string;
+    'id': string;
+    'object': string;
+    'created_at': number;
+    'parent_id'?: string;
+    'last4'?: string;
+    'bin'?: string;
+    'card_type'?: string;
+    'exp_month'?: string;
+    'exp_year'?: string;
+    'brand'?: string;
+    'name'?: string;
+    'default'?: boolean;
+    'visible_on_checkout'?: boolean;
+    'payment_source_status'?: string;
+}
 

@@ -26,7 +26,6 @@ import type { PaymentMethodTokenRequest } from './payment-method-token-request';
 /**
  * @type CreateCustomerPaymentMethodsRequest
  * Contains details of the payment methods that the customer has active or has used in Conekta
- * @export
  */
 export type CreateCustomerPaymentMethodsRequest = PaymentMethodCashRequest | PaymentMethodSpeiRequest | PaymentMethodTokenRequest;
 

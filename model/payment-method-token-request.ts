@@ -13,14 +13,15 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { CustomerPaymentMethodRequest } from './customer-payment-method-request';
 
-/**
- * @type PaymentMethodTokenRequest
- * @export
- */
-export type PaymentMethodTokenRequest = CustomerPaymentMethodRequest;
-
+export interface PaymentMethodTokenRequest {
+    /**
+     * Type of payment method
+     */
+    'type': string;
+    /**
+     * Token id that will be used to create a \"card\" type payment method. See the (subscriptions)[https://developers.conekta.com/v2.2.0/reference/createsubscription] tutorial for more information on how to tokenize cards.
+     */
+    'token_id': string;
+}
 

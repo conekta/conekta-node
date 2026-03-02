@@ -23,41 +23,17 @@ import type { CreateCompanyRequestComercialInfo } from './create-company-request
 // @ts-ignore
 import type { CreateCompanyRequestFiscalInfo } from './create-company-request-fiscal-info';
 
-/**
- * 
- * @export
- * @interface CreateCompanyRequest
- */
 export interface CreateCompanyRequest {
     /**
      * The name of the company.
-     * @type {string}
-     * @memberof CreateCompanyRequest
      */
     'name'?: string;
     /**
      * The type of company, \'owner\'
-     * @type {string}
-     * @memberof CreateCompanyRequest
      */
     'type_company'?: string;
-    /**
-     * 
-     * @type {CreateCompanyRequestComercialInfo}
-     * @memberof CreateCompanyRequest
-     */
     'comercial_info'?: CreateCompanyRequestComercialInfo;
-    /**
-     * 
-     * @type {CreateCompanyRequestFiscalInfo}
-     * @memberof CreateCompanyRequest
-     */
     'fiscal_info'?: CreateCompanyRequestFiscalInfo;
-    /**
-     * 
-     * @type {CreateCompanyRequestBankAccountInfo}
-     * @memberof CreateCompanyRequest
-     */
     'bank_account_info'?: CreateCompanyRequestBankAccountInfo;
 }
 

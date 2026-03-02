@@ -483,7 +483,7 @@ const { status, data } = await apiInstance.ordersCreateCapture(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateOrder**
-> OrderResponse updateOrder(orderUpdateRequest)
+> OrderResponse updateOrder(orderUpdate)
 
 Update an existing Order.
 
@@ -493,19 +493,19 @@ Update an existing Order.
 import {
     OrdersApi,
     Configuration,
-    OrderUpdateRequest
+    OrderUpdate
 } from 'conekta';
 
 const configuration = new Configuration();
 const apiInstance = new OrdersApi(configuration);
 
 let id: string; //Identifier of the resource (default to undefined)
-let orderUpdateRequest: OrderUpdateRequest; //requested field for an order
+let orderUpdate: OrderUpdate; //requested field for an order
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
 
 const { status, data } = await apiInstance.updateOrder(
     id,
-    orderUpdateRequest,
+    orderUpdate,
     acceptLanguage
 );
 ```
@@ -514,7 +514,7 @@ const { status, data } = await apiInstance.updateOrder(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **orderUpdateRequest** | **OrderUpdateRequest**| requested field for an order | |
+| **orderUpdate** | **OrderUpdate**| requested field for an order | |
 | **id** | [**string**] | Identifier of the resource | defaults to undefined|
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
 

@@ -13,14 +13,29 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PaymentMethod } from './payment-method';
 
-/**
- * @type PaymentMethodPbbPayment
- * @export
- */
-export type PaymentMethodPbbPayment = PaymentMethod;
-
+export interface PaymentMethodPbbPayment {
+    'type'?: string;
+    'object': string;
+    /**
+     * Deep link for the payment, use for mobile apps/flows
+     */
+    'deep_link': string;
+    /**
+     * Expiration date of the charge
+     */
+    'expires_at': number;
+    /**
+     * Product type of the charge
+     */
+    'product_type': string;
+    /**
+     * URL to redirect the customer to complete the payment
+     */
+    'redirect_url': string;
+    /**
+     * Reference for the payment
+     */
+    'reference': string;
+}
 

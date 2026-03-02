@@ -16,20 +16,14 @@
 
 /**
  * contains the following attributes that will guide to continue the flow
- * @export
- * @interface OrderNextActionResponseRedirectToUrl
  */
 export interface OrderNextActionResponseRedirectToUrl {
     /**
      * pay.conekta.com/{id} Indicates the url of the Conekta component to authenticate the flow through 3DS2.
-     * @type {string}
-     * @memberof OrderNextActionResponseRedirectToUrl
      */
     'url'?: string;
     /**
      * Indicates the url to which the 3DS2 flow returns at the end, when the integration is redirected.
-     * @type {string}
-     * @memberof OrderNextActionResponseRedirectToUrl
      */
     'return_url'?: string;
 }

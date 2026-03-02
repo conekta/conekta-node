@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -26,12 +26,11 @@ import type { ModelError } from '../model';
 // @ts-ignore
 import type { OrderTaxRequest } from '../model';
 // @ts-ignore
-import type { UpdateOrderTaxRequest } from '../model';
+import type { OrderTaxResponse } from '../model';
 // @ts-ignore
-import type { UpdateOrderTaxResponse } from '../model';
+import type { OrdersUpdateTaxesRequest } from '../model';
 /**
  * TaxesApi - axios parameter creator
- * @export
  */
 export const TaxesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -67,9 +66,8 @@ export const TaxesApiAxiosParamCreator = function (configuration?: Configuration
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -120,8 +118,8 @@ export const TaxesApiAxiosParamCreator = function (configuration?: Configuration
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -142,19 +140,19 @@ export const TaxesApiAxiosParamCreator = function (configuration?: Configuration
          * @summary Update Tax
          * @param {string} id Identifier of the resource
          * @param {string} taxId identifier
-         * @param {UpdateOrderTaxRequest} updateOrderTaxRequest requested field for taxes
+         * @param {OrdersUpdateTaxesRequest} ordersUpdateTaxesRequest requested field for taxes
          * @param {OrdersUpdateTaxesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersUpdateTaxes: async (id: string, taxId: string, updateOrderTaxRequest: UpdateOrderTaxRequest, acceptLanguage?: OrdersUpdateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        ordersUpdateTaxes: async (id: string, taxId: string, ordersUpdateTaxesRequest: OrdersUpdateTaxesRequest, acceptLanguage?: OrdersUpdateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('ordersUpdateTaxes', 'id', id)
             // verify required parameter 'taxId' is not null or undefined
             assertParamExists('ordersUpdateTaxes', 'taxId', taxId)
-            // verify required parameter 'updateOrderTaxRequest' is not null or undefined
-            assertParamExists('ordersUpdateTaxes', 'updateOrderTaxRequest', updateOrderTaxRequest)
+            // verify required parameter 'ordersUpdateTaxesRequest' is not null or undefined
+            assertParamExists('ordersUpdateTaxes', 'ordersUpdateTaxesRequest', ordersUpdateTaxesRequest)
             const localVarPath = `/orders/{id}/tax_lines/{tax_id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"tax_id"}}`, encodeURIComponent(String(taxId)));
@@ -173,9 +171,8 @@ export const TaxesApiAxiosParamCreator = function (configuration?: Configuration
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -186,7 +183,7 @@ export const TaxesApiAxiosParamCreator = function (configuration?: Configuration
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(updateOrderTaxRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(ordersUpdateTaxesRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -198,7 +195,6 @@ export const TaxesApiAxiosParamCreator = function (configuration?: Configuration
 
 /**
  * TaxesApi - functional programming interface
- * @export
  */
 export const TaxesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = TaxesApiAxiosParamCreator(configuration)
@@ -213,7 +209,7 @@ export const TaxesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async ordersCreateTaxes(id: string, orderTaxRequest: OrderTaxRequest, acceptLanguage?: OrdersCreateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateOrderTaxResponse>> {
+        async ordersCreateTaxes(id: string, orderTaxRequest: OrderTaxRequest, acceptLanguage?: OrdersCreateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderTaxResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ordersCreateTaxes(id, orderTaxRequest, acceptLanguage, xChildCompanyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TaxesApi.ordersCreateTaxes']?.[localVarOperationServerIndex]?.url;
@@ -229,7 +225,7 @@ export const TaxesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async ordersDeleteTaxes(id: string, taxId: string, acceptLanguage?: OrdersDeleteTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateOrderTaxResponse>> {
+        async ordersDeleteTaxes(id: string, taxId: string, acceptLanguage?: OrdersDeleteTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderTaxResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ordersDeleteTaxes(id, taxId, acceptLanguage, xChildCompanyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TaxesApi.ordersDeleteTaxes']?.[localVarOperationServerIndex]?.url;
@@ -240,14 +236,14 @@ export const TaxesApiFp = function(configuration?: Configuration) {
          * @summary Update Tax
          * @param {string} id Identifier of the resource
          * @param {string} taxId identifier
-         * @param {UpdateOrderTaxRequest} updateOrderTaxRequest requested field for taxes
+         * @param {OrdersUpdateTaxesRequest} ordersUpdateTaxesRequest requested field for taxes
          * @param {OrdersUpdateTaxesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async ordersUpdateTaxes(id: string, taxId: string, updateOrderTaxRequest: UpdateOrderTaxRequest, acceptLanguage?: OrdersUpdateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateOrderTaxResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.ordersUpdateTaxes(id, taxId, updateOrderTaxRequest, acceptLanguage, xChildCompanyId, options);
+        async ordersUpdateTaxes(id: string, taxId: string, ordersUpdateTaxesRequest: OrdersUpdateTaxesRequest, acceptLanguage?: OrdersUpdateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderTaxResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.ordersUpdateTaxes(id, taxId, ordersUpdateTaxesRequest, acceptLanguage, xChildCompanyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TaxesApi.ordersUpdateTaxes']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -257,7 +253,6 @@ export const TaxesApiFp = function(configuration?: Configuration) {
 
 /**
  * TaxesApi - factory interface
- * @export
  */
 export const TaxesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = TaxesApiFp(configuration)
@@ -272,7 +267,7 @@ export const TaxesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersCreateTaxes(id: string, orderTaxRequest: OrderTaxRequest, acceptLanguage?: OrdersCreateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateOrderTaxResponse> {
+        ordersCreateTaxes(id: string, orderTaxRequest: OrderTaxRequest, acceptLanguage?: OrdersCreateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderTaxResponse> {
             return localVarFp.ordersCreateTaxes(id, orderTaxRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -285,7 +280,7 @@ export const TaxesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersDeleteTaxes(id: string, taxId: string, acceptLanguage?: OrdersDeleteTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateOrderTaxResponse> {
+        ordersDeleteTaxes(id: string, taxId: string, acceptLanguage?: OrdersDeleteTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderTaxResponse> {
             return localVarFp.ordersDeleteTaxes(id, taxId, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -293,22 +288,20 @@ export const TaxesApiFactory = function (configuration?: Configuration, basePath
          * @summary Update Tax
          * @param {string} id Identifier of the resource
          * @param {string} taxId identifier
-         * @param {UpdateOrderTaxRequest} updateOrderTaxRequest requested field for taxes
+         * @param {OrdersUpdateTaxesRequest} ordersUpdateTaxesRequest requested field for taxes
          * @param {OrdersUpdateTaxesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersUpdateTaxes(id: string, taxId: string, updateOrderTaxRequest: UpdateOrderTaxRequest, acceptLanguage?: OrdersUpdateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateOrderTaxResponse> {
-            return localVarFp.ordersUpdateTaxes(id, taxId, updateOrderTaxRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
+        ordersUpdateTaxes(id: string, taxId: string, ordersUpdateTaxesRequest: OrdersUpdateTaxesRequest, acceptLanguage?: OrdersUpdateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderTaxResponse> {
+            return localVarFp.ordersUpdateTaxes(id, taxId, ordersUpdateTaxesRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
  * TaxesApi - interface
- * @export
- * @interface TaxesApi
  */
 export interface TaxesApiInterface {
     /**
@@ -320,9 +313,8 @@ export interface TaxesApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TaxesApiInterface
      */
-    ordersCreateTaxes(id: string, orderTaxRequest: OrderTaxRequest, acceptLanguage?: OrdersCreateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateOrderTaxResponse>;
+    ordersCreateTaxes(id: string, orderTaxRequest: OrderTaxRequest, acceptLanguage?: OrdersCreateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderTaxResponse>;
 
     /**
      * Delete taxes for an existing orden
@@ -333,31 +325,26 @@ export interface TaxesApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TaxesApiInterface
      */
-    ordersDeleteTaxes(id: string, taxId: string, acceptLanguage?: OrdersDeleteTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateOrderTaxResponse>;
+    ordersDeleteTaxes(id: string, taxId: string, acceptLanguage?: OrdersDeleteTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderTaxResponse>;
 
     /**
      * Update taxes for an existing orden
      * @summary Update Tax
      * @param {string} id Identifier of the resource
      * @param {string} taxId identifier
-     * @param {UpdateOrderTaxRequest} updateOrderTaxRequest requested field for taxes
+     * @param {OrdersUpdateTaxesRequest} ordersUpdateTaxesRequest requested field for taxes
      * @param {OrdersUpdateTaxesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TaxesApiInterface
      */
-    ordersUpdateTaxes(id: string, taxId: string, updateOrderTaxRequest: UpdateOrderTaxRequest, acceptLanguage?: OrdersUpdateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<UpdateOrderTaxResponse>;
+    ordersUpdateTaxes(id: string, taxId: string, ordersUpdateTaxesRequest: OrdersUpdateTaxesRequest, acceptLanguage?: OrdersUpdateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderTaxResponse>;
 
 }
 
 /**
  * TaxesApi - object-oriented interface
- * @export
- * @class TaxesApi
- * @extends {BaseAPI}
  */
 export class TaxesApi extends BaseAPI implements TaxesApiInterface {
     /**
@@ -369,7 +356,6 @@ export class TaxesApi extends BaseAPI implements TaxesApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TaxesApi
      */
     public ordersCreateTaxes(id: string, orderTaxRequest: OrderTaxRequest, acceptLanguage?: OrdersCreateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return TaxesApiFp(this.configuration).ordersCreateTaxes(id, orderTaxRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -384,7 +370,6 @@ export class TaxesApi extends BaseAPI implements TaxesApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TaxesApi
      */
     public ordersDeleteTaxes(id: string, taxId: string, acceptLanguage?: OrdersDeleteTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return TaxesApiFp(this.configuration).ordersDeleteTaxes(id, taxId, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -395,37 +380,27 @@ export class TaxesApi extends BaseAPI implements TaxesApiInterface {
      * @summary Update Tax
      * @param {string} id Identifier of the resource
      * @param {string} taxId identifier
-     * @param {UpdateOrderTaxRequest} updateOrderTaxRequest requested field for taxes
+     * @param {OrdersUpdateTaxesRequest} ordersUpdateTaxesRequest requested field for taxes
      * @param {OrdersUpdateTaxesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TaxesApi
      */
-    public ordersUpdateTaxes(id: string, taxId: string, updateOrderTaxRequest: UpdateOrderTaxRequest, acceptLanguage?: OrdersUpdateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
-        return TaxesApiFp(this.configuration).ordersUpdateTaxes(id, taxId, updateOrderTaxRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
+    public ordersUpdateTaxes(id: string, taxId: string, ordersUpdateTaxesRequest: OrdersUpdateTaxesRequest, acceptLanguage?: OrdersUpdateTaxesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
+        return TaxesApiFp(this.configuration).ordersUpdateTaxes(id, taxId, ordersUpdateTaxesRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const OrdersCreateTaxesAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type OrdersCreateTaxesAcceptLanguageEnum = typeof OrdersCreateTaxesAcceptLanguageEnum[keyof typeof OrdersCreateTaxesAcceptLanguageEnum];
-/**
- * @export
- */
 export const OrdersDeleteTaxesAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type OrdersDeleteTaxesAcceptLanguageEnum = typeof OrdersDeleteTaxesAcceptLanguageEnum[keyof typeof OrdersDeleteTaxesAcceptLanguageEnum];
-/**
- * @export
- */
 export const OrdersUpdateTaxesAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

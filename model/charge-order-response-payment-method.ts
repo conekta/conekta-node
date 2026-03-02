@@ -31,8 +31,7 @@ import type { PaymentMethodPbbPayment } from './payment-method-pbb-payment';
 
 /**
  * @type ChargeOrderResponsePaymentMethod
- * @export
  */
-export type ChargeOrderResponsePaymentMethod = { object: 'bank_transfer_payment' } & PaymentMethodBankTransfer | { object: 'bnpl_payment' } & PaymentMethodBnplPayment | { object: 'card_payment' } & PaymentMethodCard | { object: 'cash_payment' } & PaymentMethodCash | { object: 'pbb_payment' } & PaymentMethodPbbPayment;
+export type ChargeOrderResponsePaymentMethod = { object: 'bank_transfer_payment' } & PaymentMethodBankTransfer | { object: 'bnpl_payment' } & PaymentMethodBnplPayment | { object: 'card_payment' } & PaymentMethodCard | { object: 'cash_payment' } & PaymentMethodCash | { object: 'pay_by_bank_payment' } & PaymentMethodPbbPayment;
 
 

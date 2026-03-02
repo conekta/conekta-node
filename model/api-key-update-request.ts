@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface ApiKeyUpdateRequest
- */
 export interface ApiKeyUpdateRequest {
     /**
      * Indicates if the webhook key is active
-     * @type {boolean}
-     * @memberof ApiKeyUpdateRequest
      */
     'active'?: boolean;
     /**
      * A name or brief explanation of what this api key is used for
-     * @type {string}
-     * @memberof ApiKeyUpdateRequest
      */
     'description'?: string;
 }

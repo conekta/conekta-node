@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -37,7 +37,6 @@ import type { GetChargesResponse } from '../model';
 import type { ModelError } from '../model';
 /**
  * ChargesApi - axios parameter creator
- * @export
  */
 export const ChargesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -86,8 +85,8 @@ export const ChargesApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['previous'] = previous;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -135,9 +134,8 @@ export const ChargesApiAxiosParamCreator = function (configuration?: Configurati
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -187,9 +185,8 @@ export const ChargesApiAxiosParamCreator = function (configuration?: Configurati
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -239,9 +236,8 @@ export const ChargesApiAxiosParamCreator = function (configuration?: Configurati
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -264,7 +260,6 @@ export const ChargesApiAxiosParamCreator = function (configuration?: Configurati
 
 /**
  * ChargesApi - functional programming interface
- * @export
  */
 export const ChargesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ChargesApiAxiosParamCreator(configuration)
@@ -340,7 +335,6 @@ export const ChargesApiFp = function(configuration?: Configuration) {
 
 /**
  * ChargesApi - factory interface
- * @export
  */
 export const ChargesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ChargesApiFp(configuration)
@@ -404,8 +398,6 @@ export const ChargesApiFactory = function (configuration?: Configuration, basePa
 
 /**
  * ChargesApi - interface
- * @export
- * @interface ChargesApi
  */
 export interface ChargesApiInterface {
     /**
@@ -419,7 +411,6 @@ export interface ChargesApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ChargesApiInterface
      */
     getCharges(acceptLanguage?: GetChargesAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetChargesResponse>;
 
@@ -432,7 +423,6 @@ export interface ChargesApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ChargesApiInterface
      */
     ordersCreateCharge(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargeAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChargeOrderResponse>;
 
@@ -445,7 +435,6 @@ export interface ChargesApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ChargesApiInterface
      */
     ordersCreateCharges(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChargesOrderResponse>;
 
@@ -458,7 +447,6 @@ export interface ChargesApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ChargesApiInterface
      */
     updateCharge(id: string, chargeUpdateRequest: ChargeUpdateRequest, acceptLanguage?: UpdateChargeAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChargeResponse>;
 
@@ -466,9 +454,6 @@ export interface ChargesApiInterface {
 
 /**
  * ChargesApi - object-oriented interface
- * @export
- * @class ChargesApi
- * @extends {BaseAPI}
  */
 export class ChargesApi extends BaseAPI implements ChargesApiInterface {
     /**
@@ -482,7 +467,6 @@ export class ChargesApi extends BaseAPI implements ChargesApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ChargesApi
      */
     public getCharges(acceptLanguage?: GetChargesAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return ChargesApiFp(this.configuration).getCharges(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
@@ -497,7 +481,6 @@ export class ChargesApi extends BaseAPI implements ChargesApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ChargesApi
      */
     public ordersCreateCharge(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargeAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ChargesApiFp(this.configuration).ordersCreateCharge(id, chargeRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -512,7 +495,6 @@ export class ChargesApi extends BaseAPI implements ChargesApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ChargesApi
      */
     public ordersCreateCharges(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ChargesApiFp(this.configuration).ordersCreateCharges(id, chargeRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -527,40 +509,27 @@ export class ChargesApi extends BaseAPI implements ChargesApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ChargesApi
      */
     public updateCharge(id: string, chargeUpdateRequest: ChargeUpdateRequest, acceptLanguage?: UpdateChargeAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ChargesApiFp(this.configuration).updateCharge(id, chargeUpdateRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const GetChargesAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetChargesAcceptLanguageEnum = typeof GetChargesAcceptLanguageEnum[keyof typeof GetChargesAcceptLanguageEnum];
-/**
- * @export
- */
 export const OrdersCreateChargeAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type OrdersCreateChargeAcceptLanguageEnum = typeof OrdersCreateChargeAcceptLanguageEnum[keyof typeof OrdersCreateChargeAcceptLanguageEnum];
-/**
- * @export
- */
 export const OrdersCreateChargesAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type OrdersCreateChargesAcceptLanguageEnum = typeof OrdersCreateChargesAcceptLanguageEnum[keyof typeof OrdersCreateChargesAcceptLanguageEnum];
-/**
- * @export
- */
 export const UpdateChargeAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

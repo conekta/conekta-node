@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ChargeResponse } from './charge-response';
-// May contain unused imports in some cases
-// @ts-ignore
 import type { ChargeResponseChannel } from './charge-response-channel';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -26,10 +23,42 @@ import type { ChargeResponsePaymentMethod } from './charge-response-payment-meth
 // @ts-ignore
 import type { ChargeResponseRefunds } from './charge-response-refunds';
 
-/**
- * @type ChargesDataResponse
- * @export
- */
-export type ChargesDataResponse = ChargeResponse;
-
+export interface ChargesDataResponse {
+    'amount': number;
+    'channel'?: ChargeResponseChannel;
+    'created_at': number;
+    'currency': string;
+    'customer_id'?: string;
+    'description'?: string;
+    'device_fingerprint'?: string;
+    'failure_code'?: string;
+    'failure_message'?: string;
+    /**
+     * Charge ID
+     */
+    'id': string;
+    /**
+     * Whether the charge was made in live mode or not
+     */
+    'livemode': boolean;
+    'object': string;
+    /**
+     * Order ID
+     */
+    'order_id': string;
+    /**
+     * charge Payment date
+     */
+    'paid_at'?: number;
+    'payment_method'?: ChargeResponsePaymentMethod;
+    /**
+     * Reference ID of the charge
+     */
+    'reference_id'?: string;
+    'refunds'?: ChargeResponseRefunds;
+    /**
+     * Charge status
+     */
+    'status': string;
+}
 

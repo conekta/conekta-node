@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **paid_at** | **number** |  | [optional] [default to undefined]
 **payment_method** | [**ChargeOrderResponsePaymentMethod**](ChargeOrderResponsePaymentMethod.md) |  | [optional] [default to undefined]
 **reference_id** | **string** | Reference ID of the charge | [optional] [default to undefined]
-**refunds** | **Array&lt;object&gt;** |  | [optional] [default to undefined]
+**refunds** | **Array&lt;any&gt;** |  | [optional] [default to undefined]
 **status** | **string** |  | [optional] [default to undefined]
 
 ## Example

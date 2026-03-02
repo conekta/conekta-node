@@ -14,179 +14,61 @@
 
 
 
-/**
- * 
- * @export
- * @interface OrderResponseCheckout
- */
 export interface OrderResponseCheckout {
     /**
      * Are the payment methods available for this link
-     * @type {Array<string>}
-     * @memberof OrderResponseCheckout
      */
-    'allowed_payment_methods'?: Array<string>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OrderResponseCheckout
-     */
+    'allowed_payment_methods': Array<string>;
     'can_not_expire'?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof OrderResponseCheckout
-     */
     'emails_sent'?: number;
-    /**
-     * 
-     * @type {Array<object>}
-     * @memberof OrderResponseCheckout
-     */
-    'exclude_card_networks'?: Array<object>;
-    /**
-     * 
-     * @type {number}
-     * @memberof OrderResponseCheckout
-     */
+    'exclude_card_networks'?: Array<OrderResponseCheckoutExcludeCardNetworksEnum>;
     'expires_at'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderResponseCheckout
-     */
     'failure_url'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OrderResponseCheckout
-     */
     'force_3ds_flow'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderResponseCheckout
-     */
-    'id'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OrderResponseCheckout
-     */
+    'id': string;
     'is_redirect_on_failure'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OrderResponseCheckout
-     */
     'livemode'?: boolean;
     /**
      * Number of retries allowed before the checkout is marked as failed
-     * @type {number}
-     * @memberof OrderResponseCheckout
      */
-    'max_failed_retries'?: number | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OrderResponseCheckout
-     */
+    'max_failed_retries'?: number;
     'metadata'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OrderResponseCheckout
-     */
     'monthly_installments_enabled'?: boolean;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof OrderResponseCheckout
-     */
     'monthly_installments_options'?: Array<number>;
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderResponseCheckout
-     */
-    'name'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OrderResponseCheckout
-     */
+    'name': string;
     'needs_shipping_contact'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderResponseCheckout
-     */
-    'object'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OrderResponseCheckout
-     */
-    'on_demand_enabled'?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OrderResponseCheckout
-     */
+    'object': string;
+    'on_demand_enabled'?: boolean;
     'paid_payments_count'?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OrderResponseCheckout
-     */
     'recurrent'?: boolean;
     /**
      * number of seconds to wait before redirecting to the success_url
-     * @type {number}
-     * @memberof OrderResponseCheckout
      */
-    'redirection_time'?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderResponseCheckout
-     */
+    'redirection_time'?: number;
     'slug'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof OrderResponseCheckout
-     */
     'sms_sent'?: number;
     /**
-     * 
-     * @type {string}
-     * @memberof OrderResponseCheckout
+     * Redirection url back to the site in case of successful payment, applies only to HostedPayment
      */
     'success_url'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof OrderResponseCheckout
-     */
     'starts_at'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof OrderResponseCheckout
-     */
     'status'?: string;
     /**
-     * 
-     * @type {string}
-     * @memberof OrderResponseCheckout
+     * This field represents the type of checkout, which determines the user experience during the payment process. \'HostedPayment\' will redirect the customer to a Conekta-hosted page to complete the payment, while \'Integration\' allows the payment process to be handled entirely on your site using Conekta\'s APIs and SDKs.
      */
-    'type'?: string;
+    'type': string;
     /**
-     * 
-     * @type {string}
-     * @memberof OrderResponseCheckout
+     * Indicate the url of the Conekta component to complete the payment. For HostedPayment, this will be a Conekta-hosted page
      */
     'url'?: string;
 }
+
+export const OrderResponseCheckoutExcludeCardNetworksEnum = {
+    visa: 'visa',
+    mastercard: 'mastercard',
+    amex: 'amex'
+} as const;
+
+export type OrderResponseCheckoutExcludeCardNetworksEnum = typeof OrderResponseCheckoutExcludeCardNetworksEnum[keyof typeof OrderResponseCheckoutExcludeCardNetworksEnum];
+
 

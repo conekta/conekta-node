@@ -13,14 +13,35 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { CustomerPaymentMethodRequest } from './customer-payment-method-request';
 
-/**
- * @type PaymentMethodCardRequest
- * @export
- */
-export type PaymentMethodCardRequest = CustomerPaymentMethodRequest;
-
+export interface PaymentMethodCardRequest {
+    /**
+     * Type of payment method
+     */
+    'type': string;
+    /**
+     * Card security code
+     */
+    'cvc': string;
+    /**
+     * Card expiration month
+     */
+    'exp_month': string;
+    /**
+     * Card expiration year
+     */
+    'exp_year': string;
+    /**
+     * Cardholder name
+     */
+    'name': string;
+    /**
+     * Card number
+     */
+    'number': string;
+    /**
+     * Optional field used to capture the customer\'s IP address for fraud prevention and security monitoring purposes
+     */
+    'customer_ip_address'?: string;
+}
 

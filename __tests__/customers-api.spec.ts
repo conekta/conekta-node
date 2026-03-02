@@ -1,17 +1,7 @@
 import { CustomersApi } from "../api";
 import { Configuration } from "../configuration";
-import { Customer, CustomerFiscalEntitiesRequest, CustomerPaymentMethodsRequest, PaymentMethodSpeiRecurrent, CustomerShippingContacts, PaymentMethodCardResponse, PaymentMethodCashResponse, SubscriptionRequest, UpdateCustomer, CustomerUpdateFiscalEntitiesRequest } from "../model";
+import { Customer, FiscalEntityRequest, PaymentMethodTokenRequest, PaymentMethodSpeiRecurrentResponse, CustomerShippingContactsRequest, PaymentMethodCardResponse, PaymentMethodCashResponse, SubscriptionRequest, UpdateCustomer, UpdateFiscalEntityRequest } from "../model";
 import { baseTest } from './base-test';
-
-interface IPaymentMethodSpeiRecurrentMock extends PaymentMethodSpeiRecurrent { 
-  reference: string;
-  object: string;
-  expires_at: string;
-}
-
-interface ICustomerPaymentMethodsRequestMock extends CustomerPaymentMethodsRequest {
-  token_id: string 
-}
 
 describe('CustomersApi', () => {
   let api: CustomersApi;
@@ -42,7 +32,7 @@ describe('CustomersApi', () => {
   describe('Create customer Fiscal entities', () => {
     it('should return a customer', async () => {
       const ID = "cus_2tXyF9BwPG14UMkkg";
-      var customer_fiscal_entity: CustomerFiscalEntitiesRequest = {
+      var customer_fiscal_entity: FiscalEntityRequest = {
         address: {
           street1: "Calle 123, int 404",
           city: "Cuauhtémoc",
@@ -115,57 +105,18 @@ describe('CustomersApi', () => {
     it('should return a customer spei', async () => {
       const id = "cus_2tYELwYTKSB5hDXsr";
 
-      const mockSpeiData: IPaymentMethodSpeiRecurrentMock = {
-        id: 'src_xxxxxxxxxxxx', 
-        type: "spei_recurrent",
-        reference: "646180111805035870",
-        object: "payment_source",
-        created_at: 1675715434, 
-        expires_at: "none" as any, 
-        parent_id: id,
-      };
+      const response = (await api.getCustomerById(id)).data;
+      const data = (response.payment_sources as unknown as { data: any[] }).data;
 
-      const mockCustomerResponse = {
-         id: id,
-         livemode: false, 
-         created_at: 1675715434,
-         name: 'Test Customer SPEI',
-         email: 'test.spei@example.com',
-         phone: '5555555555',
-         corporate: false,
-         object: 'customer',
-         payment_sources: { 
-           object: 'list',
-           has_more: false,
-           total: 1,
-           data: [mockSpeiData] 
-         }
-      };
-
-      const getCustomerByIdSpy = jest.spyOn(api, 'getCustomerById');
-      getCustomerByIdSpy.mockResolvedValue({ data: mockCustomerResponse } as any);
-      const responseWrapper = await api.getCustomerById(id);
-      const response = responseWrapper.data; 
-      const data_raw = (response?.payment_sources && typeof response.payment_sources === 'object' && 'data' in response.payment_sources)
-                   ? response.payment_sources.data
-                   : [];
-      const data = data_raw as PaymentMethodSpeiRecurrent[];
-      
-      expect(getCustomerByIdSpy).toHaveBeenCalledWith(id); 
       expect(response).toBeDefined();
       expect(response.id).toBe(id);
       expect(data).toHaveLength(1);
-      expect(data.length).toBeGreaterThan(0); 
       expect(data[0].type).toBe("spei_recurrent");
-      
-      const transfer = data[0] as PaymentMethodSpeiRecurrent; 
-      const transferMock = data[0] as IPaymentMethodSpeiRecurrentMock;
 
-      expect(transferMock.reference).toBe("646180111805035870");
-      expect(transfer.object).toBe("payment_source"); 
-      expect(transferMock.expires_at).toBe("none");
+      const transfer = data[0] as PaymentMethodSpeiRecurrentResponse;
 
-      getCustomerByIdSpy.mockRestore();
+      expect(transfer.reference).toBe("646180111805035870");
+      expect(transfer.object).toBe("payment_source");
     });
   });
   describe('Get customers', () => {
@@ -229,7 +180,7 @@ describe('CustomersApi', () => {
     it('should return a customer fiscal entities', async () => {
       const ID = "cus_2tYENskzTjjgkGQLt";
       const fiscal_entities_id = "fis_ent_2tYENskzTjjgkGQLr";
-      var update_customer_fiscal_entity: CustomerUpdateFiscalEntitiesRequest = {
+      var update_customer_fiscal_entity: UpdateFiscalEntityRequest = {
         tax_id: "tax_28764234"
       };
 
@@ -253,7 +204,7 @@ describe('CustomersApi', () => {
 
 function get_full_customer (): Customer {
 
-  var fiscal_entities: Array<CustomerFiscalEntitiesRequest> = [{
+  var fiscal_entities: Array<FiscalEntityRequest> = [{
     address: {
       street1: "Calle 123, int 404",
       street2: "Col. Condesa",
@@ -265,11 +216,11 @@ function get_full_customer (): Customer {
       external_number: "404",
     }
   }];
-  var payment_sources: Array<ICustomerPaymentMethodsRequestMock> = [{
+  var payment_sources: Array<PaymentMethodTokenRequest> = [{
     type: "card",
     token_id: "tok_2tXyExrU6U7yiaTto",
   }];
-  var shipping_contacts: Array<CustomerShippingContacts> = [{
+  var shipping_contacts: Array<CustomerShippingContactsRequest> = [{
     address: {
       street1: "Calle 123, int 404",
       country: "mexico",

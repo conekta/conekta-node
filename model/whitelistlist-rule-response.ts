@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface WhitelistlistRuleResponse
- */
 export interface WhitelistlistRuleResponse {
     /**
      * Whitelist rule id
-     * @type {string}
-     * @memberof WhitelistlistRuleResponse
      */
     'id'?: string;
     /**
      * field used for whitelists rule
-     * @type {string}
-     * @memberof WhitelistlistRuleResponse
      */
     'field'?: string;
     /**
      * value used for whitelists rule
-     * @type {string}
-     * @memberof WhitelistlistRuleResponse
      */
     'value'?: string;
     /**
      * use an description for whitelisted rule
-     * @type {string}
-     * @memberof WhitelistlistRuleResponse
      */
     'description'?: string;
 }

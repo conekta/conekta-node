@@ -28,7 +28,6 @@ import type { PaymentMethodPbbRequest } from './payment-method-pbb-request';
 
 /**
  * @type ChargeRequestPaymentMethod
- * @export
  */
 export type ChargeRequestPaymentMethod = PaymentMethodBnplRequest | PaymentMethodCardRequest | PaymentMethodGeneralRequest | PaymentMethodPbbRequest;
 

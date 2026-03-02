@@ -13,14 +13,40 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PaymentMethod } from './payment-method';
 
-/**
- * @type PaymentMethodBnplPayment
- * @export
- */
-export type PaymentMethodBnplPayment = PaymentMethod;
+export interface PaymentMethodBnplPayment {
+    'type'?: string;
+    'object': PaymentMethodBnplPaymentObjectEnum;
+    /**
+     * URL to redirect the customer after a canceled payment
+     */
+    'cancel_url'?: string;
+    /**
+     * Expiration date of the charge
+     */
+    'expires_at': number;
+    /**
+     * URL to redirect the customer after a failed payment
+     */
+    'failure_url'?: string;
+    /**
+     * Product type of the charge
+     */
+    'product_type': string;
+    /**
+     * URL to redirect the customer to complete the payment
+     */
+    'redirect_url'?: string;
+    /**
+     * URL to redirect the customer after a successful payment
+     */
+    'success_url'?: string;
+}
+
+export const PaymentMethodBnplPaymentObjectEnum = {
+    bnplPayment: 'bnpl_payment'
+} as const;
+
+export type PaymentMethodBnplPaymentObjectEnum = typeof PaymentMethodBnplPaymentObjectEnum[keyof typeof PaymentMethodBnplPaymentObjectEnum];
 
 

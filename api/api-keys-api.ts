@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -37,7 +37,6 @@ import type { GetApiKeysResponse } from '../model';
 import type { ModelError } from '../model';
 /**
  * ApiKeysApi - axios parameter creator
- * @export
  */
 export const ApiKeysApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -69,9 +68,8 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -117,8 +115,8 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -160,8 +158,8 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -222,8 +220,8 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['search'] = search;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -268,9 +266,8 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -290,7 +287,6 @@ export const ApiKeysApiAxiosParamCreator = function (configuration?: Configurati
 
 /**
  * ApiKeysApi - functional programming interface
- * @export
  */
 export const ApiKeysApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ApiKeysApiAxiosParamCreator(configuration)
@@ -377,7 +373,6 @@ export const ApiKeysApiFp = function(configuration?: Configuration) {
 
 /**
  * ApiKeysApi - factory interface
- * @export
  */
 export const ApiKeysApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ApiKeysApiFp(configuration)
@@ -449,8 +444,6 @@ export const ApiKeysApiFactory = function (configuration?: Configuration, basePa
 
 /**
  * ApiKeysApi - interface
- * @export
- * @interface ApiKeysApi
  */
 export interface ApiKeysApiInterface {
     /**
@@ -461,7 +454,6 @@ export interface ApiKeysApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ApiKeysApiInterface
      */
     createApiKey(apiKeyRequest: ApiKeyRequest, acceptLanguage?: CreateApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiKeyCreateResponse>;
 
@@ -472,7 +464,6 @@ export interface ApiKeysApiInterface {
      * @param {DeleteApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ApiKeysApiInterface
      */
     deleteApiKey(id: string, acceptLanguage?: DeleteApiKeyAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<DeleteApiKeysResponse>;
 
@@ -484,7 +475,6 @@ export interface ApiKeysApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ApiKeysApiInterface
      */
     getApiKey(id: string, acceptLanguage?: GetApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ApiKeyResponse>;
 
@@ -499,7 +489,6 @@ export interface ApiKeysApiInterface {
      * @param {string} [search] General search, e.g. by id, description, prefix
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ApiKeysApiInterface
      */
     getApiKeys(acceptLanguage?: GetApiKeysAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetApiKeysResponse>;
 
@@ -511,7 +500,6 @@ export interface ApiKeysApiInterface {
      * @param {ApiKeyUpdateRequest} [apiKeyUpdateRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ApiKeysApiInterface
      */
     updateApiKey(id: string, acceptLanguage?: UpdateApiKeyAcceptLanguageEnum, apiKeyUpdateRequest?: ApiKeyUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiKeyResponse>;
 
@@ -519,9 +507,6 @@ export interface ApiKeysApiInterface {
 
 /**
  * ApiKeysApi - object-oriented interface
- * @export
- * @class ApiKeysApi
- * @extends {BaseAPI}
  */
 export class ApiKeysApi extends BaseAPI implements ApiKeysApiInterface {
     /**
@@ -532,7 +517,6 @@ export class ApiKeysApi extends BaseAPI implements ApiKeysApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ApiKeysApi
      */
     public createApiKey(apiKeyRequest: ApiKeyRequest, acceptLanguage?: CreateApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ApiKeysApiFp(this.configuration).createApiKey(apiKeyRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -545,7 +529,6 @@ export class ApiKeysApi extends BaseAPI implements ApiKeysApiInterface {
      * @param {DeleteApiKeyAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ApiKeysApi
      */
     public deleteApiKey(id: string, acceptLanguage?: DeleteApiKeyAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return ApiKeysApiFp(this.configuration).deleteApiKey(id, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
@@ -559,7 +542,6 @@ export class ApiKeysApi extends BaseAPI implements ApiKeysApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ApiKeysApi
      */
     public getApiKey(id: string, acceptLanguage?: GetApiKeyAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return ApiKeysApiFp(this.configuration).getApiKey(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -576,7 +558,6 @@ export class ApiKeysApi extends BaseAPI implements ApiKeysApiInterface {
      * @param {string} [search] General search, e.g. by id, description, prefix
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ApiKeysApi
      */
     public getApiKeys(acceptLanguage?: GetApiKeysAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, next?: string, previous?: string, search?: string, options?: RawAxiosRequestConfig) {
         return ApiKeysApiFp(this.configuration).getApiKeys(acceptLanguage, xChildCompanyId, limit, next, previous, search, options).then((request) => request(this.axios, this.basePath));
@@ -590,48 +571,32 @@ export class ApiKeysApi extends BaseAPI implements ApiKeysApiInterface {
      * @param {ApiKeyUpdateRequest} [apiKeyUpdateRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ApiKeysApi
      */
     public updateApiKey(id: string, acceptLanguage?: UpdateApiKeyAcceptLanguageEnum, apiKeyUpdateRequest?: ApiKeyUpdateRequest, options?: RawAxiosRequestConfig) {
         return ApiKeysApiFp(this.configuration).updateApiKey(id, acceptLanguage, apiKeyUpdateRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const CreateApiKeyAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type CreateApiKeyAcceptLanguageEnum = typeof CreateApiKeyAcceptLanguageEnum[keyof typeof CreateApiKeyAcceptLanguageEnum];
-/**
- * @export
- */
 export const DeleteApiKeyAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type DeleteApiKeyAcceptLanguageEnum = typeof DeleteApiKeyAcceptLanguageEnum[keyof typeof DeleteApiKeyAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetApiKeyAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetApiKeyAcceptLanguageEnum = typeof GetApiKeyAcceptLanguageEnum[keyof typeof GetApiKeyAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetApiKeysAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetApiKeysAcceptLanguageEnum = typeof GetApiKeysAcceptLanguageEnum[keyof typeof GetApiKeysAcceptLanguageEnum];
-/**
- * @export
- */
 export const UpdateApiKeyAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

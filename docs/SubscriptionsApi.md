@@ -790,7 +790,7 @@ const { status, data } = await apiInstance.subscriptionResume(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **subscriptionUpdate**
-> SubscriptionResponse subscriptionUpdate(subscriptionUpdateRequest)
+> SubscriptionResponse subscriptionUpdate(updatesASubscription)
 
 Update a specific subscription
 
@@ -800,7 +800,7 @@ Update a specific subscription
 import {
     SubscriptionsApi,
     Configuration,
-    SubscriptionUpdateRequest
+    UpdatesASubscription
 } from 'conekta';
 
 const configuration = new Configuration();
@@ -808,14 +808,14 @@ const apiInstance = new SubscriptionsApi(configuration);
 
 let customerId: string; //Identifier of the customer resource (default to undefined)
 let id: string; //Identifier of the subscription resource (default to undefined)
-let subscriptionUpdateRequest: SubscriptionUpdateRequest; //requested field for update a subscription
+let updatesASubscription: UpdatesASubscription; //requested field for update a subscription
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
 let xChildCompanyId: string; //In the case of a holding company, the company id of the child company to which will process the request. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.subscriptionUpdate(
     customerId,
     id,
-    subscriptionUpdateRequest,
+    updatesASubscription,
     acceptLanguage,
     xChildCompanyId
 );
@@ -825,7 +825,7 @@ const { status, data } = await apiInstance.subscriptionUpdate(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **subscriptionUpdateRequest** | **SubscriptionUpdateRequest**| requested field for update a subscription | |
+| **updatesASubscription** | **UpdatesASubscription**| requested field for update a subscription | |
 | **customerId** | [**string**] | Identifier of the customer resource | defaults to undefined|
 | **id** | [**string**] | Identifier of the subscription resource | defaults to undefined|
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
@@ -977,15 +977,15 @@ const { status, data } = await apiInstance.subscriptionsRetry(
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  * Conekta-Media-Type -  <br>  |
+|**422** | parameter validation error |  -  |
 |**401** | authentication error |  -  |
 |**404** | not found entity |  -  |
-|**422** | parameter validation error |  -  |
 |**500** | internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateSubscription**
-> SubscriptionResponse updateSubscription(subscriptionUpdateRequest)
+> SubscriptionResponse updateSubscription(updatesASubscription)
 
 DEPRECATED: This endpoint will be removed in version 2.3.0. You can modify the subscription to change the plans that your customers consume
 
@@ -995,20 +995,20 @@ DEPRECATED: This endpoint will be removed in version 2.3.0. You can modify the s
 import {
     SubscriptionsApi,
     Configuration,
-    SubscriptionUpdateRequest
+    UpdatesASubscription
 } from 'conekta';
 
 const configuration = new Configuration();
 const apiInstance = new SubscriptionsApi(configuration);
 
 let id: string; //Identifier of the resource (default to undefined)
-let subscriptionUpdateRequest: SubscriptionUpdateRequest; //requested field for update a subscription
+let updatesASubscription: UpdatesASubscription; //requested field for update a subscription
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
 let xChildCompanyId: string; //In the case of a holding company, the company id of the child company to which will process the request. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.updateSubscription(
     id,
-    subscriptionUpdateRequest,
+    updatesASubscription,
     acceptLanguage,
     xChildCompanyId
 );
@@ -1018,7 +1018,7 @@ const { status, data } = await apiInstance.updateSubscription(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **subscriptionUpdateRequest** | **SubscriptionUpdateRequest**| requested field for update a subscription | |
+| **updatesASubscription** | **UpdatesASubscription**| requested field for update a subscription | |
 | **id** | [**string**] | Identifier of the resource | defaults to undefined|
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
 | **xChildCompanyId** | [**string**] | In the case of a holding company, the company id of the child company to which will process the request. | (optional) defaults to undefined|

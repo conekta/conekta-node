@@ -75,7 +75,7 @@ const { status, data } = await apiInstance.createCustomer(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createCustomerFiscalEntities**
-> CreateCustomerFiscalEntitiesResponse createCustomerFiscalEntities(customerFiscalEntitiesRequest)
+> CreateCustomerFiscalEntitiesResponse createCustomerFiscalEntities(fiscalEntityRequest)
 
 Create Fiscal entity resource that corresponds to a customer ID.
 
@@ -85,20 +85,20 @@ Create Fiscal entity resource that corresponds to a customer ID.
 import {
     CustomersApi,
     Configuration,
-    CustomerFiscalEntitiesRequest
+    FiscalEntityRequest
 } from 'conekta';
 
 const configuration = new Configuration();
 const apiInstance = new CustomersApi(configuration);
 
 let id: string; //Identifier of the resource (default to undefined)
-let customerFiscalEntitiesRequest: CustomerFiscalEntitiesRequest; //requested field for customer fiscal entities
+let fiscalEntityRequest: FiscalEntityRequest; //requested field for customer fiscal entities
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
 let xChildCompanyId: string; //In the case of a holding company, the company id of the child company to which will process the request. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.createCustomerFiscalEntities(
     id,
-    customerFiscalEntitiesRequest,
+    fiscalEntityRequest,
     acceptLanguage,
     xChildCompanyId
 );
@@ -108,7 +108,7 @@ const { status, data } = await apiInstance.createCustomerFiscalEntities(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **customerFiscalEntitiesRequest** | **CustomerFiscalEntitiesRequest**| requested field for customer fiscal entities | |
+| **fiscalEntityRequest** | **FiscalEntityRequest**| requested field for customer fiscal entities | |
 | **id** | [**string**] | Identifier of the resource | defaults to undefined|
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
 | **xChildCompanyId** | [**string**] | In the case of a holding company, the company id of the child company to which will process the request. | (optional) defaults to undefined|
@@ -394,7 +394,7 @@ const { status, data } = await apiInstance.updateCustomer(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateCustomerFiscalEntities**
-> UpdateCustomerFiscalEntitiesResponse updateCustomerFiscalEntities(customerUpdateFiscalEntitiesRequest)
+> UpdateCustomerFiscalEntitiesResponse updateCustomerFiscalEntities(updateFiscalEntityRequest)
 
 Update Fiscal Entity resource that corresponds to a customer ID.
 
@@ -404,7 +404,7 @@ Update Fiscal Entity resource that corresponds to a customer ID.
 import {
     CustomersApi,
     Configuration,
-    CustomerUpdateFiscalEntitiesRequest
+    UpdateFiscalEntityRequest
 } from 'conekta';
 
 const configuration = new Configuration();
@@ -412,14 +412,14 @@ const apiInstance = new CustomersApi(configuration);
 
 let id: string; //Identifier of the resource (default to undefined)
 let fiscalEntitiesId: string; //identifier (default to undefined)
-let customerUpdateFiscalEntitiesRequest: CustomerUpdateFiscalEntitiesRequest; //requested field for customer update fiscal entities
+let updateFiscalEntityRequest: UpdateFiscalEntityRequest; //requested field for customer update fiscal entities
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
 let xChildCompanyId: string; //In the case of a holding company, the company id of the child company to which will process the request. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.updateCustomerFiscalEntities(
     id,
     fiscalEntitiesId,
-    customerUpdateFiscalEntitiesRequest,
+    updateFiscalEntityRequest,
     acceptLanguage,
     xChildCompanyId
 );
@@ -429,7 +429,7 @@ const { status, data } = await apiInstance.updateCustomerFiscalEntities(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **customerUpdateFiscalEntitiesRequest** | **CustomerUpdateFiscalEntitiesRequest**| requested field for customer update fiscal entities | |
+| **updateFiscalEntityRequest** | **UpdateFiscalEntityRequest**| requested field for customer update fiscal entities | |
 | **id** | [**string**] | Identifier of the resource | defaults to undefined|
 | **fiscalEntitiesId** | [**string**] | identifier | defaults to undefined|
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|

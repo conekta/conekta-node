@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import type { CashAgreementsResponse } from './cash-agreements-response';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { PaymentMethodCardResponse } from './payment-method-card-response';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -24,15 +27,11 @@ import type { PaymentMethodCashRecurrentResponse } from './payment-method-cash-r
 import type { PaymentMethodCashResponse } from './payment-method-cash-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { PaymentMethodCashResponseAllOfAgreements } from './payment-method-cash-response-all-of-agreements';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PaymentMethodSpeiRecurrent } from './payment-method-spei-recurrent';
+import type { PaymentMethodSpeiRecurrentResponse } from './payment-method-spei-recurrent-response';
 
 /**
  * @type CustomerPaymentMethodsData
- * @export
  */
-export type CustomerPaymentMethodsData = { type: 'card' } & PaymentMethodCardResponse | { type: 'cash' } & PaymentMethodCashResponse | { type: 'cash_recurrent' } & PaymentMethodCashRecurrentResponse | { type: 'spei_recurrent' } & PaymentMethodSpeiRecurrent;
+export type CustomerPaymentMethodsData = { type: 'card' } & PaymentMethodCardResponse | { type: 'cash' } & PaymentMethodCashResponse | { type: 'cash_recurrent' } & PaymentMethodCashRecurrentResponse | { type: 'spei_recurrent' } & PaymentMethodSpeiRecurrentResponse;
 
 

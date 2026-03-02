@@ -15,16 +15,28 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ChargesOrderResponseAllOfData } from './charges-order-response-all-of-data';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Pagination } from './pagination';
+import type { ChargeResponse } from './charge-response';
 
 /**
- * @type ChargesOrderResponse
  * The charges associated with the order
- * @export
  */
-export type ChargesOrderResponse = Pagination;
-
+export interface ChargesOrderResponse {
+    /**
+     * Indicates if there are more pages to be requested
+     */
+    'has_more': boolean;
+    /**
+     * Object type, in this case is list
+     */
+    'object': string;
+    /**
+     * URL of the next page.
+     */
+    'next_page_url'?: string;
+    /**
+     * Url of the previous page.
+     */
+    'previous_page_url'?: string;
+    'data'?: Array<ChargeResponse>;
+}
 

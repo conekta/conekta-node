@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface CustomerAntifraudInfoResponse
- */
 export interface CustomerAntifraudInfoResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerAntifraudInfoResponse
-     */
     'first_paid_at'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerAntifraudInfoResponse
-     */
     'account_created_at'?: number;
 }
 

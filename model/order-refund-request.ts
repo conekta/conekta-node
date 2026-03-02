@@ -14,28 +14,14 @@
 
 
 
-/**
- * 
- * @export
- * @interface OrderRefundRequest
- */
 export interface OrderRefundRequest {
     /**
      * Amount to be refunded in cents
-     * @type {number}
-     * @memberof OrderRefundRequest
      */
     'amount': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof OrderRefundRequest
-     */
     'expires_at'?: number;
     /**
      * Reason for the refund
-     * @type {string}
-     * @memberof OrderRefundRequest
      */
     'reason': string;
 }

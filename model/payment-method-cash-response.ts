@@ -15,15 +15,22 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { PaymentMethodCashResponseAllOfAgreements } from './payment-method-cash-response-all-of-agreements';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PaymentMethodResponse } from './payment-method-response';
+import type { CashAgreementsResponse } from './cash-agreements-response';
 
-/**
- * @type PaymentMethodCashResponse
- * @export
- */
-export type PaymentMethodCashResponse = PaymentMethodResponse;
-
+export interface PaymentMethodCashResponse {
+    'type': string;
+    'id': string;
+    'object': string;
+    'created_at': number;
+    'parent_id'?: string;
+    'agreements'?: Array<CashAgreementsResponse>;
+    'reference'?: string;
+    'barcode'?: string;
+    /**
+     * URL to the barcode image, reference is the same as barcode
+     */
+    'barcode_url'?: string;
+    'expires_at'?: number;
+    'provider'?: string;
+}
 

@@ -1,7 +1,7 @@
 import { TokensApi } from "../api";
 import { baseTest } from "./base-test";
 import { Configuration } from "../configuration";
-import { Token } from "../model";
+import { TokenRequest } from "../model";
 
 describe("TokensApi", () => {
 
@@ -19,7 +19,7 @@ describe("TokensApi", () => {
 
   describe("Create Token", () => {
     it("should create a token", async () => {
-      const request: Token = {
+      const request: TokenRequest = {
         card: {
           number: "5475040095304607",
           exp_month: "12",

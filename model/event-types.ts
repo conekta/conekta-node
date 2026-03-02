@@ -16,8 +16,6 @@
 
 /**
  * It is a parameter that allows to identify in the response, the type of event that is being generated.
- * @export
- * @enum {string}
  */
 
 export const EventTypes = {

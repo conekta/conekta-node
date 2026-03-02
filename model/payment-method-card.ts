@@ -13,14 +13,51 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PaymentMethod } from './payment-method';
 
-/**
- * @type PaymentMethodCard
- * @export
- */
-export type PaymentMethodCard = PaymentMethod;
-
+export interface PaymentMethodCard {
+    'type'?: string;
+    'object': string;
+    /**
+     * Account type of the card
+     */
+    'account_type'?: string;
+    'auth_code'?: string;
+    /**
+     * Brand of the card
+     */
+    'brand'?: string;
+    /**
+     * Id sent for recurrent charges.
+     */
+    'contract_id'?: string;
+    /**
+     * Country of the card
+     */
+    'country'?: string;
+    /**
+     * Expiration month of the card
+     */
+    'exp_month'?: string;
+    /**
+     * Expiration year of the card
+     */
+    'exp_year'?: string;
+    'fraud_indicators'?: Array<any>;
+    /**
+     * Issuer of the card
+     */
+    'issuer'?: string;
+    /**
+     * Last 4 digits of the card
+     */
+    'last4'?: string;
+    /**
+     * Name of the cardholder
+     */
+    'name'?: string;
+    /**
+     * Optional field used to capture the customer\'s IP address for fraud prevention and security monitoring purposes
+     */
+    'customer_ip_address'?: string;
+}
 

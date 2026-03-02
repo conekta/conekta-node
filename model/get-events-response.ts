@@ -16,17 +16,24 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import type { EventResponse } from './event-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Page } from './page';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Pagination } from './pagination';
 
-/**
- * @type GetEventsResponse
- * @export
- */
-export type GetEventsResponse = Page & Pagination;
-
+export interface GetEventsResponse {
+    /**
+     * Indicates if there are more pages to be requested
+     */
+    'has_more': boolean;
+    /**
+     * Object type, in this case is list
+     */
+    'object': string;
+    /**
+     * URL of the next page.
+     */
+    'next_page_url'?: string;
+    /**
+     * Url of the previous page.
+     */
+    'previous_page_url'?: string;
+    'data'?: Array<EventResponse>;
+}
 

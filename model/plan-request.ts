@@ -16,68 +16,46 @@
 
 /**
  * a plan
- * @export
- * @interface PlanRequest
  */
 export interface PlanRequest {
     /**
      * The amount in cents that will be charged on the interval specified.
-     * @type {number}
-     * @memberof PlanRequest
      */
     'amount': number;
     /**
      * ISO 4217 for currencies, for the Mexican peso it is MXN/USD
-     * @type {string}
-     * @memberof PlanRequest
      */
     'currency'?: string;
     /**
      * Number of repetitions of the frequency NUMBER OF CHARGES TO BE MADE, considering the interval and frequency, this evolves over time, but is subject to the expiration count.
-     * @type {number}
-     * @memberof PlanRequest
      */
     'expiry_count'?: number;
     /**
      * Frequency of the charge, which together with the interval, can be every 3 weeks, every 4 months, every 2 years, every 5 fortnights
-     * @type {number}
-     * @memberof PlanRequest
      */
     'frequency': number;
     /**
      * internal reference id
-     * @type {string}
-     * @memberof PlanRequest
      */
     'id'?: string;
     /**
      * The interval of time between each charge.
-     * @type {string}
-     * @memberof PlanRequest
      */
     'interval': PlanRequestIntervalEnum;
     /**
      * The name of the plan.
-     * @type {string}
-     * @memberof PlanRequest
      */
     'name': string;
     /**
      * The number of days the customer will have a free trial.
-     * @type {number}
-     * @memberof PlanRequest
      */
     'trial_period_days'?: number;
     /**
      * (optional) Specifies the maximum number of retry attempts for a subscription payment before it is canceled.
-     * @type {number}
-     * @memberof PlanRequest
      */
     'max_retries'?: number;
     /**
      * (optional)  Defines the number of hours between subscription payment retry attempts.
-     * @type {number}
-     * @memberof PlanRequest
      */
     'retry_delay_hours'?: number;
 }

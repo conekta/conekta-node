@@ -16,14 +16,10 @@
 
 /**
  * requested field for update a charge
- * @export
- * @interface ChargeUpdateRequest
  */
 export interface ChargeUpdateRequest {
     /**
      * custom reference id
-     * @type {string}
-     * @memberof ChargeUpdateRequest
      */
     'reference_id'?: string;
 }

@@ -67,7 +67,7 @@ const { status, data } = await apiInstance.cancelPayoutOrderById(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createPayoutOrder**
-> PayoutOrderResponse createPayoutOrder(payoutOrder)
+> PayoutOrderResponse createPayoutOrder(payoutOrderRequest)
 
 Create a new payout order.
 
@@ -77,17 +77,17 @@ Create a new payout order.
 import {
     PayoutOrdersApi,
     Configuration,
-    PayoutOrder
+    PayoutOrderRequest
 } from 'conekta';
 
 const configuration = new Configuration();
 const apiInstance = new PayoutOrdersApi(configuration);
 
-let payoutOrder: PayoutOrder; //requested field for payout order
+let payoutOrderRequest: PayoutOrderRequest; //requested field for payout order
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
 
 const { status, data } = await apiInstance.createPayoutOrder(
-    payoutOrder,
+    payoutOrderRequest,
     acceptLanguage
 );
 ```
@@ -96,7 +96,7 @@ const { status, data } = await apiInstance.createPayoutOrder(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **payoutOrder** | **PayoutOrder**| requested field for payout order | |
+| **payoutOrderRequest** | **PayoutOrderRequest**| requested field for payout order | |
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
 
 

@@ -18,18 +18,17 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import type { LogResponse } from '../model';
+import type { LogResponseForRequest } from '../model';
 // @ts-ignore
-import type { LogsResponse } from '../model';
+import type { LogsResponseForRequest } from '../model';
 // @ts-ignore
 import type { ModelError } from '../model';
 /**
  * LogsApi - axios parameter creator
- * @export
  */
 export const LogsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -62,8 +61,8 @@ export const LogsApiAxiosParamCreator = function (configuration?: Configuration)
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -124,8 +123,8 @@ export const LogsApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['previous'] = previous;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -146,7 +145,6 @@ export const LogsApiAxiosParamCreator = function (configuration?: Configuration)
 
 /**
  * LogsApi - functional programming interface
- * @export
  */
 export const LogsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = LogsApiAxiosParamCreator(configuration)
@@ -160,7 +158,7 @@ export const LogsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getLogById(id: string, acceptLanguage?: GetLogByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LogResponse>> {
+        async getLogById(id: string, acceptLanguage?: GetLogByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LogResponseForRequest>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getLogById(id, acceptLanguage, xChildCompanyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['LogsApi.getLogById']?.[localVarOperationServerIndex]?.url;
@@ -178,7 +176,7 @@ export const LogsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LogsResponse>> {
+        async getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LogsResponseForRequest>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getLogs(acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['LogsApi.getLogs']?.[localVarOperationServerIndex]?.url;
@@ -189,7 +187,6 @@ export const LogsApiFp = function(configuration?: Configuration) {
 
 /**
  * LogsApi - factory interface
- * @export
  */
 export const LogsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = LogsApiFp(configuration)
@@ -203,7 +200,7 @@ export const LogsApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLogById(id: string, acceptLanguage?: GetLogByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogResponse> {
+        getLogById(id: string, acceptLanguage?: GetLogByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogResponseForRequest> {
             return localVarFp.getLogById(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -218,7 +215,7 @@ export const LogsApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogsResponse> {
+        getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogsResponseForRequest> {
             return localVarFp.getLogs(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
         },
     };
@@ -226,8 +223,6 @@ export const LogsApiFactory = function (configuration?: Configuration, basePath?
 
 /**
  * LogsApi - interface
- * @export
- * @interface LogsApi
  */
 export interface LogsApiInterface {
     /**
@@ -238,9 +233,8 @@ export interface LogsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof LogsApiInterface
      */
-    getLogById(id: string, acceptLanguage?: GetLogByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogResponse>;
+    getLogById(id: string, acceptLanguage?: GetLogByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogResponseForRequest>;
 
     /**
      * Get log details in the form of a list
@@ -253,17 +247,13 @@ export interface LogsApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof LogsApiInterface
      */
-    getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogsResponse>;
+    getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogsResponseForRequest>;
 
 }
 
 /**
  * LogsApi - object-oriented interface
- * @export
- * @class LogsApi
- * @extends {BaseAPI}
  */
 export class LogsApi extends BaseAPI implements LogsApiInterface {
     /**
@@ -274,7 +264,6 @@ export class LogsApi extends BaseAPI implements LogsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof LogsApi
      */
     public getLogById(id: string, acceptLanguage?: GetLogByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return LogsApiFp(this.configuration).getLogById(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -291,24 +280,17 @@ export class LogsApi extends BaseAPI implements LogsApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof LogsApi
      */
     public getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return LogsApiFp(this.configuration).getLogs(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const GetLogByIdAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetLogByIdAcceptLanguageEnum = typeof GetLogByIdAcceptLanguageEnum[keyof typeof GetLogByIdAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetLogsAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

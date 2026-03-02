@@ -15,18 +15,25 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Page } from './page';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Pagination } from './pagination';
-// May contain unused imports in some cases
-// @ts-ignore
 import type { PlanResponse } from './plan-response';
 
-/**
- * @type GetPlansResponse
- * @export
- */
-export type GetPlansResponse = Page & Pagination;
-
+export interface GetPlansResponse {
+    /**
+     * Indicates if there are more pages to be requested
+     */
+    'has_more': boolean;
+    /**
+     * Object type, in this case is list
+     */
+    'object': string;
+    /**
+     * URL of the next page.
+     */
+    'next_page_url'?: string;
+    /**
+     * Url of the previous page.
+     */
+    'previous_page_url'?: string;
+    'data'?: Array<PlanResponse>;
+}
 

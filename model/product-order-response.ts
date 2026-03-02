@@ -13,14 +13,43 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Product } from './product';
 
-/**
- * @type ProductOrderResponse
- * @export
- */
-export type ProductOrderResponse = Product;
-
+export interface ProductOrderResponse {
+    'antifraud_info'?: { [key: string]: any; };
+    /**
+     * The brand of the item.
+     */
+    'brand'?: string;
+    /**
+     * Short description of the item
+     */
+    'description'?: string;
+    /**
+     * It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters.
+     */
+    'metadata'?: { [key: string]: any; };
+    /**
+     * The name of the item. It will be displayed in the order.
+     */
+    'name': string;
+    /**
+     * The quantity of the item in the order.
+     */
+    'quantity': number;
+    /**
+     * The stock keeping unit for the item. It is used to identify the item in the order.
+     */
+    'sku'?: string;
+    /**
+     * List of tags for the item. It is used to identify the item in the order.
+     */
+    'tags'?: Array<string>;
+    /**
+     * The price of the item in cents.
+     */
+    'unit_price': number;
+    'id'?: string;
+    'object'?: string;
+    'parent_id'?: string;
+}
 

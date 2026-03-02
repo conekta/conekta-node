@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -26,14 +26,13 @@ import type { GetWebhooksResponse } from '../model';
 // @ts-ignore
 import type { ModelError } from '../model';
 // @ts-ignore
+import type { UpdateWebhook } from '../model';
+// @ts-ignore
 import type { WebhookRequest } from '../model';
 // @ts-ignore
 import type { WebhookResponse } from '../model';
-// @ts-ignore
-import type { WebhookUpdateRequest } from '../model';
 /**
  * WebhooksApi - axios parameter creator
- * @export
  */
 export const WebhooksApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -64,9 +63,8 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -109,8 +107,8 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -152,8 +150,8 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -219,8 +217,8 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['previous'] = previous;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -264,8 +262,8 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -282,17 +280,17 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
          * updates an existing webhook
          * @summary Update Webhook
          * @param {string} id Identifier of the resource
-         * @param {WebhookUpdateRequest} webhookUpdateRequest requested fields in order to update a webhook
+         * @param {UpdateWebhook} updateWebhook requested fields in order to update a webhook
          * @param {UpdateWebhookAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateWebhook: async (id: string, webhookUpdateRequest: WebhookUpdateRequest, acceptLanguage?: UpdateWebhookAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateWebhook: async (id: string, updateWebhook: UpdateWebhook, acceptLanguage?: UpdateWebhookAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateWebhook', 'id', id)
-            // verify required parameter 'webhookUpdateRequest' is not null or undefined
-            assertParamExists('updateWebhook', 'webhookUpdateRequest', webhookUpdateRequest)
+            // verify required parameter 'updateWebhook' is not null or undefined
+            assertParamExists('updateWebhook', 'updateWebhook', updateWebhook)
             const localVarPath = `/webhooks/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -310,9 +308,8 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -323,7 +320,7 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(webhookUpdateRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(updateWebhook, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -335,7 +332,6 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
 
 /**
  * WebhooksApi - functional programming interface
- * @export
  */
 export const WebhooksApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = WebhooksApiAxiosParamCreator(configuration)
@@ -420,14 +416,14 @@ export const WebhooksApiFp = function(configuration?: Configuration) {
          * updates an existing webhook
          * @summary Update Webhook
          * @param {string} id Identifier of the resource
-         * @param {WebhookUpdateRequest} webhookUpdateRequest requested fields in order to update a webhook
+         * @param {UpdateWebhook} updateWebhook requested fields in order to update a webhook
          * @param {UpdateWebhookAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateWebhook(id: string, webhookUpdateRequest: WebhookUpdateRequest, acceptLanguage?: UpdateWebhookAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateWebhook(id, webhookUpdateRequest, acceptLanguage, xChildCompanyId, options);
+        async updateWebhook(id: string, updateWebhook: UpdateWebhook, acceptLanguage?: UpdateWebhookAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateWebhook(id, updateWebhook, acceptLanguage, xChildCompanyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebhooksApi.updateWebhook']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -437,7 +433,6 @@ export const WebhooksApiFp = function(configuration?: Configuration) {
 
 /**
  * WebhooksApi - factory interface
- * @export
  */
 export const WebhooksApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = WebhooksApiFp(configuration)
@@ -507,22 +502,20 @@ export const WebhooksApiFactory = function (configuration?: Configuration, baseP
          * updates an existing webhook
          * @summary Update Webhook
          * @param {string} id Identifier of the resource
-         * @param {WebhookUpdateRequest} webhookUpdateRequest requested fields in order to update a webhook
+         * @param {UpdateWebhook} updateWebhook requested fields in order to update a webhook
          * @param {UpdateWebhookAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateWebhook(id: string, webhookUpdateRequest: WebhookUpdateRequest, acceptLanguage?: UpdateWebhookAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse> {
-            return localVarFp.updateWebhook(id, webhookUpdateRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
+        updateWebhook(id: string, updateWebhook: UpdateWebhook, acceptLanguage?: UpdateWebhookAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse> {
+            return localVarFp.updateWebhook(id, updateWebhook, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
  * WebhooksApi - interface
- * @export
- * @interface WebhooksApi
  */
 export interface WebhooksApiInterface {
     /**
@@ -532,7 +525,6 @@ export interface WebhooksApiInterface {
      * @param {CreateWebhookAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhooksApiInterface
      */
     createWebhook(webhookRequest: WebhookRequest, acceptLanguage?: CreateWebhookAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse>;
 
@@ -543,7 +535,6 @@ export interface WebhooksApiInterface {
      * @param {DeleteWebhookAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhooksApiInterface
      */
     deleteWebhook(id: string, acceptLanguage?: DeleteWebhookAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse>;
 
@@ -555,7 +546,6 @@ export interface WebhooksApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhooksApiInterface
      */
     getWebhook(id: string, acceptLanguage?: GetWebhookAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse>;
 
@@ -571,7 +561,6 @@ export interface WebhooksApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhooksApiInterface
      */
     getWebhooks(acceptLanguage?: GetWebhooksAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, url?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetWebhooksResponse>;
 
@@ -582,7 +571,6 @@ export interface WebhooksApiInterface {
      * @param {TestWebhookAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhooksApiInterface
      */
     testWebhook(id: string, acceptLanguage?: TestWebhookAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse>;
 
@@ -590,22 +578,18 @@ export interface WebhooksApiInterface {
      * updates an existing webhook
      * @summary Update Webhook
      * @param {string} id Identifier of the resource
-     * @param {WebhookUpdateRequest} webhookUpdateRequest requested fields in order to update a webhook
+     * @param {UpdateWebhook} updateWebhook requested fields in order to update a webhook
      * @param {UpdateWebhookAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhooksApiInterface
      */
-    updateWebhook(id: string, webhookUpdateRequest: WebhookUpdateRequest, acceptLanguage?: UpdateWebhookAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse>;
+    updateWebhook(id: string, updateWebhook: UpdateWebhook, acceptLanguage?: UpdateWebhookAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<WebhookResponse>;
 
 }
 
 /**
  * WebhooksApi - object-oriented interface
- * @export
- * @class WebhooksApi
- * @extends {BaseAPI}
  */
 export class WebhooksApi extends BaseAPI implements WebhooksApiInterface {
     /**
@@ -615,7 +599,6 @@ export class WebhooksApi extends BaseAPI implements WebhooksApiInterface {
      * @param {CreateWebhookAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhooksApi
      */
     public createWebhook(webhookRequest: WebhookRequest, acceptLanguage?: CreateWebhookAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return WebhooksApiFp(this.configuration).createWebhook(webhookRequest, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
@@ -628,7 +611,6 @@ export class WebhooksApi extends BaseAPI implements WebhooksApiInterface {
      * @param {DeleteWebhookAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhooksApi
      */
     public deleteWebhook(id: string, acceptLanguage?: DeleteWebhookAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return WebhooksApiFp(this.configuration).deleteWebhook(id, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
@@ -642,7 +624,6 @@ export class WebhooksApi extends BaseAPI implements WebhooksApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhooksApi
      */
     public getWebhook(id: string, acceptLanguage?: GetWebhookAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return WebhooksApiFp(this.configuration).getWebhook(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -660,7 +641,6 @@ export class WebhooksApi extends BaseAPI implements WebhooksApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhooksApi
      */
     public getWebhooks(acceptLanguage?: GetWebhooksAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, url?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return WebhooksApiFp(this.configuration).getWebhooks(acceptLanguage, xChildCompanyId, limit, search, url, next, previous, options).then((request) => request(this.axios, this.basePath));
@@ -673,7 +653,6 @@ export class WebhooksApi extends BaseAPI implements WebhooksApiInterface {
      * @param {TestWebhookAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhooksApi
      */
     public testWebhook(id: string, acceptLanguage?: TestWebhookAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return WebhooksApiFp(this.configuration).testWebhook(id, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
@@ -683,61 +662,42 @@ export class WebhooksApi extends BaseAPI implements WebhooksApiInterface {
      * updates an existing webhook
      * @summary Update Webhook
      * @param {string} id Identifier of the resource
-     * @param {WebhookUpdateRequest} webhookUpdateRequest requested fields in order to update a webhook
+     * @param {UpdateWebhook} updateWebhook requested fields in order to update a webhook
      * @param {UpdateWebhookAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhooksApi
      */
-    public updateWebhook(id: string, webhookUpdateRequest: WebhookUpdateRequest, acceptLanguage?: UpdateWebhookAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
-        return WebhooksApiFp(this.configuration).updateWebhook(id, webhookUpdateRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
+    public updateWebhook(id: string, updateWebhook: UpdateWebhook, acceptLanguage?: UpdateWebhookAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
+        return WebhooksApiFp(this.configuration).updateWebhook(id, updateWebhook, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const CreateWebhookAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type CreateWebhookAcceptLanguageEnum = typeof CreateWebhookAcceptLanguageEnum[keyof typeof CreateWebhookAcceptLanguageEnum];
-/**
- * @export
- */
 export const DeleteWebhookAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type DeleteWebhookAcceptLanguageEnum = typeof DeleteWebhookAcceptLanguageEnum[keyof typeof DeleteWebhookAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetWebhookAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetWebhookAcceptLanguageEnum = typeof GetWebhookAcceptLanguageEnum[keyof typeof GetWebhookAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetWebhooksAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetWebhooksAcceptLanguageEnum = typeof GetWebhooksAcceptLanguageEnum[keyof typeof GetWebhooksAcceptLanguageEnum];
-/**
- * @export
- */
 export const TestWebhookAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type TestWebhookAcceptLanguageEnum = typeof TestWebhookAcceptLanguageEnum[keyof typeof TestWebhookAcceptLanguageEnum];
-/**
- * @export
- */
 export const UpdateWebhookAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

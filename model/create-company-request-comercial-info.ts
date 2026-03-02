@@ -16,32 +16,22 @@
 
 /**
  * Commercial information for the company.
- * @export
- * @interface CreateCompanyRequestComercialInfo
  */
 export interface CreateCompanyRequestComercialInfo {
     /**
      * The company\'s website URL.
-     * @type {string}
-     * @memberof CreateCompanyRequestComercialInfo
      */
     'website'?: string;
     /**
      * The Merchant Category Code (MCC) for the company.
-     * @type {string}
-     * @memberof CreateCompanyRequestComercialInfo
      */
     'mcc'?: string;
     /**
      * Email address for merchant support.
-     * @type {string}
-     * @memberof CreateCompanyRequestComercialInfo
      */
     'merchant_support_email'?: string;
     /**
      * Phone number for merchant support.
-     * @type {string}
-     * @memberof CreateCompanyRequestComercialInfo
      */
     'merchant_support_phone'?: string;
 }

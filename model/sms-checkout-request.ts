@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface SmsCheckoutRequest
- */
 export interface SmsCheckoutRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof SmsCheckoutRequest
-     */
     'phonenumber': string;
 }
 

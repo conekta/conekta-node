@@ -15,15 +15,31 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CustomerShippingContacts } from './customer-shipping-contacts';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { CustomerShippingContactsAddress } from './customer-shipping-contacts-address';
+import type { CustomerShippingContactsRequestAddress } from './customer-shipping-contacts-request-address';
 
-/**
- * @type CustomerShippingContactsDataResponse
- * @export
- */
-export type CustomerShippingContactsDataResponse = CustomerShippingContacts;
-
+export interface CustomerShippingContactsDataResponse {
+    /**
+     * Phone contact
+     */
+    'phone'?: string;
+    /**
+     * Name of the person who will receive the order
+     */
+    'receiver'?: string;
+    /**
+     * The street names between which the order will be delivered.
+     */
+    'between_streets'?: string;
+    'address': CustomerShippingContactsRequestAddress;
+    'parent_id'?: string;
+    'default'?: boolean;
+    'deleted'?: boolean;
+    /**
+     * Metadata associated with the shipping contact
+     */
+    'metadata'?: { [key: string]: any; };
+    'id': string;
+    'object': string;
+    'created_at': number;
+}
 

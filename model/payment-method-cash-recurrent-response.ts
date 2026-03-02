@@ -15,16 +15,25 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { PaymentMethodCashResponse } from './payment-method-cash-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PaymentMethodCashResponseAllOfAgreements } from './payment-method-cash-response-all-of-agreements';
+import type { CashAgreementsResponse } from './cash-agreements-response';
 
 /**
- * @type PaymentMethodCashRecurrentResponse
  * Alias of cash response used when type=cash_recurrent
- * @export
  */
-export type PaymentMethodCashRecurrentResponse = PaymentMethodCashResponse;
-
+export interface PaymentMethodCashRecurrentResponse {
+    'type': string;
+    'id': string;
+    'object': string;
+    'created_at': number;
+    'parent_id'?: string;
+    'agreements'?: Array<CashAgreementsResponse>;
+    'reference'?: string;
+    'barcode'?: string;
+    /**
+     * URL to the barcode image, reference is the same as barcode
+     */
+    'barcode_url'?: string;
+    'expires_at'?: number;
+    'provider'?: string;
+}
 

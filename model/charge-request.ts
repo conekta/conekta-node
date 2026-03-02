@@ -19,26 +19,15 @@ import type { ChargeRequestPaymentMethod } from './charge-request-payment-method
 
 /**
  * The charges to be made
- * @export
- * @interface ChargeRequest
  */
 export interface ChargeRequest {
     /**
      * Amount to be charged in cents
-     * @type {number}
-     * @memberof ChargeRequest
      */
     'amount'?: number;
-    /**
-     * 
-     * @type {ChargeRequestPaymentMethod}
-     * @memberof ChargeRequest
-     */
     'payment_method': ChargeRequestPaymentMethod;
     /**
      * Custom reference to add to the charge
-     * @type {string}
-     * @memberof ChargeRequest
      */
     'reference_id'?: string;
 }

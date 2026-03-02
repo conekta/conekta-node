@@ -1,17 +1,9 @@
 import { ChargesApi } from "../api";
 import { baseTest } from "./base-test";
 import { Configuration } from "../configuration";
-import { ChargeRequest, ChargeUpdateRequest, PaymentMethodCash } from "../model";
+import { ChargeRequest, ChargeUpdateRequest, PaymentMethodCash, PaymentMethodBankTransfer } from "../model";
 
-interface IPaymentMethodMock extends PaymentMethodCash { 
-  barcode_url: string,
-  cashier_id: null,
-  auth_code: null,
-  store: null,
-  clabe: string,
-  bank: string,
-  reference: string,
-}
+
 
 describe('Charges API', () => {
 
@@ -37,7 +29,7 @@ describe('Charges API', () => {
       };
 
       const response = (await client.ordersCreateCharge(id, request)).data;
-      const payment_method = response.payment_method as IPaymentMethodMock
+      const payment_method = response.payment_method as PaymentMethodCash
 
       expect(response).toBeDefined();
       expect(response.amount).toEqual(request.amount);
@@ -55,7 +47,7 @@ describe('Charges API', () => {
       };
 
       const response = (await client.ordersCreateCharge(id, charge_request)).data;
-      const payment_method = response.payment_method as IPaymentMethodMock
+      const payment_method = response.payment_method as PaymentMethodCash
 
       expect(response).toBeDefined();
       expect(response.amount).toEqual(charge_request.amount);
@@ -78,7 +70,7 @@ describe('Charges API', () => {
       };
 
       const response = (await client.ordersCreateCharge(id, charge_request)).data;
-      const payment_method = response.payment_method as IPaymentMethodMock
+      const payment_method = response.payment_method as PaymentMethodBankTransfer
 
       expect(response).toBeDefined();
       expect(response.amount).toEqual(charge_request.amount);
@@ -104,7 +96,7 @@ describe('Charges API', () => {
       expect(data.length).toEqual(20);
       expect(response.has_more).toBeTruthy();
       expect(data[0].channel.id).toEqual("channel_2tqJMS7on7HBVqWKo");
-      expect((data[0].payment_method as IPaymentMethodMock).reference).toEqual("93003547316416");
+      expect((data[0].payment_method as PaymentMethodCash).reference).toEqual("93003547316416");
       expect(data[0].refunds).toBeNull();
       expect(data[0].reference_id).toBeNull();
     });

@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -27,7 +27,6 @@ import type { BalanceResponse } from '../model';
 import type { ModelError } from '../model';
 /**
  * BalancesApi - axios parameter creator
- * @export
  */
 export const BalancesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -55,8 +54,8 @@ export const BalancesApiAxiosParamCreator = function (configuration?: Configurat
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -74,7 +73,6 @@ export const BalancesApiAxiosParamCreator = function (configuration?: Configurat
 
 /**
  * BalancesApi - functional programming interface
- * @export
  */
 export const BalancesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = BalancesApiAxiosParamCreator(configuration)
@@ -97,7 +95,6 @@ export const BalancesApiFp = function(configuration?: Configuration) {
 
 /**
  * BalancesApi - factory interface
- * @export
  */
 export const BalancesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = BalancesApiFp(configuration)
@@ -117,8 +114,6 @@ export const BalancesApiFactory = function (configuration?: Configuration, baseP
 
 /**
  * BalancesApi - interface
- * @export
- * @interface BalancesApi
  */
 export interface BalancesApiInterface {
     /**
@@ -127,7 +122,6 @@ export interface BalancesApiInterface {
      * @param {GetBalanceAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof BalancesApiInterface
      */
     getBalance(acceptLanguage?: GetBalanceAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<BalanceResponse>;
 
@@ -135,9 +129,6 @@ export interface BalancesApiInterface {
 
 /**
  * BalancesApi - object-oriented interface
- * @export
- * @class BalancesApi
- * @extends {BaseAPI}
  */
 export class BalancesApi extends BaseAPI implements BalancesApiInterface {
     /**
@@ -146,16 +137,12 @@ export class BalancesApi extends BaseAPI implements BalancesApiInterface {
      * @param {GetBalanceAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof BalancesApi
      */
     public getBalance(acceptLanguage?: GetBalanceAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return BalancesApiFp(this.configuration).getBalance(acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const GetBalanceAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

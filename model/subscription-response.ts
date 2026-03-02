@@ -16,117 +16,28 @@
 
 /**
  * subscription model
- * @export
- * @interface SubscriptionResponse
  */
 export interface SubscriptionResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionResponse
-     */
-    'billing_cycle_start'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionResponse
-     */
-    'billing_cycle_end'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionResponse
-     */
-    'canceled_at'?: number | null;
+    'billing_cycle_start'?: number;
+    'billing_cycle_end'?: number;
+    'canceled_at'?: number;
     /**
      * Reason for cancellation. This field appears when the subscription status is \'canceled\'.
-     * @type {string}
-     * @memberof SubscriptionResponse
      */
     'canceled_reason'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionResponse
-     */
     'card_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionResponse
-     */
-    'charge_id'?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionResponse
-     */
+    'charge_id'?: string;
     'created_at'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionResponse
-     */
     'customer_custom_reference'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionResponse
-     */
     'customer_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionResponse
-     */
     'id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionResponse
-     */
     'last_billing_cycle_order_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionResponse
-     */
     'object'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionResponse
-     */
-    'paused_at'?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionResponse
-     */
+    'paused_at'?: number;
     'plan_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionResponse
-     */
     'status'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionResponse
-     */
     'subscription_start'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionResponse
-     */
-    'trial_start'?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionResponse
-     */
-    'trial_end'?: number | null;
+    'trial_start'?: number;
+    'trial_end'?: number;
 }
 

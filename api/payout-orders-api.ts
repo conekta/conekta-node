@@ -18,20 +18,19 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
 import type { ModelError } from '../model';
 // @ts-ignore
-import type { PayoutOrder } from '../model';
+import type { PayoutOrderRequest } from '../model';
 // @ts-ignore
 import type { PayoutOrderResponse } from '../model';
 // @ts-ignore
 import type { PayoutOrdersResponse } from '../model';
 /**
  * PayoutOrdersApi - axios parameter creator
- * @export
  */
 export const PayoutOrdersApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -63,8 +62,8 @@ export const PayoutOrdersApiAxiosParamCreator = function (configuration?: Config
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -80,14 +79,14 @@ export const PayoutOrdersApiAxiosParamCreator = function (configuration?: Config
         /**
          * Create a new payout order.
          * @summary Create payout order
-         * @param {PayoutOrder} payoutOrder requested field for payout order
+         * @param {PayoutOrderRequest} payoutOrderRequest requested field for payout order
          * @param {CreatePayoutOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createPayoutOrder: async (payoutOrder: PayoutOrder, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'payoutOrder' is not null or undefined
-            assertParamExists('createPayoutOrder', 'payoutOrder', payoutOrder)
+        createPayoutOrder: async (payoutOrderRequest: PayoutOrderRequest, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'payoutOrderRequest' is not null or undefined
+            assertParamExists('createPayoutOrder', 'payoutOrderRequest', payoutOrderRequest)
             const localVarPath = `/payout_orders`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -104,9 +103,8 @@ export const PayoutOrdersApiAxiosParamCreator = function (configuration?: Config
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -114,7 +112,7 @@ export const PayoutOrdersApiAxiosParamCreator = function (configuration?: Config
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(payoutOrder, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(payoutOrderRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -149,8 +147,8 @@ export const PayoutOrdersApiAxiosParamCreator = function (configuration?: Config
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -207,8 +205,8 @@ export const PayoutOrdersApiAxiosParamCreator = function (configuration?: Config
                 localVarQueryParameter['previous'] = previous;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -226,7 +224,6 @@ export const PayoutOrdersApiAxiosParamCreator = function (configuration?: Config
 
 /**
  * PayoutOrdersApi - functional programming interface
- * @export
  */
 export const PayoutOrdersApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = PayoutOrdersApiAxiosParamCreator(configuration)
@@ -248,13 +245,13 @@ export const PayoutOrdersApiFp = function(configuration?: Configuration) {
         /**
          * Create a new payout order.
          * @summary Create payout order
-         * @param {PayoutOrder} payoutOrder requested field for payout order
+         * @param {PayoutOrderRequest} payoutOrderRequest requested field for payout order
          * @param {CreatePayoutOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createPayoutOrder(payoutOrder: PayoutOrder, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PayoutOrderResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createPayoutOrder(payoutOrder, acceptLanguage, options);
+        async createPayoutOrder(payoutOrderRequest: PayoutOrderRequest, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PayoutOrderResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createPayoutOrder(payoutOrderRequest, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PayoutOrdersApi.createPayoutOrder']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -295,7 +292,6 @@ export const PayoutOrdersApiFp = function(configuration?: Configuration) {
 
 /**
  * PayoutOrdersApi - factory interface
- * @export
  */
 export const PayoutOrdersApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = PayoutOrdersApiFp(configuration)
@@ -314,13 +310,13 @@ export const PayoutOrdersApiFactory = function (configuration?: Configuration, b
         /**
          * Create a new payout order.
          * @summary Create payout order
-         * @param {PayoutOrder} payoutOrder requested field for payout order
+         * @param {PayoutOrderRequest} payoutOrderRequest requested field for payout order
          * @param {CreatePayoutOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createPayoutOrder(payoutOrder: PayoutOrder, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<PayoutOrderResponse> {
-            return localVarFp.createPayoutOrder(payoutOrder, acceptLanguage, options).then((request) => request(axios, basePath));
+        createPayoutOrder(payoutOrderRequest: PayoutOrderRequest, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<PayoutOrderResponse> {
+            return localVarFp.createPayoutOrder(payoutOrderRequest, acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * Gets a payout Order resource that corresponds to a payout order ID.
@@ -352,8 +348,6 @@ export const PayoutOrdersApiFactory = function (configuration?: Configuration, b
 
 /**
  * PayoutOrdersApi - interface
- * @export
- * @interface PayoutOrdersApi
  */
 export interface PayoutOrdersApiInterface {
     /**
@@ -363,20 +357,18 @@ export interface PayoutOrdersApiInterface {
      * @param {CancelPayoutOrderByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PayoutOrdersApiInterface
      */
     cancelPayoutOrderById(id: string, acceptLanguage?: CancelPayoutOrderByIdAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<PayoutOrderResponse>;
 
     /**
      * Create a new payout order.
      * @summary Create payout order
-     * @param {PayoutOrder} payoutOrder requested field for payout order
+     * @param {PayoutOrderRequest} payoutOrderRequest requested field for payout order
      * @param {CreatePayoutOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PayoutOrdersApiInterface
      */
-    createPayoutOrder(payoutOrder: PayoutOrder, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<PayoutOrderResponse>;
+    createPayoutOrder(payoutOrderRequest: PayoutOrderRequest, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<PayoutOrderResponse>;
 
     /**
      * Gets a payout Order resource that corresponds to a payout order ID.
@@ -385,7 +377,6 @@ export interface PayoutOrdersApiInterface {
      * @param {GetPayoutOrderByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PayoutOrdersApiInterface
      */
     getPayoutOrderById(id: string, acceptLanguage?: GetPayoutOrderByIdAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<PayoutOrderResponse>;
 
@@ -399,7 +390,6 @@ export interface PayoutOrdersApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PayoutOrdersApiInterface
      */
     getPayoutOrders(acceptLanguage?: GetPayoutOrdersAcceptLanguageEnum, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<PayoutOrdersResponse>;
 
@@ -407,9 +397,6 @@ export interface PayoutOrdersApiInterface {
 
 /**
  * PayoutOrdersApi - object-oriented interface
- * @export
- * @class PayoutOrdersApi
- * @extends {BaseAPI}
  */
 export class PayoutOrdersApi extends BaseAPI implements PayoutOrdersApiInterface {
     /**
@@ -419,7 +406,6 @@ export class PayoutOrdersApi extends BaseAPI implements PayoutOrdersApiInterface
      * @param {CancelPayoutOrderByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PayoutOrdersApi
      */
     public cancelPayoutOrderById(id: string, acceptLanguage?: CancelPayoutOrderByIdAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return PayoutOrdersApiFp(this.configuration).cancelPayoutOrderById(id, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
@@ -428,14 +414,13 @@ export class PayoutOrdersApi extends BaseAPI implements PayoutOrdersApiInterface
     /**
      * Create a new payout order.
      * @summary Create payout order
-     * @param {PayoutOrder} payoutOrder requested field for payout order
+     * @param {PayoutOrderRequest} payoutOrderRequest requested field for payout order
      * @param {CreatePayoutOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PayoutOrdersApi
      */
-    public createPayoutOrder(payoutOrder: PayoutOrder, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
-        return PayoutOrdersApiFp(this.configuration).createPayoutOrder(payoutOrder, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public createPayoutOrder(payoutOrderRequest: PayoutOrderRequest, acceptLanguage?: CreatePayoutOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
+        return PayoutOrdersApiFp(this.configuration).createPayoutOrder(payoutOrderRequest, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -445,7 +430,6 @@ export class PayoutOrdersApi extends BaseAPI implements PayoutOrdersApiInterface
      * @param {GetPayoutOrderByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PayoutOrdersApi
      */
     public getPayoutOrderById(id: string, acceptLanguage?: GetPayoutOrderByIdAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return PayoutOrdersApiFp(this.configuration).getPayoutOrderById(id, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
@@ -461,40 +445,27 @@ export class PayoutOrdersApi extends BaseAPI implements PayoutOrdersApiInterface
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PayoutOrdersApi
      */
     public getPayoutOrders(acceptLanguage?: GetPayoutOrdersAcceptLanguageEnum, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return PayoutOrdersApiFp(this.configuration).getPayoutOrders(acceptLanguage, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const CancelPayoutOrderByIdAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type CancelPayoutOrderByIdAcceptLanguageEnum = typeof CancelPayoutOrderByIdAcceptLanguageEnum[keyof typeof CancelPayoutOrderByIdAcceptLanguageEnum];
-/**
- * @export
- */
 export const CreatePayoutOrderAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type CreatePayoutOrderAcceptLanguageEnum = typeof CreatePayoutOrderAcceptLanguageEnum[keyof typeof CreatePayoutOrderAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetPayoutOrderByIdAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetPayoutOrderByIdAcceptLanguageEnum = typeof GetPayoutOrderByIdAcceptLanguageEnum[keyof typeof GetPayoutOrderByIdAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetPayoutOrdersAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

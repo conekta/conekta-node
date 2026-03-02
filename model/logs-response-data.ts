@@ -14,131 +14,26 @@
 
 
 
-/**
- * 
- * @export
- * @interface LogsResponseData
- */
 export interface LogsResponseData {
-    /**
-     * 
-     * @type {number}
-     * @memberof LogsResponseData
-     */
     'created_at'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof LogsResponseData
-     */
     'id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LogsResponseData
-     */
     'ip_address'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof LogsResponseData
-     */
     'livemode'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof LogsResponseData
-     */
-    'loggable_id'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof LogsResponseData
-     */
-    'loggable_type'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof LogsResponseData
-     */
+    'loggable_id'?: string;
+    'loggable_type'?: string;
     'method'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LogsResponseData
-     */
-    'oauth_token_id'?: string | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof LogsResponseData
-     */
+    'oauth_token_id'?: string;
     'query_string'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {string}
-     * @memberof LogsResponseData
-     */
     'related'?: string;
-    /**
-     * 
-     * @type {object}
-     * @memberof LogsResponseData
-     */
     'request_body'?: object;
-    /**
-     * 
-     * @type {{ [key: string]: string; }}
-     * @memberof LogsResponseData
-     */
     'request_headers'?: { [key: string]: string; };
-    /**
-     * 
-     * @type {object}
-     * @memberof LogsResponseData
-     */
     'response_body'?: object;
-    /**
-     * 
-     * @type {{ [key: string]: string; }}
-     * @memberof LogsResponseData
-     */
     'response_headers'?: { [key: string]: string; };
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof LogsResponseData
-     */
     'searchable_tags'?: Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof LogsResponseData
-     */
     'status'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LogsResponseData
-     */
     'updated_at'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LogsResponseData
-     */
     'url'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LogsResponseData
-     */
     'user_account_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LogsResponseData
-     */
     'version'?: string;
 }
 

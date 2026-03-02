@@ -13,14 +13,31 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { OrderDiscountLinesRequest } from './order-discount-lines-request';
 
-/**
- * @type DiscountLinesResponse
- * @export
- */
-export type DiscountLinesResponse = OrderDiscountLinesRequest;
-
+export interface DiscountLinesResponse {
+    /**
+     * The amount to be deducted from the total sum of all payments, in cents.
+     */
+    'amount': number;
+    /**
+     * Discount code.
+     */
+    'code': string;
+    /**
+     * It can be \'loyalty\', \'campaign\', \'coupon\' o \'sign\'
+     */
+    'type': string;
+    /**
+     * The discount line id
+     */
+    'id': string;
+    /**
+     * The object name
+     */
+    'object': string;
+    /**
+     * The order id
+     */
+    'parent_id': string;
+}
 

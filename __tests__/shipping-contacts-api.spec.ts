@@ -1,6 +1,6 @@
 import { ShippingContactsApi } from "../api";
 import { Configuration } from "../configuration";
-import { CustomerShippingContacts, CustomerUpdateShippingContacts } from "../model";
+import { CustomerShippingContactsRequest, CustomerUpdateShippingContactsRequest } from "../model";
 import { baseTest } from "./base-test";
 
 describe("shipping contacts", () => {
@@ -19,7 +19,7 @@ describe("shipping contacts", () => {
   describe("create shipping contact", () => {
     it("should create shipping contact", async () => {
       const id = "cus_2tXyF9BwPG14UMkkg";
-      const request: CustomerShippingContacts = {
+      const request: CustomerShippingContactsRequest = {
         address: {
           street1: "Calle 100",
           city: "mexico",
@@ -44,7 +44,7 @@ describe("shipping contacts", () => {
     it("should update shipping contact", async () => {
       const id = "cus_2tZWxbTPtQgGJGh8P";
       const shipping_contact_id = "ship_cont_2tZWzJPBf87C6TcoQ";
-      const request: CustomerUpdateShippingContacts = {
+      const request: CustomerUpdateShippingContactsRequest = {
         phone: "3143145050",
       }
 

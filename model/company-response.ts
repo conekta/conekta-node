@@ -15,80 +15,53 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CompanyResponseDocumentsInner } from './company-response-documents-inner';
+import type { CompanyDocumentResponse } from './company-document-response';
 
-/**
- * 
- * @export
- * @interface CompanyResponse
- */
 export interface CompanyResponse {
     /**
      * The unique identifier for the company.
-     * @type {string}
-     * @memberof CompanyResponse
      */
     'id': string;
     /**
      * The name of the company.
-     * @type {string}
-     * @memberof CompanyResponse
      */
     'name': string;
     /**
      * Indicates if the company is active.
-     * @type {boolean}
-     * @memberof CompanyResponse
      */
     'active': boolean;
     /**
      * The current status of the company\'s account.
-     * @type {string}
-     * @memberof CompanyResponse
      */
     'account_status': string;
     /**
      * The identifier of the parent company, if any.
-     * @type {string}
-     * @memberof CompanyResponse
      */
-    'parent_company_id'?: string | null;
+    'parent_company_id'?: string;
     /**
      * The current status of the company\'s onboarding process.
-     * @type {string}
-     * @memberof CompanyResponse
      */
     'onboarding_status': string;
     /**
      * A list of documents related to the company.
-     * @type {Array<CompanyResponseDocumentsInner>}
-     * @memberof CompanyResponse
      */
-    'documents': Array<CompanyResponseDocumentsInner>;
+    'documents': Array<CompanyDocumentResponse>;
     /**
      * Timestamp of when the company was created.
-     * @type {number}
-     * @memberof CompanyResponse
      */
     'created_at': number;
     /**
      * The type of object, typically \"company\".
-     * @type {string}
-     * @memberof CompanyResponse
      */
     'object': string;
     /**
      * Indicates if 3DS authentication is enabled for the company.
-     * @type {boolean}
-     * @memberof CompanyResponse
      */
     'three_ds_enabled'?: boolean;
     /**
      * The 3DS mode for the company, either \'smart\' or \'strict\'. This property is only applicable when three_ds_enabled is true. When three_ds_enabled is false, this field will be null.
-     * @type {string}
-     * @memberof CompanyResponse
      */
-    'three_ds_mode'?: CompanyResponseThreeDsModeEnum | null;
+    'three_ds_mode'?: CompanyResponseThreeDsModeEnum;
 }
 
 export const CompanyResponseThreeDsModeEnum = {

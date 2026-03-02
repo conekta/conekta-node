@@ -12,12 +12,11 @@
  * Do not edit the class manually.
  */
 
-
 import type { Configuration } from "./configuration";
 import type { RequestArgs } from "./base";
 import type { AxiosInstance, AxiosResponse } from 'axios';
 import { RequiredError } from "./base";
-import { arch, platform, release } from 'os';
+import {arch, platform, release}  from 'os';
 import * as fs from 'fs';
 import * as https from 'https';
 import * as path from 'path';
@@ -32,12 +31,12 @@ export const DUMMY_BASE_URL = 'https://example.com'
  * @export
  */
 export const conektaHeaders = {
-    bindings_version: ['Conekta::', "7.0.8"].join(''),
+    bindings_version: ['Conekta::', "8.0.0"].join(''),
     lang: 'node',
     lang_version: process.version,
     publisher: 'conekta',
     uname: [arch, platform, release].join(' ')
-}
+  }
 
 /**
  *
@@ -105,17 +104,17 @@ function setFlattenedQueryParams(urlSearchParams: URLSearchParams, parameter: an
     if (typeof parameter === "object") {
         if (Array.isArray(parameter)) {
             (parameter as any[]).forEach(item => setFlattenedQueryParams(urlSearchParams, item, key));
-        }
+        } 
         else {
-            Object.keys(parameter).forEach(currentKey =>
+            Object.keys(parameter).forEach(currentKey => 
                 setFlattenedQueryParams(urlSearchParams, parameter[currentKey], `${key}${key !== '' ? '.' : ''}${currentKey}`)
             );
         }
-    }
+    } 
     else {
         if (urlSearchParams.has(key)) {
             urlSearchParams.append(key, parameter);
-        }
+        } 
         else {
             urlSearchParams.set(key, parameter);
         }
@@ -168,7 +167,7 @@ export const createRequestFunction = function (axiosArgs: RequestArgs, globalAxi
                 rejectUnauthorized: false
             })
         }
-        const axiosRequestArgs = { ...axiosArgs.options, url: (axios.defaults.baseURL ? '' : configuration?.basePath ?? basePath) + axiosArgs.url };
+        const axiosRequestArgs = {...axiosArgs.options, url: (axios.defaults.baseURL ? '' : configuration?.basePath ?? basePath) + axiosArgs.url};
         return axios.request<T, R>(axiosRequestArgs);
     };
 }
@@ -177,7 +176,7 @@ export const createRequestFunction = function (axiosArgs: RequestArgs, globalAxi
  * @export
  */
 export const setCommonHeaders = async function (object: any) {
-    object["User-Agent"] = "Conekta/v2 NodeBindings/" + "7.0.8";
+    object["User-Agent"] = "Conekta/v2 NodeBindings/" + "8.0.0";
     object["X-Conekta-Client-User-Agent"] = JSON.stringify(conektaHeaders);
     object["Accept"] = "application/vnd.conekta-v2.2.0+json";
 }

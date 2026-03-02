@@ -19,87 +19,73 @@ import type { CheckoutOrderTemplate } from './checkout-order-template';
 
 /**
  * It is a sub-resource of the Order model that can be stipulated in order to configure its corresponding checkout
- * @export
- * @interface Checkout
  */
 export interface Checkout {
     /**
      * Those are the payment methods that will be available for the link
-     * @type {Array<string>}
-     * @memberof Checkout
      */
     'allowed_payment_methods': Array<string>;
     /**
-     * It is the time when the link will expire. It is expressed in seconds since the Unix epoch. The valid range is from 2 to 365 days (the valid range will be taken from the next day of the creation date at 00:01 hrs) 
-     * @type {number}
-     * @memberof Checkout
+     * List of card networks to exclude from the checkout. This field is only applicable for card payments.
+     */
+    'exclude_card_networks'?: Array<CheckoutExcludeCardNetworksEnum>;
+    /**
+     * It is the time when the link will expire.  It is expressed in seconds since the Unix epoch. The valid range is from 10 minutes to 365 days from the creation date. 
      */
     'expires_at': number;
     /**
      * This flag allows you to specify if months without interest will be active.
-     * @type {boolean}
-     * @memberof Checkout
      */
     'monthly_installments_enabled'?: boolean;
     /**
      * This field allows you to specify the number of months without interest.
-     * @type {Array<number>}
-     * @memberof Checkout
      */
     'monthly_installments_options'?: Array<number>;
     /**
      * Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null.
-     * @type {string}
-     * @memberof Checkout
      */
-    'three_ds_mode'?: string | null;
+    'three_ds_mode'?: string;
     /**
      * Reason for charge
-     * @type {string}
-     * @memberof Checkout
      */
     'name': string;
     /**
      * This flag allows you to fill in the shipping information at checkout.
-     * @type {boolean}
-     * @memberof Checkout
      */
     'needs_shipping_contact'?: boolean;
     /**
      * This flag allows you to specify if the link will be on demand.
-     * @type {boolean}
-     * @memberof Checkout
      */
-    'on_demand_enabled'?: boolean | null;
+    'on_demand_enabled'?: boolean;
     /**
      * It is a list of plan IDs that will be associated with the order.
-     * @type {Array<string>}
-     * @memberof Checkout
      */
     'plan_ids'?: Array<string>;
-    /**
-     * 
-     * @type {CheckoutOrderTemplate}
-     * @memberof Checkout
-     */
     'order_template': CheckoutOrderTemplate;
     /**
      * It is the number of payments that can be made through the link.
-     * @type {number}
-     * @memberof Checkout
      */
     'payments_limit_count'?: number;
     /**
+     * The URL to redirect to after a successful payment.
+     */
+    'success_url'?: string;
+    /**
      * false: single use. true: multiple payments
-     * @type {boolean}
-     * @memberof Checkout
      */
     'recurrent': boolean;
     /**
      * It is the type of link that will be created. It must be a valid type.
-     * @type {string}
-     * @memberof Checkout
      */
     'type': string;
 }
+
+export const CheckoutExcludeCardNetworksEnum = {
+    visa: 'visa',
+    mastercard: 'mastercard',
+    amex: 'amex'
+} as const;
+
+export type CheckoutExcludeCardNetworksEnum = typeof CheckoutExcludeCardNetworksEnum[keyof typeof CheckoutExcludeCardNetworksEnum];
+
 

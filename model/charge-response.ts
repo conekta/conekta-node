@@ -23,118 +23,41 @@ import type { ChargeResponsePaymentMethod } from './charge-response-payment-meth
 // @ts-ignore
 import type { ChargeResponseRefunds } from './charge-response-refunds';
 
-/**
- * 
- * @export
- * @interface ChargeResponse
- */
 export interface ChargeResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof ChargeResponse
-     */
     'amount': number;
-    /**
-     * 
-     * @type {ChargeResponseChannel}
-     * @memberof ChargeResponse
-     */
     'channel'?: ChargeResponseChannel;
-    /**
-     * 
-     * @type {number}
-     * @memberof ChargeResponse
-     */
     'created_at': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeResponse
-     */
     'currency': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeResponse
-     */
     'customer_id'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeResponse
-     */
     'description'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeResponse
-     */
     'device_fingerprint'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeResponse
-     */
     'failure_code'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeResponse
-     */
     'failure_message'?: string;
     /**
      * Charge ID
-     * @type {string}
-     * @memberof ChargeResponse
      */
     'id': string;
     /**
      * Whether the charge was made in live mode or not
-     * @type {boolean}
-     * @memberof ChargeResponse
      */
     'livemode': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChargeResponse
-     */
     'object': string;
     /**
      * Order ID
-     * @type {string}
-     * @memberof ChargeResponse
      */
     'order_id': string;
     /**
-     * Payment date
-     * @type {number}
-     * @memberof ChargeResponse
+     * charge Payment date
      */
-    'paid_at'?: number | null;
-    /**
-     * 
-     * @type {ChargeResponsePaymentMethod}
-     * @memberof ChargeResponse
-     */
+    'paid_at'?: number;
     'payment_method'?: ChargeResponsePaymentMethod;
     /**
      * Reference ID of the charge
-     * @type {string}
-     * @memberof ChargeResponse
      */
-    'reference_id'?: string | null;
-    /**
-     * 
-     * @type {ChargeResponseRefunds}
-     * @memberof ChargeResponse
-     */
-    'refunds'?: ChargeResponseRefunds | null;
+    'reference_id'?: string;
+    'refunds'?: ChargeResponseRefunds;
     /**
      * Charge status
-     * @type {string}
-     * @memberof ChargeResponse
      */
     'status': string;
 }

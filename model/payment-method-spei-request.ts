@@ -13,14 +13,12 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { CustomerPaymentMethodRequest } from './customer-payment-method-request';
 
-/**
- * @type PaymentMethodSpeiRequest
- * @export
- */
-export type PaymentMethodSpeiRequest = CustomerPaymentMethodRequest;
-
+export interface PaymentMethodSpeiRequest {
+    /**
+     * Type of payment method
+     */
+    'type': string;
+    'expires_at'?: number;
+}
 

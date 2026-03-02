@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -33,7 +33,6 @@ import type { OrderDiscountLinesRequest } from '../model';
 import type { UpdateOrderDiscountLinesRequest } from '../model';
 /**
  * DiscountsApi - axios parameter creator
- * @export
  */
 export const DiscountsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -69,9 +68,8 @@ export const DiscountsApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -122,8 +120,8 @@ export const DiscountsApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -172,8 +170,8 @@ export const DiscountsApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -238,8 +236,8 @@ export const DiscountsApiAxiosParamCreator = function (configuration?: Configura
                 localVarQueryParameter['previous'] = previous;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -291,9 +289,8 @@ export const DiscountsApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -316,7 +313,6 @@ export const DiscountsApiAxiosParamCreator = function (configuration?: Configura
 
 /**
  * DiscountsApi - functional programming interface
- * @export
  */
 export const DiscountsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = DiscountsApiAxiosParamCreator(configuration)
@@ -410,7 +406,6 @@ export const DiscountsApiFp = function(configuration?: Configuration) {
 
 /**
  * DiscountsApi - factory interface
- * @export
  */
 export const DiscountsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = DiscountsApiFp(configuration)
@@ -489,8 +484,6 @@ export const DiscountsApiFactory = function (configuration?: Configuration, base
 
 /**
  * DiscountsApi - interface
- * @export
- * @interface DiscountsApi
  */
 export interface DiscountsApiInterface {
     /**
@@ -502,7 +495,6 @@ export interface DiscountsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DiscountsApiInterface
      */
     ordersCreateDiscountLine(id: string, orderDiscountLinesRequest: OrderDiscountLinesRequest, acceptLanguage?: OrdersCreateDiscountLineAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<DiscountLinesResponse>;
 
@@ -515,7 +507,6 @@ export interface DiscountsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DiscountsApiInterface
      */
     ordersDeleteDiscountLines(id: string, discountLinesId: string, acceptLanguage?: OrdersDeleteDiscountLinesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<DiscountLinesResponse>;
 
@@ -528,7 +519,6 @@ export interface DiscountsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DiscountsApiInterface
      */
     ordersGetDiscountLine(id: string, discountLinesId: string, acceptLanguage?: OrdersGetDiscountLineAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<DiscountLinesResponse>;
 
@@ -544,7 +534,6 @@ export interface DiscountsApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DiscountsApiInterface
      */
     ordersGetDiscountLines(id: string, acceptLanguage?: OrdersGetDiscountLinesAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetOrderDiscountLinesResponse>;
 
@@ -558,7 +547,6 @@ export interface DiscountsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DiscountsApiInterface
      */
     ordersUpdateDiscountLines(id: string, discountLinesId: string, updateOrderDiscountLinesRequest: UpdateOrderDiscountLinesRequest, acceptLanguage?: OrdersUpdateDiscountLinesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<DiscountLinesResponse>;
 
@@ -566,9 +554,6 @@ export interface DiscountsApiInterface {
 
 /**
  * DiscountsApi - object-oriented interface
- * @export
- * @class DiscountsApi
- * @extends {BaseAPI}
  */
 export class DiscountsApi extends BaseAPI implements DiscountsApiInterface {
     /**
@@ -580,7 +565,6 @@ export class DiscountsApi extends BaseAPI implements DiscountsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DiscountsApi
      */
     public ordersCreateDiscountLine(id: string, orderDiscountLinesRequest: OrderDiscountLinesRequest, acceptLanguage?: OrdersCreateDiscountLineAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return DiscountsApiFp(this.configuration).ordersCreateDiscountLine(id, orderDiscountLinesRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -595,7 +579,6 @@ export class DiscountsApi extends BaseAPI implements DiscountsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DiscountsApi
      */
     public ordersDeleteDiscountLines(id: string, discountLinesId: string, acceptLanguage?: OrdersDeleteDiscountLinesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return DiscountsApiFp(this.configuration).ordersDeleteDiscountLines(id, discountLinesId, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -610,7 +593,6 @@ export class DiscountsApi extends BaseAPI implements DiscountsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DiscountsApi
      */
     public ordersGetDiscountLine(id: string, discountLinesId: string, acceptLanguage?: OrdersGetDiscountLineAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return DiscountsApiFp(this.configuration).ordersGetDiscountLine(id, discountLinesId, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -628,7 +610,6 @@ export class DiscountsApi extends BaseAPI implements DiscountsApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DiscountsApi
      */
     public ordersGetDiscountLines(id: string, acceptLanguage?: OrdersGetDiscountLinesAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return DiscountsApiFp(this.configuration).ordersGetDiscountLines(id, acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
@@ -644,48 +625,32 @@ export class DiscountsApi extends BaseAPI implements DiscountsApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DiscountsApi
      */
     public ordersUpdateDiscountLines(id: string, discountLinesId: string, updateOrderDiscountLinesRequest: UpdateOrderDiscountLinesRequest, acceptLanguage?: OrdersUpdateDiscountLinesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return DiscountsApiFp(this.configuration).ordersUpdateDiscountLines(id, discountLinesId, updateOrderDiscountLinesRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const OrdersCreateDiscountLineAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type OrdersCreateDiscountLineAcceptLanguageEnum = typeof OrdersCreateDiscountLineAcceptLanguageEnum[keyof typeof OrdersCreateDiscountLineAcceptLanguageEnum];
-/**
- * @export
- */
 export const OrdersDeleteDiscountLinesAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type OrdersDeleteDiscountLinesAcceptLanguageEnum = typeof OrdersDeleteDiscountLinesAcceptLanguageEnum[keyof typeof OrdersDeleteDiscountLinesAcceptLanguageEnum];
-/**
- * @export
- */
 export const OrdersGetDiscountLineAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type OrdersGetDiscountLineAcceptLanguageEnum = typeof OrdersGetDiscountLineAcceptLanguageEnum[keyof typeof OrdersGetDiscountLineAcceptLanguageEnum];
-/**
- * @export
- */
 export const OrdersGetDiscountLinesAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type OrdersGetDiscountLinesAcceptLanguageEnum = typeof OrdersGetDiscountLinesAcceptLanguageEnum[keyof typeof OrdersGetDiscountLinesAcceptLanguageEnum];
-/**
- * @export
- */
 export const OrdersUpdateDiscountLinesAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

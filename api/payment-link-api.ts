@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -35,7 +35,6 @@ import type { ModelError } from '../model';
 import type { SmsCheckoutRequest } from '../model';
 /**
  * PaymentLinkApi - axios parameter creator
- * @export
  */
 export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -68,8 +67,8 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -113,9 +112,8 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -165,9 +163,8 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -214,8 +211,8 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -276,8 +273,8 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
                 localVarQueryParameter['previous'] = previous;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
-    
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
             }
@@ -325,9 +322,8 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
             if (acceptLanguage != null) {
                 localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
@@ -350,7 +346,6 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
 
 /**
  * PaymentLinkApi - functional programming interface
- * @export
  */
 export const PaymentLinkApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = PaymentLinkApiAxiosParamCreator(configuration)
@@ -455,7 +450,6 @@ export const PaymentLinkApiFp = function(configuration?: Configuration) {
 
 /**
  * PaymentLinkApi - factory interface
- * @export
  */
 export const PaymentLinkApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = PaymentLinkApiFp(configuration)
@@ -542,8 +536,6 @@ export const PaymentLinkApiFactory = function (configuration?: Configuration, ba
 
 /**
  * PaymentLinkApi - interface
- * @export
- * @interface PaymentLinkApi
  */
 export interface PaymentLinkApiInterface {
     /**
@@ -554,7 +546,6 @@ export interface PaymentLinkApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentLinkApiInterface
      */
     cancelCheckout(id: string, acceptLanguage?: CancelCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutResponse>;
 
@@ -566,7 +557,6 @@ export interface PaymentLinkApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentLinkApiInterface
      */
     createCheckout(checkout: Checkout, acceptLanguage?: CreateCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutResponse>;
 
@@ -579,7 +569,6 @@ export interface PaymentLinkApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentLinkApiInterface
      */
     emailCheckout(id: string, emailCheckoutRequest: EmailCheckoutRequest, acceptLanguage?: EmailCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutResponse>;
 
@@ -591,7 +580,6 @@ export interface PaymentLinkApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentLinkApiInterface
      */
     getCheckout(id: string, acceptLanguage?: GetCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutResponse>;
 
@@ -606,7 +594,6 @@ export interface PaymentLinkApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentLinkApiInterface
      */
     getCheckouts(acceptLanguage?: GetCheckoutsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutsResponse>;
 
@@ -619,7 +606,6 @@ export interface PaymentLinkApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentLinkApiInterface
      */
     smsCheckout(id: string, smsCheckoutRequest: SmsCheckoutRequest, acceptLanguage?: SmsCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutResponse>;
 
@@ -627,9 +613,6 @@ export interface PaymentLinkApiInterface {
 
 /**
  * PaymentLinkApi - object-oriented interface
- * @export
- * @class PaymentLinkApi
- * @extends {BaseAPI}
  */
 export class PaymentLinkApi extends BaseAPI implements PaymentLinkApiInterface {
     /**
@@ -640,7 +623,6 @@ export class PaymentLinkApi extends BaseAPI implements PaymentLinkApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentLinkApi
      */
     public cancelCheckout(id: string, acceptLanguage?: CancelCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return PaymentLinkApiFp(this.configuration).cancelCheckout(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -654,7 +636,6 @@ export class PaymentLinkApi extends BaseAPI implements PaymentLinkApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentLinkApi
      */
     public createCheckout(checkout: Checkout, acceptLanguage?: CreateCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return PaymentLinkApiFp(this.configuration).createCheckout(checkout, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -669,7 +650,6 @@ export class PaymentLinkApi extends BaseAPI implements PaymentLinkApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentLinkApi
      */
     public emailCheckout(id: string, emailCheckoutRequest: EmailCheckoutRequest, acceptLanguage?: EmailCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return PaymentLinkApiFp(this.configuration).emailCheckout(id, emailCheckoutRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -683,7 +663,6 @@ export class PaymentLinkApi extends BaseAPI implements PaymentLinkApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentLinkApi
      */
     public getCheckout(id: string, acceptLanguage?: GetCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return PaymentLinkApiFp(this.configuration).getCheckout(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
@@ -700,7 +679,6 @@ export class PaymentLinkApi extends BaseAPI implements PaymentLinkApiInterface {
      * @param {string} [previous] previous page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentLinkApi
      */
     public getCheckouts(acceptLanguage?: GetCheckoutsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return PaymentLinkApiFp(this.configuration).getCheckouts(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
@@ -715,56 +693,37 @@ export class PaymentLinkApi extends BaseAPI implements PaymentLinkApiInterface {
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PaymentLinkApi
      */
     public smsCheckout(id: string, smsCheckoutRequest: SmsCheckoutRequest, acceptLanguage?: SmsCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
         return PaymentLinkApiFp(this.configuration).smsCheckout(id, smsCheckoutRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const CancelCheckoutAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type CancelCheckoutAcceptLanguageEnum = typeof CancelCheckoutAcceptLanguageEnum[keyof typeof CancelCheckoutAcceptLanguageEnum];
-/**
- * @export
- */
 export const CreateCheckoutAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type CreateCheckoutAcceptLanguageEnum = typeof CreateCheckoutAcceptLanguageEnum[keyof typeof CreateCheckoutAcceptLanguageEnum];
-/**
- * @export
- */
 export const EmailCheckoutAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type EmailCheckoutAcceptLanguageEnum = typeof EmailCheckoutAcceptLanguageEnum[keyof typeof EmailCheckoutAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetCheckoutAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetCheckoutAcceptLanguageEnum = typeof GetCheckoutAcceptLanguageEnum[keyof typeof GetCheckoutAcceptLanguageEnum];
-/**
- * @export
- */
 export const GetCheckoutsAcceptLanguageEnum = {
     es: 'es',
     en: 'en'
 } as const;
 export type GetCheckoutsAcceptLanguageEnum = typeof GetCheckoutsAcceptLanguageEnum[keyof typeof GetCheckoutsAcceptLanguageEnum];
-/**
- * @export
- */
 export const SmsCheckoutAcceptLanguageEnum = {
     es: 'es',
     en: 'en'

@@ -16,20 +16,14 @@
 
 /**
  * Fiscal information for the company.
- * @export
- * @interface CreateCompanyRequestFiscalInfo
  */
 export interface CreateCompanyRequestFiscalInfo {
     /**
      * The business phone number for fiscal purposes.
-     * @type {string}
-     * @memberof CreateCompanyRequestFiscalInfo
      */
     'business_phone'?: string;
     /**
      * The fiscal type of the company (e.g., \'moral\', \'persona_fisica\').
-     * @type {string}
-     * @memberof CreateCompanyRequestFiscalInfo
      */
     'fiscal_type'?: string;
 }
