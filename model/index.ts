@@ -16,6 +16,8 @@ export * from './charge-response-payment-method';
 export * from './charge-response-refunds';
 export * from './charge-response-refunds-data';
 export * from './charge-update-request';
+export * from './chargeback-file-response';
+export * from './chargeback-response';
 export * from './charges-data-response';
 export * from './charges-order-response';
 export * from './checkout';

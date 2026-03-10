@@ -20,7 +20,7 @@ describe("PaymentMethodsApi", () => {
 
       const customer_id = "cus_2tXyF9BwPG14UMkkg";
       const request: PaymentMethodCashRequest = {
-        type: "oxxo_recurrent",
+        type: "cash_recurrent",
       };
 
       const response = (await client.createCustomerPaymentMethods(customer_id, request)).data;

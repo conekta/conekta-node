@@ -56,6 +56,8 @@ docs/ChargeResponsePaymentMethod.md
 docs/ChargeResponseRefunds.md
 docs/ChargeResponseRefundsData.md
 docs/ChargeUpdateRequest.md
+docs/ChargebackFileResponse.md
+docs/ChargebackResponse.md
 docs/ChargesApi.md
 docs/ChargesDataResponse.md
 docs/ChargesOrderResponse.md
@@ -261,6 +263,8 @@ model/charge-response-refunds-data.ts
 model/charge-response-refunds.ts
 model/charge-response.ts
 model/charge-update-request.ts
+model/chargeback-file-response.ts
+model/chargeback-response.ts
 model/charges-data-response.ts
 model/charges-order-response.ts
 model/checkout-order-template-customer-info.ts
