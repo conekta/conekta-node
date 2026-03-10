@@ -22,6 +22,9 @@ import type { ChargeResponsePaymentMethod } from './charge-response-payment-meth
 // May contain unused imports in some cases
 // @ts-ignore
 import type { ChargeResponseRefunds } from './charge-response-refunds';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ChargebackResponse } from './chargeback-response';
 
 export interface ChargesDataResponse {
     'amount': number;
@@ -56,6 +59,7 @@ export interface ChargesDataResponse {
      */
     'reference_id'?: string;
     'refunds'?: ChargeResponseRefunds;
+    'chargeback'?: ChargebackResponse;
     /**
      * Charge status
      */

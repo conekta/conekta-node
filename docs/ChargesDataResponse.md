@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **payment_method** | [**ChargeResponsePaymentMethod**](ChargeResponsePaymentMethod.md) |  | [optional] [default to undefined]
 **reference_id** | **string** | Reference ID of the charge | [optional] [default to undefined]
 **refunds** | [**ChargeResponseRefunds**](ChargeResponseRefunds.md) |  | [optional] [default to undefined]
+**chargeback** | [**ChargebackResponse**](ChargebackResponse.md) |  | [optional] [default to undefined]
 **status** | **string** | Charge status | [default to undefined]
 
 ## Example
@@ -47,6 +48,7 @@ const instance: ChargesDataResponse = {
     payment_method,
     reference_id,
     refunds,
+    chargeback,
     status,
 };
 ```
