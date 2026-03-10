@@ -10,3 +10,5 @@ node:
 	 -o /local \
 	 -c /local/config-node.json  \
 	 --global-property apiDocs=true  --global-property apiTests=true 
+up-mockserver:
+	docker run -d -p 3000:3000 mockoon/cli:latest -d https://raw.githubusercontent.com/conekta/openapi/main/mocks/conekta_api.json --port 3000
