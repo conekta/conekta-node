@@ -26,6 +26,10 @@ export interface PaymentMethodCardResponse {
     'exp_month'?: string;
     'exp_year'?: string;
     'brand'?: string;
+    /**
+     * Name of the institution that issued the card
+     */
+    'issuer'?: string;
     'name'?: string;
     'default'?: boolean;
     'visible_on_checkout'?: boolean;

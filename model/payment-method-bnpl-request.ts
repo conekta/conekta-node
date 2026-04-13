@@ -43,6 +43,8 @@ export interface PaymentMethodBnplRequest {
 
 export const PaymentMethodBnplRequestProductTypeEnum = {
     aplazoBnpl: 'aplazo_bnpl',
+    aztecaBnpl: 'azteca_bnpl',
+    coppelBnpl: 'coppel_bnpl',
     crediteaBnpl: 'creditea_bnpl'
 } as const;
 
