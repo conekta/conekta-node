@@ -134,7 +134,7 @@ describe("Orders api", () => {
       expect(data[0].payment_method).toBeDefined();
       expect(response.id).toEqual(id);
       expect(data[0].payment_method.object).toEqual("bank_transfer_payment");
-      expect((data[0].payment_method as PaymentMethodBankTransfer).clabe).toEqual("734180008033435122");
+      expect((data[0].payment_method as PaymentMethodBankTransfer).clabe).toEqual("734180008033435128");
       expect((data[0].payment_method as PaymentMethodBankTransfer).type).toEqual("spei");
     });
     it("not should return an order", async () => {
