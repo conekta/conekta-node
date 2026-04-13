@@ -141,13 +141,12 @@ describe("Orders api", () => {
 
       const id = "ord_2tUhuyzqLi6UJE9D12";
 
-      try {
-        (await client.getOrderById(id, "en"));
-        fail("should fail");
-      } catch (e) {
-        expect(e.response.status).toBe(404);
-        expect(e.response.data.type).toEqual("resource_not_found_error");
-      }
+      await expect(client.getOrderById(id, "en")).rejects.toMatchObject({
+        response: {
+          status: 404,
+          data: { type: "resource_not_found_error" },
+        },
+      });
     });
   });
 
