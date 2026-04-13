@@ -66,7 +66,7 @@ export interface CompanyResponse {
 
 export const CompanyResponseThreeDsModeEnum = {
     smart: 'smart',
-    strict: 'strict'
+    strict: 'strict',
 } as const;
 
 export type CompanyResponseThreeDsModeEnum = typeof CompanyResponseThreeDsModeEnum[keyof typeof CompanyResponseThreeDsModeEnum];

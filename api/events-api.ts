@@ -390,16 +390,16 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
 
 export const GetEventAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetEventAcceptLanguageEnum = typeof GetEventAcceptLanguageEnum[keyof typeof GetEventAcceptLanguageEnum];
 export const GetEventsAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetEventsAcceptLanguageEnum = typeof GetEventsAcceptLanguageEnum[keyof typeof GetEventsAcceptLanguageEnum];
 export const ResendEventAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type ResendEventAcceptLanguageEnum = typeof ResendEventAcceptLanguageEnum[keyof typeof ResendEventAcceptLanguageEnum];

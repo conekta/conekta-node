@@ -393,16 +393,16 @@ export class ShippingContactsApi extends BaseAPI implements ShippingContactsApiI
 
 export const CreateCustomerShippingContactsAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CreateCustomerShippingContactsAcceptLanguageEnum = typeof CreateCustomerShippingContactsAcceptLanguageEnum[keyof typeof CreateCustomerShippingContactsAcceptLanguageEnum];
 export const DeleteCustomerShippingContactsAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type DeleteCustomerShippingContactsAcceptLanguageEnum = typeof DeleteCustomerShippingContactsAcceptLanguageEnum[keyof typeof DeleteCustomerShippingContactsAcceptLanguageEnum];
 export const UpdateCustomerShippingContactsAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type UpdateCustomerShippingContactsAcceptLanguageEnum = typeof UpdateCustomerShippingContactsAcceptLanguageEnum[keyof typeof UpdateCustomerShippingContactsAcceptLanguageEnum];

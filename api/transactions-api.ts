@@ -315,11 +315,11 @@ export class TransactionsApi extends BaseAPI implements TransactionsApiInterface
 
 export const GetTransactionAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetTransactionAcceptLanguageEnum = typeof GetTransactionAcceptLanguageEnum[keyof typeof GetTransactionAcceptLanguageEnum];
 export const GetTransactionsAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetTransactionsAcceptLanguageEnum = typeof GetTransactionsAcceptLanguageEnum[keyof typeof GetTransactionsAcceptLanguageEnum];

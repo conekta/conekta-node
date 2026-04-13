@@ -530,21 +530,21 @@ export class PaymentMethodsApi extends BaseAPI implements PaymentMethodsApiInter
 
 export const CreateCustomerPaymentMethodsAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CreateCustomerPaymentMethodsAcceptLanguageEnum = typeof CreateCustomerPaymentMethodsAcceptLanguageEnum[keyof typeof CreateCustomerPaymentMethodsAcceptLanguageEnum];
 export const DeleteCustomerPaymentMethodsAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type DeleteCustomerPaymentMethodsAcceptLanguageEnum = typeof DeleteCustomerPaymentMethodsAcceptLanguageEnum[keyof typeof DeleteCustomerPaymentMethodsAcceptLanguageEnum];
 export const GetCustomerPaymentMethodsAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetCustomerPaymentMethodsAcceptLanguageEnum = typeof GetCustomerPaymentMethodsAcceptLanguageEnum[keyof typeof GetCustomerPaymentMethodsAcceptLanguageEnum];
 export const UpdateCustomerPaymentMethodsAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type UpdateCustomerPaymentMethodsAcceptLanguageEnum = typeof UpdateCustomerPaymentMethodsAcceptLanguageEnum[keyof typeof UpdateCustomerPaymentMethodsAcceptLanguageEnum];

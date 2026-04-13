@@ -1813,81 +1813,81 @@ export class SubscriptionsApi extends BaseAPI implements SubscriptionsApiInterfa
 
 export const CancelSubscriptionAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CancelSubscriptionAcceptLanguageEnum = typeof CancelSubscriptionAcceptLanguageEnum[keyof typeof CancelSubscriptionAcceptLanguageEnum];
 export const CreateSubscriptionAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CreateSubscriptionAcceptLanguageEnum = typeof CreateSubscriptionAcceptLanguageEnum[keyof typeof CreateSubscriptionAcceptLanguageEnum];
 export const GetSubscriptionAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetSubscriptionAcceptLanguageEnum = typeof GetSubscriptionAcceptLanguageEnum[keyof typeof GetSubscriptionAcceptLanguageEnum];
 export const GetSubscriptionEventsAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetSubscriptionEventsAcceptLanguageEnum = typeof GetSubscriptionEventsAcceptLanguageEnum[keyof typeof GetSubscriptionEventsAcceptLanguageEnum];
 export const PauseSubscriptionAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type PauseSubscriptionAcceptLanguageEnum = typeof PauseSubscriptionAcceptLanguageEnum[keyof typeof PauseSubscriptionAcceptLanguageEnum];
 export const ResumeSubscriptionAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type ResumeSubscriptionAcceptLanguageEnum = typeof ResumeSubscriptionAcceptLanguageEnum[keyof typeof ResumeSubscriptionAcceptLanguageEnum];
 export const SubscriptionCancelAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type SubscriptionCancelAcceptLanguageEnum = typeof SubscriptionCancelAcceptLanguageEnum[keyof typeof SubscriptionCancelAcceptLanguageEnum];
 export const SubscriptionCreateAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type SubscriptionCreateAcceptLanguageEnum = typeof SubscriptionCreateAcceptLanguageEnum[keyof typeof SubscriptionCreateAcceptLanguageEnum];
 export const SubscriptionEventsAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type SubscriptionEventsAcceptLanguageEnum = typeof SubscriptionEventsAcceptLanguageEnum[keyof typeof SubscriptionEventsAcceptLanguageEnum];
 export const SubscriptionListAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type SubscriptionListAcceptLanguageEnum = typeof SubscriptionListAcceptLanguageEnum[keyof typeof SubscriptionListAcceptLanguageEnum];
 export const SubscriptionPauseAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type SubscriptionPauseAcceptLanguageEnum = typeof SubscriptionPauseAcceptLanguageEnum[keyof typeof SubscriptionPauseAcceptLanguageEnum];
 export const SubscriptionResumeAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type SubscriptionResumeAcceptLanguageEnum = typeof SubscriptionResumeAcceptLanguageEnum[keyof typeof SubscriptionResumeAcceptLanguageEnum];
 export const SubscriptionUpdateAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type SubscriptionUpdateAcceptLanguageEnum = typeof SubscriptionUpdateAcceptLanguageEnum[keyof typeof SubscriptionUpdateAcceptLanguageEnum];
 export const SubscriptionsGetAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type SubscriptionsGetAcceptLanguageEnum = typeof SubscriptionsGetAcceptLanguageEnum[keyof typeof SubscriptionsGetAcceptLanguageEnum];
 export const SubscriptionsRetryAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type SubscriptionsRetryAcceptLanguageEnum = typeof SubscriptionsRetryAcceptLanguageEnum[keyof typeof SubscriptionsRetryAcceptLanguageEnum];
 export const UpdateSubscriptionAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type UpdateSubscriptionAcceptLanguageEnum = typeof UpdateSubscriptionAcceptLanguageEnum[keyof typeof UpdateSubscriptionAcceptLanguageEnum];

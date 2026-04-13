@@ -569,26 +569,26 @@ export class WebhookKeysApi extends BaseAPI implements WebhookKeysApiInterface {
 
 export const CreateWebhookKeyAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CreateWebhookKeyAcceptLanguageEnum = typeof CreateWebhookKeyAcceptLanguageEnum[keyof typeof CreateWebhookKeyAcceptLanguageEnum];
 export const DeleteWebhookKeyAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type DeleteWebhookKeyAcceptLanguageEnum = typeof DeleteWebhookKeyAcceptLanguageEnum[keyof typeof DeleteWebhookKeyAcceptLanguageEnum];
 export const GetWebhookKeyAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetWebhookKeyAcceptLanguageEnum = typeof GetWebhookKeyAcceptLanguageEnum[keyof typeof GetWebhookKeyAcceptLanguageEnum];
 export const GetWebhookKeysAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetWebhookKeysAcceptLanguageEnum = typeof GetWebhookKeysAcceptLanguageEnum[keyof typeof GetWebhookKeysAcceptLanguageEnum];
 export const UpdateWebhookKeyAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type UpdateWebhookKeyAcceptLanguageEnum = typeof UpdateWebhookKeyAcceptLanguageEnum[keyof typeof UpdateWebhookKeyAcceptLanguageEnum];

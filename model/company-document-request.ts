@@ -50,7 +50,7 @@ export const CompanyDocumentRequestFileClassificationEnum = {
     depositAccountCover: 'deposit_account_cover',
     permitCasino: 'permit_casino',
     licenseSanitation: 'license_sanitation',
-    registrationTourism: 'registration_tourism'
+    registrationTourism: 'registration_tourism',
 } as const;
 
 export type CompanyDocumentRequestFileClassificationEnum = typeof CompanyDocumentRequestFileClassificationEnum[keyof typeof CompanyDocumentRequestFileClassificationEnum];

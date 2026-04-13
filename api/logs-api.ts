@@ -288,11 +288,11 @@ export class LogsApi extends BaseAPI implements LogsApiInterface {
 
 export const GetLogByIdAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetLogByIdAcceptLanguageEnum = typeof GetLogByIdAcceptLanguageEnum[keyof typeof GetLogByIdAcceptLanguageEnum];
 export const GetLogsAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetLogsAcceptLanguageEnum = typeof GetLogsAcceptLanguageEnum[keyof typeof GetLogsAcceptLanguageEnum];

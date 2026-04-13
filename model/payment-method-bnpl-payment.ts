@@ -44,7 +44,7 @@ export interface PaymentMethodBnplPayment {
 }
 
 export const PaymentMethodBnplPaymentObjectEnum = {
-    bnplPayment: 'bnpl_payment'
+    bnplPayment: 'bnpl_payment',
 } as const;
 
 export type PaymentMethodBnplPaymentObjectEnum = typeof PaymentMethodBnplPaymentObjectEnum[keyof typeof PaymentMethodBnplPaymentObjectEnum];

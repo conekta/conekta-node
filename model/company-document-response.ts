@@ -42,7 +42,7 @@ export const CompanyDocumentResponseFileClassificationEnum = {
     depositAccountCover: 'deposit_account_cover',
     permitCasino: 'permit_casino',
     licenseSanitation: 'license_sanitation',
-    registrationTourism: 'registration_tourism'
+    registrationTourism: 'registration_tourism',
 } as const;
 
 export type CompanyDocumentResponseFileClassificationEnum = typeof CompanyDocumentResponseFileClassificationEnum[keyof typeof CompanyDocumentResponseFileClassificationEnum];

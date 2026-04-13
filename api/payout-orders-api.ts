@@ -453,21 +453,21 @@ export class PayoutOrdersApi extends BaseAPI implements PayoutOrdersApiInterface
 
 export const CancelPayoutOrderByIdAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CancelPayoutOrderByIdAcceptLanguageEnum = typeof CancelPayoutOrderByIdAcceptLanguageEnum[keyof typeof CancelPayoutOrderByIdAcceptLanguageEnum];
 export const CreatePayoutOrderAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CreatePayoutOrderAcceptLanguageEnum = typeof CreatePayoutOrderAcceptLanguageEnum[keyof typeof CreatePayoutOrderAcceptLanguageEnum];
 export const GetPayoutOrderByIdAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetPayoutOrderByIdAcceptLanguageEnum = typeof GetPayoutOrderByIdAcceptLanguageEnum[keyof typeof GetPayoutOrderByIdAcceptLanguageEnum];
 export const GetPayoutOrdersAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetPayoutOrdersAcceptLanguageEnum = typeof GetPayoutOrdersAcceptLanguageEnum[keyof typeof GetPayoutOrdersAcceptLanguageEnum];

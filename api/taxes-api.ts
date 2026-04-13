@@ -393,16 +393,16 @@ export class TaxesApi extends BaseAPI implements TaxesApiInterface {
 
 export const OrdersCreateTaxesAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrdersCreateTaxesAcceptLanguageEnum = typeof OrdersCreateTaxesAcceptLanguageEnum[keyof typeof OrdersCreateTaxesAcceptLanguageEnum];
 export const OrdersDeleteTaxesAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrdersDeleteTaxesAcceptLanguageEnum = typeof OrdersDeleteTaxesAcceptLanguageEnum[keyof typeof OrdersDeleteTaxesAcceptLanguageEnum];
 export const OrdersUpdateTaxesAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrdersUpdateTaxesAcceptLanguageEnum = typeof OrdersUpdateTaxesAcceptLanguageEnum[keyof typeof OrdersUpdateTaxesAcceptLanguageEnum];

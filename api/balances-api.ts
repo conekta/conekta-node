@@ -145,6 +145,6 @@ export class BalancesApi extends BaseAPI implements BalancesApiInterface {
 
 export const GetBalanceAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetBalanceAcceptLanguageEnum = typeof GetBalanceAcceptLanguageEnum[keyof typeof GetBalanceAcceptLanguageEnum];

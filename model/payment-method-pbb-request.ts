@@ -30,7 +30,7 @@ export interface PaymentMethodPbbRequest {
 }
 
 export const PaymentMethodPbbRequestProductTypeEnum = {
-    bbvaPayByBank: 'bbva_pay_by_bank'
+    bbvaPayByBank: 'bbva_pay_by_bank',
 } as const;
 
 export type PaymentMethodPbbRequestProductTypeEnum = typeof PaymentMethodPbbRequestProductTypeEnum[keyof typeof PaymentMethodPbbRequestProductTypeEnum];

@@ -585,26 +585,26 @@ export class PlansApi extends BaseAPI implements PlansApiInterface {
 
 export const CreatePlanAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CreatePlanAcceptLanguageEnum = typeof CreatePlanAcceptLanguageEnum[keyof typeof CreatePlanAcceptLanguageEnum];
 export const DeletePlanAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type DeletePlanAcceptLanguageEnum = typeof DeletePlanAcceptLanguageEnum[keyof typeof DeletePlanAcceptLanguageEnum];
 export const GetPlanAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetPlanAcceptLanguageEnum = typeof GetPlanAcceptLanguageEnum[keyof typeof GetPlanAcceptLanguageEnum];
 export const GetPlansAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetPlansAcceptLanguageEnum = typeof GetPlansAcceptLanguageEnum[keyof typeof GetPlansAcceptLanguageEnum];
 export const UpdatePlanAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type UpdatePlanAcceptLanguageEnum = typeof UpdatePlanAcceptLanguageEnum[keyof typeof UpdatePlanAcceptLanguageEnum];

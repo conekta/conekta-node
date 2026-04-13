@@ -393,16 +393,16 @@ export class ProductsApi extends BaseAPI implements ProductsApiInterface {
 
 export const OrdersCreateProductAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrdersCreateProductAcceptLanguageEnum = typeof OrdersCreateProductAcceptLanguageEnum[keyof typeof OrdersCreateProductAcceptLanguageEnum];
 export const OrdersDeleteProductAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrdersDeleteProductAcceptLanguageEnum = typeof OrdersDeleteProductAcceptLanguageEnum[keyof typeof OrdersDeleteProductAcceptLanguageEnum];
 export const OrdersUpdateProductAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrdersUpdateProductAcceptLanguageEnum = typeof OrdersUpdateProductAcceptLanguageEnum[keyof typeof OrdersUpdateProductAcceptLanguageEnum];

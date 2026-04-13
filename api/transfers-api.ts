@@ -288,11 +288,11 @@ export class TransfersApi extends BaseAPI implements TransfersApiInterface {
 
 export const GetTransferAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetTransferAcceptLanguageEnum = typeof GetTransferAcceptLanguageEnum[keyof typeof GetTransferAcceptLanguageEnum];
 export const GetTransfersAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetTransfersAcceptLanguageEnum = typeof GetTransfersAcceptLanguageEnum[keyof typeof GetTransfersAcceptLanguageEnum];

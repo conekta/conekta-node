@@ -608,31 +608,31 @@ export class AntifraudApi extends BaseAPI implements AntifraudApiInterface {
 
 export const CreateRuleBlacklistAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CreateRuleBlacklistAcceptLanguageEnum = typeof CreateRuleBlacklistAcceptLanguageEnum[keyof typeof CreateRuleBlacklistAcceptLanguageEnum];
 export const CreateRuleWhitelistAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CreateRuleWhitelistAcceptLanguageEnum = typeof CreateRuleWhitelistAcceptLanguageEnum[keyof typeof CreateRuleWhitelistAcceptLanguageEnum];
 export const DeleteRuleBlacklistAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type DeleteRuleBlacklistAcceptLanguageEnum = typeof DeleteRuleBlacklistAcceptLanguageEnum[keyof typeof DeleteRuleBlacklistAcceptLanguageEnum];
 export const DeleteRuleWhitelistAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type DeleteRuleWhitelistAcceptLanguageEnum = typeof DeleteRuleWhitelistAcceptLanguageEnum[keyof typeof DeleteRuleWhitelistAcceptLanguageEnum];
 export const GetRuleBlacklistAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetRuleBlacklistAcceptLanguageEnum = typeof GetRuleBlacklistAcceptLanguageEnum[keyof typeof GetRuleBlacklistAcceptLanguageEnum];
 export const GetRuleWhitelistAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetRuleWhitelistAcceptLanguageEnum = typeof GetRuleWhitelistAcceptLanguageEnum[keyof typeof GetRuleWhitelistAcceptLanguageEnum];

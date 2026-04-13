@@ -579,26 +579,26 @@ export class ApiKeysApi extends BaseAPI implements ApiKeysApiInterface {
 
 export const CreateApiKeyAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CreateApiKeyAcceptLanguageEnum = typeof CreateApiKeyAcceptLanguageEnum[keyof typeof CreateApiKeyAcceptLanguageEnum];
 export const DeleteApiKeyAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type DeleteApiKeyAcceptLanguageEnum = typeof DeleteApiKeyAcceptLanguageEnum[keyof typeof DeleteApiKeyAcceptLanguageEnum];
 export const GetApiKeyAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetApiKeyAcceptLanguageEnum = typeof GetApiKeyAcceptLanguageEnum[keyof typeof GetApiKeyAcceptLanguageEnum];
 export const GetApiKeysAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetApiKeysAcceptLanguageEnum = typeof GetApiKeysAcceptLanguageEnum[keyof typeof GetApiKeysAcceptLanguageEnum];
 export const UpdateApiKeyAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type UpdateApiKeyAcceptLanguageEnum = typeof UpdateApiKeyAcceptLanguageEnum[keyof typeof UpdateApiKeyAcceptLanguageEnum];

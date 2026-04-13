@@ -258,11 +258,11 @@ export class SubscriptionsCustomerPortalApi extends BaseAPI implements Subscript
 
 export const CreateCustomerPortalAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CreateCustomerPortalAcceptLanguageEnum = typeof CreateCustomerPortalAcceptLanguageEnum[keyof typeof CreateCustomerPortalAcceptLanguageEnum];
 export const GetCustomerPortalAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetCustomerPortalAcceptLanguageEnum = typeof GetCustomerPortalAcceptLanguageEnum[keyof typeof GetCustomerPortalAcceptLanguageEnum];

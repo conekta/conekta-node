@@ -701,31 +701,31 @@ export class PaymentLinkApi extends BaseAPI implements PaymentLinkApiInterface {
 
 export const CancelCheckoutAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CancelCheckoutAcceptLanguageEnum = typeof CancelCheckoutAcceptLanguageEnum[keyof typeof CancelCheckoutAcceptLanguageEnum];
 export const CreateCheckoutAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CreateCheckoutAcceptLanguageEnum = typeof CreateCheckoutAcceptLanguageEnum[keyof typeof CreateCheckoutAcceptLanguageEnum];
 export const EmailCheckoutAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type EmailCheckoutAcceptLanguageEnum = typeof EmailCheckoutAcceptLanguageEnum[keyof typeof EmailCheckoutAcceptLanguageEnum];
 export const GetCheckoutAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetCheckoutAcceptLanguageEnum = typeof GetCheckoutAcceptLanguageEnum[keyof typeof GetCheckoutAcceptLanguageEnum];
 export const GetCheckoutsAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetCheckoutsAcceptLanguageEnum = typeof GetCheckoutsAcceptLanguageEnum[keyof typeof GetCheckoutsAcceptLanguageEnum];
 export const SmsCheckoutAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type SmsCheckoutAcceptLanguageEnum = typeof SmsCheckoutAcceptLanguageEnum[keyof typeof SmsCheckoutAcceptLanguageEnum];

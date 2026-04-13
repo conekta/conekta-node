@@ -517,21 +517,21 @@ export class ChargesApi extends BaseAPI implements ChargesApiInterface {
 
 export const GetChargesAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetChargesAcceptLanguageEnum = typeof GetChargesAcceptLanguageEnum[keyof typeof GetChargesAcceptLanguageEnum];
 export const OrdersCreateChargeAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrdersCreateChargeAcceptLanguageEnum = typeof OrdersCreateChargeAcceptLanguageEnum[keyof typeof OrdersCreateChargeAcceptLanguageEnum];
 export const OrdersCreateChargesAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrdersCreateChargesAcceptLanguageEnum = typeof OrdersCreateChargesAcceptLanguageEnum[keyof typeof OrdersCreateChargesAcceptLanguageEnum];
 export const UpdateChargeAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type UpdateChargeAcceptLanguageEnum = typeof UpdateChargeAcceptLanguageEnum[keyof typeof UpdateChargeAcceptLanguageEnum];

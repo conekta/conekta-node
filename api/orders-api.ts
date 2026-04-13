@@ -967,41 +967,41 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
 
 export const CancelOrderAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CancelOrderAcceptLanguageEnum = typeof CancelOrderAcceptLanguageEnum[keyof typeof CancelOrderAcceptLanguageEnum];
 export const CreateOrderAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CreateOrderAcceptLanguageEnum = typeof CreateOrderAcceptLanguageEnum[keyof typeof CreateOrderAcceptLanguageEnum];
 export const GetOrderByIdAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetOrderByIdAcceptLanguageEnum = typeof GetOrderByIdAcceptLanguageEnum[keyof typeof GetOrderByIdAcceptLanguageEnum];
 export const GetOrdersAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetOrdersAcceptLanguageEnum = typeof GetOrdersAcceptLanguageEnum[keyof typeof GetOrdersAcceptLanguageEnum];
 export const OrderCancelRefundAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrderCancelRefundAcceptLanguageEnum = typeof OrderCancelRefundAcceptLanguageEnum[keyof typeof OrderCancelRefundAcceptLanguageEnum];
 export const OrderRefundAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrderRefundAcceptLanguageEnum = typeof OrderRefundAcceptLanguageEnum[keyof typeof OrderRefundAcceptLanguageEnum];
 export const OrdersCreateCaptureAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrdersCreateCaptureAcceptLanguageEnum = typeof OrdersCreateCaptureAcceptLanguageEnum[keyof typeof OrdersCreateCaptureAcceptLanguageEnum];
 export const UpdateOrderAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type UpdateOrderAcceptLanguageEnum = typeof UpdateOrderAcceptLanguageEnum[keyof typeof UpdateOrderAcceptLanguageEnum];

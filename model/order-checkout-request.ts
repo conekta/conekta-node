@@ -68,20 +68,20 @@ export const OrderCheckoutRequestAllowedPaymentMethodsEnum = {
     card: 'card',
     bankTransfer: 'bank_transfer',
     bnpl: 'bnpl',
-    payByBank: 'pay_by_bank'
+    payByBank: 'pay_by_bank',
 } as const;
 
 export type OrderCheckoutRequestAllowedPaymentMethodsEnum = typeof OrderCheckoutRequestAllowedPaymentMethodsEnum[keyof typeof OrderCheckoutRequestAllowedPaymentMethodsEnum];
 export const OrderCheckoutRequestExcludeCardNetworksEnum = {
     visa: 'visa',
     mastercard: 'mastercard',
-    amex: 'amex'
+    amex: 'amex',
 } as const;
 
 export type OrderCheckoutRequestExcludeCardNetworksEnum = typeof OrderCheckoutRequestExcludeCardNetworksEnum[keyof typeof OrderCheckoutRequestExcludeCardNetworksEnum];
 export const OrderCheckoutRequestTypeEnum = {
     integration: 'Integration',
-    hostedPayment: 'HostedPayment'
+    hostedPayment: 'HostedPayment',
 } as const;
 
 export type OrderCheckoutRequestTypeEnum = typeof OrderCheckoutRequestTypeEnum[keyof typeof OrderCheckoutRequestTypeEnum];

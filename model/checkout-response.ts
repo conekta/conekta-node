@@ -61,7 +61,7 @@ export interface CheckoutResponse {
 export const CheckoutResponseExcludeCardNetworksEnum = {
     visa: 'visa',
     mastercard: 'mastercard',
-    amex: 'amex'
+    amex: 'amex',
 } as const;
 
 export type CheckoutResponseExcludeCardNetworksEnum = typeof CheckoutResponseExcludeCardNetworksEnum[keyof typeof CheckoutResponseExcludeCardNetworksEnum];

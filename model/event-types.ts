@@ -23,7 +23,7 @@ export const EventTypes = {
     orderPaid: 'order.paid',
     orderExpired: 'order.expired',
     orderCanceled: 'order.canceled',
-    orderPendingPayment: 'order.pending_payment'
+    orderPendingPayment: 'order.pending_payment',
 } as const;
 
 export type EventTypes = typeof EventTypes[keyof typeof EventTypes];

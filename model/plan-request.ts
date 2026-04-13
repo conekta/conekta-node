@@ -64,7 +64,7 @@ export const PlanRequestIntervalEnum = {
     week: 'week',
     halfMonth: 'half_month',
     month: 'month',
-    year: 'year'
+    year: 'year',
 } as const;
 
 export type PlanRequestIntervalEnum = typeof PlanRequestIntervalEnum[keyof typeof PlanRequestIntervalEnum];

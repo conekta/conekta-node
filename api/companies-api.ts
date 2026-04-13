@@ -726,31 +726,31 @@ export class CompaniesApi extends BaseAPI implements CompaniesApiInterface {
 
 export const GetCompaniesAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetCompaniesAcceptLanguageEnum = typeof GetCompaniesAcceptLanguageEnum[keyof typeof GetCompaniesAcceptLanguageEnum];
 export const GetCompanyAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetCompanyAcceptLanguageEnum = typeof GetCompanyAcceptLanguageEnum[keyof typeof GetCompanyAcceptLanguageEnum];
 export const GetCompanyDocumentsAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetCompanyDocumentsAcceptLanguageEnum = typeof GetCompanyDocumentsAcceptLanguageEnum[keyof typeof GetCompanyDocumentsAcceptLanguageEnum];
 export const GetCurrentCompanyAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetCurrentCompanyAcceptLanguageEnum = typeof GetCurrentCompanyAcceptLanguageEnum[keyof typeof GetCurrentCompanyAcceptLanguageEnum];
 export const UpdateCompanyDocumentAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type UpdateCompanyDocumentAcceptLanguageEnum = typeof UpdateCompanyDocumentAcceptLanguageEnum[keyof typeof UpdateCompanyDocumentAcceptLanguageEnum];
 export const UploadCompanyDocumentAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type UploadCompanyDocumentAcceptLanguageEnum = typeof UploadCompanyDocumentAcceptLanguageEnum[keyof typeof UploadCompanyDocumentAcceptLanguageEnum];

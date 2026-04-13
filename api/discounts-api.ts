@@ -633,26 +633,26 @@ export class DiscountsApi extends BaseAPI implements DiscountsApiInterface {
 
 export const OrdersCreateDiscountLineAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrdersCreateDiscountLineAcceptLanguageEnum = typeof OrdersCreateDiscountLineAcceptLanguageEnum[keyof typeof OrdersCreateDiscountLineAcceptLanguageEnum];
 export const OrdersDeleteDiscountLinesAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrdersDeleteDiscountLinesAcceptLanguageEnum = typeof OrdersDeleteDiscountLinesAcceptLanguageEnum[keyof typeof OrdersDeleteDiscountLinesAcceptLanguageEnum];
 export const OrdersGetDiscountLineAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrdersGetDiscountLineAcceptLanguageEnum = typeof OrdersGetDiscountLineAcceptLanguageEnum[keyof typeof OrdersGetDiscountLineAcceptLanguageEnum];
 export const OrdersGetDiscountLinesAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrdersGetDiscountLinesAcceptLanguageEnum = typeof OrdersGetDiscountLinesAcceptLanguageEnum[keyof typeof OrdersGetDiscountLinesAcceptLanguageEnum];
 export const OrdersUpdateDiscountLinesAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrdersUpdateDiscountLinesAcceptLanguageEnum = typeof OrdersUpdateDiscountLinesAcceptLanguageEnum[keyof typeof OrdersUpdateDiscountLinesAcceptLanguageEnum];

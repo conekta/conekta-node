@@ -821,36 +821,36 @@ export class CustomersApi extends BaseAPI implements CustomersApiInterface {
 
 export const CreateCustomerAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CreateCustomerAcceptLanguageEnum = typeof CreateCustomerAcceptLanguageEnum[keyof typeof CreateCustomerAcceptLanguageEnum];
 export const CreateCustomerFiscalEntitiesAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CreateCustomerFiscalEntitiesAcceptLanguageEnum = typeof CreateCustomerFiscalEntitiesAcceptLanguageEnum[keyof typeof CreateCustomerFiscalEntitiesAcceptLanguageEnum];
 export const DeleteCustomerByIdAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type DeleteCustomerByIdAcceptLanguageEnum = typeof DeleteCustomerByIdAcceptLanguageEnum[keyof typeof DeleteCustomerByIdAcceptLanguageEnum];
 export const GetCustomerByIdAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetCustomerByIdAcceptLanguageEnum = typeof GetCustomerByIdAcceptLanguageEnum[keyof typeof GetCustomerByIdAcceptLanguageEnum];
 export const GetCustomersAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type GetCustomersAcceptLanguageEnum = typeof GetCustomersAcceptLanguageEnum[keyof typeof GetCustomersAcceptLanguageEnum];
 export const UpdateCustomerAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type UpdateCustomerAcceptLanguageEnum = typeof UpdateCustomerAcceptLanguageEnum[keyof typeof UpdateCustomerAcceptLanguageEnum];
 export const UpdateCustomerFiscalEntitiesAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type UpdateCustomerFiscalEntitiesAcceptLanguageEnum = typeof UpdateCustomerFiscalEntitiesAcceptLanguageEnum[keyof typeof UpdateCustomerFiscalEntitiesAcceptLanguageEnum];

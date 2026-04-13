@@ -45,7 +45,7 @@ export const PaymentMethodBnplRequestProductTypeEnum = {
     aplazoBnpl: 'aplazo_bnpl',
     aztecaBnpl: 'azteca_bnpl',
     coppelBnpl: 'coppel_bnpl',
-    crediteaBnpl: 'creditea_bnpl'
+    crediteaBnpl: 'creditea_bnpl',
 } as const;
 
 export type PaymentMethodBnplRequestProductTypeEnum = typeof PaymentMethodBnplRequestProductTypeEnum[keyof typeof PaymentMethodBnplRequestProductTypeEnum];

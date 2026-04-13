@@ -156,6 +156,6 @@ export class TokensApi extends BaseAPI implements TokensApiInterface {
 
 export const CreateTokenAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type CreateTokenAcceptLanguageEnum = typeof CreateTokenAcceptLanguageEnum[keyof typeof CreateTokenAcceptLanguageEnum];

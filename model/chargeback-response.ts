@@ -43,7 +43,7 @@ export const ChargebackResponseStatusEnum = {
     covered: 'covered',
     rt: 'rt',
     rtSent: 'rt_sent',
-    represented: 'represented'
+    represented: 'represented',
 } as const;
 
 export type ChargebackResponseStatusEnum = typeof ChargebackResponseStatusEnum[keyof typeof ChargebackResponseStatusEnum];
@@ -75,14 +75,14 @@ export const ChargebackResponseReasonEnum = {
     productNotReceived: 'product_not_received',
     incorrectAmount: 'incorrect_amount',
     chipLiabiliatyShift: 'chip_liabiliaty_shift',
-    creditNotProcessed: 'credit_not_processed'
+    creditNotProcessed: 'credit_not_processed',
 } as const;
 
 export type ChargebackResponseReasonEnum = typeof ChargebackResponseReasonEnum[keyof typeof ChargebackResponseReasonEnum];
 export const ChargebackResponseFollowupStatusEnum = {
     customerUncontacted: 'customer_uncontacted',
     customerContacted: 'customer_contacted',
-    customerUnreachable: 'customer_unreachable'
+    customerUnreachable: 'customer_unreachable',
 } as const;
 
 export type ChargebackResponseFollowupStatusEnum = typeof ChargebackResponseFollowupStatusEnum[keyof typeof ChargebackResponseFollowupStatusEnum];

@@ -391,16 +391,16 @@ export class ShippingsApi extends BaseAPI implements ShippingsApiInterface {
 
 export const OrdersCreateShippingAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrdersCreateShippingAcceptLanguageEnum = typeof OrdersCreateShippingAcceptLanguageEnum[keyof typeof OrdersCreateShippingAcceptLanguageEnum];
 export const OrdersDeleteShippingAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrdersDeleteShippingAcceptLanguageEnum = typeof OrdersDeleteShippingAcceptLanguageEnum[keyof typeof OrdersDeleteShippingAcceptLanguageEnum];
 export const OrdersUpdateShippingAcceptLanguageEnum = {
     es: 'es',
-    en: 'en'
+    en: 'en',
 } as const;
 export type OrdersUpdateShippingAcceptLanguageEnum = typeof OrdersUpdateShippingAcceptLanguageEnum[keyof typeof OrdersUpdateShippingAcceptLanguageEnum];
