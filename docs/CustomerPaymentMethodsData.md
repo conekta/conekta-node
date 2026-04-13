@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **exp_month** | **string** |  | [optional] [default to undefined]
 **exp_year** | **string** |  | [optional] [default to undefined]
 **brand** | **string** |  | [optional] [default to undefined]
+**issuer** | **string** | Name of the institution that issued the card | [optional] [default to undefined]
 **name** | **string** |  | [optional] [default to undefined]
 **_default** | **boolean** |  | [optional] [default to undefined]
 **visible_on_checkout** | **boolean** |  | [optional] [default to undefined]
@@ -51,6 +52,7 @@ const instance: CustomerPaymentMethodsData = {
     exp_month,
     exp_year,
     brand,
+    issuer,
     name,
     _default,
     visible_on_checkout,
