@@ -16,10 +16,10 @@ jobs:
       matrix:
         node-version: [ 18, 20, 22, 24]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
 
       - name: Setup Node.js 20 for Mockoon CLI
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v6
         with:
           node-version: '20'
 
@@ -30,7 +30,7 @@ jobs:
           port: 3000
 
       - name: Setup Node.js for test
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
 
