@@ -43,7 +43,7 @@
     "axios": "1.15.0"
   },
   "devDependencies": {
-    "@types/node": "^20.11.7",
+    "@types/node": "^25.6.0",
     "typescript": "^5.4",
     "@types/jest": "^30.0.0",
     "jest": "^30.3.0",
