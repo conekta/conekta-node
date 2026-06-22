@@ -13,13 +13,26 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { ChargePaymentMethod } from './charge-payment-method';
 
-/**
- * @type PaymentMethodCash
- */
-export type PaymentMethodCash = ChargePaymentMethod;
-
+export interface PaymentMethodCash {
+    'type'?: string;
+    'object': string;
+    /**
+     * Agreement ID
+     */
+    'agreement'?: string;
+    'auth_code'?: number | null;
+    'cashier_id'?: string | null;
+    'reference'?: string;
+    'barcode_url'?: string;
+    'expires_at'?: number;
+    /**
+     * Product type, e.g. bbva_cash_in, cash_in, pespay_cash_in, etc.
+     */
+    'product_type'?: string;
+    'service_name'?: string;
+    'store'?: string | null;
+    'store_name'?: string;
+    'customer_ip_address'?: string;
+}
 

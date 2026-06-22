@@ -49,7 +49,6 @@ docs/BlacklistRuleResponse.md
 docs/CashAgreementsResponse.md
 docs/ChargeOrderResponse.md
 docs/ChargeOrderResponsePaymentMethod.md
-docs/ChargePaymentMethod.md
 docs/ChargeRequest.md
 docs/ChargeRequestPaymentMethod.md
 docs/ChargeResponse.md
@@ -87,7 +86,6 @@ docs/CustomerFiscalEntitiesResponse.md
 docs/CustomerInfo.md
 docs/CustomerInfoCustomerId.md
 docs/CustomerInfoResponse.md
-docs/CustomerPaymentMethod.md
 docs/CustomerPaymentMethodRequest.md
 docs/CustomerPaymentMethodsData.md
 docs/CustomerPaymentMethodsRequest.md
@@ -264,7 +262,6 @@ model/blacklist-rule-response.ts
 model/cash-agreements-response.ts
 model/charge-order-response-payment-method.ts
 model/charge-order-response.ts
-model/charge-payment-method.ts
 model/charge-request-payment-method.ts
 model/charge-request.ts
 model/charge-response-channel.ts
@@ -300,7 +297,6 @@ model/customer-info-customer-id.ts
 model/customer-info-response.ts
 model/customer-info.ts
 model/customer-payment-method-request.ts
-model/customer-payment-method.ts
 model/customer-payment-methods-data.ts
 model/customer-payment-methods-request.ts
 model/customer-payment-methods-response.ts
