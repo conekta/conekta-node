@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **charges** | [**Array&lt;ChargeRequest&gt;**](ChargeRequest.md) |  | [optional] [default to undefined]
 **checkout** | [**OrderCheckoutRequest**](OrderCheckoutRequest.md) |  | [optional] [default to undefined]
 **currency** | **string** | Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217) | [optional] [default to undefined]
-**customer_info** | [**OrderRequestCustomerInfo**](OrderRequestCustomerInfo.md) |  | [optional] [default to undefined]
+**customer_info** | [**OrderUpdateCustomerInfo**](OrderUpdateCustomerInfo.md) |  | [optional] [default to undefined]
 **discount_lines** | [**Array&lt;OrderDiscountLinesRequest&gt;**](OrderDiscountLinesRequest.md) | List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order. | [optional] [default to undefined]
 **fiscal_entity** | [**OrderUpdateFiscalEntityRequest**](OrderUpdateFiscalEntityRequest.md) |  | [optional] [default to undefined]
 **line_items** | [**Array&lt;Product&gt;**](Product.md) | List of [products](https://developers.conekta.com/v2.2.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product. | [optional] [default to undefined]

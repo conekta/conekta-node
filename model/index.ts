@@ -111,6 +111,7 @@ export * from './order-tax-lines-response';
 export * from './order-tax-request';
 export * from './order-tax-response';
 export * from './order-update';
+export * from './order-update-customer-info';
 export * from './order-update-fiscal-entity-request';
 export * from './orders-update-taxes-request';
 export * from './payment-method-bank-transfer';

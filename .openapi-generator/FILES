@@ -157,6 +157,7 @@ docs/OrderTaxLinesResponse.md
 docs/OrderTaxRequest.md
 docs/OrderTaxResponse.md
 docs/OrderUpdate.md
+docs/OrderUpdateCustomerInfo.md
 docs/OrderUpdateFiscalEntityRequest.md
 docs/OrdersApi.md
 docs/OrdersUpdateTaxesRequest.md
@@ -362,6 +363,7 @@ model/order-shipping-lines-response.ts
 model/order-tax-lines-response.ts
 model/order-tax-request.ts
 model/order-tax-response.ts
+model/order-update-customer-info.ts
 model/order-update-fiscal-entity-request.ts
 model/order-update.ts
 model/orders-update-taxes-request.ts

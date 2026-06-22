@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_custom_reference** | **string** | Custom reference | [optional] [default to undefined]
-**name** | **string** |  | [optional] [default to undefined]
-**email** | **string** |  | [optional] [default to undefined]
-**phone** | **string** |  | [optional] [default to undefined]
-**corporate** | **boolean** |  | [optional] [default to false]
+**name** | **string** |  | [default to undefined]
+**email** | **string** |  | [default to undefined]
+**phone** | **string** |  | [default to undefined]
+**corporate** | **boolean** |  | [optional] [default to undefined]
 **object** | **string** |  | [optional] [default to undefined]
+**customer_id** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -18,12 +18,12 @@ Name | Type | Description | Notes
 import { OrderUpdateCustomerInfo } from 'conekta';
 
 const instance: OrderUpdateCustomerInfo = {
-    customer_custom_reference,
     name,
     email,
     phone,
     corporate,
     object,
+    customer_id,
 };
 ```
 
