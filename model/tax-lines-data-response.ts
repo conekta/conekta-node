@@ -14,28 +14,17 @@
 
 
 
-export interface ShippingOrderResponse {
+export interface TaxLinesDataResponse {
     /**
-     * Shipping amount in cents
+     * The amount to be collected for tax in cents
      */
     'amount': number;
     /**
-     * Carrier name for the shipment
+     * description or tax\'s name
      */
-    'carrier'?: string;
-    /**
-     * Tracking number can be used to track the shipment
-     */
-    'tracking_number'?: string;
-    /**
-     * Method of shipment
-     */
-    'method'?: string;
-    /**
-     * Hash where the user can send additional information for each \'shipping\'.
-     */
+    'description': string;
     'metadata'?: { [key: string]: any; };
-    'id'?: string;
+    'id': string;
     'object'?: string;
     'parent_id'?: string;
 }

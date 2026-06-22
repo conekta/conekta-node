@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **allowed_payout_methods** | **Array&lt;string&gt;** | The payout methods that are allowed for the payout order. | [default to undefined]
 **amount** | **number** | The amount of the payout order. | [default to undefined]
 **currency** | **string** | The currency in which the payout order is made. | [default to 'MXN']
-**customer_info** | [**CustomerInfoCustomerId**](CustomerInfoCustomerId.md) | The customer information to whom the payout order is made. | [default to undefined]
+**customer_info** | [**PayoutOrderRequestCustomerInfo**](PayoutOrderRequestCustomerInfo.md) |  | [default to undefined]
 **expires_at** | **number** | The expiration time of the payout order in Unix timestamp. | [default to undefined]
 **metadata** | **{ [key: string]: any; }** | The metadata of the payout order. | [optional] [default to undefined]
 **payout** | [**Payout**](Payout.md) |  | [default to undefined]

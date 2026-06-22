@@ -14,7 +14,7 @@
 
 
 
-export interface DiscountLinesResponse {
+export interface DiscountLinesDataResponse {
     /**
      * The amount to be deducted from the total sum of all payments, in cents.
      */

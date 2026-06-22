@@ -60,6 +60,7 @@ docs/ChargeUpdateRequest.md
 docs/ChargebackFileResponse.md
 docs/ChargebackResponse.md
 docs/ChargesApi.md
+docs/ChargesDataResponse.md
 docs/ChargesOrderResponse.md
 docs/Checkout.md
 docs/CheckoutOrderTemplate.md
@@ -105,6 +106,7 @@ docs/DeleteApiKeysResponse.md
 docs/DeletedBlacklistRuleResponse.md
 docs/DeletedWhitelistRuleResponse.md
 docs/DetailsError.md
+docs/DiscountLinesDataResponse.md
 docs/DiscountLinesResponse.md
 docs/DiscountsApi.md
 docs/EmailCheckoutRequest.md
@@ -185,6 +187,7 @@ docs/Payout.md
 docs/PayoutMethod.md
 docs/PayoutOrderPayoutsItem.md
 docs/PayoutOrderRequest.md
+docs/PayoutOrderRequestCustomerInfo.md
 docs/PayoutOrderResponse.md
 docs/PayoutOrderResponseCustomerInfo.md
 docs/PayoutOrdersApi.md
@@ -200,6 +203,7 @@ docs/ResendEventRequest.md
 docs/RiskRulesData.md
 docs/RiskRulesList.md
 docs/ShippingContactsApi.md
+docs/ShippingLinesDataResponse.md
 docs/ShippingOrderResponse.md
 docs/ShippingRequest.md
 docs/ShippingsApi.md
@@ -212,6 +216,7 @@ docs/SubscriptionRequest.md
 docs/SubscriptionResponse.md
 docs/SubscriptionsApi.md
 docs/SubscriptionsCustomerPortalApi.md
+docs/TaxLinesDataResponse.md
 docs/TaxesApi.md
 docs/TokenRequest.md
 docs/TokenRequestCard.md
@@ -270,6 +275,7 @@ model/charge-response.ts
 model/charge-update-request.ts
 model/chargeback-file-response.ts
 model/chargeback-response.ts
+model/charges-data-response.ts
 model/charges-order-response.ts
 model/checkout-order-template.ts
 model/checkout-response.ts
@@ -313,6 +319,7 @@ model/delete-api-keys-response.ts
 model/deleted-blacklist-rule-response.ts
 model/deleted-whitelist-rule-response.ts
 model/details-error.ts
+model/discount-lines-data-response.ts
 model/discount-lines-response.ts
 model/email-checkout-request.ts
 model/event-response.ts
@@ -386,6 +393,7 @@ model/payment-method-spei-request.ts
 model/payment-method-token-request.ts
 model/payout-method.ts
 model/payout-order-payouts-item.ts
+model/payout-order-request-customer-info.ts
 model/payout-order-request.ts
 model/payout-order-response-customer-info.ts
 model/payout-order-response.ts
@@ -399,6 +407,7 @@ model/product.ts
 model/resend-event-request.ts
 model/risk-rules-data.ts
 model/risk-rules-list.ts
+model/shipping-lines-data-response.ts
 model/shipping-order-response.ts
 model/shipping-request.ts
 model/sms-checkout-request.ts
@@ -408,6 +417,7 @@ model/subscription-details.ts
 model/subscription-events-response.ts
 model/subscription-request.ts
 model/subscription-response.ts
+model/tax-lines-data-response.ts
 model/token-request-card.ts
 model/token-request-checkout.ts
 model/token-request.ts

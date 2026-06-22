@@ -84,9 +84,6 @@ export interface UpdateCustomer {
      * Contains the detail of the shipping addresses that the client has active or has used in Conekta
      */
     'shipping_contacts'?: Array<CustomerShippingContactsRequest>;
-    /**
-     * It is a parameter that allows to identify in the response, the detailed content of the plans to which the client has subscribed
-     */
     'subscription'?: SubscriptionRequest;
 }
 

@@ -16,13 +16,16 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import type { CustomerFiscalEntitiesDataResponse } from './customer-fiscal-entities-data-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PaginationMetadata } from './pagination-metadata';
 
-/**
- * @type CustomerFiscalEntitiesResponse
- */
-export type CustomerFiscalEntitiesResponse = PaginationMetadata;
-
+export interface CustomerFiscalEntitiesResponse {
+    /**
+     * Indicates if there are more pages to be requested
+     */
+    'has_more': boolean;
+    /**
+     * Object type, in this case is list
+     */
+    'object': string;
+    'data'?: Array<CustomerFiscalEntitiesDataResponse>;
+}
 

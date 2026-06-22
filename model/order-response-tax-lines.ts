@@ -15,18 +15,28 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { OrderTaxResponse } from './order-tax-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PageMetadata } from './page-metadata';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PaginationMetadata } from './pagination-metadata';
+import type { TaxLinesDataResponse } from './tax-lines-data-response';
 
 /**
- * @type OrderResponseTaxLines
  * List of taxes that are applied to the order
  */
-export type OrderResponseTaxLines = PageMetadata & PaginationMetadata;
-
+export interface OrderResponseTaxLines {
+    /**
+     * Indicates if there are more pages to be requested
+     */
+    'has_more': boolean;
+    /**
+     * Object type, in this case is list
+     */
+    'object': string;
+    /**
+     * URL of the next page.
+     */
+    'next_page_url'?: string | null;
+    /**
+     * Url of the previous page.
+     */
+    'previous_page_url'?: string | null;
+    'data'?: Array<TaxLinesDataResponse>;
+}
 

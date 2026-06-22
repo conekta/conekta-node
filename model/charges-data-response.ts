@@ -26,7 +26,7 @@ import type { ChargeResponseRefunds } from './charge-response-refunds';
 // @ts-ignore
 import type { ChargebackResponse } from './chargeback-response';
 
-export interface ChargeResponse {
+export interface ChargesDataResponse {
     'amount': number;
     'channel'?: ChargeResponseChannel;
     'created_at': number;

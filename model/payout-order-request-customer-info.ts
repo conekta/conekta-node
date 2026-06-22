@@ -14,16 +14,10 @@
 
 
 
-export interface OrderResponseCustomerInfo {
-    'object'?: string;
-    /**
-     * Custom reference
-     */
-    'customer_custom_reference'?: string | null;
-    'name'?: string;
-    'email'?: string;
-    'phone'?: string;
-    'corporate'?: boolean;
-    'customer_id'?: string;
+/**
+ * The customer information to whom the payout order is made.
+ */
+export interface PayoutOrderRequestCustomerInfo {
+    'customer_id': string;
 }
 

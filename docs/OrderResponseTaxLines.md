@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **object** | **string** | Object type, in this case is list | [default to undefined]
 **next_page_url** | **string** | URL of the next page. | [optional] [default to undefined]
 **previous_page_url** | **string** | Url of the previous page. | [optional] [default to undefined]
-**data** | [**Array&lt;OrderTaxResponse&gt;**](OrderTaxResponse.md) |  | [optional] [default to undefined]
+**data** | [**Array&lt;TaxLinesDataResponse&gt;**](TaxLinesDataResponse.md) |  | [optional] [default to undefined]
 
 ## Example
 

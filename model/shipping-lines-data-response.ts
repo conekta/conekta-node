@@ -14,7 +14,7 @@
 
 
 
-export interface ShippingOrderResponse {
+export interface ShippingLinesDataResponse {
     /**
      * Shipping amount in cents
      */

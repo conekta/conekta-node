@@ -13,14 +13,23 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { OrderUpdateCustomerInfo } from './order-update-customer-info';
 
 /**
- * @type PayoutOrderResponseCustomerInfo
  * The customer information of the payout order.
  */
-export type PayoutOrderResponseCustomerInfo = OrderUpdateCustomerInfo;
-
+export interface PayoutOrderResponseCustomerInfo {
+    /**
+     * The id of the customer.
+     */
+    'id': string;
+    /**
+     * Custom reference
+     */
+    'customer_custom_reference'?: string | null;
+    'name'?: string;
+    'email'?: string;
+    'phone'?: string;
+    'corporate'?: boolean;
+    'object'?: string;
+}
 

@@ -16,16 +16,24 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import type { CompanyResponse } from './company-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PageMetadata } from './page-metadata';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PaginationMetadata } from './pagination-metadata';
 
-/**
- * @type GetCompaniesResponse
- */
-export type GetCompaniesResponse = PageMetadata & PaginationMetadata;
-
+export interface GetCompaniesResponse {
+    /**
+     * Indicates if there are more pages to be requested
+     */
+    'has_more': boolean;
+    /**
+     * Object type, in this case is list
+     */
+    'object': string;
+    /**
+     * URL of the next page.
+     */
+    'next_page_url'?: string | null;
+    /**
+     * Url of the previous page.
+     */
+    'previous_page_url'?: string | null;
+    'data'?: Array<CompanyResponse>;
+}
 

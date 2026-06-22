@@ -13,14 +13,22 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { OrderTaxRequest } from './order-tax-request';
 
 /**
- * @type OrderTaxResponse
  * create new taxes for an existing order response
  */
-export type OrderTaxResponse = OrderTaxRequest;
-
+export interface OrderTaxResponse {
+    /**
+     * The amount to be collected for tax in cents
+     */
+    'amount': number;
+    /**
+     * description or tax\'s name
+     */
+    'description': string;
+    'metadata'?: { [key: string]: any; };
+    'id': string;
+    'object'?: string;
+    'parent_id'?: string;
+}
 

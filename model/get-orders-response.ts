@@ -16,19 +16,24 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import type { OrderResponse } from './order-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { OrdersResponse } from './orders-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PageMetadata } from './page-metadata';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PaginationMetadata } from './pagination-metadata';
 
-/**
- * @type GetOrdersResponse
- */
-export type GetOrdersResponse = OrdersResponse & PageMetadata & PaginationMetadata;
-
+export interface GetOrdersResponse {
+    'data': Array<OrderResponse>;
+    /**
+     * Indicates if there are more pages to be requested
+     */
+    'has_more': boolean;
+    /**
+     * Object type, in this case is list
+     */
+    'object': string;
+    /**
+     * URL of the next page.
+     */
+    'next_page_url'?: string | null;
+    /**
+     * Url of the previous page.
+     */
+    'previous_page_url'?: string | null;
+}
 

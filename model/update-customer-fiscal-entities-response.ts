@@ -15,14 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { FiscalEntityRequest } from './fiscal-entity-request';
-// May contain unused imports in some cases
-// @ts-ignore
 import type { FiscalEntityRequestAddress } from './fiscal-entity-request-address';
 
-/**
- * @type UpdateCustomerFiscalEntitiesResponse
- */
-export type UpdateCustomerFiscalEntitiesResponse = FiscalEntityRequest;
-
+export interface UpdateCustomerFiscalEntitiesResponse {
+    'address': FiscalEntityRequestAddress;
+    'tax_id'?: string;
+    'email'?: string;
+    'phone'?: string;
+    'metadata'?: { [key: string]: object; };
+    'company_name'?: string;
+    'id': string;
+    'object': string;
+    'created_at': number;
+    'parent_id'?: string;
+    'default'?: boolean;
+}
 

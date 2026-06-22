@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **national_id** | **string** | It is a parameter that allows to identify the national identification number of the client. | [optional] [default to undefined]
 **payment_sources** | [**Array&lt;CustomerPaymentMethodsRequest&gt;**](CustomerPaymentMethodsRequest.md) | Contains details of the payment methods that the customer has active or has used in Conekta | [optional] [default to undefined]
 **shipping_contacts** | [**Array&lt;CustomerShippingContactsRequest&gt;**](CustomerShippingContactsRequest.md) | Contains the detail of the shipping addresses that the client has active or has used in Conekta | [optional] [default to undefined]
-**subscription** | [**SubscriptionRequest**](SubscriptionRequest.md) | It is a parameter that allows to identify in the response, the detailed content of the plans to which the client has subscribed | [optional] [default to undefined]
+**subscription** | [**SubscriptionRequest**](SubscriptionRequest.md) |  | [optional] [default to undefined]
 
 ## Example
 

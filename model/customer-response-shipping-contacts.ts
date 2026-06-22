@@ -16,13 +16,16 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import type { CustomerShippingContactsDataResponse } from './customer-shipping-contacts-data-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PaginationMetadata } from './pagination-metadata';
 
-/**
- * @type CustomerResponseShippingContacts
- */
-export type CustomerResponseShippingContacts = PaginationMetadata;
-
+export interface CustomerResponseShippingContacts {
+    /**
+     * Indicates if there are more pages to be requested
+     */
+    'has_more': boolean;
+    /**
+     * Object type, in this case is list
+     */
+    'object': string;
+    'data'?: Array<CustomerShippingContactsDataResponse>;
+}
 
