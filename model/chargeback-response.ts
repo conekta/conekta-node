@@ -24,9 +24,9 @@ export interface ChargebackResponse {
     'id'?: string;
     'status'?: ChargebackResponseStatusEnum;
     'reason'?: ChargebackResponseReasonEnum;
-    'note'?: string | null;
-    'followup_status'?: ChargebackResponseFollowupStatusEnum | null;
-    'response_from_client'?: string | null;
+    'note'?: string;
+    'followup_status'?: ChargebackResponseFollowupStatusEnum;
+    'response_from_client'?: string;
     'files'?: Array<ChargebackFileResponse>;
     'object'?: string;
     'charge_id'?: string;

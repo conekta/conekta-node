@@ -44,7 +44,7 @@ export interface CheckoutResponse {
     'needs_shipping_contact'?: boolean;
     'object': string;
     'paid_payments_count'?: number;
-    'payments_limit_count'?: number | null;
+    'payments_limit_count'?: number;
     'recurrent'?: boolean;
     'slug'?: string;
     'sms_sent'?: number;

@@ -25,7 +25,7 @@ export interface OrderFiscalEntityResponse {
     /**
      * Email of the fiscal entity
      */
-    'email'?: string | null;
+    'email'?: string;
     /**
      * Metadata associated with the fiscal entity
      */
@@ -33,11 +33,11 @@ export interface OrderFiscalEntityResponse {
     /**
      * Name of the fiscal entity
      */
-    'name'?: string | null;
+    'name'?: string;
     /**
      * Tax ID of the fiscal entity
      */
-    'tax_id'?: string | null;
+    'tax_id'?: string;
     /**
      * ID of the fiscal entity
      */
@@ -50,6 +50,6 @@ export interface OrderFiscalEntityResponse {
     /**
      * Phone of the fiscal entity
      */
-    'phone'?: string | null;
+    'phone'?: string;
 }
 

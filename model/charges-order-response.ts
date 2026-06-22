@@ -32,11 +32,11 @@ export interface ChargesOrderResponse {
     /**
      * URL of the next page.
      */
-    'next_page_url'?: string | null;
+    'next_page_url'?: string;
     /**
      * Url of the previous page.
      */
-    'previous_page_url'?: string | null;
+    'previous_page_url'?: string;
     'data'?: Array<ChargeResponse>;
 }
 

@@ -21,6 +21,9 @@ import type { OrderChannelResponse } from './order-channel-response';
 import type { OrderChargesResponse } from './order-charges-response';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { OrderDiscountLinesResponse } from './order-discount-lines-response';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { OrderFiscalEntityResponse } from './order-fiscal-entity-response';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -33,19 +36,16 @@ import type { OrderResponseCheckout } from './order-response-checkout';
 import type { OrderResponseCustomerInfo } from './order-response-customer-info';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { OrderResponseDiscountLines } from './order-response-discount-lines';
-// May contain unused imports in some cases
-// @ts-ignore
 import type { OrderResponseProducts } from './order-response-products';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { OrderResponseShippingContact } from './order-response-shipping-contact';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { OrderResponseShippingLines } from './order-response-shipping-lines';
+import type { OrderShippingLinesResponse } from './order-shipping-lines-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { OrderResponseTaxLines } from './order-response-tax-lines';
+import type { OrderTaxLinesResponse } from './order-tax-lines-response';
 
 /**
  * order response
@@ -71,9 +71,9 @@ export interface OrderResponse {
      */
     'currency'?: string;
     'customer_info'?: OrderResponseCustomerInfo;
-    'discount_lines'?: OrderResponseDiscountLines | null;
-    'tax_lines'?: OrderResponseTaxLines | null;
-    'shipping_lines'?: OrderResponseShippingLines | null;
+    'discount_lines'?: OrderDiscountLinesResponse;
+    'tax_lines'?: OrderTaxLinesResponse;
+    'shipping_lines'?: OrderShippingLinesResponse;
     'fiscal_entity'?: OrderFiscalEntityResponse;
     'id'?: string;
     'is_refundable'?: boolean;

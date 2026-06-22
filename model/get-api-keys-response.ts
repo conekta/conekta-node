@@ -21,11 +21,11 @@ export interface GetApiKeysResponse {
     /**
      * URL of the next page.
      */
-    'next_page_url'?: string | null;
+    'next_page_url'?: string;
     /**
      * Url of the previous page.
      */
-    'previous_page_url'?: string | null;
+    'previous_page_url'?: string;
     /**
      * Indicates if there are more pages to be requested
      */

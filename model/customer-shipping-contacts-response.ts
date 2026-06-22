@@ -23,7 +23,7 @@ import type { CustomerShippingContactsAddress } from './customer-shipping-contac
 export interface CustomerShippingContactsResponse {
     'phone'?: string;
     'receiver'?: string;
-    'between_streets'?: string | null;
+    'between_streets'?: string;
     'address'?: CustomerShippingContactsAddress;
     'parent_id'?: string;
     'default'?: boolean;

@@ -23,7 +23,7 @@ export interface OrderResponseShippingContact {
     'object'?: string;
     'phone'?: string;
     'receiver'?: string;
-    'between_streets'?: string | null;
+    'between_streets'?: string;
     'address'?: CustomerShippingContactsAddress;
     'parent_id'?: string;
     'default'?: boolean;

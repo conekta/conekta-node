@@ -24,7 +24,7 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 // @ts-ignore
 import type { BalanceResponse } from '../model';
 // @ts-ignore
-import type { ConektaError } from '../model';
+import type { ModelError } from '../model';
 /**
  * BalancesApi - axios parameter creator
  */

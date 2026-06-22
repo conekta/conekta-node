@@ -19,20 +19,20 @@ export interface PaymentMethodBankTransfer {
     'object': string;
     'bank'?: string;
     'clabe'?: string;
-    'description'?: string | null;
-    'executed_at'?: string | null;
+    'description'?: string;
+    'executed_at'?: string;
     'expires_at'?: number;
-    'issuing_account_bank'?: string | null;
-    'issuing_account_number'?: string | null;
-    'issuing_account_holder_name'?: string | null;
-    'issuing_account_tax_id'?: string | null;
+    'issuing_account_bank'?: string;
+    'issuing_account_number'?: string;
+    'issuing_account_holder_name'?: string;
+    'issuing_account_tax_id'?: string;
     'payment_attempts'?: Array<any>;
-    'receiving_account_holder_name'?: string | null;
+    'receiving_account_holder_name'?: string;
     'receiving_account_number'?: string;
     'receiving_account_bank'?: string;
-    'receiving_account_tax_id'?: string | null;
-    'reference_number'?: string | null;
-    'tracking_code'?: string | null;
+    'receiving_account_tax_id'?: string;
+    'reference_number'?: string;
+    'tracking_code'?: string;
     'customer_ip_address'?: string;
 }
 

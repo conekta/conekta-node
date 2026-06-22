@@ -14,19 +14,22 @@
 
 
 
+/**
+ * Response body after uploading a company document.
+ */
 export interface CompanyDocumentResponse {
     /**
      * Classification of the document.  | Tipo de archivo              | Descripción                                               | | :--------------------------- | :-------------------------------------------------------- | | `id_legal_representative`      | identificación oficial frente                             | | `id_legal_representative_back` | identificación oficial atrás                              | | `cfdi`                         | Prueba de situación fiscal                                | | `constitutive_act_basic`       | Acta constitutiva                                         | | `proof_of_address`             | Comprobante de domicilio del negocio                      | | `power_of_attonery`            | Poderes de representación                                 | | `deposit_account_cover`        | Carátula de la cuenta de depósito                         | | `permit_casino`                | Permiso ante SEGOB                                        | | `license_sanitation`           | Licencia sanitaria de COFEPRIS                            | | `registration_tourism`         | Inscripción ante el Registro Nacional de Turismo (SECTUR) | 
      */
-    'file_classification'?: CompanyDocumentResponseFileClassificationEnum;
+    'file_classification': CompanyDocumentResponseFileClassificationEnum;
     /**
-     * The status of the document.
+     * Name of the file as stored or processed.
      */
-    'status'?: string;
+    'file_name': string;
     /**
-     * The name of the file.
+     * Current status of the document.
      */
-    'file_name'?: string | null;
+    'status': string;
 }
 
 export const CompanyDocumentResponseFileClassificationEnum = {

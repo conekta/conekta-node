@@ -15,12 +15,12 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ShippingLinesDataResponse } from './shipping-lines-data-response';
+import type { TaxLinesDataResponse } from './tax-lines-data-response';
 
 /**
- * List of shipping costs applied to the order
+ * List of taxes that are applied to the order
  */
-export interface OrderResponseShippingLines {
+export interface OrderTaxLinesResponse {
     /**
      * Indicates if there are more pages to be requested
      */
@@ -32,11 +32,11 @@ export interface OrderResponseShippingLines {
     /**
      * URL of the next page.
      */
-    'next_page_url'?: string | null;
+    'next_page_url'?: string;
     /**
      * Url of the previous page.
      */
-    'previous_page_url'?: string | null;
-    'data'?: Array<ShippingLinesDataResponse>;
+    'previous_page_url'?: string;
+    'data'?: Array<TaxLinesDataResponse>;
 }
 

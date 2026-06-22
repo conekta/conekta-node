@@ -61,8 +61,8 @@ const { status, data } = await apiInstance.createCustomerPortal(
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**201** | Customer portal created successfully |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  * Conekta-Media-Type -  <br>  |
-|**401** | authentication error |  -  |
 |**404** | not found entity |  -  |
+|**401** | authentication error |  -  |
 |**422** | parameter validation error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -121,8 +121,8 @@ const { status, data } = await apiInstance.getCustomerPortal(
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | Customer portal retrieved successfully |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  * Conekta-Media-Type -  <br>  |
-|**401** | authentication error |  -  |
 |**404** | not found entity |  -  |
+|**401** | authentication error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

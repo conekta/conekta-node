@@ -34,11 +34,11 @@ export interface ApiKeyCreateResponse {
     /**
      * Unix timestamp in seconds of when the api key was deleted
      */
-    'deactivated_at'?: number | null;
+    'deactivated_at'?: number;
     /**
      * Unix timestamp in seconds with the api key was used
      */
-    'last_used_at'?: number | null;
+    'last_used_at'?: number;
     /**
      * A name or brief explanation of what this api key is used for
      */

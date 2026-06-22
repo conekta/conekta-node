@@ -1,6 +1,6 @@
-# OrderDiscountLinesResponse
+# OrderShippingLinesResponse
 
-List of discounts that are applied to the order
+List of shipping costs applied to the order
 
 ## Properties
 
@@ -10,14 +10,14 @@ Name | Type | Description | Notes
 **object** | **string** | Object type, in this case is list | [default to undefined]
 **next_page_url** | **string** | URL of the next page. | [optional] [default to undefined]
 **previous_page_url** | **string** | Url of the previous page. | [optional] [default to undefined]
-**data** | [**Array&lt;DiscountLinesDataResponse&gt;**](DiscountLinesDataResponse.md) |  | [optional] [default to undefined]
+**data** | [**Array&lt;ShippingLinesDataResponse&gt;**](ShippingLinesDataResponse.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import { OrderDiscountLinesResponse } from 'conekta';
+import { OrderShippingLinesResponse } from 'conekta';
 
-const instance: OrderDiscountLinesResponse = {
+const instance: OrderShippingLinesResponse = {
     has_more,
     object,
     next_page_url,

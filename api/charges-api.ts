@@ -32,9 +32,9 @@ import type { ChargeUpdateRequest } from '../model';
 // @ts-ignore
 import type { ChargesOrderResponse } from '../model';
 // @ts-ignore
-import type { ConektaError } from '../model';
-// @ts-ignore
 import type { GetChargesResponse } from '../model';
+// @ts-ignore
+import type { ModelError } from '../model';
 /**
  * ChargesApi - axios parameter creator
  */

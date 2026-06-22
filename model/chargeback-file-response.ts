@@ -20,7 +20,7 @@
 export interface ChargebackFileResponse {
     'id'?: string;
     'file_name'?: string;
-    'url'?: string | null;
+    'url'?: string;
     'created_at'?: number;
 }
 

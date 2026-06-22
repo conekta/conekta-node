@@ -22,7 +22,7 @@ export interface SubscriptionDetailsPlan {
     'currency'?: string;
     'interval'?: string;
     'frequency'?: number;
-    'trial_period_days'?: number | null;
+    'trial_period_days'?: number;
     'expiry_count'?: number;
     'created_at'?: number;
 }

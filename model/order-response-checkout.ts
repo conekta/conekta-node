@@ -28,27 +28,27 @@ export interface OrderResponseCheckout {
     /**
      * Indicates whether the card used for the payment should be saved for future purchases. This field is only applicable for card payments.
      */
-    'force_save_card'?: boolean | null;
+    'force_save_card'?: boolean;
     'id': string;
     'is_redirect_on_failure'?: boolean;
     'livemode'?: boolean;
     /**
      * Number of retries allowed before the checkout is marked as failed
      */
-    'max_failed_retries'?: number | null;
+    'max_failed_retries'?: number;
     'metadata'?: { [key: string]: any; };
     'monthly_installments_enabled'?: boolean;
     'monthly_installments_options'?: Array<number>;
     'name': string;
     'needs_shipping_contact'?: boolean;
     'object': string;
-    'on_demand_enabled'?: boolean | null;
+    'on_demand_enabled'?: boolean;
     'paid_payments_count'?: number;
     'recurrent'?: boolean;
     /**
      * number of seconds to wait before redirecting to the success_url
      */
-    'redirection_time'?: number | null;
+    'redirection_time'?: number;
     'slug'?: string;
     'sms_sent'?: number;
     /**

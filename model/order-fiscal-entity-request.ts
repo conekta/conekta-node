@@ -33,7 +33,7 @@ export interface OrderFiscalEntityRequest {
     /**
      * Name of the fiscal entity
      */
-    'name'?: string | null;
+    'name'?: string;
     /**
      * Phone of the fiscal entity
      */
@@ -41,6 +41,6 @@ export interface OrderFiscalEntityRequest {
     /**
      * Tax ID of the fiscal entity
      */
-    'tax_id'?: string | null;
+    'tax_id'?: string;
 }
 

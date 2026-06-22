@@ -16,7 +16,7 @@
 
 export interface DetailsError {
     'code'?: string;
-    'param'?: string | null;
+    'param'?: string;
     'message'?: string;
     'debug_message'?: string;
 }

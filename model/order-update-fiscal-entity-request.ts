@@ -29,7 +29,7 @@ export interface OrderUpdateFiscalEntityRequest {
     /**
      * Name of the fiscal entity
      */
-    'name'?: string | null;
+    'name'?: string;
     /**
      * Metadata associated with the fiscal entity
      */
@@ -41,6 +41,6 @@ export interface OrderUpdateFiscalEntityRequest {
     /**
      * Tax ID of the fiscal entity
      */
-    'tax_id'?: string | null;
+    'tax_id'?: string;
 }
 

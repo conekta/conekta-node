@@ -263,8 +263,8 @@ const { status, data } = await apiInstance.updateCharge(
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  * Conekta-Media-Type -  <br>  |
-|**404** | not found entity |  -  |
 |**422** | whitelist validation error |  -  |
+|**404** | not found entity |  -  |
 |**500** | internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

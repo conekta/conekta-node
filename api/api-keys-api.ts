@@ -30,11 +30,11 @@ import type { ApiKeyResponse } from '../model';
 // @ts-ignore
 import type { ApiKeyUpdateRequest } from '../model';
 // @ts-ignore
-import type { ConektaError } from '../model';
-// @ts-ignore
 import type { DeleteApiKeysResponse } from '../model';
 // @ts-ignore
 import type { GetApiKeysResponse } from '../model';
+// @ts-ignore
+import type { ModelError } from '../model';
 /**
  * ApiKeysApi - axios parameter creator
  */

@@ -13,16 +13,20 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { DetailsError } from './details-error';
 
-export interface OrderUpdateCustomerInfo {
+/**
+ * err model
+ */
+export interface ModelError {
+    'details'?: Array<DetailsError>;
     /**
-     * Custom reference
+     * log id
      */
-    'customer_custom_reference'?: string | null;
-    'name'?: string;
-    'email'?: string;
-    'phone'?: string;
-    'corporate'?: boolean;
+    'log_id'?: string;
+    'type'?: string;
     'object'?: string;
 }
 

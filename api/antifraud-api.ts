@@ -24,13 +24,13 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 // @ts-ignore
 import type { BlacklistRuleResponse } from '../model';
 // @ts-ignore
-import type { ConektaError } from '../model';
-// @ts-ignore
 import type { CreateRuleWhitelistRequest } from '../model';
 // @ts-ignore
 import type { DeletedBlacklistRuleResponse } from '../model';
 // @ts-ignore
 import type { DeletedWhitelistRuleResponse } from '../model';
+// @ts-ignore
+import type { ModelError } from '../model';
 // @ts-ignore
 import type { RiskRulesList } from '../model';
 // @ts-ignore

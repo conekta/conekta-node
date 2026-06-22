@@ -26,6 +26,6 @@ export interface SubscriptionDetailsCard {
     'name'?: string;
     'payment_source_status'?: string;
     'customer_id'?: string;
-    'customer_custom_reference'?: string | null;
+    'customer_custom_reference'?: string;
 }
 

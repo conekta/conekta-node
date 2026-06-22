@@ -13,11 +13,14 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { DiscountLinesDataResponse } from './discount-lines-data-response';
 
 /**
- * pagination metadata
+ * List of discounts that are applied to the order
  */
-export interface PaginationMetadata {
+export interface OrderDiscountLinesResponse {
     /**
      * Indicates if there are more pages to be requested
      */
@@ -26,5 +29,14 @@ export interface PaginationMetadata {
      * Object type, in this case is list
      */
     'object': string;
+    /**
+     * URL of the next page.
+     */
+    'next_page_url'?: string;
+    /**
+     * Url of the previous page.
+     */
+    'previous_page_url'?: string;
+    'data'?: Array<DiscountLinesDataResponse>;
 }
 

@@ -52,14 +52,14 @@ export interface ChargesDataResponse {
     /**
      * charge Payment date
      */
-    'paid_at'?: number | null;
+    'paid_at'?: number;
     'payment_method'?: ChargeResponsePaymentMethod;
     /**
      * Reference ID of the charge
      */
-    'reference_id'?: string | null;
+    'reference_id'?: string;
     'refunds'?: ChargeResponseRefunds;
-    'chargeback'?: ChargebackResponse | null;
+    'chargeback'?: ChargebackResponse;
     /**
      * Charge status
      */

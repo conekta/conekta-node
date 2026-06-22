@@ -17,7 +17,7 @@
 /**
  * subscription model
  */
-export interface SubscriptionResponse {
+export interface CustomerSubscriptionResponse {
     'billing_cycle_start'?: number;
     'billing_cycle_end'?: number;
     'canceled_at'?: number;

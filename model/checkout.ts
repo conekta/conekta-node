@@ -44,7 +44,7 @@ export interface Checkout {
     /**
      * Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null.
      */
-    'three_ds_mode'?: string | null;
+    'three_ds_mode'?: string;
     /**
      * Reason for charge
      */
@@ -56,7 +56,7 @@ export interface Checkout {
     /**
      * This flag allows you to specify if the link will be on demand.
      */
-    'on_demand_enabled'?: boolean | null;
+    'on_demand_enabled'?: boolean;
     /**
      * It is a list of plan IDs that will be associated with the order.
      */

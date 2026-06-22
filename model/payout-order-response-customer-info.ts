@@ -25,7 +25,7 @@ export interface PayoutOrderResponseCustomerInfo {
     /**
      * Custom reference
      */
-    'customer_custom_reference'?: string | null;
+    'customer_custom_reference'?: string;
     'name'?: string;
     'email'?: string;
     'phone'?: string;

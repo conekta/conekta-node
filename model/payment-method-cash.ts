@@ -21,8 +21,8 @@ export interface PaymentMethodCash {
      * Agreement ID
      */
     'agreement'?: string;
-    'auth_code'?: number | null;
-    'cashier_id'?: string | null;
+    'auth_code'?: number;
+    'cashier_id'?: string;
     'reference'?: string;
     'barcode_url'?: string;
     'expires_at'?: number;
@@ -31,7 +31,7 @@ export interface PaymentMethodCash {
      */
     'product_type'?: string;
     'service_name'?: string;
-    'store'?: string | null;
+    'store'?: string;
     'store_name'?: string;
     'customer_ip_address'?: string;
 }

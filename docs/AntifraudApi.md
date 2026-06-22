@@ -200,7 +200,7 @@ const apiInstance = new AntifraudApi(configuration);
 
 let id: string; //Identifier of the resource (default to undefined)
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
-let xChildCompanyId: string; //In the case of a holding company, the company id of the child company to which will process the request. (optional) (default to 'null')
+let xChildCompanyId: string; //In the case of a holding company, the company id of the child company to which will process the request. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.deleteRuleWhitelist(
     id,
@@ -215,7 +215,7 @@ const { status, data } = await apiInstance.deleteRuleWhitelist(
 |------------- | ------------- | ------------- | -------------|
 | **id** | [**string**] | Identifier of the resource | defaults to undefined|
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
-| **xChildCompanyId** | [**string**] | In the case of a holding company, the company id of the child company to which will process the request. | (optional) defaults to 'null'|
+| **xChildCompanyId** | [**string**] | In the case of a holding company, the company id of the child company to which will process the request. | (optional) defaults to undefined|
 
 
 ### Return type

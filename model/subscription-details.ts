@@ -31,7 +31,7 @@ export interface SubscriptionDetails {
     'status'?: string;
     'plan_id'?: string;
     'customer_id'?: string;
-    'next_billing_cycle'?: number | null;
+    'next_billing_cycle'?: number;
     'created_at'?: number;
     'updated_at'?: number;
 }

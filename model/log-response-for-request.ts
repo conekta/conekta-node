@@ -22,10 +22,10 @@ export interface LogResponseForRequest {
     'id': string;
     'ip_address'?: string;
     'livemode': boolean;
-    'loggable_id'?: string | null;
-    'loggable_type'?: string | null;
+    'loggable_id'?: string;
+    'loggable_type'?: string;
     'method'?: string;
-    'oauth_token_id'?: string | null;
+    'oauth_token_id'?: string;
     'query_string'?: { [key: string]: any; };
     'related'?: string;
     'request_body'?: object;

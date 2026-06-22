@@ -27,20 +27,20 @@ export interface ChargeOrderResponse {
     'currency'?: string;
     'customer_id'?: string;
     'description'?: string;
-    'device_fingerprint'?: string | null;
+    'device_fingerprint'?: string;
     'failure_code'?: string;
     'failure_message'?: string;
     'id'?: string;
     'livemode'?: boolean;
-    'monthly_installments'?: number | null;
+    'monthly_installments'?: number;
     'object'?: string;
     'order_id'?: string;
-    'paid_at'?: number | null;
+    'paid_at'?: number;
     'payment_method'?: ChargeOrderResponsePaymentMethod;
     /**
      * Reference ID of the charge
      */
-    'reference_id'?: string | null;
+    'reference_id'?: string;
     'refunds'?: Array<any>;
     'status'?: string;
 }
