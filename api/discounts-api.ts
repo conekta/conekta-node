@@ -52,7 +52,7 @@ export const DiscountsApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'orderDiscountLinesRequest' is not null or undefined
             assertParamExists('ordersCreateDiscountLine', 'orderDiscountLinesRequest', orderDiscountLinesRequest)
             const localVarPath = `/orders/{id}/discount_lines`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -103,8 +103,8 @@ export const DiscountsApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'discountLinesId' is not null or undefined
             assertParamExists('ordersDeleteDiscountLines', 'discountLinesId', discountLinesId)
             const localVarPath = `/orders/{id}/discount_lines/{discount_lines_id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"discount_lines_id"}}`, encodeURIComponent(String(discountLinesId)));
+                .replace('{id}', encodeURIComponent(String(id)))
+                .replace('{discount_lines_id}', encodeURIComponent(String(discountLinesId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -153,8 +153,8 @@ export const DiscountsApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'discountLinesId' is not null or undefined
             assertParamExists('ordersGetDiscountLine', 'discountLinesId', discountLinesId)
             const localVarPath = `/orders/{id}/discount_lines/{discount_lines_id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"discount_lines_id"}}`, encodeURIComponent(String(discountLinesId)));
+                .replace('{id}', encodeURIComponent(String(id)))
+                .replace('{discount_lines_id}', encodeURIComponent(String(discountLinesId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -204,7 +204,7 @@ export const DiscountsApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'id' is not null or undefined
             assertParamExists('ordersGetDiscountLines', 'id', id)
             const localVarPath = `/orders/{id}/discount_lines`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -272,8 +272,8 @@ export const DiscountsApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'updateOrderDiscountLinesRequest' is not null or undefined
             assertParamExists('ordersUpdateDiscountLines', 'updateOrderDiscountLinesRequest', updateOrderDiscountLinesRequest)
             const localVarPath = `/orders/{id}/discount_lines/{discount_lines_id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"discount_lines_id"}}`, encodeURIComponent(String(discountLinesId)));
+                .replace('{id}', encodeURIComponent(String(id)))
+                .replace('{discount_lines_id}', encodeURIComponent(String(discountLinesId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;

@@ -1,6 +1,5 @@
-# UpdateOrderTaxResponse
+# TaxLinesDataResponse
 
-create new taxes for an existing order response
 
 ## Properties
 
@@ -16,9 +15,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { UpdateOrderTaxResponse } from 'conekta';
+import { TaxLinesDataResponse } from 'conekta';
 
-const instance: UpdateOrderTaxResponse = {
+const instance: TaxLinesDataResponse = {
     amount,
     description,
     metadata,

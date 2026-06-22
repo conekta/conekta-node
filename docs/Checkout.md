@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **allowed_payment_methods** | **Array&lt;string&gt;** | Those are the payment methods that will be available for the link | [default to undefined]
 **exclude_card_networks** | **Array&lt;string&gt;** | List of card networks to exclude from the checkout. This field is only applicable for card payments. | [optional] [default to undefined]
-**expires_at** | **number** | It is the time when the link will expire.  It is expressed in seconds since the Unix epoch. The valid range is from 10 minutes to 365 days from the creation date.  | [default to undefined]
+**expires_at** | **number** | It is the time when the link will expire.  It is expressed in seconds since the Unix epoch. The valid range is from 5 minutes to 365 days from the creation date.  | [default to undefined]
 **monthly_installments_enabled** | **boolean** | This flag allows you to specify if months without interest will be active. | [optional] [default to undefined]
 **monthly_installments_options** | **Array&lt;number&gt;** | This field allows you to specify the number of months without interest. | [optional] [default to undefined]
 **three_ds_mode** | **string** | Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null. | [optional] [default to undefined]

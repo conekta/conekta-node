@@ -25,6 +25,10 @@ export interface OrderResponseCheckout {
     'expires_at'?: number;
     'failure_url'?: string;
     'force_3ds_flow'?: boolean;
+    /**
+     * Indicates whether the card used for the payment should be saved for future purchases. This field is only applicable for card payments.
+     */
+    'force_save_card'?: boolean;
     'id': string;
     'is_redirect_on_failure'?: boolean;
     'livemode'?: boolean;

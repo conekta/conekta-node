@@ -48,7 +48,7 @@ export const ShippingsApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'shippingRequest' is not null or undefined
             assertParamExists('ordersCreateShipping', 'shippingRequest', shippingRequest)
             const localVarPath = `/orders/{id}/shipping_lines`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -99,8 +99,8 @@ export const ShippingsApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'shippingId' is not null or undefined
             assertParamExists('ordersDeleteShipping', 'shippingId', shippingId)
             const localVarPath = `/orders/{id}/shipping_lines/{shipping_id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"shipping_id"}}`, encodeURIComponent(String(shippingId)));
+                .replace('{id}', encodeURIComponent(String(id)))
+                .replace('{shipping_id}', encodeURIComponent(String(shippingId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -152,8 +152,8 @@ export const ShippingsApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'shippingRequest' is not null or undefined
             assertParamExists('ordersUpdateShipping', 'shippingRequest', shippingRequest)
             const localVarPath = `/orders/{id}/shipping_lines/{shipping_id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"shipping_id"}}`, encodeURIComponent(String(shippingId)));
+                .replace('{id}', encodeURIComponent(String(id)))
+                .replace('{shipping_id}', encodeURIComponent(String(shippingId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;

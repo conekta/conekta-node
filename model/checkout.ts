@@ -30,7 +30,7 @@ export interface Checkout {
      */
     'exclude_card_networks'?: Array<CheckoutExcludeCardNetworksEnum>;
     /**
-     * It is the time when the link will expire.  It is expressed in seconds since the Unix epoch. The valid range is from 10 minutes to 365 days from the creation date. 
+     * It is the time when the link will expire.  It is expressed in seconds since the Unix epoch. The valid range is from 5 minutes to 365 days from the creation date. 
      */
     'expires_at': number;
     /**

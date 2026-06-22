@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **expires_at** | **number** |  | [optional] [default to undefined]
 **failure_url** | **string** |  | [optional] [default to undefined]
 **force_3ds_flow** | **boolean** |  | [optional] [default to undefined]
+**force_save_card** | **boolean** | Indicates whether the card used for the payment should be saved for future purchases. This field is only applicable for card payments. | [optional] [default to undefined]
 **id** | **string** |  | [default to undefined]
 **is_redirect_on_failure** | **boolean** |  | [optional] [default to undefined]
 **livemode** | **boolean** |  | [optional] [default to undefined]
@@ -47,6 +48,7 @@ const instance: OrderResponseCheckout = {
     expires_at,
     failure_url,
     force_3ds_flow,
+    force_save_card,
     id,
     is_redirect_on_failure,
     livemode,

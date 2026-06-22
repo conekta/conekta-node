@@ -107,7 +107,7 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'fiscalEntityRequest' is not null or undefined
             assertParamExists('createCustomerFiscalEntities', 'fiscalEntityRequest', fiscalEntityRequest)
             const localVarPath = `/customers/{id}/fiscal_entities`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -155,7 +155,7 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deleteCustomerById', 'id', id)
             const localVarPath = `/customers/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -201,7 +201,7 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getCustomerById', 'id', id)
             const localVarPath = `/customers/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -312,7 +312,7 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'updateCustomer' is not null or undefined
             assertParamExists('updateCustomer', 'updateCustomer', updateCustomer)
             const localVarPath = `/customers/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -366,8 +366,8 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'updateFiscalEntityRequest' is not null or undefined
             assertParamExists('updateCustomerFiscalEntities', 'updateFiscalEntityRequest', updateFiscalEntityRequest)
             const localVarPath = `/customers/{id}/fiscal_entities/{fiscal_entities_id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"fiscal_entities_id"}}`, encodeURIComponent(String(fiscalEntitiesId)));
+                .replace('{id}', encodeURIComponent(String(id)))
+                .replace('{fiscal_entities_id}', encodeURIComponent(String(fiscalEntitiesId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;

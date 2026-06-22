@@ -1,22 +1,28 @@
-# Page
+# OrderShippingLinesResponse
 
-page metadata
+List of shipping costs applied to the order
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**has_more** | **boolean** | Indicates if there are more pages to be requested | [default to undefined]
+**object** | **string** | Object type, in this case is list | [default to undefined]
 **next_page_url** | **string** | URL of the next page. | [optional] [default to undefined]
 **previous_page_url** | **string** | Url of the previous page. | [optional] [default to undefined]
+**data** | [**Array&lt;ShippingLinesDataResponse&gt;**](ShippingLinesDataResponse.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import { Page } from 'conekta';
+import { OrderShippingLinesResponse } from 'conekta';
 
-const instance: Page = {
+const instance: OrderShippingLinesResponse = {
+    has_more,
+    object,
     next_page_url,
     previous_page_url,
+    data,
 };
 ```
 

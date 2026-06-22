@@ -63,7 +63,6 @@ docs/ChargesDataResponse.md
 docs/ChargesOrderResponse.md
 docs/Checkout.md
 docs/CheckoutOrderTemplate.md
-docs/CheckoutOrderTemplateCustomerInfo.md
 docs/CheckoutResponse.md
 docs/CheckoutsResponse.md
 docs/CompaniesApi.md
@@ -105,6 +104,7 @@ docs/DeleteApiKeysResponse.md
 docs/DeletedBlacklistRuleResponse.md
 docs/DeletedWhitelistRuleResponse.md
 docs/DetailsError.md
+docs/DiscountLinesDataResponse.md
 docs/DiscountLinesResponse.md
 docs/DiscountsApi.md
 docs/EmailCheckoutRequest.md
@@ -138,6 +138,7 @@ docs/OrderChannelResponse.md
 docs/OrderChargesResponse.md
 docs/OrderCheckoutRequest.md
 docs/OrderDiscountLinesRequest.md
+docs/OrderDiscountLinesResponse.md
 docs/OrderFiscalEntityAddressResponse.md
 docs/OrderFiscalEntityRequest.md
 docs/OrderFiscalEntityResponse.md
@@ -151,6 +152,8 @@ docs/OrderResponseCheckout.md
 docs/OrderResponseCustomerInfo.md
 docs/OrderResponseProducts.md
 docs/OrderResponseShippingContact.md
+docs/OrderShippingLinesResponse.md
+docs/OrderTaxLinesResponse.md
 docs/OrderTaxRequest.md
 docs/OrderTaxResponse.md
 docs/OrderUpdate.md
@@ -196,6 +199,7 @@ docs/ResendEventRequest.md
 docs/RiskRulesData.md
 docs/RiskRulesList.md
 docs/ShippingContactsApi.md
+docs/ShippingLinesDataResponse.md
 docs/ShippingOrderResponse.md
 docs/ShippingRequest.md
 docs/ShippingsApi.md
@@ -208,6 +212,7 @@ docs/SubscriptionRequest.md
 docs/SubscriptionResponse.md
 docs/SubscriptionsApi.md
 docs/SubscriptionsCustomerPortalApi.md
+docs/TaxLinesDataResponse.md
 docs/TaxesApi.md
 docs/TokenRequest.md
 docs/TokenRequestCard.md
@@ -267,7 +272,6 @@ model/chargeback-file-response.ts
 model/chargeback-response.ts
 model/charges-data-response.ts
 model/charges-order-response.ts
-model/checkout-order-template-customer-info.ts
 model/checkout-order-template.ts
 model/checkout-response.ts
 model/checkout.ts
@@ -309,6 +313,7 @@ model/delete-api-keys-response.ts
 model/deleted-blacklist-rule-response.ts
 model/deleted-whitelist-rule-response.ts
 model/details-error.ts
+model/discount-lines-data-response.ts
 model/discount-lines-response.ts
 model/email-checkout-request.ts
 model/event-response.ts
@@ -340,6 +345,7 @@ model/order-channel-response.ts
 model/order-charges-response.ts
 model/order-checkout-request.ts
 model/order-discount-lines-request.ts
+model/order-discount-lines-response.ts
 model/order-fiscal-entity-address-response.ts
 model/order-fiscal-entity-request.ts
 model/order-fiscal-entity-response.ts
@@ -353,6 +359,8 @@ model/order-response-customer-info.ts
 model/order-response-products.ts
 model/order-response-shipping-contact.ts
 model/order-response.ts
+model/order-shipping-lines-response.ts
+model/order-tax-lines-response.ts
 model/order-tax-request.ts
 model/order-tax-response.ts
 model/order-update-customer-info.ts
@@ -391,6 +399,7 @@ model/product.ts
 model/resend-event-request.ts
 model/risk-rules-data.ts
 model/risk-rules-list.ts
+model/shipping-lines-data-response.ts
 model/shipping-order-response.ts
 model/shipping-request.ts
 model/sms-checkout-request.ts
@@ -400,6 +409,7 @@ model/subscription-details.ts
 model/subscription-events-response.ts
 model/subscription-request.ts
 model/subscription-response.ts
+model/tax-lines-data-response.ts
 model/token-request-card.ts
 model/token-request-checkout.ts
 model/token-request.ts

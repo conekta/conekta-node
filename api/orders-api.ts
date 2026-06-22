@@ -53,7 +53,7 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             // verify required parameter 'id' is not null or undefined
             assertParamExists('cancelOrder', 'id', id)
             const localVarPath = `/orders/{id}/cancel`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -146,7 +146,7 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getOrderById', 'id', id)
             const localVarPath = `/orders/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -292,8 +292,8 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             // verify required parameter 'refundId' is not null or undefined
             assertParamExists('orderCancelRefund', 'refundId', refundId)
             const localVarPath = `/orders/{id}/refunds/{refund_id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"refund_id"}}`, encodeURIComponent(String(refundId)));
+                .replace('{id}', encodeURIComponent(String(id)))
+                .replace('{refund_id}', encodeURIComponent(String(refundId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -342,7 +342,7 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             // verify required parameter 'orderRefundRequest' is not null or undefined
             assertParamExists('orderRefund', 'orderRefundRequest', orderRefundRequest)
             const localVarPath = `/orders/{id}/refunds`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -391,7 +391,7 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             // verify required parameter 'id' is not null or undefined
             assertParamExists('ordersCreateCapture', 'id', id)
             const localVarPath = `/orders/{id}/capture`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -441,7 +441,7 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             // verify required parameter 'orderUpdate' is not null or undefined
             assertParamExists('updateOrder', 'orderUpdate', orderUpdate)
             const localVarPath = `/orders/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;

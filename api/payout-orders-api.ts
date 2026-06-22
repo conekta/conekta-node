@@ -46,7 +46,7 @@ export const PayoutOrdersApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'id' is not null or undefined
             assertParamExists('cancelPayoutOrderById', 'id', id)
             const localVarPath = `/payout_orders/{id}/cancel`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -131,7 +131,7 @@ export const PayoutOrdersApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getPayoutOrderById', 'id', id)
             const localVarPath = `/payout_orders/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;

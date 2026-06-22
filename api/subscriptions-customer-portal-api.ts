@@ -43,7 +43,7 @@ export const SubscriptionsCustomerPortalApiAxiosParamCreator = function (configu
             // verify required parameter 'subscriptionId' is not null or undefined
             assertParamExists('createCustomerPortal', 'subscriptionId', subscriptionId)
             const localVarPath = `/subscriptions/{subscription_id}/customer_portal`
-                .replace(`{${"subscription_id"}}`, encodeURIComponent(String(subscriptionId)));
+                .replace('{subscription_id}', encodeURIComponent(String(subscriptionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -89,7 +89,7 @@ export const SubscriptionsCustomerPortalApiAxiosParamCreator = function (configu
             // verify required parameter 'subscriptionId' is not null or undefined
             assertParamExists('getCustomerPortal', 'subscriptionId', subscriptionId)
             const localVarPath = `/subscriptions/{subscription_id}/customer_portal`
-                .replace(`{${"subscription_id"}}`, encodeURIComponent(String(subscriptionId)));
+                .replace('{subscription_id}', encodeURIComponent(String(subscriptionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;

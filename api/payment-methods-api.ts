@@ -54,7 +54,7 @@ export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Conf
             // verify required parameter 'createCustomerPaymentMethodsRequest' is not null or undefined
             assertParamExists('createCustomerPaymentMethods', 'createCustomerPaymentMethodsRequest', createCustomerPaymentMethodsRequest)
             const localVarPath = `/customers/{id}/payment_sources`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -105,8 +105,8 @@ export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Conf
             // verify required parameter 'paymentMethodId' is not null or undefined
             assertParamExists('deleteCustomerPaymentMethods', 'paymentMethodId', paymentMethodId)
             const localVarPath = `/customers/{id}/payment_sources/{payment_method_id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"payment_method_id"}}`, encodeURIComponent(String(paymentMethodId)));
+                .replace('{id}', encodeURIComponent(String(id)))
+                .replace('{payment_method_id}', encodeURIComponent(String(paymentMethodId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -156,7 +156,7 @@ export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Conf
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getCustomerPaymentMethods', 'id', id)
             const localVarPath = `/customers/{id}/payment_sources`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -224,8 +224,8 @@ export const PaymentMethodsApiAxiosParamCreator = function (configuration?: Conf
             // verify required parameter 'updatePaymentMethodsCard' is not null or undefined
             assertParamExists('updateCustomerPaymentMethods', 'updatePaymentMethodsCard', updatePaymentMethodsCard)
             const localVarPath = `/customers/{id}/payment_sources/{payment_method_id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"payment_method_id"}}`, encodeURIComponent(String(paymentMethodId)));
+                .replace('{id}', encodeURIComponent(String(id)))
+                .replace('{payment_method_id}', encodeURIComponent(String(paymentMethodId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;

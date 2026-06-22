@@ -14,8 +14,9 @@ Name | Type | Description | Notes
 **created_at** | **number** | The time at which the object was created in seconds since the Unix epoch | [optional] [default to undefined]
 **currency** | **string** | The three-letter ISO 4217 currency code. The currency of the order. | [optional] [default to undefined]
 **customer_info** | [**OrderResponseCustomerInfo**](OrderResponseCustomerInfo.md) |  | [optional] [default to undefined]
-**discount_lines** | [**Array&lt;DiscountLinesResponse&gt;**](DiscountLinesResponse.md) | List of discounts that are applied to the order | [optional] [default to undefined]
-**tax_lines** | [**Array&lt;OrderTaxResponse&gt;**](OrderTaxResponse.md) | List of taxes that are applied to the order | [optional] [default to undefined]
+**discount_lines** | [**OrderDiscountLinesResponse**](OrderDiscountLinesResponse.md) |  | [optional] [default to undefined]
+**tax_lines** | [**OrderTaxLinesResponse**](OrderTaxLinesResponse.md) |  | [optional] [default to undefined]
+**shipping_lines** | [**OrderShippingLinesResponse**](OrderShippingLinesResponse.md) |  | [optional] [default to undefined]
 **fiscal_entity** | [**OrderFiscalEntityResponse**](OrderFiscalEntityResponse.md) |  | [optional] [default to undefined]
 **id** | **string** |  | [optional] [default to undefined]
 **is_refundable** | **boolean** |  | [optional] [default to undefined]
@@ -45,6 +46,7 @@ const instance: OrderResponse = {
     customer_info,
     discount_lines,
     tax_lines,
+    shipping_lines,
     fiscal_entity,
     id,
     is_refundable,

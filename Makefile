@@ -3,8 +3,9 @@ test:
 node:
 	rm -rf api && \
 	rm -rf model && \
+	rm -rf docs && \
 	docker run --rm \
-	 -v ${PWD}:/local openapitools/openapi-generator-cli:v7.21.0 generate \
+	 -v ${PWD}:/local openapitools/openapi-generator-cli:v7.23.0 generate \
 	 -i https://raw.githubusercontent.com/conekta/openapi/main/_build/api.yaml \
 	 -g typescript-axios \
 	 -o /local \

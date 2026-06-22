@@ -31,13 +31,17 @@ export interface OrderCheckoutRequest {
      */
     'plan_ids'?: Array<string>;
     /**
-     * Unix timestamp of checkout expiration
+     * It is the time when the link will expire.  It is expressed in seconds since the Unix epoch. The valid range is from 5 minutes to 365 days from the creation date. 
      */
     'expires_at'?: number;
     /**
      * Redirection url back to the site in case of failed payment, applies only to HostedPayment.
      */
     'failure_url'?: string;
+    /**
+     * Indicates whether the card used for the payment should be saved for future purchases. This field is only applicable for card payments.
+     */
+    'force_save_card'?: boolean;
     'monthly_installments_enabled'?: boolean;
     'monthly_installments_options'?: Array<number>;
     /**
@@ -69,6 +73,8 @@ export const OrderCheckoutRequestAllowedPaymentMethodsEnum = {
     bankTransfer: 'bank_transfer',
     bnpl: 'bnpl',
     payByBank: 'pay_by_bank',
+    google: 'google',
+    apple: 'apple',
 } as const;
 
 export type OrderCheckoutRequestAllowedPaymentMethodsEnum = typeof OrderCheckoutRequestAllowedPaymentMethodsEnum[keyof typeof OrderCheckoutRequestAllowedPaymentMethodsEnum];

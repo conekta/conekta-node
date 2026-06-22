@@ -50,7 +50,7 @@ export const TaxesApiAxiosParamCreator = function (configuration?: Configuration
             // verify required parameter 'orderTaxRequest' is not null or undefined
             assertParamExists('ordersCreateTaxes', 'orderTaxRequest', orderTaxRequest)
             const localVarPath = `/orders/{id}/tax_lines`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -101,8 +101,8 @@ export const TaxesApiAxiosParamCreator = function (configuration?: Configuration
             // verify required parameter 'taxId' is not null or undefined
             assertParamExists('ordersDeleteTaxes', 'taxId', taxId)
             const localVarPath = `/orders/{id}/tax_lines/{tax_id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"tax_id"}}`, encodeURIComponent(String(taxId)));
+                .replace('{id}', encodeURIComponent(String(id)))
+                .replace('{tax_id}', encodeURIComponent(String(taxId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -154,8 +154,8 @@ export const TaxesApiAxiosParamCreator = function (configuration?: Configuration
             // verify required parameter 'ordersUpdateTaxesRequest' is not null or undefined
             assertParamExists('ordersUpdateTaxes', 'ordersUpdateTaxesRequest', ordersUpdateTaxesRequest)
             const localVarPath = `/orders/{id}/tax_lines/{tax_id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"tax_id"}}`, encodeURIComponent(String(taxId)));
+                .replace('{id}', encodeURIComponent(String(id)))
+                .replace('{tax_id}', encodeURIComponent(String(taxId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;

@@ -1,6 +1,6 @@
-# Pagination
+# OrderTaxLinesResponse
 
-pagination metadata
+List of taxes that are applied to the order
 
 ## Properties
 
@@ -8,15 +8,21 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **has_more** | **boolean** | Indicates if there are more pages to be requested | [default to undefined]
 **object** | **string** | Object type, in this case is list | [default to undefined]
+**next_page_url** | **string** | URL of the next page. | [optional] [default to undefined]
+**previous_page_url** | **string** | Url of the previous page. | [optional] [default to undefined]
+**data** | [**Array&lt;TaxLinesDataResponse&gt;**](TaxLinesDataResponse.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import { Pagination } from 'conekta';
+import { OrderTaxLinesResponse } from 'conekta';
 
-const instance: Pagination = {
+const instance: OrderTaxLinesResponse = {
     has_more,
     object,
+    next_page_url,
+    previous_page_url,
+    data,
 };
 ```
 

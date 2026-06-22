@@ -48,6 +48,7 @@ export const ChargebackResponseStatusEnum = {
 
 export type ChargebackResponseStatusEnum = typeof ChargebackResponseStatusEnum[keyof typeof ChargebackResponseStatusEnum];
 export const ChargebackResponseReasonEnum = {
+    unrecognized: 'unrecognized',
     unauthorized: 'unauthorized',
     unauthorizedByClient: 'unauthorized_by_client',
     unrecognizedLikeFraud: 'unrecognized_like_fraud',

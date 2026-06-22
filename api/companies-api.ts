@@ -147,7 +147,7 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getCompany', 'id', id)
             const localVarPath = `/companies/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -189,7 +189,7 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'companyId' is not null or undefined
             assertParamExists('getCompanyDocuments', 'companyId', companyId)
             const localVarPath = `/companies/{company_id}/documents`
-                .replace(`{${"company_id"}}`, encodeURIComponent(String(companyId)));
+                .replace('{company_id}', encodeURIComponent(String(companyId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -272,7 +272,7 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'companyDocumentRequest' is not null or undefined
             assertParamExists('updateCompanyDocument', 'companyDocumentRequest', companyDocumentRequest)
             const localVarPath = `/companies/{company_id}/document`
-                .replace(`{${"company_id"}}`, encodeURIComponent(String(companyId)));
+                .replace('{company_id}', encodeURIComponent(String(companyId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -319,7 +319,7 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'companyDocumentRequest' is not null or undefined
             assertParamExists('uploadCompanyDocument', 'companyDocumentRequest', companyDocumentRequest)
             const localVarPath = `/companies/{company_id}/document`
-                .replace(`{${"company_id"}}`, encodeURIComponent(String(companyId)));
+                .replace('{company_id}', encodeURIComponent(String(companyId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
