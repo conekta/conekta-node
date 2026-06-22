@@ -69,6 +69,7 @@ docs/CompaniesApi.md
 docs/CompanyDocumentRequest.md
 docs/CompanyDocumentResponse.md
 docs/CompanyResponse.md
+docs/ConektaError.md
 docs/CreateCompanyRequest.md
 docs/CreateCompanyRequestBankAccountInfo.md
 docs/CreateCompanyRequestComercialInfo.md
@@ -86,7 +87,6 @@ docs/CustomerFiscalEntitiesResponse.md
 docs/CustomerInfo.md
 docs/CustomerInfoCustomerId.md
 docs/CustomerInfoResponse.md
-docs/CustomerPaymentMethodRequest.md
 docs/CustomerPaymentMethodsData.md
 docs/CustomerPaymentMethodsRequest.md
 docs/CustomerPaymentMethodsResponse.md
@@ -108,8 +108,6 @@ docs/DetailsError.md
 docs/DiscountLinesResponse.md
 docs/DiscountsApi.md
 docs/EmailCheckoutRequest.md
-docs/Error.md
-docs/ErrorDetails.md
 docs/EventResponse.md
 docs/EventTypes.md
 docs/EventsApi.md
@@ -280,6 +278,7 @@ model/checkouts-response.ts
 model/company-document-request.ts
 model/company-document-response.ts
 model/company-response.ts
+model/conekta-error.ts
 model/create-company-request-bank-account-info.ts
 model/create-company-request-comercial-info.ts
 model/create-company-request-fiscal-info.ts
@@ -296,7 +295,6 @@ model/customer-fiscal-entities-response.ts
 model/customer-info-customer-id.ts
 model/customer-info-response.ts
 model/customer-info.ts
-model/customer-payment-method-request.ts
 model/customer-payment-methods-data.ts
 model/customer-payment-methods-request.ts
 model/customer-payment-methods-response.ts
@@ -317,7 +315,6 @@ model/deleted-whitelist-rule-response.ts
 model/details-error.ts
 model/discount-lines-response.ts
 model/email-checkout-request.ts
-model/error-details.ts
 model/event-response.ts
 model/event-types.ts
 model/events-resend-response.ts
@@ -341,7 +338,6 @@ model/index.ts
 model/log-response-for-request.ts
 model/logs-response-data.ts
 model/logs-response-for-request.ts
-model/model-error.ts
 model/order-capture-request.ts
 model/order-channel-response.ts
 model/order-charges-response.ts

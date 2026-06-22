@@ -17,7 +17,16 @@
 // @ts-ignore
 import type { DetailsError } from './details-error';
 
-export interface ErrorDetails {
+/**
+ * err model
+ */
+export interface ConektaError {
     'details'?: Array<DetailsError>;
+    /**
+     * log id
+     */
+    'log_id'?: string | null;
+    'type'?: string;
+    'object'?: string;
 }
 

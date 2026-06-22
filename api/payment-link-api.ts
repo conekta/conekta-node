@@ -28,6 +28,8 @@ import type { CheckoutResponse } from '../model';
 // @ts-ignore
 import type { CheckoutsResponse } from '../model';
 // @ts-ignore
+import type { ConektaError } from '../model';
+// @ts-ignore
 import type { EmailCheckoutRequest } from '../model';
 // @ts-ignore
 import type { SmsCheckoutRequest } from '../model';

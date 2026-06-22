@@ -28,6 +28,8 @@ import type { CompanyDocumentResponse } from '../model';
 // @ts-ignore
 import type { CompanyResponse } from '../model';
 // @ts-ignore
+import type { ConektaError } from '../model';
+// @ts-ignore
 import type { CreateCompanyRequest } from '../model';
 // @ts-ignore
 import type { GetCompaniesResponse } from '../model';
