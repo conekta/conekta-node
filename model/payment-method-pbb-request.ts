@@ -13,26 +13,13 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { CustomerPaymentMethodRequest } from './customer-payment-method-request';
 
-export interface PaymentMethodPbbRequest {
-    /**
-     * Type of the payment method
-     */
-    'type': string;
-    /**
-     * Expiration date of the payment method, in Unix timestamp format
-     */
-    'expires_at'?: number;
-    /**
-     * Product type of the payment method, use for the payment method to know the product type
-     */
-    'product_type': PaymentMethodPbbRequestProductTypeEnum;
-}
-
-export const PaymentMethodPbbRequestProductTypeEnum = {
-    bbvaPayByBank: 'bbva_pay_by_bank',
-} as const;
-
-export type PaymentMethodPbbRequestProductTypeEnum = typeof PaymentMethodPbbRequestProductTypeEnum[keyof typeof PaymentMethodPbbRequestProductTypeEnum];
+/**
+ * @type PaymentMethodPbbRequest
+ */
+export type PaymentMethodPbbRequest = CustomerPaymentMethodRequest;
 
 

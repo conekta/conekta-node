@@ -52,14 +52,17 @@ export interface ChargeResponse {
     /**
      * charge Payment date
      */
-    'paid_at'?: number;
+    'paid_at'?: number | null;
     'payment_method'?: ChargeResponsePaymentMethod;
     /**
      * Reference ID of the charge
      */
-    'reference_id'?: string;
+    'reference_id'?: string | null;
     'refunds'?: ChargeResponseRefunds;
-    'chargeback'?: ChargebackResponse;
+    /**
+     * Present only when the charge has a chargeback
+     */
+    'chargeback'?: ChargebackResponse | null;
     /**
      * Charge status
      */

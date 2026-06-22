@@ -35,8 +35,8 @@ export interface CustomerShippingContactsRequest {
     'between_streets'?: string;
     'address': CustomerShippingContactsRequestAddress;
     'parent_id'?: string;
-    'default'?: boolean;
-    'deleted'?: boolean;
+    'default'?: boolean | null;
+    'deleted'?: boolean | null;
     /**
      * Metadata associated with the shipping contact
      */

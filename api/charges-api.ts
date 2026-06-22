@@ -33,8 +33,6 @@ import type { ChargeUpdateRequest } from '../model';
 import type { ChargesOrderResponse } from '../model';
 // @ts-ignore
 import type { GetChargesResponse } from '../model';
-// @ts-ignore
-import type { ModelError } from '../model';
 /**
  * ChargesApi - axios parameter creator
  */
@@ -118,7 +116,7 @@ export const ChargesApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'chargeRequest' is not null or undefined
             assertParamExists('ordersCreateCharge', 'chargeRequest', chargeRequest)
             const localVarPath = `/orders/{id}/charges`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -169,7 +167,7 @@ export const ChargesApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'chargeRequest' is not null or undefined
             assertParamExists('ordersCreateCharges', 'chargeRequest', chargeRequest)
             const localVarPath = `/orders/{id}/add_charges`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -220,7 +218,7 @@ export const ChargesApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'chargeUpdateRequest' is not null or undefined
             assertParamExists('updateCharge', 'chargeUpdateRequest', chargeUpdateRequest)
             const localVarPath = `/charges/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;

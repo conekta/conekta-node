@@ -118,10 +118,10 @@ const { status, data } = await apiInstance.createPayoutOrder(
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | successful operation |  -  |
-|**422** | parameter validation error |  -  |
 |**401** | authentication error |  -  |
 |**402** | payment required error |  -  |
 |**404** | not found entity |  -  |
+|**422** | parameter validation error |  -  |
 |**500** | internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

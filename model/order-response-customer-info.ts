@@ -13,17 +13,16 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { CustomerInfoResponse } from './customer-info-response';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { OrderUpdateCustomerInfo } from './order-update-customer-info';
 
-export interface OrderResponseCustomerInfo {
-    'object'?: string;
-    /**
-     * Custom reference
-     */
-    'customer_custom_reference'?: string;
-    'name'?: string;
-    'email'?: string;
-    'phone'?: string;
-    'corporate'?: boolean;
-    'customer_id'?: string;
-}
+/**
+ * @type OrderResponseCustomerInfo
+ */
+export type OrderResponseCustomerInfo = CustomerInfoResponse & OrderUpdateCustomerInfo;
+
 

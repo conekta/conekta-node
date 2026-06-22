@@ -24,9 +24,9 @@ export interface ChargebackResponse {
     'id'?: string;
     'status'?: ChargebackResponseStatusEnum;
     'reason'?: ChargebackResponseReasonEnum;
-    'note'?: string;
-    'followup_status'?: ChargebackResponseFollowupStatusEnum;
-    'response_from_client'?: string;
+    'note'?: string | null;
+    'followup_status'?: ChargebackResponseFollowupStatusEnum | null;
+    'response_from_client'?: string | null;
     'files'?: Array<ChargebackFileResponse>;
     'object'?: string;
     'charge_id'?: string;
@@ -48,6 +48,7 @@ export const ChargebackResponseStatusEnum = {
 
 export type ChargebackResponseStatusEnum = typeof ChargebackResponseStatusEnum[keyof typeof ChargebackResponseStatusEnum];
 export const ChargebackResponseReasonEnum = {
+    unrecognized: 'unrecognized',
     unauthorized: 'unauthorized',
     unauthorizedByClient: 'unauthorized_by_client',
     unrecognizedLikeFraud: 'unrecognized_like_fraud',

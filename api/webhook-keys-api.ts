@@ -24,8 +24,6 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 // @ts-ignore
 import type { GetWebhookKeysResponse } from '../model';
 // @ts-ignore
-import type { ModelError } from '../model';
-// @ts-ignore
 import type { WebhookKeyCreateResponse } from '../model';
 // @ts-ignore
 import type { WebhookKeyDeleteResponse } from '../model';
@@ -93,7 +91,7 @@ export const WebhookKeysApiAxiosParamCreator = function (configuration?: Configu
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deleteWebhookKey', 'id', id)
             const localVarPath = `/webhook_keys/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -136,7 +134,7 @@ export const WebhookKeysApiAxiosParamCreator = function (configuration?: Configu
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getWebhookKey', 'id', id)
             const localVarPath = `/webhook_keys/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -244,7 +242,7 @@ export const WebhookKeysApiAxiosParamCreator = function (configuration?: Configu
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateWebhookKey', 'id', id)
             const localVarPath = `/webhook_keys/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;

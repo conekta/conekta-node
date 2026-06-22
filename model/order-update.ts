@@ -27,10 +27,10 @@ import type { OrderCheckoutRequest } from './order-checkout-request';
 import type { OrderDiscountLinesRequest } from './order-discount-lines-request';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { OrderTaxRequest } from './order-tax-request';
+import type { OrderRequestCustomerInfo } from './order-request-customer-info';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { OrderUpdateCustomerInfo } from './order-update-customer-info';
+import type { OrderTaxRequest } from './order-tax-request';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { OrderUpdateFiscalEntityRequest } from './order-update-fiscal-entity-request';
@@ -51,7 +51,7 @@ export interface OrderUpdate {
      * Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
      */
     'currency'?: string;
-    'customer_info'?: OrderUpdateCustomerInfo;
+    'customer_info'?: OrderRequestCustomerInfo;
     /**
      * List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order.
      */

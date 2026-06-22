@@ -15,15 +15,18 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CustomerInfo } from './customer-info';
+import type { OrderTaxResponse } from './order-tax-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CustomerInfoCustomerId } from './customer-info-customer-id';
+import type { PageMetadata } from './page-metadata';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { PaginationMetadata } from './pagination-metadata';
 
 /**
- * @type CheckoutOrderTemplateCustomerInfo
- * It is the information of the customer who will be created when receiving a new payment.
+ * @type OrderResponseTaxLines
+ * List of taxes that are applied to the order
  */
-export type CheckoutOrderTemplateCustomerInfo = CustomerInfo | CustomerInfoCustomerId;
+export type OrderResponseTaxLines = PageMetadata & PaginationMetadata;
 
 

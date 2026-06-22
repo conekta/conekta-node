@@ -18,26 +18,26 @@
  * subscription model
  */
 export interface SubscriptionResponse {
-    'billing_cycle_start'?: number;
-    'billing_cycle_end'?: number;
-    'canceled_at'?: number;
+    'billing_cycle_start'?: number | null;
+    'billing_cycle_end'?: number | null;
+    'canceled_at'?: number | null;
     /**
      * Reason for cancellation. This field appears when the subscription status is \'canceled\'.
      */
     'canceled_reason'?: string;
     'card_id'?: string;
-    'charge_id'?: string;
+    'charge_id'?: string | null;
     'created_at'?: number;
     'customer_custom_reference'?: string;
     'customer_id'?: string;
     'id'?: string;
     'last_billing_cycle_order_id'?: string;
     'object'?: string;
-    'paused_at'?: number;
+    'paused_at'?: number | null;
     'plan_id'?: string;
     'status'?: string;
     'subscription_start'?: number;
-    'trial_start'?: number;
-    'trial_end'?: number;
+    'trial_start'?: number | null;
+    'trial_end'?: number | null;
 }
 

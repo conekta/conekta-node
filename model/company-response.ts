@@ -37,7 +37,7 @@ export interface CompanyResponse {
     /**
      * The identifier of the parent company, if any.
      */
-    'parent_company_id'?: string;
+    'parent_company_id'?: string | null;
     /**
      * The current status of the company\'s onboarding process.
      */
@@ -61,7 +61,7 @@ export interface CompanyResponse {
     /**
      * The 3DS mode for the company, either \'smart\' or \'strict\'. This property is only applicable when three_ds_enabled is true. When three_ds_enabled is false, this field will be null.
      */
-    'three_ds_mode'?: CompanyResponseThreeDsModeEnum;
+    'three_ds_mode'?: CompanyResponseThreeDsModeEnum | null;
 }
 
 export const CompanyResponseThreeDsModeEnum = {

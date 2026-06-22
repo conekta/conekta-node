@@ -25,7 +25,7 @@ export interface FiscalEntityAddress {
     /**
      * Street name and number
      */
-    'street2'?: string;
+    'street2'?: string | null;
     /**
      * Postal code
      */

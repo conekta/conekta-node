@@ -13,16 +13,16 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { CustomerInfo } from './customer-info';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { CustomerInfoCustomerId } from './customer-info-customer-id';
 
-/**
- * @type OrderUpdateCustomerInfo
- */
-export type OrderUpdateCustomerInfo = CustomerInfo | CustomerInfoCustomerId;
-
+export interface OrderUpdateCustomerInfo {
+    /**
+     * Custom reference
+     */
+    'customer_custom_reference'?: string | null;
+    'name'?: string;
+    'email'?: string;
+    'phone'?: string;
+    'corporate'?: boolean;
+    'object'?: string;
+}
 

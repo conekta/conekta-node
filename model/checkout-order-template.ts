@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CheckoutOrderTemplateCustomerInfo } from './checkout-order-template-customer-info';
+import type { OrderDiscountLinesRequest } from './order-discount-lines-request';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { OrderDiscountLinesRequest } from './order-discount-lines-request';
+import type { OrderRequestCustomerInfo } from './order-request-customer-info';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { OrderTaxRequest } from './order-tax-request';
@@ -34,7 +34,7 @@ export interface CheckoutOrderTemplate {
      * It is the currency in which the order will be created. It must be a valid ISO 4217 currency code.
      */
     'currency': string;
-    'customer_info'?: CheckoutOrderTemplateCustomerInfo;
+    'customer_info'?: OrderRequestCustomerInfo;
     /**
      * They are the products to buy. Each contains the \"unit price\" and \"quantity\" parameters that are used to calculate the total amount of the order.
      */

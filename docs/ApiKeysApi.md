@@ -311,8 +311,8 @@ const { status, data } = await apiInstance.updateApiKey(
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | successful operation |  -  |
-|**404** | not found entity |  -  |
 |**401** | authentication error |  -  |
+|**404** | not found entity |  -  |
 |**500** | internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

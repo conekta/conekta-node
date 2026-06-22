@@ -27,8 +27,6 @@ import type { CustomerShippingContactsRequest } from '../model';
 import type { CustomerShippingContactsResponse } from '../model';
 // @ts-ignore
 import type { CustomerUpdateShippingContactsRequest } from '../model';
-// @ts-ignore
-import type { ModelError } from '../model';
 /**
  * ShippingContactsApi - axios parameter creator
  */
@@ -50,7 +48,7 @@ export const ShippingContactsApiAxiosParamCreator = function (configuration?: Co
             // verify required parameter 'customerShippingContactsRequest' is not null or undefined
             assertParamExists('createCustomerShippingContacts', 'customerShippingContactsRequest', customerShippingContactsRequest)
             const localVarPath = `/customers/{id}/shipping_contacts`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -101,8 +99,8 @@ export const ShippingContactsApiAxiosParamCreator = function (configuration?: Co
             // verify required parameter 'shippingContactsId' is not null or undefined
             assertParamExists('deleteCustomerShippingContacts', 'shippingContactsId', shippingContactsId)
             const localVarPath = `/customers/{id}/shipping_contacts/{shipping_contacts_id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"shipping_contacts_id"}}`, encodeURIComponent(String(shippingContactsId)));
+                .replace('{id}', encodeURIComponent(String(id)))
+                .replace('{shipping_contacts_id}', encodeURIComponent(String(shippingContactsId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -154,8 +152,8 @@ export const ShippingContactsApiAxiosParamCreator = function (configuration?: Co
             // verify required parameter 'customerUpdateShippingContactsRequest' is not null or undefined
             assertParamExists('updateCustomerShippingContacts', 'customerUpdateShippingContactsRequest', customerUpdateShippingContactsRequest)
             const localVarPath = `/customers/{id}/shipping_contacts/{shipping_contacts_id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"shipping_contacts_id"}}`, encodeURIComponent(String(shippingContactsId)));
+                .replace('{id}', encodeURIComponent(String(id)))
+                .replace('{shipping_contacts_id}', encodeURIComponent(String(shippingContactsId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;

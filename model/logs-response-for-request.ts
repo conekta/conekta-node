@@ -32,14 +32,14 @@ export interface LogsResponseForRequest {
     /**
      * URL of the next page.
      */
-    'next_page_url'?: string;
+    'next_page_url'?: string | null;
     /**
      * Url of the previous page.
      */
-    'previous_page_url'?: string;
+    'previous_page_url'?: string | null;
     /**
      * set to page results.
      */
-    'data'?: Array<LogsResponseData>;
+    'data'?: Array<LogsResponseData> | null;
 }
 

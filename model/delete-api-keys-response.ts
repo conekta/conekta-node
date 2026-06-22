@@ -13,44 +13,13 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ApiKeyResponseDelete } from './api-key-response-delete';
 
-export interface DeleteApiKeysResponse {
-    /**
-     * Indicates if the api key is active
-     */
-    'active'?: boolean;
-    /**
-     * Unix timestamp in seconds of when the api key was created
-     */
-    'created_at'?: number;
-    /**
-     * A name or brief explanation of what this api key is used for
-     */
-    'description'?: string;
-    /**
-     * Indicates if the api key is in production
-     */
-    'livemode'?: boolean;
-    /**
-     * The first few characters of the authentication_token
-     */
-    'prefix'?: string;
-    /**
-     * Unique identifier of the api key
-     */
-    'id'?: string;
-    /**
-     * Object name, value is \'api_key\'
-     */
-    'object'?: string;
-    /**
-     * Unix timestamp in seconds with the api key was used
-     */
-    'last_used_at'?: number;
-    /**
-     * Indicates if the api key is private or public
-     */
-    'role'?: string;
-    'deleted'?: boolean;
-}
+/**
+ * @type DeleteApiKeysResponse
+ */
+export type DeleteApiKeysResponse = ApiKeyResponseDelete;
+
 

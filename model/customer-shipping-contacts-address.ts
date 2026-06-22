@@ -22,6 +22,6 @@ export interface CustomerShippingContactsAddress {
     'city'?: string;
     'state'?: string;
     'country'?: string;
-    'residential'?: boolean;
+    'residential'?: boolean | null;
 }
 

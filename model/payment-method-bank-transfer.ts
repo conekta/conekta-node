@@ -13,26 +13,13 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ChargePaymentMethod } from './charge-payment-method';
 
-export interface PaymentMethodBankTransfer {
-    'type'?: string;
-    'object': string;
-    'bank'?: string;
-    'clabe'?: string;
-    'description'?: string;
-    'executed_at'?: string;
-    'expires_at'?: number;
-    'issuing_account_bank'?: string;
-    'issuing_account_number'?: string;
-    'issuing_account_holder_name'?: string;
-    'issuing_account_tax_id'?: string;
-    'payment_attempts'?: Array<any>;
-    'receiving_account_holder_name'?: string;
-    'receiving_account_number'?: string;
-    'receiving_account_bank'?: string;
-    'receiving_account_tax_id'?: string;
-    'reference_number'?: string;
-    'tracking_code'?: string;
-    'customer_ip_address'?: string;
-}
+/**
+ * @type PaymentMethodBankTransfer
+ */
+export type PaymentMethodBankTransfer = ChargePaymentMethod;
+
 

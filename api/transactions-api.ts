@@ -24,8 +24,6 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 // @ts-ignore
 import type { GetTransactionsResponse } from '../model';
 // @ts-ignore
-import type { ModelError } from '../model';
-// @ts-ignore
 import type { TransactionResponse } from '../model';
 /**
  * TransactionsApi - axios parameter creator
@@ -45,7 +43,7 @@ export const TransactionsApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getTransaction', 'id', id)
             const localVarPath = `/transactions/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;

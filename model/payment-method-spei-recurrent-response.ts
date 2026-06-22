@@ -13,18 +13,13 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { CustomerPaymentMethod } from './customer-payment-method';
 
-export interface PaymentMethodSpeiRecurrentResponse {
-    'type': string;
-    'id': string;
-    'object': string;
-    'created_at': number;
-    'parent_id'?: string;
-    /**
-     * Bank name for the SPEI payment method
-     */
-    'bank'?: string;
-    'reference'?: string;
-    'expires_at'?: string;
-}
+/**
+ * @type PaymentMethodSpeiRecurrentResponse
+ */
+export type PaymentMethodSpeiRecurrentResponse = CustomerPaymentMethod;
+
 

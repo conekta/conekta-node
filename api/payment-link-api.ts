@@ -30,8 +30,6 @@ import type { CheckoutsResponse } from '../model';
 // @ts-ignore
 import type { EmailCheckoutRequest } from '../model';
 // @ts-ignore
-import type { ModelError } from '../model';
-// @ts-ignore
 import type { SmsCheckoutRequest } from '../model';
 /**
  * PaymentLinkApi - axios parameter creator
@@ -51,7 +49,7 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
             // verify required parameter 'id' is not null or undefined
             assertParamExists('cancelCheckout', 'id', id)
             const localVarPath = `/checkouts/{id}/cancel`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -147,7 +145,7 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
             // verify required parameter 'emailCheckoutRequest' is not null or undefined
             assertParamExists('emailCheckout', 'emailCheckoutRequest', emailCheckoutRequest)
             const localVarPath = `/checkouts/{id}/email`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -195,7 +193,7 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getCheckout', 'id', id)
             const localVarPath = `/checkouts/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -306,7 +304,7 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
             // verify required parameter 'smsCheckoutRequest' is not null or undefined
             assertParamExists('smsCheckout', 'smsCheckoutRequest', smsCheckoutRequest)
             const localVarPath = `/checkouts/{id}/sms`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;

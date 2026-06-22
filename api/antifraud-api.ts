@@ -30,8 +30,6 @@ import type { DeletedBlacklistRuleResponse } from '../model';
 // @ts-ignore
 import type { DeletedWhitelistRuleResponse } from '../model';
 // @ts-ignore
-import type { ModelError } from '../model';
-// @ts-ignore
 import type { RiskRulesList } from '../model';
 // @ts-ignore
 import type { WhitelistlistRuleResponse } from '../model';
@@ -137,7 +135,7 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deleteRuleBlacklist', 'id', id)
             const localVarPath = `/antifraud/blacklists/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -183,7 +181,7 @@ export const AntifraudApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deleteRuleWhitelist', 'id', id)
             const localVarPath = `/antifraud/whitelists/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;

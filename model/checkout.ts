@@ -30,7 +30,7 @@ export interface Checkout {
      */
     'exclude_card_networks'?: Array<CheckoutExcludeCardNetworksEnum>;
     /**
-     * It is the time when the link will expire.  It is expressed in seconds since the Unix epoch. The valid range is from 10 minutes to 365 days from the creation date. 
+     * It is the time when the link will expire.  It is expressed in seconds since the Unix epoch. The valid range is from 5 minutes to 365 days from the creation date. 
      */
     'expires_at': number;
     /**
@@ -44,7 +44,7 @@ export interface Checkout {
     /**
      * Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null.
      */
-    'three_ds_mode'?: string;
+    'three_ds_mode'?: string | null;
     /**
      * Reason for charge
      */
@@ -56,7 +56,7 @@ export interface Checkout {
     /**
      * This flag allows you to specify if the link will be on demand.
      */
-    'on_demand_enabled'?: boolean;
+    'on_demand_enabled'?: boolean | null;
     /**
      * It is a list of plan IDs that will be associated with the order.
      */

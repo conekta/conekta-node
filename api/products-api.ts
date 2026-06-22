@@ -22,8 +22,6 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import type { ModelError } from '../model';
-// @ts-ignore
 import type { Product } from '../model';
 // @ts-ignore
 import type { ProductOrderResponse } from '../model';
@@ -50,7 +48,7 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'product' is not null or undefined
             assertParamExists('ordersCreateProduct', 'product', product)
             const localVarPath = `/orders/{id}/line_items`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -101,8 +99,8 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'lineItemId' is not null or undefined
             assertParamExists('ordersDeleteProduct', 'lineItemId', lineItemId)
             const localVarPath = `/orders/{id}/line_items/{line_item_id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"line_item_id"}}`, encodeURIComponent(String(lineItemId)));
+                .replace('{id}', encodeURIComponent(String(id)))
+                .replace('{line_item_id}', encodeURIComponent(String(lineItemId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -154,8 +152,8 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'updateProduct' is not null or undefined
             assertParamExists('ordersUpdateProduct', 'updateProduct', updateProduct)
             const localVarPath = `/orders/{id}/line_items/{line_item_id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"line_item_id"}}`, encodeURIComponent(String(lineItemId)));
+                .replace('{id}', encodeURIComponent(String(id)))
+                .replace('{line_item_id}', encodeURIComponent(String(lineItemId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;

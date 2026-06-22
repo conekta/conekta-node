@@ -27,7 +27,7 @@ import type { CustomerPaymentMethodsResponse } from './customer-payment-methods-
 import type { CustomerResponseShippingContacts } from './customer-response-shipping-contacts';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CustomerSubscriptionResponse } from './customer-subscription-response';
+import type { SubscriptionResponse } from './subscription-response';
 
 /**
  * customer response
@@ -50,9 +50,9 @@ export interface CustomerResponse {
      * It is a parameter that allows to identify the date of birth of the client.
      */
     'date_of_birth'?: string;
-    'default_fiscal_entity_id'?: string;
+    'default_fiscal_entity_id'?: string | null;
     'default_shipping_contact_id'?: string;
-    'default_payment_source_id'?: string;
+    'default_payment_source_id'?: string | null;
     'email'?: string;
     'fiscal_entities'?: CustomerFiscalEntitiesResponse;
     /**
@@ -79,6 +79,6 @@ export interface CustomerResponse {
      */
     'phone'?: string;
     'shipping_contacts'?: CustomerResponseShippingContacts;
-    'subscription'?: CustomerSubscriptionResponse;
+    'subscription'?: SubscriptionResponse | null;
 }
 

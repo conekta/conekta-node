@@ -33,7 +33,7 @@ export interface WebhookKeyResponse {
     /**
      * Unix timestamp in seconds with the deactivation date of the webhook key
      */
-    'deactivated_at'?: number;
+    'deactivated_at'?: number | null;
     /**
      * Public key to be used in the webhook
      */

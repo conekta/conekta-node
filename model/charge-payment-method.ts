@@ -14,10 +14,8 @@
 
 
 
-/**
- * The customer information to whom the payout order is made.
- */
-export interface PayoutOrderRequestCustomerInfo {
-    'customer_id': string;
+export interface ChargePaymentMethod {
+    'type'?: string;
+    'object': string;
 }
 

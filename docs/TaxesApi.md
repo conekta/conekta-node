@@ -130,8 +130,8 @@ const { status, data } = await apiInstance.ordersDeleteTaxes(
 |-------------|-------------|------------------|
 |**200** | successful |  -  |
 |**401** | authentication error |  -  |
-|**422** | parameter validation error |  -  |
 |**404** | not found entity |  -  |
+|**422** | parameter validation error |  -  |
 |**500** | internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -198,8 +198,8 @@ const { status, data } = await apiInstance.ordersUpdateTaxes(
 |-------------|-------------|------------------|
 |**200** | successful |  -  |
 |**401** | authentication error |  -  |
-|**422** | parameter validation error |  -  |
 |**404** | not found entity |  -  |
+|**422** | parameter validation error |  -  |
 |**500** | internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

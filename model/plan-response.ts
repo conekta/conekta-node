@@ -21,14 +21,14 @@ export interface PlanResponse {
     'amount'?: number;
     'created_at'?: number;
     'currency'?: string;
-    'expiry_count'?: number;
+    'expiry_count'?: number | null;
     'frequency'?: number;
     'id'?: string;
     'interval'?: string;
     'livemode'?: boolean;
     'name'?: string;
     'object'?: string;
-    'trial_period_days'?: number;
+    'trial_period_days'?: number | null;
     'max_retries'?: number;
     'retry_delay_hours'?: number;
 }

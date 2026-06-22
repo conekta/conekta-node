@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Payout } from './payout';
+import type { CustomerInfoCustomerId } from './customer-info-customer-id';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { PayoutOrderRequestCustomerInfo } from './payout-order-request-customer-info';
+import type { Payout } from './payout';
 
 /**
  * a payout order
@@ -36,7 +36,10 @@ export interface PayoutOrderRequest {
      * The currency in which the payout order is made.
      */
     'currency': string;
-    'customer_info': PayoutOrderRequestCustomerInfo;
+    /**
+     * The customer information to whom the payout order is made.
+     */
+    'customer_info': CustomerInfoCustomerId;
     /**
      * The expiration time of the payout order in Unix timestamp.
      */

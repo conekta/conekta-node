@@ -28,8 +28,6 @@ import type { EventsResendResponse } from '../model';
 // @ts-ignore
 import type { GetEventsResponse } from '../model';
 // @ts-ignore
-import type { ModelError } from '../model';
-// @ts-ignore
 import type { ResendEventRequest } from '../model';
 /**
  * EventsApi - axios parameter creator
@@ -49,7 +47,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getEvent', 'id', id)
             const localVarPath = `/events/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+                .replace('{id}', encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -159,7 +157,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             // verify required parameter 'resendEventRequest' is not null or undefined
             assertParamExists('resendEvent', 'resendEventRequest', resendEventRequest)
             const localVarPath = `/events/{event_id}/resend`
-                .replace(`{${"event_id"}}`, encodeURIComponent(String(eventId)));
+                .replace('{event_id}', encodeURIComponent(String(eventId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;

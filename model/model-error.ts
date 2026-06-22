@@ -16,17 +16,14 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import type { DetailsError } from './details-error';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ErrorDetails } from './error-details';
 
 /**
+ * @type ModelError
  * err model
  */
-export interface ModelError {
-    'details'?: Array<DetailsError>;
-    /**
-     * log id
-     */
-    'log_id'?: string;
-    'type'?: string;
-    'object'?: string;
-}
+export type ModelError = ErrorDetails;
+
 

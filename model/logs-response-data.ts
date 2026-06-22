@@ -19,10 +19,10 @@ export interface LogsResponseData {
     'id'?: string;
     'ip_address'?: string;
     'livemode'?: boolean;
-    'loggable_id'?: string;
-    'loggable_type'?: string;
+    'loggable_id'?: string | null;
+    'loggable_type'?: string | null;
     'method'?: string;
-    'oauth_token_id'?: string;
+    'oauth_token_id'?: string | null;
     'query_string'?: { [key: string]: any; };
     'related'?: string;
     'request_body'?: object;
