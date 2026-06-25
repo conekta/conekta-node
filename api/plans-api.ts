@@ -180,10 +180,12 @@ export const PlansApiAxiosParamCreator = function (configuration?: Configuration
          * @param {string} [search] General order search, e.g. by mail, reference etc.
          * @param {string} [next] next page
          * @param {string} [previous] previous page
+         * @param {string} [currency] currency of the object to be retrieved
+         * @param {number} [frequency] frequency of the object to be retrieved
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPlans: async (acceptLanguage?: GetPlansAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getPlans: async (acceptLanguage?: GetPlansAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, currency?: string, frequency?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/plans`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -214,6 +216,14 @@ export const PlansApiAxiosParamCreator = function (configuration?: Configuration
 
             if (previous !== undefined) {
                 localVarQueryParameter['previous'] = previous;
+            }
+
+            if (currency !== undefined) {
+                localVarQueryParameter['currency'] = currency;
+            }
+
+            if (frequency !== undefined) {
+                localVarQueryParameter['frequency'] = frequency;
             }
 
             localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
@@ -346,11 +356,13 @@ export const PlansApiFp = function(configuration?: Configuration) {
          * @param {string} [search] General order search, e.g. by mail, reference etc.
          * @param {string} [next] next page
          * @param {string} [previous] previous page
+         * @param {string} [currency] currency of the object to be retrieved
+         * @param {number} [frequency] frequency of the object to be retrieved
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPlans(acceptLanguage?: GetPlansAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPlansResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getPlans(acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
+        async getPlans(acceptLanguage?: GetPlansAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, currency?: string, frequency?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPlansResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPlans(acceptLanguage, xChildCompanyId, limit, search, next, previous, currency, frequency, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PlansApi.getPlans']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -424,11 +436,13 @@ export const PlansApiFactory = function (configuration?: Configuration, basePath
          * @param {string} [search] General order search, e.g. by mail, reference etc.
          * @param {string} [next] next page
          * @param {string} [previous] previous page
+         * @param {string} [currency] currency of the object to be retrieved
+         * @param {number} [frequency] frequency of the object to be retrieved
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPlans(acceptLanguage?: GetPlansAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetPlansResponse> {
-            return localVarFp.getPlans(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
+        getPlans(acceptLanguage?: GetPlansAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, currency?: string, frequency?: number, options?: RawAxiosRequestConfig): AxiosPromise<GetPlansResponse> {
+            return localVarFp.getPlans(acceptLanguage, xChildCompanyId, limit, search, next, previous, currency, frequency, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -491,10 +505,12 @@ export interface PlansApiInterface {
      * @param {string} [search] General order search, e.g. by mail, reference etc.
      * @param {string} [next] next page
      * @param {string} [previous] previous page
+     * @param {string} [currency] currency of the object to be retrieved
+     * @param {number} [frequency] frequency of the object to be retrieved
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getPlans(acceptLanguage?: GetPlansAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetPlansResponse>;
+    getPlans(acceptLanguage?: GetPlansAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, currency?: string, frequency?: number, options?: RawAxiosRequestConfig): AxiosPromise<GetPlansResponse>;
 
     /**
      * 
@@ -561,11 +577,13 @@ export class PlansApi extends BaseAPI implements PlansApiInterface {
      * @param {string} [search] General order search, e.g. by mail, reference etc.
      * @param {string} [next] next page
      * @param {string} [previous] previous page
+     * @param {string} [currency] currency of the object to be retrieved
+     * @param {number} [frequency] frequency of the object to be retrieved
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getPlans(acceptLanguage?: GetPlansAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
-        return PlansApiFp(this.configuration).getPlans(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
+    public getPlans(acceptLanguage?: GetPlansAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, currency?: string, frequency?: number, options?: RawAxiosRequestConfig) {
+        return PlansApiFp(this.configuration).getPlans(acceptLanguage, xChildCompanyId, limit, search, next, previous, currency, frequency, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
