@@ -209,6 +209,8 @@ let limit: number; //The numbers of items to return, the maximum value is 250 (o
 let search: string; //General order search, e.g. by mail, reference etc. (optional) (default to undefined)
 let next: string; //next page (optional) (default to undefined)
 let previous: string; //previous page (optional) (default to undefined)
+let currency: string; //currency of the object to be retrieved (optional) (default to undefined)
+let frequency: number; //frequency of the object to be retrieved (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getPlans(
     acceptLanguage,
@@ -216,7 +218,9 @@ const { status, data } = await apiInstance.getPlans(
     limit,
     search,
     next,
-    previous
+    previous,
+    currency,
+    frequency
 );
 ```
 
@@ -230,6 +234,8 @@ const { status, data } = await apiInstance.getPlans(
 | **search** | [**string**] | General order search, e.g. by mail, reference etc. | (optional) defaults to undefined|
 | **next** | [**string**] | next page | (optional) defaults to undefined|
 | **previous** | [**string**] | previous page | (optional) defaults to undefined|
+| **currency** | [**string**] | currency of the object to be retrieved | (optional) defaults to undefined|
+| **frequency** | [**number**] | frequency of the object to be retrieved | (optional) defaults to undefined|
 
 
 ### Return type

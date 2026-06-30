@@ -28,6 +28,7 @@ jobs:
           fi
       - run: |
           npm install
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           npm run build
           VERSION=$(node -p "require('./package.json').version" )
           # Only publish stable versions to the latest tag
