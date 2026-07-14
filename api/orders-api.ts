@@ -139,10 +139,11 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {string} id Identifier of the resource
          * @param {GetOrderByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {string} [client] client of the object to be retrieved
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrderById: async (id: string, acceptLanguage?: GetOrderByIdAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getOrderById: async (id: string, acceptLanguage?: GetOrderByIdAcceptLanguageEnum, xChildCompanyId?: string, client?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getOrderById', 'id', id)
             const localVarPath = `/orders/{id}`
@@ -161,6 +162,10 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (client !== undefined) {
+                localVarQueryParameter['client'] = client;
+            }
 
             localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.2.0+json';
 
@@ -518,11 +523,12 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * @param {string} id Identifier of the resource
          * @param {GetOrderByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {string} [client] client of the object to be retrieved
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrderById(id: string, acceptLanguage?: GetOrderByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrderById(id, acceptLanguage, xChildCompanyId, options);
+        async getOrderById(id: string, acceptLanguage?: GetOrderByIdAcceptLanguageEnum, xChildCompanyId?: string, client?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrderById(id, acceptLanguage, xChildCompanyId, client, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['OrdersApi.getOrderById']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -654,11 +660,12 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @param {string} id Identifier of the resource
          * @param {GetOrderByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {string} [client] client of the object to be retrieved
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrderById(id: string, acceptLanguage?: GetOrderByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse> {
-            return localVarFp.getOrderById(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
+        getOrderById(id: string, acceptLanguage?: GetOrderByIdAcceptLanguageEnum, xChildCompanyId?: string, client?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse> {
+            return localVarFp.getOrderById(id, acceptLanguage, xChildCompanyId, client, options).then((request) => request(axios, basePath));
         },
         /**
          * Get order details in the form of a list
@@ -768,10 +775,11 @@ export interface OrdersApiInterface {
      * @param {string} id Identifier of the resource
      * @param {GetOrderByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {string} [client] client of the object to be retrieved
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getOrderById(id: string, acceptLanguage?: GetOrderByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
+    getOrderById(id: string, acceptLanguage?: GetOrderByIdAcceptLanguageEnum, xChildCompanyId?: string, client?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
     /**
      * Get order details in the form of a list
@@ -879,11 +887,12 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @param {string} id Identifier of the resource
      * @param {GetOrderByIdAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {string} [client] client of the object to be retrieved
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getOrderById(id: string, acceptLanguage?: GetOrderByIdAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
-        return OrdersApiFp(this.configuration).getOrderById(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
+    public getOrderById(id: string, acceptLanguage?: GetOrderByIdAcceptLanguageEnum, xChildCompanyId?: string, client?: string, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).getOrderById(id, acceptLanguage, xChildCompanyId, client, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
