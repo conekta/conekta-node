@@ -18,10 +18,10 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Setup Node.js 20 for Mockoon CLI
+      - name: Setup Node.js for Mockoon CLI
         uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: ${{ matrix.node-version }}
 
       - name: Run Mockoon CLI
         uses: mockoon/cli-action@v3
