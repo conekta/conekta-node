@@ -156,11 +156,13 @@ const apiInstance = new OrdersApi(configuration);
 let id: string; //Identifier of the resource (default to undefined)
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
 let xChildCompanyId: string; //In the case of a holding company, the company id of the child company to which will process the request. (optional) (default to undefined)
+let client: string; //client of the object to be retrieved (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getOrderById(
     id,
     acceptLanguage,
-    xChildCompanyId
+    xChildCompanyId,
+    client
 );
 ```
 
@@ -171,6 +173,7 @@ const { status, data } = await apiInstance.getOrderById(
 | **id** | [**string**] | Identifier of the resource | defaults to undefined|
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
 | **xChildCompanyId** | [**string**] | In the case of a holding company, the company id of the child company to which will process the request. | (optional) defaults to undefined|
+| **client** | [**string**] | client of the object to be retrieved | (optional) defaults to undefined|
 
 
 ### Return type
