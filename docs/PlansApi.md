@@ -58,7 +58,7 @@ const { status, data } = await apiInstance.createPlan(
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -114,7 +114,7 @@ const { status, data } = await apiInstance.deletePlan(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -174,7 +174,7 @@ const { status, data } = await apiInstance.getPlan(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -249,7 +249,7 @@ const { status, data } = await apiInstance.getPlans(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -312,7 +312,7 @@ const { status, data } = await apiInstance.updatePlan(
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details

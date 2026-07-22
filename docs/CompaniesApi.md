@@ -54,7 +54,7 @@ const { status, data } = await apiInstance.createCompany(
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -119,7 +119,7 @@ const { status, data } = await apiInstance.getCompanies(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -174,7 +174,7 @@ const { status, data } = await apiInstance.getCompany(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -231,7 +231,7 @@ const { status, data } = await apiInstance.getCompanyDocuments(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -285,7 +285,7 @@ const { status, data } = await apiInstance.getCurrentCompany(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -345,7 +345,7 @@ const { status, data } = await apiInstance.updateCompanyDocument(
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -406,7 +406,7 @@ const { status, data } = await apiInstance.uploadCompanyDocument(
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details

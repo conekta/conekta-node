@@ -1,4 +1,4 @@
-# OrderShippingLinesResponse
+# OrderResponseShippingLines
 
 List of shipping costs applied to the order
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { OrderShippingLinesResponse } from 'conekta';
+import { OrderResponseShippingLines } from 'conekta';
 
-const instance: OrderShippingLinesResponse = {
+const instance: OrderResponseShippingLines = {
     has_more,
     object,
     next_page_url,

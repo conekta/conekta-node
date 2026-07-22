@@ -5,7 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**allowed_payment_methods** | **Array&lt;string&gt;** | Are the payment methods available for this link | [default to undefined]
+**allowed_payment_methods** | **Array&lt;string&gt;** | Are the payment methods available for this link | [optional] [default to undefined]
+**excluded_payment_methods** | **Array&lt;string&gt;** | Payment methods excluded from the checkout. This field is only returned when excluded_payment_methods is provided in the request. | [optional] [default to undefined]
 **can_not_expire** | **boolean** |  | [optional] [default to undefined]
 **emails_sent** | **number** |  | [optional] [default to undefined]
 **exclude_card_networks** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
@@ -15,7 +16,7 @@ Name | Type | Description | Notes
 **force_save_card** | **boolean** | Indicates whether the card used for the payment should be saved for future purchases. This field is only applicable for card payments. | [optional] [default to undefined]
 **id** | **string** |  | [default to undefined]
 **is_redirect_on_failure** | **boolean** |  | [optional] [default to undefined]
-**livemode** | **boolean** |  | [optional] [default to undefined]
+**livemode** | **boolean** |  | [default to undefined]
 **max_failed_retries** | **number** | Number of retries allowed before the checkout is marked as failed | [optional] [default to undefined]
 **metadata** | **{ [key: string]: any; }** |  | [optional] [default to undefined]
 **monthly_installments_enabled** | **boolean** |  | [optional] [default to undefined]
@@ -42,6 +43,7 @@ import { OrderResponseCheckout } from 'conekta';
 
 const instance: OrderResponseCheckout = {
     allowed_payment_methods,
+    excluded_payment_methods,
     can_not_expire,
     emails_sent,
     exclude_card_networks,

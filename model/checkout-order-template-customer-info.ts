@@ -15,19 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { TokenRequestCard } from './token-request-card';
+import type { CustomerInfo } from './customer-info';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { TokenRequestCheckout } from './token-request-checkout';
+import type { CustomerInfoCustomerId } from './customer-info-customer-id';
 
 /**
- * a token
+ * @type CheckoutOrderTemplateCustomerInfo
+ * It is the information of the customer who will be created when receiving a new payment.
  */
-export interface TokenRequest {
-    'card'?: TokenRequestCard;
-    /**
-     * @deprecated
-     */
-    'checkout'?: TokenRequestCheckout;
-}
+export type CheckoutOrderTemplateCustomerInfo = CustomerInfo | CustomerInfoCustomerId;
+
 

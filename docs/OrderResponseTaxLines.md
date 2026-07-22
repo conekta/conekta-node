@@ -1,4 +1,4 @@
-# OrderTaxLinesResponse
+# OrderResponseTaxLines
 
 List of taxes that are applied to the order
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { OrderTaxLinesResponse } from 'conekta';
+import { OrderResponseTaxLines } from 'conekta';
 
-const instance: OrderTaxLinesResponse = {
+const instance: OrderResponseTaxLines = {
     has_more,
     object,
     next_page_url,
