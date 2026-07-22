@@ -1,7 +1,7 @@
 {
   "npmName": "conekta",
   "generateSourceCodeOnly": "false",
-  "npmVersion": "8.0.7",
+  "npmVersion": "9.0.0",
   "packageUrl": "https://developers.conekta.com/",
   "projectName": "conekta-node",
   "appDescription": "Conekta Node Library",
@@ -19,6 +19,9 @@
       "destinationFilename": "VERSION"
     }
   },
+  "modelNameMappings": {
+    "subscription_response_1": "SubscriptionResponse"
+  },
   "gitUserId": "conekta",
   "gitRepoId": "conekta-node",
   "modern": true,
@@ -34,6 +37,5 @@
   "withInterfaces": true,
   "templateDir": "/local/templates/node",
   "enumPropertyNaming": "camelCase",
-  "paramNaming": "camelCase",
-  "apiVersion": "application/vnd.conekta-v2.2.0+json"
+  "paramNaming": "camelCase"
 }

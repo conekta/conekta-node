@@ -1,4 +1,4 @@
-# OrderDiscountLinesResponse
+# OrderResponseDiscountLines
 
 List of discounts that are applied to the order
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { OrderDiscountLinesResponse } from 'conekta';
+import { OrderResponseDiscountLines } from 'conekta';
 
-const instance: OrderDiscountLinesResponse = {
+const instance: OrderResponseDiscountLines = {
     has_more,
     object,
     next_page_url,

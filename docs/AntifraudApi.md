@@ -55,7 +55,7 @@ const { status, data } = await apiInstance.createRuleBlacklist(
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -111,7 +111,7 @@ const { status, data } = await apiInstance.createRuleWhitelist(
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -170,7 +170,7 @@ const { status, data } = await apiInstance.deleteRuleBlacklist(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -229,7 +229,7 @@ const { status, data } = await apiInstance.deleteRuleWhitelist(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -284,7 +284,7 @@ const { status, data } = await apiInstance.getRuleBlacklist(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -337,7 +337,7 @@ const { status, data } = await apiInstance.getRuleWhitelist(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details

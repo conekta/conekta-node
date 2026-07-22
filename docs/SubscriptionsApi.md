@@ -68,7 +68,7 @@ const { status, data } = await apiInstance.cancelSubscription(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -132,7 +132,7 @@ const { status, data } = await apiInstance.createSubscription(
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -190,7 +190,7 @@ const { status, data } = await apiInstance.getSubscription(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -250,7 +250,7 @@ const { status, data } = await apiInstance.getSubscriptionEvents(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -312,7 +312,7 @@ const { status, data } = await apiInstance.pauseSubscription(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -373,7 +373,7 @@ const { status, data } = await apiInstance.resumeSubscription(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -438,7 +438,7 @@ const { status, data } = await apiInstance.subscriptionCancel(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -502,7 +502,7 @@ const { status, data } = await apiInstance.subscriptionCreate(
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -578,7 +578,7 @@ const { status, data } = await apiInstance.subscriptionEvents(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -650,7 +650,7 @@ const { status, data } = await apiInstance.subscriptionList(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -713,7 +713,7 @@ const { status, data } = await apiInstance.subscriptionPause(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -776,7 +776,7 @@ const { status, data } = await apiInstance.subscriptionResume(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -843,7 +843,7 @@ const { status, data } = await apiInstance.subscriptionUpdate(
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -907,7 +907,7 @@ const { status, data } = await apiInstance.subscriptionsGet(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -970,7 +970,7 @@ const { status, data } = await apiInstance.subscriptionsRetry(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -1035,7 +1035,7 @@ const { status, data } = await apiInstance.updateSubscription(
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details

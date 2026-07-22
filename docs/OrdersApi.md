@@ -60,7 +60,7 @@ const { status, data } = await apiInstance.cancelOrder(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -123,7 +123,7 @@ const { status, data } = await apiInstance.createOrder(
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -187,7 +187,7 @@ const { status, data } = await apiInstance.getOrderById(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -277,7 +277,7 @@ const { status, data } = await apiInstance.getOrders(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -339,7 +339,7 @@ const { status, data } = await apiInstance.orderCancelRefund(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -405,7 +405,7 @@ const { status, data } = await apiInstance.orderRefund(
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -471,7 +471,7 @@ const { status, data } = await apiInstance.ordersCreateCapture(
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
@@ -533,7 +533,7 @@ const { status, data } = await apiInstance.updateOrder(
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/vnd.conekta-v2.2.0+json
+ - **Accept**: application/vnd.conekta-v2.3.0+json
 
 
 ### HTTP response details
