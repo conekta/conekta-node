@@ -6,7 +6,7 @@ Official Node.js SDK for the Conekta Payments API. Auto-generated client library
 
 - **npm package**: `conekta`
 - **Version**: 8.0.0
-- **API version**: 2.2.0
+- **API version**: 2.3.0
 - **License**: MIT
 - **Node.js**: >= 18
 
@@ -102,8 +102,8 @@ console.log(response.data.id);
 - Bearer token via `Configuration({ accessToken: "key_xxxxx" })`
 - AWS v4 Signature via `Configuration({ awsv4: { options, credentials } })`
 - Automatic headers:
-  - `User-Agent: Conekta/v2 NodeBindings/8.0.0`
-  - `Accept: application/vnd.conekta-v2.2.0+json`
+  - `User-Agent: Conekta/v2 NodeBindings/9.0.0`
+  - `Accept: application/vnd.conekta-v2.3.0+json`
 
 ## Distribution
 
