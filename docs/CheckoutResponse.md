@@ -7,6 +7,7 @@ checkout response
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **allowed_payment_methods** | **Array&lt;string&gt;** | Are the payment methods available for this link | [optional] [default to undefined]
+**excluded_payment_methods** | **Array&lt;string&gt;** | Payment methods excluded from the checkout. This field is only returned when excluded_payment_methods is provided in the request. | [optional] [default to undefined]
 **plan_ids** | **Array&lt;string&gt;** | List of plan IDs that are available for subscription | [optional] [default to undefined]
 **can_not_expire** | **boolean** |  | [optional] [default to undefined]
 **emails_sent** | **number** |  | [optional] [default to undefined]
@@ -40,6 +41,7 @@ import { CheckoutResponse } from 'conekta';
 
 const instance: CheckoutResponse = {
     allowed_payment_methods,
+    excluded_payment_methods,
     plan_ids,
     can_not_expire,
     emails_sent,
