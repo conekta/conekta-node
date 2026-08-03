@@ -31,7 +31,7 @@ export const DUMMY_BASE_URL = 'https://example.com'
  * @export
  */
 export const conektaHeaders = {
-    bindings_version: ['Conekta::', "9.0.0"].join(''),
+    bindings_version: ['Conekta::', "9.0.1"].join(''),
     lang: 'node',
     lang_version: process.version,
     publisher: 'conekta',
@@ -158,7 +158,7 @@ export const toPathString = function (url: URL) {
  * @export
  */
 export const createRequestFunction = function (axiosArgs: RequestArgs, globalAxios: AxiosInstance, BASE_PATH: string, configuration?: Configuration) {
-    return <T = unknown, R = AxiosResponse<T>>(axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+    return <T = unknown, R = AxiosResponse<T>>(axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH): Promise<R> => {
         if (!axiosArgs.options.httpsAgent) {
             const certPath = path.join(__dirname, '/cert/ca_bundle.crt')
 
@@ -168,7 +168,7 @@ export const createRequestFunction = function (axiosArgs: RequestArgs, globalAxi
             })
         }
         const axiosRequestArgs = {...axiosArgs.options, url: (axios.defaults.baseURL ? '' : configuration?.basePath ?? basePath) + axiosArgs.url};
-        return axios.request<T, R>(axiosRequestArgs);
+        return axios.request<T, R>(axiosRequestArgs) as Promise<R>;
     };
 }
 /**
@@ -176,6 +176,6 @@ export const createRequestFunction = function (axiosArgs: RequestArgs, globalAxi
  * @export
  */
 export const setCommonHeaders = async function (object: any) {
-    object["User-Agent"] = "Conekta/v2 NodeBindings/" + "9.0.0";
+    object["User-Agent"] = "Conekta/v2 NodeBindings/" + "9.0.1";
     object["X-Conekta-Client-User-Agent"] = JSON.stringify(conektaHeaders);
 }

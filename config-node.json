@@ -1,7 +1,7 @@
 {
   "npmName": "conekta",
   "generateSourceCodeOnly": "false",
-  "npmVersion": "9.0.0",
+  "npmVersion": "9.0.1",
   "packageUrl": "https://developers.conekta.com/",
   "projectName": "conekta-node",
   "appDescription": "Conekta Node Library",

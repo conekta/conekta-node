@@ -151,7 +151,7 @@ export const toPathString = function (url: URL) {
  * @export
  */
 export const createRequestFunction = function (axiosArgs: RequestArgs, globalAxios: AxiosInstance, BASE_PATH: string, configuration?: Configuration) {
-    return <T = unknown, R = AxiosResponse<T>>(axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+    return <T = unknown, R = AxiosResponse<T>>(axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH): Promise<R> => {
         if (!axiosArgs.options.httpsAgent) {
             const certPath = path.join(__dirname, '/cert/ca_bundle.crt')
 
@@ -161,7 +161,7 @@ export const createRequestFunction = function (axiosArgs: RequestArgs, globalAxi
             })
         }
         const axiosRequestArgs = {...axiosArgs.options, url: (axios.defaults.baseURL ? '' : configuration?.basePath ?? basePath) + axiosArgs.url};
-        return axios.request<T, R>(axiosRequestArgs);
+        return axios.request<T, R>(axiosRequestArgs) as Promise<R>;
     };
 }
 /**
