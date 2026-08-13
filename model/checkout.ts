@@ -30,7 +30,7 @@ export interface Checkout {
      */
     'excluded_payment_methods'?: Array<CheckoutExcludedPaymentMethodsEnum>;
     /**
-     * List of card networks to exclude from the checkout. This field is only applicable for card payments.
+     * List of card networks to exclude from the checkout. This field is only applicable for card payments. Accepted values: \'visa_master_card\' (a single token excluding both Visa and Mastercard) and \'amex\'.
      */
     'exclude_card_networks'?: Array<CheckoutExcludeCardNetworksEnum>;
     /**
@@ -46,9 +46,9 @@ export interface Checkout {
      */
     'monthly_installments_options'?: Array<number>;
     /**
-     * Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null.
+     * Indicates the 3DS2 mode: \'strict\', \'not_strict\' or \'smart\'. To defer to the company-level 3DS configuration, omit the field (an explicit null is rejected on creation).
      */
-    'three_ds_mode'?: string;
+    'three_ds_mode'?: CheckoutThreeDsModeEnum;
     /**
      * Reason for charge
      */
@@ -70,6 +70,10 @@ export interface Checkout {
      * It is the number of payments that can be made through the link.
      */
     'payments_limit_count'?: number;
+    /**
+     * It is the time in seconds that the checkout will wait before redirecting to the success_url. It must be greater than 0.
+     */
+    'redirection_time'?: number;
     /**
      * The URL to redirect to after a successful payment.
      */
@@ -94,11 +98,17 @@ export const CheckoutExcludedPaymentMethodsEnum = {
 
 export type CheckoutExcludedPaymentMethodsEnum = typeof CheckoutExcludedPaymentMethodsEnum[keyof typeof CheckoutExcludedPaymentMethodsEnum];
 export const CheckoutExcludeCardNetworksEnum = {
-    visa: 'visa',
-    mastercard: 'mastercard',
+    visaMasterCard: 'visa_master_card',
     amex: 'amex',
 } as const;
 
 export type CheckoutExcludeCardNetworksEnum = typeof CheckoutExcludeCardNetworksEnum[keyof typeof CheckoutExcludeCardNetworksEnum];
+export const CheckoutThreeDsModeEnum = {
+    strict: 'strict',
+    notStrict: 'not_strict',
+    smart: 'smart',
+} as const;
+
+export type CheckoutThreeDsModeEnum = typeof CheckoutThreeDsModeEnum[keyof typeof CheckoutThreeDsModeEnum];
 
 

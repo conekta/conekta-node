@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { OrderTaxRequestMetadataValue } from './order-tax-request-metadata-value';
 
 export interface ShippingRequest {
     /**
@@ -32,8 +35,8 @@ export interface ShippingRequest {
      */
     'method'?: string;
     /**
-     * Hash where the user can send additional information for each \'shipping\'.
+     * Hash where the user can send additional information for each \'shipping\'. Values must be scalar (string of at most 249 characters, integer, number or boolean); nested objects and arrays are not supported.
      */
-    'metadata'?: { [key: string]: any; };
+    'metadata'?: { [key: string]: OrderTaxRequestMetadataValue; };
 }
 

@@ -32,13 +32,17 @@ export interface PaymentMethodCardRequest {
      */
     'exp_year': string;
     /**
-     * Cardholder name
+     * Cardholder name. Must include first and last name separated by a space; single-word names are rejected. Letters (including accented Latin characters), spaces, and the characters , . \' - are accepted; digits and other symbols are rejected.
      */
     'name': string;
     /**
      * Card number
      */
     'number': string;
+    /**
+     * Optional merchant-supplied identifier (exactly 10 characters) that links a card transaction to a recurring/subscription contract at the acquiring bank. Forwarded to the bank gateway and stored on the resulting charge. Accepted on creation only; ignored on update. Do not place sensitive bank data here — the value is returned in charge responses.
+     */
+    'contract_id'?: string;
     /**
      * Optional field used to capture the customer\'s IP address for fraud prevention and security monitoring purposes
      */

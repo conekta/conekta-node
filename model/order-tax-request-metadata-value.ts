@@ -14,7 +14,6 @@
 
 
 
-export interface SmsCheckoutRequest {
-    'phonenumber': string;
+export interface OrderTaxRequestMetadataValue {
 }
 

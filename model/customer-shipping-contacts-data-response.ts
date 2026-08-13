@@ -27,7 +27,7 @@ export interface CustomerShippingContactsDataResponse {
      */
     'receiver'?: string;
     /**
-     * The street names between which the order will be delivered.
+     * The street names between which the order will be delivered. Must contain at least two consecutive ASCII letters.
      */
     'between_streets'?: string;
     'address': CustomerShippingContactsRequestAddress;

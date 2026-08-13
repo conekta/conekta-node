@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **allowed_payment_methods** | **Array&lt;string&gt;** | Are the payment methods available for this link. For subscriptions, only \&#39;card\&#39; is allowed due to the recurring nature of the payments. This field is mutually exclusive with excluded_payment_methods. | [optional] [default to undefined]
 **excluded_payment_methods** | **Array&lt;string&gt;** | Payment methods to be excluded from the checkout. This field is mutually exclusive with allowed_payment_methods. | [optional] [default to undefined]
-**exclude_card_networks** | **Array&lt;string&gt;** | List of card networks to exclude from the checkout. This field is only applicable for card payments. | [optional] [default to undefined]
+**exclude_card_networks** | **Array&lt;string&gt;** | List of card networks to exclude from the checkout. This field is only applicable for card payments. Accepted values: \&#39;visa_master_card\&#39; (a single token excluding both Visa and Mastercard) and \&#39;amex\&#39;. | [optional] [default to undefined]
 **plan_ids** | **Array&lt;string&gt;** | List of plan IDs that will be available for subscription. This field is required for subscription payments. | [optional] [default to undefined]
 **expires_at** | **number** | It is the time when the link will expire.  It is expressed in seconds since the Unix epoch. The valid range is from 5 minutes to 365 days from the creation date.  | [optional] [default to undefined]
 **failure_url** | **string** | Redirection url back to the site in case of failed payment, applies only to HostedPayment. | [optional] [default to undefined]

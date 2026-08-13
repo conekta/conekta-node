@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **discount_lines** | [**Array&lt;OrderDiscountLinesRequest&gt;**](OrderDiscountLinesRequest.md) | List of [discounts](https://developers.conekta.com/v2.3.0/reference/orderscreatediscountline) that are applied to the order. | [optional] [default to undefined]
 **fiscal_entity** | [**OrderUpdateFiscalEntityRequest**](OrderUpdateFiscalEntityRequest.md) |  | [optional] [default to undefined]
 **line_items** | [**Array&lt;Product&gt;**](Product.md) | List of [products](https://developers.conekta.com/v2.3.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product. | [optional] [default to undefined]
-**metadata** | **{ [key: string]: string; }** |  | [optional] [default to undefined]
+**metadata** | [**{ [key: string]: OrderTaxRequestMetadataValue; }**](OrderTaxRequestMetadataValue.md) |  | [optional] [default to undefined]
 **pre_authorize** | **boolean** | Indicates whether the order charges must be preauthorized | [optional] [default to undefined]
 **shipping_contact** | [**CustomerShippingContactsRequest**](CustomerShippingContactsRequest.md) |  | [optional] [default to undefined]
 **shipping_lines** | [**Array&lt;ShippingRequest&gt;**](ShippingRequest.md) | List of [shipping costs](https://developers.conekta.com/v2.3.0/reference/orderscreateshipping). If the online store offers digital products. | [optional] [default to undefined]

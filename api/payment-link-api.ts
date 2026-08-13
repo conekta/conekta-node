@@ -31,8 +31,6 @@ import type { CheckoutsResponse } from '../model';
 import type { EmailCheckoutRequest } from '../model';
 // @ts-ignore
 import type { ModelError } from '../model';
-// @ts-ignore
-import type { SmsCheckoutRequest } from '../model';
 /**
  * PaymentLinkApi - axios parameter creator
  */
@@ -290,57 +288,6 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
                 options: localVarRequestOptions,
             };
         },
-        /**
-         * 
-         * @summary Send an sms
-         * @param {string} id Identifier of the resource
-         * @param {SmsCheckoutRequest} smsCheckoutRequest requested field for sms checkout
-         * @param {SmsCheckoutAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
-         * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        smsCheckout: async (id: string, smsCheckoutRequest: SmsCheckoutRequest, acceptLanguage?: SmsCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('smsCheckout', 'id', id)
-            // verify required parameter 'smsCheckoutRequest' is not null or undefined
-            assertParamExists('smsCheckout', 'smsCheckoutRequest', smsCheckoutRequest)
-            const localVarPath = `/checkouts/{id}/sms`
-                .replace('{id}', encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearerAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.3.0+json';
-
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
-            }
-            if (xChildCompanyId != null) {
-                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
-            }
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(smsCheckoutRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
     }
 };
 
@@ -429,22 +376,6 @@ export const PaymentLinkApiFp = function(configuration?: Configuration) {
             const localVarOperationServerBasePath = operationServerMap['PaymentLinkApi.getCheckouts']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
-        /**
-         * 
-         * @summary Send an sms
-         * @param {string} id Identifier of the resource
-         * @param {SmsCheckoutRequest} smsCheckoutRequest requested field for sms checkout
-         * @param {SmsCheckoutAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
-         * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async smsCheckout(id: string, smsCheckoutRequest: SmsCheckoutRequest, acceptLanguage?: SmsCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CheckoutResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.smsCheckout(id, smsCheckoutRequest, acceptLanguage, xChildCompanyId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['PaymentLinkApi.smsCheckout']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
     }
 };
 
@@ -518,19 +449,6 @@ export const PaymentLinkApiFactory = function (configuration?: Configuration, ba
         getCheckouts(acceptLanguage?: GetCheckoutsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutsResponse> {
             return localVarFp.getCheckouts(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
         },
-        /**
-         * 
-         * @summary Send an sms
-         * @param {string} id Identifier of the resource
-         * @param {SmsCheckoutRequest} smsCheckoutRequest requested field for sms checkout
-         * @param {SmsCheckoutAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
-         * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        smsCheckout(id: string, smsCheckoutRequest: SmsCheckoutRequest, acceptLanguage?: SmsCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutResponse> {
-            return localVarFp.smsCheckout(id, smsCheckoutRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
-        },
     };
 };
 
@@ -596,18 +514,6 @@ export interface PaymentLinkApiInterface {
      * @throws {RequiredError}
      */
     getCheckouts(acceptLanguage?: GetCheckoutsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutsResponse>;
-
-    /**
-     * 
-     * @summary Send an sms
-     * @param {string} id Identifier of the resource
-     * @param {SmsCheckoutRequest} smsCheckoutRequest requested field for sms checkout
-     * @param {SmsCheckoutAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
-     * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    smsCheckout(id: string, smsCheckoutRequest: SmsCheckoutRequest, acceptLanguage?: SmsCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutResponse>;
 
 }
 
@@ -683,20 +589,6 @@ export class PaymentLinkApi extends BaseAPI implements PaymentLinkApiInterface {
     public getCheckouts(acceptLanguage?: GetCheckoutsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
         return PaymentLinkApiFp(this.configuration).getCheckouts(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
     }
-
-    /**
-     * 
-     * @summary Send an sms
-     * @param {string} id Identifier of the resource
-     * @param {SmsCheckoutRequest} smsCheckoutRequest requested field for sms checkout
-     * @param {SmsCheckoutAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
-     * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    public smsCheckout(id: string, smsCheckoutRequest: SmsCheckoutRequest, acceptLanguage?: SmsCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
-        return PaymentLinkApiFp(this.configuration).smsCheckout(id, smsCheckoutRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
-    }
 }
 
 export const CancelCheckoutAcceptLanguageEnum = {
@@ -724,8 +616,3 @@ export const GetCheckoutsAcceptLanguageEnum = {
     en: 'en',
 } as const;
 export type GetCheckoutsAcceptLanguageEnum = typeof GetCheckoutsAcceptLanguageEnum[keyof typeof GetCheckoutsAcceptLanguageEnum];
-export const SmsCheckoutAcceptLanguageEnum = {
-    es: 'es',
-    en: 'en',
-} as const;
-export type SmsCheckoutAcceptLanguageEnum = typeof SmsCheckoutAcceptLanguageEnum[keyof typeof SmsCheckoutAcceptLanguageEnum];

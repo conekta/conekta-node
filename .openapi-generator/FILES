@@ -155,6 +155,7 @@ docs/OrderResponseShippingContact.md
 docs/OrderResponseShippingLines.md
 docs/OrderResponseTaxLines.md
 docs/OrderTaxRequest.md
+docs/OrderTaxRequestMetadataValue.md
 docs/OrderTaxResponse.md
 docs/OrderUpdate.md
 docs/OrderUpdateCustomerInfo.md
@@ -198,12 +199,12 @@ docs/ProductsApi.md
 docs/ResendEventRequest.md
 docs/RiskRulesData.md
 docs/RiskRulesList.md
+docs/ShippingContactAddress.md
 docs/ShippingContactsApi.md
 docs/ShippingLinesDataResponse.md
 docs/ShippingOrderResponse.md
 docs/ShippingRequest.md
 docs/ShippingsApi.md
-docs/SmsCheckoutRequest.md
 docs/SubscriptionDetails.md
 docs/SubscriptionDetailsCard.md
 docs/SubscriptionDetailsPlan.md
@@ -361,6 +362,7 @@ model/order-response-shipping-contact.ts
 model/order-response-shipping-lines.ts
 model/order-response-tax-lines.ts
 model/order-response.ts
+model/order-tax-request-metadata-value.ts
 model/order-tax-request.ts
 model/order-tax-response.ts
 model/order-update-customer-info.ts
@@ -399,10 +401,10 @@ model/product.ts
 model/resend-event-request.ts
 model/risk-rules-data.ts
 model/risk-rules-list.ts
+model/shipping-contact-address.ts
 model/shipping-lines-data-response.ts
 model/shipping-order-response.ts
 model/shipping-request.ts
-model/sms-checkout-request.ts
 model/subscription-details-card.ts
 model/subscription-details-plan.ts
 model/subscription-details.ts

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amount** | **number** | The amount to be collected for tax in cents | [default to undefined]
 **description** | **string** | description or tax\&#39;s name | [default to undefined]
-**metadata** | **{ [key: string]: any; }** |  | [optional] [default to undefined]
+**metadata** | [**{ [key: string]: OrderTaxRequestMetadataValue; }**](OrderTaxRequestMetadataValue.md) |  | [optional] [default to undefined]
 
 ## Example
 

@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { OrderTaxRequestMetadataValue } from './order-tax-request-metadata-value';
 
 export interface UpdateProduct {
     'antifraud_info'?: { [key: string]: object; };
@@ -23,6 +26,6 @@ export interface UpdateProduct {
     'quantity'?: number;
     'tags'?: Array<string>;
     'brand'?: string;
-    'metadata'?: { [key: string]: string; };
+    'metadata'?: { [key: string]: OrderTaxRequestMetadataValue; };
 }
 

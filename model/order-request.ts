@@ -36,6 +36,9 @@ import type { OrderRequestCustomerInfo } from './order-request-customer-info';
 import type { OrderTaxRequest } from './order-tax-request';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { OrderTaxRequestMetadataValue } from './order-tax-request-metadata-value';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { Product } from './product';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -65,9 +68,9 @@ export interface OrderRequest {
      */
     'line_items': Array<Product>;
     /**
-     * Metadata associated with the order
+     * Metadata associated with the order. Values must be scalar (string of at most 249 characters, integer, number or boolean); nested objects and arrays are not supported.
      */
-    'metadata'?: { [key: string]: any; };
+    'metadata'?: { [key: string]: OrderTaxRequestMetadataValue; };
     /**
      * Allows you to fill out the shipping information at checkout
      */
@@ -94,8 +97,17 @@ export interface OrderRequest {
      */
     'tax_lines'?: Array<OrderTaxRequest>;
     /**
-     * Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null.
+     * Indicates the 3DS2 mode: \'strict\', \'not_strict\' or \'smart\'. The value is validated against the allowed set on creation; sending an explicit null is rejected. Omit the field to create the order without requesting 3DS through the API (company-level 3DS applies only to orders paid through Checkout or when antifraud forces 3DS).
      */
-    'three_ds_mode'?: string;
+    'three_ds_mode'?: OrderRequestThreeDsModeEnum;
 }
+
+export const OrderRequestThreeDsModeEnum = {
+    strict: 'strict',
+    notStrict: 'not_strict',
+    smart: 'smart',
+} as const;
+
+export type OrderRequestThreeDsModeEnum = typeof OrderRequestThreeDsModeEnum[keyof typeof OrderRequestThreeDsModeEnum];
+
 

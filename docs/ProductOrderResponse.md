@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **antifraud_info** | **{ [key: string]: any; }** |  | [optional] [default to undefined]
 **brand** | **string** | The brand of the item. | [optional] [default to undefined]
 **description** | **string** | Short description of the item | [optional] [default to undefined]
-**metadata** | **{ [key: string]: any; }** | It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters. | [optional] [default to undefined]
+**metadata** | [**{ [key: string]: OrderTaxRequestMetadataValue; }**](OrderTaxRequestMetadataValue.md) | It is a key/value hash that can hold custom fields. Maximum 100 elements. Values must be scalar (string of at most 249 characters, integer, number or boolean); nested objects and arrays are not supported. | [optional] [default to undefined]
 **name** | **string** | The name of the item. It will be displayed in the order. | [default to undefined]
 **quantity** | **number** | The quantity of the item in the order. | [default to undefined]
 **sku** | **string** | The stock keeping unit for the item. It is used to identify the item in the order. | [optional] [default to undefined]

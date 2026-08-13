@@ -26,8 +26,8 @@ Name | Type | Description | Notes
 **paid_payments_count** | **number** |  | [optional] [default to undefined]
 **payments_limit_count** | **number** |  | [optional] [default to undefined]
 **recurrent** | **boolean** |  | [optional] [default to undefined]
+**redirection_time** | **number** | It is the time in seconds that the checkout will wait before redirecting to the success_url. | [optional] [default to undefined]
 **slug** | **string** |  | [optional] [default to undefined]
-**sms_sent** | **number** |  | [optional] [default to undefined]
 **starts_at** | **number** |  | [optional] [default to undefined]
 **status** | **string** |  | [optional] [default to undefined]
 **success_url** | **string** | The URL to redirect to after a successful payment. | [optional] [default to undefined]
@@ -60,8 +60,8 @@ const instance: CheckoutResponse = {
     paid_payments_count,
     payments_limit_count,
     recurrent,
+    redirection_time,
     slug,
-    sms_sent,
     starts_at,
     status,
     success_url,

@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { OrderTaxRequestMetadataValue } from './order-tax-request-metadata-value';
 
 export interface TaxLinesDataResponse {
     /**
@@ -23,7 +26,7 @@ export interface TaxLinesDataResponse {
      * description or tax\'s name
      */
     'description': string;
-    'metadata'?: { [key: string]: any; };
+    'metadata'?: { [key: string]: OrderTaxRequestMetadataValue; };
     'id': string;
     'object'?: string;
     'parent_id'?: string;

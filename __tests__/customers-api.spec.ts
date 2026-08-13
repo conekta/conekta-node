@@ -212,7 +212,6 @@ function get_full_customer (): Customer {
       city: "Cuauhtémoc",
       state: "Ciudad de México",
       country: "MX",
-      residential: true,
       external_number: "404",
     }
   }];

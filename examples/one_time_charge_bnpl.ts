@@ -47,7 +47,6 @@ const orderRequest: OrderRequest = {
             payment_method: {
                 type: "bnpl",
                 product_type: PaymentMethodBnplRequestProductTypeEnum.aplazoBnpl,
-                can_not_expire: false,
                 success_url: "https://example.com/success",
                 failure_url: "https://example.com/failure",
                 cancel_url: "https://example.com/cancel",

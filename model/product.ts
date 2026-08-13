@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { OrderTaxRequestMetadataValue } from './order-tax-request-metadata-value';
 
 export interface Product {
     'antifraud_info'?: { [key: string]: any; };
@@ -25,9 +28,9 @@ export interface Product {
      */
     'description'?: string;
     /**
-     * It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters.
+     * It is a key/value hash that can hold custom fields. Maximum 100 elements. Values must be scalar (string of at most 249 characters, integer, number or boolean); nested objects and arrays are not supported.
      */
-    'metadata'?: { [key: string]: any; };
+    'metadata'?: { [key: string]: OrderTaxRequestMetadataValue; };
     /**
      * The name of the item. It will be displayed in the order.
      */

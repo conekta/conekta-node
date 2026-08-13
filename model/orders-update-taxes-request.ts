@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { OrderTaxRequestMetadataValue } from './order-tax-request-metadata-value';
 
 /**
  * create new taxes for an existing order
@@ -26,6 +29,6 @@ export interface OrdersUpdateTaxesRequest {
      * description or tax\'s name
      */
     'description'?: string;
-    'metadata'?: { [key: string]: object; };
+    'metadata'?: { [key: string]: OrderTaxRequestMetadataValue; };
 }
 

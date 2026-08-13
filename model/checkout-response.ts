@@ -50,8 +50,11 @@ export interface CheckoutResponse {
     'paid_payments_count'?: number;
     'payments_limit_count'?: number;
     'recurrent'?: boolean;
+    /**
+     * It is the time in seconds that the checkout will wait before redirecting to the success_url.
+     */
+    'redirection_time'?: number;
     'slug'?: string;
-    'sms_sent'?: number;
     'starts_at'?: number;
     'status'?: string;
     /**

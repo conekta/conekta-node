@@ -14,11 +14,14 @@
 
 
 
-export interface CustomerShippingContactsRequestAddress {
+/**
+ * Address of the person who will receive the order
+ */
+export interface ShippingContactAddress {
     /**
      * Street and number of the delivery address.
      */
-    'street1': string;
+    'street1'?: string;
     /**
      * Apartment, suite or interior reference for the delivery address.
      */
@@ -26,7 +29,7 @@ export interface CustomerShippingContactsRequestAddress {
     /**
      * Postal code of the delivery address. For Mexican addresses (country MX) it must be a 5-digit postal code.
      */
-    'postal_code': string;
+    'postal_code'?: string;
     /**
      * City of the delivery address. Must contain at least two consecutive ASCII letters.
      */
@@ -38,7 +41,7 @@ export interface CustomerShippingContactsRequestAddress {
     /**
      * Country of the delivery address. This field follows the [ISO 3166-1 alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
      */
-    'country': string;
+    'country'?: string;
     /**
      * Indicates whether the delivery address is residential.
      */
