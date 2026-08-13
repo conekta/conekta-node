@@ -5,10 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount** | **number** |  | [default to undefined]
+**amount** | **number** |  | [optional] [default to undefined]
 **channel** | [**ChargeResponseChannel**](ChargeResponseChannel.md) |  | [optional] [default to undefined]
-**created_at** | **number** |  | [default to undefined]
-**currency** | **string** |  | [default to undefined]
+**conekta_account_id** | **string** | Conekta account ID of the charge, if the charge was paid through a Conekta account. | [optional] [default to undefined]
+**created_at** | **number** | Charge creation date, in seconds since the Unix epoch | [default to undefined]
+**currency** | **string** | Currency of the charge, in ISO 4217 format | [default to undefined]
 **customer_id** | **string** |  | [optional] [default to undefined]
 **description** | **string** |  | [optional] [default to undefined]
 **device_fingerprint** | **string** |  | [optional] [default to undefined]
@@ -33,6 +34,7 @@ import { ChargeResponse } from 'conekta';
 const instance: ChargeResponse = {
     amount,
     channel,
+    conekta_account_id,
     created_at,
     currency,
     customer_id,

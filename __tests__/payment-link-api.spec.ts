@@ -1,7 +1,7 @@
 import { PaymentLinkApi } from "../api";
 import { baseTest } from "./base-test";
 import { Configuration } from "../configuration";
-import { Checkout, EmailCheckoutRequest, SmsCheckoutRequest } from "../model";
+import { Checkout, EmailCheckoutRequest } from "../model";
 describe('Payment Link API', () => {
   let client: PaymentLinkApi;
 
@@ -71,24 +71,12 @@ describe('Payment Link API', () => {
 
       expect(response).toBeDefined();
       expect(response.emails_sent).toBe(1);
-      expect(response.sms_sent).toBe(0);
       expect(response.id).toEqual(id);
       expect(response.status).toEqual("Issued");
       expect(response.recurrent).toBeTruthy();
-      expect(response.metadata["key"]).toBe("value");
+      expect(response.metadata?.["key"]).toBe("value");
     });
-    it("should sms notify checkout", async () => {
-      const id = "ce1076bb-5ee6-4d08-a0e2-ec0bfbc49883";
-      const sms_request: SmsCheckoutRequest = {
-        phonenumber: "5555555555",
-      }
-      const response = (await client.smsCheckout(id, sms_request)).data;
-
-      expect(response).toBeDefined();
-      expect(response.id).toEqual(id);
-      expect(response.sms_sent).toBeTruthy();
-      expect(response.emails_sent).toBeFalsy();
-    });
+    
   });
 
   describe("Get checkout", () => {

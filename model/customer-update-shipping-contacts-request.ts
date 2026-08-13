@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { CustomerShippingContactsRequestAddress } from './customer-shipping-contacts-request-address';
+import type { ShippingContactAddress } from './shipping-contact-address';
 
 /**
  * [Shipping](https://developers.conekta.com/v2.3.0/reference/createcustomershippingcontacts) details, required in case of sending a shipping. If we do not receive a shipping_contact on the order, the default shipping_contact of the customer will be used.
@@ -30,10 +30,10 @@ export interface CustomerUpdateShippingContactsRequest {
      */
     'receiver'?: string;
     /**
-     * The street names between which the order will be delivered.
+     * The street names between which the order will be delivered. Must contain at least two consecutive ASCII letters.
      */
     'between_streets'?: string;
-    'address'?: CustomerShippingContactsRequestAddress;
+    'address'?: ShippingContactAddress;
     'parent_id'?: string;
     'default'?: boolean;
     'deleted'?: boolean;

@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **phone** | **string** | Phone contact | [optional] [default to undefined]
 **receiver** | **string** | Name of the person who will receive the order | [optional] [default to undefined]
-**between_streets** | **string** | The street names between which the order will be delivered. | [optional] [default to undefined]
-**address** | [**CustomerShippingContactsRequestAddress**](CustomerShippingContactsRequestAddress.md) |  | [optional] [default to undefined]
+**between_streets** | **string** | The street names between which the order will be delivered. Must contain at least two consecutive ASCII letters. | [optional] [default to undefined]
+**address** | [**ShippingContactAddress**](ShippingContactAddress.md) |  | [optional] [default to undefined]
 **parent_id** | **string** |  | [optional] [default to undefined]
 **_default** | **boolean** |  | [optional] [default to undefined]
 **deleted** | **boolean** |  | [optional] [default to undefined]

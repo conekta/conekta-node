@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **comercial_info** | [**CreateCompanyRequestComercialInfo**](CreateCompanyRequestComercialInfo.md) |  | [optional] [default to undefined]
 **fiscal_info** | [**CreateCompanyRequestFiscalInfo**](CreateCompanyRequestFiscalInfo.md) |  | [optional] [default to undefined]
 **bank_account_info** | [**CreateCompanyRequestBankAccountInfo**](CreateCompanyRequestBankAccountInfo.md) |  | [optional] [default to undefined]
+**users** | **Array&lt;string&gt;** | User emails for the company | [optional] [default to undefined]
 
 ## Example
 
@@ -22,6 +23,7 @@ const instance: CreateCompanyRequest = {
     comercial_info,
     fiscal_info,
     bank_account_info,
+    users,
 };
 ```
 

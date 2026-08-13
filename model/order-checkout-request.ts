@@ -27,7 +27,7 @@ export interface OrderCheckoutRequest {
      */
     'excluded_payment_methods'?: Array<OrderCheckoutRequestExcludedPaymentMethodsEnum>;
     /**
-     * List of card networks to exclude from the checkout. This field is only applicable for card payments.
+     * List of card networks to exclude from the checkout. This field is only applicable for card payments. Accepted values: \'visa_master_card\' (a single token excluding both Visa and Mastercard) and \'amex\'.
      */
     'exclude_card_networks'?: Array<OrderCheckoutRequestExcludeCardNetworksEnum>;
     /**
@@ -92,8 +92,7 @@ export const OrderCheckoutRequestExcludedPaymentMethodsEnum = {
 
 export type OrderCheckoutRequestExcludedPaymentMethodsEnum = typeof OrderCheckoutRequestExcludedPaymentMethodsEnum[keyof typeof OrderCheckoutRequestExcludedPaymentMethodsEnum];
 export const OrderCheckoutRequestExcludeCardNetworksEnum = {
-    visa: 'visa',
-    mastercard: 'mastercard',
+    visaMasterCard: 'visa_master_card',
     amex: 'amex',
 } as const;
 

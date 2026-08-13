@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **quantity** | **number** |  | [optional] [default to undefined]
 **tags** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
 **brand** | **string** |  | [optional] [default to undefined]
-**metadata** | **{ [key: string]: string; }** |  | [optional] [default to undefined]
+**metadata** | [**{ [key: string]: OrderTaxRequestMetadataValue; }**](OrderTaxRequestMetadataValue.md) |  | [optional] [default to undefined]
 
 ## Example
 

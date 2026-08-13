@@ -1,19 +1,17 @@
-# SmsCheckoutRequest
+# OrderTaxRequestMetadataValue
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**phonenumber** | **string** |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { SmsCheckoutRequest } from 'conekta';
+import { OrderTaxRequestMetadataValue } from 'conekta';
 
-const instance: SmsCheckoutRequest = {
-    phonenumber,
+const instance: OrderTaxRequestMetadataValue = {
 };
 ```
 

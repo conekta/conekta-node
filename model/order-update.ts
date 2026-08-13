@@ -30,6 +30,9 @@ import type { OrderDiscountLinesRequest } from './order-discount-lines-request';
 import type { OrderTaxRequest } from './order-tax-request';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { OrderTaxRequestMetadataValue } from './order-tax-request-metadata-value';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { OrderUpdateCustomerInfo } from './order-update-customer-info';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -61,7 +64,7 @@ export interface OrderUpdate {
      * List of [products](https://developers.conekta.com/v2.3.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
      */
     'line_items'?: Array<Product>;
-    'metadata'?: { [key: string]: string; };
+    'metadata'?: { [key: string]: OrderTaxRequestMetadataValue; };
     /**
      * Indicates whether the order charges must be preauthorized
      */

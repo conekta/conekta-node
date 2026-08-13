@@ -20,13 +20,13 @@ export interface PaymentMethodBnplRequest {
      */
     'type': string;
     /**
-     * URL to redirect the customer after a canceled payment
+     * Optional URL to redirect the customer after a canceled payment
      */
-    'cancel_url': string;
+    'cancel_url'?: string;
     /**
-     * Indicates if the payment method can not expire
+     * Optional expiry for the BNPL order, expressed in seconds since the Unix epoch. Defaults to one month from creation when omitted.
      */
-    'can_not_expire': boolean;
+    'expires_at'?: number;
     /**
      * URL to redirect the customer after a failed payment
      */

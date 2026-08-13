@@ -54,7 +54,7 @@ export interface OrderResponse {
     /**
      * The total amount to be collected in cents
      */
-    'amount'?: number;
+    'amount': number;
     /**
      * The total amount refunded in cents
      */
@@ -65,23 +65,23 @@ export interface OrderResponse {
     /**
      * The time at which the object was created in seconds since the Unix epoch
      */
-    'created_at'?: number;
+    'created_at': number;
     /**
      * The three-letter ISO 4217 currency code. The currency of the order.
      */
-    'currency'?: string;
+    'currency': string;
     'customer_info'?: OrderResponseCustomerInfo;
     'discount_lines'?: OrderResponseDiscountLines;
     'tax_lines'?: OrderResponseTaxLines;
     'shipping_lines'?: OrderResponseShippingLines;
     'fiscal_entity'?: OrderFiscalEntityResponse;
-    'id'?: string;
+    'id': string;
     'is_refundable'?: boolean;
     'line_items'?: OrderResponseProducts;
     /**
      * Whether the object exists in live mode or test mode
      */
-    'livemode'?: boolean;
+    'livemode': boolean;
     /**
      * Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      */
@@ -90,7 +90,7 @@ export interface OrderResponse {
     /**
      * String representing the object’s type. Objects of the same type share the same value.
      */
-    'object'?: string;
+    'object': string;
     /**
      * The payment status of the order.
      */

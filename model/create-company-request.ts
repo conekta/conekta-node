@@ -35,5 +35,9 @@ export interface CreateCompanyRequest {
     'comercial_info'?: CreateCompanyRequestComercialInfo;
     'fiscal_info'?: CreateCompanyRequestFiscalInfo;
     'bank_account_info'?: CreateCompanyRequestBankAccountInfo;
+    /**
+     * User emails for the company
+     */
+    'users'?: Array<string>;
 }
 

@@ -9,7 +9,6 @@ All URIs are relative to *https://api.conekta.io*
 |[**emailCheckout**](#emailcheckout) | **POST** /checkouts/{id}/email | Send an email|
 |[**getCheckout**](#getcheckout) | **GET** /checkouts/{id} | Get a payment link by ID|
 |[**getCheckouts**](#getcheckouts) | **GET** /checkouts | Get a list of payment links|
-|[**smsCheckout**](#smscheckout) | **POST** /checkouts/{id}/sms | Send an sms|
 
 # **cancelCheckout**
 > CheckoutResponse cancelCheckout()
@@ -324,71 +323,6 @@ const { status, data } = await apiInstance.getCheckouts(
 |**200** | successful operation |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  * Conekta-Media-Type -  <br>  |
 |**401** | authentication error |  -  |
 |**402** | payment required error |  -  |
-|**422** | parameter validation error |  -  |
-|**500** | internal server error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **smsCheckout**
-> CheckoutResponse smsCheckout(smsCheckoutRequest)
-
-
-### Example
-
-```typescript
-import {
-    PaymentLinkApi,
-    Configuration,
-    SmsCheckoutRequest
-} from 'conekta';
-
-const configuration = new Configuration();
-const apiInstance = new PaymentLinkApi(configuration);
-
-let id: string; //Identifier of the resource (default to undefined)
-let smsCheckoutRequest: SmsCheckoutRequest; //requested field for sms checkout
-let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
-let xChildCompanyId: string; //In the case of a holding company, the company id of the child company to which will process the request. (optional) (default to undefined)
-
-const { status, data } = await apiInstance.smsCheckout(
-    id,
-    smsCheckoutRequest,
-    acceptLanguage,
-    xChildCompanyId
-);
-```
-
-### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **smsCheckoutRequest** | **SmsCheckoutRequest**| requested field for sms checkout | |
-| **id** | [**string**] | Identifier of the resource | defaults to undefined|
-| **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
-| **xChildCompanyId** | [**string**] | In the case of a holding company, the company id of the child company to which will process the request. | (optional) defaults to undefined|
-
-
-### Return type
-
-**CheckoutResponse**
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/vnd.conekta-v2.3.0+json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** | successful operation |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  * Conekta-Media-Type -  <br>  |
-|**401** | authentication error |  -  |
-|**402** | payment required error |  -  |
-|**404** | not found entity |  -  |
 |**422** | parameter validation error |  -  |
 |**500** | internal server error |  -  |
 

@@ -62,6 +62,10 @@ export interface CompanyResponse {
      * The 3DS mode for the company, either \'smart\' or \'strict\'. This property is only applicable when three_ds_enabled is true. When three_ds_enabled is false, this field will be null.
      */
     'three_ds_mode'?: CompanyResponseThreeDsModeEnum;
+    /**
+     * The URL to resume onboarding
+     */
+    'onboarding_url'?: string;
 }
 
 export const CompanyResponseThreeDsModeEnum = {

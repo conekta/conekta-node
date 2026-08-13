@@ -27,9 +27,19 @@ import type { ChargeResponseRefunds } from './charge-response-refunds';
 import type { ChargebackResponse } from './chargeback-response';
 
 export interface ChargesDataResponse {
-    'amount': number;
+    'amount'?: number;
     'channel'?: ChargeResponseChannel;
+    /**
+     * Conekta account ID of the charge, if the charge was paid through a Conekta account.
+     */
+    'conekta_account_id'?: string;
+    /**
+     * Charge creation date, in seconds since the Unix epoch
+     */
     'created_at': number;
+    /**
+     * Currency of the charge, in ISO 4217 format
+     */
     'currency': string;
     'customer_id'?: string;
     'description'?: string;
