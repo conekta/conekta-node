@@ -9,6 +9,7 @@ api.ts
 api/antifraud-api.ts
 api/api-keys-api.ts
 api/balances-api.ts
+api/chargebacks-api.ts
 api/charges-api.ts
 api/companies-api.ts
 api/customers-api.ts
@@ -56,8 +57,12 @@ docs/ChargeResponsePaymentMethod.md
 docs/ChargeResponseRefunds.md
 docs/ChargeResponseRefundsData.md
 docs/ChargeUpdateRequest.md
+docs/ChargebackEvidenceFileResponse.md
+docs/ChargebackEvidenceTypeResponse.md
 docs/ChargebackFileResponse.md
+docs/ChargebackFilesBatchResponse.md
 docs/ChargebackResponse.md
+docs/ChargebacksApi.md
 docs/ChargesApi.md
 docs/ChargesDataResponse.md
 docs/ChargesOrderResponse.md
@@ -269,7 +274,10 @@ model/charge-response-refunds-data.ts
 model/charge-response-refunds.ts
 model/charge-response.ts
 model/charge-update-request.ts
+model/chargeback-evidence-file-response.ts
+model/chargeback-evidence-type-response.ts
 model/chargeback-file-response.ts
+model/chargeback-files-batch-response.ts
 model/chargeback-response.ts
 model/charges-data-response.ts
 model/charges-order-response.ts

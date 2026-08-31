@@ -1,6 +1,6 @@
 {
   "name": "conekta",
-  "version": "9.0.2",
+  "version": "9.0.3",
   "description": "OpenAPI client for conekta",
   "author": "engineering conekta",
   "repository": {
@@ -46,9 +46,9 @@
     "@types/node": "^26.0.0",
     "typescript": "^5.4",
     "@types/jest": "^30.0.0",
-    "jest": "^30.4.2",
-    "jest-util": "^30.4.1",
-    "ts-jest": "^29.4.11"
+    "jest": "^30.5.0",
+    "jest-util": "^30.5.0",
+    "ts-jest": "^29.4.12"
   },
   "publishConfig": {
     "access": "public"
