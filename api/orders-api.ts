@@ -200,10 +200,11 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {number} [createdAtLte] created at less than or equal to
          * @param {number} [updatedAtGte] updated at greater than or equal to
          * @param {number} [updatedAtLte] updated at less than or equal to
+         * @param {number} [amount] Filters by amount equal to the given value, in cents
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrders: async (acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getOrders: async (acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, amount?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/orders`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -262,6 +263,10 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
 
             if (updatedAtLte !== undefined) {
                 localVarQueryParameter['updated_at.lte'] = updatedAtLte;
+            }
+
+            if (amount !== undefined) {
+                localVarQueryParameter['amount'] = amount;
             }
 
             localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.3.0+json';
@@ -549,11 +554,12 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * @param {number} [createdAtLte] created at less than or equal to
          * @param {number} [updatedAtGte] updated at greater than or equal to
          * @param {number} [updatedAtLte] updated at less than or equal to
+         * @param {number} [amount] Filters by amount equal to the given value, in cents
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOrdersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, paymentStatus, lastPaymentInfoStatus, createdAt, createdAtGte, createdAtLte, updatedAtGte, updatedAtLte, options);
+        async getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, amount?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOrdersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, paymentStatus, lastPaymentInfoStatus, createdAt, createdAtGte, createdAtLte, updatedAtGte, updatedAtLte, amount, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['OrdersApi.getOrders']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -683,11 +689,12 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @param {number} [createdAtLte] created at less than or equal to
          * @param {number} [updatedAtGte] updated at greater than or equal to
          * @param {number} [updatedAtLte] updated at less than or equal to
+         * @param {number} [amount] Filters by amount equal to the given value, in cents
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, options?: RawAxiosRequestConfig): AxiosPromise<GetOrdersResponse> {
-            return localVarFp.getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, paymentStatus, lastPaymentInfoStatus, createdAt, createdAtGte, createdAtLte, updatedAtGte, updatedAtLte, options).then((request) => request(axios, basePath));
+        getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, amount?: number, options?: RawAxiosRequestConfig): AxiosPromise<GetOrdersResponse> {
+            return localVarFp.getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, paymentStatus, lastPaymentInfoStatus, createdAt, createdAtGte, createdAtLte, updatedAtGte, updatedAtLte, amount, options).then((request) => request(axios, basePath));
         },
         /**
          * A refunded order describes the items, amount, and reason an order is being refunded.
@@ -797,10 +804,11 @@ export interface OrdersApiInterface {
      * @param {number} [createdAtLte] created at less than or equal to
      * @param {number} [updatedAtGte] updated at greater than or equal to
      * @param {number} [updatedAtLte] updated at less than or equal to
+     * @param {number} [amount] Filters by amount equal to the given value, in cents
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, options?: RawAxiosRequestConfig): AxiosPromise<GetOrdersResponse>;
+    getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, amount?: number, options?: RawAxiosRequestConfig): AxiosPromise<GetOrdersResponse>;
 
     /**
      * A refunded order describes the items, amount, and reason an order is being refunded.
@@ -911,11 +919,12 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @param {number} [createdAtLte] created at less than or equal to
      * @param {number} [updatedAtGte] updated at greater than or equal to
      * @param {number} [updatedAtLte] updated at less than or equal to
+     * @param {number} [amount] Filters by amount equal to the given value, in cents
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, options?: RawAxiosRequestConfig) {
-        return OrdersApiFp(this.configuration).getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, paymentStatus, lastPaymentInfoStatus, createdAt, createdAtGte, createdAtLte, updatedAtGte, updatedAtLte, options).then((request) => request(this.axios, this.basePath));
+    public getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, amount?: number, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, paymentStatus, lastPaymentInfoStatus, createdAt, createdAtGte, createdAtLte, updatedAtGte, updatedAtLte, amount, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
