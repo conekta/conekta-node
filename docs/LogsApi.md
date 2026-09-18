@@ -89,6 +89,7 @@ let limit: number; //The numbers of items to return, the maximum value is 250 (o
 let search: string; //General order search, e.g. by mail, reference etc. (optional) (default to undefined)
 let next: string; //next page (optional) (default to undefined)
 let previous: string; //previous page (optional) (default to undefined)
+let methodIn: Array<string>; //Filters logs by HTTP method. The parameter can be sent multiple times to filter by more than one method, e.g. `method.in[]=POST&method.in[]=PUT` (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getLogs(
     acceptLanguage,
@@ -96,7 +97,8 @@ const { status, data } = await apiInstance.getLogs(
     limit,
     search,
     next,
-    previous
+    previous,
+    methodIn
 );
 ```
 
@@ -110,6 +112,7 @@ const { status, data } = await apiInstance.getLogs(
 | **search** | [**string**] | General order search, e.g. by mail, reference etc. | (optional) defaults to undefined|
 | **next** | [**string**] | next page | (optional) defaults to undefined|
 | **previous** | [**string**] | previous page | (optional) defaults to undefined|
+| **methodIn** | **Array&lt;string&gt;** | Filters logs by HTTP method. The parameter can be sent multiple times to filter by more than one method, e.g. &#x60;method.in[]&#x3D;POST&amp;method.in[]&#x3D;PUT&#x60; | (optional) defaults to undefined|
 
 
 ### Return type

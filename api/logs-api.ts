@@ -87,10 +87,11 @@ export const LogsApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} [search] General order search, e.g. by mail, reference etc.
          * @param {string} [next] next page
          * @param {string} [previous] previous page
+         * @param {Array<string>} [methodIn] Filters logs by HTTP method. The parameter can be sent multiple times to filter by more than one method, e.g. &#x60;method.in[]&#x3D;POST&amp;method.in[]&#x3D;PUT&#x60;
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLogs: async (acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getLogs: async (acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, methodIn?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/logs`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -121,6 +122,10 @@ export const LogsApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (previous !== undefined) {
                 localVarQueryParameter['previous'] = previous;
+            }
+
+            if (methodIn) {
+                localVarQueryParameter['method.in[]'] = methodIn;
             }
 
             localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.3.0+json';
@@ -173,11 +178,12 @@ export const LogsApiFp = function(configuration?: Configuration) {
          * @param {string} [search] General order search, e.g. by mail, reference etc.
          * @param {string} [next] next page
          * @param {string} [previous] previous page
+         * @param {Array<string>} [methodIn] Filters logs by HTTP method. The parameter can be sent multiple times to filter by more than one method, e.g. &#x60;method.in[]&#x3D;POST&amp;method.in[]&#x3D;PUT&#x60;
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LogsResponseForRequest>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getLogs(acceptLanguage, xChildCompanyId, limit, search, next, previous, options);
+        async getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, methodIn?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LogsResponseForRequest>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getLogs(acceptLanguage, xChildCompanyId, limit, search, next, previous, methodIn, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['LogsApi.getLogs']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -212,11 +218,12 @@ export const LogsApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} [search] General order search, e.g. by mail, reference etc.
          * @param {string} [next] next page
          * @param {string} [previous] previous page
+         * @param {Array<string>} [methodIn] Filters logs by HTTP method. The parameter can be sent multiple times to filter by more than one method, e.g. &#x60;method.in[]&#x3D;POST&amp;method.in[]&#x3D;PUT&#x60;
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogsResponseForRequest> {
-            return localVarFp.getLogs(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(axios, basePath));
+        getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, methodIn?: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<LogsResponseForRequest> {
+            return localVarFp.getLogs(acceptLanguage, xChildCompanyId, limit, search, next, previous, methodIn, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -245,10 +252,11 @@ export interface LogsApiInterface {
      * @param {string} [search] General order search, e.g. by mail, reference etc.
      * @param {string} [next] next page
      * @param {string} [previous] previous page
+     * @param {Array<string>} [methodIn] Filters logs by HTTP method. The parameter can be sent multiple times to filter by more than one method, e.g. &#x60;method.in[]&#x3D;POST&amp;method.in[]&#x3D;PUT&#x60;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig): AxiosPromise<LogsResponseForRequest>;
+    getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, methodIn?: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<LogsResponseForRequest>;
 
 }
 
@@ -278,11 +286,12 @@ export class LogsApi extends BaseAPI implements LogsApiInterface {
      * @param {string} [search] General order search, e.g. by mail, reference etc.
      * @param {string} [next] next page
      * @param {string} [previous] previous page
+     * @param {Array<string>} [methodIn] Filters logs by HTTP method. The parameter can be sent multiple times to filter by more than one method, e.g. &#x60;method.in[]&#x3D;POST&amp;method.in[]&#x3D;PUT&#x60;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, options?: RawAxiosRequestConfig) {
-        return LogsApiFp(this.configuration).getLogs(acceptLanguage, xChildCompanyId, limit, search, next, previous, options).then((request) => request(this.axios, this.basePath));
+    public getLogs(acceptLanguage?: GetLogsAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, methodIn?: Array<string>, options?: RawAxiosRequestConfig) {
+        return LogsApiFp(this.configuration).getLogs(acceptLanguage, xChildCompanyId, limit, search, next, previous, methodIn, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

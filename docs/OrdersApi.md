@@ -229,6 +229,7 @@ let createdAtGte: number; //created at greater than or equal to (optional) (defa
 let createdAtLte: number; //created at less than or equal to (optional) (default to undefined)
 let updatedAtGte: number; //updated at greater than or equal to (optional) (default to undefined)
 let updatedAtLte: number; //updated at less than or equal to (optional) (default to undefined)
+let amount: number; //Filters by amount equal to the given value, in cents (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getOrders(
     acceptLanguage,
@@ -243,7 +244,8 @@ const { status, data } = await apiInstance.getOrders(
     createdAtGte,
     createdAtLte,
     updatedAtGte,
-    updatedAtLte
+    updatedAtLte,
+    amount
 );
 ```
 
@@ -264,6 +266,7 @@ const { status, data } = await apiInstance.getOrders(
 | **createdAtLte** | [**number**] | created at less than or equal to | (optional) defaults to undefined|
 | **updatedAtGte** | [**number**] | updated at greater than or equal to | (optional) defaults to undefined|
 | **updatedAtLte** | [**number**] | updated at less than or equal to | (optional) defaults to undefined|
+| **amount** | [**number**] | Filters by amount equal to the given value, in cents | (optional) defaults to undefined|
 
 
 ### Return type
