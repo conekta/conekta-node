@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**webhooks_ids** | **Array&lt;string&gt;** | webhooks ids to resend event | [default to undefined]
+**webhooks_ids** | **Array&lt;string&gt;** | webhooks ids to resend event | [optional] [default to undefined]
 
 ## Example
 

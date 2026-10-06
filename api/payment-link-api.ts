@@ -88,10 +88,11 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
          * @param {Checkout} checkout requested field for checkout
          * @param {CreateCheckoutAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCheckout: async (checkout: Checkout, acceptLanguage?: CreateCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createCheckout: async (checkout: Checkout, acceptLanguage?: CreateCheckoutAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'checkout' is not null or undefined
             assertParamExists('createCheckout', 'checkout', checkout)
             const localVarPath = `/checkouts`;
@@ -118,6 +119,9 @@ export const PaymentLinkApiAxiosParamCreator = function (configuration?: Configu
             }
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
+            if (idempotencyKey != null) {
+                localVarHeaderParameter['Idempotency-Key'] = String(idempotencyKey);
             }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -318,11 +322,12 @@ export const PaymentLinkApiFp = function(configuration?: Configuration) {
          * @param {Checkout} checkout requested field for checkout
          * @param {CreateCheckoutAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createCheckout(checkout: Checkout, acceptLanguage?: CreateCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CheckoutResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createCheckout(checkout, acceptLanguage, xChildCompanyId, options);
+        async createCheckout(checkout: Checkout, acceptLanguage?: CreateCheckoutAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CheckoutResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createCheckout(checkout, acceptLanguage, xChildCompanyId, idempotencyKey, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PaymentLinkApi.createCheckout']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -403,11 +408,12 @@ export const PaymentLinkApiFactory = function (configuration?: Configuration, ba
          * @param {Checkout} checkout requested field for checkout
          * @param {CreateCheckoutAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCheckout(checkout: Checkout, acceptLanguage?: CreateCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutResponse> {
-            return localVarFp.createCheckout(checkout, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
+        createCheckout(checkout: Checkout, acceptLanguage?: CreateCheckoutAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutResponse> {
+            return localVarFp.createCheckout(checkout, acceptLanguage, xChildCompanyId, idempotencyKey, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -473,10 +479,11 @@ export interface PaymentLinkApiInterface {
      * @param {Checkout} checkout requested field for checkout
      * @param {CreateCheckoutAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createCheckout(checkout: Checkout, acceptLanguage?: CreateCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutResponse>;
+    createCheckout(checkout: Checkout, acceptLanguage?: CreateCheckoutAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig): AxiosPromise<CheckoutResponse>;
 
     /**
      * 
@@ -540,11 +547,12 @@ export class PaymentLinkApi extends BaseAPI implements PaymentLinkApiInterface {
      * @param {Checkout} checkout requested field for checkout
      * @param {CreateCheckoutAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public createCheckout(checkout: Checkout, acceptLanguage?: CreateCheckoutAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
-        return PaymentLinkApiFp(this.configuration).createCheckout(checkout, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
+    public createCheckout(checkout: Checkout, acceptLanguage?: CreateCheckoutAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig) {
+        return PaymentLinkApiFp(this.configuration).createCheckout(checkout, acceptLanguage, xChildCompanyId, idempotencyKey, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
