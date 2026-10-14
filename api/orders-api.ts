@@ -92,10 +92,11 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {OrderRequest} orderRequest requested field for order
          * @param {CreateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createOrder: async (orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createOrder: async (orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'orderRequest' is not null or undefined
             assertParamExists('createOrder', 'orderRequest', orderRequest)
             const localVarPath = `/orders`;
@@ -122,6 +123,9 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             }
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
+            if (idempotencyKey != null) {
+                localVarHeaderParameter['Idempotency-Key'] = String(idempotencyKey);
             }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -513,11 +517,12 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * @param {OrderRequest} orderRequest requested field for order
          * @param {CreateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createOrder(orderRequest, acceptLanguage, xChildCompanyId, options);
+        async createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createOrder(orderRequest, acceptLanguage, xChildCompanyId, idempotencyKey, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['OrdersApi.createOrder']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -654,11 +659,12 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @param {OrderRequest} orderRequest requested field for order
          * @param {CreateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse> {
-            return localVarFp.createOrder(orderRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
+        createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse> {
+            return localVarFp.createOrder(orderRequest, acceptLanguage, xChildCompanyId, idempotencyKey, options).then((request) => request(axios, basePath));
         },
         /**
          * Info for a specific order
@@ -771,10 +777,11 @@ export interface OrdersApiInterface {
      * @param {OrderRequest} orderRequest requested field for order
      * @param {CreateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
+    createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
     /**
      * Info for a specific order
@@ -882,11 +889,12 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @param {OrderRequest} orderRequest requested field for order
      * @param {CreateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
-        return OrdersApiFp(this.configuration).createOrder(orderRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
+    public createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).createOrder(orderRequest, acceptLanguage, xChildCompanyId, idempotencyKey, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

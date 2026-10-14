@@ -109,10 +109,11 @@ export const ChargesApiAxiosParamCreator = function (configuration?: Configurati
          * @param {ChargeRequest} chargeRequest requested field for a charge
          * @param {OrdersCreateChargeAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersCreateCharge: async (id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargeAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        ordersCreateCharge: async (id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargeAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('ordersCreateCharge', 'id', id)
             // verify required parameter 'chargeRequest' is not null or undefined
@@ -143,6 +144,9 @@ export const ChargesApiAxiosParamCreator = function (configuration?: Configurati
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
             }
+            if (idempotencyKey != null) {
+                localVarHeaderParameter['Idempotency-Key'] = String(idempotencyKey);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -160,10 +164,11 @@ export const ChargesApiAxiosParamCreator = function (configuration?: Configurati
          * @param {ChargeRequest} chargeRequest requested field for a charge
          * @param {OrdersCreateChargesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersCreateCharges: async (id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargesAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        ordersCreateCharges: async (id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargesAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('ordersCreateCharges', 'id', id)
             // verify required parameter 'chargeRequest' is not null or undefined
@@ -193,6 +198,9 @@ export const ChargesApiAxiosParamCreator = function (configuration?: Configurati
             }
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
+            if (idempotencyKey != null) {
+                localVarHeaderParameter['Idempotency-Key'] = String(idempotencyKey);
             }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -289,11 +297,12 @@ export const ChargesApiFp = function(configuration?: Configuration) {
          * @param {ChargeRequest} chargeRequest requested field for a charge
          * @param {OrdersCreateChargeAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async ordersCreateCharge(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargeAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChargeOrderResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.ordersCreateCharge(id, chargeRequest, acceptLanguage, xChildCompanyId, options);
+        async ordersCreateCharge(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargeAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChargeOrderResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.ordersCreateCharge(id, chargeRequest, acceptLanguage, xChildCompanyId, idempotencyKey, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChargesApi.ordersCreateCharge']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -305,11 +314,12 @@ export const ChargesApiFp = function(configuration?: Configuration) {
          * @param {ChargeRequest} chargeRequest requested field for a charge
          * @param {OrdersCreateChargesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async ordersCreateCharges(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChargesOrderResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.ordersCreateCharges(id, chargeRequest, acceptLanguage, xChildCompanyId, options);
+        async ordersCreateCharges(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargesAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChargesOrderResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.ordersCreateCharges(id, chargeRequest, acceptLanguage, xChildCompanyId, idempotencyKey, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChargesApi.ordersCreateCharges']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -361,11 +371,12 @@ export const ChargesApiFactory = function (configuration?: Configuration, basePa
          * @param {ChargeRequest} chargeRequest requested field for a charge
          * @param {OrdersCreateChargeAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersCreateCharge(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargeAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChargeOrderResponse> {
-            return localVarFp.ordersCreateCharge(id, chargeRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
+        ordersCreateCharge(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargeAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChargeOrderResponse> {
+            return localVarFp.ordersCreateCharge(id, chargeRequest, acceptLanguage, xChildCompanyId, idempotencyKey, options).then((request) => request(axios, basePath));
         },
         /**
          * Create charges for an existing orden
@@ -374,11 +385,12 @@ export const ChargesApiFactory = function (configuration?: Configuration, basePa
          * @param {ChargeRequest} chargeRequest requested field for a charge
          * @param {OrdersCreateChargesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersCreateCharges(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChargesOrderResponse> {
-            return localVarFp.ordersCreateCharges(id, chargeRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
+        ordersCreateCharges(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargesAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChargesOrderResponse> {
+            return localVarFp.ordersCreateCharges(id, chargeRequest, acceptLanguage, xChildCompanyId, idempotencyKey, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -421,10 +433,11 @@ export interface ChargesApiInterface {
      * @param {ChargeRequest} chargeRequest requested field for a charge
      * @param {OrdersCreateChargeAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    ordersCreateCharge(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargeAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChargeOrderResponse>;
+    ordersCreateCharge(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargeAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChargeOrderResponse>;
 
     /**
      * Create charges for an existing orden
@@ -433,10 +446,11 @@ export interface ChargesApiInterface {
      * @param {ChargeRequest} chargeRequest requested field for a charge
      * @param {OrdersCreateChargesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    ordersCreateCharges(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChargesOrderResponse>;
+    ordersCreateCharges(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargesAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig): AxiosPromise<ChargesOrderResponse>;
 
     /**
      * 
@@ -479,11 +493,12 @@ export class ChargesApi extends BaseAPI implements ChargesApiInterface {
      * @param {ChargeRequest} chargeRequest requested field for a charge
      * @param {OrdersCreateChargeAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public ordersCreateCharge(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargeAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
-        return ChargesApiFp(this.configuration).ordersCreateCharge(id, chargeRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
+    public ordersCreateCharge(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargeAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig) {
+        return ChargesApiFp(this.configuration).ordersCreateCharge(id, chargeRequest, acceptLanguage, xChildCompanyId, idempotencyKey, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -493,11 +508,12 @@ export class ChargesApi extends BaseAPI implements ChargesApiInterface {
      * @param {ChargeRequest} chargeRequest requested field for a charge
      * @param {OrdersCreateChargesAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public ordersCreateCharges(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargesAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
-        return ChargesApiFp(this.configuration).ordersCreateCharges(id, chargeRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
+    public ordersCreateCharges(id: string, chargeRequest: ChargeRequest, acceptLanguage?: OrdersCreateChargesAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig) {
+        return ChargesApiFp(this.configuration).ordersCreateCharges(id, chargeRequest, acceptLanguage, xChildCompanyId, idempotencyKey, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -18,6 +18,6 @@ export interface ResendEventRequest {
     /**
      * webhooks ids to resend event
      */
-    'webhooks_ids': Array<string>;
+    'webhooks_ids'?: Array<string>;
 }
 
