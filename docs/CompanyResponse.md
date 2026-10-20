@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **name** | **string** | The name of the company. | [default to undefined]
 **active** | **boolean** | Indicates if the company is active. | [default to undefined]
 **account_status** | **string** | The current status of the company\&#39;s account. | [default to undefined]
+**card_payments_enabled** | **boolean** | Indicates if card payments are enabled for the company. | [optional] [default to undefined]
 **parent_company_id** | **string** | The identifier of the parent company, if any. | [optional] [default to undefined]
 **onboarding_status** | **string** | The current status of the company\&#39;s onboarding process. | [default to undefined]
 **documents** | [**Array&lt;CompanyDocumentResponse&gt;**](CompanyDocumentResponse.md) | A list of documents related to the company. | [default to undefined]
@@ -28,6 +29,7 @@ const instance: CompanyResponse = {
     name,
     active,
     account_status,
+    card_payments_enabled,
     parent_company_id,
     onboarding_status,
     documents,
