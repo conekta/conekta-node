@@ -87,6 +87,14 @@ export interface OrderRequest {
      * Indicates the redirection callback upon completion of the 3DS2 flow. Do not use this parameter if your order has a checkout parameter
      */
     'return_url'?: string;
+    /**
+     * Reuses the customer\'s recurrent cash reference (`cash_recurrent` payment source) in the order\'s cash charges instead of generating a new reference. Requires `customer_info.customer_id`.
+     */
+    'reuse_customer_cash_reference'?: boolean;
+    /**
+     * Reuses the customer\'s recurrent SPEI CLABE (`spei_recurrent` payment source) in the order\'s SPEI charges instead of generating a new CLABE. Requires `customer_info.customer_id`.
+     */
+    'reuse_customer_clabe'?: boolean;
     'shipping_contact'?: CustomerShippingContactsRequest;
     /**
      * List of [shipping costs](https://developers.conekta.com/v2.3.0/reference/orderscreateshipping). If the online store offers digital products.

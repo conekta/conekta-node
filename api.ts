@@ -16,6 +16,7 @@
 
 export * from './api/antifraud-api';
 export * from './api/api-keys-api';
+export * from './api/apple-pay-api';
 export * from './api/balances-api';
 export * from './api/chargebacks-api';
 export * from './api/charges-api';
@@ -24,6 +25,7 @@ export * from './api/customers-api';
 export * from './api/discounts-api';
 export * from './api/events-api';
 export * from './api/logs-api';
+export * from './api/monthly-installments-api';
 export * from './api/orders-api';
 export * from './api/payment-link-api';
 export * from './api/payment-methods-api';

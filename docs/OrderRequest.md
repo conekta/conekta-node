@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **pre_authorize** | **boolean** | Indicates whether the order charges must be preauthorized | [optional] [default to undefined]
 **processing_mode** | **string** | Indicates the processing mode for the order, either ecommerce, recurrent or validation. | [optional] [default to undefined]
 **return_url** | **string** | Indicates the redirection callback upon completion of the 3DS2 flow. Do not use this parameter if your order has a checkout parameter | [optional] [default to undefined]
+**reuse_customer_cash_reference** | **boolean** | Reuses the customer\&#39;s recurrent cash reference (&#x60;cash_recurrent&#x60; payment source) in the order\&#39;s cash charges instead of generating a new reference. Requires &#x60;customer_info.customer_id&#x60;. | [optional] [default to undefined]
+**reuse_customer_clabe** | **boolean** | Reuses the customer\&#39;s recurrent SPEI CLABE (&#x60;spei_recurrent&#x60; payment source) in the order\&#39;s SPEI charges instead of generating a new CLABE. Requires &#x60;customer_info.customer_id&#x60;. | [optional] [default to undefined]
 **shipping_contact** | [**CustomerShippingContactsRequest**](CustomerShippingContactsRequest.md) |  | [optional] [default to undefined]
 **shipping_lines** | [**Array&lt;ShippingRequest&gt;**](ShippingRequest.md) | List of [shipping costs](https://developers.conekta.com/v2.3.0/reference/orderscreateshipping). If the online store offers digital products. | [optional] [default to undefined]
 **tax_lines** | [**Array&lt;OrderTaxRequest&gt;**](OrderTaxRequest.md) | List of [taxes](https://developers.conekta.com/v2.3.0/reference/orderscreatetaxes) that are applied to the order. | [optional] [default to undefined]
@@ -41,6 +43,8 @@ const instance: OrderRequest = {
     pre_authorize,
     processing_mode,
     return_url,
+    reuse_customer_cash_reference,
+    reuse_customer_clabe,
     shipping_contact,
     shipping_lines,
     tax_lines,

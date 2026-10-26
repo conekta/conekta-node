@@ -35,6 +35,10 @@ export interface CompanyResponse {
      */
     'account_status': string;
     /**
+     * Indicates if card payments are enabled for the company.
+     */
+    'card_payments_enabled'?: boolean;
+    /**
      * The identifier of the parent company, if any.
      */
     'parent_company_id'?: string;

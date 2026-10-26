@@ -97,12 +97,14 @@ let id: string; //Identifier of the resource (default to undefined)
 let chargeRequest: ChargeRequest; //requested field for a charge
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
 let xChildCompanyId: string; //In the case of a holding company, the company id of the child company to which will process the request. (optional) (default to undefined)
+let idempotencyKey: string; //Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.ordersCreateCharge(
     id,
     chargeRequest,
     acceptLanguage,
-    xChildCompanyId
+    xChildCompanyId,
+    idempotencyKey
 );
 ```
 
@@ -114,6 +116,7 @@ const { status, data } = await apiInstance.ordersCreateCharge(
 | **id** | [**string**] | Identifier of the resource | defaults to undefined|
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
 | **xChildCompanyId** | [**string**] | In the case of a holding company, the company id of the child company to which will process the request. | (optional) defaults to undefined|
+| **idempotencyKey** | [**string**] | Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -162,12 +165,14 @@ let id: string; //Identifier of the resource (default to undefined)
 let chargeRequest: ChargeRequest; //requested field for a charge
 let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
 let xChildCompanyId: string; //In the case of a holding company, the company id of the child company to which will process the request. (optional) (default to undefined)
+let idempotencyKey: string; //Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.ordersCreateCharges(
     id,
     chargeRequest,
     acceptLanguage,
-    xChildCompanyId
+    xChildCompanyId,
+    idempotencyKey
 );
 ```
 
@@ -179,6 +184,7 @@ const { status, data } = await apiInstance.ordersCreateCharges(
 | **id** | [**string**] | Identifier of the resource | defaults to undefined|
 | **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
 | **xChildCompanyId** | [**string**] | In the case of a holding company, the company id of the child company to which will process the request. | (optional) defaults to undefined|
+| **idempotencyKey** | [**string**] | Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again. | (optional) defaults to undefined|
 
 
 ### Return type

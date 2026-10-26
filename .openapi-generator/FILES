@@ -8,6 +8,7 @@ VERSION
 api.ts
 api/antifraud-api.ts
 api/api-keys-api.ts
+api/apple-pay-api.ts
 api/balances-api.ts
 api/chargebacks-api.ts
 api/charges-api.ts
@@ -16,6 +17,7 @@ api/customers-api.ts
 api/discounts-api.ts
 api/events-api.ts
 api/logs-api.ts
+api/monthly-installments-api.ts
 api/orders-api.ts
 api/payment-link-api.ts
 api/payment-methods-api.ts
@@ -42,6 +44,9 @@ docs/ApiKeyRequest.md
 docs/ApiKeyResponse.md
 docs/ApiKeyUpdateRequest.md
 docs/ApiKeysApi.md
+docs/ApplePayApi.md
+docs/ApplePaySessionRequest.md
+docs/ApplePaySessionResponse.md
 docs/BalanceCommonFielsResponse.md
 docs/BalanceResponse.md
 docs/BalancesApi.md
@@ -138,6 +143,11 @@ docs/LogResponseForRequest.md
 docs/LogsApi.md
 docs/LogsResponseData.md
 docs/LogsResponseForRequest.md
+docs/MonthlyInstallmentsApi.md
+docs/MonthlyInstallmentsValidateRequest.md
+docs/MonthlyInstallmentsValidateResponse.md
+docs/MonthlyInstallmentsValidateResponseAvailableInstallments.md
+docs/MonthlyInstallmentsValidateResponseBinInfo.md
 docs/OrderCaptureRequest.md
 docs/OrderChannelResponse.md
 docs/OrderChargesResponse.md
@@ -260,6 +270,8 @@ model/api-key-create-response.ts
 model/api-key-request.ts
 model/api-key-response.ts
 model/api-key-update-request.ts
+model/apple-pay-session-request.ts
+model/apple-pay-session-response.ts
 model/balance-common-fiels-response.ts
 model/balance-response.ts
 model/blacklist-rule-response.ts
@@ -349,6 +361,10 @@ model/log-response-for-request.ts
 model/logs-response-data.ts
 model/logs-response-for-request.ts
 model/model-error.ts
+model/monthly-installments-validate-request.ts
+model/monthly-installments-validate-response-available-installments.ts
+model/monthly-installments-validate-response-bin-info.ts
+model/monthly-installments-validate-response.ts
 model/order-capture-request.ts
 model/order-channel-response.ts
 model/order-charges-response.ts

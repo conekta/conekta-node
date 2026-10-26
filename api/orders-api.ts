@@ -92,10 +92,11 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {OrderRequest} orderRequest requested field for order
          * @param {CreateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createOrder: async (orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createOrder: async (orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'orderRequest' is not null or undefined
             assertParamExists('createOrder', 'orderRequest', orderRequest)
             const localVarPath = `/orders`;
@@ -122,6 +123,9 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             }
             if (xChildCompanyId != null) {
                 localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
+            if (idempotencyKey != null) {
+                localVarHeaderParameter['Idempotency-Key'] = String(idempotencyKey);
             }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -200,10 +204,11 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {number} [createdAtLte] created at less than or equal to
          * @param {number} [updatedAtGte] updated at greater than or equal to
          * @param {number} [updatedAtLte] updated at less than or equal to
+         * @param {number} [amount] Filters by amount equal to the given value, in cents
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrders: async (acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getOrders: async (acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, amount?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/orders`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -262,6 +267,10 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
 
             if (updatedAtLte !== undefined) {
                 localVarQueryParameter['updated_at.lte'] = updatedAtLte;
+            }
+
+            if (amount !== undefined) {
+                localVarQueryParameter['amount'] = amount;
             }
 
             localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.3.0+json';
@@ -508,11 +517,12 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * @param {OrderRequest} orderRequest requested field for order
          * @param {CreateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createOrder(orderRequest, acceptLanguage, xChildCompanyId, options);
+        async createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createOrder(orderRequest, acceptLanguage, xChildCompanyId, idempotencyKey, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['OrdersApi.createOrder']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -549,11 +559,12 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * @param {number} [createdAtLte] created at less than or equal to
          * @param {number} [updatedAtGte] updated at greater than or equal to
          * @param {number} [updatedAtLte] updated at less than or equal to
+         * @param {number} [amount] Filters by amount equal to the given value, in cents
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOrdersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, paymentStatus, lastPaymentInfoStatus, createdAt, createdAtGte, createdAtLte, updatedAtGte, updatedAtLte, options);
+        async getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, amount?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOrdersResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, paymentStatus, lastPaymentInfoStatus, createdAt, createdAtGte, createdAtLte, updatedAtGte, updatedAtLte, amount, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['OrdersApi.getOrders']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -648,11 +659,12 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @param {OrderRequest} orderRequest requested field for order
          * @param {CreateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
          * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse> {
-            return localVarFp.createOrder(orderRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
+        createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse> {
+            return localVarFp.createOrder(orderRequest, acceptLanguage, xChildCompanyId, idempotencyKey, options).then((request) => request(axios, basePath));
         },
         /**
          * Info for a specific order
@@ -683,11 +695,12 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @param {number} [createdAtLte] created at less than or equal to
          * @param {number} [updatedAtGte] updated at greater than or equal to
          * @param {number} [updatedAtLte] updated at less than or equal to
+         * @param {number} [amount] Filters by amount equal to the given value, in cents
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, options?: RawAxiosRequestConfig): AxiosPromise<GetOrdersResponse> {
-            return localVarFp.getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, paymentStatus, lastPaymentInfoStatus, createdAt, createdAtGte, createdAtLte, updatedAtGte, updatedAtLte, options).then((request) => request(axios, basePath));
+        getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, amount?: number, options?: RawAxiosRequestConfig): AxiosPromise<GetOrdersResponse> {
+            return localVarFp.getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, paymentStatus, lastPaymentInfoStatus, createdAt, createdAtGte, createdAtLte, updatedAtGte, updatedAtLte, amount, options).then((request) => request(axios, basePath));
         },
         /**
          * A refunded order describes the items, amount, and reason an order is being refunded.
@@ -764,10 +777,11 @@ export interface OrdersApiInterface {
      * @param {OrderRequest} orderRequest requested field for order
      * @param {CreateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
+    createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
     /**
      * Info for a specific order
@@ -797,10 +811,11 @@ export interface OrdersApiInterface {
      * @param {number} [createdAtLte] created at less than or equal to
      * @param {number} [updatedAtGte] updated at greater than or equal to
      * @param {number} [updatedAtLte] updated at less than or equal to
+     * @param {number} [amount] Filters by amount equal to the given value, in cents
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, options?: RawAxiosRequestConfig): AxiosPromise<GetOrdersResponse>;
+    getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, amount?: number, options?: RawAxiosRequestConfig): AxiosPromise<GetOrdersResponse>;
 
     /**
      * A refunded order describes the items, amount, and reason an order is being refunded.
@@ -874,11 +889,12 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @param {OrderRequest} orderRequest requested field for order
      * @param {CreateOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
      * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {string} [idempotencyKey] Unique key to make the request idempotent. Retrying a request with the same key returns the original response instead of performing the operation again.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
-        return OrdersApiFp(this.configuration).createOrder(orderRequest, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
+    public createOrder(orderRequest: OrderRequest, acceptLanguage?: CreateOrderAcceptLanguageEnum, xChildCompanyId?: string, idempotencyKey?: string, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).createOrder(orderRequest, acceptLanguage, xChildCompanyId, idempotencyKey, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -911,11 +927,12 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @param {number} [createdAtLte] created at less than or equal to
      * @param {number} [updatedAtGte] updated at greater than or equal to
      * @param {number} [updatedAtLte] updated at less than or equal to
+     * @param {number} [amount] Filters by amount equal to the given value, in cents
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, options?: RawAxiosRequestConfig) {
-        return OrdersApiFp(this.configuration).getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, paymentStatus, lastPaymentInfoStatus, createdAt, createdAtGte, createdAtLte, updatedAtGte, updatedAtLte, options).then((request) => request(this.axios, this.basePath));
+    public getOrders(acceptLanguage?: GetOrdersAcceptLanguageEnum, xChildCompanyId?: string, limit?: number, search?: string, next?: string, previous?: string, paymentStatus?: string, lastPaymentInfoStatus?: string, createdAt?: number, createdAtGte?: number, createdAtLte?: number, updatedAtGte?: number, updatedAtLte?: number, amount?: number, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).getOrders(acceptLanguage, xChildCompanyId, limit, search, next, previous, paymentStatus, lastPaymentInfoStatus, createdAt, createdAtGte, createdAtLte, updatedAtGte, updatedAtLte, amount, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
