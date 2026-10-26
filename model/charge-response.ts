@@ -25,6 +25,9 @@ import type { ChargeResponseRefunds } from './charge-response-refunds';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { ChargebackResponse } from './chargeback-response';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { OrderNextActionResponse } from './order-next-action-response';
 
 export interface ChargeResponse {
     'amount'?: number;
@@ -54,6 +57,7 @@ export interface ChargeResponse {
      * Whether the charge was made in live mode or not
      */
     'livemode': boolean;
+    'next_action'?: OrderNextActionResponse;
     'object': string;
     /**
      * Order ID
