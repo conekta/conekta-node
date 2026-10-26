@@ -487,6 +487,52 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Void an order that has been previously authorized and not yet captured. The order and its charges are moved to the voided status.
+         * @summary Void Order
+         * @param {string} id Identifier of the resource
+         * @param {VoidOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+         * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        voidOrder: async (id: string, acceptLanguage?: VoidOrderAcceptLanguageEnum, xChildCompanyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('voidOrder', 'id', id)
+            const localVarPath = `/orders/{id}/void`
+                .replace('{id}', encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.3.0+json';
+
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            if (xChildCompanyId != null) {
+                localVarHeaderParameter['X-Child-Company-Id'] = String(xChildCompanyId);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -632,6 +678,21 @@ export const OrdersApiFp = function(configuration?: Configuration) {
             const localVarOperationServerBasePath = operationServerMap['OrdersApi.updateOrder']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
+        /**
+         * Void an order that has been previously authorized and not yet captured. The order and its charges are moved to the voided status.
+         * @summary Void Order
+         * @param {string} id Identifier of the resource
+         * @param {VoidOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+         * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async voidOrder(id: string, acceptLanguage?: VoidOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.voidOrder(id, acceptLanguage, xChildCompanyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['OrdersApi.voidOrder']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
     }
 };
 
@@ -753,6 +814,18 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
         updateOrder(id: string, orderUpdate: OrderUpdate, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse> {
             return localVarFp.updateOrder(id, orderUpdate, acceptLanguage, options).then((request) => request(axios, basePath));
         },
+        /**
+         * Void an order that has been previously authorized and not yet captured. The order and its charges are moved to the voided status.
+         * @summary Void Order
+         * @param {string} id Identifier of the resource
+         * @param {VoidOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+         * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        voidOrder(id: string, acceptLanguage?: VoidOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse> {
+            return localVarFp.voidOrder(id, acceptLanguage, xChildCompanyId, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -863,6 +936,17 @@ export interface OrdersApiInterface {
      * @throws {RequiredError}
      */
     updateOrder(id: string, orderUpdate: OrderUpdate, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
+
+    /**
+     * Void an order that has been previously authorized and not yet captured. The order and its charges are moved to the voided status.
+     * @summary Void Order
+     * @param {string} id Identifier of the resource
+     * @param {VoidOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+     * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    voidOrder(id: string, acceptLanguage?: VoidOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig): AxiosPromise<OrderResponse>;
 
 }
 
@@ -989,6 +1073,19 @@ export class OrdersApi extends BaseAPI implements OrdersApiInterface {
     public updateOrder(id: string, orderUpdate: OrderUpdate, acceptLanguage?: UpdateOrderAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
         return OrdersApiFp(this.configuration).updateOrder(id, orderUpdate, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
+
+    /**
+     * Void an order that has been previously authorized and not yet captured. The order and its charges are moved to the voided status.
+     * @summary Void Order
+     * @param {string} id Identifier of the resource
+     * @param {VoidOrderAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+     * @param {string} [xChildCompanyId] In the case of a holding company, the company id of the child company to which will process the request.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public voidOrder(id: string, acceptLanguage?: VoidOrderAcceptLanguageEnum, xChildCompanyId?: string, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).voidOrder(id, acceptLanguage, xChildCompanyId, options).then((request) => request(this.axios, this.basePath));
+    }
 }
 
 export const CancelOrderAcceptLanguageEnum = {
@@ -1031,3 +1128,8 @@ export const UpdateOrderAcceptLanguageEnum = {
     en: 'en',
 } as const;
 export type UpdateOrderAcceptLanguageEnum = typeof UpdateOrderAcceptLanguageEnum[keyof typeof UpdateOrderAcceptLanguageEnum];
+export const VoidOrderAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en',
+} as const;
+export type VoidOrderAcceptLanguageEnum = typeof VoidOrderAcceptLanguageEnum[keyof typeof VoidOrderAcceptLanguageEnum];

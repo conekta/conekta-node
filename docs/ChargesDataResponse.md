@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **failure_message** | **string** |  | [optional] [default to undefined]
 **id** | **string** | Charge ID | [default to undefined]
 **livemode** | **boolean** | Whether the charge was made in live mode or not | [default to undefined]
+**next_action** | [**OrderNextActionResponse**](OrderNextActionResponse.md) |  | [optional] [default to undefined]
 **object** | **string** |  | [default to undefined]
 **order_id** | **string** | Order ID | [default to undefined]
 **paid_at** | **number** | charge Payment date | [optional] [default to undefined]
@@ -44,6 +45,7 @@ const instance: ChargesDataResponse = {
     failure_message,
     id,
     livemode,
+    next_action,
     object,
     order_id,
     paid_at,

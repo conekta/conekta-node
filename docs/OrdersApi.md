@@ -12,6 +12,7 @@ All URIs are relative to *https://api.conekta.io*
 |[**orderRefund**](#orderrefund) | **POST** /orders/{id}/refunds | Refund Order|
 |[**ordersCreateCapture**](#orderscreatecapture) | **POST** /orders/{id}/capture | Capture Order|
 |[**updateOrder**](#updateorder) | **PUT** /orders/{id} | Update Order|
+|[**voidOrder**](#voidorder) | **POST** /orders/{id}/void | Void Order|
 
 # **cancelOrder**
 > OrderResponse cancelOrder()
@@ -549,6 +550,68 @@ const { status, data } = await apiInstance.updateOrder(
 |**401** | authentication error |  -  |
 |**404** | not found entity |  -  |
 |**422** | parameter validation error |  -  |
+|**500** | internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **voidOrder**
+> OrderResponse voidOrder()
+
+Void an order that has been previously authorized and not yet captured. The order and its charges are moved to the voided status.
+
+### Example
+
+```typescript
+import {
+    OrdersApi,
+    Configuration
+} from 'conekta';
+
+const configuration = new Configuration();
+const apiInstance = new OrdersApi(configuration);
+
+let id: string; //Identifier of the resource (default to undefined)
+let acceptLanguage: 'es' | 'en'; //Use for knowing which language to use (optional) (default to 'es')
+let xChildCompanyId: string; //In the case of a holding company, the company id of the child company to which will process the request. (optional) (default to undefined)
+
+const { status, data } = await apiInstance.voidOrder(
+    id,
+    acceptLanguage,
+    xChildCompanyId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **id** | [**string**] | Identifier of the resource | defaults to undefined|
+| **acceptLanguage** | [**&#39;es&#39; | &#39;en&#39;**]**Array<&#39;es&#39; &#124; &#39;en&#39;>** | Use for knowing which language to use | (optional) defaults to 'es'|
+| **xChildCompanyId** | [**string**] | In the case of a holding company, the company id of the child company to which will process the request. | (optional) defaults to undefined|
+
+
+### Return type
+
+**OrderResponse**
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/vnd.conekta-v2.3.0+json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | successful |  -  |
+|**401** | authentication error |  -  |
+|**402** | payment required error |  -  |
+|**404** | not found entity |  -  |
+|**428** | Precondition Required |  -  |
 |**500** | internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -191,6 +191,8 @@ docs/PaymentMethodCashResponse.md
 docs/PaymentMethodGeneralRequest.md
 docs/PaymentMethodPbbPayment.md
 docs/PaymentMethodPbbRequest.md
+docs/PaymentMethodSetting.md
+docs/PaymentMethodSettingsResponse.md
 docs/PaymentMethodSpeiRecurrentResponse.md
 docs/PaymentMethodSpeiRequest.md
 docs/PaymentMethodTokenRequest.md
@@ -406,6 +408,8 @@ model/payment-method-cash.ts
 model/payment-method-general-request.ts
 model/payment-method-pbb-payment.ts
 model/payment-method-pbb-request.ts
+model/payment-method-setting.ts
+model/payment-method-settings-response.ts
 model/payment-method-spei-recurrent-response.ts
 model/payment-method-spei-request.ts
 model/payment-method-token-request.ts

@@ -33,6 +33,8 @@ import type { CreateCompanyRequest } from '../model';
 import type { GetCompaniesResponse } from '../model';
 // @ts-ignore
 import type { ModelError } from '../model';
+// @ts-ignore
+import type { PaymentMethodSettingsResponse } from '../model';
 /**
  * CompaniesApi - axios parameter creator
  */
@@ -258,6 +260,44 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
+         * Retrieves the enablement status of each payment method for the currently authenticated company. For every payment method the response indicates whether it is enabled by Conekta (`admin`), enabled by the merchant (`merchant`), and the resulting state (`effective`).
+         * @summary Get Payment Method Settings
+         * @param {GetPaymentMethodSettingsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentMethodSettings: async (acceptLanguage?: GetPaymentMethodSettingsAcceptLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/settings/payment-methods`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/vnd.conekta-v2.3.0+json';
+
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Updates an existing document associated with a specific company.
          * @summary Update Company Document
          * @param {string} companyId The unique identifier of the company.
@@ -432,6 +472,19 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Retrieves the enablement status of each payment method for the currently authenticated company. For every payment method the response indicates whether it is enabled by Conekta (`admin`), enabled by the merchant (`merchant`), and the resulting state (`effective`).
+         * @summary Get Payment Method Settings
+         * @param {GetPaymentMethodSettingsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getPaymentMethodSettings(acceptLanguage?: GetPaymentMethodSettingsAcceptLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaymentMethodSettingsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPaymentMethodSettings(acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.getPaymentMethodSettings']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Updates an existing document associated with a specific company.
          * @summary Update Company Document
          * @param {string} companyId The unique identifier of the company.
@@ -527,6 +580,16 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
             return localVarFp.getCurrentCompany(acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
+         * Retrieves the enablement status of each payment method for the currently authenticated company. For every payment method the response indicates whether it is enabled by Conekta (`admin`), enabled by the merchant (`merchant`), and the resulting state (`effective`).
+         * @summary Get Payment Method Settings
+         * @param {GetPaymentMethodSettingsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentMethodSettings(acceptLanguage?: GetPaymentMethodSettingsAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<PaymentMethodSettingsResponse> {
+            return localVarFp.getPaymentMethodSettings(acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Updates an existing document associated with a specific company.
          * @summary Update Company Document
          * @param {string} companyId The unique identifier of the company.
@@ -607,6 +670,15 @@ export interface CompaniesApiInterface {
      * @throws {RequiredError}
      */
     getCurrentCompany(acceptLanguage?: GetCurrentCompanyAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<CompanyResponse>;
+
+    /**
+     * Retrieves the enablement status of each payment method for the currently authenticated company. For every payment method the response indicates whether it is enabled by Conekta (`admin`), enabled by the merchant (`merchant`), and the resulting state (`effective`).
+     * @summary Get Payment Method Settings
+     * @param {GetPaymentMethodSettingsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPaymentMethodSettings(acceptLanguage?: GetPaymentMethodSettingsAcceptLanguageEnum, options?: RawAxiosRequestConfig): AxiosPromise<PaymentMethodSettingsResponse>;
 
     /**
      * Updates an existing document associated with a specific company.
@@ -698,6 +770,17 @@ export class CompaniesApi extends BaseAPI implements CompaniesApiInterface {
     }
 
     /**
+     * Retrieves the enablement status of each payment method for the currently authenticated company. For every payment method the response indicates whether it is enabled by Conekta (`admin`), enabled by the merchant (`merchant`), and the resulting state (`effective`).
+     * @summary Get Payment Method Settings
+     * @param {GetPaymentMethodSettingsAcceptLanguageEnum} [acceptLanguage] Use for knowing which language to use
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getPaymentMethodSettings(acceptLanguage?: GetPaymentMethodSettingsAcceptLanguageEnum, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).getPaymentMethodSettings(acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Updates an existing document associated with a specific company.
      * @summary Update Company Document
      * @param {string} companyId The unique identifier of the company.
@@ -744,6 +827,11 @@ export const GetCurrentCompanyAcceptLanguageEnum = {
     en: 'en',
 } as const;
 export type GetCurrentCompanyAcceptLanguageEnum = typeof GetCurrentCompanyAcceptLanguageEnum[keyof typeof GetCurrentCompanyAcceptLanguageEnum];
+export const GetPaymentMethodSettingsAcceptLanguageEnum = {
+    es: 'es',
+    en: 'en',
+} as const;
+export type GetPaymentMethodSettingsAcceptLanguageEnum = typeof GetPaymentMethodSettingsAcceptLanguageEnum[keyof typeof GetPaymentMethodSettingsAcceptLanguageEnum];
 export const UpdateCompanyDocumentAcceptLanguageEnum = {
     es: 'es',
     en: 'en',
