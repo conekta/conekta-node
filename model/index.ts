@@ -137,6 +137,8 @@ export * from './payment-method-cash-response';
 export * from './payment-method-general-request';
 export * from './payment-method-pbb-payment';
 export * from './payment-method-pbb-request';
+export * from './payment-method-setting';
+export * from './payment-method-settings-response';
 export * from './payment-method-spei-recurrent-response';
 export * from './payment-method-spei-request';
 export * from './payment-method-token-request';

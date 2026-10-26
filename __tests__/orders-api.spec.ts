@@ -296,6 +296,20 @@ describe("Orders api", () => {
       expect(data[0].status).toEqual("canceled");
     });
   });
+
+   describe("Order void", () => {
+    it("should void an order", async () => {
+      const id = "ord_31yUZoy1hmFioz8r4";
+
+      const response = (await client.voidOrder(id)).data;
+      const data = (response.charges as unknown as { data: any[]}).data
+
+      expect(response).toBeDefined();
+      expect(response.id).toEqual(id);
+      expect(response.payment_status).toEqual("voided");
+      expect(data[0].status).toEqual("voided");
+    });
+  });
 });
 
 
