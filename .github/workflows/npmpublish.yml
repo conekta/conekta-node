@@ -38,5 +38,3 @@ jobs:
           fi
           echo "Publishing $VERSION with $NPM_TAG tag."
           npm publish --tag $NPM_TAG
-        env:
-          GITHUB_TOKEN: ${{ secrets.USER_GITHUB_TOKEN }}
